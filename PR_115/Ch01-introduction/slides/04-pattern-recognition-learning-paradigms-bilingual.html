@@ -217,6 +217,92 @@ h2.section-title{margin-bottom:12px;} h2.section-title .en{display:block; font-s
   </div>
 </section>
 
+<!-- GEOMETRY — 三子圖對比 -->
+<section class="section" id="geometry">
+  <span class="sec-tag sustain">S2 · 維持注意 — 幾何對比</span>
+  <h2 class="section-title">同一批點，三種決策幾何：監督 / 非監督 / 半監督
+    <span class="en">Same Points, Three Geometries: Supervised / Unsupervised / Semi-Supervised</span>
+  </h2>
+  <p>
+    三幅子圖共用完全相同的 16 點座標——唯一差別是監督資訊。請盯住邊界游子 $P_8$ / $P_9$ 的命運。
+    <span class="bilingual-en">Three panels share identical 16 coordinates — only supervision differs. Watch $P_8/P_9$'s fate.</span>
+  </p>
+
+  <div class="svg-stage light" style="padding:12px;">
+    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
+      <!-- Panel A -->
+      <g>
+        <rect x="10" y="10" width="300" height="280" rx="10" fill="#f0fdf4" stroke="#86efac"/>
+        <text x="160" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#14532d">(a) 監督式 — 全標籤 + 最優分界線</text>
+        <text x="160" y="44" text-anchor="middle" font-size="9" fill="#166534">Supervised — all labels + optimal $g(\mathbf{x})=0$</text>
+        <line x1="30" y1="260" x2="290" y2="260" stroke="#a0aec0" stroke-width="1"/><line x1="30" y1="260" x2="30" y2="50" stroke="#a0aec0" stroke-width="1"/>
+        <!-- A cluster green -->
+        <g fill="#16a34a"><circle cx="70" cy="120" r="5"/><circle cx="85" cy="100" r="5"/><circle cx="95" cy="130" r="5"/><circle cx="65" cy="150" r="5"/><circle cx="90" cy="170" r="5"/><circle cx="75" cy="180" r="5"/></g>
+        <!-- B cluster red -->
+        <g fill="#dc2626"><circle cx="220" cy="180" r="5"/><circle cx="240" cy="160" r="5"/><circle cx="250" cy="190" r="5"/><circle cx="230" cy="200" r="5"/><circle cx="260" cy="170" r="5"/><circle cx="240" cy="130" r="5"/></g>
+        <!-- P8 P9 correctly in A side with boundary -->
+        <line x1="30" y1="90" x2="290" y2="210" stroke="#16a34a" stroke-width="2.4"/>
+        <text x="200" y="105" font-size="7" fill="#16a34a" font-weight="700">green $g(\mathbf{x})=0$</text>
+        <circle cx="135" cy="145" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="135" y="148" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₈✓</text>
+        <circle cx="155" cy="155" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="155" y="158" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₉✓</text>
+        <text x="160" y="275" text-anchor="middle" font-size="8" font-weight="700" fill="#14532d">✓ P₈/P₉ 正確留在 A 側</text>
+      </g>
+      <!-- Panel B -->
+      <g>
+        <rect x="330" y="10" width="300" height="280" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
+        <text x="480" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">(b) 非監督 — 純距離分群</text>
+        <text x="480" y="44" text-anchor="middle" font-size="9" fill="#9a3412">Unsupervised — pure Euclidean distance</text>
+        <line x1="350" y1="260" x2="610" y2="260" stroke="#a0aec0" stroke-width="1"/><line x1="350" y1="260" x2="350" y2="50" stroke="#a0aec0" stroke-width="1"/>
+        <g fill="#6b7280"><circle cx="390" cy="120" r="5"/><circle cx="405" cy="100" r="5"/><circle cx="415" cy="130" r="5"/><circle cx="385" cy="150" r="5"/><circle cx="410" cy="170" r="5"/><circle cx="395" cy="180" r="5"/></g>
+        <g fill="#6b7280"><circle cx="540" cy="180" r="5"/><circle cx="560" cy="160" r="5"/><circle cx="570" cy="190" r="5"/><circle cx="550" cy="200" r="5"/><circle cx="580" cy="170" r="5"/><circle cx="560" cy="130" r="5"/></g>
+        <!-- P8 P9 misclustered to B (gray, with arrow) -->
+        <circle cx="455" cy="145" r="7" fill="#fecaca" stroke="#dc2626" stroke-width="1.5"/><text x="455" y="148" text-anchor="middle" font-size="7" font-weight="800" fill="#991b1b">P₈✗</text>
+        <circle cx="475" cy="155" r="7" fill="#fecaca" stroke="#dc2626" stroke-width="1.5"/><text x="475" y="158" text-anchor="middle" font-size="7" font-weight="800" fill="#991b1b">P₉✗</text>
+        <!-- dashed mis-merge arrow -->
+        <line x1="455" y1="145" x2="540" y2="165" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#arrRed)"/>
+        <text x="480" y="275" text-anchor="middle" font-size="8" font-weight="700" fill="#9a3412">✗ P₈/P₉ 被 1.91 誤拉入 B 群</text>
+      </g>
+      <!-- Panel C -->
+      <g>
+        <rect x="650" y="10" width="300" height="280" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="800" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">(c) 半監督 — 約束修正</text>
+        <text x="800" y="44" text-anchor="middle" font-size="9" fill="#1e40af">Semi-supervised — constraints rescue</text>
+        <line x1="670" y1="260" x2="930" y2="260" stroke="#a0aec0" stroke-width="1"/><line x1="670" y1="260" x2="670" y2="50" stroke="#a0aec0" stroke-width="1"/>
+        <g fill="#3b82f6"><circle cx="710" cy="120" r="5"/><circle cx="725" cy="100" r="5"/><circle cx="735" cy="130" r="5"/><circle cx="705" cy="150" r="5"/><circle cx="730" cy="170" r="5"/><circle cx="715" cy="180" r="5"/></g>
+        <g fill="#ef4444"><circle cx="860" cy="180" r="5"/><circle cx="880" cy="160" r="5"/><circle cx="890" cy="190" r="5"/><circle cx="870" cy="200" r="5"/><circle cx="900" cy="170" r="5"/><circle cx="880" cy="130" r="5"/></g>
+        <circle cx="775" cy="145" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="775" y="148" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₈✓</text>
+        <circle cx="795" cy="155" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="795" y="158" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₉✓</text>
+        <!-- Must-Link green dashed -->
+        <line x1="730" y1="130" x2="770" y2="142" stroke="#00b894" stroke-width="1.6" stroke-dasharray="5,3"/>
+        <text x="745" y="128" font-size="6" fill="#00b894" font-weight="700">Must-Link</text>
+        <!-- Cannot-Link red dashed with X -->
+        <line x1="785" y1="150" x2="855" y2="175" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,3"/>
+        <text x="820" y="155" font-size="6" fill="#dc2626" font-weight="700">Cannot-Link ✗</text>
+        <text x="800" y="275" text-anchor="middle" font-size="8" font-weight="700" fill="#1e3a8a">✓ 兩條紅線把 P₈/P₉ 拉回正軌</text>
+      </g>
+      <defs><marker id="arrRed" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0, 6 2.5, 0 5" fill="#dc2626"/></marker></defs>
+    </svg>
+    <div class="svg-caption">三子圖共用 16 點座標 · 唯一變因是監督資訊：(a) 全標籤直切 (b) 純距離誤判 (c) 兩條約束救回 <span style="color:var(--ink-soft);">· Same 16 points; only supervision differs</span></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="warning-box" style="margin:0;">
+      <h4>盯住 P₈ / P₉ · Watch P₈/P₉</h4>
+      <p>
+        (a) 有標籤 → 正確在 A；(b) 無標籤 → 被 1.91 誤拉入 B；(c) 加兩條約束 → 救回 A。全劇終的鑰匙就是這兩顆點。
+        <span class="bilingual-en">(a) Labeled → correct in A; (b) Unlabeled → misled to B by 1.91; (c) Constrained → rescued to A.</span>
+      </p>
+    </div>
+    <div class="intuition-box" style="margin:0;">
+      <h4>哲學意境 · Philosophy</h4>
+      <p>
+        資料點從不說謊，說謊的是我們對「近」的定義——換個眼鏡（監督資訊），世界就換個長相。
+        <span class="bilingual-en">Data never lies; our definition of "close" does — change the lens (supervision), change the world.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- TRAP — 距離陷阱 -->
 <section class="section" id="trap">
   <span class="sec-tag sustain">S2 · 維持注意 — 概念陷阱</span>
@@ -478,92 +564,6 @@ h2.section-title{margin-bottom:12px;} h2.section-title .en{display:block; font-s
           <span class="bilingual-en">No need for all labels — a few geometric constraints rewrite fate: four ounces move a thousand pounds.</span>
         </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- GEOMETRY — 三子圖對比 -->
-<section class="section" id="geometry">
-  <span class="sec-tag sustain">S2 · 維持注意 — 幾何對比</span>
-  <h2 class="section-title">同一批點，三種決策幾何：監督 / 非監督 / 半監督
-    <span class="en">Same Points, Three Geometries: Supervised / Unsupervised / Semi-Supervised</span>
-  </h2>
-  <p>
-    三幅子圖共用完全相同的 16 點座標——唯一差別是監督資訊。請盯住邊界游子 $P_8$ / $P_9$ 的命運。
-    <span class="bilingual-en">Three panels share identical 16 coordinates — only supervision differs. Watch $P_8/P_9$'s fate.</span>
-  </p>
-
-  <div class="svg-stage light" style="padding:12px;">
-    <svg viewBox="0 0 960 300" xmlns="http://www.w3.org/2000/svg">
-      <!-- Panel A -->
-      <g>
-        <rect x="10" y="10" width="300" height="280" rx="10" fill="#f0fdf4" stroke="#86efac"/>
-        <text x="160" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#14532d">(a) 監督式 — 全標籤 + 最優分界線</text>
-        <text x="160" y="44" text-anchor="middle" font-size="9" fill="#166534">Supervised — all labels + optimal $g(\mathbf{x})=0$</text>
-        <line x1="30" y1="260" x2="290" y2="260" stroke="#a0aec0" stroke-width="1"/><line x1="30" y1="260" x2="30" y2="50" stroke="#a0aec0" stroke-width="1"/>
-        <!-- A cluster green -->
-        <g fill="#16a34a"><circle cx="70" cy="120" r="5"/><circle cx="85" cy="100" r="5"/><circle cx="95" cy="130" r="5"/><circle cx="65" cy="150" r="5"/><circle cx="90" cy="170" r="5"/><circle cx="75" cy="180" r="5"/></g>
-        <!-- B cluster red -->
-        <g fill="#dc2626"><circle cx="220" cy="180" r="5"/><circle cx="240" cy="160" r="5"/><circle cx="250" cy="190" r="5"/><circle cx="230" cy="200" r="5"/><circle cx="260" cy="170" r="5"/><circle cx="240" cy="130" r="5"/></g>
-        <!-- P8 P9 correctly in A side with boundary -->
-        <line x1="30" y1="90" x2="290" y2="210" stroke="#16a34a" stroke-width="2.4"/>
-        <text x="200" y="105" font-size="7" fill="#16a34a" font-weight="700">green $g(\mathbf{x})=0$</text>
-        <circle cx="135" cy="145" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="135" y="148" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₈✓</text>
-        <circle cx="155" cy="155" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="155" y="158" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₉✓</text>
-        <text x="160" y="275" text-anchor="middle" font-size="8" font-weight="700" fill="#14532d">✓ P₈/P₉ 正確留在 A 側</text>
-      </g>
-      <!-- Panel B -->
-      <g>
-        <rect x="330" y="10" width="300" height="280" rx="10" fill="#fff7ed" stroke="#fed7aa"/>
-        <text x="480" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#9a3412">(b) 非監督 — 純距離分群</text>
-        <text x="480" y="44" text-anchor="middle" font-size="9" fill="#9a3412">Unsupervised — pure Euclidean distance</text>
-        <line x1="350" y1="260" x2="610" y2="260" stroke="#a0aec0" stroke-width="1"/><line x1="350" y1="260" x2="350" y2="50" stroke="#a0aec0" stroke-width="1"/>
-        <g fill="#6b7280"><circle cx="390" cy="120" r="5"/><circle cx="405" cy="100" r="5"/><circle cx="415" cy="130" r="5"/><circle cx="385" cy="150" r="5"/><circle cx="410" cy="170" r="5"/><circle cx="395" cy="180" r="5"/></g>
-        <g fill="#6b7280"><circle cx="540" cy="180" r="5"/><circle cx="560" cy="160" r="5"/><circle cx="570" cy="190" r="5"/><circle cx="550" cy="200" r="5"/><circle cx="580" cy="170" r="5"/><circle cx="560" cy="130" r="5"/></g>
-        <!-- P8 P9 misclustered to B (gray, with arrow) -->
-        <circle cx="455" cy="145" r="7" fill="#fecaca" stroke="#dc2626" stroke-width="1.5"/><text x="455" y="148" text-anchor="middle" font-size="7" font-weight="800" fill="#991b1b">P₈✗</text>
-        <circle cx="475" cy="155" r="7" fill="#fecaca" stroke="#dc2626" stroke-width="1.5"/><text x="475" y="158" text-anchor="middle" font-size="7" font-weight="800" fill="#991b1b">P₉✗</text>
-        <!-- dashed mis-merge arrow -->
-        <line x1="455" y1="145" x2="540" y2="165" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4,3" marker-end="url(#arrRed)"/>
-        <text x="480" y="275" text-anchor="middle" font-size="8" font-weight="700" fill="#9a3412">✗ P₈/P₉ 被 1.91 誤拉入 B 群</text>
-      </g>
-      <!-- Panel C -->
-      <g>
-        <rect x="650" y="10" width="300" height="280" rx="10" fill="#eff6ff" stroke="#93c5fd"/>
-        <text x="800" y="30" text-anchor="middle" font-size="12" font-weight="700" fill="#1e3a8a">(c) 半監督 — 約束修正</text>
-        <text x="800" y="44" text-anchor="middle" font-size="9" fill="#1e40af">Semi-supervised — constraints rescue</text>
-        <line x1="670" y1="260" x2="930" y2="260" stroke="#a0aec0" stroke-width="1"/><line x1="670" y1="260" x2="670" y2="50" stroke="#a0aec0" stroke-width="1"/>
-        <g fill="#3b82f6"><circle cx="710" cy="120" r="5"/><circle cx="725" cy="100" r="5"/><circle cx="735" cy="130" r="5"/><circle cx="705" cy="150" r="5"/><circle cx="730" cy="170" r="5"/><circle cx="715" cy="180" r="5"/></g>
-        <g fill="#ef4444"><circle cx="860" cy="180" r="5"/><circle cx="880" cy="160" r="5"/><circle cx="890" cy="190" r="5"/><circle cx="870" cy="200" r="5"/><circle cx="900" cy="170" r="5"/><circle cx="880" cy="130" r="5"/></g>
-        <circle cx="775" cy="145" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="775" y="148" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₈✓</text>
-        <circle cx="795" cy="155" r="7" fill="#fde68a" stroke="#d97706" stroke-width="1.5"/><text x="795" y="158" text-anchor="middle" font-size="7" font-weight="800" fill="#92400e">P₉✓</text>
-        <!-- Must-Link green dashed -->
-        <line x1="730" y1="130" x2="770" y2="142" stroke="#00b894" stroke-width="1.6" stroke-dasharray="5,3"/>
-        <text x="745" y="128" font-size="6" fill="#00b894" font-weight="700">Must-Link</text>
-        <!-- Cannot-Link red dashed with X -->
-        <line x1="785" y1="150" x2="855" y2="175" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,3"/>
-        <text x="820" y="155" font-size="6" fill="#dc2626" font-weight="700">Cannot-Link ✗</text>
-        <text x="800" y="275" text-anchor="middle" font-size="8" font-weight="700" fill="#1e3a8a">✓ 兩條紅線把 P₈/P₉ 拉回正軌</text>
-      </g>
-      <defs><marker id="arrRed" markerWidth="6" markerHeight="5" refX="5" refY="2.5" orient="auto"><polygon points="0 0, 6 2.5, 0 5" fill="#dc2626"/></marker></defs>
-    </svg>
-    <div class="svg-caption">三子圖共用 16 點座標 · 唯一變因是監督資訊：(a) 全標籤直切 (b) 純距離誤判 (c) 兩條約束救回 <span style="color:var(--ink-soft);">· Same 16 points; only supervision differs</span></div>
-  </div>
-
-  <div class="grid-2">
-    <div class="warning-box" style="margin:0;">
-      <h4>盯住 P₈ / P₉ · Watch P₈/P₉</h4>
-      <p>
-        (a) 有標籤 → 正確在 A；(b) 無標籤 → 被 1.91 誤拉入 B；(c) 加兩條約束 → 救回 A。全劇終的鑰匙就是這兩顆點。
-        <span class="bilingual-en">(a) Labeled → correct in A; (b) Unlabeled → misled to B by 1.91; (c) Constrained → rescued to A.</span>
-      </p>
-    </div>
-    <div class="intuition-box" style="margin:0;">
-      <h4>哲學意境 · Philosophy</h4>
-      <p>
-        資料點從不說謊，說謊的是我們對「近」的定義——換個眼鏡（監督資訊），世界就換個長相。
-        <span class="bilingual-en">Data never lies; our definition of "close" does — change the lens (supervision), change the world.</span>
-      </p>
     </div>
   </div>
 </section>
