@@ -760,20 +760,20 @@ h2.section-title .en {
       </div>
       <div class="method-box">
         <h4>更新規則</h4>
-        <p>$w_j \leftarrow w_j + \eta x_j (y-\hat y)$，$b \leftarrow b - \eta(y-\hat y)$；該 1 猜 0 則獎為 1 的輸入。<span class="bilingual-en">Reward co-firing on error.</span></p>
+        <p>$w_j \leftarrow w_j + \eta x_j (y-\hat y)$，$b \leftarrow b + \eta(y-\hat y)$；該 1 猜 0 時，同時提高為 1 的輸入權重與偏置。<span class="bilingual-en">Reward active inputs and raise the bias on an error.</span></p>
       </div>
     </div>
   </div>
   <div class="formula-box">
     <h4>公式 · 感知機決策與學習</h4>
-    <p>$$\hat y = \mathbf{1}[\mathbf{w}^\top\mathbf{x}+b \gt 0],\quad w_j\leftarrow w_j+\eta x_j(y-\hat y),\; b\leftarrow b-\eta(y-\hat y)$$</p>
+    <p>$$\hat y = \mathbf{1}[\mathbf{w}^\top\mathbf{x}+b\geq 0],\quad w_j\leftarrow w_j+\eta x_j(y-\hat y),\; b\leftarrow b+\eta(y-\hat y)$$</p>
     <p>有監督、離散更新（非梯度），幾何上為移動直線。<span class="bilingual-en">Supervised, discrete correction; moves the line.</span></p>
   </div>
 </section>
 <section class="section" id="calc">
   <span class="sec-tag sustain">S2 · 動手算 · HAND-CALC</span>
   <h2 class="section-title">感知機計算：遙認紅蘋果 <span class="en">Perceptron in Action — Red Apple?</span></h2>
-  <p>兩特徵 $x_1$紅/$x_2$圓、AND 邏輯（紅 AND 圓才 1）、$\eta=0.1$、初始 $w=(0.1,0.3), b=0.5$。<span class="bilingual-en">Two features, AND logic, $\eta=0.1$, init $w=(0.1,0.3), b=0.5$.</span></p>
+  <p>兩特徵 $x_1$紅/$x_2$圓、AND 邏輯（紅 AND 圓才 1）、$\eta=0.1$、初始 $w=(0.1,0.3), b=-0.5$。<span class="bilingual-en">Two features, AND logic, $\eta=0.1$, init $w=(0.1,0.3), b=-0.5$.</span></p>
   <div class="half-layout">
     <div class="visual">
       <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
@@ -783,22 +783,22 @@ h2.section-title .en {
         <text x="170" y="62" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">輸入：蘋果 (1,1) → 正確 1</text>
         <text x="170" y="80" text-anchor="middle" font-size="10" fill="#64748b">x=(1,1), y=1 (must be red AND round)</text>
         <text x="24" y="114" font-size="11" fill="#475569" font-weight="700">算總分：</text>
-        <text x="24" y="134" font-size="11" fill="#1e40af">0.1×1 + 0.3×1 = 0.4  &lt; 0.5 → 輸出 0 ✗ 猜錯</text>
-        <text x="24" y="152" font-size="10" fill="#64748b">score 0.4 &lt; threshold 0.5 → predict 0, wrong</text>
+        <text x="24" y="134" font-size="11" fill="#1e40af">0.1×1 + 0.3×1 − 0.5 = −0.1 &lt; 0 → 輸出 0 ✗ 猜錯</text>
+        <text x="24" y="152" font-size="10" fill="#64748b">score −0.1 &lt; 0 → predict 0, wrong</text>
         <line x1="18" y1="162" x2="322" y2="162" stroke="#e2e8f0"/>
         <text x="24" y="180" font-size="11" fill="#059669" font-weight="700">Rosenblatt 更新（該 1 猜 0→獎為 1 的輸入）</text>
         <text x="24" y="200" font-size="10" fill="#334155">w1: 0.1 + 0.1×1×1 = 0.2</text>
         <text x="24" y="218" font-size="10" fill="#334155">w2: 0.3 + 0.1×1×1 = 0.4</text>
-        <text x="24" y="236" font-size="10" fill="#334155">b: 0.5 − 0.1×1 = 0.4 (門檻降低更好啟動)</text>
+        <text x="24" y="236" font-size="10" fill="#334155">b: −0.5 + 0.1×1 = −0.4 (偏置提高、更好啟動)</text>
         <text x="24" y="256" font-size="10" fill="#92400e" font-weight="700">結果：更喜歡紅色，更易啟動</text>
         <text x="24" y="272" font-size="9" fill="#64748b">More fond of red, easier to fire — learning!</text>
       </svg>
-      <div class="svg-caption">該 1 猜 0→給為 1 的輸入加糖，門檻降低 · Reward co-firing, lower threshold.</div>
+      <div class="svg-caption">該 1 猜 0→給為 1 的輸入加糖，偏置提高 · Reward co-firing, raise bias.</div>
     </div>
     <div>
       <div class="highlight-box">
         <h4>關鍵動作 · Key Move</h4>
-        <p>猜太小（該 1 猜 0）→讓為 1 的 $x_j$ 加分，$b$ 降門檻。下次同樣蘋果更容易說 1。<span class="bilingual-en">Under-predict → boost active $x_j$, lower $b$.</span></p>
+        <p>猜太小（該 1 猜 0）→讓為 1 的 $x_j$ 加分，並提高偏置 $b$。下次同樣蘋果更容易說 1。<span class="bilingual-en">Under-predict → boost active $x_j$ and raise bias $b$.</span></p>
       </div>
       <div class="intuition-box">
         <h4>學習本質</h4>
@@ -812,8 +812,8 @@ h2.section-title .en {
   </div>
   <div class="formula-box">
     <h4>公式 · 感知機更新</h4>
-    <p>$$w_j \leftarrow w_j + \eta x_j(y-\hat y),\quad b \leftarrow b - \eta(y-\hat y)$$</p>
-    <p>本例：$y-\hat y=1$，$x=(1,1)$，$\eta=0.1$ → $\Delta w=(0.1,0.1)$, $\Delta b=-0.1$。<span class="bilingual-en">Error 1, $x=(1,1)$ → $\Delta w=(0.1,0.1)$.</span></p>
+    <p>$$w_j \leftarrow w_j + \eta x_j(y-\hat y),\quad b \leftarrow b + \eta(y-\hat y)$$</p>
+    <p>本例：$y-\hat y=1$，$x=(1,1)$，$\eta=0.1$ → $\Delta w=(0.1,0.1)$, $\Delta b=+0.1$。<span class="bilingual-en">Error 1, $x=(1,1)$ → $\Delta w=(0.1,0.1)$ and $\Delta b=+0.1$.</span></p>
   </div>
   <div class="chart-wrap">
     <h4>互動：拉動 $\eta$ 看更新幅度 · Drag $\eta$ to see step size</h4>
@@ -821,7 +821,7 @@ h2.section-title .en {
       <label style="font-size:18px;color:var(--ink);font-weight:700;">學習率 $\eta$ <span class="bilingual-en" style="display:inline;font-size:16px;">(learning rate)</span>：</label>
       <input type="range" id="etaSlider" min="0.05" max="0.5" step="0.05" value="0.1" style="width:260px;accent-color:var(--primary);">
       <span id="etaLabel" style="font-size:18px;font-weight:700;color:var(--primary);">0.10</span>
-      <span id="etaResult" style="margin-left:auto;background:#1a1a2e;color:#fde68a;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:700;">w → (0.20, 0.40), b → 0.40</span>
+      <span id="etaResult" style="margin-left:auto;background:#1a1a2e;color:#fde68a;padding:6px 12px;border-radius:999px;font-size:14px;font-weight:700;">w → (0.20, 0.40), b → −0.40</span>
     </div>
     <canvas id="etaChart"></canvas>
   </div>
@@ -976,10 +976,10 @@ h2.section-title .en {
     <div class="feedback"></div>
   </div>
   <div class="quiz-card" data-correct="1">
-    <div class="q">Q4. 感知機紅蘋果例：$w=(0.1,0.3), b=0.5$，$x=(1,1)$ 為何猜錯？<span class="bilingual-en">Why wrong with (1,1)?</span></div>
+    <div class="q">Q4. 感知機紅蘋果例：$w=(0.1,0.3), b=-0.5$，$x=(1,1)$ 為何猜錯？<span class="bilingual-en">Why wrong with (1,1)?</span></div>
     <div class="options">
       <button data-i="0">因為是 XOR<span class="bilingual-en" style="font-size:16px;">Because XOR</span></button>
-      <button data-i="1">總分 $0.4 &lt; 0.5$門檻，故輸出 0 而正確 1<span class="bilingual-en" style="font-size:16px;">Score 0.4 &lt; 0.5</span></button>
+      <button data-i="1">總分 $0.1+0.3-0.5=-0.1 &lt; 0$，故輸出 0 而正確 1<span class="bilingual-en" style="font-size:16px;">Score −0.1 &lt; 0</span></button>
       <button data-i="2">因為 $\eta$太大<span class="bilingual-en" style="font-size:16px;">Eta too large</span></button>
       <button data-i="3">因為沒有歸一化<span class="bilingual-en" style="font-size:16px;">No normalization</span></button>
     </div>
@@ -1028,11 +1028,11 @@ h2.section-title .en {
   const slider=document.getElementById('etaSlider');
   const l=document.getElementById('etaLabel');
   const r=document.getElementById('etaResult');
-  const w1_0=0.1, w2_0=0.3, b0=0.5;
+  const w1_0=0.1, w2_0=0.3, b0=-0.5;
   function render(){
     const eta=parseFloat(slider.value);
     l.textContent=eta.toFixed(2);
-    const w1=(w1_0+eta*1).toFixed(2), w2=(w2_0+eta*1).toFixed(2), b=(b0-eta).toFixed(2);
+    const w1=(w1_0+eta*1).toFixed(2), w2=(w2_0+eta*1).toFixed(2), b=(b0+eta).toFixed(2);
     r.textContent=`w → (${w1}, ${w2}), b → ${b}`;
     const etas=[0.05,0.1,0.2,0.3,0.5];
     const dW1=etas.map(e=>e*1), dW2=etas.map(e=>e*1);
@@ -1041,7 +1041,7 @@ h2.section-title .en {
       type:'line',
       data:{datasets:[
         {label:'Δw (per active x)', data:etas.map((e,i)=>({x:e, y:dW1[i]})), borderColor:'#7c3aed', backgroundColor:'rgba(124,58,237,.12)', borderWidth:2.5, pointRadius:4, tension:0},
-        {label:'score after update (0.4+2η)', data:etas.map(e=>({x:e, y:0.4+2*e})), borderColor:'#0ea5e9', borderWidth:2, borderDash:[6,4], pointRadius:0, tension:0.2}
+        {label:'activation score after update (−0.1+3η)', data:etas.map(e=>({x:e, y:-0.1+3*e})), borderColor:'#0ea5e9', borderWidth:2, borderDash:[6,4], pointRadius:0, tension:0.2}
       ]},
       options:{
         responsive:true, maintainAspectRatio:false,
@@ -1063,13 +1063,13 @@ h2.section-title .en {
     '✔ 正確！M-P 等權固定，感知機可調有偏見。',
     '✔ 正確！線性分類器一條直線切不開對角四角。',
     '✔ 正確！感知機錯才調（離散），ADALINE 一直用 LMS 梯度。',
-    '✔ 正確！0.4 < 0.5 故輸出 0 錯。'
+    '✔ 正確！−0.1 < 0 故輸出 0 錯。'
   ];
   const wrongs=[
     '✗ 再想想：誰的權重可調？',
     '✗ 提示：幾何上直線能否切開 XOR？',
     '✗ 提示：離散更新 vs 梯度下降。',
-    '✗ 提示：總分與門檻比較。'
+    '✗ 提示：總分加上偏置後，與 0 比較。'
   ];
   cards.forEach((card,idx)=>{
     const correct=card.dataset.correct;
