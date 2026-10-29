@@ -204,5 +204,22 @@
   "神經網路": "neural network",
   "雜訊": "noise",
   "提取練習": "retrieval practice",
-  "成見": "bias"
+  "成見": "bias",
+  "偏置": "bias",
+  "法向量": "normal vector",
+  "灰階": "grayscale",
+  "像素": "pixel",
+  "維度": "dimension",
+  "樣本": "sample",
+  "向量化": "vectorization",
+  "灰階值": "grayscale value",
+  "線性投影": "linear projection",
+  "柱向量": "column vector",
+  "參數化映射": "parameterized mapping",
+  "正交投影": "orthogonal projection",
+  "投影": "projection",
+  "內積": "inner product",
+  "歐氏距離": "Euclidean distance",
+  "非線性": "non-linear",
+  "激活函數": "activation function"
 }

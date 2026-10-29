@@ -1,0 +1,1093 @@
+{
+  "_runtime": {
+    "exact": {
+      "4 個特徵排成柱 → 維度 d=4，就是 $\\mathbb{R}^4$ 的定義。": "4 features stacked into a column → dimension d=4, which is exactly the definition of $\\mathbb{R}^4$.",
+      "本講採 $d\\times n$（欄為樣本）；轉置 $n\\times d$ 也常見，貓單張是 $100\\times100=10{,}000$ 維向量。": "This lecture uses $d\\times n$ (columns are samples); the transpose $n\\times d$ is also common. A single cat image is a $100\\times100=10{,}000$-dimensional vector.",
+      "$7+6.5=13.5$；幾何上二維點沿法向量 $\\mathbf{w}=[1,1]$ 正交投影到一維數線，高端暖色。": "$7+6.5=13.5$; geometrically, the 2D point is orthogonally projected along the normal vector $\\mathbf{w}=[1,1]$ onto a 1D number line, with warm colors at the high end."
+    },
+    "patterns": [
+      {
+        "re": "^✓ 正確！ ([\\s\\S]*)$",
+        "en": "✓ Correct! $T1"
+      },
+      {
+        "re": "^✗ 再想想 — ([\\s\\S]*)$",
+        "en": "✗ Think again — $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Chapter Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\" class=\"active\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\" class=\"active\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c308d3753c50": {
+    "zh": "<a href=\"#bigq\">大問句 · Big Question</a>",
+    "en": "<a href=\"#bigq\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "483ad2f7246a": {
+    "zh": "<a href=\"#vector\">世界→向量 · Vectorization</a>",
+    "en": "<a href=\"#vector\">World → Vectors</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "54664da35054": {
+    "zh": "<a href=\"#xiaoming\">小明4維 · R⁴ Example</a>",
+    "en": "<a href=\"#xiaoming\">Xiao Ming in 4D · R⁴ Example</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "70760b094a54": {
+    "zh": "<a href=\"#cat\">貓咪10000維 · Cat Vector</a>",
+    "en": "<a href=\"#cat\">Cat in 10,000D · Cat Vector</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8af0478c43e4": {
+    "zh": "<a href=\"#datamatrix\">資料矩陣 · Data Matrix</a>",
+    "en": "<a href=\"#datamatrix\">Data Matrix</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0d9a0f91b6ac": {
+    "zh": "<a href=\"#mapping\">映射模型 · Mapping fθ</a>",
+    "en": "<a href=\"#mapping\">Mapping Model fθ</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "dc780789318a": {
+    "zh": "<a href=\"#juicer\">榨汁機比喻 · Juicer</a>",
+    "en": "<a href=\"#juicer\">Juicer Analogy</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "44506199adcf": {
+    "zh": "<a href=\"#linear\">線性投影 · Linear w,b</a>",
+    "en": "<a href=\"#linear\">Linear Projection w, b</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ab5db40496c3": {
+    "zh": "<a href=\"#handcalc\">動手算 · Hand Calc</a>",
+    "en": "<a href=\"#handcalc\">Work It Out by Hand</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4733a247bbb7": {
+    "zh": "<a href=\"#geometry\">幾何投影圖 · Geometry</a>",
+    "en": "<a href=\"#geometry\">Projection Geometry</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1aa432edeacd": {
+    "zh": "<a href=\"#arch\">資料流架構 · Architecture</a>",
+    "en": "<a href=\"#arch\">Data-Flow Architecture</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8dae4d20165e": {
+    "zh": "<a href=\"#summary\">精要總結 · Summary</a>",
+    "en": "<a href=\"#summary\">Key Takeaways</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "76e0068f70f2": {
+    "zh": "<a href=\"#roadmap\">路線圖 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Questions to Think About</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9f6ae24ab9c9": {
+    "zh": "<a href=\"#closing\">結語 · Closing</a>",
+    "en": "<a href=\"#closing\">Closing</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "47f59e030f18": {
+    "zh": "ML THEORY II · 幾何線性代數表徵",
+    "en": "ML THEORY II · Geometric Linear-Algebra Representations",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "5521805d092e": {
+    "zh": "把世界變成向量<br><span style=\"color:#38bdf8; font-size:0.68em;\">Turn the World into Vectors</span>",
+    "en": "Turn the World into Vectors",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "13cfe02790c7": {
+    "zh": "從特徵向量到資料矩陣，再到帶參數的空間映射",
+    "en": "From feature vectors to the data matrix, and on to parameterized mappings between spaces",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "2db3a810d53f": {
+    "zh": "<span>特徵 Feature</span> · <span>$\\mathbf{x}\\in\\mathbb{R}^d$</span> · <span>$X\\in\\mathbb{R}^{d\\times n}$</span> · <span>$f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$</span>",
+    "en": "<span>Feature</span> · <span>$\\mathbf{x}\\in\\mathbb{R}^d$</span> · <span>$X\\in\\mathbb{R}^{d\\times n}$</span> · <span>$f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "02f0763f8dbe": {
+    "zh": "Scroll Mode · 自學預習版 <span class=\"bilingual-en-inline\" style=\"color:#94a3b8;\">(Scroll · self-study)</span> ｜ 中英雙語 Bilingual",
+    "en": "Scroll Mode · Self-study preview edition | Chinese–English bilingual",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b9f72df1e574": {
+    "zh": "電腦是個高度近視的大笨蛋，<br>它要怎麼看懂世界？\n    <small>Computer is near-sighted — how does it see the world? <span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">Answer: turn everything into numbers — a vector.</span></small>\n  ",
+    "en": "The computer is a hopelessly near-sighted big dummy —<br>so how is it supposed to understand the world?\n    <small><span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">Answer: turn everything into numbers — a vector.</span></small>\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "8af6bf31a82e": {
+    "zh": "暴力解法：把人、貓、股票統統拆成一串數字，排成一根柱子。<span class=\"bilingual-en\">Violent trick: stack numbers into a column vector.</span>",
+    "en": "The brute-force approach: break people, cats, and stocks all down into a string of numbers and stack them into a column.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "052f35285bad": {
+    "zh": "什麼叫「把世界變成向量」？<span class=\"en\">What is Vectorization?</span>",
+    "en": "What does it mean to “turn the world into vectors”?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "37da822f9e34": {
+    "zh": "Fig 1 · 4 維健康向量 vs 10,000 維貓咪向量 <span class=\"bilingual-en\" style=\"font-size:13px;\">(4D health vs 10,000D image)</span>",
+    "en": "Fig 1 · A 4-dimensional health vector vs a 10,000-dimensional cat vector",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "895ad5bdc37e": {
+    "zh": "開場提問 · Opening",
+    "en": "Opening Question",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9aa1f7b8363f": {
+    "zh": "醫生不會在病歷卡上畫你的自畫像，他量血壓、血糖、身高、體重。<span class=\"bilingual-en\">Doctor measures, not portraits — features.</span>",
+    "en": "A doctor doesn't draw your portrait on your medical chart; they measure your blood pressure, blood sugar, height, and weight.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3c416bef7040": {
+    "zh": "核心定義 · Feature",
+    "en": "Core Definition · Feature",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "77600ad95b47": {
+    "zh": "<b>特徵 (Feature)</b>：可量化的觀測屬性；把 $d$ 個特徵排成一根柱子，就叫<b>特徵向量 (Feature Vector)</b> $\\mathbf{x}\\in\\mathbb{R}^d$。<span class=\"bilingual-en\">Stack $d$ features into a column vector.</span>",
+    "en": "<b>Feature</b>: a quantifiable, observable attribute. Stack $d$ features into a column and you get a <b>feature vector</b> $\\mathbf{x}\\in\\mathbb{R}^d$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d002da0a4dc2": {
+    "zh": "黑白貓照 $100\\times100$ → 10,000 灰階值排成長條 → $\\mathbb{R}^{10000}$ 超長向量。<span class=\"bilingual-en\">Flatten $100\\times100$ grayscale → $\\mathbb{R}^{10000}$.</span>",
+    "en": "A $100\\times100$ black-and-white cat photo → 10,000 grayscale values laid out in one long strip → a super-long vector in $\\mathbb{R}^{10000}$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "11043c1ad5b0": {
+    "zh": "「人」無法被計算，「$[120,95,175,70]$」可以。向量化是讓近視的電腦能摸到世界的拐杖。<span class=\"bilingual-en\">Numbers are the cane for a near-sighted computer.</span>",
+    "en": "A “person” can't be computed, but “$[120,95,175,70]$” can. Vectorization is the cane that lets a near-sighted computer feel its way around the world.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e4e060d9bc93": {
+    "zh": "小明在電腦眼裡：$\\mathbb{R}^4$ 裡的一個點<span class=\"en\">Xiaoming as a Point in $\\mathbb{R}^4$</span>",
+    "en": "To the computer, Xiao Ming is a point in $\\mathbb{R}^4$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7a3316f179b7": {
+    "zh": "符號白話 · Notation in Plain Words",
+    "en": "Notation in Plain Words",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "312f85415034": {
+    "zh": "$\\mathbb{R}$ = 實數（帶小數的數）；上標 $4$ = 維度 $d=4$；$\\in$ = 「屬於」。<span class=\"bilingual-en\">$\\mathbb{R}$ reals, $4$ dims, $\\in$ belongs to.</span>",
+    "en": "$\\mathbb{R}$ = the real numbers (numbers that can have decimals); superscript $4$ = the dimension $d=4$; $\\in$ = “belongs to”.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f2d20543231e": {
+    "zh": "$$\\mathbf{x}_{\\text{小明}} = \\begin{bmatrix} 120 \\\\ 95 \\\\ 175 \\\\ 70 \\end{bmatrix} \\in \\mathbb{R}^4$$",
+    "en": "$$\\mathbf{x}_{\\text{Xiao Ming}} = \\begin{bmatrix} 120 \\\\ 95 \\\\ 175 \\\\ 70 \\end{bmatrix} \\in \\mathbb{R}^4$$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6a610f6efb1b": {
+    "zh": "四個數依序：收縮壓 120、血糖 95、身高 175、體重 70。電腦把小明當成「活在四維空間的幾何點」。<span class=\"bilingual-en\">Four numbers → point in 4D space.</span>",
+    "en": "The four numbers, in order: systolic blood pressure 120, blood sugar 95, height 175, weight 70. The computer treats Xiao Ming as “a geometric point living in four-dimensional space”.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "89661e8d1ea7": {
+    "zh": "人類視角 <span class=\"bilingual-en-inline\">(Human)</span>",
+    "en": "Human View",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a58de46c1cc4": {
+    "zh": "病歷卡上的一個人 <span class=\"bilingual-en\">a person on card</span>",
+    "en": "A person on a medical chart",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8dcb1e6e9644": {
+    "zh": "有臉、有名字 <span class=\"bilingual-en\">face &amp; name</span>",
+    "en": "Has a face and a name",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "07159d6b3f58": {
+    "zh": "無法直接做數學 <span class=\"bilingual-en\">not computable</span>",
+    "en": "Can't do math on it directly",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "07f08d2fa29f": {
+    "zh": "電腦視角 <span class=\"bilingual-en-inline\">(Computer)</span>",
+    "en": "Computer View",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a2fc9d17fbbe": {
+    "zh": "$\\mathbb{R}^4$ 裡的座標 $[120,95,175,70]$ <span class=\"bilingual-en\">coord in $\\mathbb{R}^4$</span>",
+    "en": "The coordinates $[120,95,175,70]$ in $\\mathbb{R}^4$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c272ce649eab": {
+    "zh": "幾何點、可算距離 <span class=\"bilingual-en\">point, distance-ready</span>",
+    "en": "A geometric point; distances can be computed",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d682d5f4a2a9": {
+    "zh": "可比較、投影、分類 <span class=\"bilingual-en\">comparable &amp; projectable</span>",
+    "en": "Can be compared, projected, and classified",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1d606482143a": {
+    "zh": "貓咪被「降維打擊」成 $\\mathbb{R}^{10000}$<span class=\"en\">Cat Flattened into $\\mathbb{R}^{10000}$</span>",
+    "en": "The Cat Gets a “Dimensional Strike”: Flattened into $\\mathbb{R}^{10000}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "928f8b6c4800": {
+    "zh": "怎麼算 · How to Count",
+    "en": "How to Count",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1106522ee59f": {
+    "zh": "$100 \\times 100 = 10{,}000$ 像素，每格灰階 $0\\sim255$，按列排成長條。<span class=\"bilingual-en\">10k pixels, row-major flatten.</span>",
+    "en": "$100 \\times 100 = 10{,}000$ pixels, each holding a grayscale value from $0\\sim255$, laid out row by row into one long strip.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7f4d0e19e309": {
+    "zh": "4 維的人",
+    "en": "The 4-dimensional person",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "005648cde2e1": {
+    "zh": "像一根短筷子，手就能握住。<span class=\"bilingual-en\">Short chopstick.</span>",
+    "en": "Like a short chopstick: you can hold it in one hand.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4f252320b893": {
+    "zh": "10,000 維的貓",
+    "en": "The 10,000-dimensional cat",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "745db94f55af": {
+    "zh": "像一根從台北排到高雄的超長筷子，電腦照樣握得住。<span class=\"bilingual-en\">Taipei-to-Kaohsiung chopstick — still a vector.</span>",
+    "en": "Like a super-long chopstick stretching all the way from Taipei to Kaohsiung, and the computer can still hold it just fine.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2a6f5fabf408": {
+    "zh": "維度 $d$ 就是「你量了幾種東西」。量越多，筷子越長。<span class=\"bilingual-en\">Dimension $d$ = how many measurements.</span>",
+    "en": "The dimension $d$ is simply “how many kinds of things you measured.” The more you measure, the longer the chopstick.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep attention",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4dfaf38186e2": {
+    "zh": "資料矩陣 $X$：把大家抓來排排站<span class=\"en\">Data Matrix $X$: Stack Everyone Side by Side</span>",
+    "en": "Data Matrix $X$: Line Everyone Up Side by Side",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c29c7f53f005": {
+    "zh": "Fig 2 · $d$ 列特徵 × $n$ 欄樣本 — 每欄是一個 $\\mathbf{x}_i$ <span class=\"bilingual-en\" style=\"font-size:13px;\">($d$ rows × $n$ cols)</span>",
+    "en": "Fig 2 · $d$ feature rows × $n$ sample columns — each column is one $\\mathbf{x}_i$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fd46230d7c22": {
+    "zh": "組裝公式 · Assembly",
+    "en": "Assembly Formula",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "72a3af2ce51c": {
+    "zh": "每位同學 $\\mathbf{x}_i\\in\\mathbb{R}^d$ 當一欄，並排拼成大表格：",
+    "en": "Each student $\\mathbf{x}_i\\in\\mathbb{R}^d$ becomes one column, and the columns are placed side by side into one big table:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0852ec22d479": {
+    "zh": "橫列 $d$ = 特徵種類，直欄 $n$ = 樣本數。<span class=\"bilingual-en\">Rows $d$ features, cols $n$ samples.</span>",
+    "en": "The $d$ rows = kinds of features; the $n$ columns = number of samples.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "191eb2f7e458": {
+    "zh": "像把全班病歷卡並排成 Excel：每一欄是一個人，每一列是一種檢查。<span class=\"bilingual-en\">Columns = people, rows = tests.</span>",
+    "en": "It's like lining up the whole class's medical record cards side by side in Excel: each column is one person, each row is one kind of test.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f4fe149fdbe0": {
+    "zh": "列 $d$ <span class=\"bilingual-en-inline\">(Rows)</span>",
+    "en": "Rows $d$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ecffb75d64e1": {
+    "zh": "特徵維度，量了幾種。<span class=\"bilingual-en\">How many features.</span>",
+    "en": "Feature dimension: how many kinds of things were measured.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "47c05ceca872": {
+    "zh": "欄 $n$ <span class=\"bilingual-en-inline\">(Cols)</span>",
+    "en": "Columns $n$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2675c0cc6de7": {
+    "zh": "樣本數，有幾個人。<span class=\"bilingual-en\">How many samples.</span>",
+    "en": "Number of samples: how many people there are.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6b046e1862da": {
+    "zh": "常見混淆 · Common Mix-up",
+    "en": "Common Mix-up",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "052c5df96466": {
+    "zh": "本講採 $X\\in\\mathbb{R}^{d\\times n}$（欄為樣本）；有些教材轉置成 $n\\times d$（列為樣本），數學等價、排版不同，認得就好。<span class=\"bilingual-en\">Some texts use $n\\times d$ transposed — same math.</span>",
+    "en": "This lecture uses $X\\in\\mathbb{R}^{d\\times n}$ (columns are samples); some textbooks transpose it to $n\\times d$ (rows are samples). The math is equivalent, only the layout differs; just learn to recognize both.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "916ee2e04d5c": {
+    "zh": "模型 $f_\\theta$：從 $\\mathbb{R}^d$ 到 $\\mathbb{R}^p$ 的空間變換<span class=\"en\">Model $f_\\theta$: Mapping Between Spaces</span>",
+    "en": "Model $f_\\theta$: A Transformation from $\\mathbb{R}^d$ to $\\mathbb{R}^p$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f0d71b2dba49": {
+    "zh": "定義 · Definition",
+    "en": "Definition",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "eb24181340fd": {
+    "zh": "投入 $d$ 維向量（原料），轉動旋鈕 $\\theta$，吐出 $p$ 維結果（果汁）。<span class=\"bilingual-en\">Input $d$-vector → turn knob $\\theta$ → output $p$-vector.</span>",
+    "en": "Feed in a $d$-dimensional vector (the ingredients), turn the knob $\\theta$, and out comes a $p$-dimensional result (the juice).",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1b6b3c40c0c6": {
+    "zh": "預測成績 <span class=\"bilingual-en-inline\">(Score)</span>",
+    "en": "Grade Prediction",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "31dc955a1d1a": {
+    "zh": "輸入 $d=2$（讀書時數、缺課次數） → 輸出 $p=1$（分數）<span class=\"bilingual-en\">$d=2 \\to p=1$ scalar.</span>",
+    "en": "Input $d=2$ (hours of study, number of absences) → output $p=1$ (the score). In short, $d=2 \\to p=1$: a scalar.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "576ce602f088": {
+    "zh": "醫療診斷 <span class=\"bilingual-en-inline\">(Diagnosis)</span>",
+    "en": "Medical Diagnosis",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7eb78045ba4a": {
+    "zh": "輸入 $d=10$ 指標 → 輸出 $p=1$ 生病機率<span class=\"bilingual-en\">$d=10 \\to p=1$ prob.</span>",
+    "en": "Input $d=10$ health indicators → output $p=1$, the probability of being ill. In short, $d=10 \\to p=1$: a probability.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a520f8ffe5c3": {
+    "zh": "榨汁機比喻：$\\theta$ 就是旋鈕<span class=\"en\">Juicer Analogy: $\\theta$ is the Knob</span>",
+    "en": "The Juicer Analogy: $\\theta$ Is the Knob",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "839fce476ac3": {
+    "zh": "機器學習的「學習」 = 在數據庫裡不斷調轉旋鈕，直到果汁符合期望。<span class=\"bilingual-en\">Learning = tuning knobs until juice tastes right.</span>",
+    "en": "The “learning” in machine learning = turning the knobs again and again on the data until the juice turns out the way you want.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ea5fc7893b7b": {
+    "zh": "原料 $\\mathbf{x}$",
+    "en": "Ingredients $\\mathbf{x}$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7ba329bb20eb": {
+    "zh": "投入 $d$ 維特徵向量<span class=\"bilingual-en\">Input vector.</span>",
+    "en": "Feed in a $d$-dimensional feature vector",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bb28be76f058": {
+    "zh": "旋鈕 $\\theta$",
+    "en": "Knob $\\theta$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "64a7de54a7c8": {
+    "zh": "齒輪、加權比重<span class=\"bilingual-en\">Weights &amp; bias.</span>",
+    "en": "Gears and weighting proportions",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dfc737d8f5d4": {
+    "zh": "果汁 $f_\\theta(\\mathbf{x})$",
+    "en": "Juice $f_\\theta(\\mathbf{x})$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "91f00e02e579": {
+    "zh": "吐出 $p$ 維預測<span class=\"bilingual-en\">Output prediction.</span>",
+    "en": "Out comes a $p$-dimensional prediction",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fc81246a2ced": {
+    "zh": "一句話 · One-liner",
+    "en": "In One Sentence",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3dbe7bb8d7a4": {
+    "zh": "$\\theta$（Theta）= 模型的齒輪組；轉對了，果汁就甜。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">$\\theta$ = gears; tuned well → sweet juice.</span>",
+    "en": "$\\theta$ (theta) = the model's set of gears; tune them right, and the juice comes out sweet.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c1935e02db1e": {
+    "zh": "線性模型：權重 $\\mathbf{w}$ 定方向、偏置 $b$ 定平移<span class=\"en\">Linear Model: $\\mathbf{w}$ Direction, $b$ Shift</span>",
+    "en": "Linear Model: The Weights $\\mathbf{w}$ Set the Direction, the Bias $b$ Sets the Shift",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1110ed935c4c": {
+    "zh": "公式 · Formula",
+    "en": "Formula",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c4301265ffae": {
+    "zh": "$\\mathbf{w}$ 在幾何中定義投影方向與伸縮；$b$ 是整體平移基準量。<span class=\"bilingual-en\">$\\mathbf{w}$ projects &amp; scales, $b$ shifts.</span>",
+    "en": "Geometrically, $\\mathbf{w}$ defines the projection direction and the scaling; $b$ is the overall shift, the baseline offset.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "663a4d4667d2": {
+    "zh": "權重 $\\mathbf{w}$ <span class=\"bilingual-en-inline\">(Weights)</span>",
+    "en": "Weights $\\mathbf{w}$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6d647f95ff6f": {
+    "zh": "法向量方向 <span class=\"bilingual-en\">normal direction</span>",
+    "en": "Normal-vector direction",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e9df4be0446b": {
+    "zh": "決定資料往哪壓扁 <span class=\"bilingual-en\">where to flatten</span>",
+    "en": "Decides which way the data gets squashed flat",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0caf69706f0f": {
+    "zh": "偏置 $b$ <span class=\"bilingual-en-inline\">(Bias)</span>",
+    "en": "Bias $b$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dc7be00521b6": {
+    "zh": "數線原點平移 <span class=\"bilingual-en\">origin shift</span>",
+    "en": "Shifts the origin of the number line",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "188dd2f01f45": {
+    "zh": "決定基準高度 <span class=\"bilingual-en\">baseline level</span>",
+    "en": "Sets the baseline height",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "71d98f3d943a": {
+    "zh": "動手算：$w_1=1, w_2=1, b=0$ 的降維打擊<span class=\"en\">Hand Calc: $f(\\mathbf{x})=x_1+x_2$</span>",
+    "en": "Hand calculation: the dimension-reduction strike of $w_1=1, w_2=1, b=0$, i.e. $f(\\mathbf{x})=x_1+x_2$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7835fa104f3b": {
+    "zh": "此時模型簡化為 $f_\\theta(\\mathbf{x}) = x_1 + x_2$，把平面上的點全部壓到一條數線上。<span class=\"bilingual-en\">Plane points collapsed onto a line.</span>",
+    "en": "The model then simplifies to $f_\\theta(\\mathbf{x}) = x_1 + x_2$, squashing every point in the plane onto a single number line.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b4471f324d61": {
+    "zh": "樣本",
+    "en": "Sample",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e2d01dcccff7": {
+    "zh": "計算 $1\\cdot x_1+1\\cdot x_2+0$",
+    "en": "Compute $1\\cdot x_1+1\\cdot x_2+0$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3ffbba982896": {
+    "zh": "幾何位置",
+    "en": "Geometric position",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5dcb852736ca": {
+    "zh": "小愛 $\\mathbf{x}_1$",
+    "en": "Xiao Ai $\\mathbf{x}_1$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8612f6eae850": {
+    "zh": "近原點 低端 藍",
+    "en": "Near the origin, low end, blue",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "74aca1630d92": {
+    "zh": "小華 $\\mathbf{x}_2$",
+    "en": "Xiao Hua $\\mathbf{x}_2$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a354edece8f8": {
+    "zh": "近原點",
+    "en": "Near the origin",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "26de6d155afd": {
+    "zh": "$\\mathbf{x}_6$ 小美",
+    "en": "$\\mathbf{x}_6$ Xiao Mei",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9f88ae3ffcaf": {
+    "zh": "遠離原點 高端 暖色",
+    "en": "Far from the origin, high end, warm color",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e276dea482c3": {
+    "zh": "最遠 最高",
+    "en": "Farthest, highest",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "44084d2847d6": {
+    "zh": "看到了什麼 · What Happened",
+    "en": "What happened",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6790cb199fdd": {
+    "zh": "越靠近原點的點 → 數線低端（藍）；越遠離原點 → 高端（暖色）。這就是 $\\mathbf{w}=[1,1]^\\top$ 決定的投影。<span class=\"bilingual-en\">Near origin → low/blue; far → high/warm.</span>",
+    "en": "Points closer to the origin → low end of the number line (blue); points farther from the origin → high end (warm colors). This is the projection determined by $\\mathbf{w}=[1,1]^\\top$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "af66a4b48c3b": {
+    "zh": "精準幾何：$\\mathbb{R}^2$ 壓扁到 $\\mathbb{R}^1$<span class=\"en\">Geometry: $\\mathbb{R}^2$ Collapsed to $\\mathbb{R}^1$</span>",
+    "en": "Precise geometry: squashing $\\mathbb{R}^2$ down to $\\mathbb{R}^1$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c3813b773b1e": {
+    "zh": "Fig 3 · 左：$\\mathbb{R}^2$ 點雲 + $\\mathbf{w}=[1,1]$ 方向線 + 正交虛線投影；右：$\\mathbb{R}^1$ 色階數線 <span class=\"bilingual-en\" style=\"font-size:13px;\">(left: cloud &amp; orthogonal projection; right: 1D color axis)</span>",
+    "en": "Fig 3 · Left: point cloud in $\\mathbb{R}^2$ + direction line of $\\mathbf{w}=[1,1]$ + dashed orthogonal projections; right: color-scale number line in $\\mathbb{R}^1$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "57f64c1e0579": {
+    "zh": "左圖怎麼讀",
+    "en": "How to read the left plot",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7b97dd2f0ef5": {
+    "zh": "每個圓點是 $\\mathbf{x}_i$，方塊是它在 $\\mathbf{w}$ 線上的正交投影，虛線是投影路徑。<span class=\"bilingual-en\">Dots = samples, squares = projections, dashed = path.</span>",
+    "en": "Each dot is an $\\mathbf{x}_i$, each square is its orthogonal projection onto the $\\mathbf{w}$ line, and the dashed lines are the projection paths.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e6f06eb3c47c": {
+    "zh": "右圖怎麼讀",
+    "en": "How to read the right plot",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3788dd3b7d8b": {
+    "zh": "同一批點按 $f_\\theta(\\mathbf{x})$ 落在色階數線，顏色即數值。<span class=\"bilingual-en\">Same points on 1D color axis.</span>",
+    "en": "The same points placed on the color-scale number line according to $f_\\theta(\\mathbf{x})$; the color is the value.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a5fcc7b07d90": {
+    "zh": "投影值分佈 · Projected Values — 7 個點從 3.5 到 16.0 <span class=\"bilingual-en-inline\">(color = value)</span>",
+    "en": "Distribution of projected values: 7 points from 3.5 to 16.0 <span class=\"bilingual-en-inline\">(color = value)</span>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "324f1d486adf": {
+    "zh": "資料流架構：世界 → 向量 → 矩陣 → 映射<span class=\"en\">Architecture: World → Vector → Matrix → Mapping</span>",
+    "en": "Data-flow architecture: World → Vector → Matrix → Mapping",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a40989b8e2ff": {
+    "zh": "把今天三個主角串成一條流水線。<span class=\"bilingual-en\">Connect three protagonists into a pipeline.</span>",
+    "en": "Let's chain today's three main characters into one pipeline.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4116d1a4ccd6": {
+    "zh": "機器學習資料表徵與模型流向",
+    "en": "ML data representation and model flow",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "ba2a958c9b4e": {
+    "zh": "真實世界",
+    "en": "Real world",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "27e6ffc0338d": {
+    "zh": "• 人 / 貓 / 股票",
+    "en": "• People / cats / stocks",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "f7ed7ba8ddb6": {
+    "zh": "• 無法直接計算",
+    "en": "• Can't compute directly",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "0ce8c42f8028": {
+    "zh": "• 需提取特徵",
+    "en": "• Need feature extraction",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "1d2f722c76d2": {
+    "zh": "特徵向量",
+    "en": "Feature vector",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "ff2c103aac95": {
+    "zh": "• $d$ 維幾何點",
+    "en": "• $d$-dim geometric point",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "e4d4ee61535b": {
+    "zh": "• 例：$\\mathbb{R}^4$ 小明",
+    "en": "• E.g., Xiao Ming in $\\mathbb{R}^4$",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "e6e3d2babb0f": {
+    "zh": "• 例：$\\mathbb{R}^{10000}$ 貓",
+    "en": "• E.g., a cat in $\\mathbb{R}^{10000}$",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "8a3626b22976": {
+    "zh": "資料矩陣",
+    "en": "Data matrix",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "d6f62666e598": {
+    "zh": "• 欄 = 樣本 $n$",
+    "en": "• Columns = samples $n$",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "9aa170b5b31b": {
+    "zh": "• 列 = 特徵 $d$",
+    "en": "• Rows = features $d$",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "e9fedbc19234": {
+    "zh": "• 大表格",
+    "en": "• A big table",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "6a768e160116": {
+    "zh": "參數化映射",
+    "en": "Parameterized mapping",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "c810937b0ca5": {
+    "zh": "榨汁機 $ \\theta=(\\mathbf{w},b)$",
+    "en": "Juicer $ \\theta=(\\mathbf{w},b)$",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "d3ba178bdce7": {
+    "zh": "• $\\mathbf{w}$ 方向/尺度",
+    "en": "• $\\mathbf{w}$ direction/scale",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "84705a19d116": {
+    "zh": "• $b$ 平移 · $\\mathbf{w}^\\top\\mathbf{x}+b$",
+    "en": "• $b$ shift · $\\mathbf{w}^\\top\\mathbf{x}+b$",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "b21cce23208c": {
+    "zh": "向量化",
+    "en": "Vectorize",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "4b8720dc6aa8": {
+    "zh": "組矩陣",
+    "en": "Stack matrix",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "43353e0245e0": {
+    "zh": "映射",
+    "en": "Map",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "f58731e54eb6": {
+    "zh": "幾何實質：高維特徵空間 → 投影/伸縮/平移 → 低維輸出空間",
+    "en": "Geometric essence: high-dim feature space → project/scale/shift → low-dim output space",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "dba167961e1c": {
+    "zh": "Fig 4 · 流水線：世界 → 向量 → 矩陣 → 映射（SVG 幾何架構）<span class=\"bilingual-en\" style=\"font-size:13px;\">(pipeline with geometric meaning)</span>",
+    "en": "Fig 4 · Pipeline: World → Vector → Matrix → Mapping (geometric architecture in SVG)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to action",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9b75a6ea5a48": {
+    "zh": "今日精要總結<span class=\"en\">Summary — Three Pillars</span>",
+    "en": "Today's key takeaways",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d7188bb88e64": {
+    "zh": "① 向量化<span class=\"bilingual-en-inline\">(Vectorize)</span>",
+    "en": "① Vectorize",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0dc1c96c3f8a": {
+    "zh": "現實物件無法計算，先提 $d$ 特徵變 $\\mathbb{R}^d$ 幾何點。<span class=\"bilingual-en\">Extract $d$ features → point in $\\mathbb{R}^d$.</span>",
+    "en": "Real-world objects can't be computed on, so first extract $d$ features to turn them into geometric points in $\\mathbb{R}^d$.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "12c7b5fb8863": {
+    "zh": "② 資料矩陣<span class=\"bilingual-en-inline\">(Matrix)</span>",
+    "en": "② Data matrix",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "24917cc8f74b": {
+    "zh": "$n$ 樣本並排 $X\\in\\mathbb{R}^{d\\times n}$，列 $d$ 特徵、欄 $n$ 樣本。<span class=\"bilingual-en\">$X$ stacks $n$ vectors.</span>",
+    "en": "Place the $n$ samples side by side to form $X\\in\\mathbb{R}^{d\\times n}$, so $X$ stacks the $n$ vectors: rows are the $d$ features, columns are the $n$ samples.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b399e783d00a": {
+    "zh": "③ 映射幾何<span class=\"bilingual-en-inline\">(Mapping)</span>",
+    "en": "③ Mapping geometry",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f1ef13d558d1": {
+    "zh": "$f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$ 是空間變換；$\\mathbf{w}$ 定方向尺度、$b$ 定平移。<span class=\"bilingual-en\">$\\mathbf{w}$ directs, $b$ shifts.</span>",
+    "en": "$f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$ is a transformation of space; $\\mathbf{w}$ sets the direction and scale, $b$ sets the shift.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "04aec4fd9127": {
+    "zh": "電腦先把世界壓成向量，再把向量排成矩陣，最後用 $\\theta$ 控制的投影把高維壓到你想要的答案上。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">World → vectors → matrix → $\\theta$-controlled projection.</span>",
+    "en": "The computer first squashes the world into vectors, then lines the vectors up into a matrix, and finally uses a projection controlled by $\\theta$ to squash the high-dimensional space down onto the answer you want.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "eb81d7a2f9ab": {
+    "zh": "下一步路線圖<span class=\"en\">Roadmap — Where to next?</span>",
+    "en": "Roadmap: where to next?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6be4ae0c8f72": {
+    "zh": "距離與相似度 <span class=\"bilingual-en-inline\">(Distance &amp; Similarity)</span>",
+    "en": "Distance and similarity",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "aa2c86d81813": {
+    "zh": "有了向量就能算「誰跟誰像」：歐氏距離、內積、餘弦。<span class=\"bilingual-en\">Vectors → distance &amp; similarity.</span>",
+    "en": "Once you have vectors, you can compute “who resembles whom”: Euclidean distance, inner product, cosine.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4700dd85b066": {
+    "zh": "損失地形再探 <span class=\"bilingual-en-inline\">(Loss Landscape)</span>",
+    "en": "Revisiting the loss landscape",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d3277eeeaacd": {
+    "zh": "把 $f_\\theta(\\mathbf{x})=\\mathbf{w}^\\top\\mathbf{x}+b$ 的損失畫成碗，梯度往哪滾？<span class=\"bilingual-en\">Bowl of loss — where does gradient roll?</span>",
+    "en": "Plot the loss of $f_\\theta(\\mathbf{x})=\\mathbf{w}^\\top\\mathbf{x}+b$ as a bowl: which way does the gradient roll?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "fee28142e3e5": {
+    "zh": "非線性擴充 <span class=\"bilingual-en-inline\">(Non-linear)</span>",
+    "en": "Non-linear extensions",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "77bf7ae4c063": {
+    "zh": "線不夠用時，加激活函數讓榨汁機不再只是投影。<span class=\"bilingual-en\">Add activation beyond linear projection.</span>",
+    "en": "When a line isn't enough, add an activation function so the juicer is no longer just a projection.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ad85347a72d2": {
+    "zh": "思考題 · 提取練習<span class=\"en\">Reflection — Test Your Understanding</span>",
+    "en": "Reflection · Retrieval Practice",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "47c0ed19cf8f": {
+    "zh": "Q1. 小明 $\\mathbf{x}=[120,95,175,70]^\\top$ 為何是 $\\mathbb{R}^4$？<span class=\"bilingual-en\">Why $\\mathbb{R}^4$?</span>",
+    "en": "Q1. Why is Xiao Ming's $\\mathbf{x}=[120,95,175,70]^\\top$ in $\\mathbb{R}^4$?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "74cfe9bcffe1": {
+    "zh": "A. 因為小明有 4 個名字 <span class=\"bilingual-en-inline\">(4 names)</span>",
+    "en": "A. Because Xiao Ming has 4 names",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "438728045dbd": {
+    "zh": "B. 因為抽了 4 個特徵排成柱向量，$d=4$ <span class=\"bilingual-en-inline\">(4 features → $d=4$)</span>",
+    "en": "B. Because 4 features were extracted and stacked into a column vector, $d=4$",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "f404e491f8c9": {
+    "zh": "C. 因為小明 4 歲 <span class=\"bilingual-en-inline\">(age 4)</span>",
+    "en": "C. Because Xiao Ming is 4 years old",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "2653ad93e3f3": {
+    "zh": "D. 因為矩陣一定是 4×4 <span class=\"bilingual-en-inline\">(must be 4×4)</span>",
+    "en": "D. Because the matrix must always be 4×4",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "e7ed5a90a92b": {
+    "zh": "Q2. 班上 $n$ 人每人 $d$ 特徵，$X$ 的形狀是？貓咪單張 10,000 維算什麼？<span class=\"bilingual-en\">Shape of $X$? Cat dims?</span>",
+    "en": "Q2. A class has $n$ students, each with $d$ features. What is the shape of $X$? And what does a single 10,000-dimensional cat image count as?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "0a35dd364242": {
+    "zh": "A. $X\\in\\mathbb{R}^{n\\times d}$ 才是唯一正確 <span class=\"bilingual-en-inline\">(only $n\\times d$)</span>",
+    "en": "A. $X\\in\\mathbb{R}^{n\\times d}$, i.e. $n\\times d$, is the only correct answer",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "98b014330e53": {
+    "zh": "C. 本講 $X\\in\\mathbb{R}^{d\\times n}$（欄為樣本），貓是 $\\mathbb{R}^{10000}$ 單向量 <span class=\"bilingual-en-inline\">($d\\times n$ col-sample; cat $\\mathbb{R}^{10000}$)</span>",
+    "en": "C. In this lecture $X\\in\\mathbb{R}^{d\\times n}$, i.e. $d\\times n$ (columns are samples), and the cat is a single vector in $\\mathbb{R}^{10000}$",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "9d14c124c5f2": {
+    "zh": "Q3. $f_\\theta(\\mathbf{x})=1\\cdot x_1+1\\cdot x_2$，$\\mathbf{x}=(7,6.5)$ 時輸出？幾何上發生什麼？<span class=\"bilingual-en\">Output? Geometry?</span>",
+    "en": "Q3. $f_\\theta(\\mathbf{x})=1\\cdot x_1+1\\cdot x_2$: what is the output when $\\mathbf{x}=(7,6.5)$? What happens geometrically?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "0add20eb5640": {
+    "zh": "A. $13.5$；二維點沿 $\\mathbf{w}=[1,1]$ 被壓扁到一維數線 <span class=\"bilingual-en-inline\">(13.5; flatten onto line)</span>",
+    "en": "A. $13.5$; the 2D point is squashed along $\\mathbf{w}=[1,1]$ onto a 1D number line",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "0f203b947945": {
+    "zh": "B. $7$；點不動 <span class=\"bilingual-en-inline\">(7; no move)</span>",
+    "en": "B. $7$; the point doesn't move",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "6431272be654": {
+    "zh": "C. $0$；因為 $b=0$ 所以歸零 <span class=\"bilingual-en-inline\">(0 due to $b=0$)</span>",
+    "en": "C. $0$; it becomes zero because $b=0$",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "7ee16b7020a8": {
+    "zh": "D. $42$；相乘 <span class=\"bilingual-en-inline\">(42 multiply)</span>",
+    "en": "D. $42$; multiply them",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "676dbfc89835": {
+    "zh": "向量是電腦的拐杖，<br>$\\mathbf{w}$ 決定往哪壓扁。\n    <small>Vectors are the cane; $\\mathbf{w}$ chooses the flattening. <span class=\"bilingual-en\" style=\"font-size:18px;\">$b$ shifts the baseline.</span></small>\n  ",
+    "en": "Vectors are the computer's crutch;<br>$\\mathbf{w}$ decides which way to squash.\n    <small><span class=\"bilingual-en\" style=\"font-size:18px;\">$b$ shifts the baseline.</span></small>\n  ",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "8e77271bac41": {
+    "zh": "世界 → $\\mathbb{R}^d$ → $X\\in\\mathbb{R}^{d\\times n}$ → $f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$<span class=\"bilingual-en\">World → $\\mathbb{R}^d$ → $X$ → $f_\\theta$.</span>",
+    "en": "World → $\\mathbb{R}^d$ → $X\\in\\mathbb{R}^{d\\times n}$ → $f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$<span class=\"bilingual-en\">Vectors → data matrix $X$ → mapping $f_\\theta$.</span>",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "5ff652c827ee": {
+    "zh": "冰晶簡約亮色主題 · 與第一講一致 <span class=\"bilingual-en-inline\">(ice-crystal light, full-width)</span> ｜ 單檔 HTML · 離線可播",
+    "en": "Minimalist ice-crystal light theme · consistent with Lecture 1 · full-width | Single-file HTML · plays offline",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "16ece6a3fedb": {
+    "zh": "公式由 MathJax 3 渲染 · 圖表由 Chart.js 4 繪製 · 幾何由 matplotlib 精準數據繪製並 base64 內嵌",
+    "en": "Formulas rendered with MathJax 3 · charts drawn with Chart.js 4 · geometry plotted from exact data with matplotlib and embedded as base64",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Chapter index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "f3e5bd2376f2": {
+    "zh": "小愛",
+    "en": "Xiao Ai",
+    "kp": 11,
+    "ctx": "chart"
+  },
+  "ce7d46dafe6f": {
+    "zh": "小華",
+    "en": "Xiao Hua",
+    "kp": 11,
+    "ctx": "chart"
+  },
+  "8ef268ac0a26": {
+    "zh": "小美",
+    "en": "Xiao Mei",
+    "kp": 11,
+    "ctx": "chart"
+  },
+  "7e33f2a83364": {
+    "zh": "fθ(x)  (越遠→越高)",
+    "en": "fθ(x)  (farther → higher)",
+    "kp": 11,
+    "ctx": "chart"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
