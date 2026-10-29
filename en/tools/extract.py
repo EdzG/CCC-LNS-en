@@ -12,22 +12,28 @@ import re
 import sys
 from collections import Counter
 
-from _common import (REPO, chapter_arg, close_guide, guide_keys, key_of, load_strings,
-                     normalize, open_guide, open_page, save_strings, section_of, section_sort_key)
+from _common import (REPO, chapter_arg, close_guide, guide_keys, html_of, key_of, load_strings,
+                     normalize, open_guide, open_page, save_strings, section_of, section_sort_key,
+                     strings_path)
 
-RESERVED = ('_runtime', '_dynamic', '_images', '_stale')
+
+def strings_dir(chapter):
+    return strings_path(chapter).parent
+
+RESERVED = ('_runtime', '_dynamic', '_images', '_hide', '_stale')
 
 
 def collect(chapter, browser):
     with open_page(chapter, lang='zh', browser=browser) as page:
         found = page.evaluate('window.__EN__.collect()')
+        english = page.evaluate('window.__EN__.englishOnly()')
         for k in guide_keys(page):
             open_guide(page, k)
             found += [u for u in page.evaluate('window.__EN__.collect()') if u['ctx'] == 'guide']
             close_guide(page)
         if page.errors:
             print('page errors:', *page.errors, sep='\n  ', file=sys.stderr)
-    return found
+    return found, english
 
 
 def main():
@@ -39,17 +45,17 @@ def main():
     args = ap.parse_args()
     chapter = chapter_arg(args.chapter)
 
-    found = collect(chapter, args.browser)
+    found, english = collect(chapter, args.browser)
 
     bad = [u for u in found if key_of(u['raw']) != u['key'] or normalize(u['raw']) != u['text']]
     for u in bad:
         print(f"HASH MISMATCH {u['key']} vs {key_of(u['raw'])}: {u['text'][:60]!r}", file=sys.stderr)
 
-    raw_html = (REPO / chapter / 'index.html').read_text(encoding='utf-8')
+    raw_html = html_of(chapter).read_text(encoding='utf-8')
     raw_text = normalize(html.unescape(re.sub(r'</?[A-Za-z][^>]*>', '', raw_html)))
     for u in found:
         pieces = re.findall('[\u3400-\u9fff]{2,}', u['text'])
-        if u['ctx'] in ('page', 'svg') and any(p not in raw_text for p in pieces):
+        if u['ctx'] in ('page', 'svg', 'chart') and any(p not in raw_text for p in pieces):
             print(f"WARN not in raw HTML (script-generated? add to _dynamic): {u['path']}: {u['text'][:60]!r}",
                   file=sys.stderr)
 
@@ -72,6 +78,8 @@ def main():
     out = {'_runtime': old.get('_runtime', {'exact': {}, 'patterns': []}),
            '_dynamic': old.get('_dynamic', []),
            '_images': old.get('_images', [])}
+    if old.get('_hide'):
+        out['_hide'] = old['_hide']
     stale = dict(old.get('_stale', {}))
     review = 0
     for k, u in units.items():
@@ -100,6 +108,12 @@ def main():
         print(f'{s:10} {done[s]:4}/{per[s]:<4}')
     print(f'{len(units)} keys ({len(found)} occurrences), {sum(done.values())} translated, '
           f'{review} need review, {len(stale)} stale{" (pruned)" if args.prune else ""}')
+    if english:
+        # The professor's English that EN mode would show as is. Either it pairs a Chinese unit
+        # (hide it: add a selector to _hide) or it stands alone (review it).
+        rep = strings_dir(chapter) / 'english-only.txt'
+        rep.write_text(''.join(f"kp{e['kp']}\t{e['path']}\t.{e['cls']}\n\t{e['text']}\n" for e in english), encoding='utf-8')
+        print(f'{len(english)} English-only blocks visible in EN mode: see {rep.relative_to(REPO)}')
     sys.exit(1 if bad else 0)
 
 

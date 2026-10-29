@@ -35,16 +35,30 @@ def has_han(s):
 
 
 def chapter_arg(arg):
-    """'IDL_115/Ch01-x/' or a path to it -> 'IDL_115/Ch01-x'."""
+    """A page id. Lecture page: 'IDL_115/Ch01-x/' (or its index.html) -> 'IDL_115/Ch01-x'.
+    Other page (slide deck): 'IDL_115/Ch01-x/slides/01-y.html' -> 'IDL_115/Ch01-x/slides/01-y'.
+    The page id is toggle.js's data-chapter and the folder under en/ that holds strings.json."""
     p = Path(arg)
     if p.is_absolute():
         p = p.relative_to(REPO)
     if p.name == 'index.html':
         p = p.parent
-    ch = p.as_posix().strip('/')
-    if not (REPO / ch / 'index.html').exists():
-        raise SystemExit(f'no index.html in {ch}')
-    return ch
+    pid = p.as_posix().strip('/')
+    if pid.endswith('.html'):
+        pid = pid[:-5]
+    if not html_of(pid).exists():
+        raise SystemExit(f'no page for {pid} (expected {html_of(pid).relative_to(REPO)})')
+    return pid
+
+
+def html_of(pid):
+    """Page id -> its HTML file."""
+    d = REPO / pid
+    return d / 'index.html' if d.is_dir() else REPO / (pid + '.html')
+
+
+def is_lecture(pid):
+    return (REPO / pid).is_dir()
 
 
 def strings_path(chapter):
@@ -111,9 +125,11 @@ def open_page(chapter, lang='zh', browser='chromium', color_scheme='light', view
         page = ctx.new_page()
         errors = []
         page.on('pageerror', lambda e: errors.append(str(e)))
-        page.goto(f'{base}/{chapter}/index.html', wait_until='load')
+        page.goto(f'{base}/{html_of(chapter).relative_to(REPO).as_posix()}', wait_until='load')
         page.wait_for_function('window.__EN__ && window.__EN__.ready', timeout=15000)
         page.wait_for_timeout(500)      # page renderMath runs at load+50ms / onload+200ms
+        if not is_lecture(chapter):
+            scroll_through(page)        # decks create charts and reveal sections on scroll
         if lang == 'en':
             page.wait_for_function("window.__EN__.lang === 'en'")
         page.errors = errors
@@ -121,6 +137,17 @@ def open_page(chapter, lang='zh', browser='chromium', color_scheme='light', view
             yield page
         finally:
             b.close()
+
+
+def scroll_through(page):
+    """Scroll to the bottom in viewport steps (lazy charts, reveal-on-scroll), then back up."""
+    page.evaluate("""async () => {
+      const tick = (ms) => new Promise(r => setTimeout(r, ms));
+      for (let y = 0; y < document.documentElement.scrollHeight; y += innerHeight * 0.8) {
+        window.scrollTo({top: y, behavior: 'instant'}); await tick(60);
+      }
+      window.scrollTo({top: 0, behavior: 'instant'}); await tick(300);
+    }""")
 
 
 def guide_keys(page):

@@ -76,6 +76,9 @@
   .pill.en{background:var(--good-soft);color:var(--good);}
   .pill.part{background:var(--warn-soft);color:var(--warn);}
   .pill.zh{background:var(--surface-2);color:var(--muted);}
+  .mini{margin-left:6px;padding:1px 6px;border-radius:99px;font-size:11px;font-weight:700;}
+  .mini.en{background:var(--good-soft);color:var(--good);}
+  .mini.part{background:var(--warn-soft);color:var(--warn);}
   .meter{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
   .meter .bar{flex:1;height:6px;border-radius:99px;background:var(--track);overflow:hidden;}
   .meter .fill{height:100%;border-radius:99px;background:var(--accent);}
@@ -199,6 +202,12 @@
     return { solved: solved, pos: sec ? pos : null, sec: sec || null };
   }
   function secLabel(s) { return '§' + s.badge.replace(/^§\s*/, '') + (s.title ? ' ' + s.title : ''); }
+  // EN mark on a deck or slide link: none when it has no overlay.
+  function pageMark(en) {
+    if (!en || !en.units) return '';
+    var pct = Math.floor(en.translated / en.units * 100);
+    return ' <span class="mini ' + (pct >= 100 ? 'en' : 'part') + '">' + (pct >= 100 ? 'EN' : 'EN ' + pct + '%') + '</span>';
+  }
   function enStatus(c) {
     var e = c.en;
     if (!e.toggle || !e.units) return { cls: 'zh', text: 'Chinese only', pct: 0 };
@@ -245,10 +254,10 @@
       var lec = ROOT + c.lecture;
       var note = en.cls === 'zh' && !zhMode ? ' (Chinese)' : '';
       var links = '<a class="primary" href="' + esc(lec) + '">Lecture' + note + '</a>' +
-        c.decks.map(function (d) { return '<a href="' + esc(ROOT + d) + '">Condensed deck</a>'; }).join('');
+        c.decks.map(function (d) { return '<a href="' + esc(ROOT + d.href) + '">Condensed deck' + pageMark(d.en) + '</a>'; }).join('');
       if (c.slides.length) {
         links += '<details class="slides"><summary>Slides (' + c.slides.length + ')</summary><ol>' +
-          c.slides.map(function (s) { return '<li><a href="' + esc(ROOT + s.href) + '">' + esc(s.label) + '</a></li>'; }).join('') +
+          c.slides.map(function (s) { return '<li><a href="' + esc(ROOT + s.href) + '">' + esc(s.label) + pageMark(s.en) + '</a></li>'; }).join('') +
           '</ol></details>';
       }
       return '<article class="ch' + (lastCh === c ? ' recent' : '') + '">' +

@@ -18,8 +18,26 @@ import sys
 from collections import defaultdict
 from pathlib import Path
 
-from _common import (REPO, chapter_arg, close_guide, guide_keys, open_guide, open_page,
+from _common import (REPO, chapter_arg, close_guide, guide_keys, is_lecture, open_guide, open_page,
                      section_of, section_sort_key)
+
+# Decks (no .quiz/.demo conventions): click every button and fire every control once.
+EXERCISE_GENERIC = """async () => {
+  const tick = (ms) => new Promise(r => setTimeout(r, ms || 0));
+  const skip = (el) => el.closest('#en-toggle, [data-en-skip], .theme-toggle, .back-to-top');
+  for (const b of document.querySelectorAll('button, [role=button], .option, .quiz-option, .opt')) {
+    if (skip(b)) continue;
+    try { b.click(); } catch (e) {}
+    await tick(20);
+  }
+  for (const c of document.querySelectorAll('input[type=range], input[type=number], input[type=radio], input[type=checkbox], select')) {
+    if (skip(c)) continue;
+    if (c.type === 'radio' || c.type === 'checkbox') { c.click(); continue; }
+    c.dispatchEvent(new Event('input', {bubbles: true}));
+    c.dispatchEvent(new Event('change', {bubbles: true}));
+  }
+  await tick(600);
+}"""
 
 EXERCISE_QUIZZES = """async () => {
   const tick = (ms) => new Promise(r => setTimeout(r, ms || 0));
@@ -49,7 +67,8 @@ EXERCISE_DEMOS = """async () => {
 REDRAW_CHECK = """async () => {
   const tick = (ms) => new Promise(r => setTimeout(r, ms || 0));
   const han = new Set(window.__EN__.hanCanvases());
-  const demos = [...document.querySelectorAll('.demo')];
+  const demos = document.querySelector('.demo') ? [...document.querySelectorAll('.demo')]
+    : [...document.querySelectorAll('canvas')].map(c => c.parentElement);
   const h = (s) => { let x = 0; for (let i = 0; i < s.length; i++) x = (x * 31 + s.charCodeAt(i)) | 0; return x; };
   const snap = () => demos.map(d => ({
     cv: [...d.querySelectorAll('canvas')].map(c => { try { return h(c.toDataURL()); } catch (e) { return 0; } }),
@@ -94,8 +113,11 @@ def check(chapter, browser):
             what = u['ctx'] + (f"[{u['attr']}]" if u['attr'] else '')
             findings[section_of(u)].append(('static', f"{u['key']} {what:12} {u['path']}\n{'':20}{short(u['text'])}"))
 
-        page.evaluate(EXERCISE_QUIZZES)
-        page.evaluate(EXERCISE_DEMOS)
+        if is_lecture(chapter):
+            page.evaluate(EXERCISE_QUIZZES)
+            page.evaluate(EXERCISE_DEMOS)
+        else:
+            page.evaluate(EXERCISE_GENERIC)
         redraw = page.evaluate(REDRAW_CHECK)
         for d in redraw:
             for issue in d['issues']:
@@ -119,8 +141,14 @@ def shots(chapter, browser, sections, out):
                     page.wait_for_timeout(300)
                     page.locator('#guide-modal .modal').screenshot(path=str(out / f'{name}-{lang}.png'))
                     close_guide(page)
-                else:
+                elif is_lecture(chapter):
                     page.locator(f'section#{sec}').screenshot(path=str(out / f'{name}-{lang}.png'))
+                else:                   # kpN = Nth outermost section / .section, as toggle.js counts
+                    el = page.evaluate_handle(f"""[...document.querySelectorAll('section, .section')]
+                        .filter(s => !s.parentElement.closest('section, .section'))[{int(sec[2:]) - 1}]""")
+                    el.as_element().scroll_into_view_if_needed()
+                    page.wait_for_timeout(400)
+                    el.as_element().screenshot(path=str(out / f'{name}-{lang}.png'))
     print(f'screenshots in {out}')
 
 

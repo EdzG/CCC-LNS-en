@@ -7,48 +7,61 @@
    "title": "Introduction and History",
    "lecture": "IDL_115/Ch01-introduction-history/index.html",
    "decks": [
-    "IDL_115/Ch01-introduction-history/idl115-w1-dl-intro-history.html"
+    {
+     "href": "IDL_115/Ch01-introduction-history/idl115-w1-dl-intro-history.html",
+     "en": null
+    }
    ],
    "slides": [
     {
      "label": "01 ML theory surrogate bias loop",
-     "href": "IDL_115/Ch01-introduction-history/slides/01-ml-theory-surrogate-bias-loop.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/01-ml-theory-surrogate-bias-loop.html",
+     "en": null
     },
     {
      "label": "02 ML vector representation mapping",
-     "href": "IDL_115/Ch01-introduction-history/slides/02-ml-vector-representation-mapping.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/02-ml-vector-representation-mapping.html",
+     "en": null
     },
     {
      "label": "03 ML classification vs. regression",
-     "href": "IDL_115/Ch01-introduction-history/slides/03-ml-classification-vs-regression.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/03-ml-classification-vs-regression.html",
+     "en": null
     },
     {
      "label": "04 ML unsupervised clustering DR",
-     "href": "IDL_115/Ch01-introduction-history/slides/04-ml-unsupervised-clustering-dr.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/04-ml-unsupervised-clustering-dr.html",
+     "en": null
     },
     {
      "label": "05 ML DR and RL",
-     "href": "IDL_115/Ch01-introduction-history/slides/05-ml-dr-and-rl.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/05-ml-dr-and-rl.html",
+     "en": null
     },
     {
      "label": "06 Pattern recognition statistical classification",
-     "href": "IDL_115/Ch01-introduction-history/slides/06-pattern-recognition-statistical-classification-bilingual.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/06-pattern-recognition-statistical-classification-bilingual.html",
+     "en": null
     },
     {
      "label": "07 ML regression dimensionality reduction",
-     "href": "IDL_115/Ch01-introduction-history/slides/07-ml-regression-dimensionality-reduction-bilingual.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/07-ml-regression-dimensionality-reduction-bilingual.html",
+     "en": null
     },
     {
      "label": "08 ML AI history M-P perceptron",
-     "href": "IDL_115/Ch01-introduction-history/slides/08-ml-ai-history-mp-perceptron-bilingual.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/08-ml-ai-history-mp-perceptron-bilingual.html",
+     "en": null
     },
     {
      "label": "09 ML CNN history",
-     "href": "IDL_115/Ch01-introduction-history/slides/09-ml-cnn-history-bilingual.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/09-ml-cnn-history-bilingual.html",
+     "en": null
     },
     {
      "label": "10 ML overview treasure map",
-     "href": "IDL_115/Ch01-introduction-history/slides/10-ml-overview-treasure-map-bilingual.html"
+     "href": "IDL_115/Ch01-introduction-history/slides/10-ml-overview-treasure-map-bilingual.html",
+     "en": null
     }
    ],
    "sections": [
@@ -139,64 +152,81 @@
    "title": "From Perceptron to Feedforward Neural Networks",
    "lecture": "IDL_115/Ch02-perceptron-mlp/index.html",
    "decks": [
-    "IDL_115/Ch02-perceptron-mlp/idl115-w2-perceptron-mlp.html"
+    {
+     "href": "IDL_115/Ch02-perceptron-mlp/idl115-w2-perceptron-mlp.html",
+     "en": null
+    }
    ],
    "slides": [
     {
      "label": "01 AI foundations perceptron to UAT",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/01-ai-foundations-perceptron-to-uat-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/01-ai-foundations-perceptron-to-uat-bilingual.html",
+     "en": null
     },
     {
      "label": "02 AI foundations 2 1 biological neuron",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/02-ai-foundations-2-1-biological-neuron-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/02-ai-foundations-2-1-biological-neuron-bilingual.html",
+     "en": null
     },
     {
      "label": "03 AI foundations M-P neuron",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/03-ai-foundations-mp-neuron-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/03-ai-foundations-mp-neuron-bilingual.html",
+     "en": null
     },
     {
      "label": "04 AI foundations M-P to MLP",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/04-ai-foundations-mp-to-mlp-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/04-ai-foundations-mp-to-mlp-bilingual.html",
+     "en": null
     },
     {
      "label": "05 AI foundations perceptron signum geometry",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/05-ai-foundations-perceptron-signum-geometry-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/05-ai-foundations-perceptron-signum-geometry-bilingual.html",
+     "en": null
     },
     {
      "label": "06 Perceptron limitations XOR generalization",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/06-perceptron-limitations-xor-generalization-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/06-perceptron-limitations-xor-generalization-bilingual.html",
+     "en": null
     },
     {
      "label": "07 AI foundations ADALINE sigmoid MLP",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/07-ai-foundations-adaline-sigmoid-mlp-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/07-ai-foundations-adaline-sigmoid-mlp-bilingual.html",
+     "en": null
     },
     {
      "label": "08 AI foundations linear collapse",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/08-ai-foundations-linear-collapse-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/08-ai-foundations-linear-collapse-bilingual.html",
+     "en": null
     },
     {
      "label": "09 Deep learning activation functions",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/09-deep-learning-activation-functions-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/09-deep-learning-activation-functions-bilingual.html",
+     "en": null
     },
     {
      "label": "10 AI foundations loss functions",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/10-ai-foundations-loss-functions-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/10-ai-foundations-loss-functions-bilingual.html",
+     "en": null
     },
     {
      "label": "11 AI foundations ADALINE",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/11-ai-foundations-adaline-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/11-ai-foundations-adaline-bilingual.html",
+     "en": null
     },
     {
      "label": "12 AI foundations sigmoid",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/12-ai-foundations-sigmoid-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/12-ai-foundations-sigmoid-bilingual.html",
+     "en": null
     },
     {
      "label": "13 AI foundations RBF SOM",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/13-ai-foundations-rbf-som-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/13-ai-foundations-rbf-som-bilingual.html",
+     "en": null
     },
     {
      "label": "14 AI foundations UAT chapter 4",
-     "href": "IDL_115/Ch02-perceptron-mlp/slides/14-ai-foundations-uat-chapter4-bilingual.html"
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/14-ai-foundations-uat-chapter4-bilingual.html",
+     "en": null
     }
    ],
    "sections": [
@@ -315,72 +345,91 @@
    "title": "Backpropagation and Optimization",
    "lecture": "IDL_115/Ch03-backprop-optimization/index.html",
    "decks": [
-    "IDL_115/Ch03-backprop-optimization/idl115-w3-backprop-optimization.html"
+    {
+     "href": "IDL_115/Ch03-backprop-optimization/idl115-w3-backprop-optimization.html",
+     "en": null
+    }
    ],
    "slides": [
     {
      "label": "01 Backpropagation and optimization",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/01-backpropagation-and-optimization-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/01-backpropagation-and-optimization-bilingual.html",
+     "en": null
     },
     {
      "label": "02 Gradient descent learning rate",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/02-gradient-descent-learning-rate-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/02-gradient-descent-learning-rate-bilingual.html",
+     "en": null
     },
     {
      "label": "03 Convergence criteria",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/03-convergence-criteria-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/03-convergence-criteria-bilingual.html",
+     "en": null
     },
     {
      "label": "04 Line search steepest descent",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/04-line-search-steepest-descent-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/04-line-search-steepest-descent-bilingual.html",
+     "en": null
     },
     {
      "label": "05 Momentum acceleration",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/05-momentum-acceleration-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/05-momentum-acceleration-bilingual.html",
+     "en": null
     },
     {
      "label": "06 Backpropagation chain rule",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/06-backpropagation-chain-rule-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/06-backpropagation-chain-rule-bilingual.html",
+     "en": null
     },
     {
      "label": "07 Stochastic gradient descent",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/07-stochastic-gradient-descent-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/07-stochastic-gradient-descent-bilingual.html",
+     "en": null
     },
     {
      "label": "08 Mini batch SGD epoch",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/08-mini-batch-sgd-epoch-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/08-mini-batch-sgd-epoch-bilingual.html",
+     "en": null
     },
     {
      "label": "09 SGD convergence analysis",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/09-sgd-convergence-analysis-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/09-sgd-convergence-analysis-bilingual.html",
+     "en": null
     },
     {
      "label": "10 AdaGrad adaptive learning rates",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/10-adagrad-adaptive-learning-rates-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/10-adagrad-adaptive-learning-rates-bilingual.html",
+     "en": null
     },
     {
      "label": "11 RMSProp and adam",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/11-rmsprop-and-adam-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/11-rmsprop-and-adam-bilingual.html",
+     "en": null
     },
     {
      "label": "12 Flat minima and SAM motivation",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/12-flat-minima-and-sam-motivation-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/12-flat-minima-and-sam-motivation-bilingual.html",
+     "en": null
     },
     {
      "label": "13 Vanilla SAM",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/13-vanilla-sam-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/13-vanilla-sam-bilingual.html",
+     "en": null
     },
     {
      "label": "14 Efficient and adaptive SAM",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/14-efficient-and-adaptive-sam-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/14-efficient-and-adaptive-sam-bilingual.html",
+     "en": null
     },
     {
      "label": "15 Overparameterized convergence",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/15-overparameterized-convergence-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/15-overparameterized-convergence-bilingual.html",
+     "en": null
     },
     {
      "label": "16 Chapter 3 synthesis and summary",
-     "href": "IDL_115/Ch03-backprop-optimization/slides/16-chapter3-synthesis-and-summary-bilingual.html"
+     "href": "IDL_115/Ch03-backprop-optimization/slides/16-chapter3-synthesis-and-summary-bilingual.html",
+     "en": null
     }
    ],
    "sections": [
@@ -516,67 +565,83 @@
    "slides": [
     {
      "label": "01 CNN vs. MLP",
-     "href": "IDL_115/Ch04-cnn/slides/01-cnn-vs-mlp-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/01-cnn-vs-mlp-bilingual.html",
+     "en": null
     },
     {
      "label": "02 LeNet CNN skeleton",
-     "href": "IDL_115/Ch04-cnn/slides/02-lenet-cnn-skeleton-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/02-lenet-cnn-skeleton-bilingual.html",
+     "en": null
     },
     {
      "label": "03 Conv three stages prewitt",
-     "href": "IDL_115/Ch04-cnn/slides/03-conv-three-stages-prewitt-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/03-conv-three-stages-prewitt-bilingual.html",
+     "en": null
     },
     {
      "label": "04 Discrete conv cross correlation",
-     "href": "IDL_115/Ch04-cnn/slides/04-discrete-conv-cross-correlation-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/04-discrete-conv-cross-correlation-bilingual.html",
+     "en": null
     },
     {
      "label": "05 Sparse connectivity parameter sharing",
-     "href": "IDL_115/Ch04-cnn/slides/05-sparse-connectivity-parameter-sharing-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/05-sparse-connectivity-parameter-sharing-bilingual.html",
+     "en": null
     },
     {
      "label": "06 Translation equivariance",
-     "href": "IDL_115/Ch04-cnn/slides/06-translation-equivariance-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/06-translation-equivariance-bilingual.html",
+     "en": null
     },
     {
      "label": "07 Stride channels padding dimensions",
-     "href": "IDL_115/Ch04-cnn/slides/07-stride-channels-padding-dimensions-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/07-stride-channels-padding-dimensions-bilingual.html",
+     "en": null
     },
     {
      "label": "08 Detector and pooling",
-     "href": "IDL_115/Ch04-cnn/slides/08-detector-and-pooling-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/08-detector-and-pooling-bilingual.html",
+     "en": null
     },
     {
      "label": "09 Pooling invariance downsampling",
-     "href": "IDL_115/Ch04-cnn/slides/09-pooling-invariance-downsampling-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/09-pooling-invariance-downsampling-bilingual.html",
+     "en": null
     },
     {
      "label": "10 Infinitely strong prior dynamic pooling GAP",
-     "href": "IDL_115/Ch04-cnn/slides/10-infinitely-strong-prior-dynamic-pooling-gap-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/10-infinitely-strong-prior-dynamic-pooling-gap-bilingual.html",
+     "en": null
     },
     {
      "label": "11 Weight initialization xavier he PCA",
-     "href": "IDL_115/Ch04-cnn/slides/11-weight-initialization-xavier-he-pca-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/11-weight-initialization-xavier-he-pca-bilingual.html",
+     "en": null
     },
     {
      "label": "12 ImageNet ILSVRC AlexNet",
-     "href": "IDL_115/Ch04-cnn/slides/12-imagenet-ilsvrc-alexnet-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/12-imagenet-ilsvrc-alexnet-bilingual.html",
+     "en": null
     },
     {
      "label": "13 VGG stacked small kernels",
-     "href": "IDL_115/Ch04-cnn/slides/13-vgg-stacked-small-kernels-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/13-vgg-stacked-small-kernels-bilingual.html",
+     "en": null
     },
     {
      "label": "14 Inception GoogLeNet dimension reduction",
-     "href": "IDL_115/Ch04-cnn/slides/14-inception-googlenet-dimension-reduction-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/14-inception-googlenet-dimension-reduction-bilingual.html",
+     "en": null
     },
     {
      "label": "15 U-Net contracting expansive segmentation",
-     "href": "IDL_115/Ch04-cnn/slides/15-unet-contracting-expansive-segmentation-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/15-unet-contracting-expansive-segmentation-bilingual.html",
+     "en": null
     },
     {
      "label": "16 ResNet DenseNet compound scaling",
-     "href": "IDL_115/Ch04-cnn/slides/16-resnet-densenet-compound-scaling-bilingual.html"
+     "href": "IDL_115/Ch04-cnn/slides/16-resnet-densenet-compound-scaling-bilingual.html",
+     "en": null
     }
    ],
    "sections": [

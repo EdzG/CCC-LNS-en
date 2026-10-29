@@ -1,6 +1,8 @@
-/* 中/EN overlay engine for the CCC-LNS lecture pages.
- * Loaded by one injected line per chapter:
+/* 中/EN overlay engine for the CCC-LNS lecture pages and slide decks.
+ * Loaded by one injected line per page (data-chapter = page id, see en/tools/_common.py):
  *   <script src="../../en/toggle.js" data-chapter="IDL_115/ChNN-xxx" defer></script>
+ * On MathJax pages the line has no defer and sits right after the page's MathJax config, so
+ * the startup typeset can be held back until the units are captured (see boot()).
  * See CLAUDE.md ("How the engine works") for the design. Never edits page JS or files;
  * everything here happens in the live DOM.
  */
@@ -12,6 +14,11 @@
   var BASE = new URL('.', script.src).href;               // .../en/
   var CH_BASE = BASE + CHAPTER + '/';
   var STORE_KEY = 'ccc-lns-lang';
+
+  // MathJax pages: the config object exists but the loader has not run yet. Stop its startup
+  // typeset; boot() captures the raw $...$ source first and then typesets.
+  var MJ_HELD = !!(window.MathJax && !window.MathJax.version);
+  if (MJ_HELD) { window.MathJax.startup = window.MathJax.startup || {}; window.MathJax.startup.typeset = false; }
 
   // ---------- text helpers ----------
   // The whitespace class is spelled out so Python (en/tools/_common.py) matches it exactly.
@@ -56,7 +63,7 @@
   var BLOCK = /^(P|LI|H[1-6]|TD|TH|FIGCAPTION|DIV|SECTION|UL|OL|DL|DT|DD|TABLE|THEAD|TBODY|TFOOT|TR|FIGURE|DETAILS|SUMMARY|PRE|BLOCKQUOTE|NAV|HEADER|FOOTER|MAIN|ARTICLE|ASIDE|FORM|FIELDSET|LEGEND|OPTION|OPTGROUP|HR|BODY)$/;
   var OPAQUE = /^(INPUT|SELECT|TEXTAREA|BUTTON|CANVAS|SVG|IFRAME|VIDEO|AUDIO|IMG|OBJECT|MATH)$/;
   var SKIP_TAG = /^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/;
-  var SKIP_SEL = '.katex, .ai-illustration, #en-toggle, [data-en-skip]';
+  var SKIP_SEL = '.katex, mjx-container, .ai-illustration, #en-toggle, [data-en-skip]';
   var BOUNDARY_SEL = 'p,li,h1,h2,h3,h4,h5,h6,td,th,figcaption,div,section,ul,ol,dl,dt,dd,table,tr,figure,details,summary,pre,blockquote,nav,header,footer,main,article,aside,form,fieldset,legend,option,hr,' +
     'input,select,textarea,button,canvas,svg,iframe,video,audio,img,object,math,script,style,noscript,template';
   var ATTRS = ['title', 'alt', 'placeholder', 'aria-label'];
@@ -79,8 +86,17 @@
     var t = tag(node);
     return BLOCK.test(t) || OPAQUE.test(t) || isSkipped(node) || !!node.querySelector(BOUNDARY_SEL);
   }
+  // Pages without data-kp (slide decks): the section number is the 1-based index of the
+  // enclosing <section> in document order.
+  var sectionIdx = null;
   function kpOf(el, ctx, guideKp) {
     if (ctx === 'guide') return guideKp;
+    if (sectionIdx) {
+      for (var sec = el.closest('section, .section'); sec; sec = sec.parentElement && sec.parentElement.closest('section, .section')) {
+        if (sectionIdx.has(sec)) return sectionIdx.get(sec);
+      }
+      return 0;
+    }
     var s = el.closest('[data-kp]');
     return s ? parseInt(s.getAttribute('data-kp'), 10) || 0 : 0;
   }
@@ -145,14 +161,14 @@
   }
 
   // ---------- strings ----------
-  var S = {}, runtime = { exact: {}, patterns: [] }, images = [], textMap = {}, loaded = false, loadError = null;
+  var S = {}, runtime = { exact: {}, patterns: [] }, images = [], hide = [], textMap = {}, loaded = false, loadError = null;
   function buildMaps() {
     textMap = {};
     Object.keys(S).forEach(function (k) {
       if (k.charAt(0) === '_') return;
       var e = S[k];
       if (!e || !e.en) return;
-      var isHtml = e.ctx !== 'attr' && e.ctx !== 'expl' && e.ctx !== 'svg' && !e.attr;
+      var isHtml = e.ctx !== 'attr' && e.ctx !== 'expl' && e.ctx !== 'svg' && e.ctx !== 'chart' && !e.attr;
       textMap[normalize(isHtml ? htmlToText(e.zh) : e.zh)] = isHtml ? htmlToText(e.en) : e.en;
     });
     runtime.compiled = (runtime.patterns || []).map(function (p) { return { re: new RegExp(p.re), en: p.en }; });
@@ -227,8 +243,20 @@
     ],
     throwOnError: false, ignoredClasses: ['katex']
   };
+  function mathJax() { return window.MathJax && window.MathJax.typesetPromise ? window.MathJax : null; }
   function renderMath(el) {
     if (window.renderMathInElement) { try { window.renderMathInElement(el, MATH_OPTS); } catch (e) { /* page renders later */ } }
+  }
+  function renderMathAll(els) {
+    if (!els.length) return;
+    var mj = mathJax();
+    if (mj) { mj.typesetPromise(els).catch(function () { /* page typesets later */ }); return; }
+    els.forEach(renderMath);
+  }
+  // MathJax keeps a list of typeset items per node; drop them before replacing the content.
+  function clearMath(el) {
+    var mj = mathJax();
+    if (mj && mj.typesetClear && el.querySelector('mjx-container')) { try { mj.typesetClear([el]); } catch (e) { /* ignore */ } }
   }
   var MATH_RE = /\$|\\\(|\\\[/;
 
@@ -245,7 +273,7 @@
       if (u.cur === 'en') return false;
       if (u.attr) el.setAttribute(u.attr, t.en);
       else if (u.ctx === 'svg') el.textContent = t.en;
-      else el.innerHTML = t.en;
+      else { clearMath(el); el.innerHTML = t.en; }
       u.cur = 'en';
       return !u.attr && u.ctx !== 'svg' && MATH_RE.test(t.en);
     }
@@ -253,14 +281,14 @@
     if (u.cur !== 'en') return false;
     if (u.attr) el.setAttribute(u.attr, u.zh);
     else if (u.ctx === 'svg') el.textContent = u.zh;
-    else el.innerHTML = u.zh;
+    else { clearMath(el); el.innerHTML = u.zh; }
     u.cur = 'zh';
     return !u.attr && u.ctx !== 'svg' && MATH_RE.test(u.zh);
   }
   function swapUnits(list, target) {
     var math = [];
     list.forEach(function (u) { if (applyUnit(u, target)) math.push(u.el); });
-    math.forEach(renderMath);
+    renderMathAll(math);
   }
 
   var imgOrig = new WeakMap();
@@ -290,7 +318,7 @@
   }
   function ignorable(node) {
     var el = node.nodeType === 1 ? node : node.parentElement;
-    return !el || !!el.closest('.katex, .ai-illustration, #en-toggle, [data-en-skip], script, style');
+    return !el || !!el.closest('.katex, mjx-container, .ai-illustration, #en-toggle, [data-en-skip], script, style');
   }
   function translateNode(n) {
     if (ignorable(n) || insideUnit(n)) return;
@@ -340,6 +368,64 @@
         if (tag(c) === 'SELECT') c.dispatchEvent(new Event('change', { bubbles: true }));
       });
     });
+  }
+
+  // ---------- Chart.js ----------
+  // Labels are translated in the chart's own config (Chart.js measures text before drawing,
+  // so translating only fillText would break the layout). Existing charts are walked on every
+  // switch; charts created or updated later go through a global plugin.
+  var chartOrig = new WeakMap();      // config object or array -> {key: {zh, en}}
+  function charts() {
+    var C = window.Chart;
+    return C && C.instances ? Object.keys(C.instances).map(function (k) { return C.instances[k]; }) : [];
+  }
+  function walkConfig(o, visit, depth) {
+    if (!o || depth > 10) return;
+    var plain = Array.isArray(o) || Object.getPrototypeOf(o) === Object.prototype;
+    if (!plain) return;
+    Object.keys(o).forEach(function (k) {
+      var v = o[k];
+      if (typeof v === 'string') visit(o, k, v);
+      else if (v && typeof v === 'object') walkConfig(v, visit, depth + 1);
+    });
+  }
+  function chartConfig(ch) { return ch.config && (ch.config._config || ch.config); }
+  function translateChart(ch, target) {
+    var changed = false;
+    walkConfig(chartConfig(ch), function (o, k, v) {
+      var rec = chartOrig.get(o);
+      if (target === 'en') {
+        if (!hasHan(v)) return;
+        var r = translateText(v);
+        if (r == null || hasHan(r)) miss('chart', v, ch.canvas);
+        if (r == null) return;
+        if (!rec) chartOrig.set(o, rec = {});
+        rec[k] = { zh: v, en: r }; o[k] = r; changed = true;
+      } else if (rec && rec[k]) {
+        if (v === rec[k].en) { o[k] = rec[k].zh; changed = true; }
+        delete rec[k];
+      }
+    }, 0);
+    return changed;
+  }
+  function swapCharts(target) {
+    charts().forEach(function (ch) { if (translateChart(ch, target)) { try { ch.update('none'); } catch (e) { /* ignore */ } } });
+  }
+  function hookCharts() {
+    if (!window.Chart || !window.Chart.register) return;
+    window.Chart.register({ id: 'enOverlay', beforeUpdate: function (ch) { if (lang === 'en' && loaded) translateChart(ch, 'en'); } });
+  }
+  function chartUnits() {
+    var out = [];
+    charts().forEach(function (ch) {
+      walkConfig(chartConfig(ch), function (o, k, v) {
+        var rec = chartOrig.get(o), zh = rec && rec[k] && v === rec[k].en ? rec[k].zh : v;
+        if (!hasHan(zh)) return;
+        out.push({ key: keyOf(zh), raw: zh, text: normalize(zh), zh: zh, ctx: 'chart', kp: ch.canvas ? kpOf(ch.canvas, 'page') : 0,
+          attr: null, path: ch.canvas ? pathOf(ch.canvas) : '', translated: !!(S[keyOf(zh)] && S[keyOf(zh)].en), cur: zh === v ? 'zh' : 'en' });
+      }, 0);
+    });
+    return out;
   }
 
   // ---------- guides (教授祕笈) ----------
@@ -416,7 +502,9 @@
       swapUnits(units, target);
       swapImages(target);
       runtimePass(target);
+      swapCharts(target);
     });
+    document.documentElement.classList.toggle('en-on', target === 'en');
     document.documentElement.setAttribute('lang', target === 'en' ? 'en' : 'zh-Hant');
     document.documentElement.classList.remove('en-pending');
     if (!(opts && opts.noSave)) { try { localStorage.setItem(STORE_KEY, target); } catch (e) { /* storage blocked */ } }
@@ -435,7 +523,8 @@
     '#en-toggle span.on{background:var(--en-on-bg);color:var(--en-on-fg);}',
     '#en-toggle:focus-visible{outline:2px solid var(--en-on-bg);outline-offset:2px;}',
     '.en-missing{outline:2px dashed var(--en-miss)!important;outline-offset:2px;}',
-    'html.en-pending header, html.en-pending main{visibility:hidden;}'
+    'html.en-pending body{visibility:hidden;}',
+    'html.en-pending #en-toggle{visibility:visible;}'
   ].join('\n');
   var btn;
   function buildUi() {
@@ -447,10 +536,37 @@
     btn.innerHTML = '<span data-l="zh">中</span><span data-l="en">EN</span>';
     btn.addEventListener('click', function () { setLang(lang === 'en' ? 'zh' : 'en'); });
     document.body.appendChild(btn);
+    placeButton();
+    window.addEventListener('load', placeButton);
+    window.addEventListener('resize', placeButton);
     document.addEventListener('keydown', function (e) {
       if (e.altKey && !e.ctrlKey && !e.metaKey && e.code === 'KeyL') { e.preventDefault(); setLang(lang === 'en' ? 'zh' : 'en'); }
     });
     updateButton();
+  }
+  // Decks have their own fixed controls in the top-right corner (theme switch): sit left of them.
+  function placeButton() {
+    btn.style.right = '12px';
+    for (var tries = 0; tries < 4; tries++) {
+      var r = btn.getBoundingClientRect(), hit = null;
+      var pts = [];
+      [r.left + 2, r.left + r.width / 2, r.right - 2].forEach(function (x) {
+        [r.top + 2, r.top + r.height / 2, r.bottom - 2].forEach(function (y) { pts.push([x, y]); });
+      });
+      pts.some(function (pt) {
+        return document.elementsFromPoint(pt[0], pt[1]).some(function (el) {
+          if (el === btn || btn.contains(el) || el === document.documentElement || el === document.body) return false;
+          for (var n = el; n && n !== document.body; n = n.parentElement) {
+            if (getComputedStyle(n).position === 'fixed') { hit = n; return true; }
+          }
+          return false;
+        });
+      });
+      if (!hit) return;
+      var hr = hit.getBoundingClientRect();
+      if (hr.width > window.innerWidth / 2) return;        // a full-width bar: nothing to dodge
+      btn.style.right = (window.innerWidth - hr.left + 8) + 'px';
+    }
   }
   function updateButton() {
     if (!btn) return;
@@ -466,13 +582,35 @@
     setTimeout(function () { document.documentElement.classList.remove('en-pending'); }, 1500);
   }
 
-  // The whole page is parsed and KaTeX has not rendered yet: capture now, synchronously.
+  // The whole page is parsed and math has not rendered yet: capture now, synchronously.
   // _dynamic selectors are only known once strings.json arrives, so capture with the
   // chapter's defaults first and drop units that fall inside _dynamic afterwards.
-  walk(document.body, 'page', 0);
-  collectAttrs(document.body, 'page', 0);
-  buildUi();
-  observer.observe(document.body, OBS_OPTS);
+  function boot() {
+    if (!document.querySelector('[data-kp]')) {
+      sectionIdx = new Map();
+      var n = 0;
+      document.querySelectorAll('section, .section').forEach(function (s) {
+        if (!s.parentElement.closest('section, .section')) sectionIdx.set(s, ++n);   // outermost only
+      });
+    }
+    walk(document.body, 'page', 0);
+    collectAttrs(document.body, 'page', 0);
+    buildUi();
+    hookCharts();
+    observer.observe(document.body, OBS_OPTS);
+    if (MJ_HELD) releaseMathJax();
+    load();
+  }
+  function releaseMathJax() {
+    var go = function () { window.MathJax.typesetPromise().catch(function () { /* ignore */ }); };
+    var mj = window.MathJax;
+    if (mj.version && mj.startup && mj.startup.promise) { mj.startup.promise.then(go); return; }
+    var prev = mj.startup.ready;
+    mj.startup.ready = function () {
+      if (prev) prev(); else window.MathJax.startup.defaultReady();
+      window.MathJax.startup.promise.then(go);
+    };
+  }
 
   var api = window.__EN__ = {
     chapter: CHAPTER, ready: false, misses: misses,
@@ -487,10 +625,26 @@
           key: u.key, raw: u.raw, text: u.text, zh: u.zh, ctx: u.ctx, kp: u.kp, attr: u.attr || null,
           path: pathOf(u.el), translated: !!(t && t.en), cur: u.cur || 'zh'
         };
+      }).concat(chartUnits());
+    },
+    // Visible leaf blocks with English but no Chinese, outside units and not hidden: the
+    // professor's own English, which EN mode shows as is (review it; add pairs to _hide).
+    englishOnly: function () {
+      var out = [];
+      document.body.querySelectorAll('*').forEach(function (el) {
+        if (isSkipped(el) || el.closest(SKIP_SEL) || insideUnit(el) || unitEls.has(el)) return;
+        if (Array.prototype.some.call(el.childNodes, isBoundary)) return;
+        if (!/[A-Za-z]{3,}.*[A-Za-z]{3,}/.test(el.textContent) || hasHan(el.textContent) || !el.getClientRects().length) return;
+        if (el.parentElement && !Array.prototype.some.call(el.parentElement.childNodes, isBoundary) && !insideUnit(el.parentElement) &&
+            el.parentElement !== document.body) return;          // report the block, not each inline child
+        out.push({ path: pathOf(el), kp: kpOf(el, 'page'), text: normalize(el.textContent).slice(0, 160),
+          cls: el.className && typeof el.className === 'string' ? el.className : '' });
       });
+      return out;
     }
   };
 
+  function load() {
   fetch(CH_BASE + 'strings.json', { cache: 'no-cache' }).then(function (r) {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
@@ -498,6 +652,12 @@
     S = data || {};
     runtime = S._runtime || { exact: {}, patterns: [] };
     images = S._images || [];
+    hide = S._hide || [];
+    if (hide.length) {
+      var st = document.createElement('style'); st.id = 'en-hide-style';
+      st.textContent = hide.map(function (h) { return 'html.en-on ' + h; }).join(',\n') + '{display:none!important;}';
+      document.head.appendChild(st);
+    }
     dynamicSel = S._dynamic || [];
     if (dynamicSel.length) {
       var drop = function (u) { return dynamicSel.some(function (s) { return u.el.closest(s); }); };
@@ -512,4 +672,8 @@
     if (saved === 'en' || pendingLang === 'en') setLang('en', { noSave: pendingLang !== 'en' });
     else document.documentElement.classList.remove('en-pending');
   });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
 })();

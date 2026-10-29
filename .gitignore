@@ -2,3 +2,4 @@
 __pycache__/
 en/**/.parts/
 scratch/
+en/**/english-only.txt

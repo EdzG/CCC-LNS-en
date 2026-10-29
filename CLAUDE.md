@@ -6,6 +6,8 @@ The goal is a study tool for an English speaker: English is the default, and one
 page (prose, headings, quizzes, 教授祕笈 boxes, demo text, and chart images) to English.
 
 Only `IDL_115/` (Introductory Deep Learning) is in scope. Ignore `PR_115/` unless asked.
+Each chapter has a lecture page (`index.html`) and may have a condensed deck (`idl115-*.html`)
+and slide decks (`slides/*.html`); all of them can get the overlay.
 
 ## Remotes (never break these)
 - `origin` = `git@github.com:EdzG/CCC-LNS-en.git` (private, ours). Push here only.
@@ -38,7 +40,7 @@ en/
 │  ├─ navcheck.py                    # headless check of nav.js on every chapter
 │  ├─ _common.py                     # normalize/key_of (must match toggle.js), server, Playwright
 │  └─ charts/<chapter>/<name>.py     # one matplotlib script per redrawn chart
-└─ IDL_115/<chapter>/
+└─ IDL_115/<chapter>/                  # = a page id; decks: IDL_115/<chapter>/slides/<stem>/ etc.
    ├─ strings.json                   # _runtime/_dynamic/_images + { key: { zh, en, kp, ctx } }
    ├─ notes.md                       # errors/ambiguities found in the Chinese source
    └─ assets/<same filename>.png     # English redraw of a chart with Chinese labels
@@ -49,6 +51,12 @@ study/
 ├─ chapters.json                     # generated, committed; never hand-edit
 └─ titles_en.json                    # hand-written English chapter titles (new chapter = add one)
 ```
+
+## Page ids (lecture pages and decks)
+Every tool takes a page: `IDL_115/<chapter>` (its `index.html`) or a deck file
+(`IDL_115/<chapter>/slides/01-x.html`, `IDL_115/<chapter>/idl115-w1-x.html`). The page id is the
+path without `.html` (lecture: the folder). It is toggle.js's `data-chapter` and the folder under
+`en/` holding that page's `strings.json`, `notes.md` and `assets/`. Decks get toggle.js only (no nav.js).
 
 ## How the engine works (design decisions, keep consistent)
 toggle.js runs synchronously when its deferred `<script>` executes: the whole page is parsed,
@@ -79,6 +87,27 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   extract.py updates `zh` and sets `"review": true`; re-check the inline tags in `en`, then delete
   the flag.
 - **Math is never translated.** Keep every `$...$`, `$$...$$`, `\(...\)` exactly as in the source.
+- **MathJax pages (the decks).** MathJax (SVG) may typeset before a deferred script runs, so
+  inject.py puts toggle.js *without* `defer` right after the inline `window.MathJax = {...}` config.
+  toggle.js then sets `MathJax.startup.typeset = false`, captures on DOMContentLoaded, and starts the
+  typeset itself. Swaps call `MathJax.typesetClear([el])` before replacing content and
+  `MathJax.typesetPromise(els)` after. `mjx-container` is skipped like `.katex`.
+- **Sections on decks:** pages without `data-kp` number the outermost `section, .section` elements
+  1..n in document order; that number is the unit's `kp` (and `kpN` in coverage `--shots`).
+- **Chart.js:** chart strings are translated in the chart's config (`chart.config._config`, every
+  string with Han, `ctx: "chart"`, plain-text `en`), never only on the canvas (Chart.js measures text
+  first). Existing charts are walked on each switch and `update('none')`d; a global plugin
+  (`beforeUpdate`) covers charts created or updated later. Strings computed in callbacks still go
+  through the `fillText` hook and `_runtime`.
+- **`_hide`** (list of CSS selectors, one simple selector each, no commas): hidden while EN is on
+  (`html.en-on`). For the professor's English that sits in its own element next to a Chinese unit
+  (`.en-sub` beside `.zh-sub`, a standalone `.bilingual-en` block): our translation of the Chinese
+  replaces both. English inside a unit (`<h2>中文 <span class="en">…</span></h2>`) needs nothing:
+  the unit's innerHTML is swapped. Our English is always translated from the Chinese; the
+  professor's English is a reference only.
+- **English-only blocks:** `extract.py` writes `en/<page>/english-only.txt` (not committed): visible
+  blocks with English but no Chinese outside any unit. Each one is either a pair (add to `_hide`),
+  or stands alone and stays as is (check it reads correctly; note errors in `notes.md`).
 - **Attributes:** `title`, `alt`, `placeholder`, `aria-label` get their own entries
   (`ctx: "attr"`, `"attr": name`) and are swapped in place. **`data-expl`** (quiz explanation)
   is translated in strings.json (`ctx: "expl"`) but the attribute is **never mutated**,
@@ -108,14 +137,15 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - **`_images`** (list of filenames): only `img` whose src basename is listed is swapped to
   `en/<chapter>/assets/<file>` in EN mode. No HEAD checks. Textbook figures (the hashed `*.jpg`
   crops) are already English and need no redraw.
-- **Toggle UI:** fixed 中 | EN pill (top-right, z-index 1000), `Alt+L`, state in
+- **Toggle UI:** fixed 中 | EN pill (top-right, z-index 1000; moved left of any fixed page control
+  it would cover, e.g. a deck's theme button), `Alt+L`, state in
   `localStorage['ccc-lns-lang']` (try/catch), default EN (only a saved `'zh'` shows 中), `<html lang>` updated, light/dark tokens.
-  If the saved state is EN, header/main stay hidden until strings.json arrives (1.5 s max).
+  If the saved state is EN, the body stays hidden (pill visible) until strings.json arrives (1.5 s max).
 - Missing translation in EN mode: the Chinese stays visible with class `en-missing` (dashed
   amber outline). Never show an empty block.
-- **strings.json** reserved keys start with `_`: `_runtime`, `_dynamic`, `_images`, `_stale`
+- **strings.json** reserved keys start with `_`: `_runtime`, `_dynamic`, `_images`, `_hide`, `_stale`
   (keys that vanished from the page; `--prune` deletes them). Every other key is a unit:
-  `{zh, en, kp, ctx: page|svg|attr|expl|guide, attr?, review?}`; `kp: 0` = page chrome.
+  `{zh, en, kp, ctx: page|svg|attr|expl|guide|chart, attr?, review?}`; `kp: 0` = page chrome.
 - `window.__EN__` exposes `setLang`, `collect()`, `misses`, `hanCanvases()`, `ready` for the tools.
 
 ## Tools
@@ -125,7 +155,8 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - `extract.py <ch> [--prune] [--browser firefox --dry-run]`: merges units into strings.json,
   keeps existing `en`, prints translated/total per section. `--dry-run` compares the key set.
 - `coverage.py <ch> [--expect-clean chrome,kp1,guide:1] [--shots kp1,guide:1 --out scratch/shots]`:
-  EN mode, clicks through every quiz and demo, opens every guide, and lists per section
+  EN mode, clicks through every quiz and demo (decks: scrolls the page, then clicks every button and
+  fires every control), opens every guide, and lists per section
   (`chrome`, `kpN`, `guide:N`) the `static`, `runtime`, `canvas` and `redraw` findings.
 
 - `navcheck.py [<ch> ...] [--browser firefox]`: per chapter, sections/quizzes found == chapters.json,

@@ -104,6 +104,15 @@ SLIDE_WORDS.update({'mp': 'M-P', 'adagrad': 'AdaGrad', 'rmsprop': 'RMSProp', 'im
                     'vs': 'vs.', 'and': 'and', 'to': 'to'})
 
 
+def page_en(pid):
+    """translated/units of a deck or slide page, or None when it has no overlay yet."""
+    f = REPO / 'en' / (pid + '/strings.json')
+    if not f.exists():
+        return None
+    units = [v for k, v in json.loads(f.read_text(encoding='utf-8')).items() if not k.startswith('_')]
+    return {'units': len(units), 'translated': sum(1 for v in units if v.get('en'))}
+
+
 def slide_label(name):
     m = re.match(r'(\d+)-(.*)\.html$', name)
     num, slug = (m.group(1), m.group(2)) if m else ('', name[:-5])
@@ -150,8 +159,9 @@ def chapter_entry(d, titles, warnings):
         'num': int(m.group(1)) if m else None,
         'title': title,
         'lecture': f'{rel}/index.html',
-        'decks': [f'{rel}/{n}' for n in decks],
-        'slides': [{'label': slide_label(f.name), 'href': f'{rel}/slides/{f.name}'} for f in slides],
+        'decks': [{'href': f'{rel}/{n}', 'en': page_en(f'{rel}/{n[:-5]}')} for n in decks],
+        'slides': [{'label': slide_label(f.name), 'href': f'{rel}/slides/{f.name}',
+                    'en': page_en(f'{rel}/slides/{f.stem}')} for f in slides],
         'sections': sections,
         'quizzes': sum(s['quizzes'] for s in sections),
         'en': {
