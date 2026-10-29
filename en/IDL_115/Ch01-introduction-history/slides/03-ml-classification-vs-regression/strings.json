@@ -1,0 +1,877 @@
+{
+  "_runtime": {
+    "exact": {
+      "有限離散格子 → 分類；本例拉麵/滷肉飯、資工/電機皆為離散標籤。": "Finite discrete boxes → classification; in this example, ramen/braised pork rice and CS/EE are both discrete labels.",
+      "$s=4.5+5=9.5$：回歸直接輸出 $9.5\\in\\mathbb{R}$，分類套 $s\\ge0\\to\\ell_2$ 故 $ell_2$。": "$s=4.5+5=9.5$: regression outputs $9.5\\in\\mathbb{R}$ directly; classification applies $s\\ge0\\to\\ell_2$, so $ell_2$.",
+      "分類用 $x_1+x_2=0$ 虛線硬切平面；回歸同一批點只按分數上色，無硬切。": "Classification uses the dashed line $x_1+x_2=0$ to hard-cut the plane; regression just colors the same points by score, with no hard cut."
+    },
+    "patterns": [
+      {
+        "re": "^✓ 正確！ ([\\s\\S]*)$",
+        "en": "✓ Correct! $T1"
+      },
+      {
+        "re": "^✗ 再想想 — ([\\s\\S]*)$",
+        "en": "✗ Think again — $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\" class=\"active\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\" class=\"active\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c308d3753c50": {
+    "zh": "<a href=\"#bigq\">大問句 · Big Question</a>",
+    "en": "<a href=\"#bigq\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e9c32a0032c2": {
+    "zh": "<a href=\"#supervised\">何謂監督 · Supervised</a>",
+    "en": "<a href=\"#supervised\">What Is Supervision?</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6f32f7aa7405": {
+    "zh": "<a href=\"#class\">分類 · Classification</a>",
+    "en": "<a href=\"#class\">Classification</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "24108451e657": {
+    "zh": "<a href=\"#reg\">回歸 · Regression</a>",
+    "en": "<a href=\"#reg\">Regression</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "84d9d044023c": {
+    "zh": "<a href=\"#gridline\">格子 vs 數線 · Grids vs Line</a>",
+    "en": "<a href=\"#gridline\">Grids vs. Number Line</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f3d75449fcd3": {
+    "zh": "<a href=\"#howto\">如何抉擇 · How to Choose</a>",
+    "en": "<a href=\"#howto\">How to Choose</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a4507877670a": {
+    "zh": "<a href=\"#shared\">同一模型 · Shared s(x)</a>",
+    "en": "<a href=\"#shared\">Same Model s(x)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "40bbbc0c28ae": {
+    "zh": "<a href=\"#regview\">回歸視角 · Reg View</a>",
+    "en": "<a href=\"#regview\">Regression View</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0b2cd29f9f3f": {
+    "zh": "<a href=\"#clsview\">分類視角 · Cls View</a>",
+    "en": "<a href=\"#clsview\">Classification View</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f7017d2adc6c": {
+    "zh": "<a href=\"#geometry\">幾何視角 · Geometry</a>",
+    "en": "<a href=\"#geometry\">Geometric View</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "64a95dcee0f5": {
+    "zh": "<a href=\"#compare\">對比總結 · Compare</a>",
+    "en": "<a href=\"#compare\">Comparison Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "76e0068f70f2": {
+    "zh": "<a href=\"#roadmap\">路線圖 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Thinking Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9f6ae24ab9c9": {
+    "zh": "<a href=\"#closing\">結語 · Closing</a>",
+    "en": "<a href=\"#closing\">Closing</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4338a229b5d7": {
+    "zh": "ML THEORY III · 監督式學習",
+    "en": "ML THEORY III · Supervised Learning",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "81750520b223": {
+    "zh": "格子與數線<br><span style=\"color:#38bdf8; font-size:0.68em;\">Grids vs Number Line</span>",
+    "en": "Boxes vs. Number Line",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "6d601aa2cccf": {
+    "zh": "分類與回歸：同一套特徵，兩種輸出世界",
+    "en": "Classification and Regression: One Set of Features, Two Worlds of Output",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b5421927662c": {
+    "zh": "<span>監督 Supervised</span> · <span>$\\mathcal{R}^d \\to \\{\\ell_1,\\dots,\\ell_k\\}$</span> · <span>$\\mathcal{R}^d \\to \\mathbb{R}$</span> · <span>$f_\\theta$</span>",
+    "en": "<span>Supervised</span> · <span>$\\mathcal{R}^d \\to \\{\\ell_1,\\dots,\\ell_k\\}$</span> · <span>$\\mathcal{R}^d \\to \\mathbb{R}$</span> · <span>$f_\\theta$</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "02f0763f8dbe": {
+    "zh": "Scroll Mode · 自學預習版 <span class=\"bilingual-en-inline\" style=\"color:#94a3b8;\">(Scroll · self-study)</span> ｜ 中英雙語 Bilingual",
+    "en": "Scroll Mode · Self-Study Preview Edition | Chinese–English Bilingual",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "0767fb80b8c8": {
+    "zh": "輸出是「選格子」<br>還是「報數字」？\n    <small>Is output “pick a box” or “report a number”? <span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">That one choice decides classification vs regression.</span></small>\n  ",
+    "en": "Is the output “pick a box”<br>or “report a number”?\n    <small><span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">That one choice decides classification vs. regression.</span></small>\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "5038a115ad78": {
+    "zh": "拉麵 vs 滷肉飯是格子；考試 78.5 分是數線。<span class=\"bilingual-en\">Ramen vs braised pork = grid; 78.5 = line.</span>",
+    "en": "Ramen vs. braised pork rice is a grid; scoring 78.5 on an exam is a number line.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "29f6aa655bf1": {
+    "zh": "什麼叫「監督」？<span class=\"en\">What is Supervised Learning?</span>",
+    "en": "What Does “Supervised” Mean?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1d929ed629bb": {
+    "zh": "人情世故 · Human Story",
+    "en": "Real-Life Story",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b46e46aafb99": {
+    "zh": "大一新生需要學長姐指路：哪裡是陷阱、哪裡是捷徑。機器也一樣，需要「帶標籤的老師（資料集）」。<span class=\"bilingual-en\">Freshmen need seniors; models need labeled teachers.</span>",
+    "en": "College freshmen need upperclassmen to show them the way: where the traps are and where the shortcuts are. Machines are the same: they need a “teacher with labels” (a dataset).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f0d71b2dba49": {
+    "zh": "定義 · Definition",
+    "en": "Definition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "44f97339180c": {
+    "zh": "監督式學習 = 用「輸入 $x_i$ + 正確答案標籤 $y_i$」成對餵養，讓 $f_\\theta$ 學會「看到新輸入就答對」。<span class=\"bilingual-en\">Learn from input–label pairs to answer unseen inputs.</span>",
+    "en": "Supervised learning = feeding the model pairs of “input $x_i$ + correct answer label $y_i$” so that $f_\\theta$ learns to “get it right when it sees a new input”.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a61aff6acad1": {
+    "zh": "沒有標籤的隨機照片堆，不會讓電腦頓悟；有標籤的 5 碗拉麵 + 5 碗滷肉飯才會。<span class=\"bilingual-en\">Random pile ≠ learning; labeled examples do.</span>",
+    "en": "A random pile of unlabeled photos won't give the computer an epiphany; 5 labeled bowls of ramen + 5 labeled bowls of braised pork rice will.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c3210e4112c5": {
+    "zh": "盔甲 $\\mathcal{R}^d$、$\\ell_1$、$f_\\theta$ 只是記號；骨子裡是「老師指著答案教你」。<span class=\"bilingual-en\">Notation is armor; essence is teacher pointing at answer.</span>",
+    "en": "The armor of $\\mathcal{R}^d$, $\\ell_1$, and $f_\\theta$ is just notation; at its core, it's “a teacher pointing at the answer and teaching you”.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9cc9a0124b4f": {
+    "zh": "分類：教電腦認拉麵與滷肉飯<span class=\"en\">Classification: Teach Ramen vs Braised Pork</span>",
+    "en": "Classification: Teaching a Computer to Recognize Ramen vs. Braised Pork Rice",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0192d883e56a": {
+    "zh": "Fig 1 · 離散格子 vs 連續數線 <span class=\"bilingual-en\" style=\"font-size:13px;\">(discrete grids vs continuous line)</span>",
+    "en": "Fig 1 · Discrete grids vs. continuous number line",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f16949298b5a": {
+    "zh": "任務定義 · Task",
+    "en": "Task Definition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "655c52c13278": {
+    "zh": "把每個東西分到預先定義好的、有限的「離散格子」裡。<span class=\"bilingual-en\">Map input to one of $k$ discrete boxes.</span>",
+    "en": "Assign each item to one of a predefined, finite set of $k$ “discrete boxes”.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4fc0717609bd": {
+    "zh": "例：$\\{\\text{蘋果, 黃瓜, 拉麵, 滷肉飯}\\}$、$\\{\\text{資工, 電機}\\}$。<span class=\"bilingual-en\">E.g. {apple, cucumber, ramen, braised pork}.</span>",
+    "en": "E.g. $\\{\\text{apple, cucumber, ramen, braised pork rice}\\}$, $\\{\\text{CS, EE}\\}$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d20a8e9ddc5d": {
+    "zh": "怎麼教 · How to Teach",
+    "en": "How to Teach",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9eef8e3a848a": {
+    "zh": "收集 5 碗標記「拉麵」、5 碗標記「滷肉飯」，指著說「這是拉麵、這是滷肉飯」，讓電腦從「有沒有湯、碗形、鋪料」等<b>特徵 (Features)</b>學心法 $f_\\theta$。<span class=\"bilingual-en\">Show 5+5 labeled bowls; model learns features → rule.</span>",
+    "en": "Collect 5 bowls labeled “ramen” and 5 bowls labeled “braised pork rice”, point at them and say “this is ramen, this is braised pork rice”, and let the computer learn the rule $f_\\theta$ from <b>features</b> such as “is there soup, the bowl shape, the toppings”.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c969a59f9e63": {
+    "zh": "回歸：教電腦估考試成績<span class=\"en\">Regression: Estimate Exam Score</span>",
+    "en": "Regression: Teaching a Computer to Estimate Exam Scores",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "74b640bff980": {
+    "zh": "依據特徵預測一個「連續」實數值：$y_i \\in \\mathbb{R}$（如 $78.5$ 分）。<span class=\"bilingual-en\">Predict a continuous real value.</span>",
+    "en": "Predict a “continuous” real value from the features: $y_i \\in \\mathbb{R}$ (e.g., a score of $78.5$).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b3c1ce020564": {
+    "zh": "特徵 $x_i$ <span class=\"bilingual-en-inline\">(Features)</span>",
+    "en": "Features $x_i$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6e1a3c655ba6": {
+    "zh": "每週讀書時數、缺課堂數、打電動時數<span class=\"bilingual-en\">Study hrs, absences, gaming hrs.</span>",
+    "en": "Weekly study hours, number of classes missed, hours spent gaming",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6ef01a105e03": {
+    "zh": "標籤 $y_i\\in\\mathbb{R}$",
+    "en": "Label $y_i\\in\\mathbb{R}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c54c34830717": {
+    "zh": "0∼100 間任意實數（78.5），非有限格子<span class=\"bilingual-en\">Any real 0–100, not a box.</span>",
+    "en": "Any real number from 0 to 100 (78.5), not a finite set of boxes",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aec4bf05de3c": {
+    "zh": "電腦學會「讀書時數↔分數」連結，新學期狀態丟進去就吐出預測分數。<span class=\"bilingual-en\">Model links features to score; new input → predicted value.</span>",
+    "en": "The computer learns the “study hours ↔ score” link; feed in a new semester's situation and it spits out a predicted score.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3fa662bccecc": {
+    "zh": "關鍵差異：格子派 vs 數線派<span class=\"en\">Key Difference: Grids vs Line</span>",
+    "en": "Key Difference: Team Boxes vs. Team Number Line",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d180c6d8642a": {
+    "zh": "分類 格子派 <span class=\"bilingual-en-inline\">(Discrete)</span>",
+    "en": "Classification: Team Boxes (discrete)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f58456851ee6": {
+    "zh": "輸出：離散、有限標籤 $\\{\\ell_1,\\dots,\\ell_k\\}$<span class=\"bilingual-en\">finite labels</span>",
+    "en": "Output: discrete, finite labels $\\{\\ell_1,\\dots,\\ell_k\\}$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fe0d1e6941e1": {
+    "zh": "像：分系所「資工/電機」<span class=\"bilingual-en\">which department</span>",
+    "en": "Like: sorting into departments, “CS / EE”",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3154ce3b58a2": {
+    "zh": "問的是「是哪一類？」<span class=\"bilingual-en\">“which class?”</span>",
+    "en": "The question is “which class is it?”",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "dfc37897afe4": {
+    "zh": "回歸 數線派 <span class=\"bilingual-en-inline\">(Continuous)</span>",
+    "en": "Regression: Team Number Line (continuous)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3ba2f1010b28": {
+    "zh": "輸出：連續、無限實數 $\\mathbb{R}$<span class=\"bilingual-en\">infinite reals</span>",
+    "en": "Output: continuous, infinitely many real values $\\mathbb{R}$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8d46dd75b33c": {
+    "zh": "像：成績 88、價格 150.2、長度 7.3<span class=\"bilingual-en\">88, 150.2, 7.3</span>",
+    "en": "Like: a grade of 88, a price of 150.2, a length of 7.3",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cb8ef3bbbbf0": {
+    "zh": "問的是「是多少？」<span class=\"bilingual-en\">“how much?”</span>",
+    "en": "The question is “how much is it?”",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e088a10b968b": {
+    "zh": "別混淆 · Don’t Mix",
+    "en": "Don’t Mix Them Up",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e30786b23245": {
+    "zh": "餐廳是「賣拉麵還是估房價」根本不同工種；輸出型態決定任務型態。<span class=\"bilingual-en\">Ramen shop vs appraisal — different jobs; output type decides.</span>",
+    "en": "A shop that “sells ramen” and one that “appraises houses” are in fundamentally different lines of work; the output type determines the task type.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep attention",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c384c773beb7": {
+    "zh": "怎麼判斷該用哪個？<span class=\"en\">How to Choose?</span>",
+    "en": "How Do You Decide Which One to Use?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d1c7e1844d39": {
+    "zh": "看標籤",
+    "en": "Look at the label",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6259686e285c": {
+    "zh": "標籤是「哪一類」→ 分類<span class=\"bilingual-en\">Label = which → classification</span>",
+    "en": "The label is “which class” → classification",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3a3811618f96": {
+    "zh": "看數線",
+    "en": "Look at the number line",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2ac4671be2a3": {
+    "zh": "標籤是「多少」→ 回歸<span class=\"bilingual-en\">Label = how much → regression</span>",
+    "en": "The label is “how much” → regression",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c6fe7859ebec": {
+    "zh": "看損失",
+    "en": "Look at the loss",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e9d2c3f96667": {
+    "zh": "分類用 0-1/交叉熵；回歸用 MSE<span class=\"bilingual-en\">Loss differs too</span>",
+    "en": "Classification uses 0-1 / cross-entropy loss; regression uses MSE",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "91652cf738c3": {
+    "zh": "同一個模型，兩種視角：共享 $s(\\mathbf{x})=x_1+x_2$<span class=\"en\">Same Model, Two Views: Shared s(x)</span>",
+    "en": "One Model, Two Views: a Shared $s(\\mathbf{x})=x_1+x_2$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6819843434aa": {
+    "zh": "共享線性分數 · Shared Score — $\\theta=(1,1,0)$",
+    "en": "Shared Linear Score — $\\theta=(1,1,0)$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2be4232fb04b": {
+    "zh": "12 個點 $\\mathbf{x}\\in\\mathbb{R}^2$ 共用此分數，但「怎麼用分數」決定任務。<span class=\"bilingual-en\">Same score, different use → different task.</span>",
+    "en": "All 12 points $\\mathbf{x}\\in\\mathbb{R}^2$ share this score, but “how the score is used” decides the task.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8f21a102249b": {
+    "zh": "分類加門檻 <span class=\"bilingual-en-inline\">(Threshold)</span>",
+    "en": "Classification adds a threshold",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "474547654b69": {
+    "zh": "硬分黑白，只剩 $\\ell_1/\\ell_2$。<span class=\"bilingual-en\">Hard split → only $\\ell_1/\\ell_2$.</span>",
+    "en": "A hard black-or-white split: only $\\ell_1/\\ell_2$ remain.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "89f5a8e36fa7": {
+    "zh": "回歸直接輸出 <span class=\"bilingual-en-inline\">(Direct)</span>",
+    "en": "Regression outputs it directly",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1cc1f2548560": {
+    "zh": "保留連續值 3.5∼16.0。<span class=\"bilingual-en\">Keep continuous 3.5–16.</span>",
+    "en": "Keeps the continuous values 3.5–16.0.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8b5ee682102f": {
+    "zh": "情境 1：回歸 — 直接看分數<span class=\"en\">Scenario 1: Regression — Read the Score</span>",
+    "en": "Scenario 1: Regression — Just Read the Score",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "15bcd18aa378": {
+    "zh": "算出來就是答案，連續無限制。<span class=\"bilingual-en\">Score is answer; continuous.</span>",
+    "en": "Whatever you compute is the answer: continuous, with no restriction.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6582210f8fb7": {
+    "zh": "資料點",
+    "en": "Data points",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9c8422350015": {
+    "zh": "範圍",
+    "en": "Range",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "679e731b2d90": {
+    "zh": "3.5 → 16.0 連續",
+    "en": "3.5 → 16.0, continuous",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "28c7fcd55d71": {
+    "zh": "回歸輸出分佈 · Regression Outputs — 連續色階 <span class=\"bilingual-en-inline\">(continuous)</span>",
+    "en": "Regression Outputs — continuous color scale",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d865950add16": {
+    "zh": "情境 2：分類 — 硬分黑白<span class=\"en\">Scenario 2: Classification — Hard Threshold</span>",
+    "en": "Scenario 2: Classification — A Hard Black-or-White Split",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f6d681265566": {
+    "zh": "同一批分數，加上 $s\\ge0 \\to \\ell_2$ 的硬限制，連續度被壓扁成兩個格子。<span class=\"bilingual-en\">Same scores, threshold crushes to two boxes.</span>",
+    "en": "The same batch of scores, plus the hard rule $s\\ge0 \\to \\ell_2$: the continuum gets squashed into two boxes.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8c7c58deaa57": {
+    "zh": "門檻 $s\\ge0$?",
+    "en": "Threshold $s\\ge0$?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "974a416dbd0d": {
+    "zh": "$\\ell_2$ 金色",
+    "en": "$\\ell_2$ gold",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0c037979016a": {
+    "zh": "本例 12 點全在",
+    "en": "In this example, all 12 points are",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "93bf6383e85e": {
+    "zh": "$\\ell_2$（金）— 無 $\\ell_1$",
+    "en": "$\\ell_2$ (gold) — no $\\ell_1$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "09b3a875916d": {
+    "zh": "注意 · Note",
+    "en": "Note",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e6d275eb644a": {
+    "zh": "此例 12 點皆 $s\\ge0$ 故全 $\\ell_2$；若有 $s&lt;0$ 則落 $\\ell_1$（黑色 X）。決策邊界 $x_1+x_2=0$ 為通過原點斜率 $-1$ 的虛線。<span class=\"bilingual-en\">12 pts all $\\ge0$ → all $\\ell_2$; boundary $x_1+x_2=0$ through origin.</span>",
+    "en": "In this example all 12 points have $s\\ge0$, so they are all $\\ell_2$; a point with $s&lt;0$ would fall into $\\ell_1$ (black X). The decision boundary $x_1+x_2=0$ is the dashed line through the origin with slope $-1$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0aab6d7abd04": {
+    "zh": "分類與回歸的幾何視角<span class=\"en\">Geometric View — Side by Side</span>",
+    "en": "The Geometric View of Classification and Regression",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "131dbe499f1b": {
+    "zh": "Fig 2 · 左：分類 $f:\\mathbb{R}^2\\to\\{\\ell_1,\\ell_2\\}$ 有硬邊界；右：回歸 $f:\\mathbb{R}^2\\to\\mathbb{R}$ 只有漸層 <span class=\"bilingual-en\" style=\"font-size:13px;\">(Left: hard boundary; Right: gradient only)</span>",
+    "en": "Fig 2 · Left: classification $f:\\mathbb{R}^2\\to\\{\\ell_1,\\ell_2\\}$ has a hard boundary; right: regression $f:\\mathbb{R}^2\\to\\mathbb{R}$ has only a color gradient",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "57f64c1e0579": {
+    "zh": "左圖怎麼讀",
+    "en": "How to read the left plot",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "961b7f6c10fe": {
+    "zh": "虛線 $x_1+x_2=0$ 把平面切兩半；金點 $\\ell_2$、黑 X $\\ell_1$。<span class=\"bilingual-en\">Dashed line splits plane; gold $\\ell_2$, black X $\\ell_1$.</span>",
+    "en": "The dashed line $x_1+x_2=0$ cuts the plane in two; gold dots are $\\ell_2$, black X's are $\\ell_1$.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e6f06eb3c47c": {
+    "zh": "右圖怎麼讀",
+    "en": "How to read the right plot",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6c2cb89ad644": {
+    "zh": "同批點依 $s(\\mathbf{x})$ 上色，藍→黃連續，無硬切。<span class=\"bilingual-en\">Same points colored by $s(\\mathbf{x})$; no cut.</span>",
+    "en": "The same points are colored by $s(\\mathbf{x})$, blue → yellow continuously, with no hard cut.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "afa0a8aba3d1": {
+    "zh": "一句話對比 · One-liner",
+    "en": "The Contrast in One Line",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f57686539306": {
+    "zh": "同一數學 $s(\\mathbf{x})=x_1+x_2$，分類「問格子」把連續壓成離散，回歸「問數線」保留連續。<span class=\"bilingual-en\">Same math; classification bins it, regression keeps it.</span>",
+    "en": "The same math, $s(\\mathbf{x})=x_1+x_2$: classification “asks which box” and squashes the continuum into discrete values; regression “asks where on the number line” and keeps it continuous.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c49bca2150a2": {
+    "zh": "總對比表<span class=\"en\">Head-to-Head</span>",
+    "en": "Overall Comparison Table",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3c9dc90e8ad1": {
+    "zh": "面向",
+    "en": "Aspect",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9c06bf28dd74": {
+    "zh": "分類 Classification",
+    "en": "Classification",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "eea8c88f5112": {
+    "zh": "回歸 Regression",
+    "en": "Regression",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "40792e5c9760": {
+    "zh": "輸出形狀",
+    "en": "Output shape",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c490b936239e": {
+    "zh": "$\\{\\ell_1,\\dots,\\ell_k\\}$ 離散有限",
+    "en": "$\\{\\ell_1,\\dots,\\ell_k\\}$ discrete, finite",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1a92d6df6537": {
+    "zh": "$\\mathbb{R}$ 連續無限",
+    "en": "$\\mathbb{R}$ continuous, infinite",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bd050fecf2e2": {
+    "zh": "典型問句",
+    "en": "Typical question",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "33b262e21eb3": {
+    "zh": "是哪一類？ <span class=\"bilingual-en-inline\">(which?)</span>",
+    "en": "Which class is it?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "22d20049a22f": {
+    "zh": "是多少？ <span class=\"bilingual-en-inline\">(how much?)</span>",
+    "en": "How much is it?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "49b96fd97b54": {
+    "zh": "例子",
+    "en": "Examples",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7fcbfe7a61c8": {
+    "zh": "拉麵/滷肉飯、資工/電機",
+    "en": "Ramen / braised pork rice; CS / EE",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "165d30936b49": {
+    "zh": "78.5 分、150.2 元、7.3 公分",
+    "en": "78.5 points, 150.2 dollars, 7.3 cm",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "76018b71a010": {
+    "zh": "本例公式",
+    "en": "Formula in this example",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cce604160bcf": {
+    "zh": "幾何",
+    "en": "Geometry",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c541a65e9ebe": {
+    "zh": "硬邊界切平面",
+    "en": "A hard boundary cuts the plane",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "90ec76ab71cf": {
+    "zh": "色階漸層無切",
+    "en": "A color gradient, no cut",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7ca93817e923": {
+    "zh": "常用損失",
+    "en": "Common losses",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c4666d4550e8": {
+    "zh": "0-1 / 交叉熵",
+    "en": "0-1 / cross-entropy",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "eb81d7a2f9ab": {
+    "zh": "下一步路線圖<span class=\"en\">Roadmap — Where to next?</span>",
+    "en": "Next Steps: The Roadmap",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "24721dc7fbf0": {
+    "zh": "損失函數再探 <span class=\"bilingual-en-inline\">(Loss Functions)</span>",
+    "en": "Loss functions revisited",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "90a8d5e9d28a": {
+    "zh": "分類為何不用 MSE？回歸為何不用交叉熵？<span class=\"bilingual-en\">Why different losses?</span>",
+    "en": "Why doesn't classification use MSE? Why doesn't regression use cross-entropy?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "54be162e26f2": {
+    "zh": "決策邊界形狀 <span class=\"bilingual-en-inline\">(Boundary Shape)</span>",
+    "en": "Decision boundary shape",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "09643458892a": {
+    "zh": "把 $w,b$ 換掉，邊界怎麼轉？非線性又如何？<span class=\"bilingual-en\">How does boundary move?</span>",
+    "en": "If we change $w,b$, how does the boundary turn? And what about nonlinear boundaries?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5ada9632e1f4": {
+    "zh": "評估指標 <span class=\"bilingual-en-inline\">(Metrics)</span>",
+    "en": "Evaluation metrics",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5bc55967ad94": {
+    "zh": "準確率 vs 均方誤差，誰評誰？<span class=\"bilingual-en\">Accuracy vs MSE.</span>",
+    "en": "Accuracy vs. mean squared error: which one evaluates which task?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ad85347a72d2": {
+    "zh": "思考題 · 提取練習<span class=\"en\">Reflection — Test Your Understanding</span>",
+    "en": "Reflection Questions · Retrieval Practice",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6c1e89e752d1": {
+    "zh": "Q1. 拉麵 vs 滷肉飯、全班分到資工/電機，屬於哪個任務？<span class=\"bilingual-en\">Which task?</span>",
+    "en": "Q1. Ramen vs. braised pork rice, or sorting the whole class into CS/EE: which task is this?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "7659b690b048": {
+    "zh": "A. 回歸，因為有湯 <span class=\"bilingual-en-inline\">(regression due to soup)</span>",
+    "en": "A. Regression, because there's soup",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "9f8a0779a26f": {
+    "zh": "B. 分類，因為輸出是離散格子 <span class=\"bilingual-en-inline\">(classification — discrete boxes)</span>",
+    "en": "B. Classification, because the output is a discrete box",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "85fd669dc7af": {
+    "zh": "C. 兩者皆可 <span class=\"bilingual-en-inline\">(both)</span>",
+    "en": "C. Either one works",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "963657086fd1": {
+    "zh": "D. 都不是 <span class=\"bilingual-en-inline\">(neither)</span>",
+    "en": "D. Neither",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4092015c3c26": {
+    "zh": "Q2. 用共享模型 $s=x_1+x_2$，$\\mathbf{x}=(4.5,5)$ 在回歸與分類各輸出什麼？<span class=\"bilingual-en\">Shared $s$ outputs?</span>",
+    "en": "Q2. With the shared model $s=x_1+x_2$, what do regression and classification each output for $\\mathbf{x}=(4.5,5)$?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ed2677583fdf": {
+    "zh": "A. 回歸 $\\ell_2$、分類 9.5 <span class=\"bilingual-en-inline\">(swap)</span>",
+    "en": "A. Regression $\\ell_2$, classification 9.5",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e807151bd262": {
+    "zh": "B. 都是 9.5 <span class=\"bilingual-en-inline\">(both 9.5)</span>",
+    "en": "B. Both output 9.5",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ea66e95591a1": {
+    "zh": "C. 回歸 $9.5\\in\\mathbb{R}$、分類 $\\ell_2$（因 $9.5\\ge0$） <span class=\"bilingual-en-inline\">(reg 9.5, cls $\\ell_2$)</span>",
+    "en": "C. Regression $9.5\\in\\mathbb{R}$, classification $\\ell_2$ (since $9.5\\ge0$)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "0475bf352c72": {
+    "zh": "D. 都是 $\\ell_2$ <span class=\"bilingual-en-inline\">(both $\\ell_2$)</span>",
+    "en": "D. Both output $\\ell_2$",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6598cbe97cb0": {
+    "zh": "Q3. 幾何上，分類與回歸的最大差別是？<span class=\"bilingual-en\">Geometry difference?</span>",
+    "en": "Q3. Geometrically, what is the biggest difference between classification and regression?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "9da085fcd5a3": {
+    "zh": "A. 分類有硬性決策邊界 $x_1+x_2=0$，回歸只有色階漸層 <span class=\"bilingual-en-inline\">(hard boundary vs gradient)</span>",
+    "en": "A. Classification has a hard decision boundary $x_1+x_2=0$; regression has only a color gradient",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "8b11f7c5ee58": {
+    "zh": "B. 回歸有邊界、分類沒有 <span class=\"bilingual-en-inline\">(reversed)</span>",
+    "en": "B. Regression has a boundary, classification doesn't",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "c5012450150a": {
+    "zh": "C. 兩者都沒有邊界 <span class=\"bilingual-en-inline\">(neither)</span>",
+    "en": "C. Neither has a boundary",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e943205ba0b6": {
+    "zh": "D. 兩者邊界相同 <span class=\"bilingual-en-inline\">(same)</span>",
+    "en": "D. Both have the same boundary",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "946e6992b376": {
+    "zh": "問對輸出，<br>選對任務。\n    <small>Ask the right output — pick the right task. <span class=\"bilingual-en\" style=\"font-size:18px;\">Grids for “which”, line for “how much”.</span></small>\n  ",
+    "en": "Ask for the right output,<br>pick the right task.\n    <small><span class=\"bilingual-en\" style=\"font-size:18px;\">Boxes for “which”, a line for “how much”.</span></small>\n  ",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "53b7a1785640": {
+    "zh": "$\\{\\ell_1,\\dots,\\ell_k\\}$ 格子 vs $\\mathbb{R}$ 數線<span class=\"bilingual-en\">Boxes vs line — that’s the split.</span>",
+    "en": "$\\{\\ell_1,\\dots,\\ell_k\\}$ boxes vs. the $\\mathbb{R}$ number line",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "283f86433538": {
+    "zh": "冰晶簡約亮色主題 · 與前兩講一致 <span class=\"bilingual-en-inline\">(ice-crystal light, full-width)</span> ｜ 單檔 HTML · 離線可播",
+    "en": "Ice-crystal minimalist light theme · consistent with the previous two lectures | single-file HTML · plays offline",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "16ece6a3fedb": {
+    "zh": "公式由 MathJax 3 渲染 · 圖表由 Chart.js 4 繪製 · 幾何由 matplotlib 精準數據繪製並 base64 內嵌",
+    "en": "Formulas rendered by MathJax 3 · charts drawn with Chart.js 4 · geometry plotted with matplotlib from exact data and embedded as base64",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
