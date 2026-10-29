@@ -108,6 +108,20 @@ def main():
         print(f'{s:10} {done[s]:4}/{per[s]:<4}')
     print(f'{len(units)} keys ({len(found)} occurrences), {sum(done.values())} translated, '
           f'{review} need review, {len(stale)} stale{" (pruned)" if args.prune else ""}')
+    # Inline data: URI images (decks): print their _images keys and dump them for /redraw-chart.
+    imgs = re.findall(r'<img[^>]*?src="(data:image/([a-z+]+);base64,([^"]+))"', raw_html)
+    if imgs:
+        import base64
+        import hashlib
+        dump = REPO / 'scratch' / 'img' / chapter.replace('/', '__')
+        dump.mkdir(parents=True, exist_ok=True)
+        listed = {i['key']: i['file'] for i in out['_images'] if isinstance(i, dict)}
+        print(f'{len(imgs)} inline images (dumped to {dump.relative_to(REPO)}):')
+        for n, (src, kind, b64) in enumerate(imgs):
+            key = hashlib.sha1(src.encode('utf-8')).hexdigest()[:12]
+            ext = 'jpg' if kind == 'jpeg' else kind.replace('+xml', '')
+            (dump / f'{n:02d}-{key}.{ext}').write_bytes(base64.b64decode(b64))
+            print(f'  #{n} key {key}  ' + (f'-> {listed[key]}' if key in listed else 'not in _images'))
     if english:
         # The professor's English that EN mode would show as is. Either it pairs a Chinese unit
         # (hide it: add a selector to _hide) or it stands alone (review it).

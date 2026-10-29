@@ -302,14 +302,27 @@
     renderMathAll(math);
   }
 
-  var imgOrig = new WeakMap();
+  // _images: a file basename (img src="assets/x.png"), or {key, file} for an inline data: URI,
+  // key = sha1(src)[:12] (en/tools/extract.py prints it). The English file is in assets/.
+  var imgOrig = new WeakMap(), dataKeys = new WeakMap();
+  function imageFile(img, src) {
+    if (src.slice(0, 5) !== 'data:') {
+      var base = src.split('/').pop().split('?')[0];
+      return images.indexOf(base) >= 0 ? base : null;
+    }
+    if (!dataKeys.has(img)) dataKeys.set(img, sha1(src).slice(0, 12));
+    var k = dataKeys.get(img);
+    for (var i = 0; i < images.length; i++) if (images[i] && images[i].key === k) return images[i].file;
+    return null;
+  }
   function swapImages(target) {
     if (!images.length) return;
     document.querySelectorAll('img').forEach(function (img) {
       if (target === 'en') {
         var src = img.getAttribute('src') || '';
-        var file = src.split('/').pop().split('?')[0];
-        if (images.indexOf(file) < 0 || imgOrig.has(img)) return;
+        if (imgOrig.has(img)) return;
+        var file = imageFile(img, src);
+        if (!file) return;
         imgOrig.set(img, src);
         img.setAttribute('src', CH_BASE + 'assets/' + file);
       } else if (imgOrig.has(img)) {

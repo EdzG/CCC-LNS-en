@@ -141,7 +141,9 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   controls (and `change` on selects) so canvases redraw at once. coverage.py reports demos
   that draw Chinese but don't redraw this way (Ch01: KP6 only redraws on its 計算 button).
 - **`_images`** (list of filenames): only `img` whose src basename is listed is swapped to
-  `en/<chapter>/assets/<file>` in EN mode. No HEAD checks. Textbook figures (the hashed `*.jpg`
+  `en/<chapter>/assets/<file>` in EN mode. No HEAD checks. Decks embed their images as `data:`
+  URIs: list those as `{"key": "<sha1(src)[:12]>", "file": "<name>.png"}`. extract.py prints each
+  inline image's key and dumps it to `scratch/img/<page id with __>/` for `/redraw-chart`. Textbook figures (the hashed `*.jpg`
   crops) are already English and need no redraw.
 - **Toggle UI:** fixed 中 | EN pill (top-right, z-index 1000; moved left of any fixed page control
   it would cover, e.g. a deck's theme button), `Alt+L`, state in
