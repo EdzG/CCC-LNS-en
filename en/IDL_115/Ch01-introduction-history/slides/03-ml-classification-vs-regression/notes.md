@@ -30,4 +30,5 @@ hex ids are strings.json keys.
 
 ## Images
 
-- Inline charts with Chinese labels get English redraws in a separate commit.
+- Inline image #0 is redrawn in English (`assets/img00.png`); its broken-glyph label sets now read {ℓ₁, …, ℓ_k} and y ∈ ℝ, and the number-line points sit between the labelled 0 and 100 ticks.
+- Inline image #1 has no Chinese and is shown as is; its subscripts, ∈, ℓ and ≥ render as missing-glyph boxes in the original (font problem upstream).

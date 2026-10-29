@@ -38,4 +38,5 @@ hex ids are strings.json keys.
 
 ## Images
 
-- Inline charts with Chinese labels get English redraws in a separate commit.
+- Inline image #0 is redrawn in English (`assets/img00.png`): 學霸/電競 → Bookworms/Gamers, axes → library hours / arcade hours. The m = 5 centroid markers are placed as drawn in the original (they are not the exact means of their points).
+- Inline image #1 has no Chinese and is shown as is.

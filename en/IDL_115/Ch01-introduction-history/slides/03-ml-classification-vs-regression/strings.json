@@ -17,7 +17,12 @@
     ]
   },
   "_dynamic": [],
-  "_images": [],
+  "_images": [
+    {
+      "key": "06c8c0302ba7",
+      "file": "img00.png"
+    }
+  ],
   "341cbae7d2bf": {
     "zh": "CH · 章節索引",
     "en": "CH · Section Index",

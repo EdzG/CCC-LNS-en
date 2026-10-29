@@ -17,7 +17,20 @@
     ]
   },
   "_dynamic": [],
-  "_images": [],
+  "_images": [
+    {
+      "key": "614b1d5e6e9c",
+      "file": "img00.png"
+    },
+    {
+      "key": "0fd570cca26a",
+      "file": "img01.png"
+    },
+    {
+      "key": "3588d1220b9f",
+      "file": "img02.png"
+    }
+  ],
   "341cbae7d2bf": {
     "zh": "CH · 章節索引",
     "en": "CH · Chapter Index",

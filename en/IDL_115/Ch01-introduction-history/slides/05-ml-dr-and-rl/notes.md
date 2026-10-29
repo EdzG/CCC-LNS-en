@@ -34,4 +34,4 @@ hex ids are strings.json keys.
 
 ## Images
 
-- Inline charts with Chinese labels get English redraws in a separate commit.
+- Both inline images have no Chinese and are shown as is (in #1 the label "Warm tight at high" is partly covered by the legend in the original).

@@ -33,4 +33,4 @@ hex ids are strings.json keys.
 
 ## Images
 
-- Inline charts with Chinese labels get English redraws in a separate commit.
+- All three inline charts are redrawn in English (`assets/img00-02.png`). img00: the 10×10 cat grid values were sampled from the image; img02: the point tags were moved so the longer English names do not overlap (they overlapped in the original), and the broken x₁/x₂ glyphs are fixed.

@@ -38,4 +38,4 @@ hex ids are strings.json keys.
 
 ## Images
 
-- Inline charts with Chinese labels get English redraws in a separate commit.
+- The deck has no inline images.
