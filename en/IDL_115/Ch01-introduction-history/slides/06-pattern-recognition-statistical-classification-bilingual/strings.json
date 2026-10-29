@@ -1,0 +1,1796 @@
+{
+  "_runtime": {
+    "exact": {
+      "✔ 正確！LDA 共享共變異數 → 線性邊界、參數少、穩健。QDA 會過度彈性。": "✔ Correct! LDA shares one covariance → linear boundary, few parameters, robust. QDA would be overly flexible.",
+      "✔ 正確！Logistic 直接估 P(Y|X)，判別式、機率可校準；Bayes/LDA 為生成式。": "✔ Correct! Logistic regression estimates P(Y|X) directly: it is discriminative and its probabilities can be calibrated; Bayes/LDA are generative.",
+      "✔ 正確！蚊香屬於非線性不可分，核技巧映射到高維線性分離最優雅。": "✔ Correct! A mosquito-coil spiral is not linearly separable; the most elegant fix is the kernel trick, which maps the data to a high-dimensional space where it becomes linearly separable.",
+      "✔ 正確！Bagging + 特徵隨機抽樣讓樹去相關，平均後大幅壓制變異。": "✔ Correct! Bagging + random feature sampling decorrelates the trees, so averaging them suppresses the variance dramatically.",
+      "✗ 再想想：此假設下 LDA 的線性邊界最穩健，QDA 與核方法過於彈性。": "✗ Think again: under this assumption LDA's linear boundary is the most robust; QDA and kernel methods are too flexible.",
+      "✗ 提示：誰是「不管生成、直接算條件機率」的那一派？": "✗ Hint: which camp \"ignores how the data are generated and computes the conditional probability directly\"?",
+      "✗ 提示：調 k 或先驗解決不了幾何纏繞，需要改變表示或映射。": "✗ Hint: tuning k or the prior can't undo geometric entanglement; you need to change the representation or the mapping.",
+      "✗ 提示：關鍵是「去相關後平均」如何影響變異。": "✗ Hint: the key is how \"averaging after decorrelating\" affects the variance."
+    },
+    "patterns": [
+      {
+        "re": "^決策邊界 x\\* ≈ (\\S+) · Posterior at x=5: (\\S+) / (\\S+)$",
+        "en": "Decision boundary x* ≈ $1 · Posterior at x=5: $2 / $3"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "b8bb31e17014": {
+    "zh": "<a href=\"#cover\">封面</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d80673983057": {
+    "zh": "<a href=\"#q1\">靈魂拷問</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f49fbdc59c92": {
+    "zh": "<a href=\"#what\">何謂分類</a>",
+    "en": "<a href=\"#what\">What Is Classification</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ff887ebf5326": {
+    "zh": "<a href=\"#bayes\">貝氏家族</a>",
+    "en": "<a href=\"#bayes\">Bayes Family</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ceba0d3995ef": {
+    "zh": "<a href=\"#bayes-chart\">貝氏邊界圖</a>",
+    "en": "<a href=\"#bayes-chart\">Bayes Boundary Chart</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c273224bfca4": {
+    "zh": "<a href=\"#logistic\">Logistic 回歸</a>",
+    "en": "<a href=\"#logistic\">Logistic Regression</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4e698a5910ee": {
+    "zh": "<a href=\"#knn\">KNN 與度量</a>",
+    "en": "<a href=\"#knn\">KNN &amp; Metrics</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c26253c7481f": {
+    "zh": "<a href=\"#tree\">樹與森林</a>",
+    "en": "<a href=\"#tree\">Trees &amp; Forests</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8389c0c4fc60": {
+    "zh": "<a href=\"#svm\">SVM 與核技巧</a>",
+    "en": "<a href=\"#svm\">SVM &amp; the Kernel Trick</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "72b10adc46fa": {
+    "zh": "<a href=\"#family\">六大家族譜系</a>",
+    "en": "<a href=\"#family\">Six-Family Tree</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "44e40e89aca9": {
+    "zh": "<a href=\"#summary\">總結比較</a>",
+    "en": "<a href=\"#summary\">Summary Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3142636d1b65": {
+    "zh": "<a href=\"#quiz\">思考測驗</a>",
+    "en": "<a href=\"#quiz\">Thinking Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ef615c0d42ac": {
+    "zh": "<a href=\"#roadmap\">學習路線</a>",
+    "en": "<a href=\"#roadmap\">Learning Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ce3edcf1b253": {
+    "zh": "統計分類六大家族<br>從貝氏到核技巧的演化全景",
+    "en": "The Six Families of Statistical Classification<br>A Panorama of the Evolution from Bayes to the Kernel Trick",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d0282148f558": {
+    "zh": "武林六派各有絕招：生成 vs. 判別、線性 vs. 彎曲、懶惰 vs. 極致美學 <span class=\"bilingual-en\" style=\"color:#cbd5e1;font-size:18px;display:inline;\">Six schools, six philosophies: generative vs. discriminative, linear vs. curved, lazy vs. max-margin.</span>",
+    "en": "Six martial-arts schools, each with its own signature move: generative vs. discriminative, linear vs. curved, lazy vs. the ultimate in aesthetics",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aadfed0b76b3": {
+    "zh": "\n      <span>📐 貝氏最優 · Bayes Optimal</span>\n      <span>📏 最大邊界 · Max Margin</span>\n      <span>🌳 可解釋性 · Interpretability</span>\n      <span>🌀 核跳躍 · Kernel Trick</span>\n    ",
+    "en": "\n      <span>📐 Bayes Optimal</span>\n      <span>📏 Max Margin</span>\n      <span>🌳 Interpretability</span>\n      <span>🌀 Kernel Trick</span>\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "afc490816a6e": {
+    "zh": "▾ SCROLL TO EXPLORE · 長頁自學模式",
+    "en": "▾ SCROLL TO EXPLORE · Long-Page Self-Study Mode",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aedc2ad9d89c": {
+    "zh": "BIG QUESTION · 靈魂拷問",
+    "en": "BIG QUESTION",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "e8841eb3bbd8": {
+    "zh": "\n    給電腦一堆線索，<br>它憑什麼敢拍板「這是 A 還是 B」？\n    <small>Given a pile of clues, what gives a machine the right to declare “it’s A, not B”?</small>\n  ",
+    "en": "\n    Give a computer a pile of clues:<br>what gives it the nerve to rule “this is A, not B”?\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "bb17aa10abf4": {
+    "zh": "答案不只一種——有人講「成見＋證據」，有人直接硬切一刀，有人問鄰居，有人把世界摺到高維再切。<span class=\"bilingual-en\">There is no single answer: some combine prior &amp; evidence, some cut a hard boundary, some ask neighbours, some lift the world to higher dimensions.</span>",
+    "en": "There is more than one answer: some talk about “prior belief + evidence,” some just make one hard cut, some ask the neighbors, and some fold the world into a higher dimension and then cut.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a656e7aefe28": {
+    "zh": "S1 · 引起動機 · MOTIVATE",
+    "en": "S1 · MOTIVATE",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9131c8aaf6d7": {
+    "zh": "分類是什麼？不只是貼標籤 <span class=\"en\">What Is Classification? Not Just Labeling</span>",
+    "en": "What Is Classification? It's More Than Sticking On Labels",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3c3fe0f54395": {
+    "zh": "分類就是「在不確定下做決定」的科學。輸入是特徵向量 $x \\in \\mathbb{R}^d$，輸出是離散標籤 $y \\in \\{C_1,\\dots,C_K\\}$。關鍵在於：不同家族對「不確定」有完全不同的建模方式。<span class=\"bilingual-en\">Classification = decision under uncertainty: input $x \\in \\mathbb{R}^d$, output label $y$. Families differ in how they model uncertainty.</span>",
+    "en": "Classification is the science of “making decisions under uncertainty.” The input is a feature vector $x \\in \\mathbb{R}^d$, and the output is a discrete label $y \\in \\{C_1,\\dots,C_K\\}$. The key point: different families model “uncertainty” in completely different ways.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "baa70a7a6dc7": {
+    "zh": "兩條世界觀 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Two worldviews</span>",
+    "en": "Two worldviews",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "866dae32d0dc": {
+    "zh": "<b>生成式 (Generative)</b>：先學會「每類長什麼樣」$P(X\\mid C_j)$，再用貝氏算後驗。<span class=\"bilingual-en\">Learn $P(X\\mid C_j)$ per class, then posterior via Bayes.</span>",
+    "en": "<b>Generative</b>: first learn “what each class looks like,” $P(X\\mid C_j)$, then compute the posterior with Bayes' rule.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d80c93158eb0": {
+    "zh": "<b>判別式 (Discriminative)</b>：不管怎麼生成，直接學邊界 $P(Y\\mid X)$ 或決策函數。<span class=\"bilingual-en\">Ignore generation; learn $P(Y\\mid X)$ or boundary directly.</span>",
+    "en": "<b>Discriminative</b>: never mind how the data is generated; learn the boundary $P(Y\\mid X)$ or a decision function directly.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "35bed9572e39": {
+    "zh": "三種邊界長相 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Three boundary shapes</span>",
+    "en": "Three boundary shapes",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c4767f8c8e96": {
+    "zh": "直線（LDA / Logistic / SVM 線性）、二次曲線（QDA / 核 SVM）、階梯狀（決策樹）。<span class=\"bilingual-en\">Linear, quadratic, staircase — each reflects an assumption about the world.</span>",
+    "en": "Straight lines (LDA / logistic regression / linear SVM), quadratic curves (QDA / kernel SVM), staircases (decision trees).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "65a808b5a2aa": {
+    "zh": "沒有萬能模型，只有「對的假設配對的資料」。<span class=\"bilingual-en\">No free lunch: right assumption must match the data.</span>",
+    "en": "There is no universal model, only “the right assumption paired with the right data.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "39f184a537a9": {
+    "zh": "一句話記住六大家族 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">One-liner per family</span>",
+    "en": "Remember the six families in one sentence each",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "67106b274442": {
+    "zh": "貝氏：成見＋證據；LDA/QDA：胖瘦決定直或彎；Logistic：直接算機率；KNN：問鄰居；樹/森林：官僚流程＋投票；SVM：留最寬安全島。<span class=\"bilingual-en\">Bayes priors+evidence; LDA/QDA covariance decides line/curve; Logistic direct prob; KNN neighbours vote; Trees bureaucracy+ensemble; SVM widest margin.</span>",
+    "en": "Bayes: prior belief + evidence; LDA/QDA: fat or thin decides straight or curved; logistic regression: compute the probability directly; KNN: ask the neighbors; trees/forests: a bureaucratic flowchart + voting; SVM: leave the widest safety island.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c54a2de9df8a": {
+    "zh": "先驗的威力 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Power of priors</span>",
+    "en": "The power of priors",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f2299c08eaa6": {
+    "zh": "同一個 $x=5$，先驗 $0.5$:$0.5$ 時邊界在中間；先驗 $0.9$:$0.1$ 時後驗直接偏向多數——成見會吃掉證據。<span class=\"bilingual-en\">Same $x=5$: equal priors → boundary at centre; 0.9 vs 0.1 → majority dominates. Priors can swallow evidence.</span>",
+    "en": "For the same $x=5$, with priors $0.5$:$0.5$ the boundary sits in the middle; with priors $0.9$:$0.1$ the posterior leans straight toward the majority. Prior belief can swallow the evidence.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ee743ab69ef6": {
+    "zh": "直覺理解 · Intuition",
+    "en": "Intuition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9c13f87786d1": {
+    "zh": "把分類想成法庭：貝氏是「法官綜合前科（先驗）與現場跡證（似然）判案」；Logistic 是「陪審團只看現場投票給機率」；KNN 是「問隔壁鄰居你是哪幫的」；SVM 是「在兩幫之間劃最寬的無人區」。<span class=\"bilingual-en\">Courtroom: Bayes = judge (record + evidence), Logistic = jury voting prob, KNN = ask neighbours, SVM = widest no-man’s-land.</span>",
+    "en": "Think of classification as a courtroom: Bayes is “a judge who weighs the defendant's record (the prior) together with the evidence at the scene (the likelihood) to decide the case”; logistic regression is “a jury that looks only at the scene and votes a probability”; KNN is “asking the next-door neighbors which gang you belong to”; SVM is “drawing the widest no-man's-land between the two gangs.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "89bb3f41f8d0": {
+    "zh": "S2 · 維持注意 · SUSTAIN",
+    "en": "S2 · SUSTAIN",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0af0a1c2be40": {
+    "zh": "1 · 貝氏家族：證據 × 成見 <span class=\"en\">Bayes Family — Evidence × Prior</span>",
+    "en": "1 · The Bayes Family: Evidence × Prior",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b62f7f27d115": {
+    "zh": "老祖宗 Thomas Bayes 留下一條「綜合判斷」公式：後驗 $\\propto$ 似然 $\\times$ 先驗。理論上這是無敵的最優分類器（Bayes Optimal），實務上難在估準 $P(X\\mid C_j)$。<span class=\"bilingual-en\">Bayes rule: posterior $\\propto$ likelihood $\\times$ prior — optimal in theory, hard to estimate in practice.</span>",
+    "en": "The founding father, Thomas Bayes, left us a formula for “weighing it all together”: posterior $\\propto$ likelihood $\\times$ prior. In theory this is the unbeatable optimal classifier (Bayes optimal); in practice, the hard part is estimating $P(X\\mid C_j)$ accurately.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "776b160346f3": {
+    "zh": "貝氏定理 · Bayes' Theorem（式 9）",
+    "en": "Bayes' Theorem (Eq. 9)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ab983d8ab5e3": {
+    "zh": "分母 $P(X=x)=\\sum_k P(X\\mid C_k)P(C_k)$ 只是歸一化常數，決策時比大小 $ \\arg\\max_j P(C_j\\mid X)$ 即可。<span class=\"bilingual-en\" style=\"font-size:16px;\">Denominator is normalization; decide by $\\arg\\max$ posterior.</span>",
+    "en": "The denominator $P(X=x)=\\sum_k P(X\\mid C_k)P(C_k)$ is just a normalizing constant; to decide, just compare sizes: $ \\arg\\max_j P(C_j\\mid X)$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "302d192fd60e": {
+    "zh": "成見 Prior",
+    "en": "Prior",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7a5b537c21e7": {
+    "zh": "平常多可疑？",
+    "en": "How suspicious usually?",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "27d829debf0e": {
+    "zh": "證據 Likelihood",
+    "en": "Likelihood",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "bee8fa148d2b": {
+    "zh": "現場有多像？",
+    "en": "How well does the scene fit?",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b831af77a0c6": {
+    "zh": "後驗 Posterior",
+    "en": "Posterior",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "94fc45f4649b": {
+    "zh": "綜合判斷",
+    "en": "Overall judgment",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "24ae0bdeccd4": {
+    "zh": "證據 Evidence  P(X) = Σ  Likelihood·Prior  (歸一化)",
+    "en": "Evidence  P(X) = Σ  Likelihood·Prior  (normalization)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "63ba7e9783f0": {
+    "zh": "決策  argmax  P(Cj | X)",
+    "en": "Decision  argmax  P(Cj | X)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8955e560b3ca": {
+    "zh": "選後驗最大者",
+    "en": "Pick the largest posterior",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a5637b6e5325": {
+    "zh": "貝氏思維：成見與證據相乘後歸一化，再取最大後驗 · Bayes: prior × likelihood → normalized posterior → argmax",
+    "en": "Bayesian thinking: multiply prior belief by evidence, normalize, then take the maximum posterior",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "39e7a1a7f310": {
+    "zh": "四個名詞一次記牢 · Four Terms",
+    "en": "Four Terms to Remember Once and for All",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "58a85586ad2a": {
+    "zh": "後驗 $P(C_j\\mid X)$：看到 $x$ 後兇手是 $j$ 的機率（要算的答案）。<br>先驗 $P(C_j)$：還沒看現場前的成見。<br>似然 $P(X\\mid C_j)$：若兇手是 $j$，現場長這樣的機率。<br>證據 $P(X)$：所有人留下此跡證的總機率（分母）。<span class=\"bilingual-en\">Posterior = answer; prior = belief before seeing $x$; likelihood = how typical $x$ is under $C_j$; evidence = normalizer.</span>",
+    "en": "Posterior $P(C_j\\mid X)$: the probability that the culprit is $j$ after seeing $x$ (the answer we want).<br>Prior $P(C_j)$: the preconception before looking at the scene.<br>Likelihood $P(X\\mid C_j)$: if the culprit is $j$, the probability that the scene looks like this.<br>Evidence $P(X)$: the total probability that anyone would leave this trace (the denominator).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "944d176dd2c4": {
+    "zh": "為何需要 Naive Bayes？ · Why Naive?",
+    "en": "Why Do We Need Naive Bayes?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "834cb833118d": {
+    "zh": "特徵維度 $d$ 一高，$P(X\\mid C_j)$ 估不準。乾脆假設特徵條件獨立：$P(X\\mid C_j)=\\prod_i P(X_i\\mid C_j)$——天真但常很能打，尤其文本分類。<span class=\"bilingual-en\">High $d$ → density hard to estimate. Naive assumes conditional independence — often surprisingly strong, esp. text.</span>",
+    "en": "Once the feature dimension $d$ gets high, $P(X\\mid C_j)$ can't be estimated accurately. So just assume the features are conditionally independent: $P(X\\mid C_j)=\\prod_i P(X_i\\mid C_j)$. Naive, but it often packs a punch, especially in text classification.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ff8ca0e0ad4b": {
+    "zh": "動手算算看 · Worked Example（$X=5$ 站在兩群正中間）",
+    "en": "Let's Work It Out · Worked Example ($X=5$ stands right between the two groups)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "15ff8a8f4e4a": {
+    "zh": "設 $C_1\\sim\\mathcal{N}(3,1)$、$C_2\\sim\\mathcal{N}(7,1)$，先驗各 $0.5$，常態密度 $f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}\\exp(-\\frac{(x-\\mu)^2}{2\\sigma^2})$。<span class=\"bilingual-en\">Two Gaussians $\\mathcal{N}(3,1)$ vs $\\mathcal{N}(7,1)$, equal priors, test $x=5$.</span>",
+    "en": "Let $C_1\\sim\\mathcal{N}(3,1)$ and $C_2\\sim\\mathcal{N}(7,1)$, with priors of $0.5$ each, and the normal density $f(x)=\\frac{1}{\\sigma\\sqrt{2\\pi}}\\exp(-\\frac{(x-\\mu)^2}{2\\sigma^2})$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "794dca763b3c": {
+    "zh": "① 似然 Likelihood",
+    "en": "① Likelihood",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5bc6581749c3": {
+    "zh": "$P(X=5\\mid C_1)=\\frac{1}{\\sqrt{2\\pi}}e^{-2}\\approx 0.054$<br>$P(X=5\\mid C_2)=\\frac{1}{\\sqrt{2\\pi}}e^{-2}\\approx 0.054$<br><span style=\"color:var(--ink-soft);font-size:18px;\">兩邊距中心皆 $2\\sigma$，對稱相等。</span><span class=\"bilingual-en\">Symmetric: both $2\\sigma$ away → equal.</span>",
+    "en": "$P(X=5\\mid C_1)=\\frac{1}{\\sqrt{2\\pi}}e^{-2}\\approx 0.054$<br>$P(X=5\\mid C_2)=\\frac{1}{\\sqrt{2\\pi}}e^{-2}\\approx 0.054$<br><span style=\"color:var(--ink-soft);font-size:18px;\">Both are $2\\sigma$ from their centers, so by symmetry they are equal.</span>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a95883178ef0": {
+    "zh": "② 證據與後驗",
+    "en": "② Evidence and Posterior",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a9b1f9287878": {
+    "zh": "$P(X)=0.054\\cdot0.5+0.054\\cdot0.5=0.054$<br>$P(C_1\\mid5)=\\frac{0.054\\cdot0.5}{0.054}=0.5$<br>$P(C_2\\mid5)=0.5$ → 邊界恰在 $x^*=5$<span class=\"bilingual-en\">Equal priors → boundary at mid-point $x^*=5$.</span>",
+    "en": "$P(X)=0.054\\cdot0.5+0.054\\cdot0.5=0.054$<br>$P(C_1\\mid5)=\\frac{0.054\\cdot0.5}{0.054}=0.5$<br>$P(C_2\\mid5)=0.5$ → the boundary falls exactly at $x^*=5$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fa69da7e5691": {
+    "zh": "💡 若先驗改為 $P(C_1)=0.9$，則 $P(C_1\\mid5)=0.9$、$P(C_2\\mid5)=0.1$——<b>成見直接把邊界拉向少數類</b>，即使似然相等也一面倒。<span class=\"bilingual-en\">With $0.9$ vs $0.1$ priors, posterior becomes $0.9$ — prior drags boundary toward minority.</span>",
+    "en": "💡 If the prior is changed to $P(C_1)=0.9$, then $P(C_1\\mid5)=0.9$ and $P(C_2\\mid5)=0.1$: <b>the prior belief pulls the boundary straight toward the minority class</b>, so even with equal likelihoods the decision is completely one-sided.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bf61880f472b": {
+    "zh": "S2 · 核心演示 · DEMO",
+    "en": "S2 · Core Demo",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3893d7756044": {
+    "zh": "貝氏決策邊界與後驗分佈圖 <span class=\"en\">Bayes Boundary &amp; Posterior — Interactive Demo</span>",
+    "en": "Bayes Decision Boundary and Posterior Plot <span class=\"en\">Interactive Demo</span>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "18f9ae7fe7aa": {
+    "zh": "藍曲線 $C_1\\sim\\mathcal{N}(3,1)$、紅曲線 $C_2\\sim\\mathcal{N}(7,1)$。下方拉動先驗 $P(C_1)$，觀察加權密度與決策邊界如何被「成見」拉走。<span class=\"bilingual-en\">Blue $C_1$ vs red $C_2$. Drag the prior slider — weighted densities and boundary shift with belief.</span>",
+    "en": "Blue curve $C_1\\sim\\mathcal{N}(3,1)$, red curve $C_2\\sim\\mathcal{N}(7,1)$. Drag the prior $P(C_1)$ below and watch how the weighted densities and the decision boundary get pulled away by “bias”.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "499ab45d6693": {
+    "zh": "似然 × 先驗 → 後驗分佈（可調先驗） · Likelihood × Prior → Posterior",
+    "en": "Likelihood × Prior → Posterior (adjustable prior)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d138e6be250c": {
+    "zh": "先驗 Prior $P(C_1)$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(drag to see prior power)</span>：",
+    "en": "Prior $P(C_1)$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(drag to see the power of the prior)</span>:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e52ca5a5f36e": {
+    "zh": "決策邊界 x* ≈ 5.00 · Posterior at x=5: 0.50 / 0.50",
+    "en": "Decision boundary x* ≈ 5.00 · Posterior at x=5: 0.50 / 0.50",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "032abe474083": {
+    "zh": "怎麼讀圖 · How to Read",
+    "en": "How to Read the Plot",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "33441669bdf0": {
+    "zh": "實線是「長相」似然；虛線是用先驗加權後的高度。黑虛線是後驗 $0.5$ 的決策邊界——等高點。先驗一偏，虛線高低立變，邊界跟著平移。<span class=\"bilingual-en\">Solid = likelihood shape; dashed = prior-weighted. Black dashed = posterior $0.5$ boundary — equal posterior. Shift prior → weighted heights move → boundary slides.</span>",
+    "en": "The solid lines are the “looks” likelihoods; the dashed lines are their heights after weighting by the prior. The black dashed line is the decision boundary where the posterior is $0.5$: the point of equal height. Tilt the prior and the dashed heights change at once, and the boundary shifts along with them.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "75f831d7066c": {
+    "zh": "先驗陷阱 · Prior Pitfall",
+    "en": "The Prior Pitfall",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d98984a43ec7": {
+    "zh": "當 $P(C_1)=0.9$，即使 $x=5$ 距兩中心等距，後驗仍 $0.9$ 壓倒 $0.1$。在不平衡資料（如詐欺 1%），忽略先驗會造成災難性誤判。<span class=\"bilingual-en\">With $0.9$ vs $0.1$, same $x=5$ gives $0.9$ vs $0.1$ posterior. Ignoring priors on imbalanced data is catastrophic.</span>",
+    "en": "When $P(C_1)=0.9$, even though $x=5$ is equidistant from both centers, the posterior is still $0.9$, overwhelming $0.1$. On imbalanced data (e.g. 1% fraud), ignoring the prior leads to catastrophic misclassification.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9a14c617e900": {
+    "zh": "S2 · 幾何變形雙雄 · GEOMETRY",
+    "en": "S2 · The Geometric Duo",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ebd1306f95a8": {
+    "zh": "LDA 與 QDA：胖瘦決定直或彎 <span class=\"en\">LDA vs QDA — Covariance Decides Linear or Curved</span>",
+    "en": "LDA and QDA: Plump or Slim Decides Straight or Curved <span class=\"en\">Covariance Decides Linear or Curved</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b134a320d1e1": {
+    "zh": "兩者皆假設每類是高斯，差在「胖瘦是否相同」。共變異數相等 → 線性超平面；各異 → 二次曲線。<span class=\"bilingual-en\">Both assume Gaussian per class; equal covariance → linear, unequal → quadratic.</span>",
+    "en": "Both assume each class is Gaussian; the difference is whether they are “equally plump”. Equal covariances → a linear hyperplane; different covariances → a quadratic curve.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b84168767884": {
+    "zh": "LDA 線性判別 · Linear",
+    "en": "LDA: Linear Discriminant",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "837d62d1fe3a": {
+    "zh": "假設 $\\Sigma_1=\\Sigma_2$（形狀、胖瘦、旋轉完全一致），僅中心不同。<span class=\"bilingual-en\">Assume shared $\\Sigma$ — same shape, different centres.</span>",
+    "en": "Assumes $\\Sigma_1=\\Sigma_2$, a shared $\\Sigma$ (exactly the same shape, spread and rotation); only the centers differ.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d3ac137f59c2": {
+    "zh": "決策邊界為<b>直線/超平面</b>，公式線性於 $x$ <span class=\"bilingual-en\">(linear in $x$)</span>",
+    "en": "The decision boundary is a <b>straight line/hyperplane</b>; the formula is linear in $x$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4ed1073caec6": {
+    "zh": "參數少、穩健、適合小樣本 <span class=\"bilingual-en\">(few params, robust)</span>",
+    "en": "Few parameters, robust, suited to small samples",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4895b9afb4f9": {
+    "zh": "若真實共變異數不同，會系統性偏誤 <span class=\"bilingual-en\">(biased if covariances differ)</span>",
+    "en": "If the true covariances differ, it is systematically biased",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7acd8994c512": {
+    "zh": "兩類相減 $\\delta_1-\\delta_2=0$ 為線性方程。<span class=\"bilingual-en\">Difference is linear → straight boundary.</span>",
+    "en": "Subtracting the two classes, $\\delta_1-\\delta_2=0$ is a linear equation.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f612ecfea04b": {
+    "zh": "QDA 二次判別 · Quadratic",
+    "en": "QDA: Quadratic Discriminant",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4632dd1782ba": {
+    "zh": "允許 $\\Sigma_1\\neq\\Sigma_2$（每群胖瘦、旋轉各異）。<span class=\"bilingual-en\">Each class owns its $\\Sigma_k$ — different spreads.</span>",
+    "en": "Allows $\\Sigma_1\\neq\\Sigma_2$: each cluster has its own $\\Sigma_k$ (its own spread and rotation).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "56f330d10765": {
+    "zh": "決策邊界為<b>拋物線/橢圓/雙曲線</b>等二次曲線 <span class=\"bilingual-en\">(quadratic curves)</span>",
+    "en": "The decision boundary is a quadratic curve such as a <b>parabola/ellipse/hyperbola</b>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "935b3ad5235a": {
+    "zh": "更彈性，但參數多、易過擬合 <span class=\"bilingual-en\">(flexible, more params)</span>",
+    "en": "More flexible, but has more parameters and overfits easily",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5bf51c34faba": {
+    "zh": "每類需估 $O(d^2)$ 共變異數，小樣本慎用 <span class=\"bilingual-en\">($O(d^2)$ covariance each)</span>",
+    "en": "Each class needs an $O(d^2)$ covariance estimate; use with care on small samples",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "678597accd21": {
+    "zh": "含 $x^T(\\Sigma_1^{-1}-\\Sigma_2^{-1})x$ → 二次項。<span class=\"bilingual-en\">Quadratic term survives → curved boundary.</span>",
+    "en": "Contains $x^T(\\Sigma_1^{-1}-\\Sigma_2^{-1})x$ → a quadratic term.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "be9401b49f5f": {
+    "zh": "LDA：直線切 · QDA：曲線切 — 同資料、不同假設、不同邊界",
+    "en": "LDA: straight cut · QDA: curved cut — same data, different assumptions, different boundaries",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "1d8b18098760": {
+    "zh": "LDA · 等共變異數 → 直線邊界",
+    "en": "LDA · equal covariance → straight boundary",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "4e8a7d003fb6": {
+    "zh": "C1 區域",
+    "en": "C1 region",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "3d79f18e0336": {
+    "zh": "C2 區域",
+    "en": "C2 region",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "36d274a98ad9": {
+    "zh": "QDA · 異共變異數 → 二次曲線",
+    "en": "QDA · unequal covariance → quadratic curve",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "33db70179880": {
+    "zh": "μ1 (扁)",
+    "en": "μ1 (flat)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "bc1afa19db8f": {
+    "zh": "μ2 (瘦長)",
+    "en": "μ2 (tall, slim)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "40d1bb2bb81c": {
+    "zh": "左：共變異數相同 → 橢圓等形狀，邊界筆直；右：胖瘦旋轉各異 → 邊界彎曲成二次曲線 · Left equal covariances → straight; right unequal → curved",
+    "en": "Left: equal covariances → ellipses of the same shape, straight boundary; right: different spreads and rotations → the boundary bends into a quadratic curve",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0554586fe5e3": {
+    "zh": "S2 · 直球對決 · DISCRIMINATIVE",
+    "en": "S2 · Head-On Showdown · Discriminative",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ed0d7b44cd02": {
+    "zh": "3 · Logistic 回歸：一顆神經元的誕生 <span class=\"en\">Logistic Regression — A Single Neuron Is Born</span>",
+    "en": "3 · Logistic Regression: The Birth of a Single Neuron",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1702d1a663e0": {
+    "zh": "不猜「資料怎麼長」，直接建模 $P(Y=1\\mid X)$。把線性分數 $z=w^Tx+b$ 塞進 Sigmoid 壓到 $[0,1]$，輸出就是機率。<span class=\"bilingual-en\">Skip $P(X\\mid C)$; model $P(Y\\mid X)$ directly via sigmoid on linear score.</span>",
+    "en": "Don’t guess “what the data looks like” ($P(X\\mid C)$); model $P(Y=1\\mid X)$ directly. Feed the linear score $z=w^Tx+b$ into the sigmoid to squash it into $[0,1]$, and the output is a probability.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6eed9540a880": {
+    "zh": "p=0.5 決策閾",
+    "en": "p=0.5 decision threshold",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "e70336e552c2": {
+    "zh": "壓縮實數 → 機率 · squeeze ℝ → [0,1]",
+    "en": "squeeze ℝ → [0,1]: real → probability",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "ba36c09833bc": {
+    "zh": "線性分數經 Sigmoid 壓縮為機率，邊界仍線性但輸出平滑可校準 · Linear score → sigmoid → calibrated prob",
+    "en": "The sigmoid squashes the linear score into a probability; the boundary is still linear, but the output is smooth and can be calibrated",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4cfecf55e862": {
+    "zh": "生成 vs. 判別 · Generative vs. Discriminative",
+    "en": "Generative vs. Discriminative",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cbe8f26f3e87": {
+    "zh": "貝氏/LDA 要估 $P(X\\mid C)P(C)$ 兩大塊；Logistic 只估 $P(Y\\mid X)$ 一塊，少做假設、少走彎路。<span class=\"bilingual-en\">Bayes/LDA estimate two pieces; Logistic estimates one — fewer assumptions.</span>",
+    "en": "Bayes/LDA must estimate two big pieces, $P(X\\mid C)P(C)$; logistic regression estimates only one, $P(Y\\mid X)$: fewer assumptions, fewer detours.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ca7883164a48": {
+    "zh": "直覺 · 神經元原型",
+    "en": "Intuition · The Prototype Neuron",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1ec314ac87a0": {
+    "zh": "這就是最老、最純的一顆人工神經元：線性加權 $+$ Sigmoid 非線性。疊很多顆就變深度網路。<span class=\"bilingual-en\">The oldest neuron: linear + sigmoid. Stack many → deep net.</span>",
+    "en": "This is the oldest, purest artificial neuron: a linear weighting $+$ a sigmoid nonlinearity. Stack lots of them and you get a deep network.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f797b1409fb1": {
+    "zh": "優缺 · Pros &amp; Cons",
+    "en": "Pros &amp; Cons",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8e2e0e83aa5b": {
+    "zh": "優：機率輸出可解釋、可校準；訓練凸優化、穩定。<br>缺：邊界仍線性，非線性資料需靠特徵工程或「升維＋核」。<span class=\"bilingual-en\">Pro: calibrated prob, convex. Con: linear boundary — need features/kernels for non-linear.</span>",
+    "en": "Pros: the probability output is interpretable and can be calibrated; training is a convex optimization and stable.<br>Cons: the boundary is still linear, so nonlinear data needs feature engineering or “lifting to higher dimensions + kernels”.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "27bd9c04db98": {
+    "zh": "公式 · Sigmoid 與條件機率",
+    "en": "Formula · Sigmoid and Conditional Probability",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "666956e8a63e": {
+    "zh": "決策：$P\\gt 0.5$ 判正類；損失為 Cross-Entropy（等價於最大似然）。<span class=\"bilingual-en\">Decide $P\\gt 0.5$; loss = cross-entropy = MLE.</span>",
+    "en": "Decision: predict the positive class if $P\\gt 0.5$; the loss is cross-entropy (equivalent to maximum likelihood).",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bf0488e381ea": {
+    "zh": "可調分數 vs. 機率對照（拉動 $w,b$ 感受邊界平移） · Score → Probability",
+    "en": "Adjustable score vs. probability (drag $w,b$ to feel the boundary shift)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f6077084130b": {
+    "zh": "S2 · 鄰舍多數決 · NEIGHBOURHOOD",
+    "en": "S2 · Neighborhood Majority Vote",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "de9cd8a7b479": {
+    "zh": "4 · KNN 與度量學習：問鄰居與重新拉扯空間 <span class=\"en\">KNN &amp; Metric Learning — Vote &amp; Reshape Space</span>",
+    "en": "4 · KNN and Metric Learning: Ask the Neighbors, Then Reshape the Space",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e9ed9dd0d52f": {
+    "zh": "KNN 零訓練、零參數（除 $k$）：新樣本看最近 $k$ 個鄰居多數決。但「近」的定義決定一切——於是有度量學習。<span class=\"bilingual-en\">Zero training: classify by $k$ nearest votes. But “near” is everything — hence metric learning.</span>",
+    "en": "KNN has zero training and zero parameters (except $k$): a new sample takes a majority vote of its $k$ nearest neighbors. But the definition of “near” decides everything, hence metric learning.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bd569c5f603": {
+    "zh": "KNN 多數決 · Majority Vote",
+    "en": "KNN Majority Vote",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "949136556f6e": {
+    "zh": "超參只有 $k$。$k$ 小 → 靈活但吵；$k$ 大 → 平滑但鈍。常用歐氏/餘弦距離。<span class=\"bilingual-en\">Only $k$. Small $k$ = flexible but noisy; large $k$ = smooth but blunt.</span>",
+    "en": "The only hyperparameter is $k$. Small $k$ → flexible but noisy; large $k$ → smooth but blunt. Euclidean or cosine distance is common.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "25363958ec3f": {
+    "zh": "懶惰學習：訓練只存資料，預測才計算 <span class=\"bilingual-en\">(lazy: store, compute at query)</span>",
+    "en": "Lazy learning: training only stores the data; computation happens at prediction time",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a182c3e51667": {
+    "zh": "維度詛咒：高維距離失真，需降維或度量學習 <span class=\"bilingual-en\">(curse of dimensionality)</span>",
+    "en": "Curse of dimensionality: distances become distorted in high dimensions, so dimensionality reduction or metric learning is needed",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3cfe21ee39cb": {
+    "zh": "決策邊界呈「拼布狀」Voronoi 碎形 <span class=\"bilingual-en\">(piecewise Voronoi)</span>",
+    "en": "The decision boundary is a “patchwork” of Voronoi pieces",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ab16f40aefd3": {
+    "zh": "$k$ 選擇經驗法則 <span class=\"bilingual-en\" style=\"font-weight:400;color:var(--ink-soft);\">Rule of thumb</span>",
+    "en": "Rules of thumb for choosing $k$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "eeb5b22d15ad": {
+    "zh": "奇數避免平手；交叉驗證選 $k$；類不平衡時加權投票 $w=1/d$。<span class=\"bilingual-en\">Odd $k$ avoids tie; CV to tune; weight by $1/d$ if imbalanced.</span>",
+    "en": "Use an odd $k$ to avoid ties; choose $k$ by cross-validation; with class imbalance, use weighted voting $w=1/d$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8c82f77e7e05": {
+    "zh": "度量學習 · Metric Learning",
+    "en": "Metric Learning",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f70b98ad67c8": {
+    "zh": "與其抱怨距離不準，不如學一個距離：把同類捏緊、異類拉開（如 Triplet Loss）。<span class=\"bilingual-en\">Don’t blame distance — learn it: pull same, push different (Triplet Loss).</span>",
+    "en": "Instead of complaining that the distance is inaccurate, learn a distance: squeeze same-class points together and push different classes apart (e.g. triplet loss).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4b5a5ca8d96c": {
+    "zh": "學習線性變換 $d_M(x,y)=\\|Lx-Ly\\|_2$ 或深度嵌入 $f_\\theta(x)$ <span class=\"bilingual-en\">(learn $L$ or embedding $f_\\theta$)</span>",
+    "en": "Learn a linear transform $d_M(x,y)=\\|Lx-Ly\\|_2$ or a deep embedding $f_\\theta(x)$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "83593bcfc434": {
+    "zh": "延伸至人臉辨識、檢索、對比學習 <span class=\"bilingual-en\">(face, retrieval, contrastive learning)</span>",
+    "en": "Extends to face recognition, retrieval, and contrastive learning",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f2d0e5bdc840": {
+    "zh": "$m$ 為安全邊距 margin，與 SVM 異曲同工。<span class=\"bilingual-en\">$m$ is margin — same spirit as SVM.</span>",
+    "en": "$m$ is the safety margin, the same idea as in SVM.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "71ad2db58800": {
+    "zh": "KNN · k=5 多數決（藍多勝）",
+    "en": "KNN · k=5 majority vote (blue wins)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "72a88f4caa33": {
+    "zh": "虛線內 3藍2紅 → 判藍 (C1)",
+    "en": "3 blue, 2 red inside dashed circle → blue (C1)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "30d0850d8126": {
+    "zh": "度量學習前後對比",
+    "en": "Before vs. after metric learning",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "74d3b6436324": {
+    "zh": "BEFORE · 距離混疊",
+    "en": "BEFORE · distances mixed up",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "9524f62e8d5e": {
+    "zh": "AFTER · 同類聚、異類離",
+    "en": "AFTER · same together, different apart",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "8bdd34be785b": {
+    "zh": "空間扭曲前",
+    "en": "Before warping space",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "2510736586b7": {
+    "zh": "學習後：距離有意義",
+    "en": "Learned: distance is meaningful",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "cdf08b7eb57b": {
+    "zh": "左：KNN 拼布邊界；右：度量學習把空間「捏緊/拉開」，讓最近鄰真正反映語意相似 · Left Voronoi; right learned space makes neighbours meaningful",
+    "en": "Left: KNN patchwork boundary; right: metric learning “squeezes/stretches” the space so that nearest neighbors truly reflect semantic similarity",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "96ce0c04fc74": {
+    "zh": "S2 · 官僚流程與投票 · RULES &amp; VOTE",
+    "en": "S2 · Bureaucracy and Voting",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0d760aa6a6a0": {
+    "zh": "5 · 決策樹與隨機森林：官僚流程＋三個臭皮匠 <span class=\"en\">Trees &amp; Random Forest — Bureaucracy + Wisdom of Crowds</span>",
+    "en": "5 · Decision Trees and Random Forests: Bureaucratic Procedure + Wisdom of the Crowd",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "909dab49a271": {
+    "zh": "樹把特徵空間切成軸平行的小方塊；森林用 Bagging + 特徵抽樣種千棵樹再投票，大幅降變異而不增偏誤。<span class=\"bilingual-en\">Trees cut axis-aligned boxes; forest bags many trees and votes — variance down, bias stays.</span>",
+    "en": "A tree cuts the feature space into small axis-aligned boxes; a forest uses bagging + feature sampling to grow a thousand trees and then votes, greatly reducing variance without increasing bias.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d7c23174369b": {
+    "zh": "決策樹：銀行審核流程",
+    "en": "Decision tree: a bank's approval process",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "04f56ddb5495": {
+    "zh": "年收入 > 50萬？",
+    "en": "Annual income > 500K?",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "84e14b548d30": {
+    "zh": "是 Yes",
+    "en": "Yes",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "7d8a62cdc5c8": {
+    "zh": "否 No",
+    "en": "No",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "6590092e6647": {
+    "zh": "信用 > 700？",
+    "en": "Credit > 700?",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "5d253c0d807d": {
+    "zh": "拒絕 Reject",
+    "en": "Reject",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "7a5911bc2a4a": {
+    "zh": "核准",
+    "en": "Approve",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "ac76a5b5cb9c": {
+    "zh": "拒絕",
+    "en": "Reject",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "61d8364b063d": {
+    "zh": "隨機森林：種 1000 棵 × 隨機抽樣 × 投票",
+    "en": "Random forest: grow 1000 trees × random sampling × vote",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "91bbf29e39e7": {
+    "zh": "樹：正交切割可解釋；森林：集成壓制過擬合 · Tree = interpretable cuts; forest = ensemble kills overfit",
+    "en": "Tree: orthogonal cuts are interpretable; forest: the ensemble suppresses overfitting",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9125a7463fa5": {
+    "zh": "為何是「階梯」邊界 · Why Staircase?",
+    "en": "Why a “Staircase” Boundary?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dd76560ff443": {
+    "zh": "每次只用一個特徵的閾值切割（如 $x_1\\gt 5$），累積成水平/垂直的階梯狀邊界，高度可解釋。<span class=\"bilingual-en\">One feature per split → axis-aligned staircase, fully interpretable.</span>",
+    "en": "Each split uses a threshold on just one feature (e.g. $x_1\\gt 5$), and these add up to a horizontal/vertical staircase boundary that is highly interpretable.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a602642cd09c": {
+    "zh": "隨機森林為何有效 · Why Forest Works",
+    "en": "Why Random Forests Work",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8f535dbd444c": {
+    "zh": "單棵樹方差大、易過擬合；Bagging 讓每棵看不同子樣本與子特徵，去相關後平均→變異大幅下降。<span class=\"bilingual-en\">Single tree high variance. Bagging decorrelates trees; averaging slashes variance.</span>",
+    "en": "A single tree has high variance and overfits easily; bagging lets each tree see a different subsample and feature subset, and averaging the decorrelated trees → variance drops sharply.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "967447f8f48f": {
+    "zh": "現代表格資料霸主 · Tabular King",
+    "en": "Today's King of Tabular Data",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fb5bb28072fb": {
+    "zh": "在結構化表格資料上，樹/森林/梯度提升（GBDT）長期霸榜，且能自然處理缺值與混合特徵。<span class=\"bilingual-en\">On tabular data, trees/GBDT remain king; handle missing &amp; mixed features naturally.</span>",
+    "en": "On structured tabular data, trees/forests/gradient boosting (GBDT) have topped the leaderboards for a long time, and they handle missing values and mixed features naturally.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "364a48d981aa": {
+    "zh": "單棵樹 vs. 森林：偏誤-變異權衡示意 · Single Tree vs. Forest (bias-variance)",
+    "en": "Single Tree vs. Forest: The Bias-Variance Tradeoff",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bc97ec152f9c": {
+    "zh": "S2 · 極致美學 · MAX MARGIN",
+    "en": "S2 · Ultimate Elegance · MAX MARGIN",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6db539bde4dd": {
+    "zh": "6 · SVM 與核技巧：最寬隔離帶＋維度跳躍 <span class=\"en\">SVM &amp; Kernel Trick — Widest Margin + Dimension Leap</span>",
+    "en": "6 · SVM and the Kernel Trick: The Widest Buffer Zone + a Leap in Dimension",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "611ca9438c9a": {
+    "zh": "最大邊界與支援向量",
+    "en": "Max margin & support vectors",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "f5a2d010826a": {
+    "zh": "僅支援向量決定邊界 · only SVs matter",
+    "en": "Only SVs set the boundary",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "c3ab03840738": {
+    "zh": "遠處點移動不影響 · far points irrelevant",
+    "en": "Moving far points: no effect",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "639323293a1e": {
+    "zh": "最大化兩類間隙，解僅依賴「釘子戶」支援向量，具稀疏性 · Maximize gap; solution depends only on SVs (sparse)",
+    "en": "Maximize the gap between the two classes; the solution depends only on the “stubborn holdouts,” the support vectors, so it is sparse",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1ce2bd2b6510": {
+    "zh": "核技巧：蚊香一刀切 · Kernel Trick",
+    "en": "Kernel Trick: One Cut Through the Mosquito Coil",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8d8b0fb3a0c4": {
+    "zh": "二維蚊香混疊時，映射 $\\phi(x)$ 到高維 Hilbert 空間變線性可分。核 $K(x,z)=\\langle\\phi(x),\\phi(z)\\rangle$ 讓我們不必算 $\\phi$ 本身。<span class=\"bilingual-en\">Entangled spiral in 2D → linear in high-D. Kernel computes inner product without explicit $\\phi$.</span>",
+    "en": "When 2D data is entangled like a mosquito-coil spiral, mapping it with $\\phi(x)$ into a high-dimensional Hilbert space makes it linearly separable. The kernel $K(x,z)=\\langle\\phi(x),\\phi(z)\\rangle$ means we never have to compute $\\phi$ itself.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3073f6244da0": {
+    "zh": "常用：RBF $K=\\exp(-\\gamma\\|x-z\\|^2)$（無限維）、多項式、線性。<span class=\"bilingual-en\">Popular: RBF (infinite-D), polynomial, linear.</span>",
+    "en": "Common choices: RBF $K=\\exp(-\\gamma\\|x-z\\|^2)$ (infinite-dimensional), polynomial, linear.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cafa33e5aced": {
+    "zh": "直覺：把紙揉起來切 · Scrunch the Paper",
+    "en": "Intuition: Scrunch Up the Paper and Cut",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "54768c0edd86": {
+    "zh": "想像把混在一起的紅藍點畫在紙上，揉成球後從中間一刀切——攤平後在原平面看就是彎曲邊界。<span class=\"bilingual-en\">Draw mixed dots, scrunch paper, cut, unfold — curved boundary appears.</span>",
+    "en": "Imagine the mixed-up red and blue dots drawn on a sheet of paper. Scrunch it into a ball and slice straight through the middle: once you flatten it out again, the cut looks like a curved boundary on the original plane.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3b59ff9a31b5": {
+    "zh": "代價 · Cost",
+    "en": "Cost",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9ac0e4315494": {
+    "zh": "核矩陣 $O(n^2)$ 記憶體與計算；超參 $\\gamma, C$ 敏感。大數據時代常被深度網路取代，但在中小數據仍極強。<span class=\"bilingual-en\">$O(n^2)$ kernel matrix; sensitive $\\gamma, C$. Still strong on small/medium data.</span>",
+    "en": "The kernel matrix costs $O(n^2)$ memory and computation, and the hyperparameters $\\gamma, C$ are sensitive. In the big-data era it is often replaced by deep networks, but on small and medium datasets it is still very strong.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0b6f10e85a6e": {
+    "zh": "公式 · 最大邊界",
+    "en": "Formula · Max Margin",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f200f99a586f": {
+    "zh": "對偶後僅內積 $\\langle x_i,x_j\\rangle$ 出現 → 可替換為核 $K(x_i,x_j)$。<span class=\"bilingual-en\">Dual uses only inner products → replace by kernel $K$.</span>",
+    "en": "After taking the dual, only inner products $\\langle x_i,x_j\\rangle$ appear → they can be replaced by a kernel $K$, i.e. $K(x_i,x_j)$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "03aef132f046": {
+    "zh": "低維切不開 · Not Separable (2D)",
+    "en": "Not separable in 2D",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "41b77e1a1122": {
+    "zh": "蚊香交織 · entangled",
+    "en": "entangled coil",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "5feda2cb080b": {
+    "zh": "高維一刀切 · Linear in High-D",
+    "en": "One cut in high-D",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "87057544d5e5": {
+    "zh": "超平面分離 · hyperplane separates",
+    "en": "hyperplane separates",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "01ba2dc25331": {
+    "zh": "RBF 核 = 無限維 Hilbert 空間",
+    "en": "RBF kernel = infinite-D Hilbert space",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "77acec9565f3": {
+    "zh": "核技巧：低維非線性 → 高維線性；RBF 甚至對應無限維空間 · Low-D non-linear → High-D linear; RBF is infinite-D",
+    "en": "Kernel trick: non-linear in low dimensions → linear in high dimensions; RBF even corresponds to an infinite-dimensional space",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bd6bf0d577dc": {
+    "zh": "S2 · 譜系全景 · LINEAGE",
+    "en": "S2 · The Full Lineage · LINEAGE",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "37c0a6c798ff": {
+    "zh": "六大家族演進譜系與哲學對位 <span class=\"en\">Six Families — Lineage &amp; Philosophy Map</span>",
+    "en": "The Six Families: Lineage and Philosophical Counterparts",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a3a761432297": {
+    "zh": "從「先算分佈」的生成式，到「直接切邊界」的判別式；從直線到曲線、從懶惰到極致邊界。下圖為本教材提供的譜系原圖（深底版保留原設計）。<span class=\"bilingual-en\">From generative to discriminative, linear to curved, lazy to max-margin — lineage below (dark stage preserves original design).</span>",
+    "en": "From generative models that “compute the distributions first” to discriminative models that “cut the boundary directly”; from straight lines to curves, from lazy learning to the ultimate margin. Below is the original lineage diagram provided with this course material (the dark-background version keeps the original design).",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "57f3d05071eb": {
+    "zh": "統計分類六大家族演進譜系圖",
+    "en": "Lineage of the six statistical classification families",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "1cdb4c4d0ed5": {
+    "zh": "從生成式先驗估計到幾何邊界最佳化：演算法核心哲學對比",
+    "en": "From generative prior estimation to geometric boundary optimization: core philosophies compared",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "d97283bc12c9": {
+    "zh": "2000s 以降",
+    "en": "2000s onward",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "095639d8139a": {
+    "zh": "1. 貝氏機率與判別分析",
+    "en": "1. Bayesian probability & discriminant analysis",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "43fe00fd1a8a": {
+    "zh": "• 後驗 ∝ 似然 × 先驗",
+    "en": "• Posterior ∝ likelihood × prior",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c86f1f8050ba": {
+    "zh": "• LDA: 等共變異數（線性超平面）",
+    "en": "• LDA: equal covariances (linear hyperplane)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "7b83f4cc68e9": {
+    "zh": "• QDA: 異共變異數（二次曲線）",
+    "en": "• QDA: unequal covariances (quadratic curve)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "faebf9335e30": {
+    "zh": "生成式思維：為各類資料分佈建模",
+    "en": "Generative thinking: model each class's distribution",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "e30bb85b9454": {
+    "zh": "2. 邏輯回歸 (Logistic)",
+    "en": "2. Logistic regression",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "6cf8610f96b6": {
+    "zh": "判別式機率模型",
+    "en": "Discriminative probabilistic model",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c6420307ba54": {
+    "zh": "• 直接建模條件機率 P(Y|X)",
+    "en": "• Directly models the conditional P(Y|X)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "a079b1576abc": {
+    "zh": "• Sigmoid 函數將實數壓至 [0, 1]",
+    "en": "• Sigmoid squashes real numbers into [0, 1]",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "be341c4efd26": {
+    "zh": "• 線性邊界但具備平滑機率輸出",
+    "en": "• Linear boundary with smooth probability output",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "e4975d454016": {
+    "zh": "神經網路的基本單元（單神經元）",
+    "en": "Basic unit of neural networks (single neuron)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "7b54d2cd27aa": {
+    "zh": "3. 鄰舍與度量學習",
+    "en": "3. Nearest neighbors & metric learning",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "1cab64831ff8": {
+    "zh": "• 懶惰學習：K 個最近鄰投票",
+    "en": "• Lazy learning: K nearest neighbors vote",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "68bd0ddeac71": {
+    "zh": "• 度量學習：重新定義距離尺度",
+    "en": "• Metric learning: redefine the distance scale",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "e3d01f66c8d6": {
+    "zh": "• 降低類內變異、擴大類間變異",
+    "en": "• Shrink within-class, enlarge between-class variance",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "65ed756fa4c7": {
+    "zh": "延伸至現代 Triplet Loss 與表徵學習",
+    "en": "Extends to modern triplet loss & representation learning",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "f494d18c3cde": {
+    "zh": "4. 樹結構、森林與集成",
+    "en": "4. Trees, forests & ensembles",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "e297d59d198c": {
+    "zh": "• 決策樹：正交軸切割，高度可解釋",
+    "en": "• Decision tree: axis-orthogonal splits, highly interpretable",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "9c4ef8d987f8": {
+    "zh": "• 隨機森林：Bagging + 特徵隨機抽樣",
+    "en": "• Random forest: bagging + random feature sampling",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "fefc860b935c": {
+    "zh": "• 集成學習透過平均化大幅壓制變異數",
+    "en": "• Ensembling slashes variance by averaging",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c3b6e854185b": {
+    "zh": "現代表格型資料（Tabular Data）霸主",
+    "en": "Rules modern tabular data",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "fcb45d49062a": {
+    "zh": "5. 支援向量機與核技巧",
+    "en": "5. Support vector machines & kernel trick",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "43585b04e5c9": {
+    "zh": "• 最大化兩類安全邊界（Margin）",
+    "en": "• Maximize the safety margin between the two classes",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "acded80ce7cf": {
+    "zh": "• 稀疏性：決策僅取決於「支援向量」",
+    "en": "• Sparsity: decisions depend only on “support vectors”",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "18e4a37d8c23": {
+    "zh": "• 核技巧（Kernel Trick）：映射至高維希伯特空間",
+    "en": "• Kernel trick: map into a high-dimensional Hilbert space",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "73ee98dc1a02": {
+    "zh": "具嚴謹統計學習理論支撐的最佳泛化邊界",
+    "en": "Best generalization bounds, backed by rigorous statistical learning theory",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "4582f2f0343f": {
+    "zh": "怎麼用這張圖選模型 · How to Pick",
+    "en": "How to Use This Diagram to Pick a Model",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "53cdfa7cddd9": {
+    "zh": "看兩軸：① 資料是否高維且特徵近獨立 → Naive Bayes；② 邊界是否線性 → LDA/Logistic/線性 SVM，否則 QDA/核 SVM/森林；③ 是否需要機率輸出 → Logistic；④ 是否需要可解釋規則 → 決策樹。<span class=\"bilingual-en\">Two axes: high-D independent? → Naive Bayes; linear boundary? → LDA/Logistic/linear SVM else QDA/kernel/forest; need prob? → Logistic; need rules? → Tree.</span>",
+    "en": "Look at the axes: ① Is the data high-dimensional with nearly independent features? → Naive Bayes; ② Is the boundary linear? → LDA/logistic regression/linear SVM, otherwise QDA/kernel SVM/forest; ③ Do you need probability outputs? → logistic regression; ④ Do you need interpretable rules? → decision tree.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9313c7e22a0d": {
+    "zh": "S3 · 喚起行動 · ACTIVATE",
+    "en": "S3 · Call to Action · ACTIVATE",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "aba15ad6c00b": {
+    "zh": "重點精要與選型對照 <span class=\"en\">Takeaways &amp; Model Selection</span>",
+    "en": "Key Takeaways and Model Selection Guide",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "242e8e5c3fbc": {
+    "zh": "家族",
+    "en": "Family",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "480462eb6c8e": {
+    "zh": "核心假設",
+    "en": "Core assumption",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1317ae2d702a": {
+    "zh": "邊界型態",
+    "en": "Boundary shape",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f56dccef2d6a": {
+    "zh": "生成/判別",
+    "en": "Generative/discriminative",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "23ce5eef9e47": {
+    "zh": "強項",
+    "en": "Strengths",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fcbb5b28da4c": {
+    "zh": "條件獨立（Naive）",
+    "en": "Conditional independence (naive)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7adaa8c3730f": {
+    "zh": "依分佈而定",
+    "en": "Depends on the distributions",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c21503c492d0": {
+    "zh": "生成式",
+    "en": "Generative",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "df8934c3842f": {
+    "zh": "高維稀疏、文本",
+    "en": "High-dimensional sparse data, text",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "dd6c914675a0": {
+    "zh": "共變異數相等 Gaussian",
+    "en": "Gaussian with equal covariances",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b6387fb3443a": {
+    "zh": "直線/超平面",
+    "en": "Line/hyperplane",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "038efd8e008f": {
+    "zh": "小樣本穩健",
+    "en": "Robust with small samples",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c223bfa8ec7e": {
+    "zh": "共變異數各異 Gaussian",
+    "en": "Gaussian with differing covariances",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e6a1acc795c6": {
+    "zh": "二次曲線",
+    "en": "Quadratic curve",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e8813704dd83": {
+    "zh": "各異形狀",
+    "en": "Classes of differing shapes",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9cbd4b83adea": {
+    "zh": "對數勝算線性",
+    "en": "Linear log-odds",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ec46d5a9ed78": {
+    "zh": "直線 + 機率",
+    "en": "Line + probability",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0566e3ce8f35": {
+    "zh": "判別式",
+    "en": "Discriminative",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f5ea57b597fa": {
+    "zh": "機率校準、神經元原型",
+    "en": "Probability calibration, prototype of the neuron",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "eef4481ee7f3": {
+    "zh": "<b>KNN / 度量學習</b>",
+    "en": "<b>KNN / metric learning</b>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "54f8df10de8a": {
+    "zh": "近者相似",
+    "en": "Nearby points are similar",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b96615dd5990": {
+    "zh": "拼布 Voronoi",
+    "en": "Voronoi patchwork",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c6d693bca0df": {
+    "zh": "非參數/判別",
+    "en": "Non-parametric/discriminative",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ee0c4106db22": {
+    "zh": "零訓練、直觀",
+    "en": "No training, intuitive",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fa6fe48b2799": {
+    "zh": "<b>決策樹</b>",
+    "en": "<b>Decision tree</b>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6180dc887cb3": {
+    "zh": "軸平行切割",
+    "en": "Axis-aligned splits",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7d8a030a7741": {
+    "zh": "階梯狀",
+    "en": "Staircase",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f190335b5884": {
+    "zh": "可解釋、混合特徵",
+    "en": "Interpretable, handles mixed features",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7c31ebf94f18": {
+    "zh": "<b>隨機森林</b>",
+    "en": "<b>Random forest</b>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a5a115befe37": {
+    "zh": "集成平均降變異",
+    "en": "Ensemble averaging reduces variance",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6a4f325f3529": {
+    "zh": "平滑階梯",
+    "en": "Smoothed staircase",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2a213ace35b2": {
+    "zh": "集成",
+    "en": "Ensemble",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f04ae6dbc085": {
+    "zh": "表格霸主、抗過擬合",
+    "en": "Rules tabular data, resists overfitting",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4d136dc3cce3": {
+    "zh": "<b>SVM / 核 SVM</b>",
+    "en": "<b>SVM / kernel SVM</b>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "98b14e2bd771": {
+    "zh": "最大邊界 + 核映射",
+    "en": "Max margin + kernel mapping",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "592cca991ba5": {
+    "zh": "直或任意彎曲",
+    "en": "Straight or arbitrarily curved",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "36f1bc623ace": {
+    "zh": "泛化強、稀疏解",
+    "en": "Strong generalization, sparse solution",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8de7eaf5b5e6": {
+    "zh": "沒有萬能模型 · No Free Lunch",
+    "en": "There Is No Universal Model · No Free Lunch",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "81a0fe16e267": {
+    "zh": "特徵多且近獨立 → Naive Bayes；<br>需平滑機率 → Logistic；<br>非線性混合 → 核 SVM / 森林；<br>要解釋規則 → 決策樹；<br>小樣本高斯 → LDA。<span class=\"bilingual-en\">Many independent features → NB; need prob → Logistic; non-linear → kernel/forest; need rules → tree; small Gaussian → LDA.</span>",
+    "en": "Many, nearly independent features → Naive Bayes;<br>need smooth probabilities → logistic regression;<br>non-linear, mixed classes → kernel SVM / forest;<br>need interpretable rules → decision tree;<br>small Gaussian samples → LDA.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bf1539c2b053": {
+    "zh": "一句話複習邊界 · Boundaries in One Line",
+    "en": "Boundaries in One Line",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "97e11ff86c1e": {
+    "zh": "LDA 直、QDA 彎、決策樹階梯、SVM 最寬、KNN 拼布、Logistic 直但帶機率——每種邊界背後都是一種世界觀。<span class=\"bilingual-en\">LDA straight, QDA curved, tree staircase, SVM widest, KNN patchwork, Logistic straight+prob — each is a worldview.</span>",
+    "en": "LDA is straight, QDA is curved, decision trees are staircases, SVM is the widest, KNN is a patchwork, logistic regression is straight but comes with probabilities: behind every kind of boundary lies a worldview.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f9bd3bebe1b7": {
+    "zh": "本章金句 · Key Message",
+    "en": "Key Message of This Chapter",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "aa0e4b1f3e32": {
+    "zh": "「分類不是選最炫的模型，而是選最誠實反映你對世界假設的那一把刀。」先問資料長什麼樣、要什麼輸出、要不要解釋——答案自然浮現。<span class=\"bilingual-en\">“Classify not with the flashiest model, but the one whose assumptions honestly match your world.” Ask data shape, desired output, need for explanation.</span>",
+    "en": "“Classification isn't about choosing the flashiest model; it's about choosing the knife that most honestly reflects your assumptions about the world.” First ask what the data looks like, what output you need, and whether you need explanations, and the answer will emerge on its own.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "eb945cb118e0": {
+    "zh": "S3 · 思考測驗 · CHECK",
+    "en": "S3 · Thinking Quiz · CHECK",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "cf06a5298845": {
+    "zh": "思考測驗：你是哪一派？ <span class=\"en\">Quiz — Which School Are You?</span>",
+    "en": "Thinking Quiz: Which School Are You?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6d01de92223d": {
+    "zh": "Q1. 兩類皆高斯、共變異數相等、想得穩定線性邊界，首選是？<span class=\"bilingual-en\">Both Gaussian, shared covariance, want stable linear boundary — pick?</span>",
+    "en": "Q1. Both classes are Gaussian with equal covariances, and you want a stable linear boundary. What is your first choice?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8240a420008c": {
+    "zh": "QDA（二次邊界）<span class=\"bilingual-en\" style=\"font-size:16px;\">QDA (quadratic)</span>",
+    "en": "QDA (quadratic boundary)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5ea23002c5cd": {
+    "zh": "LDA（線性判別）<span class=\"bilingual-en\" style=\"font-size:16px;\">LDA (linear)</span>",
+    "en": "LDA (linear discriminant)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a38a37fd5b1b": {
+    "zh": "RBF 核 SVM<span class=\"bilingual-en\" style=\"font-size:16px;\">RBF SVM</span>",
+    "en": "RBF-kernel SVM",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b5d1d0d6bb6f": {
+    "zh": "Q2. 下列何者直接建模 $P(Y\\mid X)$，屬於判別式且輸出可校準機率？<span class=\"bilingual-en\">Which directly models $P(Y\\mid X)$, discriminative with calibrated prob?</span>",
+    "en": "Q2. Which of the following directly models $P(Y\\mid X)$, is discriminative, and outputs calibratable probabilities?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2567f82fc1fc": {
+    "zh": "Logistic 回歸<span class=\"bilingual-en\" style=\"font-size:16px;\">Logistic Regression</span>",
+    "en": "Logistic regression",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "45b6a7b4a60f": {
+    "zh": "Q3. 資料在 2D 呈蚊香交織、線性不可分，最優雅的解法是？<span class=\"bilingual-en\">2D spiral entangled, not linearly separable — most elegant?</span>",
+    "en": "Q3. In 2D the data is entangled like a mosquito-coil spiral and is not linearly separable. What is the most elegant solution?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "59d119906be7": {
+    "zh": "核 SVM（如 RBF）把資料映射到高維再線性分離<span class=\"bilingual-en\" style=\"font-size:16px;\">Kernel SVM (e.g. RBF) to high-D</span>",
+    "en": "A kernel SVM (e.g. RBF) maps the data to a high-dimensional space and then separates it linearly",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d34d410c3633": {
+    "zh": "把 $k$ 調大就能解決<span class=\"bilingual-en\" style=\"font-size:16px;\">Just increase $k$</span>",
+    "en": "Just make $k$ bigger",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5ceddf89b37e": {
+    "zh": "LDA 一定足夠<span class=\"bilingual-en\" style=\"font-size:16px;\">LDA suffices</span>",
+    "en": "LDA is always enough",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c31e8e016c33": {
+    "zh": "把先驗調成 0.9 就能切開<span class=\"bilingual-en\" style=\"font-size:16px;\">Set prior to 0.9</span>",
+    "en": "Set the prior to 0.9 and it will split cleanly",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6dd7de04a714": {
+    "zh": "Q4. 隨機森林為何比單棵決策樹更抗過擬合？<span class=\"bilingual-en\">Why does Random Forest overfit less than a single tree?</span>",
+    "en": "Q4. Why does a random forest resist overfitting better than a single decision tree?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fd80eb8e46ee": {
+    "zh": "因為每棵樹更深<span class=\"bilingual-en\" style=\"font-size:16px;\">Because each tree is deeper</span>",
+    "en": "Because each tree is deeper",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "28cc99c1a3ec": {
+    "zh": "因為用了 Sigmoid<span class=\"bilingual-en\" style=\"font-size:16px;\">Because it uses sigmoid</span>",
+    "en": "Because it uses a sigmoid",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "95ecccbe1fdf": {
+    "zh": "Bagging＋特徵抽樣去相關後平均，大幅降變異<span class=\"bilingual-en\" style=\"font-size:16px;\">Bagging + feature sampling decorrelate, averaging cuts variance</span>",
+    "en": "Bagging + feature sampling decorrelate the trees before averaging, which greatly reduces variance",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d29479bd9b41": {
+    "zh": "因為用了核技巧<span class=\"bilingual-en\" style=\"font-size:16px;\">Because of kernel trick</span>",
+    "en": "Because it uses the kernel trick",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e75f33b5880b": {
+    "zh": "S3 · 路線導引 · PATH",
+    "en": "S3 · Learning Path · PATH",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "f73fc71eeaf8": {
+    "zh": "下一步：從分類出發的學習路線 <span class=\"en\">Next Steps — Where Classification Leads</span>",
+    "en": "Next Steps: A Learning Path Starting from Classification",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "3ac5ff35484d": {
+    "zh": "STEP 1 · 1–2 週",
+    "en": "STEP 1 · 1–2 weeks",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "20db0778cbde": {
+    "zh": "把貝氏與 LDA/QDA 手算一遍 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Hand-calc Bayes &amp; LDA/QDA</span>",
+    "en": "Work through Bayes and LDA/QDA by hand",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d34122caf3e5": {
+    "zh": "用本章 $X=5$ 範例改先驗、改 $\\sigma$，畫後驗曲線，感受「成見拉邊界」。<span class=\"bilingual-en\">Vary priors and $\\sigma$ on the $x=5$ example; plot posteriors.</span>",
+    "en": "Using this chapter's $X=5$ example, change the priors and $\\sigma$, plot the posterior curves, and feel how “bias pulls the boundary.”",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "87381ac6be76": {
+    "zh": "STEP 2 · 2–3 週",
+    "en": "STEP 2 · 2–3 weeks",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "decee95c4c82": {
+    "zh": "實作 Logistic vs. 線性 SVM 對比 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Logistic vs. Linear SVM</span>",
+    "en": "Implement and compare logistic regression vs. linear SVM",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "74beb66d5b26": {
+    "zh": "同一份二分類資料，比較機率校準、邊界位置與對離群點的敏感度。<span class=\"bilingual-en\">Same data: compare calibration, boundary, outlier sensitivity.</span>",
+    "en": "On the same binary classification dataset, compare probability calibration, boundary placement, and sensitivity to outliers.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "7ba1802c96a8": {
+    "zh": "STEP 3 · 3–4 週",
+    "en": "STEP 3 · 3–4 weeks",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d8f3700f7ed6": {
+    "zh": "KNN 度量學習與 Triplet 小實驗 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Metric Learning Mini-Lab</span>",
+    "en": "A small KNN metric-learning and triplet experiment",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "cbdfd1bef91e": {
+    "zh": "用 MNIST 或人臉小集，訓練簡單嵌入並視覺化「捏緊/拉開」前後。<span class=\"bilingual-en\">Train a tiny embedding on MNIST/faces; visualize before/after.</span>",
+    "en": "Using MNIST or a small face dataset, train a simple embedding and visualize it before and after the “squeeze together / pull apart.”",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "614c84fe4c62": {
+    "zh": "STEP 4 · 持續",
+    "en": "STEP 4 · Ongoing",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "38534f3cedb6": {
+    "zh": "表格資料：樹/森林/GBDT 實戰 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Tabular: Trees &amp; GBDT</span>",
+    "en": "Tabular data: hands-on trees/forests/GBDT",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "253adc5af87b": {
+    "zh": "在 Kaggle 表格賽中比較 Logistic、隨機森林、XGBoost，體會「霸主」含義。<span class=\"bilingual-en\">Compare Logistic, RF, XGBoost on a tabular competition.</span>",
+    "en": "In a Kaggle tabular competition, compare logistic regression, random forests, and XGBoost, and see for yourself what it means to “rule” tabular data.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "763de94fd279": {
+    "zh": "給自學者的提醒 · Note for Self-Learners",
+    "en": "A Note for Self-Learners",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "f6cf8fe2ac6e": {
+    "zh": "每學一個家族就問三問：① 它假設世界長怎樣？② 它的邊界長怎樣？③ 它什麼時候會失靈？答得出來，才算真的會選模型。<span class=\"bilingual-en\">For each family ask: assumption? boundary shape? when does it fail? Answerable = truly understood.</span>",
+    "en": "For each family you learn, ask three questions: ① What does it assume the world looks like? ② What does its boundary look like? ③ When does it fail? Only when you can answer these can you really choose models.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6249d0eeb02b": {
+    "zh": "\n  SlidePro · 統計分類六大家族 · 中英雙語自學版 · 冰晶簡約主題 · MathJax + Chart.js 互動版<br>\n  <span style=\"color:var(--text-low);\">Statistical Classification Six Families — Bilingual Self-Study · Ice Crystal Theme</span>\n",
+    "en": "\n  SlidePro · The Six Families of Statistical Classification · Bilingual Self-Study Edition · Ice Crystal Minimal Theme · MathJax + Chart.js Interactive Edition\n",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "04bf4d847ae9": {
+    "zh": "單棵決策樹",
+    "en": "Single decision tree",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "5fefe37d5375": {
+    "zh": "隨機森林 (100 棵)",
+    "en": "Random forest (100 trees)",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "2d128f50a01c": {
+    "zh": "隨機森林 (500 棵)",
+    "en": "Random forest (500 trees)",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "f7d78ac94dc1": {
+    "zh": "偏誤² Bias²",
+    "en": "Bias²",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "d619d41431e6": {
+    "zh": "變異 Variance",
+    "en": "Variance",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "d7ab2df2cc32": {
+    "zh": "不可約誤差",
+    "en": "Irreducible error",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "7631dea2b006": {
+    "zh": "期望誤差",
+    "en": "Expected error",
+    "kp": 9,
+    "ctx": "chart"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
