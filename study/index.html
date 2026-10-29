@@ -176,8 +176,7 @@
     b.addEventListener('click', function () { var t = b.getAttribute('data-theme'); set(NS + 'theme', t); applyTheme(t); });
   });
 
-  // English is the default here; toggle.js keeps 中 as its own default for direct visits.
-  if (get(LANG_KEY) === null) set(LANG_KEY, 'en');
+  // Unset means English, as in toggle.js.
   function applyLang() {
     var l = get(LANG_KEY) === 'zh' ? 'zh' : 'en';
     document.querySelectorAll('button[data-lang]').forEach(function (b) {
@@ -288,7 +287,7 @@
   }).catch(function (e) {
     document.getElementById('continue').hidden = true;
     document.getElementById('chapters').innerHTML = '<div class="err">Could not load chapters.json (' + esc(e.message) +
-      '). Serve the repo over HTTP: <code>python3 -m http.server 8000</code>, then open <code>localhost:8000/study/</code>.</div>';
+      '). Serve the repo over HTTP: <code>python3 study/serve.py</code>, then open <code>localhost:8000</code>.</div>';
   });
 })();
 </script>

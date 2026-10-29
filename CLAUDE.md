@@ -2,7 +2,7 @@
 
 ## What this repo is
 A private copy of the professor's course site (`ndhuccc/CCC-LNS`) with a 中/EN toggle added.
-The goal is a study tool: the Chinese stays the default, and one button switches the whole
+The goal is a study tool for an English speaker: English is the default, and one button switches the whole
 page (prose, headings, quizzes, 教授祕笈 boxes, demo text, and chart images) to English.
 
 Only `IDL_115/` (Introductory Deep Learning) is in scope. Ignore `PR_115/` unless asked.
@@ -45,6 +45,7 @@ en/
 study/
 ├─ index.html                        # personal dashboard (English UI), served at /study/
 ├─ build_chapters.py                 # stdlib-only: scan IDL_115/ -> chapters.json
+├─ serve.py                          # local server: / -> /study/ (stdlib only)
 ├─ chapters.json                     # generated, committed; never hand-edit
 └─ titles_en.json                    # hand-written English chapter titles (new chapter = add one)
 ```
@@ -108,7 +109,7 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   `en/<chapter>/assets/<file>` in EN mode. No HEAD checks. Textbook figures (the hashed `*.jpg`
   crops) are already English and need no redraw.
 - **Toggle UI:** fixed 中 | EN pill (top-right, z-index 1000), `Alt+L`, state in
-  `localStorage['ccc-lns-lang']` (try/catch), default 中, `<html lang>` updated, light/dark tokens.
+  `localStorage['ccc-lns-lang']` (try/catch), default EN (only a saved `'zh'` shows 中), `<html lang>` updated, light/dark tokens.
   If the saved state is EN, header/main stay hidden until strings.json arrives (1.5 s max).
 - Missing translation in EN mode: the Chinese stays visible with class `en-missing` (dashed
   amber outline). Never show an empty block.
@@ -164,8 +165,8 @@ English. Same rules: never edit upstream files; only the injected nav.js line.
 - **localStorage** (all try/catch, per browser): `ccc-lns-study:quiz:<ChID>` = `{q: {"kp3.1": 1|0}, t}`,
   `ccc-lns-study:pos:<ChID>` = `{kp, f, t}` (section + fraction through it, because KaTeX and the
   EN switch change heights), `ccc-lns-study:last` = `{ch, kp, badge, t}`, `ccc-lns-study:theme`.
-  The dashboard also writes toggle.js's `ccc-lns-lang` (its "Lectures: English | 中文" control,
-  default English when unset); toggle.js itself still defaults to 中 for direct visits.
+  The dashboard's "Lectures: English | 中文" control writes toggle.js's `ccc-lns-lang` (unset = English,
+  same as toggle.js).
 - **Scroll restore:** skipped when the URL has `#kpN`, except on reload. Re-applied at load and
   while KaTeX/EN settle (up to 2.5 s) until the reader scrolls, clicks or types; re-anchored on
   every language switch.
@@ -196,8 +197,10 @@ English. Same rules: never edit upstream files; only the injected nav.js line.
   (e.g. Ch06) are wider than the screen, which also pushes the 中/EN pill off-screen.
 
 ## Running and checking
-- Serve locally: `python3 -m http.server 8000` from the repo root, open
-  `http://localhost:8000/study/` (dashboard) or `http://localhost:8000/IDL_115/<chapter>/`.
+- Serve locally: `python3 study/serve.py` (port 8000; `--lan` to reach it from a phone), open
+  `http://localhost:8000/` → redirects to the dashboard `/study/`. The professor's course site is
+  still at `/index.html` (never edit it to change the landing page), chapters at `/IDL_115/<chapter>/`.
+  Plain `python3 -m http.server 8000` also works, but `/` is then the course site.
   (`file://` blocks fetching strings.json and chapters.json.)
 - Tooling uses a venv at `.venv/` with `playwright` and `matplotlib`
   (`python3 -m venv .venv && .venv/bin/pip install playwright matplotlib && .venv/bin/playwright install chromium`).

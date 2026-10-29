@@ -459,8 +459,8 @@
   }
 
   // ---------- boot ----------
-  var saved = 'zh';
-  try { saved = localStorage.getItem(STORE_KEY) === 'en' ? 'en' : 'zh'; } catch (e) { /* storage blocked */ }
+  var saved = 'en';                                        // English unless 中 was chosen
+  try { saved = localStorage.getItem(STORE_KEY) === 'zh' ? 'zh' : 'en'; } catch (e) { /* storage blocked */ }
   if (saved === 'en') {
     document.documentElement.classList.add('en-pending');
     setTimeout(function () { document.documentElement.classList.remove('en-pending'); }, 1500);
