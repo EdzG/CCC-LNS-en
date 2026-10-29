@@ -52,5 +52,8 @@ do them in subagents, one chart each.
 ## 6. Finish
 1. Write `en/IDL_115/$ARGUMENTS/notes.md` with anything doubtful: errors you noticed in the
    Chinese, terms you were unsure of, charts you could not reproduce exactly.
-2. Commit: `en($ARGUMENTS): translate KP1-KPn` (one commit; charts may be a second commit).
-3. Do not push unless the user asks. Report the counts, the notes, and the local URL.
+2. `python3 study/build_chapters.py` so the dashboard shows the chapter's English status and
+   English section titles.
+3. Commit: `en($ARGUMENTS): translate KP1-KPn`, including `study/chapters.json` (one commit;
+   charts may be a second commit).
+4. Do not push unless the user asks. Report the counts, the notes, and the local URL.

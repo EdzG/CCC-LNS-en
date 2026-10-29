@@ -14,11 +14,13 @@ Only `IDL_115/` (Introductory Deep Learning) is in scope. Ignore `PR_115/` unles
 
 ## The overlay rule (most important)
 **Never hand-edit the professor's files.** All English lives under `en/`.
-The only change to an upstream file is ONE injected line in each translated chapter's
-`index.html`, added by `en/tools/inject.py` (idempotent, so it can be re-run after a merge):
+The only changes to upstream files are injected `<script>` lines before `</head>` in each
+chapter's `index.html`, added by `en/tools/inject.py` (idempotent, so it can be re-run after a
+merge): nav.js in **every** IDL_115 chapter, toggle.js only in translated ones.
 
 ```html
 <script src="../../en/toggle.js" data-chapter="IDL_115/ChNN-xxx" defer></script>
+<script src="../../en/nav.js" data-chapter="IDL_115/ChNN-xxx" defer></script>
 ```
 
 Keeping upstream files untouched means `git merge upstream/main` stays conflict-free, and
@@ -28,16 +30,23 @@ only paragraphs the professor actually changed need re-translating.
 ```
 en/
 ├─ toggle.js                         # the 中/EN button + swapping engine (shared by all chapters)
+├─ nav.js                            # study navigation (see "Study layer"); independent of toggle.js
 ├─ tools/
 │  ├─ extract.py                     # pull translatable units from a chapter into strings.json
-│  ├─ inject.py                      # add/verify the single <script> line in a chapter
+│  ├─ inject.py                      # add/verify the injected <script> lines in a chapter
 │  ├─ coverage.py                    # headless check: any Chinese left visible in EN mode?
+│  ├─ navcheck.py                    # headless check of nav.js on every chapter
 │  ├─ _common.py                     # normalize/key_of (must match toggle.js), server, Playwright
 │  └─ charts/<chapter>/<name>.py     # one matplotlib script per redrawn chart
 └─ IDL_115/<chapter>/
    ├─ strings.json                   # _runtime/_dynamic/_images + { key: { zh, en, kp, ctx } }
    ├─ notes.md                       # errors/ambiguities found in the Chinese source
    └─ assets/<same filename>.png     # English redraw of a chart with Chinese labels
+study/
+├─ index.html                        # personal dashboard (English UI), served at /study/
+├─ build_chapters.py                 # stdlib-only: scan IDL_115/ -> chapters.json
+├─ chapters.json                     # generated, committed; never hand-edit
+└─ titles_en.json                    # hand-written English chapter titles (new chapter = add one)
 ```
 
 ## How the engine works (design decisions, keep consistent)
@@ -54,7 +63,7 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   `<span data-en-run>` (live DOM only, never the file). SVG `<text>`/`<tspan>` are units that
   swap `textContent` (`ctx: "svg"`, plain-text `en`). Units with no Han characters are ignored.
   Skipped entirely: `script, style, .katex, .ai-illustration` (AI 生圖 prompts stay Chinese),
-  `#en-toggle`, and `_dynamic` selectors.
+  `#en-toggle`, `[data-en-skip]` (nav.js's own UI), and `_dynamic` selectors.
 - **Keys:** `key = sha1(normalize(textContent))[:12]` of the text captured before KaTeX runs
   (so math is its raw `$...$` source). `normalize` = replace every run of
   `[ \t\n\r\f\v\u00a0\u3000\u2028\u2029\ufeff]` with one space, then strip one leading/trailing space.
@@ -109,13 +118,62 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - `window.__EN__` exposes `setLang`, `collect()`, `misses`, `hanCanvases()`, `ready` for the tools.
 
 ## Tools
-- `inject.py <ch> [--check]`: adds the one line before `</head>`, byte-exact otherwise
-  (upstream files are CRLF; keep it that way).
+- `inject.py <ch> [--check]`: adds the toggle.js and nav.js lines before `</head>`, byte-exact
+  otherwise (upstream files are CRLF; keep it that way). `--nav` adds nav.js only (never removes
+  toggle.js); `--all` runs on every IDL_115 chapter (`inject.py --all --nav` after a sync).
 - `extract.py <ch> [--prune] [--browser firefox --dry-run]`: merges units into strings.json,
   keeps existing `en`, prints translated/total per section. `--dry-run` compares the key set.
 - `coverage.py <ch> [--expect-clean chrome,kp1,guide:1] [--shots kp1,guide:1 --out scratch/shots]`:
   EN mode, clicks through every quiz and demo, opens every guide, and lists per section
   (`chrome`, `kpN`, `guide:N`) the `static`, `runtime`, `canvas` and `redraw` findings.
+
+- `navcheck.py [<ch> ...] [--browser firefox]`: per chapter, sections/quizzes found == chapters.json,
+  wrong/right/wrong quiz answers record 0/1/1, prev/next section, chapter links, scroll restore after
+  reload, phone-width drawer, toggle.js ignores the nav UI, no errors from nav.js.
+- `python3 study/build_chapters.py [--check]`: rebuild `study/chapters.json` (warns on chapters
+  without an entry in `titles_en.json` or without sections).
+
+## Study layer (dashboard + nav.js)
+A personal study aid on top of the overlay, for an English-speaking reader: all of its UI is
+English. Same rules: never edit upstream files; only the injected nav.js line.
+
+- **nav.js is independent of toggle.js.** It never calls it or reads `window.__EN__`. Its UI
+  (`#study-nav` bar, `#study-drawer`) carries `data-en-skip` so toggle.js ignores it; it is a
+  `<div role="navigation">`, not `<nav>`, because pages style bare `nav`. The only coupling is
+  through the DOM: it watches `<html lang>` and `html.en-pending` to keep the reading spot.
+- **Sections** = `section.card[data-kp]` with `id="kpN"`, in every chapter. Badge: `.badge, .card-badge`;
+  title: `.card-title, .card-head h3`.
+- **The page's TOC is reused, never rebuilt.** Links `a[href="#kpN"]` outside the cards get
+  `.study-active` (scroll-spy) and `.study-done` (CSS ✓ via `::after`, so no text changes and no
+  key changes). Classes only: TOC links are toggle.js units whose innerHTML is swapped. The §
+  button points at the page's TOC when it is a pinned sidebar on screen (sticky/fixed, narrower than
+  half the viewport); otherwise (phones, and Ch10/14/19 whose TOC is only "KP 1 … KP n") it opens
+  a drawer whose titles are copied from the live headings each time (so they follow the language).
+- **Quiz families** (container selector `.quiz, .quiz-container, .quiz-sec`, same list in
+  `build_chapters.py`; quiz id = `kpN.<index among top-level containers in that section>`):
+
+  | Family | Chapters | Markup | Solved when |
+  |---|---|---|---|
+  | A | 01–05 07 11 13 15 18 22 | `.quiz[data-ans]` radios + `.check` | `.fb.ok` |
+  | B | 06 09 12 16 17 20 21 | `.quiz` radios `[data-correct]` + `.quiz-check` | `.quiz-feedback.ok` |
+  | C | 08 | `.quiz-container[data-answer]` `.quiz-option-btn` | `.quiz-feedback.correct` |
+  | D | 10 14 19 | `.quiz-sec` `.quiz-option-btn[data-correct]` | clicked button `.correct` |
+
+  A document click listener reads the page's result classes after its handler ran. Record only:
+  answers are never restored into the page. Solved stays solved.
+- **localStorage** (all try/catch, per browser): `ccc-lns-study:quiz:<ChID>` = `{q: {"kp3.1": 1|0}, t}`,
+  `ccc-lns-study:pos:<ChID>` = `{kp, f, t}` (section + fraction through it, because KaTeX and the
+  EN switch change heights), `ccc-lns-study:last` = `{ch, kp, badge, t}`, `ccc-lns-study:theme`.
+  The dashboard also writes toggle.js's `ccc-lns-lang` (its "Lectures: English | 中文" control,
+  default English when unset); toggle.js itself still defaults to 中 for direct visits.
+- **Scroll restore:** skipped when the URL has `#kpN`, except on reload. Re-applied at load and
+  while KaTeX/EN settle (up to 2.5 s) until the reader scrolls, clicks or types; re-anchored on
+  every language switch.
+- **Phones:** some pages are wider than the screen (demo canvases), so the layout viewport is
+  wider than the visual one; nav.js translates its bar into the `visualViewport`.
+- **Dashboard** reads only `chapters.json` and localStorage. EN status = translated/units from
+  strings.json and whether toggle.js is injected. New upstream chapters appear after
+  `build_chapters.py` + `inject.py --all --nav` (both in `/sync-upstream`).
 
 ## Translation style
 - Translate every sentence faithfully. Never summarize, skip, or merge sentences.
@@ -134,10 +192,13 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - Ch05, Ch11, Ch15 reference `demos/demo_kpN.js` files that were never published
   (34 scripts total), so those demos do not run on the official site either. Translate their
   static text only. Do not recreate the demo code unless the user asks.
+- At phone width Ch21's sticky TOC (720 px tall) covers the content, and several pages
+  (e.g. Ch06) are wider than the screen, which also pushes the 中/EN pill off-screen.
 
 ## Running and checking
 - Serve locally: `python3 -m http.server 8000` from the repo root, open
-  `http://localhost:8000/IDL_115/<chapter>/`. (`file://` blocks fetching strings.json.)
+  `http://localhost:8000/study/` (dashboard) or `http://localhost:8000/IDL_115/<chapter>/`.
+  (`file://` blocks fetching strings.json and chapters.json.)
 - Tooling uses a venv at `.venv/` with `playwright` and `matplotlib`
   (`python3 -m venv .venv && .venv/bin/pip install playwright matplotlib && .venv/bin/playwright install chromium`).
 - Playwright needs `chromium` (and `firefox` for the cross-browser key check).
@@ -147,6 +208,6 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 
 ## Git
 - One commit per chapter (or per tool change). Message style: `en(Ch05): translate KP1-KP16`,
-  `en(tools): ...`, `en(charts/Ch08): redraw diagram-kp3`.
+  `en(tools): ...`, `en(charts/Ch08): redraw diagram-kp3`, `study: ...`, `en(nav): ...`.
 - Never commit `.venv/`, screenshots, or other scratch output (keep them in `.gitignore`).
 - Push to `origin` only.
