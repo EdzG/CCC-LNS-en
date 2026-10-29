@@ -1,0 +1,1185 @@
+{
+  "_runtime": {
+    "exact": {
+      "✔ 正確！M-P 等權固定，感知機可調有偏見。": "✔ Correct! M-P has fixed, equal weights; the perceptron's weights are tunable and it has a bias.",
+      "✔ 正確！線性分類器一條直線切不開對角四角。": "✔ Correct! A linear classifier's single straight line can't separate the diagonal corners of the square.",
+      "✔ 正確！感知機錯才調（離散），ADALINE 一直用 LMS 梯度。": "✔ Correct! The perceptron only adjusts when it's wrong (discrete updates); ADALINE keeps adjusting with the LMS gradient.",
+      "✔ 正確！−0.1 < 0 故輸出 0 錯。": "✔ Correct! −0.1 < 0, so the output is 0, which is wrong.",
+      "✗ 再想想：誰的權重可調？": "✗ Think again: whose weights are tunable?",
+      "✗ 提示：幾何上直線能否切開 XOR？": "✗ Hint: geometrically, can a straight line separate XOR?",
+      "✗ 提示：離散更新 vs 梯度下降。": "✗ Hint: discrete updates vs. gradient descent.",
+      "✗ 提示：總分加上偏置後，與 0 比較。": "✗ Hint: add the bias to the total score, then compare it with 0."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "b8bb31e17014": {
+    "zh": "<a href=\"#cover\">封面</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d80673983057": {
+    "zh": "<a href=\"#q1\">靈魂拷問</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a04daa3d8b94": {
+    "zh": "<a href=\"#pillars\">一句話史</a>",
+    "en": "<a href=\"#pillars\">One-Liner History</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "83600e74bc3d": {
+    "zh": "<a href=\"#mp\">M-P 神經</a>",
+    "en": "<a href=\"#mp\">M-P Neuron</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ff6b5ff973c0": {
+    "zh": "<a href=\"#hebb\">Hebb 學習</a>",
+    "en": "<a href=\"#hebb\">Hebbian Learning</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "99b01402519c": {
+    "zh": "<a href=\"#perceptron\">感知機</a>",
+    "en": "<a href=\"#perceptron\">Perceptron</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cba17bea946a": {
+    "zh": "<a href=\"#calc\">計算示例</a>",
+    "en": "<a href=\"#calc\">Worked Example</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3e3566dd86a5": {
+    "zh": "<a href=\"#winter\">冰河期 XOR</a>",
+    "en": "<a href=\"#winter\">Winter &amp; XOR</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9e2839e89f35": {
+    "zh": "<a href=\"#generations\">三代對照</a>",
+    "en": "<a href=\"#generations\">Three Generations</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "437cdd7c1a5f": {
+    "zh": "<a href=\"#deeper\">圖譜與連動</a>",
+    "en": "<a href=\"#deeper\">Map &amp; Connections</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3142636d1b65": {
+    "zh": "<a href=\"#quiz\">思考測驗</a>",
+    "en": "<a href=\"#quiz\">Thinking Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ef615c0d42ac": {
+    "zh": "<a href=\"#roadmap\">學習路線</a>",
+    "en": "<a href=\"#roadmap\">Learning Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8cb914fea29c": {
+    "zh": "AI 考古時光機<br>從數學神經到冰河期",
+    "en": "AI Archaeology Time Machine<br>From the Mathematical Neuron to the Winter",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b60d0615d259": {
+    "zh": "1943 一根神經，1949 一句口訣，1958 一台胚胎，1969 一盆冷水 <span class=\"bilingual-en\" style=\"color:#cbd5e1;font-size:18px;display:inline;\">One neuron, one motto, one embryo, one winter — the first arc of deep learning.</span>",
+    "en": "1943, one neuron; 1949, one motto; 1958, one embryo; 1969, one bucket of cold water",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "afc490816a6e": {
+    "zh": "▾ SCROLL TO EXPLORE · 長頁自學模式",
+    "en": "▾ SCROLL TO EXPLORE · Long-Page Self-Study Mode",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aedc2ad9d89c": {
+    "zh": "BIG QUESTION · 靈魂拷問",
+    "en": "BIG QUESTION",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "9c6beffd7028": {
+    "zh": "為何 1958 年的「電子胚胎」<br>會在 1969 年被一條直線凍結？<small>Why did the 1958 “electronic embryo” freeze on a straight line in 1969?</small>",
+    "en": "Why did the 1958 “electronic embryo”<br>get frozen by a single straight line in 1969?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "b1b80d4f204e": {
+    "zh": "答案不在程式碼，在幾何：直線能切 AND，卻切不開 XOR。<span class=\"bilingual-en\">Not code but geometry: a line cuts AND, not XOR.</span>",
+    "en": "The answer is not in the code but in the geometry: a straight line can cut AND, yet it cannot split XOR apart.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a656e7aefe28": {
+    "zh": "S1 · 引起動機 · MOTIVATE",
+    "en": "S1 · MOTIVATE",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "df214ff3810a": {
+    "zh": "一句話史：數學神經 → 自己變聰明 → 教會一群神經 <span class=\"en\">One-Liner History</span>",
+    "en": "One-Liner History: A Mathematical Neuron → Getting Smarter on Its Own → Teaching a Whole Group of Neurons",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0464b17fcdfd": {
+    "zh": "先用數學做神經（M-P），再想讓它自己變強（Hebb），終於教會一顆神經自己調權重（Perceptron/ADALINE），卻卡在「教會一群」。<span class=\"bilingual-en\">First math neuron, then self-strengthening, then self-tuning — stuck at teaching a group.</span>",
+    "en": "First, build a neuron out of math (M-P); next, try to make it get stronger by itself (Hebb); at last, teach a single neuron to tune its own weights (Perceptron/ADALINE), only to get stuck at “teaching a whole group”.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b0a748aae861": {
+    "zh": "M-P 模型 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">First Brick</span>",
+    "en": "The M-P Model",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a14661cdff0f": {
+    "zh": "加法＋門檻，權重固定相等，輸出 0/1；足夠多即可做 AND/OR/NOT。<span class=\"bilingual-en\">Sum + threshold, fixed equal weights, 0/1.</span>",
+    "en": "Addition + a threshold, weights fixed and equal, output 0/1; with enough of them you can build AND/OR/NOT.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b54cbcf37ed2": {
+    "zh": "Hebb 學習 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Fire Together, Wire Together</span>",
+    "en": "Hebbian Learning",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "360be30f9331": {
+    "zh": "一起放電→連結變強；獎勵為 1 的輸入，雛形學習。<span class=\"bilingual-en\">Co-fire → strengthen.</span>",
+    "en": "Fire together → the connection gets stronger; reward the inputs that are 1, an embryonic form of learning.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "dff6959658e0": {
+    "zh": "權重可調：Perceptron 錯了才調，ADALINE 以梯度下降追求誤差最小。<span class=\"bilingual-en\">Tunable weights; error-driven vs gradient.</span>",
+    "en": "Tunable weights: the Perceptron adjusts only when it gets something wrong, while ADALINE uses gradient descent to minimize the error.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3a311ac75a78": {
+    "zh": "冰河期 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Winter</span>",
+    "en": "The Winter",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "bfd838b305c6": {
+    "zh": "單層線性不可解 XOR；多層在理論上可解卻無訓練演算法，直到 Backprop。<span class=\"bilingual-en\">Linear cannot do XOR; multi-layer lacked algorithm.</span>",
+    "en": "A single linear layer cannot solve XOR; multiple layers could solve it in theory, but there was no training algorithm for them until backprop.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b28541aa9c27": {
+    "zh": "直覺 · 法拉利與輪子",
+    "en": "Intuition · The Ferrari and the Wheel",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2bfd5c3d29b2": {
+    "zh": "會開法拉利前先懂輪子：M-P 是輪子，Hebb 是「獎勵好輪子」的想法，Perceptron 是會自己換輪子的車。<span class=\"bilingual-en\">Before Ferrari, understand wheel: M-P is wheel, Hebb is “reward good wheels”, Perceptron swaps wheels itself.</span>",
+    "en": "Before you can drive a Ferrari, understand the wheel: M-P is the wheel, Hebb is the idea of “rewarding good wheels”, and the Perceptron is a car that changes its own wheels.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "74ec776abc4d": {
+    "zh": "S2 · 第一根神經 · FIRST NEURON",
+    "en": "S2 · FIRST NEURON",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "969b03465ef2": {
+    "zh": "1 · M-P 模型（1943）：史上第一根數學神經 <span class=\"en\">M-P Model — Mathematical Neuron</span>",
+    "en": "1 · The M-P Model (1943): The First Mathematical Neuron in History",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "096cabf98dc3": {
+    "zh": "真空管如房間大的年代，McCulloch（神經生理）與 Pitts（邏輯）把神經簡化為「有原則的傳聲筒」：等權相加→門檻比較→0/1。<span class=\"bilingual-en\">Vacuum-tube era: sum equally → threshold → 0/1.</span>",
+    "en": "Back when vacuum tubes were the size of a room, McCulloch (neurophysiology) and Pitts (logic) simplified the neuron into a “principled megaphone”: add up with equal weights → compare against a threshold → 0/1.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7012c9b74669": {
+    "zh": "M-P 數學神經：等權相加，與門檻比較，輸出 0/1 · Hebb 口訣：Cells that fire together, wire together.",
+    "en": "M-P mathematical neuron: add up with equal weights, compare against a threshold, output 0/1 · Hebb's motto: Cells that fire together, wire together.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4b3461362438": {
+    "zh": "為何重要 · Why It Matters",
+    "en": "Why It Matters",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "76614819c6aa": {
+    "zh": "證明足夠多這類單元可實現 AND / OR / NOT → 具通用邏輯能力，為網路奠基。<span class=\"bilingual-en\">Enough units → universal logic (AND/OR/NOT).</span>",
+    "en": "It proved that enough units of this kind can implement AND / OR / NOT → universal logic capability, laying the foundation for networks.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3aaa7528142e": {
+    "zh": "傳聲筒比喻",
+    "en": "The Megaphone Analogy",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "332a655b4525": {
+    "zh": "所有輸入等重，一視同仁；超過門檻就大叫 1，否則 0——最純的二元決策。<span class=\"bilingual-en\">Equal weights; fire if sum &gt; threshold.</span>",
+    "en": "Every input weighs the same and is treated equally; if the total exceeds the threshold it shouts 1, otherwise 0: the purest binary decision.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5ec08a960a1e": {
+    "zh": "局限",
+    "en": "Limitations",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bd7afaa0e771": {
+    "zh": "權重固定、需手設門檻，不會學習；等待 Hebb 與 Rosenblatt 解放。<span class=\"bilingual-en\">Fixed weights, no learning.</span>",
+    "en": "Fixed weights, a hand-set threshold, and no learning; it had to wait for Hebb and Rosenblatt to set it free.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bc6e920b3c5d": {
+    "zh": "公式 · M-P 單元",
+    "en": "Formula · The M-P Unit",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "736858a98dee": {
+    "zh": "示意：$n$ 個 0/1 輸入等權相加，與閾值 $\\theta$ 比較；多單元互連可表任意邏輯。<span class=\"bilingual-en\">Equal-weight sum vs threshold; networked → any logic.</span>",
+    "en": "Sketch: $n$ inputs of 0/1 are added with equal weights and compared with the threshold $\\theta$; interconnecting many units can represent any logic.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "73a2446452e9": {
+    "zh": "S2 · 棍棒與糖果 · LEARNING IDEA",
+    "en": "S2 · LEARNING IDEA",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "57fe892fe0cf": {
+    "zh": "2 · Hebb 學習（1949）：一起放電，一起變強 <span class=\"en\">Hebbian Learning</span>",
+    "en": "2 · Hebbian learning (1949): fire together, wire together",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9d222dbeae73": {
+    "zh": "Donald Hebb 一句話開啟學習時代：常一起出現的輸入與答案，其連結變強；不再手調。<span class=\"bilingual-en\">Co-occurrence → stronger wire; no hand-tuning.</span>",
+    "en": "With a single sentence, Donald Hebb opened the era of learning: when an input and the answer often show up together, the connection between them gets stronger; no more hand-tuning.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4667c9a5096e": {
+    "zh": "前神經元",
+    "en": "Pre-neuron",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3b7f4e7a1b19": {
+    "zh": "後神經元",
+    "en": "Post-neuron",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "460201d9476c": {
+    "zh": "Δw ∝ x · y  （共放電則加強）",
+    "en": "Δw ∝ x · y  (co-firing strengthens)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "ad99dd80ba2a": {
+    "zh": "為 1 的輸入與正確答案一起→權重調大",
+    "en": "Input of 1 together with the right answer → weight up",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "cd1330a20f80": {
+    "zh": "Hebb 雛形：獎勵常與正解共現的輸入，連結變強 · Reward co-firing.",
+    "en": "Hebbian prototype: inputs that often co-occur with the correct answer are rewarded, and their connections grow stronger",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b5da6b365efa": {
+    "zh": "口訣",
+    "en": "Mnemonic",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b57fa8c5588c": {
+    "zh": "「一起放電，一起變強」——從手調到自學的哲學轉折。<span class=\"bilingual-en\">From hand-tuned to self-tuning philosophy.</span>",
+    "en": "“Fire together, wire together”: the philosophical turn from hand-tuning to self-learning.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8d829ed00b50": {
+    "zh": "棍棒與糖果",
+    "en": "Stick and candy",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "812cace8bb89": {
+    "zh": "常與正解一起的輸入吃糖（$w$ 調大），否則棍棒；Perceptron 與 ADALINE 皆受此啟發。<span class=\"bilingual-en\">Co-fire → candy (up-weight).</span>",
+    "en": "Inputs that often show up with the correct answer get candy ($w$ goes up); otherwise they get the stick. Both the Perceptron and ADALINE were inspired by this.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "79f546b186a4": {
+    "zh": "未競",
+    "en": "Unfinished",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5ec1527773e4": {
+    "zh": "Hebb 給方向，未給可收斂的數學規則；Rosenblatt 與 Widrow 才把它變成演算法。<span class=\"bilingual-en\">Idea, not yet algorithm.</span>",
+    "en": "Hebb gave a direction, but not a mathematical rule that converges; it took Rosenblatt and Widrow to turn it into an algorithm.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "517f77198aac": {
+    "zh": "公式 · Hebb 更新雛形",
+    "en": "Formula · Hebbian update prototype",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bd43da5e4a57": {
+    "zh": "共放電（$x_j$ 與 $y$ 同為 1）則加強；為後續有監督調整埋下伏筆。<span class=\"bilingual-en\">Co-fire → strengthen; precursor to supervised correction.</span>",
+    "en": "When they fire together ($x_j$ and $y$ are both 1), the connection is strengthened; this lays the groundwork for the supervised adjustment that came later.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "261706879fdf": {
+    "zh": "S2 · 會自己學 · SELF-TUNING",
+    "en": "S2 · SELF-TUNING",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0d93f73f60d5": {
+    "zh": "3 · Perceptron（1958）：終於有偏見、會自己學 <span class=\"en\">Perceptron — Biased &amp; Self-Tuning</span>",
+    "en": "3 · Perceptron (1958): finally biased, and learning on its own",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ca0689781020": {
+    "zh": "與 M-P 最大不同：每輸入有權重 $w_j$ 表示重要性；錯了才調，調錯的。<span class=\"bilingual-en\">Per-input weight $w_j$ = importance; correct only when wrong.</span>",
+    "en": "The biggest difference from M-P: each input has a weight $w_j$ that represents its importance; it adjusts only when it is wrong, and it adjusts what went wrong.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "18952b9319f5": {
+    "zh": "w1=可調",
+    "en": "w1 = tunable",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "dbcc58218fe7": {
+    "zh": "w2=可調",
+    "en": "w2 = tunable",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e4103c8d28e1": {
+    "zh": "對了不調，錯了才調（有監督）",
+    "en": "Right: no change; wrong: adjust (supervised)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "4f26b4a39d37": {
+    "zh": "Rosenblatt：電子胚胎將能看說寫 · embryo will see/speak/write",
+    "en": "Rosenblatt: the electronic embryo will see, speak, write",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "66659977f286": {
+    "zh": "權重可調、有偏見；有監督錯了才調 · Tunable biased; supervised correction on error.",
+    "en": "Tunable weights and a bias of its own; supervised, adjusting only when wrong",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7d63a6fa7be": {
+    "zh": "有偏見才是重點",
+    "en": "Having a bias is the whole point",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0a6c06978c7f": {
+    "zh": "$w_j$ 代表重要性：紅色重要則 $w_1$ 大，圓形次要則 $w_2$ 小——模型終於有主見。<span class=\"bilingual-en\">$w_j$ = importance; model gains opinion.</span>",
+    "en": "$w_j$ represents importance: if red matters, $w_1$ is large; if roundness is secondary, $w_2$ is small. The model finally has opinions of its own.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "42a878b1beaf": {
+    "zh": "1958 的 ChatGPT 浪潮",
+    "en": "The ChatGPT wave of 1958",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f5b46cff032e": {
+    "zh": "能自學認數字，記者驚呼將能走說看寫有意識——可惜被一條直線打臉。<span class=\"bilingual-en\">Self-learn digits → hype → hit by a line.</span>",
+    "en": "It could teach itself to recognize digits, and reporters gasped that it would walk, talk, see, write, and be conscious. Too bad it got slapped down by a straight line.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5f697160073b": {
+    "zh": "更新規則",
+    "en": "Update rule",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "945da63f8e92": {
+    "zh": "$w_j \\leftarrow w_j + \\eta x_j (y-\\hat y)$，$b \\leftarrow b + \\eta(y-\\hat y)$；該 1 猜 0 時，同時提高為 1 的輸入權重與偏置。<span class=\"bilingual-en\">Reward active inputs and raise the bias on an error.</span>",
+    "en": "$w_j \\leftarrow w_j + \\eta x_j (y-\\hat y)$, $b \\leftarrow b + \\eta(y-\\hat y)$; when the answer should be 1 but it guesses 0, it raises the weights of the inputs that are 1 and the bias at the same time.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9e3eaa63594e": {
+    "zh": "公式 · 感知機決策與學習",
+    "en": "Formula · Perceptron decision and learning",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5952ea262d12": {
+    "zh": "有監督、離散更新（非梯度），幾何上為移動直線。<span class=\"bilingual-en\">Supervised, discrete correction; moves the line.</span>",
+    "en": "Supervised, discrete updates (not gradient-based); geometrically, each update moves a straight line.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "484c4cb535df": {
+    "zh": "S2 · 動手算 · HAND-CALC",
+    "en": "S2 · HAND-CALC",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a42192cb6701": {
+    "zh": "感知機計算：遙認紅蘋果 <span class=\"en\">Perceptron in Action — Red Apple?</span>",
+    "en": "Perceptron calculation: recognizing a red apple",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "130a150dcd72": {
+    "zh": "兩特徵 $x_1$紅/$x_2$圓、AND 邏輯（紅 AND 圓才 1）、$\\eta=0.1$、初始 $w=(0.1,0.3), b=-0.5$。<span class=\"bilingual-en\">Two features, AND logic, $\\eta=0.1$, init $w=(0.1,0.3), b=-0.5$.</span>",
+    "en": "Two features, $x_1$ red / $x_2$ round; AND logic (output 1 only if red AND round); $\\eta=0.1$; initial $w=(0.1,0.3), b=-0.5$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ece94bea6760": {
+    "zh": "紅蘋果 AND 演算",
+    "en": "Red apple AND, step by step",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "c3e0381a1a46": {
+    "zh": "輸入：蘋果 (1,1) → 正確 1",
+    "en": "Input: apple (1,1) → correct answer 1",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "f5768b86fea5": {
+    "zh": "算總分：",
+    "en": "Total score:",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "7019600d0616": {
+    "zh": "0.1×1 + 0.3×1 − 0.5 = −0.1 < 0 → 輸出 0 ✗ 猜錯",
+    "en": "0.1×1 + 0.3×1 − 0.5 = −0.1 < 0 → output 0 ✗ wrong",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "fac338ede2a6": {
+    "zh": "Rosenblatt 更新（該 1 猜 0→獎為 1 的輸入）",
+    "en": "Rosenblatt update (want 1, got 0 → boost x=1)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "bd38cb7480d7": {
+    "zh": "b: −0.5 + 0.1×1 = −0.4 (偏置提高、更好啟動)",
+    "en": "b: −0.5 + 0.1×1 = −0.4 (bias up, fires more easily)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "49b605e5e4ec": {
+    "zh": "結果：更喜歡紅色，更易啟動",
+    "en": "Result: likes red more, fires more easily",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "6aa9a12a8669": {
+    "zh": "該 1 猜 0→給為 1 的輸入加糖，偏置提高 · Reward co-firing, raise bias.",
+    "en": "Should be 1 but guessed 0 → give candy to the inputs that are 1 and raise the bias",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e6cdb73619bf": {
+    "zh": "關鍵動作 · Key Move",
+    "en": "Key move",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4fd5012c53ce": {
+    "zh": "猜太小（該 1 猜 0）→讓為 1 的 $x_j$ 加分，並提高偏置 $b$。下次同樣蘋果更容易說 1。<span class=\"bilingual-en\">Under-predict → boost active $x_j$ and raise bias $b$.</span>",
+    "en": "Guessed too low (should be 1, guessed 0) → add points to each $x_j$ that is 1, and raise the bias $b$. Next time, the same apple is more likely to get a 1.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ea718f431fc1": {
+    "zh": "學習本質",
+    "en": "The essence of learning",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "51ea917e9ed4": {
+    "zh": "一次就讓 $w_1$ 0.1→0.2，模型學會偏愛紅色——經驗累積為偏見。<span class=\"bilingual-en\">One step: $w_1$ 0.1→0.2 — experience becomes bias.</span>",
+    "en": "A single step takes $w_1$ from 0.1 to 0.2, and the model learns to favor red: accumulated experience becomes bias.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e31355527219": {
+    "zh": "但終要面對直線",
+    "en": "But in the end it must face the straight line",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "092154c9c234": {
+    "zh": "更新本質是移動切割直線；能切 AND，卻永不能切 XOR。<span class=\"bilingual-en\">Update moves the line — cuts AND, never XOR.</span>",
+    "en": "At heart, an update just moves the cutting line; it can cut AND, but it can never cut XOR.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "51c722727b07": {
+    "zh": "公式 · 感知機更新",
+    "en": "Formula · Perceptron update",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0508a59e5435": {
+    "zh": "本例：$y-\\hat y=1$，$x=(1,1)$，$\\eta=0.1$ → $\\Delta w=(0.1,0.1)$, $\\Delta b=+0.1$。<span class=\"bilingual-en\">Error 1, $x=(1,1)$ → $\\Delta w=(0.1,0.1)$ and $\\Delta b=+0.1$.</span>",
+    "en": "In this example: $y-\\hat y=1$, $x=(1,1)$, $\\eta=0.1$ → $\\Delta w=(0.1,0.1)$, $\\Delta b=+0.1$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "66a95495fa17": {
+    "zh": "互動：拉動 $\\eta$ 看更新幅度 · Drag $\\eta$ to see step size",
+    "en": "Interactive: drag $\\eta$ to see the update size",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "55c092b82135": {
+    "zh": "學習率 $\\eta$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(learning rate)</span>：",
+    "en": "Learning rate $\\eta$:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ac0655a86504": {
+    "zh": "S2 · 冰河期 · WINTER",
+    "en": "S2 · WINTER",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "032c508b2ca7": {
+    "zh": "冰河期：一條直線凍結浪潮 <span class=\"en\">Winter — A Line Freezes the Wave</span>",
+    "en": "Ice age: one straight line freezes the wave",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f404dd36d891": {
+    "zh": "感知機是線性分類器：一刀切。AND 可切，XOR 不可切。Minsky &amp; Papert 1969 以嚴謹證明澆熄樂觀。<span class=\"bilingual-en\">Linear classifier: one cut. AND yes, XOR no. 1969 proof killed hype.</span>",
+    "en": "The perceptron is a linear classifier: one cut. AND can be cut; XOR cannot. In 1969, Minsky &amp; Papert doused the optimism with a rigorous proof.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8e1e2b98ad4b": {
+    "zh": "matplotlib 精準：線性可分 vs 非線性 · AND vs XOR geometry",
+    "en": "Precise matplotlib plot: linearly separable vs. nonlinear (AND vs. XOR geometry)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8b914900d8b8": {
+    "zh": "左 AND：$x_1+x_2=1.5$ 一刀切開；右 XOR：任何直線均失敗 · Left: line cuts AND; right: no line cuts XOR.",
+    "en": "Left, AND: the line $x_1+x_2=1.5$ separates it in one cut; right, XOR: every straight line fails",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4a22c1f7c4bb": {
+    "zh": "為何 XOR 殺死單層",
+    "en": "Why XOR kills the single layer",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3502d9fbb3e9": {
+    "zh": "四角點對角同類：$(0,0)/(1,1)$ 一類，$(0,1)/(1,0)$ 另一類——沒直線可分。<span class=\"bilingual-en\">Corners diagonal same class — no line.</span>",
+    "en": "Diagonally opposite corners share a class: $(0,0)/(1,1)$ are one class and $(0,1)/(1,0)$ the other, so no straight line can separate them.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f1570da6de4c": {
+    "zh": "多層理論可解，卻無法教",
+    "en": "Multiple layers could solve it in theory, but could not be taught",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e9995141998a": {
+    "zh": "Rosenblatt 書《Principles of Neurodynamics》嘗試鬆散串聯，但差正確時不知調哪層——直到 Backprop。<span class=\"bilingual-en\">Multi-layer could in theory, but no training rule until Backprop.</span>",
+    "en": "In his book “Principles of Neurodynamics,” Rosenblatt tried loosely chaining layers together, but when the output differed from the correct answer, nobody knew which layer to adjust, until backprop came along.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "acc5b56378e3": {
+    "zh": "史學意義",
+    "en": "Historical significance",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "078e4af4b908": {
+    "zh": "《Perceptrons》一書凍結十年；需要新數學才能教會一群神經。<span class=\"bilingual-en\">Book froze a decade; needed new math to teach a crowd.</span>",
+    "en": "The book “Perceptrons” froze the field for a decade; new math was needed to teach a whole crowd of neurons.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ff90eff69e70": {
+    "zh": "S2 · 更穩的學 · STABLE LEARNING",
+    "en": "S2 · STABLE LEARNING",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3290e1688e29": {
+    "zh": "5 · ADALINE / MADALINE（1960）：梯度下降學更穩 <span class=\"en\">ADALINE — Gradient Descent Learns Steadier</span>",
+    "en": "5 · ADALINE / MADALINE (1960): gradient descent learns more steadily",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7cfd6b3108bc": {
+    "zh": "感知機「對不調錯才調」，ADALINE「追求完美」——看總分與正確的均方誤差，用梯度下降持續微調。<span class=\"bilingual-en\">Perceptron tunes on error; ADALINE chases LMS via gradient descent, always tuning.</span>",
+    "en": "The perceptron “leaves it alone when it is right and adjusts only when it is wrong”; ADALINE “strives for perfection”: it looks at the mean squared error between the total score and the correct answer, and keeps fine-tuning with gradient descent.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1937e12293f5": {
+    "zh": "matplotlib 精準：左 MSE 地形 + 梯度路徑至 w* · 右離散調整 vs 持續 LMS · Precise terrain &amp; discrete vs continuous.",
+    "en": "Precise matplotlib plots: left, the MSE landscape and the gradient path to w*; right, discrete adjustment vs. continuous LMS",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "55ced8805a57": {
+    "zh": "處女座學習",
+    "en": "Learning like a perfectionist",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b3fc1e205783": {
+    "zh": "不看 0/1、看總分誤差。沿負梯度走，追求均方誤差最小。<span class=\"bilingual-en\">Not 0/1 but score error; follow negative gradient.</span>",
+    "en": "It doesn't look at 0/1; it looks at the error in the total score. It walks along the negative gradient, seeking the smallest mean squared error.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c8325561051a": {
+    "zh": "穩健性",
+    "en": "Robustness",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9da0c7db6475": {
+    "zh": "數學更穩、泛化更好，但本質仍線性——也被冰河凍住。<span class=\"bilingual-en\">More robust, better generalization, still linear.</span>",
+    "en": "Mathematically more stable and better at generalization, but still linear at heart, so it too was frozen by the ice age.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9822520f4e18": {
+    "zh": "MADALINE 與 Sigmoid 突破",
+    "en": "MADALINE and the sigmoid breakthrough",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "24b787851cbe": {
+    "zh": "疊 Many ADALINEs，MR III 換 Sigmoid 可導函數才能算梯度教多層，卻未形成系統理論直到 Backprop。<span class=\"bilingual-en\">MR III used sigmoid to allow gradients for multi-layer.</span>",
+    "en": "Stack Many ADALINEs; MR III switched to the differentiable sigmoid function so that gradients could be computed to train multiple layers, yet no systematic theory took shape until backprop.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "911171561963": {
+    "zh": "公式 · Widrow-Hoff (LMS)",
+    "en": "Formula · Widrow-Hoff (LMS)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d7e741982048": {
+    "zh": "$\\hat s=\\mathbf{w}^\\top\\mathbf{x}$ 為總分（未閾值），每步沿負梯度下降。<span class=\"bilingual-en\">$\\hat s$ is pre-threshold score; step along negative gradient.</span>",
+    "en": "$\\hat s=\\mathbf{w}^\\top\\mathbf{x}$ is the total score (before thresholding); each step descends along the negative gradient.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "80acdcdf1f82": {
+    "zh": "S2 · 三代對照 · GENERATIONS",
+    "en": "S2 · Three Generations Compared · GENERATIONS",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a542aee1578b": {
+    "zh": "三波神經網路簡表 <span class=\"en\">Three Generations</span>",
+    "en": "The Three Waves of Neural Networks at a Glance",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "453c0217dc89": {
+    "zh": "世代",
+    "en": "Generation",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f975e10f092a": {
+    "zh": "代表",
+    "en": "Representative",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8e24bdc69c1d": {
+    "zh": "特徵",
+    "en": "Characteristics",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6b598b7ab666": {
+    "zh": "侷限與貢獻",
+    "en": "Limitations and contributions",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "48831ee46059": {
+    "zh": "<b>第一代</b>",
+    "en": "<b>1st generation</b>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7df7227208eb": {
+    "zh": "單層 Perceptron / ADALINE",
+    "en": "Single-layer perceptron / ADALINE",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "46173128e06a": {
+    "zh": "線性分類",
+    "en": "Linear classification",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "be385e2ee51d": {
+    "zh": "無法解 XOR；啟動從例子中學習",
+    "en": "Cannot solve XOR; launched learning from examples",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "66701efb7cc1": {
+    "zh": "<b>第二代</b>",
+    "en": "<b>2nd generation</b>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "084761c133ef": {
+    "zh": "多層網路 + Backprop",
+    "en": "Multilayer networks + backprop",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4e3a90bc6c61": {
+    "zh": "能學非線性（解 XOR）",
+    "en": "Can learn nonlinear functions (solves XOR)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "85e08b732c8d": {
+    "zh": "現代深度學習基石（CNN/RNN）",
+    "en": "Foundation of modern deep learning (CNN/RNN)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4693be07fb7a": {
+    "zh": "<b>第三代</b>",
+    "en": "<b>3rd generation</b>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fc82958964b7": {
+    "zh": "脈衝網路等",
+    "en": "Spiking networks, etc.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3271e8fe6804": {
+    "zh": "貼近生物動態",
+    "en": "Closer to biological dynamics",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b6999548af2e": {
+    "zh": "利用放電時間差，未來方向",
+    "en": "Exploits differences in spike timing; a future direction",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b00ee1d6ff87": {
+    "zh": "一句話歷史",
+    "en": "History in one sentence",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "af5c143bc540": {
+    "zh": "先做出神經（M-P）→想讓它自強（Hebb）→教會一顆自學（Perceptron/ADALINE）→卡在教會一群（直到 Backprop）。<span class=\"bilingual-en\">Neuron → self-strengthen → one learns → group stuck until Backprop.</span>",
+    "en": "First build a neuron (M-P) → want it to strengthen itself (Hebb) → teach one neuron to learn on its own (Perceptron/ADALINE) → get stuck teaching a whole group (until backprop).",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fc9b560b911b": {
+    "zh": "下節預告",
+    "en": "Coming up next",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3eecbd91541f": {
+    "zh": "1980 年代，科學家終於找到教一群神經的神奇演算法——反向傳播。<span class=\"bilingual-en\">1980s: finally the algorithm to teach a crowd — Backprop.</span>",
+    "en": "In the 1980s, scientists finally found the magic algorithm for teaching a whole group of neurons: backpropagation.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a213dd871722": {
+    "zh": "S2 · 圖譜與連動 · MAP",
+    "en": "S2 · Map and Connections · MAP",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8fb62bf6321e": {
+    "zh": "深入：邏輯閘、演算法與冰河的連動 <span class=\"en\">Deeper — Logic, Algorithm &amp; Winter</span>",
+    "en": "Going Deeper: How Logic Gates, Algorithms, and the Winter Connect",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "521ed8ccfa70": {
+    "zh": "等權 + 門檻",
+    "en": "Equal weights + threshold",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c63fe7e9994c": {
+    "zh": "AND/OR/NOT 通用",
+    "en": "Universal for AND/OR/NOT",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "17c137903433": {
+    "zh": "第一塊磚",
+    "en": "The first brick",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "088cee24a3ea": {
+    "zh": "一起放電→變強",
+    "en": "Fire together → strengthen",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "d8fa5c189482": {
+    "zh": "學習雛形",
+    "en": "Prototype of learning",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c7dd09b3c33f": {
+    "zh": "可調 w, 錯才調",
+    "en": "Tunable w, adjust only on error",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "122783601cc1": {
+    "zh": "自學認數字",
+    "en": "Learns digits on its own",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "017f4b9a9b06": {
+    "zh": "線性分類器",
+    "en": "Linear classifier",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "b3c530d8f257": {
+    "zh": "一條直線凍結",
+    "en": "Frozen by one straight line",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "d155bd259d62": {
+    "zh": "XOR 不可切",
+    "en": "XOR can't be split",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "5d611b05e770": {
+    "zh": "ADALINE 1960 梯度下降更穩、MADALINE 直到 Sigmoid 才可導 → Backprop 才終結冰河",
+    "en": "ADALINE (1960): gradient descent, more stable; MADALINE not differentiable until sigmoid → only backprop ends the winter",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "9d3369db283c": {
+    "zh": "四站時光機：數學神經→自強→自學→凍結（線性終數） · Four stops: neuron → strengthen → learn → freeze.",
+    "en": "A four-stop time machine: mathematical neuron → self-strengthening → self-learning → frozen (the linear limit).",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a02cd3ca5ce9": {
+    "zh": "連動關鍵",
+    "en": "How it all connects",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "196412252011": {
+    "zh": "M-P 給了邏輯通用性，Hebb 給了學習哲學，Perceptron 把哲學變演算法，ADALINE 用梯度更穩——但線性終數讓重點在「教會一群」。<span class=\"bilingual-en\">M-P gave logic, Hebb gave philosophy, Perceptron made algorithm, ADALINE stabilized — but linear caps at teaching a crowd.</span>",
+    "en": "M-P gave logical universality, Hebb gave a philosophy of learning, the perceptron turned that philosophy into an algorithm, and ADALINE made it more stable with gradients. But the linear limit shifted the focus to “teaching a whole group.”",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "eb945cb118e0": {
+    "zh": "S3 · 思考測驗 · CHECK",
+    "en": "S3 · Think-It-Through Quiz · CHECK",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "013019224e7f": {
+    "zh": "思考測驗：你懂線性終數嗎？ <span class=\"en\">Quiz — Do You Get Linear Limit?</span>",
+    "en": "Quiz: Do You Understand the Linear Limit?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "79a8c48ae390": {
+    "zh": "Q1. M-P 模型與感知機的最大差異是？<span class=\"bilingual-en\">Key difference M-P vs Perceptron?</span>",
+    "en": "Q1. What is the biggest difference between the M-P model and the perceptron?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b099c518abbe": {
+    "zh": "M-P 會自學，感知機不會<span class=\"bilingual-en\" style=\"font-size:16px;\">M-P learns</span>",
+    "en": "M-P learns on its own; the perceptron does not",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0b56a62b1b4e": {
+    "zh": "M-P 權重固定等重；感知機權重可調且有偏見<span class=\"bilingual-en\" style=\"font-size:16px;\">Fixed equal vs tunable biased</span>",
+    "en": "M-P weights are fixed and equal; perceptron weights are tunable and it has a bias",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "19ceecf79539": {
+    "zh": "M-P 是多層，感知機是單層<span class=\"bilingual-en\" style=\"font-size:16px;\">M-P multi-layer</span>",
+    "en": "M-P is multilayer; the perceptron is single-layer",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a0bde25ddde7": {
+    "zh": "M-P 用梯度下降<span class=\"bilingual-en\" style=\"font-size:16px;\">M-P uses gradient</span>",
+    "en": "M-P uses gradient descent",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3456ca7828b7": {
+    "zh": "Q2. 為何單層感知機無法解 XOR？<span class=\"bilingual-en\">Why single-layer cannot solve XOR?</span>",
+    "en": "Q2. Why can't a single-layer perceptron solve XOR?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fc560a007247": {
+    "zh": "因為是線性分類器，一條直線切不開對角同類四角<span class=\"bilingual-en\" style=\"font-size:16px;\">Linear: no line cuts diagonal</span>",
+    "en": "Because it is a linear classifier: no single straight line can separate four corners where the diagonally opposite ones share a class",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f19e5254314b": {
+    "zh": "因為沒有 Sigmoid<span class=\"bilingual-en\" style=\"font-size:16px;\">No sigmoid</span>",
+    "en": "Because it has no sigmoid",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "036e0d6fb7a0": {
+    "zh": "因為 Hebb 口訣錯誤<span class=\"bilingual-en\" style=\"font-size:16px;\">Hebb wrong</span>",
+    "en": "Because Hebb's rule is wrong",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a4c1d213d184": {
+    "zh": "因為學習率太小<span class=\"bilingual-en\" style=\"font-size:16px;\">Learning rate small</span>",
+    "en": "Because the learning rate is too small",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2b217e02b41c": {
+    "zh": "Q3. Perceptron 與 ADALINE 學習方式差異？<span class=\"bilingual-en\">Perceptron vs ADALINE learning?</span>",
+    "en": "Q3. How do the perceptron and ADALINE differ in how they learn?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f7a0c09198b4": {
+    "zh": "都是梯度下降<span class=\"bilingual-en\" style=\"font-size:16px;\">Both gradient</span>",
+    "en": "Both use gradient descent",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "156f90e175b3": {
+    "zh": "Perceptron 用梯度，ADALINE 錯才調<span class=\"bilingual-en\" style=\"font-size:16px;\">Swapped</span>",
+    "en": "The perceptron uses gradients; ADALINE adjusts only on errors",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "60b523b94890": {
+    "zh": "Perceptron 錯才調；ADALINE 看總分誤差用梯度一直微調<span class=\"bilingual-en\" style=\"font-size:16px;\">Error-only vs always LMS</span>",
+    "en": "The perceptron adjusts only on errors; ADALINE looks at the error in the total score and keeps fine-tuning with gradients",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e5f35db2d32e": {
+    "zh": "ADALINE 不能疊 Sigmoid<span class=\"bilingual-en\" style=\"font-size:16px;\">ADALINE no sigmoid</span>",
+    "en": "ADALINE cannot have a sigmoid stacked on it",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6b43f40b7f8d": {
+    "zh": "Q4. 感知機紅蘋果例：$w=(0.1,0.3), b=-0.5$，$x=(1,1)$ 為何猜錯？<span class=\"bilingual-en\">Why wrong with (1,1)?</span>",
+    "en": "Q4. In the perceptron red-apple example with $w=(0.1,0.3), b=-0.5$, why is the guess for $x=(1,1)$ wrong?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bf6d07035a44": {
+    "zh": "因為是 XOR<span class=\"bilingual-en\" style=\"font-size:16px;\">Because XOR</span>",
+    "en": "Because it is XOR",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fee41e937c82": {
+    "zh": "總分 $0.1+0.3-0.5=-0.1 &lt; 0$，故輸出 0 而正確 1<span class=\"bilingual-en\" style=\"font-size:16px;\">Score −0.1 &lt; 0</span>",
+    "en": "The total score is $0.1+0.3-0.5=-0.1 &lt; 0$, so it outputs 0 while the correct answer is 1",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7d3158a08b69": {
+    "zh": "因為 $\\eta$太大<span class=\"bilingual-en\" style=\"font-size:16px;\">Eta too large</span>",
+    "en": "Because $\\eta$ is too large",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "af39ef9dffa1": {
+    "zh": "因為沒有歸一化<span class=\"bilingual-en\" style=\"font-size:16px;\">No normalization</span>",
+    "en": "Because there is no normalization",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e75f33b5880b": {
+    "zh": "S3 · 路線導引 · PATH",
+    "en": "S3 · Route Guide · PATH",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "050d79403397": {
+    "zh": "下一步：搭時光機去 1980s <span class=\"en\">Next — Time Machine to 1980s</span>",
+    "en": "Next: Take the Time Machine to the 1980s",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3ac5ff35484d": {
+    "zh": "STEP 1 · 1–2 週",
+    "en": "STEP 1 · Weeks 1–2",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ac88f537b039": {
+    "zh": "手算感知機更新 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Hand-calc Perceptron</span>",
+    "en": "Compute perceptron updates by hand",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bd44be7ad3a8": {
+    "zh": "用紅蘋果例改 $\\eta$ 0.05→0.5，觀察步長對 $w,b$ 的影響。<span class=\"bilingual-en\">Vary $\\eta$, watch step size.</span>",
+    "en": "Using the red-apple example, change $\\eta$ from 0.05 to 0.5 and observe how the step size affects $w,b$.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "87381ac6be76": {
+    "zh": "STEP 2 · 2–3 週",
+    "en": "STEP 2 · Weeks 2–3",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0c8178d118ad": {
+    "zh": "畫 AND/XOR 几何 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Draw Geometry</span>",
+    "en": "Draw the AND/XOR geometry",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "adfee82fae4f": {
+    "zh": "在方格紙上畫四點，嘗試任何直線，驗證 XOR 不可切。<span class=\"bilingual-en\">Try any line on XOR corners.</span>",
+    "en": "Plot the four points on graph paper, try any straight line you like, and verify that XOR can't be split.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7ba1802c96a8": {
+    "zh": "STEP 3 · 3–4 週",
+    "en": "STEP 3 · Weeks 3–4",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a26f7fba3fa6": {
+    "zh": "對比 LMS 與感知機 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">LMS vs Perceptron</span>",
+    "en": "Compare LMS and the perceptron",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a8ddbb457111": {
+    "zh": "同資料分別用離散更新與梯度下降，比較收斂穩定度。<span class=\"bilingual-en\">Compare discrete vs gradient convergence.</span>",
+    "en": "On the same data, use discrete updates and gradient descent separately, and compare how stably they converge.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "614c84fe4c62": {
+    "zh": "STEP 4 · 持續",
+    "en": "STEP 4 · Ongoing",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ca66b2e60499": {
+    "zh": "預習 Backprop <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Preview Backprop</span>",
+    "en": "Preview backprop",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c5d74261ec16": {
+    "zh": "思考：若輸出錯，該調第 1 層還是第 2 層？下節揭曉。<span class=\"bilingual-en\">If output wrong, which layer to adjust?</span>",
+    "en": "Think about it: if the output is wrong, should you adjust layer 1 or layer 2? The answer comes next time.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "801d1f6a7c04": {
+    "zh": "\n  SlidePro · AI 考古時光機 — M-P to Winter · 中英雙語自學版 · 冰晶簡約主題 · MathJax + Chart.js<br>\n  <span style=\"color:var(--text-low);\">AI History — Bilingual Self-Study · Ice Crystal Theme</span>\n",
+    "en": "\n  SlidePro · AI Archaeology Time Machine — M-P to Winter · Bilingual Self-Study Edition · Ice Crystal Minimal Theme · MathJax + Chart.js\n",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
