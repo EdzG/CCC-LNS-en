@@ -9,7 +9,10 @@
    "decks": [
     {
      "href": "IDL_115/Ch01-introduction-history/idl115-w1-dl-intro-history.html",
-     "en": null
+     "en": {
+      "units": 176,
+      "translated": 176
+     }
     }
    ],
    "slides": [

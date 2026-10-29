@@ -1,0 +1,1086 @@
+{
+  "_runtime": {
+    "exact": {
+      "已切換到暗色模式": "Switched to dark mode",
+      "已切換到亮色模式": "Switched to light mode",
+      "標籤頁已切換": "Tab switched",
+      "內容已展開": "Content expanded",
+      "內容已收起": "Content collapsed",
+      "回答正確！": "Correct!",
+      "回答錯誤，請查看正確答案": "Incorrect. See the correct answer.",
+      "答案已顯示": "Answer shown",
+      "答案已隱藏": "Answer hidden"
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [
+    "idl115-w1-learning-frameworks-imagegen.png",
+    "idl115-w1-clustering-vs-dim-reduction.png"
+  ],
+  "48ef3bd0deac": {
+    "zh": "\n        Introductory Deep Learning | 深度學習導論\n    ",
+    "en": "\n        Introductory Deep Learning\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "e124189f50a6": {
+    "zh": "\n        Week 1 · Course Introduction &amp; What Is Deep Learning, Anyway? | 第一週．課程介紹與深度學習是什麼\n    ",
+    "en": "\n        Week 1 · Course Introduction &amp; What Is Deep Learning, Anyway?\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "c067177425b2": {
+    "zh": "\n        IDL115 · CSIE3544AB · National Dong Hwa University, Dept. of Computer Science &amp; Engineering | 國立東華大學資訊工程學系 · 115 學年度第 1 學期\n    ",
+    "en": "\n        IDL115 · CSIE3544AB · National Dong Hwa University, Dept. of Computer Science &amp; Engineering · Academic Year 115, Semester 1\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "682d1b9ddc03": {
+    "zh": "🎭 Welcome Aboard | 歡迎上車",
+    "en": "🎭 Welcome Aboard",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "996e68a6805d": {
+    "zh": "<strong>Instructor:</strong> \"Welcome to Introductory Deep Learning! Over the next 17 weeks we'll go from a single artificial neuron all the way to the models behind ChatGPT and Midjourney. Today: how this course runs, and a 30,000-foot view of the whole field.\"\n            <br><em style=\"color: rgba(255,255,255,0.85); font-size: var(--text-sm);\">「歡迎來到深度學習導論！接下來 17 週，我們會從一顆人工神經元，一路講到 ChatGPT 和 Midjourney 背後的模型。今天：這門課怎麼玩，還有整個領域的空拍鳥瞰圖。」</em>",
+    "en": "<strong>Instructor:</strong> \"Welcome to Introductory Deep Learning! Over the next 17 weeks we'll go from a single artificial neuron all the way to the models behind ChatGPT and Midjourney. Today: how this course works, and a bird's-eye view of the whole field.\"",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "76396607e9e3": {
+    "zh": "<strong>Student:</strong> \"I've heard deep learning is basically magic and math at the same time. Which one is this course?\"\n            <br><em style=\"color: var(--color-text); font-size: var(--text-sm);\">「聽說深度學習又像魔法又像數學，這門課到底是哪一種？」</em>",
+    "en": "<strong>Student:</strong> \"I've heard deep learning is like magic and like math at the same time. So which one is this course?\"",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "f2e9c8120f6d": {
+    "zh": "<strong>Instructor:</strong> \"Both — but the magic only feels like magic <span class=\"highlight--primary\">until</span> you see the math underneath. That's the whole point of this semester.\"\n            <br><em style=\"color: rgba(255,255,255,0.85); font-size: var(--text-sm);\">「兩者都是——只是魔法在你看到底層數學之前，才會一直感覺像魔法。這正是這學期的重點。」</em>",
+    "en": "<strong>Instructor:</strong> \"Both — but the magic only feels like magic <span class=\"highlight--primary\">until</span> you see the math underneath. That's the whole point of this semester.\"",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "cfbfaef78822": {
+    "zh": "Part A · Course Logistics | 課程說明",
+    "en": "Part A · Course Logistics",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a4d9cd7f348d": {
+    "zh": "<span class=\"chapter-number\">1</span>Course Basics | 課程基本資料",
+    "en": "<span class=\"chapter-number\">1</span>Course Basics",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "38b2826a1dc9": {
+    "zh": "Course Code | 課號",
+    "en": "Course Code",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4ef2934f2b71": {
+    "zh": "Credits &amp; Hours | 學分／時數",
+    "en": "Credits &amp; Hours",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ffe8883d2acd": {
+    "zh": "3.0 credits, 3 hrs/week | 3.0 學分，每週 3 小時",
+    "en": "3.0 credits, 3 hours per week",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c3c5cf58e613": {
+    "zh": "Schedule | 上課時間",
+    "en": "Class Time",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e7dc3400a87b": {
+    "zh": "Thursday afternoons, 17 weeks | 每週四下午，共 17 教學週",
+    "en": "Thursday afternoons, 17 teaching weeks in total",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2be05ae29341": {
+    "zh": "Instructor | 授課教師",
+    "en": "Instructor",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9f06b094dfe0": {
+    "zh": "Prof. Cheng-Chin Chiang | 江政欽 教授",
+    "en": "Prof. Cheng-Chin Chiang",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "76a396cad907": {
+    "zh": "\n        Semester: 115-1, starting 9/7 (Mon), ending with final exams the week of 12/28–12/31. | 115 學年度第 1 學期，9/7（一）開學，12/28–12/31 為期末評量週。\n    ",
+    "en": "\n        Fall semester of academic year 115: classes start on 9/7 (Mon), and 12/28–12/31 is the final exam week.\n    ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "41d34dbd3733": {
+    "zh": "<span class=\"chapter-number\">2</span>17-Week Roadmap | 十七週地圖",
+    "en": "<span class=\"chapter-number\">2</span>17-Week Roadmap",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "53bcb5c8ad0e": {
+    "zh": "Week | 週次",
+    "en": "Week",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5dfe0518c4fc": {
+    "zh": "Topic | 主題",
+    "en": "Topic",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7ea6eded594e": {
+    "zh": "Course intro &amp; ML/DL history (today!) | 課程介紹與機器學習／深度學習發展史（今天！）",
+    "en": "Course introduction &amp; history of machine learning / deep learning (today!)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4924dac895d5": {
+    "zh": "Perceptron → MLP → Backprop → Optimizers → Regularization | 感知器 → MLP → 反向傳播 → 最佳化 → 正則化",
+    "en": "Perceptron → MLP → Backpropagation → Optimization → Regularization",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a02a4a2e7c95": {
+    "zh": "Convolutional Neural Networks &amp; applications | 卷積神經網路與應用",
+    "en": "Convolutional neural networks &amp; applications",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7b0a56376ef4": {
+    "zh": "<strong>Midterm exam</strong> | <strong>期中考</strong>",
+    "en": "<strong>Midterm exam</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6315c8965882": {
+    "zh": "<span class=\"highlight--warning\">No class — university sports day</span> | <span class=\"highlight--warning\">停課——全校運動會</span>",
+    "en": "<span class=\"highlight--warning\">No class — university sports day</span>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3c699ef35a3f": {
+    "zh": "RNN, LSTM, GRU &amp; sequence modeling | RNN、LSTM、GRU 與序列建模",
+    "en": "RNN, LSTM, GRU &amp; sequence modeling",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3aa0ba1fcfea": {
+    "zh": "Attention &amp; Transformers | 注意力機制與 Transformer",
+    "en": "Attention mechanism &amp; Transformers",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "786b0f06ab67": {
+    "zh": "Generative models: VAE, GAN | 生成模型：VAE、GAN",
+    "en": "Generative models: VAE, GAN",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "460f3ff4b0a9": {
+    "zh": "<strong>Final exam only</strong> — final project is watched online afterward | <strong>僅期末考</strong>——期末專題於課後線上觀看",
+    "en": "<strong>Final exam only</strong> — the final projects are watched online after class",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8c50336c8052": {
+    "zh": "\n        Week 10 has no class (university sports day). Its content is folded into Week 11 — the whole schedule simply shifts by one week. | 第 10 週停課（全校運動會），內容併入第 11 週講授，後續進度整體順延一週。\n    ",
+    "en": "\n        No class in Week 10 (university sports day). Its content is folded into Week 11, and the rest of the schedule shifts back by one week.\n    ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e02e704d8aa5": {
+    "zh": "<span class=\"chapter-number\">3</span>What You'll Be Able to Do | 課程目標",
+    "en": "<span class=\"chapter-number\">3</span>Course Objectives",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "01c574a3d7d0": {
+    "zh": "<span class=\"icon-list-icon\">🧮</span><span>Explain neural networks, backprop, and gradient descent from first principles | 從第一原理解釋類神經網路、反向傳播與梯度下降</span>",
+    "en": "<span class=\"icon-list-icon\">🧮</span><span>Explain neural networks, backpropagation, and gradient descent from first principles</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fd586b43566f": {
+    "zh": "<span class=\"icon-list-icon\">⚖️</span><span>Compare optimizers and regularizers, and reason about training stability vs. generalization | 比較最佳化與正則化方法，權衡訓練穩定度與泛化能力</span>",
+    "en": "<span class=\"icon-list-icon\">⚖️</span><span>Compare optimization and regularization methods, and weigh training stability against generalization</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "db22940b60fe": {
+    "zh": "<span class=\"icon-list-icon\">🐍</span><span>Implement and train CNNs and RNN/LSTM models, all in <strong>PyTorch</strong> | 用 <strong>PyTorch</strong> 實作並訓練 CNN、RNN／LSTM 模型</span>",
+    "en": "<span class=\"icon-list-icon\">🐍</span><span>Implement and train CNN and RNN/LSTM models in <strong>PyTorch</strong></span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "21e544498dad": {
+    "zh": "<span class=\"icon-list-icon\">🎯</span><span>Explain self-attention and why Transformers outperform RNNs on long sequences | 解釋自注意力機制，以及 Transformer 為何在長序列上優於 RNN</span>",
+    "en": "<span class=\"icon-list-icon\">🎯</span><span>Explain the self-attention mechanism, and why Transformers outperform RNNs on long sequences</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d548c6971249": {
+    "zh": "<span class=\"icon-list-icon\">🎨</span><span>Build simple generative models (VAE, GAN) and judge their output quality | 實作簡易生成模型（VAE、GAN）並評估生成品質</span>",
+    "en": "<span class=\"icon-list-icon\">🎨</span><span>Implement simple generative models (VAE, GAN) and evaluate the quality of what they generate</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fb5bf6dad571": {
+    "zh": "<span class=\"icon-list-icon\">👥</span><span><strong>As a team</strong>, design, train, and present a complete deep-learning project | 以團隊協作方式設計、訓練並發表一個完整的深度學習專題</span>",
+    "en": "<span class=\"icon-list-icon\">👥</span><span><strong>As a team</strong>, design, train, and present a complete deep-learning project</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "26ad5940024e": {
+    "zh": "<span class=\"chapter-number\">4</span>Grading Breakdown | 評分方式",
+    "en": "<span class=\"chapter-number\">4</span>Grading",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "80a00037d605": {
+    "zh": "Attendance &amp; Participation | 平時成績",
+    "en": "Coursework (attendance &amp; participation)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ac9eb5d92ea6": {
+    "zh": "Midterm Exam (Wk 9) | 期中考",
+    "en": "Midterm Exam (Wk 9)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "75e17b1e3e82": {
+    "zh": "Final Exam + Project (Wk 17) | 期末考＋專題",
+    "en": "Final Exam + Project (Wk 17)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ca7bf8d3ff08": {
+    "zh": "3 Programming Assignments | 3 次程式作業",
+    "en": "3 Programming Assignments",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "822b8d7ca151": {
+    "zh": "<span class=\"chapter-number\">5</span>Assignments &amp; Final Project | 作業與期末專題",
+    "en": "<span class=\"chapter-number\">5</span>Assignments &amp; Final Project",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4e4cf4fe7ca1": {
+    "zh": "HW1 · Backprop &amp; MLP (Wk 3 → Wk 6) | 反向傳播與 MLP",
+    "en": "HW1 · Backpropagation &amp; MLP (Wk 3 → Wk 6)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "372c52939521": {
+    "zh": "Hand-code a 2-layer MLP's forward/backward pass in NumPy and verify it with gradient checking. | 用 NumPy 手刻兩層 MLP 的前向／反向傳播，並以梯度檢查驗證正確性。",
+    "en": "Hand-code the forward and backward passes of a two-layer MLP in NumPy, and verify they are correct with gradient checking.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4e5d41b8990b": {
+    "zh": "HW2 · CNN Image Classification (Wk 8 → Wk 11) | CNN 影像分類",
+    "en": "HW2 · CNN Image Classification (Wk 8 → Wk 11)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "87b8fd95ede4": {
+    "zh": "Train a CNN on CIFAR-10 in PyTorch; compare at least two regularization strategies. | 用 PyTorch 於 CIFAR-10 訓練 CNN，比較至少兩種正則化策略。",
+    "en": "Train a CNN on CIFAR-10 in PyTorch and compare at least two regularization strategies.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7e535f21afe0": {
+    "zh": "HW3 · Sequences &amp; Attention (Wk 12 → Wk 15) | 序列建模與注意力",
+    "en": "HW3 · Sequence Modeling &amp; Attention (Wk 12 → Wk 15)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d335ff3d92a1": {
+    "zh": "Solve a sequence task with LSTM/GRU or a simplified self-attention model, with a short write-up. | 用 LSTM/GRU 或簡化版自注意力完成序列任務，並撰寫實驗報告。",
+    "en": "Complete a sequence task with an LSTM/GRU or a simplified self-attention model, and write an experiment report.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "80a9ed219a03": {
+    "zh": "Final Project — <span class=\"highlight--primary\">Team-based</span> (Wk 10 → Wk 17) | 期末專題——<span class=\"highlight--primary\">分組進行</span>",
+    "en": "Final Project — <span class=\"highlight--primary\">Team-based</span> (Wk 10 → Wk 17)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1c097ecfd483": {
+    "zh": "Teams of <strong>3–4</strong> (1–2 also fine if needed) pick their own topic from anything taught in this course — required <em>or</em> elective units alike. | 建議每組 <strong>3–4 人</strong>（有困難 1–2 人亦可），主題由各組依興趣自訂，範圍為本課程所有教授過的單元（必授＋選讀皆可）。",
+    "en": "Teams of <strong>3–4 people</strong> are recommended (1–2 is also fine if that's hard to manage). Each team picks its own topic based on its interests, from any unit taught in this course (required <em>or</em> elective).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "941bb884106e": {
+    "zh": "<span class=\"chapter-number\">6</span>AI Assistance + GitHub: The Rules | AI 輔助與 GitHub：遊戲規則",
+    "en": "<span class=\"chapter-number\">6</span>AI Assistance &amp; GitHub: The Rules of the Game",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "aa234b626466": {
+    "zh": "You may use <strong>any AI tool</strong> for every assignment and the final project — including an AI agent that runs <code>git commit</code> and <code>git push</code> for you. The one non-negotiable: <span class=\"highlight--glow\">your own thinking has to be visible in the repo</span>. | 所有作業與期末專題都<strong>可以使用任何 AI 工具</strong>——甚至可以請 AI agent 直接幫你執行 <code>git commit</code> 與 <code>git push</code>。唯一不能少的是：<span class=\"highlight--glow\">你自己的思考過程必須看得見</span>。",
+    "en": "You <strong>may use any AI tool</strong> for every assignment and the final project — you can even have an AI agent run <code>git commit</code> and <code>git push</code> for you. The one thing that can't be missing: <span class=\"highlight--glow\">your own thinking process has to be visible</span>.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8233768d81c1": {
+    "zh": "<span>📝</span> Required Commit Message Format | 必要的 Commit 訊息格式",
+    "en": "<span>📝</span> Required Commit Message Format",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a749d4f2cd38": {
+    "zh": "<span class=\"icon-list-icon\">✅</span><span>Many small, incremental commits — not one giant final commit | 多次漸進式 commit，不要一次性上傳完成品</span>",
+    "en": "<span class=\"icon-list-icon\">✅</span><span>Many small, incremental commits — don't upload the finished product in one go</span>",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7f8018ffeffd": {
+    "zh": "<span class=\"icon-list-icon\">🤖</span><span>Fine to let an AI agent write &amp; push the commit — as long as it shows you the message first for your OK | 可以讓 AI agent 代寫並推送 commit，但須先列出完整訊息讓你確認</span>",
+    "en": "<span class=\"icon-list-icon\">🤖</span><span>You may let an AI agent write and push commits for you, but it must first show you the full message for your approval</span>",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "30523390d50f": {
+    "zh": "<span class=\"icon-list-icon\">🔎</span><span>You may be asked, at random, to explain any commit in your own words | 教師可能隨機抽問，請你用自己的話解釋任一次 commit</span>",
+    "en": "<span class=\"icon-list-icon\">🔎</span><span>The instructor may pick a commit at random and ask you to explain it in your own words</span>",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4ee045e2221f": {
+    "zh": "<span class=\"chapter-number\">7</span>Final Project Delivery | 期末專題交付方式",
+    "en": "<span class=\"chapter-number\">7</span>Final Project Delivery",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3af2c53decb5": {
+    "zh": "🎥 Video | 影片",
+    "en": "🎥 Video",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d302cb81bd32": {
+    "zh": "8–12 min, unlisted on YouTube. Structure: motivation → method → results/demo → conclusion. Link submitted via the e-course system. | 8–12 分鐘，YouTube 設為「不公開」。結構：動機 → 方法 → 結果／demo → 結論。連結繳交至 e 學苑。",
+    "en": "8–12 minutes, set to “Unlisted” on YouTube. Structure: motivation → method → results/demo → conclusion. Submit the link through the e-course system.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "dc60f62adc50": {
+    "zh": "📁 Report | 報告",
+    "en": "📁 Report",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f5298fd0c580": {
+    "zh": "Lives inside your GitHub repo (e.g. <code>report.md</code>). The repo must be switched to <strong>Public</strong> by the deadline. | 報告直接寫在 GitHub repo 中（如 <code>report.md</code>），截止前 repo 須設為 <strong>Public（公開）</strong>。",
+    "en": "Write the report directly in your GitHub repo (e.g. <code>report.md</code>). The repo must be set to <strong>Public</strong> before the deadline.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "115f7152da3e": {
+    "zh": "\n        Repo still Private after the deadline = project counted as <span class=\"highlight--warning\">not submitted</span>. No late exceptions. | 逾期 repo 仍為 Private，一律視同<span class=\"highlight--warning\">未繳交</span>，不受理補交。\n    ",
+    "en": "\n        If the repo is still Private after the deadline, the project is treated as <span class=\"highlight--warning\">not submitted</span>, no exceptions. Late submissions are not accepted.\n    ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ebd609ba885f": {
+    "zh": "\n        Week 17 in class is <strong>exam only</strong> — no presentations. Everyone watches each other's videos and browses each other's repos on their own time, after grades close. | 第 17 週課堂<strong>只有期末考</strong>，不排期末專題發表；大家在課後自行上網看彼此的影片、瀏覽彼此的 repo。\n    ",
+    "en": "\n        In Week 17 the class session is <strong>the final exam only</strong>; no final-project presentations are scheduled. Everyone watches each other's videos and browses each other's repos online on their own time, outside class.\n    ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5059f354ea74": {
+    "zh": "<span class=\"chapter-number\">8</span>Quick FAQ | 常見問題",
+    "en": "<span class=\"chapter-number\">8</span>FAQ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9e8cb3dea898": {
+    "zh": "\n                <span>Can my final-project topic go beyond what's taught in class? | 期末專題可以做超出課堂教過的題目嗎？</span>\n                <span class=\"accordion-icon\">▼</span>\n            ",
+    "en": "\n                <span>Can my final-project topic go beyond what's taught in class?</span>\n                <span class=\"accordion-icon\">▼</span>\n            ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "294d284225c8": {
+    "zh": "Yes — as long as it's covered by <em>this course's 22 lecture chapters</em> (required or elective). Topics with zero coverage anywhere in the course materials are discouraged, so you always have material and theory to fall back on. | 可以——只要屬於<em>本課程 22 章講義</em>涵蓋範圍（必授或選讀皆可）。完全超出這 22 章之外、教材空白的全新主題則不建議，以確保你仍有講義與理論可依循。",
+    "en": "Yes — as long as it falls within <em>this course's 22 lecture-note chapters</em> (required or elective). Brand-new topics completely outside these 22 chapters, with no course material behind them, are not recommended, so that you still have lecture notes and theory to rely on.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9e5bb4b11b99": {
+    "zh": "\n                <span>What if my group only has 1 or 2 people? | 如果我這組只有 1、2 個人怎麼辦？</span>\n                <span class=\"accordion-icon\">▼</span>\n            ",
+    "en": "\n                <span>What if my group only has 1 or 2 people?</span>\n                <span class=\"accordion-icon\">▼</span>\n            ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9d24b9b9ac24": {
+    "zh": "Totally fine. 3–4 is the sweet spot, but 1–2 person teams are explicitly allowed. | 完全沒問題，3–4 人是建議人數，但 1–2 人一組也是被明確允許的。",
+    "en": "No problem at all. 3–4 people is the recommended team size, but teams of 1–2 are explicitly allowed.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1dc4c1f0a2d2": {
+    "zh": "\n                <span>Do I need a server to submit the final report? | 繳交期末報告需要架設伺服器嗎？</span>\n                <span class=\"accordion-icon\">▼</span>\n            ",
+    "en": "\n                <span>Do I need to set up a server to submit the final report?</span>\n                <span class=\"accordion-icon\">▼</span>\n            ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8f6cce626f01": {
+    "zh": "No — just a public GitHub repo. The instructor opens it directly in a browser, no login or clone required. | 不需要——只要一個公開的 GitHub repo。教師直接用瀏覽器開啟即可，不需登入或 clone。",
+    "en": "No — just a public GitHub repo. The instructor opens it directly in a browser; no login or clone needed.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6f7d3af4901b": {
+    "zh": "Part B · What Is Deep Learning, Anyway? | 深度學習到底是什麼",
+    "en": "Part B · What Is Deep Learning, Anyway?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3d84711944ba": {
+    "zh": "<span class=\"chapter-number\">9</span>A Model Is a Map, Not the Territory | 模型是地圖，不是地圖所指的實地",
+    "en": "<span class=\"chapter-number\">9</span>A Model Is the Map, Not the Territory",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c0c0f5dc21b3": {
+    "zh": "— on model usefulness | 關於模型有沒有用",
+    "en": "— on whether a model is useful",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ded435869c5f": {
+    "zh": "A good model doesn't have to be \"true\" — it has to be <span class=\"highlight--primary\">useful</span>: it explains past data and predicts future data. | 好模型不必然要「為真」——它必須<span class=\"highlight--primary\">有用</span>：解釋過去的觀測，並預測未來的觀測。",
+    "en": "A good model doesn't necessarily have to be “true” — it has to be <span class=\"highlight--primary\">useful</span>: it explains past observations and predicts future ones.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f05de754479a": {
+    "zh": "The map (model) is a simplified, useful representation — never the real terrain (the world) itself. | 地圖（模型）是簡化但有用的表示法——它終究不是真正的地形（真實世界）本身。",
+    "en": "The map (the model) is a simplified but useful representation — in the end, it is not the actual terrain (the real world) itself.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "199a78fd9421": {
+    "zh": "The 3-Step Machine Learning Recipe | 機器學習三步驟食譜",
+    "en": "The Three-Step Machine Learning Recipe",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2ff45e4b8ba0": {
+    "zh": "\"Propose a modeling hypothesis, then use data to test and correct it\" — echoing Karl Popper's philosophy of science. | 「先提出一個建模假設，再用資料去檢驗、修正它」——呼應 Popper 的科學哲學。",
+    "en": "“First propose a modeling hypothesis, then use data to test and revise it” — echoing Popper's philosophy of science.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fffa59f6dc17": {
+    "zh": "Hypothesis Class | 假設類別",
+    "en": "Hypothesis Class",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a8891c632a1c": {
+    "zh": "What kind of model? Linear, tree-based, neural network... | 定義建模類型：線性、樹、神經網路……",
+    "en": "Define the type of model: linear, tree, neural network...",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1708063869c3": {
+    "zh": "Loss Function | 評分機制",
+    "en": "Scoring Mechanism",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "54d31f2f8895": {
+    "zh": "A number that quantifies how bad a model is. | 用損失函數量化模型好壞。",
+    "en": "Use a loss function to quantify how good or bad a model is.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9b825d59e777": {
+    "zh": "Optimization | 搜尋策略",
+    "en": "Search Strategy",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "301e25cb9273": {
+    "zh": "Solve an optimization problem to find the lowest-loss model. | 求解最佳化問題，找出損失最低的模型。",
+    "en": "Solve an optimization problem to find the model with the lowest loss.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bebb670cd0fa": {
+    "zh": "\"Find the function $f$, out of an allowed family $\\mathcal{F}$, that minimizes the score $S(f)$.\" | 「在一個允許的函數家族 $\\mathcal{F}$ 中，找出讓評分 $S(f)$ 最小的那個函數 $f$。」",
+    "en": "“Within an allowed family of functions $\\mathcal{F}$, find the function $f$ that minimizes the score $S(f)$.”",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3cc6ccbc42d3": {
+    "zh": "\n        No Free Lunch: no learning algorithm beats all others on every possible problem — <em>unless</em> it first assumes something about the world (an <strong>inductive bias</strong>). | 沒有免費午餐定理：沒有任何學習演算法能在所有問題上都表現最好——除非它先對世界做了假設（<strong>歸納偏置</strong>）。\n    ",
+    "en": "\n        No Free Lunch theorem: no learning algorithm performs best on every problem — <em>unless</em> it first makes assumptions about the world (an <strong>inductive bias</strong>).\n    ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ed4b9c3e8b06": {
+    "zh": "<span class=\"chapter-number\">10</span>Turning the World Into Vectors | 把世界變成向量",
+    "en": "<span class=\"chapter-number\">10</span>Turning the World Into Vectors",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "8f884a982883": {
+    "zh": "Every object is described by $d$ features → a $d$-dimensional vector $\\boldsymbol{x}_i \\in \\mathbb{R}^d$; $n$ samples stack into a matrix $\\boldsymbol{X} \\in \\mathbb{R}^{d \\times n}$. | 每個物件用 $d$ 個特徵描述，變成一個 $d$ 維向量 $\\boldsymbol{x}_i \\in \\mathbb{R}^d$；$n$ 個樣本排成矩陣 $\\boldsymbol{X} \\in \\mathbb{R}^{d \\times n}$。",
+    "en": "Each object is described by $d$ features and becomes a $d$-dimensional vector $\\boldsymbol{x}_i \\in \\mathbb{R}^d$; $n$ samples are arranged into a matrix $\\boldsymbol{X} \\in \\mathbb{R}^{d \\times n}$.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "90f276894ecb": {
+    "zh": "Measure each property, write it as a vector, then stack many vectors into the data matrix $\\boldsymbol{X}$. | 先量測每個屬性、寫成向量，再將多個樣本向量堆疊成資料矩陣 $\\boldsymbol{X}$。",
+    "en": "First measure each property and write it as a vector, then stack many sample vectors into the data matrix $\\boldsymbol{X}$.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6928c053d65c": {
+    "zh": "A learning model is just a function from data-space to output-space, with learnable parameters $\\theta$. | 學習模型就是一個從資料空間映射到輸出空間的函數，帶有可學習的參數 $\\theta$。",
+    "en": "A learning model is just a function that maps the data space to the output space, with learnable parameters $\\theta$.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "a32aa9de52d8": {
+    "zh": "<span class=\"chapter-number\">11</span>Three Flavors of Learning | 三種學習方式",
+    "en": "<span class=\"chapter-number\">11</span>Three Kinds of Learning",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "d1dd9c805bfb": {
+    "zh": "Same data, three different jobs: sort it (supervised), group it (unsupervised), or learn from a reward signal (reinforcement). | 同樣的資料，三種不同任務：分類標記（監督式）、自動分組（非監督式），或從獎勵訊號中學習（強化學習）。",
+    "en": "Same data, three different tasks: label it into classes (supervised), group it automatically (unsupervised), or learn from a reward signal (reinforcement learning).",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "ff2e83e92522": {
+    "zh": "Framework anatomy: inputs and feedback determine the learning problem. | 框架解剖：輸入與回饋決定學習問題。",
+    "en": "Anatomy of the framework: the inputs and the feedback determine the learning problem.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "9d4eebf81857": {
+    "zh": "👀 Supervised | 監督式",
+    "en": "👀 Supervised",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "3bcb19f0d812": {
+    "zh": "<strong>Classification</strong>: $f_\\theta: \\mathbb{R}^d \\to \\{\\ell_1,\\dots,\\ell_m\\}$ — discrete labels. | 分類：離散標籤。<br><strong>Regression</strong>: $f_\\theta: \\mathbb{R}^d \\to \\mathbb{R}$ — a continuous value. | 回歸：連續數值。",
+    "en": "<strong>Classification</strong>: $f_\\theta: \\mathbb{R}^d \\to \\{\\ell_1,\\dots,\\ell_m\\}$ — discrete labels.<br><strong>Regression</strong>: $f_\\theta: \\mathbb{R}^d \\to \\mathbb{R}$ — a continuous value.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "bee7ce7fb2c2": {
+    "zh": "🧩 Unsupervised | 非監督式",
+    "en": "🧩 Unsupervised",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "4d9f42bd8dd3": {
+    "zh": "<strong>Clustering</strong> (no labels) and <strong>dimensionality reduction</strong> $f_\\theta: \\mathbb{R}^d \\to \\mathbb{R}^p,\\ p \\ll d$. | 分群（無標籤）與降維。",
+    "en": "<strong>Clustering</strong> (no labels) and <strong>dimensionality reduction</strong> $f_\\theta: \\mathbb{R}^d \\to \\mathbb{R}^p,\\ p \\ll d$.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "801da7020994": {
+    "zh": "🎮 Reinforcement | 強化學習",
+    "en": "🎮 Reinforcement Learning",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "cdbb2d79b527": {
+    "zh": "An agent interacts with an environment, choosing actions $a \\in \\mathcal{A}$ to maximize cumulative reward. Think AlphaGo. | 代理與環境互動，選擇動作以最大化累積獎勵，例如 AlphaGo。",
+    "en": "An agent interacts with an environment, choosing actions $a \\in \\mathcal{A}$ to maximize the cumulative reward. Example: AlphaGo.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "18305973bdec": {
+    "zh": "<span class=\"chapter-number\">12</span>Classification vs. Regression | 分類 vs. 回歸",
+    "en": "<span class=\"chapter-number\">12</span>Classification vs. Regression",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "9fd81052d64d": {
+    "zh": "Aspect | 面向",
+    "en": "Aspect",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "f55eff8aa418": {
+    "zh": "Classification | 分類",
+    "en": "Classification",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "36f1bf0ca5c9": {
+    "zh": "Regression | 回歸",
+    "en": "Regression",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "dbebd731957e": {
+    "zh": "Output | 輸出",
+    "en": "Output",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "06b65fc79533": {
+    "zh": "Finite label set $\\{\\ell_1,\\dots,\\ell_m\\}$ | 有限標籤集合",
+    "en": "Finite label set $\\{\\ell_1,\\dots,\\ell_m\\}$",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "b5d4eb55a351": {
+    "zh": "Any real number $\\mathbb{R}$ | 任意實數",
+    "en": "Any real number $\\mathbb{R}$",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "96a56f8e6e87": {
+    "zh": "Example | 例子",
+    "en": "Example",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "4ef476cb3780": {
+    "zh": "Apple vs. cucumber | 蘋果 vs. 小黃瓜",
+    "en": "Apple vs. cucumber",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "f78832d09475": {
+    "zh": "Predicting an apple's diameter | 預測蘋果直徑",
+    "en": "Predicting an apple's diameter",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "d7e71a62297c": {
+    "zh": "Six classic statistical families — Bayes/Naive Bayes, LDA/QDA, Logistic Regression, KNN, Decision Trees/Random Forests, and (kernel) SVM — all predate deep learning and still matter as baselines. | 統計分類的六大經典家族——Bayes／Naive Bayes、LDA／QDA、羅吉斯迴歸、KNN、決策樹／隨機森林、（核）SVM——都早於深度學習出現，至今仍是重要的基準方法。",
+    "en": "The six classic families of statistical classification (Bayes/Naive Bayes, LDA/QDA, logistic regression, KNN, decision trees/random forests, and (kernel) SVM) all predate deep learning and are still important baselines today.",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "d30e6c4d59ac": {
+    "zh": "<span class=\"chapter-number\">13</span>Clustering vs Dimension Reduction | 分群 vs. 降維",
+    "en": "<span class=\"chapter-number\">13</span>Clustering vs. Dimensionality Reduction",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "da7a24673a77": {
+    "zh": "Clustering partitions points into groups; dimensionality reduction preserves their structure using fewer coordinates. | 分群將資料點劃分為群組；降維則以較少座標保留資料的結構。",
+    "en": "Clustering partitions data points into groups; dimensionality reduction preserves the structure of the data using fewer coordinates.",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "79d7f1b81256": {
+    "zh": "<span class=\"chapter-number\">14</span>Early Neural Network History (1943–1969) | 早期神經網路史",
+    "en": "<span class=\"chapter-number\">14</span>Early Neural Network History (1943–1969)",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "b6b223af5031": {
+    "zh": "1943 · McCulloch–Pitts Neuron | 神經元",
+    "en": "1943 · McCulloch–Pitts Neuron",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "f2bb2fbe960c": {
+    "zh": "The first mathematical model of a neuron: binary inputs, threshold logic — could express AND/OR/NOT. | 首個神經元數學模型：二元輸入、閾值邏輯，能表達 AND/OR/NOT。",
+    "en": "The first mathematical model of a neuron: binary inputs and threshold logic, able to express AND/OR/NOT.",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "4ac0a01d84ce": {
+    "zh": "1949 · Hebbian Learning | Hebb 學習",
+    "en": "1949 · Hebbian Learning",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "e7aece3253e1": {
+    "zh": "\"Cells that fire together, wire together.\" Weights adjust by correlation — an early form of learning. | 「一起激發的細胞，會連在一起。」依相關性調整權重，是學習的雛形。",
+    "en": "“Cells that fire together, wire together.” Weights are adjusted according to correlation, an early prototype of learning.",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "3e0665b6586e": {
+    "zh": "1958 · Perceptron (Rosenblatt) | 感知器",
+    "en": "1958 · Perceptron (Rosenblatt)",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "666d71a1af74": {
+    "zh": "A single neuron that learns from examples — a linear classifier. | 能從範例學習的單層神經元，是線性分類器。",
+    "en": "A single-layer neuron that can learn from examples; it is a linear classifier.",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "bd0da0835aae": {
+    "zh": "1969 · XOR Limitation | XOR 限制",
+    "en": "1969 · XOR Limitation",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "fbc688b961e9": {
+    "zh": "Minsky &amp; Papert prove the Perceptron can't solve XOR — triggering the first AI winter for neural nets. | Minsky 與 Papert 證明感知器無法解 XOR，引發神經網路的第一次寒冬。",
+    "en": "Minsky &amp; Papert prove that the perceptron cannot solve XOR, triggering the first winter for neural networks.",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "51813b893a8f": {
+    "zh": "From One Neuron to a Universe of Them | 從一個神經元到一整片神經網路",
+    "en": "From One Neuron to an Entire Neural Network",
+    "kp": 19,
+    "ctx": "page"
+  },
+  "31590abcd31c": {
+    "zh": "From a single McCulloch–Pitts neuron (1943) to today's massive deep networks — the same basic idea, scaled up across eight decades. | 從一顆 McCulloch–Pitts 神經元（1943）到今日龐大的深度網路——同樣的基本想法，橫跨八十年不斷擴大規模。",
+    "en": "From a single McCulloch–Pitts neuron (1943) to today's massive deep networks: the same basic idea, steadily scaled up over eight decades.",
+    "kp": 19,
+    "ctx": "page"
+  },
+  "1557e9f3dfb7": {
+    "zh": "<span class=\"chapter-number\">15</span>Modern History: From Winter to Deep Learning Boom | 現代史：從寒冬到全面爆發",
+    "en": "<span class=\"chapter-number\">15</span>Modern History: From Winter to Full-Blown Boom",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "7a7b84a4db06": {
+    "zh": "1980s–2006 · AI Winter | AI 冬眠",
+    "en": "1980s–2006 · AI Winter",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "d9cf81049938": {
+    "zh": "Vanishing/exploding gradients, weak hardware, small datasets — SVMs and kernel methods dominate instead. | 梯度消失／爆炸、硬體算力不足、資料集太小——SVM 與核方法成為主流。",
+    "en": "Vanishing/exploding gradients, too little computing power, datasets too small — SVMs and kernel methods become the mainstream.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "821b14362b8d": {
+    "zh": "2006 · Deep Belief Networks (Hinton) | DBN 復興",
+    "en": "2006 · Deep Belief Networks (Hinton): the DBN Revival",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "843963cfcc48": {
+    "zh": "Unsupervised layer-wise pretraining finally makes deep nets trainable again. | 無監督逐層預訓練，讓深度網路重新變得可訓練。",
+    "en": "Unsupervised layer-wise pretraining makes deep networks trainable again.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "8e3f4fd5c55f": {
+    "zh": "2012 · AlexNet | AlexNet 突破",
+    "en": "2012 · The AlexNet Breakthrough",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "942d2431476b": {
+    "zh": "GPUs + ReLU + big data crush the ImageNet benchmark — <span class=\"highlight--glow\">and deep learning explodes.</span> | GPU＋ReLU＋大數據刷新 ImageNet 成績——<span class=\"highlight--glow\">深度學習全面熱潮由此點燃。</span>",
+    "en": "GPUs + ReLU + big data set a new record on ImageNet — <span class=\"highlight--glow\">and this sparks the full-blown deep learning boom.</span>",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "b471513c02f4": {
+    "zh": "2014 · VAE &amp; GAN | 生成模型元年",
+    "en": "2014 · VAE &amp; GAN: Year One of Generative Models",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "5488772ad724": {
+    "zh": "Two very different ways to generate new data: variational autoencoders and adversarial networks. | 兩種截然不同的資料生成方式：變分自編碼器與對抗生成網路。",
+    "en": "Two radically different ways to generate data: variational autoencoders and generative adversarial networks.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "93102224c68a": {
+    "zh": "2017–18 · Transformer, BERT, GPT | 注意力時代",
+    "en": "2017–18 · Transformer, BERT, GPT: the Age of Attention",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "c4e29a8f111d": {
+    "zh": "Self-attention replaces recurrence — the architecture behind every modern LLM. | 自注意力取代遞迴，成為所有現代大型語言模型的基礎架構。",
+    "en": "Self-attention replaces recurrence and becomes the foundational architecture of every modern large language model.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "3e47691f1709": {
+    "zh": "2020–21 · DDPM &amp; Diffusion Models | 擴散模型崛起",
+    "en": "2020–21 · DDPM &amp; the Rise of Diffusion Models",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "698d8e95bffb": {
+    "zh": "DDPM makes iterative denoising practical for high-quality synthesis; 2021 results surpass GANs on ImageNet. | DDPM 讓逐步加噪、再學習反向去噪的高品質生成變得實用；2021 年的結果在 ImageNet 上超越 GAN。",
+    "en": "DDPM makes high-quality generation practical by gradually adding noise and then learning to reverse it through denoising; in 2021, results surpassed GANs on ImageNet.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "92f2fa89bcd7": {
+    "zh": "2022 · ChatGPT | 對話式生成式 AI 普及",
+    "en": "2022 · ChatGPT: Conversational Generative AI Goes Mainstream",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "df72dc66f3e6": {
+    "zh": "A GPT-3.5–based conversational research preview brings generative AI to the general public at unprecedented scale. | 以 GPT-3.5 系列為基礎的對話式研究預覽，讓生成式 AI 以前所未有的規模走進大眾使用情境。",
+    "en": "A conversational research preview built on the GPT-3.5 series brings generative AI into everyday use by the general public at an unprecedented scale.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "649a1dd6a970": {
+    "zh": "\n        This entire 77-year story — Perceptron to Transformer — is exactly the syllabus of this course, in order. | 這整整 77 年的故事——從感知器到 Transformer——正好就是這門課接下來的教學順序。\n    ",
+    "en": "\n        This entire 77-year story — from the perceptron to the Transformer — is exactly the order in which this course will be taught.\n    ",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "a086a47ce369": {
+    "zh": "<span class=\"chapter-number\">16</span>Traditional ML vs. Deep Learning: Where Features Come From | 傳統機器學習 vs. 深度學習：特徵從哪裡來？",
+    "en": "<span class=\"chapter-number\">16</span>Traditional ML vs. Deep Learning: Where Do Features Come From?",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "e5ccdbb25381": {
+    "zh": "\n        Traditional ML asks people to decide <strong>which features to expose</strong>; deep learning learns useful <strong>internal representations</strong> from data. | 傳統機器學習由人決定<strong>要提供哪些特徵</strong>；深度學習則從資料中學得有用的<strong>內部表徵</strong>。\n    ",
+    "en": "\n        In traditional machine learning, people decide <strong>which features to provide</strong>; deep learning learns useful <strong>internal representations</strong> from data.\n    ",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "47759c4def13": {
+    "zh": "Same raw image, different responsibility for representation. | 相同的原始影像，但「表徵」由誰負責的方式不同。",
+    "en": "The same raw image, but a different answer to who is responsible for the “representation.”",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "d31e8ac9a890": {
+    "zh": "Traditional ML | 傳統機器學習",
+    "en": "Traditional Machine Learning",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "7b760dd18826": {
+    "zh": "<strong class=\"term--traditional\">Experts choose variables</strong> such as <strong class=\"term--traditional\">counts, ratios, texture descriptors, or domain rules</strong>; a <strong class=\"term--traditional\">linear model, tree, or SVM</strong> then learns the <strong class=\"term--traditional\">decision boundary</strong>. | <strong class=\"term--traditional\">專家先選擇變數</strong>，例如<strong class=\"term--traditional\">計數、比例、紋理描述子或領域規則</strong>；再由<strong class=\"term--traditional\">線性模型、決策樹或 SVM</strong>學習<strong class=\"term--traditional\">決策邊界</strong>。",
+    "en": "<strong class=\"term--traditional\">Experts first choose the variables</strong>, such as <strong class=\"term--traditional\">counts, ratios, texture descriptors, or domain rules</strong>; then a <strong class=\"term--traditional\">linear model, decision tree, or SVM</strong> learns the <strong class=\"term--traditional\">decision boundary</strong>.",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "87133691bde1": {
+    "zh": "Deep Learning | 深度學習",
+    "en": "Deep Learning",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "5d2f2d781eaa": {
+    "zh": "<strong class=\"term--deep\">Multiple layers transform raw input</strong> into increasingly <strong class=\"term--deep\">task-useful representations</strong> — but <strong class=\"term--constraint\">people still choose the data, architecture, loss, and evaluation</strong>. | <strong class=\"term--deep\">多個網路層轉換原始輸入</strong>，逐步形成更有助於任務的<strong class=\"term--deep\">內部表徵</strong>——但<strong class=\"term--constraint\">人仍須選擇資料、架構、損失函數與評估方式</strong>。",
+    "en": "<strong class=\"term--deep\">Multiple network layers transform the raw input</strong>, gradually forming <strong class=\"term--deep\">internal representations</strong> that are more useful for the task — but <strong class=\"term--constraint\">people still have to choose the data, the architecture, the loss function, and the evaluation method</strong>.",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "8e5d05bb7035": {
+    "zh": "Choose by Constraints | 依限制選擇",
+    "en": "Choose Based on Constraints",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "3ee37ad2683b": {
+    "zh": "<strong class=\"term--deep\">Deep learning often excels on images, audio, and text</strong> with <strong class=\"term--constraint\">sufficient data and compute</strong>. For <strong class=\"term--traditional\">small tabular data</strong> or strict <strong class=\"term--constraint\">interpretability/latency</strong> needs, <strong class=\"term--traditional\">traditional methods remain strong baselines</strong>. | 深度學習常在資料與算力充足的<strong class=\"term--deep\">影像、語音、文字任務</strong>表現突出；面對<strong class=\"term--traditional\">小型表格資料</strong>或重視<strong class=\"term--constraint\">可解釋性／延遲</strong>時，<strong class=\"term--traditional\">傳統方法仍是很強的基準</strong>。",
+    "en": "<strong class=\"term--deep\">Deep learning often stands out on image, audio, and text tasks</strong> when <strong class=\"term--constraint\">data and compute are plentiful</strong>; for <strong class=\"term--traditional\">small tabular data</strong>, or when <strong class=\"term--constraint\">interpretability/latency</strong> matters, <strong class=\"term--traditional\">traditional methods are still very strong baselines</strong>.",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "4978a13557ee": {
+    "zh": "🎯 Summary | 總結回顧",
+    "en": "🎯 Summary and Review",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "d1fa9c2d9136": {
+    "zh": "Course Logistics | 課程運作",
+    "en": "How the Course Works",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "9e3b26f94c6c": {
+    "zh": "17 weeks, 3 HW + team final project, AI use is welcome as long as your reasoning is disclosed in commits. | 17 週課程，3 次作業＋團隊期末專題，歡迎使用 AI，但需在 commit 中揭露你的思考過程。",
+    "en": "A 17-week course, 3 homework assignments + a team final project. AI use is welcome, but you must disclose your thought process in your commits.",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "4f537ba9e230": {
+    "zh": "The Big Picture | 大局觀",
+    "en": "The Big Picture",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "fb2dd8032613": {
+    "zh": "ML = hypothesis class + loss + optimization. Deep learning is one (very powerful) hypothesis class. | 機器學習＝假設類別＋損失函數＋最佳化。深度學習只是其中一種（非常強大的）假設類別。",
+    "en": "Machine learning = hypothesis class + loss function + optimization. Deep learning is just one (very powerful) hypothesis class among them.",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "9847d108d41f": {
+    "zh": "Coming Up | 接下來",
+    "en": "Coming Up Next",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "c40048ba1030": {
+    "zh": "Week 2: the perceptron and the multi-layer perceptron — our first real neural network. | 第 2 週：感知器與多層感知器——我們的第一個真正的神經網路。",
+    "en": "Week 2: the perceptron and the multilayer perceptron — our first real neural network.",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "88dfec81f6fc": {
+    "zh": "🧠 Knowledge Check | 知識檢核",
+    "en": "🧠 Knowledge Check",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "7ee4b3a133f8": {
+    "zh": "Logistics | 課程規則",
+    "en": "Course Rules",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "aa52db94ea7e": {
+    "zh": "True or false: if your final-project repo is still <span class=\"highlight--warning\">Private</span> after the deadline, you can email the instructor to get an extension. | 是非題：如果期末專題的 repo 在截止後仍為 <span class=\"highlight--warning\">Private</span>，可以寄信給教師要求延期補交。",
+    "en": "True or false: if your final-project repo is still <span class=\"highlight--warning\">Private</span> after the deadline, you can email the instructor and ask to submit it late.",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "bbb8d8a76835": {
+    "zh": "<span>Show answer | 查看答案</span><span class=\"quiz-toggle__icon\">▼</span>",
+    "en": "<span>Show answer</span><span class=\"quiz-toggle__icon\">▼</span>",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "1b296154d8e9": {
+    "zh": "✅ Answer | 答案：",
+    "en": "✅ Answer:",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "70364cb66997": {
+    "zh": "False. | 錯。A repo still Private after the deadline is counted as not submitted, with no late exceptions — this is explicit in the syllabus. | 逾期仍為 Private 一律視同未繳交，不受理補交，這在課程規劃書中已明確寫明。",
+    "en": "False. A repo that is still Private after the deadline is always treated as not submitted, and late submissions are not accepted — this is stated explicitly in the syllabus.",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "bfed2a0e9c19": {
+    "zh": "Concept | 概念題",
+    "en": "Concept Question",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "4f959c517c1b": {
+    "zh": "The No Free Lunch theorem says a learning algorithm needs an <span class=\"highlight--primary\">inductive bias</span> to beat random guessing on a specific problem. What does \"inductive bias\" mean here? | 沒有免費午餐定理指出，學習演算法需要<span class=\"highlight--primary\">歸納偏置</span>才能在特定問題上勝過隨機猜測。這裡「歸納偏置」是什麼意思？",
+    "en": "The No Free Lunch theorem says that a learning algorithm needs an <span class=\"highlight--primary\">inductive bias</span> to beat random guessing on a specific problem. What does “inductive bias” mean here?",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "d03bb49c4282": {
+    "zh": "It's the set of assumptions a model makes about the world before seeing any data — e.g. \"nearby points tend to have similar labels.\" Without some such assumption, no algorithm can generalize better than any other, on average across all possible problems. | 是模型在看到資料之前，就對世界做的一組假設——例如「鄰近的點傾向有相似的標籤」。沒有這樣的假設，任何演算法在所有可能問題的平均表現上，都不會比其他演算法更好。",
+    "en": "It is a set of assumptions the model makes about the world before it sees any data — e.g. “nearby points tend to have similar labels.” Without such assumptions, no algorithm does better than any other when performance is averaged over all possible problems.",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "aac72905744b": {
+    "zh": "History | 歷史題",
+    "en": "History Question",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "f722a8f1a7f8": {
+    "zh": "What breakthrough in 2012 is widely credited with reigniting deep learning after decades of AI winter? | 2012 年的哪一項突破，普遍被認為是重新點燃深度學習熱潮的關鍵？",
+    "en": "Which breakthrough in 2012 is widely regarded as the key to reigniting the deep learning boom?",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "be513d3844bb": {
+    "zh": "AlexNet — a deep CNN trained on GPUs with ReLU activations, which dramatically outperformed all prior methods on the ImageNet competition. | AlexNet——一個用 GPU 訓練、採用 ReLU 激活函數的深度 CNN，在 ImageNet 競賽中大幅超越所有先前方法。",
+    "en": "AlexNet — a deep CNN trained on GPUs with ReLU activation functions, which far outperformed all previous methods in the ImageNet competition.",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "ea730c5e1cde": {
+    "zh": "回到頂部",
+    "en": "Back to top",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "9c0e55c3217e": {
+    "zh": "切換主題",
+    "en": "Toggle theme",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "cecf21401dcc": {
+    "zh": "A curled topographic map peeling back to reveal the real forested landscape underneath | 一張捲起的等高線地圖掀開一角，露出底下真實的山林景觀",
+    "en": "A curled-up topographic map with one corner lifted, revealing the real forested mountain landscape underneath",
+    "kp": 13,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "2d953edc4aec": {
+    "zh": "Concrete teaching infographic: an apple is measured by redness, diameter, and mass, then encoded as a feature vector and combined with other samples into a data matrix | 具體教學資訊圖表：以蘋果的紅度、直徑與重量量測值形成特徵向量，並與其他樣本組成資料矩陣",
+    "en": "Concrete teaching infographic: an apple's measured redness, diameter, and weight form a feature vector, which is combined with other samples into a data matrix",
+    "kp": 14,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "be52b810ed0c": {
+    "zh": "Three panels: labeled shapes for supervised learning, self-forming clusters for unsupervised learning, and a robot navigating a maze toward a reward star for reinforcement learning | 三個面板：監督式學習的貼標籤形狀、非監督式學習的自動分群、強化學習中機器人在迷宮中尋找獎勵星星",
+    "en": "Three panels: shapes being labeled for supervised learning, automatic clustering for unsupervised learning, and a robot searching a maze for a reward star for reinforcement learning",
+    "kp": 15,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "db94fcf7f51f": {
+    "zh": "Information diagram of supervised, unsupervised, and reinforcement learning frameworks | 監督式、非監督式與強化學習框架資訊圖表",
+    "en": "Infographic of the supervised, unsupervised, and reinforcement learning frameworks",
+    "kp": 15,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "003a2cc0cfb8": {
+    "zh": "Information diagram comparing clustering and dimensionality reduction: clustering assigns the same points differently when the requested number of groups m changes, while dimensionality reduction reveals a low-dimensional manifold embedded in high-dimensional space | 比較分群與降維的資訊圖表：分群會因指定群數 m 不同而對同一批資料得到不同分組；降維則揭露嵌在高維空間中的低維流形",
+    "en": "Infographic comparing clustering and dimensionality reduction: clustering gives different groupings of the same data depending on the specified number of clusters m, while dimensionality reduction reveals a low-dimensional manifold embedded in a high-dimensional space",
+    "kp": 17,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "0825c42900e2": {
+    "zh": "Teaching infographic showing one weighted-sum neuron, a shallow network of repeated neurons, and a deep network with multiple hidden layers | 教學資訊圖表：顯示一個加權和神經元、由重複神經元構成的淺層網路、以及具有多個隱藏層的深度網路",
+    "en": "Teaching infographic showing a single weighted-sum neuron, a shallow network made of repeated neurons, and a deep network with multiple hidden layers",
+    "kp": 19,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "ba3334347f47": {
+    "zh": "Concrete comparison infographic: traditional machine learning uses human-designed edges, color, and texture features before a classifier; deep learning learns edge, part, and object representations through a neural network | 具體比較資訊圖表：傳統機器學習先由人設計邊緣、顏色與紋理特徵再分類；深度學習則透過神經網路學得邊緣、組件與物件表徵",
+    "en": "Concrete comparison infographic: in traditional machine learning, people first design edge, color, and texture features and then classify; deep learning learns edge, part, and object representations through a neural network",
+    "kp": 21,
+    "ctx": "attr",
+    "attr": "alt"
+  }
+}
