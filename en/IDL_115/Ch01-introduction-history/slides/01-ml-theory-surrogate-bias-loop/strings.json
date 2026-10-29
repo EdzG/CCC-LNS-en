@@ -17,7 +17,24 @@
     ]
   },
   "_dynamic": [],
-  "_images": [],
+  "_images": [
+    {
+      "key": "23c53bcbdd15",
+      "file": "img00.png"
+    },
+    {
+      "key": "b82a9e6d5aec",
+      "file": "img01.png"
+    },
+    {
+      "key": "77069a7fcd68",
+      "file": "img02.png"
+    },
+    {
+      "key": "fea3d31b0802",
+      "file": "img03.png"
+    }
+  ],
   "_hide": [
     ".en-sub"
   ],

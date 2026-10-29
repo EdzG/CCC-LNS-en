@@ -53,4 +53,4 @@ reference only (his `.en-sub` subtitles are hidden via `_hide`). `kpN` = the Nth
 
 ## Images
 
-- The four inline charts (#0–#3) have Chinese labels; English redraws follow in a separate commit.
+- The four inline charts are redrawn in English (`assets/img00-03.png`, scripts in `en/tools/charts/Ch01-introduction-history/slides-01-img0N.py`). img00: the noisy "real world" line is traced from the image and the background dots are new random positions; img02: the non-convex curve is traced from the image (no closed form). Neither changes what the chart shows. img00 uses "potholes" (坑洞) where the image had "pits".
