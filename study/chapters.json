@@ -27,47 +27,74 @@
     {
      "label": "02 ML vector representation mapping",
      "href": "IDL_115/Ch01-introduction-history/slides/02-ml-vector-representation-mapping.html",
-     "en": null
+     "en": {
+      "units": 178,
+      "translated": 178
+     }
     },
     {
      "label": "03 ML classification vs. regression",
      "href": "IDL_115/Ch01-introduction-history/slides/03-ml-classification-vs-regression.html",
-     "en": null
+     "en": {
+      "units": 142,
+      "translated": 142
+     }
     },
     {
      "label": "04 ML unsupervised clustering DR",
      "href": "IDL_115/Ch01-introduction-history/slides/04-ml-unsupervised-clustering-dr.html",
-     "en": null
+     "en": {
+      "units": 153,
+      "translated": 153
+     }
     },
     {
      "label": "05 ML DR and RL",
      "href": "IDL_115/Ch01-introduction-history/slides/05-ml-dr-and-rl.html",
-     "en": null
+     "en": {
+      "units": 150,
+      "translated": 150
+     }
     },
     {
      "label": "06 Pattern recognition statistical classification",
      "href": "IDL_115/Ch01-introduction-history/slides/06-pattern-recognition-statistical-classification-bilingual.html",
-     "en": null
+     "en": {
+      "units": 295,
+      "translated": 295
+     }
     },
     {
      "label": "07 ML regression dimensionality reduction",
      "href": "IDL_115/Ch01-introduction-history/slides/07-ml-regression-dimensionality-reduction-bilingual.html",
-     "en": null
+     "en": {
+      "units": 229,
+      "translated": 0
+     }
     },
     {
      "label": "08 ML AI history M-P perceptron",
      "href": "IDL_115/Ch01-introduction-history/slides/08-ml-ai-history-mp-perceptron-bilingual.html",
-     "en": null
+     "en": {
+      "units": 194,
+      "translated": 0
+     }
     },
     {
      "label": "09 ML CNN history",
      "href": "IDL_115/Ch01-introduction-history/slides/09-ml-cnn-history-bilingual.html",
-     "en": null
+     "en": {
+      "units": 184,
+      "translated": 0
+     }
     },
     {
      "label": "10 ML overview treasure map",
      "href": "IDL_115/Ch01-introduction-history/slides/10-ml-overview-treasure-map-bilingual.html",
-     "en": null
+     "en": {
+      "units": 146,
+      "translated": 0
+     }
     }
    ],
    "sections": [
