@@ -1,0 +1,925 @@
+{
+  "_runtime": {
+    "exact": {
+      "無監督：像就近、不像推開；LLE 是無監督幾何高手。": "Unsupervised: similar points stay close, dissimilar ones get pushed apart; LLE is an unsupervised geometry expert.",
+      "監督：推開類間（紅低藍高）收攏類內（揉成 (3,3) 與 (16,16)），分數 5 vs 16 即標籤。": "Supervised: push the classes apart (red low, blue high) and pull each class together (squeezed into (3,3) and (16,16)); the scores 5 vs 16 are the labels.",
+      "$f_\\theta(x)=a$ 是策略：狀態挑行動；強化學習靠糖果/棍棒累積獎勵，代表 AlphaGo 等。": "$f_\\theta(x)=a$ is a policy: the state picks the action; reinforcement learning relies on candy/stick to accumulate reward, with AlphaGo and the like as examples."
+    },
+    "patterns": [
+      {
+        "re": "^✓ 正確！ ([\\s\\S]*)$",
+        "en": "✓ Correct! $T1"
+      },
+      {
+        "re": "^✗ 再想想 — ([\\s\\S]*)$",
+        "en": "✗ Think again — $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\" class=\"active\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\" class=\"active\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c308d3753c50": {
+    "zh": "<a href=\"#bigq\">大問句 · Big Question</a>",
+    "en": "<a href=\"#bigq\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "914d97ed7c67": {
+    "zh": "<a href=\"#curse\">維度災難 · Curse</a>",
+    "en": "<a href=\"#curse\">Curse of Dimensionality</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "37d8e34f9d47": {
+    "zh": "<a href=\"#unsup\">無監督降維 · Unsup. DR</a>",
+    "en": "<a href=\"#unsup\">Unsupervised DR</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "beb166419dab": {
+    "zh": "<a href=\"#sup\">監督降維 · Supervised DR</a>",
+    "en": "<a href=\"#sup\">Supervised DR</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6785abb496a6": {
+    "zh": "<a href=\"#cmp\">兩種對比 · Comparison</a>",
+    "en": "<a href=\"#cmp\">The Two Compared</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0219f8b72ab2": {
+    "zh": "<a href=\"#geometry\">幾何投影 · Geometry</a>",
+    "en": "<a href=\"#geometry\">Geometric Projection</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "08d78f31ab76": {
+    "zh": "<a href=\"#mapping\">低維映射 · Embedding</a>",
+    "en": "<a href=\"#mapping\">Low-Dimensional Embedding</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d2b0ac505e50": {
+    "zh": "<a href=\"#arch-dr\">降維架構 · DR Architecture</a>",
+    "en": "<a href=\"#arch-dr\">DR Architecture</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "257b8ed353cc": {
+    "zh": "<a href=\"#rl\">強化學習 · RL</a>",
+    "en": "<a href=\"#rl\">Reinforcement Learning</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "14276340cc73": {
+    "zh": "<a href=\"#loop\">迴路詳解 · Loop</a>",
+    "en": "<a href=\"#loop\">The Loop in Detail</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2e2c71d0ba25": {
+    "zh": "<a href=\"#examples\">AlphaGo等 · Examples</a>",
+    "en": "<a href=\"#examples\">AlphaGo and More</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7b228867d76a": {
+    "zh": "<a href=\"#summary\">總結 · Summary</a>",
+    "en": "<a href=\"#summary\">Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "76e0068f70f2": {
+    "zh": "<a href=\"#roadmap\">路線圖 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Think-About-It Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9f6ae24ab9c9": {
+    "zh": "<a href=\"#closing\">結語 · Closing</a>",
+    "en": "<a href=\"#closing\">Closing</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5d539ea37099": {
+    "zh": "ML THEORY V · 降維與強化學習",
+    "en": "ML THEORY V · Dimensionality Reduction and Reinforcement Learning",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "f98bb9523a5f": {
+    "zh": "壓扁的魔術，<br>棍棒的教養<span style=\"color:#38bdf8; font-size:0.62em;\"> — Dimensionality Reduction &amp; Reinforcement Learning</span>",
+    "en": "The magic of squashing,<br>an upbringing by the rod<span style=\"color:#38bdf8; font-size:0.62em;\"> — Dimensionality Reduction &amp; Reinforcement Learning</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "2a9e4c08cdda": {
+    "zh": "從 $\\mathbb{R}^{10000}$ 到 $\\mathbb{R}^1$，再到靠獎懲學會走路的 Agent",
+    "en": "From $\\mathbb{R}^{10000}$ to $\\mathbb{R}^1$, and on to an agent that learns to walk through rewards and punishments",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "02f0763f8dbe": {
+    "zh": "Scroll Mode · 自學預習版 <span class=\"bilingual-en-inline\" style=\"color:#94a3b8;\">(Scroll · self-study)</span> ｜ 中英雙語 Bilingual",
+    "en": "Scroll Mode · Self-study preview edition | Chinese–English bilingual",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d6256f5bf688": {
+    "zh": "行李裝不下，<br>怎麼辦？\n    <small>Too much luggage — what to do? <span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">Fold wisely (DR) or learn by trial &amp; reward (RL).</span></small>\n  ",
+    "en": "The luggage won't fit —<br>now what?\n    <small><span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">Fold wisely (DR) or learn by trial &amp; reward (RL).</span></small>\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "77bb349cc835": {
+    "zh": "$100\\times100$ 照片 = $\\mathbb{R}^{10000}$，誰能畫出一萬維？只能壓扁。<span class=\"bilingual-en\">$\\mathbb{R}^{10000}$ is unpaintable — compress.</span>",
+    "en": "A $100\\times100$ photo = $\\mathbb{R}^{10000}$. Who can draw ten thousand dimensions? All we can do is squash it.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cd2a33974d37": {
+    "zh": "維度災難：為何要降維？<span class=\"en\">Curse of Dimensionality</span>",
+    "en": "The curse of dimensionality: why reduce dimensions?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0fcf6e758b56": {
+    "zh": "問題 · Problem",
+    "en": "Problem",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "67b25d2d2922": {
+    "zh": "一張 $100\\times100$ 黑白照在電腦眼裡是 $\\mathbb{R}^{10000}$ 的點，太複雜、畫不出來、算不動。<span class=\"bilingual-en\">$\\mathbb{R}^{10000}$ point — too big to plot or compute.</span>",
+    "en": "To a computer, one $100\\times100$ black-and-white photo is a point in $\\mathbb{R}^{10000}$: too complex, impossible to plot, too heavy to compute.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cdf1b98ff05c": {
+    "zh": "直覺 · Intuition — 行李箱比喻",
+    "en": "Intuition — the suitcase analogy",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "18b53d2ebb2a": {
+    "zh": "帶太多東西行李裝不下，怎麼辦？把衣服摺好、空氣擠掉、體積壓小但該帶的都在—— 這就是降維。<span class=\"bilingual-en\">Fold clothes, squeeze air — smaller but keeps essentials.</span>",
+    "en": "You're bringing too much stuff and the luggage won't fit. What do you do? Fold the clothes neatly, squeeze out the air, shrink the volume, yet everything you need is still there — that is dimensionality reduction.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1601846c639e": {
+    "zh": "目標：把高維點雲壓到 $\\mathbb{R}^1$ 數線或 $\\mathbb{R}^2$ 平面，讓人看得懂、電腦算得動。<span class=\"bilingual-en\">Goal: map to $\\mathbb{R}^1$ line or $\\mathbb{R}^2$ plane.</span>",
+    "en": "Goal: squash a high-dimensional point cloud down to the $\\mathbb{R}^1$ number line or the $\\mathbb{R}^2$ plane, so people can understand it and computers can handle the computation.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Holding Attention",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "01c71aa8534c": {
+    "zh": "無監督式降維：自己找模式的幾何魔術<span class=\"en\">Unsupervised DR — Find Pattern Alone</span>",
+    "en": "Unsupervised dimensionality reduction: geometric magic that finds patterns on its own",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "927410d38429": {
+    "zh": "夜市小白 · Night Market Novice",
+    "en": "The Night Market Newbie",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6b71b7885677": {
+    "zh": "外國小白丟進士林夜市，只說「把很像的放一組」—— 黑黏蒸籠一堆、金黃油炸一堆，雖不知名字但結構對了。<span class=\"bilingual-en\">“Group by similarity” — structure without names.</span>",
+    "en": "Drop a clueless foreigner into the Shilin Night Market and just say “put the things that look alike in the same group” — the black, sticky steamer baskets go in one pile, the golden deep-fried stuff in another. They don't know the names, but the structure is right.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "540a987620f0": {
+    "zh": "公式 · Eq.7 — $p \\lt d$",
+    "en": "Formula · Eq. 7 — $p \\lt d$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3ec1f3b99f07": {
+    "zh": "丟 $\\mathbb{R}^d$ 高維原料，映射成緊密的 $\\mathbb{R}^p$ 低維果汁。<span class=\"bilingual-en\">High-dim in → tight low-dim out.</span>",
+    "en": "Throw in high-dimensional raw ingredients in $\\mathbb{R}^d$, and map them into a compact low-dimensional juice in $\\mathbb{R}^p$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "238435d4474e": {
+    "zh": "唯一目標 · Goal",
+    "en": "The one and only goal",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d2b375a34282": {
+    "zh": "原本很像的點壓後「還是很像、更擠」；原本不像的用力推開。<span class=\"bilingual-en\">Keep neighbors close, push strangers apart.</span>",
+    "en": "Points that were very similar to begin with are “still very similar, and even more tightly packed” after squashing; points that were dissimilar get pushed hard apart.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e4858464ddd4": {
+    "zh": "早期高手：<b>LLE（Locally Linear Embedding）</b>靠直覺的幾何。<span class=\"bilingual-en\">Early master: LLE — geometric intuition.</span>",
+    "en": "An early master: <b>LLE (locally linear embedding)</b>, which relies on intuitive geometry.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b5c342e16158": {
+    "zh": "監督式降維：色盲看懂顏色的遊戲<span class=\"en\">Supervised DR — Color-blind Sees Color</span>",
+    "en": "Supervised dimensionality reduction: helping the color-blind see color",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "611628cbf3fd": {
+    "zh": "色盲困境 · Color-blind Dilemma",
+    "en": "The color-blind dilemma",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "124d3a310354": {
+    "zh": "電腦只懂黑白灰度，紅藍球在它眼裡全是灰點，無法說「紅放一組」。<span class=\"bilingual-en\">Computer sees grayscale; red &amp; blue both gray.</span>",
+    "en": "The computer only understands black, white and shades of gray: in its eyes the red and blue balls are all gray dots, so it can't say “put the reds in one group.”",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "281690c194ea": {
+    "zh": "推開類間",
+    "en": "Push the classes apart",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f9c2b02377cd": {
+    "zh": "把混一起的灰點雲拉開：紅低、藍高<span class=\"bilingual-en\">Pull apart.</span>",
+    "en": "Pull apart the mixed-up cloud of gray dots: red low, blue high",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0522ad834f2b": {
+    "zh": "收攏類內",
+    "en": "Pull each class together",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a079cc4bee8a": {
+    "zh": "零散各團揉成緊密一坨：(3,3) 與 (16,16)<span class=\"bilingual-en\">Tighten within.</span>",
+    "en": "Squeeze each scattered group into one tight lump: (3,3) and (16,16)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5086e2562126": {
+    "zh": "分數即標籤",
+    "en": "The score is the label",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a24e54210f0c": {
+    "zh": "色盲也能分：$y=5$ 藍 vs $16$ 暖<span class=\"bilingual-en\">Score = label.</span>",
+    "en": "Even the color-blind can tell them apart: $y=5$ is blue vs $16$ is warm",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "12897042d028": {
+    "zh": "思想對應 · Idea",
+    "en": "The idea behind it",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f9e4c1b97656": {
+    "zh": "此即 <b>FDA（Fisher Discriminant Analysis）</b> 核心：監督資訊輔助，幾何分數代行顏色。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">FDA idea: supervised geometry replaces color.</span>",
+    "en": "This is the core of <b>FDA (Fisher Discriminant Analysis)</b>: with the help of supervision (labels), a geometric score stands in for color.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "855a5ed53e00": {
+    "zh": "兩種降維對比<span class=\"en\">Unsupervised vs Supervised DR</span>",
+    "en": "Two kinds of dimensionality reduction compared",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2d31d64e50ca": {
+    "zh": "Fig 1 · 左：無監督靠鄰居直覺；右：有監督靠標籤把類拉開收攏 <span class=\"bilingual-en\" style=\"font-size:13px;\">(Left: LLE-like; Right: FDA-like)</span>",
+    "en": "Fig 1 · Left: unsupervised, relying on intuition about neighbors; right: supervised, using labels to push the classes apart and pull each class together",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "807108778774": {
+    "zh": "無監督<span class=\"bilingual-en-inline\">(Unsupervised)</span>",
+    "en": "Unsupervised",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4441a810339d": {
+    "zh": "無標籤，靠「像就近」<span class=\"bilingual-en\">no labels, keep neighbors</span>",
+    "en": "No labels; relies on “similar means close”",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "15e52be244ae": {
+    "zh": "代表：LLE<span class=\"bilingual-en\">LLE</span>",
+    "en": "Example: LLE",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b2c901bc0698": {
+    "zh": "有監督<span class=\"bilingual-en-inline\">(Supervised)</span>",
+    "en": "Supervised",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "beef83a35735": {
+    "zh": "有標籤，推開類間收攏類內<span class=\"bilingual-en\">push apart + tighten</span>",
+    "en": "Has labels; pushes the classes apart and pulls each class together",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9b9b649e6ba3": {
+    "zh": "代表：FDA<span class=\"bilingual-en\">FDA</span>",
+    "en": "Example: FDA",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f62959ab70c9": {
+    "zh": "幾何投影與映射：$\\mathbb{R}^2\\to\\mathbb{R}^1$ 的魔術<span class=\"en\">Geometric Projection &amp; Mapping</span>",
+    "en": "Geometric projection and mapping: the magic of $\\mathbb{R}^2\\to\\mathbb{R}^1$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d663f1f5ee49": {
+    "zh": "Fig 2 · 左：幾何投影演示（正交路徑）；右：低維嵌入（緊密兩團） <span class=\"bilingual-en\" style=\"font-size:13px;\">(Left: projection; Right: embedding)</span>",
+    "en": "Fig 2 · Left: geometric projection demo (orthogonal paths); right: low-dimensional embedding (two tight clusters)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "57f64c1e0579": {
+    "zh": "左圖怎麼讀",
+    "en": "How to read the left plot",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "319d3eab43b5": {
+    "zh": "青虛線為正交投影路徑；金線為 $\\mathbf{w}$ 方向；暖/藍為遠/近。<span class=\"bilingual-en\">Cyan = projection; gold = $\\mathbf{w}$.</span>",
+    "en": "The cyan dashed lines are the orthogonal projection paths; the gold line is the direction of $\\mathbf{w}$; warm/blue mean far/near.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e6f06eb3c47c": {
+    "zh": "右圖怎麼讀",
+    "en": "How to read the right plot",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2506bbf9a4e7": {
+    "zh": "同批點在 $y=x_1+x_2$ 數線上變兩緊密團，綠虛線為類間距。<span class=\"bilingual-en\">Same points → two tight clusters on line.</span>",
+    "en": "The same points become two tight clusters on the number line $y=x_1+x_2$; the green dashed line is the between-class distance.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e3ee71904977": {
+    "zh": "本圖參數 · Same Demo",
+    "en": "Parameters of this plot",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "02e64df17195": {
+    "zh": "與前兩講共享同一批 $\\mathbb{R}^2$ 點，強調「方法不同、幾何目標不同」。<span class=\"bilingual-en\">Same points as before; different goals.</span>",
+    "en": "Uses the same set of $\\mathbb{R}^2$ points as the previous two lectures, to stress that “different methods, different geometric goals.”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b567036d835a": {
+    "zh": "輸出空間 $\\mathbb{R}^1$：緊密即是答案<span class=\"en\">Output Space $\\mathbb{R}^1$: Tight is Answer</span>",
+    "en": "Output space $\\mathbb{R}^1$: tight means you have the answer",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "70974e4a199f": {
+    "zh": "嵌入分數分佈 · Embedding Scores — 低團 vs 高團 <span class=\"bilingual-en-inline\">(tight clusters)</span>",
+    "en": "Distribution of embedding scores: low cluster vs high cluster",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "24a5c1f5e583": {
+    "zh": "壓得越緊，越易分類、越易視覺化、越去噪。<span class=\"bilingual-en\">Tighter → easier to classify &amp; visualize.</span>",
+    "en": "The tighter the squeeze, the easier it is to classify, the easier to visualize, and the more noise is removed.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b3fde35206d1": {
+    "zh": "降維架構：高維 → 低維<span class=\"en\">DR Architecture — High to Low</span>",
+    "en": "Dimensionality reduction architecture: high-dimensional → low-dimensional",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "80267f16f2a6": {
+    "zh": "降維流水線：$\\mathbb{R}^d$ → $\\mathbb{R}^p$ (p<d)",
+    "en": "DR pipeline: $\\mathbb{R}^d$ → $\\mathbb{R}^p$ (p<d)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "5ff6b1680b46": {
+    "zh": "高維輸入 $\\mathbb{R}^d$",
+    "en": "High-dim input $\\mathbb{R}^d$",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "f318362bffe1": {
+    "zh": "$\\mathbb{R}^{10000}$ 貓 / 高維特徵",
+    "en": "$\\mathbb{R}^{10000}$ cat / high-dim features",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "f9e24f2458c1": {
+    "zh": "散亂點雲 ☁️",
+    "en": "Scattered point cloud ☁️",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "2d7e8db57eb0": {
+    "zh": "難畫、難算",
+    "en": "Hard to plot and compute",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "7caaa73170ed": {
+    "zh": "映射 $f_\\theta$",
+    "en": "Mapping $f_\\theta$",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "dfc0ed9dcc31": {
+    "zh": "榨汁機 / 投影",
+    "en": "Juicer / projection",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "4240f4fa25c9": {
+    "zh": "推開 + 收攏",
+    "en": "Push apart + pull together",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "62f015b8bdd1": {
+    "zh": "w 方向、b 平移",
+    "en": "w: direction, b: shift",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "e06c478421ca": {
+    "zh": "低維嵌入 $\\mathbb{R}^p$",
+    "en": "Low-dim embedding $\\mathbb{R}^p$",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "c100b8bfdaac": {
+    "zh": "$\\mathbb{R}^1$ 數線 / $\\mathbb{R}^2$ 平面",
+    "en": "$\\mathbb{R}^1$ line / $\\mathbb{R}^2$ plane",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "5fcbb80c74b7": {
+    "zh": "兩緊密團 ●●",
+    "en": "Two tight clusters ●●",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "77f057ff3c14": {
+    "zh": "易視覺化",
+    "en": "Easy to visualize",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "d7bcad7b32b1": {
+    "zh": "壓扁",
+    "en": "Squash",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "310ecfe988f8": {
+    "zh": "輸出",
+    "en": "Output",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "2f918c226da8": {
+    "zh": "無監督：像就近 / 有監督：推開類間 + 收攏類內",
+    "en": "Unsupervised: similar → close / Supervised: push classes apart + pull each together",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "c83850c52925": {
+    "zh": "Fig 3 · 降維流水線 <span class=\"bilingual-en\" style=\"font-size:13px;\">(pipeline high → low)</span>",
+    "en": "Fig 3 · The dimensionality reduction pipeline",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f01482234e60": {
+    "zh": "強化學習：棍棒與糖果的教育<span class=\"en\">Reinforcement Learning — Stick &amp; Candy</span>",
+    "en": "Reinforcement learning: an education by stick and candy",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a5e1b0248c22": {
+    "zh": "小老弟收玩具 · Teaching Little Brother",
+    "en": "Getting little brother to put his toys away",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1f6092937f60": {
+    "zh": "不收 → 沒糖吃（負獎勵）；碰巧放回樂高 → 給糖（正獎勵）。隨機亂動中學出心法。<span class=\"bilingual-en\">No tidy → no candy; tidy → candy.</span>",
+    "en": "Doesn't tidy up → no candy (negative reward); happens to put the Lego back → candy (positive reward). Out of random fumbling, he learns the knack.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8173cf38be0f": {
+    "zh": "策略函數 · Eq.8 — $f_\\theta(x)=a\\in A$",
+    "en": "Policy function · Eq. 8 — $f_\\theta(x)=a\\in A$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "29612c3a4e79": {
+    "zh": "模型 $f$（代理 Agent）在任何狀態 $\\mathbf{x}$ 下，從可行動集合 $A$ 挑最讚的 $a$。<span class=\"bilingual-en\">In state $\\mathbf{x}$, pick best action $a$ from $A$.</span>",
+    "en": "In any state $\\mathbf{x}$, the model $f$ (the agent) picks the best $a$ from the set of possible actions $A$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "67ec5c5cff24": {
+    "zh": "強化學習迴路：狀態 → 行動 → 獎懲 → 新狀態<span class=\"en\">RL Loop — State → Action → Reward → New State</span>",
+    "en": "Reinforcement learning loop: state → action → reward/punishment → new state",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "986d7965c4ec": {
+    "zh": "強化學習迴路：電腦小白的棍棒與糖果教育",
+    "en": "RL loop: stick-and-candy schooling for a computer newbie",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "aa307a9ff6d7": {
+    "zh": "Agent 依狀態選動作 → 環境回饋新狀態與獎懲 → 反覆迭代最大化累積獎勵",
+    "en": "Agent picks an action from the state → environment returns a new state and reward → repeat to maximize cumulative reward",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "6b4bf7a3cb60": {
+    "zh": "Agent (代理)",
+    "en": "Agent",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "8dd233246350": {
+    "zh": "決策心法  $f_\\theta$",
+    "en": "Decision rule  $f_\\theta$",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "e2ff22373ce5": {
+    "zh": "Environment (環境)",
+    "en": "Environment",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "b00c9d0dc55d": {
+    "zh": "狀態轉換與獎懲產生器",
+    "en": "State transitions & reward generator",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c0c80953573b": {
+    "zh": "行動  a ∈ A  (式 8)",
+    "en": "Action  a ∈ A  (Eq. 8)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "c3c4c222b5d8": {
+    "zh": "Agent 依狀態選動作",
+    "en": "Agent picks action by state",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "7a04356aad7c": {
+    "zh": "狀態  s / x  (式 8)",
+    "en": "State  s / x  (Eq. 8)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "cf618791cd77": {
+    "zh": "環境回饋新狀態",
+    "en": "Env returns new state",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "101ed1fc2cee": {
+    "zh": "獎懲  r    糖果 🍭 / 棍棒",
+    "en": "Reward  r    candy 🍭 / stick",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "da2e9947ad92": {
+    "zh": "累積獎勵最大化",
+    "en": "Maximize cumulative reward",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "dc276c452cc1": {
+    "zh": "Fig 4 · 強化學習迴路：Agent ↔ Environment（講義 SVG 原圖重繪，亮化）<span class=\"bilingual-en\" style=\"font-size:13px;\">(agent-environment loop)</span>",
+    "en": "Fig 4 · Reinforcement learning loop: agent ↔ environment (redrawn and brightened from the lecture notes' original SVG)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "60431b0da229": {
+    "zh": "迴路故事 · Loop Story",
+    "en": "The story of the loop",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3558f95d97c6": {
+    "zh": "小老弟亂動→碰巧放對→得糖→記住心法「玩具很亂時就收拾」。Agent 起初隨機，與環境反覆互動、領賞調整，最終學會最大化累積獎勵的策略。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">Random → lucky hit → reward → remember; repeat to maximize cumulative reward.</span>",
+    "en": "Little brother fumbles around → happens to put something back right → gets candy → remembers the rule “when the toys are messy, tidy them up”. The agent starts out acting randomly, interacts with the environment over and over, collects rewards and adjusts, and finally learns a policy that maximizes cumulative reward.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e2017e610de4": {
+    "zh": "從哪學會智慧？<span class=\"en\">Where Does Intelligence Come From?</span>",
+    "en": "Where does intelligence come from?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "93ac20a8389c": {
+    "zh": "棍棒教育學會的",
+    "en": "Learned through education by the stick",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bc1beb873617": {
+    "zh": "AlphaGo、自動導航，皆靠環境滾打。<span class=\"bilingual-en\">AlphaGo, self-driving — learned by rolling in env.</span>",
+    "en": "AlphaGo and autonomous navigation both learned by knocking about in their environment.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "64e781568057": {
+    "zh": "對比其他分支",
+    "en": "Compared with the other branches",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "676bb646d5f2": {
+    "zh": "監督：老師手把手；非監督：夜市找結構；強化：社會滾打。<span class=\"bilingual-en\">Supervised: teacher; Unsupervised: structure; RL: society.</span>",
+    "en": "Supervised: a teacher guides you hand in hand; unsupervised: finding structure at the night market; reinforcement: knocking about in society.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to action",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "db8cab670f7b": {
+    "zh": "今日總結：三段變奏<span class=\"en\">Summary — Three Variations</span>",
+    "en": "Today's summary: three variations",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f7b550c5610a": {
+    "zh": "無監督降維<span class=\"bilingual-en-inline\">(Unsup. DR)</span>",
+    "en": "Unsupervised dimensionality reduction",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "348db59eeb04": {
+    "zh": "$f:\\mathbb{R}^d\\to\\mathbb{R}^p$ 無標籤，近者更近。LLE<span class=\"bilingual-en\">No labels, keep close.</span>",
+    "en": "$f:\\mathbb{R}^d\\to\\mathbb{R}^p$, no labels: points that are close get even closer. LLE",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "74d4ace4d0b7": {
+    "zh": "監督降維<span class=\"bilingual-en-inline\">(Sup. DR)</span>",
+    "en": "Supervised dimensionality reduction",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d8a5958e9a05": {
+    "zh": "有標籤，推開類間收攏類內。FDA<span class=\"bilingual-en\">Push &amp; tighten.</span>",
+    "en": "With labels: push the classes apart and pull each class together. FDA",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a46a5c4ea2bf": {
+    "zh": "強化學習<span class=\"bilingual-en-inline\">(RL)</span>",
+    "en": "Reinforcement learning",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7df900fa32a5": {
+    "zh": "$f_\\theta(x)=a\\in A$ 靠獎懲學策略。<span class=\"bilingual-en\">Learn policy by rewards.</span>",
+    "en": "$f_\\theta(x)=a\\in A$ learns a policy from rewards and punishments.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "eb81d7a2f9ab": {
+    "zh": "下一步路線圖<span class=\"en\">Roadmap — Where to next?</span>",
+    "en": "Roadmap: where to next?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1d1fc9c9d9db": {
+    "zh": "降維實戰 <span class=\"bilingual-en-inline\">(DR in Practice)</span>",
+    "en": "Dimensionality reduction in practice",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "001ceea4bacd": {
+    "zh": "PCA / t-SNE / UMAP 各保什麼結構？<span class=\"bilingual-en\">What structure preserved?</span>",
+    "en": "PCA / t-SNE / UMAP: what structure does each one preserve?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "fb910fa9afd4": {
+    "zh": "RL 基礎 <span class=\"bilingual-en-inline\">(RL Basics)</span>",
+    "en": "RL basics",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "bc5f917f6221": {
+    "zh": "MDP、Q-learning、策略梯度初探。<span class=\"bilingual-en\">MDP, Q-learning, policy gradient.</span>",
+    "en": "A first look at MDPs, Q-learning, and policy gradients.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6134eeaba767": {
+    "zh": "三大分支整合 <span class=\"bilingual-en-inline\">(Integrate)</span>",
+    "en": "Bringing the three branches together",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "428fa73d84b2": {
+    "zh": "何時用監督、非監督、強化？<span class=\"bilingual-en\">When to use which?</span>",
+    "en": "When do you use supervised, unsupervised, or reinforcement learning?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ad85347a72d2": {
+    "zh": "思考題 · 提取練習<span class=\"en\">Reflection — Test Your Understanding</span>",
+    "en": "Reflection questions · retrieval practice",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "fb209354eb8f": {
+    "zh": "Q1. 無監督降維的目標是？LLE 屬於哪派？<span class=\"bilingual-en\">Unsupervised DR goal?</span>",
+    "en": "Q1. What is the goal of unsupervised dimensionality reduction? Which camp does LLE belong to?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "bb0a458faf13": {
+    "zh": "A. 隨機打散 <span class=\"bilingual-en-inline\">(random)</span>",
+    "en": "A. Scatter the points randomly",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "d64f20607baa": {
+    "zh": "B. 原本很像的壓後更像、不像的推開；LLE 屬無監督 <span class=\"bilingual-en-inline\">(keep close, push apart; LLE unsupervised)</span>",
+    "en": "B. Points that were alike become even more alike after compression, and unlike ones are pushed apart; LLE is unsupervised",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "3471512a6d42": {
+    "zh": "C. 只放大噪聲 <span class=\"bilingual-en-inline\">(noise)</span>",
+    "en": "C. Only amplify the noise",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "9134766efe26": {
+    "zh": "D. 把 $p$ 變大 <span class=\"bilingual-en-inline\">(increase $p$)</span>",
+    "en": "D. Make $p$ larger",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "463d759ffbcd": {
+    "zh": "Q2. 監督式降維（FDA 思想）如何讓色盲分顏色？<span class=\"bilingual-en\">Supervised DR trick?</span>",
+    "en": "Q2. How does supervised dimensionality reduction (the FDA idea) let a color-blind person tell colors apart?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "50c75f1a545b": {
+    "zh": "A. 告訴它「這是紅色」 <span class=\"bilingual-en-inline\">(tell color)</span>",
+    "en": "A. Tell it “this is red”",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "9838d1140ed5": {
+    "zh": "B. 放大灰度 <span class=\"bilingual-en-inline\">(amplify gray)</span>",
+    "en": "B. Amplify the grayscale",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "33495dd56f6c": {
+    "zh": "C. 推開類間、收攏類內 → $y=5$ vs $16$ 兩緊密團 <span class=\"bilingual-en-inline\">(push + tighten → 5 vs 16)</span>",
+    "en": "C. Push the classes apart and pull each class together → two tight clusters, $y=5$ vs $16$",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "183e61d8667e": {
+    "zh": "D. 把維度變大 <span class=\"bilingual-en-inline\">(increase dim)</span>",
+    "en": "D. Make the dimensionality larger",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "fd1e1109a2c8": {
+    "zh": "Q3. $f_\\theta(x)=a\\in A$ 在說什麼？強化學習像什麼？<span class=\"bilingual-en\">Eq.8 meaning?</span>",
+    "en": "Q3. What is $f_\\theta(x)=a\\in A$ saying? What is reinforcement learning like?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "b39052514536": {
+    "zh": "A. 在狀態 $x$ 挑行動 $a$；像棍棒與糖果的社會滾打 <span class=\"bilingual-en-inline\">(pick action; stick &amp; candy)</span>",
+    "en": "A. In state $x$, pick action $a$; it's like knocking about in society, with stick and candy",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "3840a24702e2": {
+    "zh": "B. 無監督分群 <span class=\"bilingual-en-inline\">(clustering)</span>",
+    "en": "B. Unsupervised clustering",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "f9afc6717292": {
+    "zh": "C. 回歸預測 <span class=\"bilingual-en-inline\">(regression)</span>",
+    "en": "C. Regression prediction",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "01fcb9f74d5e": {
+    "zh": "D. 只做分類 <span class=\"bilingual-en-inline\">(classification only)</span>",
+    "en": "D. Classification only",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "d982a3c1f122": {
+    "zh": "壓扁是為了看清，<br>滾打是為了學會。\n    <small>Compress to see; roll to learn. <span class=\"bilingual-en\" style=\"font-size:18px;\">$p&lt;d$ for insight, $r$ for policy.</span></small>\n  ",
+    "en": "We compress things to see them clearly;<br>we take our knocks to learn.\n    <small><span class=\"bilingual-en\" style=\"font-size:18px;\">$p&lt;d$ for insight, $r$ for policy.</span></small>\n  ",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "da39d2d8fdde": {
+    "zh": "$f:\\mathbb{R}^d\\to\\mathbb{R}^p$ 降維 vs $f_\\theta(x)=a$ 強化<span class=\"bilingual-en\">DR vs RL — two arts of learning.</span>",
+    "en": "$f:\\mathbb{R}^d\\to\\mathbb{R}^p$ dimensionality reduction vs. $f_\\theta(x)=a$ reinforcement learning",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "2616c9789746": {
+    "zh": "冰晶簡約亮色主題 · 與前四講一致 <span class=\"bilingual-en-inline\">(ice-crystal light, full-width)</span> ｜ 單檔 HTML · 離線可播",
+    "en": "Clean ice-crystal light theme · consistent with the previous four lectures | Single-file HTML · plays offline",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "aa9c2101bc13": {
+    "zh": "公式由 MathJax 3 渲染 · 幾何由 matplotlib 精準數據繪製（DPI 200, 16:9）並 base64 內嵌",
+    "en": "Formulas rendered by MathJax 3 · geometry drawn precisely from data with matplotlib (DPI 200, 16:9) and embedded as base64",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
