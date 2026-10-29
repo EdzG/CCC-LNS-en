@@ -1,0 +1,976 @@
+{
+  "_runtime": {
+    "exact": {
+      "⚡ 發火 · Fires": "⚡ Fires",
+      "○ 靜默 · Silent": "○ Silent",
+      "✓ 答對了！觀念已接上。 · Correct!": "✓ Correct! The concept has clicked.",
+      "✗ 再想想，請回到構造與閾值機制。 · Review the mechanism.": "✗ Think again: go back to the structure and the threshold mechanism."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "52e243902fbd": {
+    "zh": "2.1 · 章節索引",
+    "en": "2.1 · Outline",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cecea0b809d4": {
+    "zh": "<a href=\"#question\">核心問句 · Question</a>",
+    "en": "<a href=\"#question\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c6ddbbb66da5": {
+    "zh": "<a href=\"#structure\">構造圖 · Structure</a>",
+    "en": "<a href=\"#structure\">Structure Diagram</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "afb12c1061cf": {
+    "zh": "<a href=\"#parts\">五個部件 · Parts</a>",
+    "en": "<a href=\"#parts\">Five Parts</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "29d52c84b6e3": {
+    "zh": "<a href=\"#threshold\">閾值機制 · Threshold</a>",
+    "en": "<a href=\"#threshold\">Threshold Mechanism</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "045752ccbe56": {
+    "zh": "<a href=\"#interactive\">互動門檻 · Interactive</a>",
+    "en": "<a href=\"#interactive\">Interactive Threshold</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a08c9cbce9a4": {
+    "zh": "<a href=\"#abstraction\">生物到數學 · Abstraction</a>",
+    "en": "<a href=\"#abstraction\">Biology to Math</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d6b7f62f8294": {
+    "zh": "<a href=\"#mapping\">對照表 · Mapping</a>",
+    "en": "<a href=\"#mapping\">Mapping Table</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "be080070febc": {
+    "zh": "<a href=\"#mp\">MP 雛形 · MP Model</a>",
+    "en": "<a href=\"#mp\">MP Prototype</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "fafd86bcd091": {
+    "zh": "<a href=\"#prompt\">生圖提示詞 · Prompt</a>",
+    "en": "<a href=\"#prompt\">Image Prompt</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5113e2aaa66a": {
+    "zh": "<a href=\"#quiz\">提取練習 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Retrieval Practice</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d68400ed9665": {
+    "zh": "<a href=\"#recap\">重點回顧 · Recap</a>",
+    "en": "<a href=\"#recap\">Recap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16f369bf2a29": {
+    "zh": "← 上一頁",
+    "en": "← Previous",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "005fcdb1efc7": {
+    "zh": "下一頁 →",
+    "en": "Next →",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b705f98971c9": {
+    "zh": "人工智慧基礎 · AI FOUNDATIONS",
+    "en": "AI FOUNDATIONS",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "f27994755d77": {
+    "zh": "2.1 <span class=\"accent\">生物神經元</span><br><span class=\"accent2\">Soma · Dendrites · Synapse</span>",
+    "en": "2.1 <span class=\"accent\">The Biological Neuron</span><br><span class=\"accent2\">Soma · Dendrites · Synapse</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "9332f6d39365": {
+    "zh": "從一顆活的神經細胞，走向人工神經元\n      <span class=\"bilingual-en\">From a living neuron to an artificial abstraction.</span>\n    ",
+    "en": "From a living nerve cell to the artificial neuron",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d3f1dd0e3e3f": {
+    "zh": "\n      <span class=\"chip\">構造 Structure</span>\n      <span class=\"chip\">閾值 Threshold</span>\n      <span class=\"chip\">抽象 Abstraction</span>\n    ",
+    "en": "\n      <span class=\"chip\">Structure</span>\n      <span class=\"chip\">Threshold</span>\n      <span class=\"chip\">Abstraction</span>\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "f0b82c49f3e9": {
+    "zh": "按 ← → 或空白鍵開始<br><span class=\"bilingual-en\" style=\"color:#b0c4de;\">Use arrow keys or Space to navigate.</span>",
+    "en": "Press ← → or the Space bar to begin",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "aead0ee3389f": {
+    "zh": "人工神經元，<br>到底在模仿什麼？<small>What is the artificial neuron actually inspired by?</small>",
+    "en": "The artificial neuron:<br>what is it actually imitating?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "311004d1807e": {
+    "zh": "答案不是「一顆迷你大腦」，而是一套從生物機制抽取出的計算直覺。\n      <span class=\"bilingual-en\">It is a computational intuition loosely inspired by biology.</span>\n    ",
+    "en": "The answer is not “a miniature brain” but a computational intuition extracted from a biological mechanism.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "2e3946d28dba": {
+    "zh": "先看原型 · Start with the prototype",
+    "en": "Start with the Prototype",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "75db1d25c357": {
+    "zh": "先理解 Soma、Dendrites 與 Synapse 各自做什麼，才看得懂人工版本保留了哪一段因果。\n        <span class=\"bilingual-en\">Understand the parts before reading the abstraction.</span>\n      ",
+    "en": "Only once you understand what the soma, the dendrites and the synapse each do can you see which part of the causal chain the artificial version keeps.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Holding Attention",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "99d3f45906fe": {
+    "zh": "從一顆活的神經細胞講起\n      <span class=\"en\">Start with a Living Neuron</span>\n    ",
+    "en": "Start with a Living Nerve Cell",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0a58c4857c50": {
+    "zh": "人工神經網路由人工神經元組成；這個名字不是隨便取的，而是鬆散地受到生物神經元啟發。\n      <span class=\"bilingual-en\">Artificial neurons are loosely inspired by biological neurons.</span>\n    ",
+    "en": "Artificial neural networks are made of artificial neurons; the name was not picked at random, but comes from being loosely inspired by biological neurons.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "234af4ddaf79": {
+    "zh": "Fig. 1 · 生物神經元主要構造",
+    "en": "Fig. 1 · Main structures of a biological neuron",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "eabf933b8131": {
+    "zh": "細胞體 · integration",
+    "en": "Cell body · integration",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "5e0b4772809b": {
+    "zh": "Axon · 軸突",
+    "en": "Axon",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "11e4edabff5b": {
+    "zh": "Synapse · 突觸",
+    "en": "Synapse",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "c89e5b30d981": {
+    "zh": "化學傳遞 → 下一顆",
+    "en": "Chemical transmission → next one",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "0394328f4077": {
+    "zh": "Dendrites · 樹突",
+    "en": "Dendrites",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "6ad9081e3ba6": {
+    "zh": "接收訊號",
+    "en": "Receive signals",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "e854a3bf790e": {
+    "zh": "Nucleus · 細胞核",
+    "en": "Nucleus",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "4f6daa1e3667": {
+    "zh": "接收 → 整合 → 傳導 → 化學傳遞 · Receive, integrate, transmit, pass on.",
+    "en": "Receive → integrate → conduct → chemical transmission",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ba6dfca84599": {
+    "zh": "這張圖看什麼？ · Reading the Figure",
+    "en": "What Does This Figure Show?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ad8791a0a9fd": {
+    "zh": "Dendrites 把鄰居的電化學訊號帶進來，Soma 負責整合，Axon 再把結果往下游傳。\n            <span class=\"bilingual-en\">Dendrites receive; the soma integrates; the axon carries the result.</span>\n          ",
+    "en": "The dendrites bring in electrochemical signals from neighboring neurons, the soma integrates them, and the axon then passes the result downstream.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "071b98b36ead": {
+    "zh": "鬆散啟發 · Loose Inspiration",
+    "en": "Loose Inspiration",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8917373ff4f7": {
+    "zh": "人工神經元不是完整複製細胞，而是抓住「多路輸入被整合，再做決策」這條因果線。\n            <span class=\"bilingual-en\">The model keeps a causal pattern, not the whole cell.</span>\n          ",
+    "en": "The artificial neuron is not a complete copy of the cell; it captures one causal line: “multiple inputs are integrated, then a decision is made.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6b6fbf340692": {
+    "zh": "五個關鍵部件，各司其職\n      <span class=\"en\">Five Parts, Five Roles</span>\n    ",
+    "en": "Five Key Parts, Each with Its Own Job",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a162fc8a4da5": {
+    "zh": "Soma · 細胞體",
+    "en": "Soma (Cell Body)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6f89cb7a086f": {
+    "zh": "神經元的本體，把收到的訊號整合起來；像一座城的市中心，訊息最後匯到這裡。\n          <span class=\"bilingual-en\">The soma integrates incoming signals.</span>\n        ",
+    "en": "The main body of the neuron, which integrates the signals it receives; like a city’s downtown, it is where all the messages finally converge.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "61fb6c008ca6": {
+    "zh": "位於 Soma 內部，存放遺傳物質並調控細胞活動，是細胞的指揮中心。\n          <span class=\"bilingual-en\">The nucleus stores genetic material and regulates activity.</span>\n        ",
+    "en": "Located inside the soma, it stores the genetic material and regulates the cell’s activity: it is the cell’s command center.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "14baba4cf87a": {
+    "zh": "枝",
+    "en": "⑂",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "200d1f2ee371": {
+    "zh": "像樹枝一樣延伸，接收其他神經元的訊號，並把它們往 Soma 方向傳送。\n          <span class=\"bilingual-en\">Dendrites receive and route signals inward.</span>\n        ",
+    "en": "They extend like tree branches, receive signals from other neurons, and carry them toward the soma.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8371d7c1aa6f": {
+    "zh": "位於一顆神經元的軸突末端與另一顆神經元樹突之間，負責化學傳遞。\n          <span class=\"bilingual-en\">A synapse passes a chemical message across a tiny gap.</span>\n        ",
+    "en": "Located between the axon terminal of one neuron and a dendrite of another neuron, it handles chemical transmission.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "155e3f925f3e": {
+    "zh": "還有一條傳導線 · The Transmission Path",
+    "en": "One More Conduction Line: the Transmission Path",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "52de2e5e8778": {
+    "zh": "Axon（軸突）把 Soma 的結果傳向下一個神經元；它把「整合後的結果」送出，而不是重新收集輸入。\n        <span class=\"bilingual-en\">The axon carries the integrated result onward.</span>\n      ",
+    "en": "The axon carries the soma’s result on to the next neuron; it sends out the “integrated result” rather than collecting the inputs all over again.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "80e27e244156": {
+    "zh": "閾值觸發：發火，或不發火\n      <span class=\"en\">Threshold Triggering — Fire or Stay Silent</span>\n    ",
+    "en": "Threshold Triggering: Fire, or Don’t Fire",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ef7c9dada86b": {
+    "zh": "構造只是舞臺；真正關鍵是 Soma 如何把多路訊號累積，再和門檻比較。\n      <span class=\"bilingual-en\">The mechanism is accumulation followed by a threshold decision.</span>\n    ",
+    "en": "The structure is only the stage; what really matters is how the soma accumulates multiple signals and then compares the total with a threshold.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "79ec17124abd": {
+    "zh": "多路訊號進來",
+    "en": "Multiple Signals Come In",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6bbe0ff72e94": {
+    "zh": "樹突與突觸收到鄰居們的電化學訊號，帶進 Soma。\n          <span class=\"bilingual-en\">Inputs arrive through dendrites and synapses.</span>\n        ",
+    "en": "The dendrites and synapses receive electrochemical signals from the neighboring neurons and bring them into the soma.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7f780172fc6c": {
+    "zh": "在 Soma 累積",
+    "en": "Accumulate in the Soma",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "45dda357c469": {
+    "zh": "細胞體把訊號整合成一個總量，準備和 threshold 比較。\n          <span class=\"bilingual-en\">The soma accumulates one total signal.</span>\n        ",
+    "en": "The cell body integrates the signals into one total, ready to be compared with the threshold.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c397d38aa358": {
+    "zh": "決定是否發火",
+    "en": "Decide Whether to Fire",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6a95046f0f42": {
+    "zh": "超過門檻就產生 action potential；沒有超過，就維持沉默。\n          <span class=\"bilingual-en\">Cross the threshold and fire; otherwise stay silent.</span>\n        ",
+    "en": "Above the threshold, an action potential is produced; if not, the neuron stays silent.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "49fdb73d3e23": {
+    "zh": "最小因果鏈 · Minimal Causal Chain",
+    "en": "Minimal Causal Chain",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "51224c5f873d": {
+    "zh": "\n      $$\\text{累積訊號} \\;\\longrightarrow\\; \\text{比較門檻 } \\theta \\;\\longrightarrow\\; \\text{發火或靜默}$$\n      ",
+    "en": "\n      $$\\text{accumulated signal} \\;\\longrightarrow\\; \\text{compare with threshold } \\theta \\;\\longrightarrow\\; \\text{fire or stay silent}$$\n      ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "26330ed6fd86": {
+    "zh": "這個「超過就開、沒超過就關」的機制，正是人工神經元最核心的生物靈感。\n        <span class=\"bilingual-en\">A biological threshold becomes a computational switch.</span>\n      ",
+    "en": "This “above it, switch on; below it, switch off” mechanism is exactly the core biological inspiration behind the artificial neuron.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4875a2b9b97d": {
+    "zh": "把門檻拉動：同一組訊號，結果會變嗎？\n      <span class=\"en\">Interactive Threshold — Same Inputs, Different Decision</span>\n    ",
+    "en": "Move the Threshold: Same Signals, Different Result?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3accae8cbf07": {
+    "zh": "三路訊號的總和固定為 $1.6$；拖動門檻 $\\theta$，觀察「發火／靜默」由真實比較結果決定。\n      <span class=\"bilingual-en\">The input sum is fixed at 1.6; move the threshold and recompute the decision.</span>\n    ",
+    "en": "The sum of the three signals is fixed at $1.6$; drag the threshold $\\theta$ and watch how “fire / silent” is decided by the actual comparison.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2c3f94be1d03": {
+    "zh": "訊號累積器 · Signal Accumulator",
+    "en": "Signal Accumulator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "46bfa8d0b7ee": {
+    "zh": "<strong>0.7</strong><span>Dendrite A · 訊號</span>",
+    "en": "<strong>0.7</strong><span>Dendrite A · signal</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c6a649b345de": {
+    "zh": "<strong>0.5</strong><span>Dendrite B · 訊號</span>",
+    "en": "<strong>0.5</strong><span>Dendrite B · signal</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "49c4fdf097b2": {
+    "zh": "<strong>0.4</strong><span>Dendrite C · 訊號</span>",
+    "en": "<strong>0.4</strong><span>Dendrite C · signal</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "974c91ccab1a": {
+    "zh": "累積總和固定，只有門檻在移動。\n          <span class=\"bilingual-en\">The sum stays fixed; only the threshold moves.</span>\n        ",
+    "en": "The accumulated sum is fixed; only the threshold moves.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7133132727f9": {
+    "zh": "門檻 $\\theta$",
+    "en": "Threshold $\\theta$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "715c70c52237": {
+    "zh": "<span>0</span><span>訊號總和 $s=1.6$</span><span>2.5</span>",
+    "en": "<span>0</span><span>Signal sum $s=1.6$</span><span>2.5</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7c502774f3c2": {
+    "zh": "<span class=\"status-pill\" id=\"fireStatus\">⚡ 發火 · Fires</span>",
+    "en": "<span class=\"status-pill\" id=\"fireStatus\">⚡ Fires</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f518102e1322": {
+    "zh": "互動結論 · Interactive Takeaway",
+    "en": "Interactive Takeaway",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3548f2ad6c0e": {
+    "zh": "不是訊號本身突然變了，而是比較標準變嚴格或變寬鬆；這就是閾值如何控制開關。\n        <span class=\"bilingual-en\">The threshold changes the standard, not the incoming signal.</span>\n      ",
+    "en": "It is not that the signal itself suddenly changed; the standard of comparison just became stricter or looser. That is how a threshold controls the switch.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "54120f6d710c": {
+    "zh": "從生物到抽象：保留哪一條因果？\n      <span class=\"en\">From Biology to Abstraction</span>\n    ",
+    "en": "From Biology to Abstraction: Which Causal Line Do We Keep?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1ff4b3297a2b": {
+    "zh": "生物語言",
+    "en": "Biology",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "db832ccccfe0": {
+    "zh": "數學語言",
+    "en": "Mathematics",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "90081b488c60": {
+    "zh": "多路訊號",
+    "en": "Multiple signals",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "3b2646871959": {
+    "zh": "累積與整合",
+    "en": "Accumulate & integrate",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "cfec859b2905": {
+    "zh": "發火／靜默",
+    "en": "Fire / silent",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "e3b81433c6f6": {
+    "zh": "加權輸入",
+    "en": "Weighted inputs",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "9afc7d1f9d23": {
+    "zh": "加權和 + 閾值",
+    "en": "Weighted sum + threshold",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "fe0defac7def": {
+    "zh": "輸出 0／1",
+    "en": "Output 0 / 1",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "db3af06a7a12": {
+    "zh": "因果結構被保留 · Causal pattern preserved",
+    "en": "Causal structure preserved",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "0058f5bb9e04": {
+    "zh": "不是複製細胞，而是抽取「累積 → 閾值 → 開關」· Abstract the mechanism.",
+    "en": "Not copying the cell, but extracting “accumulate → threshold → switch”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4a9d73f6c38e": {
+    "zh": "三個對應 · Three Mappings",
+    "en": "Three Correspondences",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fc172e2f3761": {
+    "zh": "多路訊號變成多個加權輸入；累積總量變成加權和；發火或不發火變成 0 或 1。\n            <span class=\"bilingual-en\">Inputs, accumulation, and firing become a compact computation.</span>\n          ",
+    "en": "Multiple signals become multiple weighted inputs; the accumulated total becomes a weighted sum; firing or not firing becomes 0 or 1.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d9e390b35e1c": {
+    "zh": "別誤讀 · Do Not Overread",
+    "en": "Don’t Over-Read It",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e67e71a6bbb7": {
+    "zh": "人工模型不是完整的生物模擬；它只保留對計算有用的閾值式決策直覺。\n            <span class=\"bilingual-en\">The abstraction is useful precisely because it is selective.</span>\n          ",
+    "en": "The artificial model is not a complete biological simulation; it keeps only the threshold-style decision intuition that is useful for computation.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dcf95dfe885e": {
+    "zh": "人工神經元的抽象 · Artificial Abstraction",
+    "en": "The Artificial Neuron’s Abstraction",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2680fb686cda": {
+    "zh": "生物上的「累積 + 閾值 + 開關」，在數學上變成「加權和 + 啟用函式」。\n        <span class=\"bilingual-en\">Accumulation and thresholding become weighted sum and activation.</span>\n      ",
+    "en": "The biological “accumulation + threshold + switch” becomes, in mathematics, “weighted sum + activation function.”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dfc3236316d4": {
+    "zh": "一眼看懂：生物部件如何變成計算角色\n      <span class=\"en\">Biological Parts Become Computational Roles</span>\n    ",
+    "en": "At a Glance: How Biological Parts Become Computational Roles",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c0621a8a1ffb": {
+    "zh": "把名詞放回功能，不要只背一張「名詞連連看」。\n      <span class=\"bilingual-en\">Connect each biological part to the function it contributes.</span>\n    ",
+    "en": "Put each term back into its function; don’t just memorize a “match the terms” worksheet.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c302379bf178": {
+    "zh": "生物原型 · Biological prototype",
+    "en": "Biological Prototype",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a02df18148a0": {
+    "zh": "計算直覺 · Computational intuition",
+    "en": "Computational Intuition",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "58de27eaf92f": {
+    "zh": "Dendrites · 樹突：接收多路訊號",
+    "en": "Dendrites: receive multiple signals",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ee23f6d926fb": {
+    "zh": "多個輸入 $x_i$",
+    "en": "Multiple inputs $x_i$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e2a61ed88c0d": {
+    "zh": "Synapse · 突觸：化學傳遞的接縫",
+    "en": "Synapse: the seam where chemical transmission happens",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0794445fab81": {
+    "zh": "輸入之間的連線與影響",
+    "en": "The connections between inputs and their influence",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "719f6d6309e9": {
+    "zh": "Soma · 細胞體：整合訊號",
+    "en": "Soma (cell body): integrates the signals",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8dd953d409c2": {
+    "zh": "加權和 $\\sum_i w_i x_i$",
+    "en": "Weighted sum $\\sum_i w_i x_i$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3fb0bd9b4365": {
+    "zh": "Threshold · 門檻：決定是否發火",
+    "en": "Threshold: decides whether to fire",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8e47ac84e513": {
+    "zh": "啟用函式輸出 $0$ 或 $1$",
+    "en": "Activation function outputs $0$ or $1$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1daed6f157db": {
+    "zh": "Axon · 軸突：傳導結果",
+    "en": "Axon: conducts the result",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8f25522f41ef": {
+    "zh": "把輸出 $\\hat y$ 傳給下一個單元",
+    "en": "Pass the output $\\hat y$ on to the next unit",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a1520a91f596": {
+    "zh": "最短版本 · The Short Version",
+    "en": "The Short Version",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e1de2dd5a172": {
+    "zh": "生物神經元先接收、再整合、最後決定是否發火；人工神經元把這條流程壓縮成可計算的函式。\n        <span class=\"bilingual-en\">Receive, integrate, decide — then transmit.</span>\n      ",
+    "en": "A biological neuron first receives, then integrates, and finally decides whether to fire; the artificial neuron compresses this process into a computable function.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e78a11006c25": {
+    "zh": "歷史銜接：McCulloch–Pitts 模型的雛形\n      <span class=\"en\">The McCulloch–Pitts Bridge</span>\n    ",
+    "en": "Historical Bridge: The Prototype of the McCulloch–Pitts Model",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dedfaba268ee": {
+    "zh": "01 · 生物觀察 · Biological observation",
+    "en": "01 · Biological Observation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5b849fbd5dd2": {
+    "zh": "訊號不是各自獨立",
+    "en": "Signals Are Not Independent of Each Other",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "898a4efdfd10": {
+    "zh": "多個鄰居同時影響一顆神經元；Soma 必須把這些輸入整合起來。\n          <span class=\"bilingual-en\">Many neighbors contribute to one integrated state.</span>\n        ",
+    "en": "Several neighbors influence one neuron at the same time; the soma has to integrate these inputs.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "627dee41afa1": {
+    "zh": "02 · 抽象選擇 · Abstraction",
+    "en": "02 · Choice of Abstraction",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "af6a21181c4d": {
+    "zh": "把連續細節壓成開關",
+    "en": "Compress the Continuous Details into a Switch",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c22a33994ef2": {
+    "zh": "早期模型先抓住超過門檻就開、沒有超過就關的邏輯。\n          <span class=\"bilingual-en\">The early abstraction keeps the threshold logic.</span>\n        ",
+    "en": "The early models first captured the logic “above the threshold, switch on; below it, switch off.”",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5d043a4d10c2": {
+    "zh": "03 · 1950 年代前後 · 1950s",
+    "en": "03 · Around the 1950s",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3777c9a2e3a7": {
+    "zh": "數學神經元浮現",
+    "en": "The Mathematical Neuron Emerges",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e864efd83694": {
+    "zh": "這條「累積 + 閾值 + 開關」的想法，成為 kp3 McCulloch–Pitts 模型的雛形。\n          <span class=\"bilingual-en\">It becomes a seed for the McCulloch–Pitts model.</span>\n        ",
+    "en": "This idea of “accumulation + threshold + switch” became the prototype of the McCulloch–Pitts model in kp3.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f15f901e232c": {
+    "zh": "關鍵理解 · Key Understanding",
+    "en": "Key Understanding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "88f7cf9f0b95": {
+    "zh": "人工神經網路的故事不是突然從電腦裡冒出來；它先把生物機制轉成一個可重複計算的最小單元。\n        <span class=\"bilingual-en\">The history begins by turning a biological mechanism into a repeatable unit.</span>\n      ",
+    "en": "The story of artificial neural networks did not suddenly pop out of a computer; it began by turning a biological mechanism into a minimal unit that can be computed over and over.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "85384c9e39fe": {
+    "zh": "把 Fig. 1 說給生圖模型聽\n      <span class=\"en\">A Structured Prompt for Re-drawing Fig. 1</span>\n    ",
+    "en": "Describing Fig. 1 to an Image-Generation Model",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2afaf243c4d3": {
+    "zh": "如果要用 AI 重繪示意圖，先把構造、流程與視覺限制說清楚。\n      <span class=\"bilingual-en\">A useful image prompt specifies anatomy, causal flow, and visual constraints.</span>\n    ",
+    "en": "If you want AI to redraw the diagram, first spell out the structure, the flow, and the visual constraints clearly.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e2ebd2a1f79c": {
+    "zh": "主體 · Subject",
+    "en": "Subject",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4df1bf5db886": {
+    "zh": "主體是一顆清楚、可標註的生物神經元，而不是抽象腦部照片。\n          <span class=\"bilingual-en\">Show one labeled neuron, not a brain photograph.</span>\n        ",
+    "en": "The subject is one clear biological neuron that can be labeled, not an abstract photo of a brain.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bd153b5121fd": {
+    "zh": "流程 · Causal Flow",
+    "en": "Causal Flow",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9a97a880b0bf": {
+    "zh": "箭頭必須讓觀眾看出訊號從哪裡來、在哪裡整合、如何往下游傳。\n          <span class=\"bilingual-en\">Make the signal path and decision point explicit.</span>\n        ",
+    "en": "The arrows must let viewers see where the signals come from, where they are integrated, and how they travel downstream.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b0d13c765e9c": {
+    "zh": "標註 · Labels",
+    "en": "Labels",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1e3ccdd9682b": {
+    "zh": "使用清晰的中英雙語標註，讓 Fig. 1 同時支援構造與機制教學。\n          <span class=\"bilingual-en\">Use readable bilingual labels for structure and mechanism.</span>\n        ",
+    "en": "Use clear Chinese–English bilingual labels so that Fig. 1 supports teaching both the structure and the mechanism.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5cc5eac57dcc": {
+    "zh": "風格 · Style Constraints",
+    "en": "Style Constraints",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "475c5ece7432": {
+    "zh": "優先可讀性與因果方向，不要讓裝飾搶走教學訊息。\n          <span class=\"bilingual-en\">Prioritize legibility and causal clarity.</span>\n        ",
+    "en": "Put legibility and the causal direction first; don’t let decoration steal the teaching message.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "84bdad9bdeeb": {
+    "zh": "換你試試看：把機制說回來\n      <span class=\"en\">Retrieval Practice — Explain the Mechanism</span>\n    ",
+    "en": "Your Turn: Explain the Mechanism Back",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ec7902aec517": {
+    "zh": "點選答案，確認你抓住「構造 → 累積 → 閾值 → 抽象」的因果鏈。\n      <span class=\"bilingual-en\">Test the chain from anatomy to threshold abstraction.</span>\n    ",
+    "en": "Click an answer to check that you have grasped the causal chain “structure → accumulation → threshold → abstraction.”",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "900361833e2a": {
+    "zh": "Q1. 哪個部件主要接收其他神經元的訊號？<span class=\"bilingual-en\">Which part mainly receives incoming signals?</span>",
+    "en": "Q1. Which part mainly receives signals from other neurons?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "baad55147eab": {
+    "zh": "Axon：把結果送出去 <span class=\"bilingual-en\">Carries the result onward</span>",
+    "en": "Axon: sends the result out",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "702204de98f0": {
+    "zh": "Dendrites：接收訊號 <span class=\"bilingual-en\">Receives inputs</span>",
+    "en": "Dendrites: receive signals",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2000b35678ec": {
+    "zh": "Q2. 訊號超過 threshold 時會怎樣？<span class=\"bilingual-en\">What happens above the threshold?</span>",
+    "en": "Q2. What happens when the signal exceeds the threshold?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "849ad48716e2": {
+    "zh": "產生 action potential，發火 <span class=\"bilingual-en\">An action potential fires</span>",
+    "en": "An action potential is produced: the neuron fires",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "16cd383984b4": {
+    "zh": "立刻消失，保持沉默 <span class=\"bilingual-en\">The neuron stays silent</span>",
+    "en": "It vanishes immediately and stays silent",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0866d948e327": {
+    "zh": "Q3. 生物「累積 + 閾值」在數學上對應什麼？<span class=\"bilingual-en\">What is the mathematical abstraction?</span>",
+    "en": "Q3. What does the biological “accumulation + threshold” correspond to in mathematics?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d84491b34174": {
+    "zh": "只保留細胞核的遺傳物質 <span class=\"bilingual-en\">Only the genetic material</span>",
+    "en": "Keeping only the genetic material in the nucleus",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "76d72fc1dc66": {
+    "zh": "加權和 + 啟用函式 <span class=\"bilingual-en\">Weighted sum plus activation</span>",
+    "en": "Weighted sum + activation function",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4793d578371f": {
+    "zh": "提示 · Hint",
+    "en": "Hint",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0063f11c690c": {
+    "zh": "先問「訊號在哪裡被整合」，再問「門檻如何把連續總量變成開關」。\n        <span class=\"bilingual-en\">Locate integration first, then locate the threshold switch.</span>\n      ",
+    "en": "First ask “where are the signals integrated?”, then ask “how does the threshold turn a continuous total into a switch?”",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2ff2ed2c5a5d": {
+    "zh": "四句話帶走 2.1\n      <span class=\"en\">Four Sentences to Take Away</span>\n    ",
+    "en": "Take Away 2.1 in Four Sentences",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "be3e453dde8e": {
+    "zh": "Soma 整合，Dendrites 接收",
+    "en": "The Soma Integrates, the Dendrites Receive",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3cd2a3fb6451": {
+    "zh": "神經元的構造分工，讓訊號有清楚的進入與整合路徑。\n          <span class=\"bilingual-en\">Structure creates a path for receiving and integrating signals.</span>\n        ",
+    "en": "The neuron’s division of labor among its structures gives signals a clear path in and a clear place to be integrated.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "39344186422c": {
+    "zh": "突觸是神經元之間的接縫",
+    "en": "The Synapse Is the Seam Between Neurons",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7339fd63583c": {
+    "zh": "化學訊號跨過微小間隙，把一顆細胞的結果交給下一顆。\n          <span class=\"bilingual-en\">Synapses pass chemical messages across a tiny gap.</span>\n        ",
+    "en": "A chemical signal crosses a tiny gap, handing one cell’s result over to the next.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "933f675c828c": {
+    "zh": "累積超過門檻，就發火",
+    "en": "Accumulate Past the Threshold, and It Fires",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7c884106cdc2": {
+    "zh": "超過 threshold 產生 action potential；沒超過就保持沉默。\n          <span class=\"bilingual-en\">Cross the threshold to fire; otherwise stay silent.</span>\n        ",
+    "en": "Exceeding the threshold produces an action potential; otherwise the neuron stays silent.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3d1169162c5d": {
+    "zh": "生物直覺成為數學積木",
+    "en": "Biological Intuition Becomes a Mathematical Building Block",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "26fe591aa4ea": {
+    "zh": "「累積 + 閾值 + 開關」成為「加權和 + 啟用」，銜接 McCulloch–Pitts 模型雛形。\n          <span class=\"bilingual-en\">A biological switch becomes a mathematical building block.</span>\n        ",
+    "en": "“Accumulation + threshold + switch” becomes “weighted sum + activation,” leading into the prototype of the McCulloch–Pitts model.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3059adbf3f4f": {
+    "zh": "本節主線 · The Main Line",
+    "en": "The Main Line of This Section",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1067336dda0f": {
+    "zh": "<b>Soma／Dendrites／Synapse → 累積 → threshold → 發火／靜默 → 人工神經元</b>\n        <span class=\"bilingual-en\">Anatomy becomes computation through thresholded integration.</span>\n      ",
+    "en": "<b>Soma / Dendrites / Synapse → accumulation → threshold → fire / silent → artificial neuron</b>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "159a0840f312": {
+    "zh": "\n      ── 2.1 Complete · 本節結束 ──\n      <span class=\"bilingual-en\">Next: formal neuron models and learnable weights.</span>\n    ",
+    "en": "\n      ── 2.1 Complete · End of This Section ──\n      <span class=\"bilingual-en\">Next: formal neuron models and learnable weights.</span>\n    ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a8fb5528c0d2": {
+    "zh": "章節索引 / Outline",
+    "en": "Outline",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "d82be5a899d4": {
+    "zh": "生物神經元構造圖",
+    "en": "Structure diagram of a biological neuron",
+    "kp": 3,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "3daeb9a7dda6": {
+    "zh": "調整門檻 theta",
+    "en": "Adjust threshold theta",
+    "kp": 6,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "d3f3b3864ea0": {
+    "zh": "訊號總和與門檻比較",
+    "en": "Signal sum compared with the threshold",
+    "kp": 6,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "f471d27bbcbd": {
+    "zh": "從生物神經元到人工神經元的抽象對應",
+    "en": "Abstract correspondence from the biological neuron to the artificial neuron",
+    "kp": 7,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

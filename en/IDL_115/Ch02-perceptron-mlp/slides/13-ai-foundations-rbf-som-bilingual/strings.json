@@ -1,0 +1,838 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 答對了！觀念已接上。 · Correct!": "✓ Correct! The concept has clicked.",
+      "✗ 再想想：回到公式或流程找線索。 · Review the formula or training loop.": "✗ Think again: go back to the formula or the procedure for clues."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#question\">大問句 · Question</a>",
+    "en": "<a href=\"#question\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "48048ac7c4d9": {
+    "zh": "<a href=\"#map\">總覽 · Map</a>",
+    "en": "<a href=\"#map\">Overview</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c6f4b18a98f1": {
+    "zh": "<a href=\"#rbf-architecture\">RBF 架構 · Architecture</a>",
+    "en": "<a href=\"#rbf-architecture\">RBF Architecture</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "19d19b6961c1": {
+    "zh": "<a href=\"#rbf-calc\">數值示例 · Calculation</a>",
+    "en": "<a href=\"#rbf-calc\">Worked Example</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b9b749752efb": {
+    "zh": "<a href=\"#least-squares\">最小二乘 · Least Squares</a>",
+    "en": "<a href=\"#least-squares\">Least Squares</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e2c4f889c189": {
+    "zh": "<a href=\"#som-idea\">SOM 概念 · Idea</a>",
+    "en": "<a href=\"#som-idea\">The SOM Idea</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5c8a031a0484": {
+    "zh": "<a href=\"#som-steps\">SOM 五步 · Five Steps</a>",
+    "en": "<a href=\"#som-steps\">SOM in Five Steps</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "525090caac70": {
+    "zh": "<a href=\"#figures\">精準圖解 · Figures</a>",
+    "en": "<a href=\"#figures\">Precise Figures</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f6c2c9057e57": {
+    "zh": "<a href=\"#compare\">速查 · Compare</a>",
+    "en": "<a href=\"#compare\">Cheat Sheet</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f4793cd29685": {
+    "zh": "<a href=\"#explore\">互動 · Explore</a>",
+    "en": "<a href=\"#explore\">Interactive</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "97cca53d2db5": {
+    "zh": "<a href=\"#quiz\">練習 · Practice</a>",
+    "en": "<a href=\"#quiz\">Practice</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1101e1e43a54": {
+    "zh": "2.10 · 早期神經網路模型 · EARLY NEURAL MODELS",
+    "en": "2.10 · EARLY NEURAL NETWORK MODELS",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "17ccbc84a2d5": {
+    "zh": "RBF 與 SOM 的<br><span>奇幻漂流</span>",
+    "en": "RBF and SOM:<br><span>A Fantastic Voyage</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aac4f5c283fa": {
+    "zh": "一個看準地方插旗，一個自己找同類湊成地圖。",
+    "en": "One aims carefully before planting its flags; the other finds its own kind and pieces them together into a map.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "14bf60da4a0e": {
+    "zh": "RBF：監督式區域性感應 → 加權輸出　·　SOM：無監督拓撲保序 → 自組織地圖",
+    "en": "RBF: supervised local sensing → weighted output · SOM: unsupervised topology preservation → self-organizing map",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "1b57ff06b479": {
+    "zh": "名師導讀講義逐字稿 · Guided lecture notes",
+    "en": "Guided lecture notes: verbatim transcript",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "169d48a2a6ce": {
+    "zh": "\n    沒有標準答案時，神經網路還能自己找到地圖嗎？\n    <small>Can a neural model discover structure without labels?</small>\n  ",
+    "en": "\n    When there is no answer key, can a neural network still find a map on its own?\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a656e7aefe28": {
+    "zh": "S1 · 引起動機 · MOTIVATE",
+    "en": "S1 · MOTIVATE",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a0a82968d01d": {
+    "zh": "兩種「偷懶」思路 <span class=\"en\">Two clever shortcuts</span>",
+    "en": "Two “lazy” ways of thinking",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "dfd890b2b64c": {
+    "zh": "RBF 與 SOM 都不是現在深度學習的主線，卻把「區域性感應」與「自組織拓撲」這兩種重要想法講得很清楚。<span class=\"bilingual-en\">Both models sit beside today’s deep-learning mainstream, but expose two durable ideas: locality and topology.</span>",
+    "en": "Neither RBF nor SOM is part of today’s deep-learning mainstream, yet they spell out two important ideas very clearly: “local sensing” and “self-organizing topology.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a70696bb0776": {
+    "zh": "RBF：看準地方再插旗 <span class=\"en\">Place local flags</span>",
+    "en": "RBF: take aim, then plant the flag",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e62c747748f1": {
+    "zh": "它是監督式學習：有輸入，也有標準答案。第一層先在資料空間放置中心與感應範圍，第二層再學如何加權組合這些區域性訊號。<span class=\"bilingual-en\">Supervised learning: fixed local responses first, trainable output weights second.</span>",
+    "en": "It is supervised learning: there are inputs, and there are also correct answers. The first layer first places centers and sensing ranges in the data space; the second layer then learns how to combine these local signals with weights.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "90f3bc732743": {
+    "zh": "<span class=\"badge blue\">監督式 · Supervised</span><span class=\"badge green\">區域性基函式 · Local basis</span>",
+    "en": "<span class=\"badge blue\">Supervised</span><span class=\"badge green\">Local basis functions</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c7650aed9a55": {
+    "zh": "SOM：自己找同類湊一坨 <span class=\"en\">Organize by similarity</span>",
+    "en": "SOM: find your own kind and clump together",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7f18a71a5286": {
+    "zh": "它是無監督式學習：沒有標準答案。每次找出最像輸入的勝者，再讓鄰居一起學，逐步形成有順序的 1D 或 2D 地圖。<span class=\"bilingual-en\">Unsupervised learning: a winner and its neighbors learn together to form an ordered map.</span>",
+    "en": "It is unsupervised learning: there are no correct answers. Each time, it finds the winner that is most similar to the input, then lets the neighbors learn along with it, gradually forming an ordered 1D or 2D map.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ccdbf085058b": {
+    "zh": "<span class=\"badge pink\">無監督式 · Unsupervised</span><span class=\"badge green\">拓撲保序 · Topology-preserving</span>",
+    "en": "<span class=\"badge pink\">Unsupervised</span><span class=\"badge green\">Topology-preserving</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b011fcc9adab": {
+    "zh": "先記住一句話 · One-line memory",
+    "en": "First, remember one sentence",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "19814b94e852": {
+    "zh": "RBF 把「距離」變成區域性響應；SOM 把「相似性」變成格子上的鄰近關係。<span class=\"bilingual-en\">RBF turns distance into local response; SOM turns similarity into neighborhood.</span>",
+    "en": "RBF turns “distance” into a local response; SOM turns “similarity” into proximity on the grid.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "89bb3f41f8d0": {
+    "zh": "S2 · 維持注意 · SUSTAIN",
+    "en": "S2 · SUSTAIN",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "28eadad53854": {
+    "zh": "RBF：兩層，把區域性訊號接起來 <span class=\"en\">Two layers of local response</span>",
+    "en": "RBF: two layers that wire local signals together",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "635397e175ca": {
+    "zh": "RBF 先算「離哪一面旗子近」，再把區域性回應加權合成預測。 · Local responses are weighted into a prediction.",
+    "en": "RBF first works out “which flag it is close to,” then combines the local responses, weighted, into a prediction.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "044c29f47c73": {
+    "zh": "第一層：固定基函式 · Fixed basis functions",
+    "en": "Layer 1: fixed basis functions",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d0d7d8812335": {
+    "zh": "RBF 的「偷懶」之處：不要求第一層反覆學所有權重，而是在資料空間選中心 $\\mu_j$，用 $\\sigma_j$ 決定感應範圍。<span class=\"bilingual-en\">The first layer places centers and widths to detect local regions.</span>",
+    "en": "Where RBF “slacks off”: it doesn’t make the first layer learn all of its weights over and over; instead, it picks centers $\\mu_j$ in the data space and uses $\\sigma_j$ to set the sensing range.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "936acd05821c": {
+    "zh": "第二層：可訓練權重 · Trainable weights",
+    "en": "Layer 2: trainable weights",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c16ddefd0ed1": {
+    "zh": "輸入透過每個高斯旗子後，得到一組區域性回應 $\\phi_j(x)$；第二層學習 $W$，把它們加權組合成輸出。<span class=\"bilingual-en\">The second layer combines local responses with trainable weights.</span>",
+    "en": "After the input passes through each Gaussian flag, we get a set of local responses $\\phi_j(x)$; the second layer learns $W$ and combines them, weighted, into the output.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "42eca9aae6b6": {
+    "zh": "RBF 核心計算 · Core equations",
+    "en": "RBF core computation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bf607916f3af": {
+    "zh": "距離越近，$\\phi_j(x)$ 越大；距離很遠時，回應快速趨近於 0。<span class=\"bilingual-en\">Nearer centers respond more strongly; faraway centers fade toward zero.</span>",
+    "en": "The smaller the distance, the larger $\\phi_j(x)$; when the distance is large, the response quickly approaches 0.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e5677fda7db9": {
+    "zh": "數值示例：一面高斯旗子怎麼預測？ <span class=\"en\">One Gaussian flag, one prediction</span>",
+    "en": "Worked example: how does one Gaussian flag make a prediction?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "41ac2a4f7932": {
+    "zh": "把抽象的「區域性感應」化成三步：量距離、算回應、乘上權重。<span class=\"bilingual-en\">Turn locality into three moves: measure distance, compute response, apply the weight.</span>",
+    "en": "Turn the abstract idea of “local sensing” into three steps: measure the distance, compute the response, multiply by the weight.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5a2d9018b535": {
+    "zh": "已知條件 · Given",
+    "en": "Given",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bf737a260506": {
+    "zh": "量距離 · Distance",
+    "en": "Measure the distance",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6f6ab6a9c6ff": {
+    "zh": "算高斯回應 · Response",
+    "en": "Compute the Gaussian response",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aa30fc1dea60": {
+    "zh": "$1/(2\\sigma_1^2)=1/2=0.5$，所以 $\\phi_1(4)=e^{-0.5}\\approx0.606$。<span class=\"bilingual-en\">The nearby flag responds about 0.606.</span>",
+    "en": "$1/(2\\sigma_1^2)=1/2=0.5$, so $\\phi_1(4)=e^{-0.5}\\approx0.606$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "814fa7e2cc02": {
+    "zh": "加權輸出 · Weight",
+    "en": "Weighted output",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d62af4e2cbac": {
+    "zh": "\n    <span>直覺：$x=4$ 離中心 $3$ 很近，所以旗子有感應。</span>\n    <span class=\"value\">ŷ = 1.212</span>\n    <span class=\"bilingual-en\">Intuition: the input is close to the center, so the local detector is active.</span>\n  ",
+    "en": "\n    <span>Intuition: $x=4$ is very close to the center $3$, so the flag responds.</span>\n    <span class=\"value\">ŷ = 1.212</span>\n  ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0fe6b23cf3ab": {
+    "zh": "最小二乘：數學家的「一步到位」 <span class=\"en\">Closed-form least squares</span>",
+    "en": "Least squares: the mathematician’s “one step and done”",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ae2cb341ec4a": {
+    "zh": "把所有區域性回應堆成 Φ，再直接求出最佳 W。 · Stack local responses into Φ, then solve for W.",
+    "en": "Stack all the local responses into Φ, then solve directly for the best W.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7451c8f8502": {
+    "zh": "三個動作 · Three moves",
+    "en": "Three moves",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a62395628ece": {
+    "zh": "把全部基函式輸出寫成矩陣 $\\Phi$。<span class=\"bilingual-en\">Collect basis responses in Φ.</span>",
+    "en": "Write all the basis-function outputs as a matrix $\\Phi$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "68ad0c59644f": {
+    "zh": "把正確答案整理成 $Y$。<span class=\"bilingual-en\">Collect target outputs in Y.</span>",
+    "en": "Arrange the correct answers into $Y$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "512d6b59ea2d": {
+    "zh": "讓 $W^\\top\\Phi$ 與 $Y$ 的誤差範數最小。<span class=\"bilingual-en\">Minimize the residual norm.</span>",
+    "en": "Minimize the norm of the error between $W^\\top\\Phi$ and $Y$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bfd502289bf1": {
+    "zh": "矩陣太奇怪？ · Singular case",
+    "en": "Matrix acting weird? (singular case)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bd90032f8231": {
+    "zh": "若 $\\Phi\\Phi^\\top$ 是奇異矩陣，不能直接取逆；改用偽逆 $\\Phi^+$，仍能得到一個穩健解。<span class=\"bilingual-en\">If the matrix is singular, use the pseudo-inverse.</span>",
+    "en": "If $\\Phi\\Phi^\\top$ is a singular matrix, you can’t invert it directly; use the pseudo-inverse $\\Phi^+$ instead, and you still get a robust solution.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "01947b2ca48c": {
+    "zh": "閉式解與偽逆 · Closed form and pseudo-inverse",
+    "en": "Closed-form solution and pseudo-inverse",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4f39d040fe0b": {
+    "zh": "這裡的「偷懶」不是不學，而是把可用的線性代數一次算完，不必反覆梯度疊代。<span class=\"bilingual-en\">The shortcut is algebraic: solve the available linear problem directly instead of iterating.</span>",
+    "en": "The “laziness” here isn’t about not learning; it means doing all the available linear algebra in one go, with no need for repeated gradient iterations.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3b5389f22ca1": {
+    "zh": "SOM：沒有答案，也能長出一張地圖 <span class=\"en\">A map without labels</span>",
+    "en": "SOM: no answers, yet a map still grows",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4ee50b934c65": {
+    "zh": "SOM 將相似輸入安排在格子上相近的位置。 · Similar inputs activate nearby map neurons.",
+    "en": "SOM places similar inputs at nearby positions on the grid.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ca9ca42ea55e": {
+    "zh": "1982 · Kohonen 的想法 <span class=\"en\">Kohonen, 1982</span>",
+    "en": "1982 · Kohonen’s idea",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c188e59ee70d": {
+    "zh": "SOM 是單層網路，把神經元排成 1D 或 2D 格子；沒有標籤，也不預先指定簇。<span class=\"bilingual-en\">A single-layer 1D or 2D lattice organizes data without labels or preset clusters.</span>",
+    "en": "SOM is a single-layer network that arranges its neurons in a 1D or 2D grid; there are no labels, and no clusters are specified in advance.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "553e7a394252": {
+    "zh": "拓撲保序 · Topology preservation",
+    "en": "Topology preservation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e514b81c95be": {
+    "zh": "相似的輸入不只要分到相同區域，還應該落在地圖上相鄰的位置；這就是「鄰居一起學」的理由。<span class=\"bilingual-en\">Similar inputs should remain neighbors on the map.</span>",
+    "en": "Similar inputs should not only be assigned to the same region, they should also land at neighboring positions on the map; this is the reason that “neighbors learn together.”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4a2c9344fa99": {
+    "zh": "SOM 五步：神經元的選秀大賽 <span class=\"en\">The five-step training loop</span>",
+    "en": "SOM in five steps: a talent contest for neurons",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0fda4f5989c4": {
+    "zh": "先看兩個核心公式 · Two core equations",
+    "en": "First, the two core equations",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bc0048961420": {
+    "zh": "$z$ 是最接近輸入的 BMU；$h_{zj}(t)$ 決定第 $j$ 個神經元受鄰域影響的強度。<span class=\"bilingual-en\">z is the best matching unit; h controls neighborhood influence.</span>",
+    "en": "$z$ is the BMU (best matching unit), the unit closest to the input; $h_{zj}(t)$ determines how strongly the $j$-th neuron is influenced by the neighborhood.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f192af57915a": {
+    "zh": "初始化 · Initialize",
+    "en": "Initialize",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4d84145db0bc": {
+    "zh": "所有神經元權重先設成小隨機值。<span class=\"bilingual-en\">Start with small random weight vectors.</span>",
+    "en": "First set the weights of all neurons to small random values.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6eca0fcc095b": {
+    "zh": "挑輸入 · Sample",
+    "en": "Pick an input",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7ec9d4e84e14": {
+    "zh": "選一筆輸入 $x$，讓整張地圖開始比對。<span class=\"bilingual-en\">Present one input vector x.</span>",
+    "en": "Choose one input $x$ and let the whole map start comparing.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7c75867eb6b6": {
+    "zh": "找勝者 · BMU",
+    "en": "Find the winner (BMU)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dde3b4924076": {
+    "zh": "距離最近的神經元成為勝者 $z$。<span class=\"bilingual-en\">The nearest neuron becomes the BMU.</span>",
+    "en": "The neuron at the smallest distance becomes the winner $z$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0e5bac7e2b86": {
+    "zh": "鄰域更新 · Update",
+    "en": "Neighborhood update",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d7cd52f71a32": {
+    "zh": "勝者與 $N_z$ 內的鄰居一起向 $x$ 移動。<span class=\"bilingual-en\">The BMU and its neighbors move toward x.</span>",
+    "en": "The winner and its neighbors within $N_z$ move toward $x$ together.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f8cab9267fd3": {
+    "zh": "衰減迭代 · Decay",
+    "en": "Decay and iterate",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c59cf58b63f0": {
+    "zh": "$\\eta(t)$ 與鄰域半徑逐步縮小，直到收斂。<span class=\"bilingual-en\">Learning rate and radius decay toward convergence.</span>",
+    "en": "$\\eta(t)$ and the neighborhood radius shrink step by step until convergence.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "98c8b167f510": {
+    "zh": "訓練後 · After training",
+    "en": "After training",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "95899efafed3": {
+    "zh": "相似資料會被對映到格子上的相鄰神經元；測試時只要找 BMU，就能知道它落在哪個簇。<span class=\"bilingual-en\">After training, nearby map units reveal clusters; testing only requires finding the BMU.</span>",
+    "en": "Similar data are mapped to neighboring neurons on the grid; at test time, you only need to find the BMU to know which cluster a sample falls into.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "963dbc20ef82": {
+    "zh": "精準圖解：區域性性與鄰域如何同時發生？ <span class=\"en\">Precision figures</span>",
+    "en": "Precise figures: how do locality and neighborhoods happen at the same time?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dbd2eee3e39f": {
+    "zh": "左圖用 $\\mu=2,\\sigma=1$ 的高斯 RBF 固定公式；右圖用 10×10 SOM 格子標出 BMU 與早期／晚期鄰域半徑。<span class=\"bilingual-en\">The left panel fixes the Gaussian parameters; the right panel shows a 10×10 SOM with early and late neighborhoods.</span>",
+    "en": "The left panel uses the fixed formula of a Gaussian RBF with $\\mu=2,\\sigma=1$; the right panel uses a 10×10 SOM grid to mark the BMU and the early/late neighborhood radii.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "47e2a59c4cb2": {
+    "zh": "Matplotlib 精準繪製：高斯回應、BMU 勝者與衰減中的鄰域光暈。 · Matplotlib: Gaussian response, BMU, and decaying neighborhood halos.",
+    "en": "Drawn precisely with Matplotlib: the Gaussian response, the winning BMU, and the shrinking neighborhood halos.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "55bccce2832a": {
+    "zh": "RBF 的區域性性 · Locality",
+    "en": "Locality in RBF",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2468977e65a6": {
+    "zh": "在 $x=3$ 時，$\\phi(3)=e^{-1/2}\\approx0.607$；再遠離中心，曲線迅速下降。<span class=\"bilingual-en\">At x = 3, the response is about 0.607; farther inputs fade rapidly.</span>",
+    "en": "At $x=3$, $\\phi(3)=e^{-1/2}\\approx0.607$; farther from the center, the curve drops quickly.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "617e4d7fe1e2": {
+    "zh": "SOM 的拓撲 · Topology",
+    "en": "Topology in SOM",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8c99fbade080": {
+    "zh": "紅點是 BMU；早期半徑較大，後期半徑變小，只讓更近的鄰居跟著更新。<span class=\"bilingual-en\">The winner is red; the neighborhood contracts over time.</span>",
+    "en": "The red dot is the BMU; the radius is larger early on and becomes smaller later, so only closer neighbors get updated along with it.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9313c7e22a0d": {
+    "zh": "S3 · 喚起行動 · ACTIVATE",
+    "en": "S3 · ACTIVATE",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "84c3262be566": {
+    "zh": "RBF × SOM 速查表 <span class=\"en\">Quick comparison</span>",
+    "en": "RBF × SOM cheat sheet",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "92ae5e43cd01": {
+    "zh": "面向 · Dimension",
+    "en": "Aspect",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "feae137a6fcd": {
+    "zh": "RBF 網路 · RBF Network",
+    "en": "RBF network",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1cfc38c697c9": {
+    "zh": "SOM 自組織對映 · SOM",
+    "en": "SOM (self-organizing map)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a785a314850a": {
+    "zh": "學習型態 · Learning",
+    "en": "Type of learning",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "92ce82c6f7f2": {
+    "zh": "監督式：有目標 $Y$",
+    "en": "Supervised: has targets $Y$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "88cd337d78de": {
+    "zh": "無監督式：沒有標籤",
+    "en": "Unsupervised: no labels",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b4de1c16ab33": {
+    "zh": "核心動作 · Core move",
+    "en": "Core move",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "59f29ca7de23": {
+    "zh": "中心與寬度產生區域性回應，再學 $W$",
+    "en": "Centers and widths produce local responses, then learn $W$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e585d905873b": {
+    "zh": "找 BMU，讓鄰域一起更新",
+    "en": "Find the BMU and let its neighborhood update together",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e4d0b37612cd": {
+    "zh": "幾何直覺 · Geometry",
+    "en": "Geometric intuition",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "57ee4610d8fd": {
+    "zh": "距離 → 高斯感應強度",
+    "en": "Distance → strength of the Gaussian response",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "97d1004f6610": {
+    "zh": "相似性 → 格子上的鄰近位置",
+    "en": "Similarity → nearby positions on the grid",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "26ede5f02eda": {
+    "zh": "數學工具 · Math tool",
+    "en": "Math tools",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "46762ca1ad29": {
+    "zh": "最小二乘、閉式解、偽逆",
+    "en": "Least squares, closed-form solution, pseudo-inverse",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "626c5e2dd656": {
+    "zh": "距離、鄰域函式、衰減率",
+    "en": "Distance, neighborhood function, decay rate",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "14e2c05b7699": {
+    "zh": "結果 · Output",
+    "en": "Result",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f39017bf2fc2": {
+    "zh": "預測 $\\hat y$",
+    "en": "Prediction $\\hat y$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "800ef1b3e6c0": {
+    "zh": "拓撲地圖與簇結構",
+    "en": "Topological map and cluster structure",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e2e327a7f566": {
+    "zh": "選擇口訣 · Decision cue",
+    "en": "Mnemonic for choosing",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "24d3f37a88e7": {
+    "zh": "有答案、要預測：想起 RBF；沒答案、要看資料結構：想起 SOM。<span class=\"bilingual-en\">Have targets and need prediction? Think RBF. No targets and need structure? Think SOM.</span>",
+    "en": "Have answers and need to predict: think RBF; no answers and want to see the structure of the data: think SOM.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "43dec56297f2": {
+    "zh": "互動探索：移動旗子，看看回應怎麼變 <span class=\"en\">Explore the local response</span>",
+    "en": "Interactive exploration: move the flag and see how the response changes",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ec6bf8a06fdc": {
+    "zh": "拖曳 $x,\\mu,\\sigma$ 與 $w$，圖表與預測會依照同一條高斯公式即時重算。<span class=\"bilingual-en\">Adjust x, μ, σ, and w; the chart and prediction recompute from the same Gaussian equation.</span>",
+    "en": "Drag $x,\\mu,\\sigma$ and $w$; the chart and the prediction are recomputed in real time from the same Gaussian formula.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8c5c865aeecc": {
+    "zh": "輸入 x <output id=\"rxOut\">4.0</output>",
+    "en": "Input x <output id=\"rxOut\">4.0</output>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4a5fce90f6ea": {
+    "zh": "中心 μ <output id=\"rmuOut\">3.0</output>",
+    "en": "Center μ <output id=\"rmuOut\">3.0</output>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e562e6a41dc0": {
+    "zh": "寬度 σ <output id=\"rsigmaOut\">1.0</output>",
+    "en": "Width σ <output id=\"rsigmaOut\">1.0</output>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bed9e1592a6f": {
+    "zh": "輸出權重 w <output id=\"rwOut\">2.0</output>",
+    "en": "Output weight w <output id=\"rwOut\">2.0</output>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9bcd5987432c": {
+    "zh": "RBF response explorer · 高斯區域性回應",
+    "en": "RBF response explorer: Gaussian local response",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ae7a3241e1c9": {
+    "zh": "\n    <span>當前區域性回應 $\\phi(x)$：</span><span class=\"value\" id=\"phiValue\">0.607</span>\n    <span>預測 $\\hat y=w\\phi(x)$：</span><span class=\"value\" id=\"yhatValue\">1.213</span>\n    <span class=\"bilingual-en\">The response depends on distance and width; the prediction also scales with w.</span>\n  ",
+    "en": "\n    <span>Current local response $\\phi(x)$:</span><span class=\"value\" id=\"phiValue\">0.607</span>\n    <span>Prediction $\\hat y=w\\phi(x)$:</span><span class=\"value\" id=\"yhatValue\">1.213</span>\n    <span class=\"bilingual-en\">The response depends on distance and width; the prediction also scales with w.</span>\n  ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c0aecbdfe6a5": {
+    "zh": "提取練習：把兩種偷懶說回來 <span class=\"en\">Retrieval practice</span>",
+    "en": "Retrieval practice: explain the two kinds of “laziness” back",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "dc1eab759885": {
+    "zh": "Q1. RBF 第一層最接近哪個描述？ <span class=\"en\">What does the first RBF layer do?</span>",
+    "en": "Q1. Which description best fits the first layer of an RBF network?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b93d4f4232c9": {
+    "zh": "A. 反覆更新所有輸出權重 · Update every output weight",
+    "en": "A. Repeatedly update all the output weights",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5bdd583e2f0e": {
+    "zh": "B. 以中心與寬度建立區域性基函式 · Place local basis functions",
+    "en": "B. Build local basis functions from centers and widths",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "85ff3d87d840": {
+    "zh": "C. 不看輸入，直接隨機分簇 · Randomly assign clusters",
+    "en": "C. Ignore the input and assign clusters at random",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0e7bba844d93": {
+    "zh": "D. 只做鄰域拓撲更新 · Update map neighbors only",
+    "en": "D. Only perform neighborhood topology updates",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7d1af8fb4c9c": {
+    "zh": "Q2. SOM 為什麼更新 BMU 周圍的鄰居？ <span class=\"en\">Why update the BMU’s neighbors?</span>",
+    "en": "Q2. Why does SOM update the neighbors around the BMU?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c7f70cfc0dad": {
+    "zh": "A. 保留相似資料的拓撲鄰近性 · Preserve topological proximity",
+    "en": "A. To preserve the topological proximity of similar data",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4f809d945568": {
+    "zh": "B. 讓所有神經元立刻相同 · Make all units identical",
+    "en": "B. To make all neurons identical right away",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fee3c4baf361": {
+    "zh": "C. 產生監督式標籤 · Create supervised labels",
+    "en": "C. To generate supervised labels",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "759a21ff5f76": {
+    "zh": "D. 取代 RBF 的最小二乘解 · Replace least squares",
+    "en": "D. To replace the RBF’s least-squares solution",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "527b2de4465a": {
+    "zh": "Q3. 若 $x=4,\\mu=3,\\sigma=1,w=2$，預測約為多少？ <span class=\"en\">What is the approximate prediction?</span>",
+    "en": "Q3. If $x=4,\\mu=3,\\sigma=1,w=2$, approximately what is the prediction?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "939c5fe18503": {
+    "zh": "今天的地圖 · Today’s map",
+    "en": "Today’s map",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3743f0b138a0": {
+    "zh": "RBF 用高斯旗子感應區域性特徵，再用線性代數一次求出輸出權重；SOM 用 BMU 與鄰域更新，在沒有標籤時整理出拓撲地圖。<span class=\"bilingual-en\">RBF detects local features and solves output weights; SOM organizes topology through winner-and-neighbor updates.</span>",
+    "en": "RBF senses local features with Gaussian flags, then uses linear algebra to solve for the output weights in one go; SOM uses the BMU and neighborhood updates to organize a topological map when there are no labels.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "109bc09f1933": {
+    "zh": "下一站 · Next",
+    "en": "Next stop",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "506c11c4ae5e": {
+    "zh": "連續誤差與線性更新。<span class=\"bilingual-en\">Continuous error and linear updates.</span>",
+    "en": "Continuous error and linear updates.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bcbd3ac0b50e": {
+    "zh": "主線 · Mainline",
+    "en": "Main line",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9d251b8f57a5": {
+    "zh": "多層非線性表達能力。<span class=\"bilingual-en\">Multilayer nonlinear representation.</span>",
+    "en": "Multilayer nonlinear expressive power.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4518d5329321": {
+    "zh": "延伸 · Extension",
+    "en": "Extension",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "29a073ba14c4": {
+    "zh": "把地圖變成可解釋的資料結構。<span class=\"bilingual-en\">Turn maps into interpretable data structure.</span>",
+    "en": "Turning the map into an interpretable data structure.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3fb902b99903": {
+    "zh": "AI 生圖可用：重繪此示意圖的提示詞 · Structured redraw prompt",
+    "en": "AI image generation: a prompt for redrawing this figure",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

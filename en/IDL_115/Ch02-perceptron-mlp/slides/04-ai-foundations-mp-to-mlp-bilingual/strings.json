@@ -1,0 +1,646 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 正確！": "✓ Correct!",
+      "✗ 再想想。": "✗ Think again."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Chapter Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#q1\">大問句 · Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "efc4eabf7a32": {
+    "zh": "<a href=\"#story\">1943 時光機 · Story</a>",
+    "en": "<a href=\"#story\">1943 Time Machine</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0b2199b4c00d": {
+    "zh": "<a href=\"#traits\">三個特點 · Traits</a>",
+    "en": "<a href=\"#traits\">Three Traits</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "efe9cfbbd9f9": {
+    "zh": "<a href=\"#math\">數學形式 · Math</a>",
+    "en": "<a href=\"#math\">Mathematical Form</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "72930445031c": {
+    "zh": "<a href=\"#calc\">動手算蘋果 · Calc</a>",
+    "en": "<a href=\"#calc\">Compute the Apples by Hand</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2b8bbdf7297d": {
+    "zh": "<a href=\"#geo\">AND 與 XOR · Geometry</a>",
+    "en": "<a href=\"#geo\">AND and XOR</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5b8395eac4bd": {
+    "zh": "<a href=\"#mlp\">MLP 結構 · MLP</a>",
+    "en": "<a href=\"#mlp\">MLP Structure</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b8103d1293fb": {
+    "zh": "<a href=\"#dance\">兩步舞曲 · Two steps</a>",
+    "en": "<a href=\"#dance\">The Two-Step Dance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5d7794b2ce45": {
+    "zh": "<a href=\"#sum\">小結 · Summary</a>",
+    "en": "<a href=\"#sum\">Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bd92c9384561": {
+    "zh": "<a href=\"#roadmap\">路線 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Reflection Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d49807ff7502": {
+    "zh": "從 M-P 到 MLP<br>Two-Step Dance and XOR",
+    "en": "From M-P to MLP<br>The Two-Step Dance and XOR",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "39cc810f7c6e": {
+    "zh": "一條直線切不開的世界，就疊出一個空間 <span class=\"bilingual-en\">Where one line fails, stack a space.</span>",
+    "en": "When one straight line can't cut the world apart, stack up a new space",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "cafa0e66fdc4": {
+    "zh": "一條直線切不開 XOR，怎麼辦？<small>One line cannot cut XOR — what now?</small>",
+    "en": "One straight line can't cut XOR apart. Now what?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Spark Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cb4069fc3837": {
+    "zh": "名師導讀 · 輪子之後的引擎 <span class=\"en\">After the wheel, the engine</span>",
+    "en": "Guided Reading · After the Wheel, the Engine",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "851abd93c01a": {
+    "zh": "開場引言 · Opening",
+    "en": "Opening Remarks",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8ffa0391a3c3": {
+    "zh": "很多人因為看見 ChatGPT 能寫詩、Midjourney 能繪圖而走進這門課，想拯救世界，或者至少拯救期末考。<span class=\"bilingual-en\">Drawn by ChatGPT and Midjourney, here to save the world — or the exam.</span>",
+    "en": "Many of you walked into this course because you saw ChatGPT write poems and Midjourney draw pictures, and you want to save the world, or at least save your final exam.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b9945dd65852": {
+    "zh": "上一節我們弄清楚了輪子：M-P 神經元。今天不敲程式碼，我們要回答一個更狠的問題：一條直線切不開的世界，要怎麼切？<span class=\"bilingual-en\">Last time the wheel; today: how to cut what one line cannot.</span>",
+    "en": "Last time we figured out the wheel: the M-P neuron. Today we won't write any code; we'll answer a tougher question: when one straight line can't cut the world apart, how do we cut it?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "efa173068d8e": {
+    "zh": "別擔心文本裡的年份筆誤：M-P 模型誕生於 1943 年，那時連真正的電子電腦都還沒普及，McCulloch 與 Pitts 已經用數學模擬神經元。<span class=\"bilingual-en\">M-P was 1943, before computers went mainstream.</span>",
+    "en": "Don't worry about the typo in the year in the textbook: the M-P model was born in 1943, when real electronic computers weren't even widespread yet, and McCulloch and Pitts were already simulating neurons with mathematics.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "267fe38b4a43": {
+    "zh": "1943：有原則的傳聲筒 <span class=\"en\">A principled relay</span>",
+    "en": "1943: A Relay with Principles",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c8c84d7fe237": {
+    "zh": "加總",
+    "en": "Total",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "12aab0e0ef22": {
+    "zh": "門檻",
+    "en": "Threshold",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "51731918b723": {
+    "zh": "總分達標才輸出 1，否則 0",
+    "en": "Output 1 only if the total reaches the bar, else 0",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b9d5e731b60e": {
+    "zh": "M-P 神經元：加總後過門檻 · Sum then threshold",
+    "en": "M-P neuron: sum, then pass the threshold",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "46f4fa761879": {
+    "zh": "歷史背景 · Context",
+    "en": "Historical Context",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e68b5c770dc5": {
+    "zh": "人類史上第一個「人工神經元」數學模型：<b>McCulloch-Pitts 神經元 (M-P Neuron)</b>，1943 年誕生。<span class=\"bilingual-en\">History's first artificial neuron, 1943.</span>",
+    "en": "The first mathematical model of an “artificial neuron” in human history: the <b>McCulloch-Pitts neuron (M-P neuron)</b>, born in 1943.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ee743ab69ef6": {
+    "zh": "直覺理解 · Intuition",
+    "en": "Intuition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ab8d8630d6b1": {
+    "zh": "有原則的傳聲筒：把收到的 1 加起來，達標才大叫 1，沒達標就安靜輸出 0。<span class=\"bilingual-en\">A relay that shouts 1 only past its threshold.</span>",
+    "en": "A relay with principles: it adds up the 1s it receives, shouts 1 only if the total reaches the bar, and quietly outputs 0 if it doesn't.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "642154eb251a": {
+    "zh": "三個特點 · 簡單到不可思議 <span class=\"en\">Three simple traits</span>",
+    "en": "Three Traits · Unbelievably Simple",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ebe6870679e3": {
+    "zh": "二元輸入輸出",
+    "en": "Binary input and output",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "55ce0dad80d5": {
+    "zh": "只聽得懂 1 或 0，回答也只有 1 或 0，不搞曖昧。<span class=\"bilingual-en\">Only 1 or 0, never in-between.</span>",
+    "en": "It only understands 1 or 0, and it only answers 1 or 0. No mixed signals.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5e5298f0801d": {
+    "zh": "閾值啟動",
+    "en": "Threshold activation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2072548a60cc": {
+    "zh": "把所有 1 加起來，總分達標才輸出 1，否則輸出 0。<span class=\"bilingual-en\">Sum the ones; fire only past the bar.</span>",
+    "en": "Add up all the 1s; output 1 only if the total reaches the bar, otherwise output 0.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1eab74cdb603": {
+    "zh": "等權固定",
+    "en": "Equal, fixed weights",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "de0388bc678d": {
+    "zh": "每個訊號重要性都一樣，而且寫死不能改，生來什麼樣，一輩子什麼樣。<span class=\"bilingual-en\">Equal weights, frozen for life; no learning.</span>",
+    "en": "Every signal is equally important, and that's hard-coded and can't be changed: the way it's born is the way it stays for life.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "df0d8d83f440": {
+    "zh": "為何偉大 · Why it matters",
+    "en": "Why It Matters",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "acedeff9e417": {
+    "zh": "把足夠多這樣的簡單神經元連起來，就能實現 AND、OR、NOT 邏輯運算，等於用神經元做電腦能做的邏輯思考，為所有神經網路打下第一塊地基。<span class=\"bilingual-en\">Wired together, they compute AND, OR, NOT — the first foundation.</span>",
+    "en": "Connect enough of these simple neurons and you can implement the logic operations AND, OR, and NOT. That amounts to using neurons for the logical reasoning a computer can do, and it laid the first foundation stone for all neural networks.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Sustain Attention",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "097e10ef1812": {
+    "zh": "數學形式 · 累積再開關 <span class=\"en\">Sum then threshold</span>",
+    "en": "Mathematical Form · Accumulate, Then Switch",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "01552c8d6b8a": {
+    "zh": "加權和 · Weighted sum",
+    "en": "Weighted Sum",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cc4fd4fb8af8": {
+    "zh": "兩個特徵：$x_1$ 是不是紅色？$x_2$ 是不是圓形？M-P 約定每個輸入重要性都一樣。<span class=\"bilingual-en\">Two features, equal weights by design.</span>",
+    "en": "Two features: $x_1$ is it red? $x_2$ is it round? M-P stipulates that every input is equally important.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7820845b84b8": {
+    "zh": "閾值啟動 · Threshold rule",
+    "en": "Threshold Rule",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7b25f4abab6": {
+    "zh": "門檻設為 2：總分達標輸出 1，否則輸出 0。這就是 AND 的數學寫法。<span class=\"bilingual-en\">Threshold 2 encodes the AND logic.</span>",
+    "en": "Set the threshold to 2: output 1 if the total reaches it, otherwise output 0. That is how AND is written mathematically.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7a08c216179": {
+    "zh": "動手算 · 教它認紅蘋果 <span class=\"en\">Spot the red apple</span>",
+    "en": "Compute by Hand · Teach It to Recognize Red Apples",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6895462baebb": {
+    "zh": "蘋果 (1, 1)",
+    "en": "Apple (1, 1)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "da030a5e06c0": {
+    "zh": "總分 $(1 \\times 1) + (1 \\times 1) = \\mathbf{2}$，達標輸出 1，是紅蘋果！<span class=\"bilingual-en\">Score 2, outputs 1 — a red apple.</span>",
+    "en": "Total $(1 \\times 1) + (1 \\times 1) = \\mathbf{2}$: it reaches the bar, so the output is 1. It's a red apple!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4f9562b88675": {
+    "zh": "香蕉 (0, 0)",
+    "en": "Banana (0, 0)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0a4f274e4d98": {
+    "zh": "總分 $(0 \\times 1) + (0 \\times 1) = \\mathbf{0}$，未達標輸出 0，不是紅蘋果。<span class=\"bilingual-en\">Score 0, outputs 0 — not an apple.</span>",
+    "en": "Total $(0 \\times 1) + (0 \\times 1) = \\mathbf{0}$: it doesn't reach the bar, so the output is 0. Not a red apple.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "215f3e9e57ab": {
+    "zh": "柳丁 (0, 1)",
+    "en": "Orange (0, 1)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "42056588f6a9": {
+    "zh": "總分 $(0 \\times 1) + (1 \\times 1) = \\mathbf{1}$，未達標輸出 0，也不是紅蘋果。<span class=\"bilingual-en\">Score 1, outputs 0 — not an apple.</span>",
+    "en": "Total $(0 \\times 1) + (1 \\times 1) = \\mathbf{1}$: it doesn't reach the bar, so the output is 0. Not a red apple either.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e45d39321a8a": {
+    "zh": "總分與輸出 · Score versus output",
+    "en": "Total Score vs. Output",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a1be6c16286f": {
+    "zh": "AND 可分，XOR 不可分 <span class=\"en\">AND splits, XOR resists</span>",
+    "en": "AND Is Separable, XOR Is Not",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4219b6efc827": {
+    "zh": "左 AND 門檻 1.5 線性可分 · 右 XOR 無一直線可分 · matplotlib 精準繪製",
+    "en": "Left: AND with threshold 1.5 is linearly separable · Right: no single straight line separates XOR · Drawn precisely with matplotlib",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ab8168e447f4": {
+    "zh": "AND 邏輯 · AND gate",
+    "en": "AND Logic",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "13568c06f6a3": {
+    "zh": "權重 $[1, 1]$、偏置 $-1.5$ 時，直線 $x_1 + x_2 = 1.5$ 把唯一的 (1, 1) 與 (0, 0)、(0, 1)、(1, 0) 完全分開。<span class=\"bilingual-en\">One line isolates (1,1).</span>",
+    "en": "With weights $[1, 1]$ and bias $-1.5$, the line $x_1 + x_2 = 1.5$ completely separates the lone point (1, 1) from (0, 0), (0, 1), and (1, 0).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86cceb03072f": {
+    "zh": "XOR 困境 · XOR trouble",
+    "en": "The XOR Dilemma",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b31708d05e11": {
+    "zh": "(0, 0) 與 (1, 1) 同類，(0, 1) 與 (1, 0) 另一類，任何單一筆直直線都無法分開，呈現線性不可分。<span class=\"bilingual-en\">No single line can split XOR.</span>",
+    "en": "(0, 0) and (1, 1) are in one class, (0, 1) and (1, 0) in the other. No single straight line can separate them: the data are not linearly separable.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "436eb955db6a": {
+    "zh": "決策邊界 · Decision boundary",
+    "en": "Decision Boundary",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fe55a7054db3": {
+    "zh": "單層網路只能畫一條直線；XOR 需要彎曲邊界，必須疊出隱藏層。<span class=\"bilingual-en\">One layer draws one line; XOR needs depth.</span>",
+    "en": "A single-layer network can only draw one straight line; XOR needs a curved boundary, so we must stack a hidden layer.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "03d9119d25ec": {
+    "zh": "MLP 結構 · 疊出新空間 <span class=\"en\">Stack into new space</span>",
+    "en": "MLP Structure · Stacking Up a New Space",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "edc714994934": {
+    "zh": "輸入層",
+    "en": "Input layer",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "aacdca598459": {
+    "zh": "隱藏層",
+    "en": "Hidden layer",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "8d8fbf6795e8": {
+    "zh": "輸出層",
+    "en": "Output layer",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "2e30389476fa": {
+    "zh": "隱藏層折疊空間，輸出層再切一刀",
+    "en": "Hidden layer folds space; output layer makes one cut",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "5d8e2faa053a": {
+    "zh": "MLP 全連接：隱藏層折疊，輸出層切割 · Fold then cut",
+    "en": "Fully connected MLP: the hidden layer folds, the output layer cuts",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "cd3560c61b7c": {
+    "zh": "為何要深 · Why depth",
+    "en": "Why Go Deep",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "22285b55802b": {
+    "zh": "單層只能畫一條直線。MLP 用隱藏層把空間折起來，讓原本纏在一起的點在新空間中變得可分。<span class=\"bilingual-en\">Hidden layers fold space separable.</span>",
+    "en": "A single layer can only draw one straight line. An MLP uses hidden layers to fold the space, so points that were tangled together become separable in the new space.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6586a029fff7": {
+    "zh": "像把紙對摺再剪一刀：對摺是隱藏層的非線性，剪一刀是輸出層的直線。<span class=\"bilingual-en\">Fold the paper, then one straight cut.</span>",
+    "en": "It's like folding a sheet of paper in half and then making one cut: the fold is the hidden layer's nonlinearity, and the cut is the output layer's straight line.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e0a9f43fe227": {
+    "zh": "神經元兩步舞曲 <span class=\"en\">Two-step dance</span>",
+    "en": "The Neuron's Two-Step Dance",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2e1802c2f472": {
+    "zh": "線性加總",
+    "en": "Linear summation",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "25a61f3b3f6d": {
+    "zh": "把上一層傳來的東西乘上重要性再加起來，得到總分 $a_i$。<span class=\"bilingual-en\">Weight, sum, score $a_i$.</span>",
+    "en": "Multiply whatever comes from the previous layer by its importance and add it all up to get the total score $a_i$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c384b8ee2828": {
+    "zh": "非線性啟動",
+    "en": "Nonlinear activation",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7d441b4330ee": {
+    "zh": "把總分丟進神奇開關 $\\sigma(\\cdot)$，得到最終輸出 $z_i$。<span class=\"bilingual-en\">Squash with $\\sigma$, output $z_i$.</span>",
+    "en": "Throw the total score into the magic switch $\\sigma(\\cdot)$ to get the final output $z_i$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2aa162951822": {
+    "zh": "疊夠多層",
+    "en": "Stack enough layers",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2b0c91a261d6": {
+    "zh": "加上正確的非線性，就能分辨真實世界複雜到爆的資料結構。<span class=\"bilingual-en\">Stack deep, carve complex worlds.</span>",
+    "en": "Add the right nonlinearity, and you can tell apart the insanely complex data structures of the real world.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5bdfe6e93350": {
+    "zh": "神經元內部運算 · Inside one neuron",
+    "en": "Inside One Neuron",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "da46854ec868": {
+    "zh": "第一步是直線，第二步是彎曲；兩步交替，才有深度學習的魔法。<span class=\"bilingual-en\">Linear first, bending second — that is the magic.</span>",
+    "en": "Step one is a straight line, step two is a bend; only by alternating the two steps do you get the magic of deep learning.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "52ec78780027": {
+    "zh": "小結 · 從傳聲筒到折紙機 <span class=\"en\">Relay to folder</span>",
+    "en": "Summary · From Relay to Paper-Folding Machine",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7c693fb1f128": {
+    "zh": "小結 · Takeaway",
+    "en": "Takeaway",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e00997b43eda": {
+    "zh": "M-P 教會我們「加權和 $\\to$ 閾值啟動」；XOR 教會我們單層的極限；MLP 用「線性加總 $+$ 非線性啟動」疊出新空間。<span class=\"bilingual-en\">M-P gives the rule; XOR gives the limit; MLP folds space.</span>",
+    "en": "M-P taught us “weighted sum $\\to$ threshold activation”; XOR taught us the limits of a single layer; MLP uses “linear summation $+$ nonlinear activation” to stack up a new space.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "71ea99f8496f": {
+    "zh": "提醒 · Note",
+    "en": "Note",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "62895d1115d8": {
+    "zh": "文本有兩處口誤已在課堂上澄清：M-P 是 1943 年不是 1958 年；AND 示範門檻 2 與幾何圖門檻 1.5 是同一條邊界的不同寫法（$\\ge 2$ 對整數點 $\\Leftrightarrow$ $\\gt 1.5$）。<span class=\"bilingual-en\">1943 not 1958; threshold 2 equals boundary 1.5.</span>",
+    "en": "Two slips in the textbook were clarified in class: M-P dates from 1943, not 1958; and the AND demo's threshold of 2 and the geometry figure's threshold of 1.5 are two ways of writing the same boundary ($\\ge 2$ on integer points $\\Leftrightarrow$ $\\gt 1.5$).",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a7993ba76d56": {
+    "zh": "後續路線 <span class=\"en\">Roadmap</span>",
+    "en": "Roadmap Ahead",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0136e6867cb5": {
+    "zh": "M-P 神經元",
+    "en": "M-P neuron",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ebb937cdc753": {
+    "zh": "等權固定、無學習，但證明神經元可做邏輯運算。<span class=\"bilingual-en\">Logic from neurons, no learning yet.</span>",
+    "en": "Equal, fixed weights and no learning, but it proved that neurons can perform logic operations.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "83810d9b2866": {
+    "zh": "感知機 Perceptron",
+    "en": "Perceptron",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ef4d0374cc83": {
+    "zh": "權重可從錯誤中更新，但單層仍解不了 XOR。<span class=\"bilingual-en\">Learns, yet still blocked by XOR.</span>",
+    "en": "Weights can be updated from mistakes, but a single layer still can't solve XOR.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "18e76658178d": {
+    "zh": "多層感知機 MLP",
+    "en": "Multilayer perceptron (MLP)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "894b8912666d": {
+    "zh": "疊出隱藏層，用非線性折疊空間，下節課讓神經元動起來。<span class=\"bilingual-en\">Next: depth that moves.</span>",
+    "en": "Stack hidden layers and fold space with nonlinearity; next class, we get the neurons moving.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2391467faf5e": {
+    "zh": "思考題 · 提取練習 <span class=\"en\">Reflection</span>",
+    "en": "Reflection Questions · Retrieval Practice",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c70b84166dd2": {
+    "zh": "Q1. AND 邏輯下，權重 [1, 1] 時門檻應設為多少？ <span class=\"bilingual-en\">Threshold for AND with weights [1,1]?</span>",
+    "en": "Q1. For AND logic with weights [1, 1], what should the threshold be?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "247483dcbe2d": {
+    "zh": "Q2. 為何單層網路解不了 XOR？ <span class=\"bilingual-en\">Why can't one layer solve XOR?</span>",
+    "en": "Q2. Why can't a single-layer network solve XOR?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0c0b73d10460": {
+    "zh": "點太少 <span class=\"bilingual-en-inline\">— too few points</span>",
+    "en": "Too few points",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "729901c82533": {
+    "zh": "計算太慢 <span class=\"bilingual-en-inline\">— too slow</span>",
+    "en": "Computation is too slow",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "db08fd84838f": {
+    "zh": "任何單一直線都分不開對角同類 <span class=\"bilingual-en-inline\">— no single line separates</span>",
+    "en": "No single straight line can separate the diagonal same-class points",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "989356092157": {
+    "zh": "Q3. MLP 解決 XOR 的關鍵是什麼？ <span class=\"bilingual-en\">Key to MLP solving XOR?</span>",
+    "en": "Q3. What is the key to how an MLP solves XOR?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b2b171c66dd5": {
+    "zh": "更多資料 <span class=\"bilingual-en-inline\">— more data only</span>",
+    "en": "More data",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "15b44e26330d": {
+    "zh": "隱藏層非線性折疊空間 <span class=\"bilingual-en-inline\">— fold space nonlinearly</span>",
+    "en": "The hidden layer folds space nonlinearly",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "973a3a4f11d9": {
+    "zh": "更高門檻 <span class=\"bilingual-en-inline\">— higher threshold</span>",
+    "en": "A higher threshold",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Chapter index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

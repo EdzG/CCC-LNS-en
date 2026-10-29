@@ -1,0 +1,496 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 正確！AND 只有 (1,1) 達標。": "✓ Correct! For AND, only (1,1) reaches the threshold.",
+      "✗ 再想想：間值決定誰能鳴火。": "✗ Think again: the threshold decides who gets to fire."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#q1\">大問句 · Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "efc4eabf7a32": {
+    "zh": "<a href=\"#story\">1943 時光機 · Story</a>",
+    "en": "<a href=\"#story\">1943 Time Machine</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0b2199b4c00d": {
+    "zh": "<a href=\"#traits\">三個特點 · Traits</a>",
+    "en": "<a href=\"#traits\">Three Traits</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "efe9cfbbd9f9": {
+    "zh": "<a href=\"#math\">數學形式 · Math</a>",
+    "en": "<a href=\"#math\">Mathematical Form</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "72930445031c": {
+    "zh": "<a href=\"#calc\">動手算蘋果 · Calc</a>",
+    "en": "<a href=\"#calc\">Hand-Calculating Apples</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5515bee56387": {
+    "zh": "<a href=\"#geo\">幾何魔法 · Geometry</a>",
+    "en": "<a href=\"#geo\">Geometric Magic</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "905f4e2d1da6": {
+    "zh": "<a href=\"#sum\">鷹架小結 · Summary</a>",
+    "en": "<a href=\"#sum\">Scaffolded Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bd92c9384561": {
+    "zh": "<a href=\"#roadmap\">路線 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cf5a0b37853f": {
+    "zh": "第一顆人工神經元<br>McCulloch-Pitts Neuron",
+    "en": "The First Artificial Neuron<br>The McCulloch-Pitts Neuron",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "c2a8263a1098": {
+    "zh": "在學會開法拉利之前，先弄清楚輪子怎麼發明 <span class=\"bilingual-en\">Before the Ferrari, learn the wheel.</span>",
+    "en": "Before you learn to drive a Ferrari, first figure out how the wheel was invented",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "4312066f2ce9": {
+    "zh": "大腦的神經元，能用數學模擬嗎？<small>Can neurons be simulated with mathematics?</small>",
+    "en": "Can the brain's neurons be simulated with mathematics?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "564b3ad13675": {
+    "zh": "名師導讀 · 為何回到 1943 <span class=\"en\">Why travel back to 1943</span>",
+    "en": "Guided Reading · Why Go Back to 1943",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "851abd93c01a": {
+    "zh": "開場引言 · Opening",
+    "en": "Opening",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "789657df0564": {
+    "zh": "很多人因為看見 ChatGPT 能寫詩、Midjourney 能繪圖而走進這門課，想學怎麼拯救世界，或者至少拯救自己的期末考。<span class=\"bilingual-en\">Drawn by ChatGPT and Midjourney, here to save the world — or the final exam.</span>",
+    "en": "Many people walk into this course because they have seen ChatGPT write poems and Midjourney draw pictures, and they want to learn how to save the world, or at least save their own final exam.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "de7c721f3c80": {
+    "zh": "但在學會開法拉利之前，得先弄清楚輪子怎麼發明。今天不敲程式碼、不死背公式，我們搭時光機回到 1943 年。<span class=\"bilingual-en\">Before the Ferrari, study the wheel; no coding, no rote formulas today.</span>",
+    "en": "But before you learn to drive a Ferrari, you first have to figure out how the wheel was invented. Today we won't type code or memorize formulas; we'll hop into a time machine and go back to 1943.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "14b22160f930": {
+    "zh": "那時連真正的電子電腦都還沒誕生，神經生理學家 Warren McCulloch 與邏輯學家 Walter Pitts 坐在一起喝咖啡，靈光一閃：大腦神經元能否用數學模擬？<span class=\"bilingual-en\">Before computers existed, McCulloch and Pitts asked: can neurons be math?</span>",
+    "en": "Back then, not even a true electronic computer had been born yet. The neurophysiologist Warren McCulloch and the logician Walter Pitts sat down together over coffee and had a flash of inspiration: could the brain's neurons be simulated with mathematics?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "267fe38b4a43": {
+    "zh": "1943：有原則的傳聲筒 <span class=\"en\">A principled relay</span>",
+    "en": "1943: A Principled Messenger",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c8c84d7fe237": {
+    "zh": "加總",
+    "en": "Sum",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "12aab0e0ef22": {
+    "zh": "門檻",
+    "en": "Threshold",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "51731918b723": {
+    "zh": "總分達標才輸出 1，否則 0",
+    "en": "Output 1 only if the total reaches the bar, else 0",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b9d5e731b60e": {
+    "zh": "M-P 神經元：加總後過門檻 · Sum then threshold",
+    "en": "M-P neuron: sum, then pass the threshold",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "46f4fa761879": {
+    "zh": "歷史背景 · Context",
+    "en": "Historical Context",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "300a425364cd": {
+    "zh": "人類史上第一個「人工神經元」數學模型就此誕生，我們稱它為 <b>McCulloch-Pitts 神經元 (M-P Neuron)</b>。<span class=\"bilingual-en\">History's first artificial neuron model.</span>",
+    "en": "And so the first mathematical model of an \"artificial neuron\" in human history was born. We call it the <b>McCulloch-Pitts neuron (M-P neuron)</b>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ee743ab69ef6": {
+    "zh": "直覺理解 · Intuition",
+    "en": "Intuition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "81b39467b060": {
+    "zh": "它就像一個有原則的傳聲筒：把收到的 1 加起來，心裡有一道門檻，達標才大叫 1，沒達標就安靜輸出 0。<span class=\"bilingual-en\">A relay that shouts 1 only past its threshold.</span>",
+    "en": "It is like a principled messenger: it adds up the 1s it receives and keeps a threshold in mind. Only when the total reaches the threshold does it shout 1; otherwise it quietly outputs 0.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "642154eb251a": {
+    "zh": "三個特點 · 簡單到不可思議 <span class=\"en\">Three simple traits</span>",
+    "en": "Three Traits · Unbelievably Simple",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ebe6870679e3": {
+    "zh": "二元輸入輸出",
+    "en": "Binary input and output",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "55ce0dad80d5": {
+    "zh": "只聽得懂 1 或 0，回答也只有 1 或 0，不搞曖昧。<span class=\"bilingual-en\">Only 1 or 0, never in-between.</span>",
+    "en": "It only understands 1 or 0, and it only ever answers 1 or 0. No mixed signals.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5e5298f0801d": {
+    "zh": "閾值啟動",
+    "en": "Threshold activation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2072548a60cc": {
+    "zh": "把所有 1 加起來，總分達標才輸出 1，否則輸出 0。<span class=\"bilingual-en\">Sum the ones; fire only past the bar.</span>",
+    "en": "Add up all the 1s; output 1 only if the total reaches the threshold, otherwise output 0.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1eab74cdb603": {
+    "zh": "等權固定",
+    "en": "Equal, fixed weights",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "de0388bc678d": {
+    "zh": "每個訊號重要性都一樣，而且寫死不能改，生來什麼樣，一輩子什麼樣。<span class=\"bilingual-en\">Equal weights, frozen for life; no learning.</span>",
+    "en": "Every signal is equally important, and the weights are hard-coded and cannot change: however it is born, that is how it stays for life.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "df0d8d83f440": {
+    "zh": "為何偉大 · Why it matters",
+    "en": "Why It Matters",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c2a55b96f99b": {
+    "zh": "只要把足夠多這樣的簡單神經元連起來，就能實現 AND、OR、NOT 邏輯運算，等於用神經元做電腦能做的邏輯思考，為所有神經網路打下第一塊地基。<span class=\"bilingual-en\">Wired together, they compute AND, OR, NOT — the first foundation.</span>",
+    "en": "Connect enough of these simple neurons together and you can implement the logical operations AND, OR and NOT. That amounts to using neurons to do the logical reasoning a computer can do, and it laid the very first foundation stone for all neural networks.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Sustaining Attention",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "097e10ef1812": {
+    "zh": "數學形式 · 累積再開關 <span class=\"en\">Sum then threshold</span>",
+    "en": "Mathematical Form · Accumulate, Then Switch",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "01552c8d6b8a": {
+    "zh": "加權和 · Weighted sum",
+    "en": "Weighted Sum",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cc4fd4fb8af8": {
+    "zh": "兩個特徵：$x_1$ 是不是紅色？$x_2$ 是不是圓形？M-P 約定每個輸入重要性都一樣。<span class=\"bilingual-en\">Two features, equal weights by design.</span>",
+    "en": "Two features: is it red ($x_1$)? Is it round ($x_2$)? By M-P convention, every input is equally important.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7820845b84b8": {
+    "zh": "閾值啟動 · Threshold rule",
+    "en": "Threshold Rule",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7b25f4abab6": {
+    "zh": "門檻設為 2：總分達標輸出 1，否則輸出 0。這就是 AND 的數學寫法。<span class=\"bilingual-en\">Threshold 2 encodes the AND logic.</span>",
+    "en": "Set the threshold to 2: if the total reaches it, output 1; otherwise output 0. This is how AND is written mathematically.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7a08c216179": {
+    "zh": "動手算 · 教它認紅蘋果 <span class=\"en\">Spot the red apple</span>",
+    "en": "Hands-On Calculation · Teaching It to Recognize Red Apples",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6895462baebb": {
+    "zh": "蘋果 (1, 1)",
+    "en": "Apple (1, 1)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "da030a5e06c0": {
+    "zh": "總分 $(1 \\times 1) + (1 \\times 1) = \\mathbf{2}$，達標輸出 1，是紅蘋果！<span class=\"bilingual-en\">Score 2, outputs 1 — a red apple.</span>",
+    "en": "Total $(1 \\times 1) + (1 \\times 1) = \\mathbf{2}$: it reaches the threshold and outputs 1. It's a red apple!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4f9562b88675": {
+    "zh": "香蕉 (0, 0)",
+    "en": "Banana (0, 0)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0a4f274e4d98": {
+    "zh": "總分 $(0 \\times 1) + (0 \\times 1) = \\mathbf{0}$，未達標輸出 0，不是紅蘋果。<span class=\"bilingual-en\">Score 0, outputs 0 — not an apple.</span>",
+    "en": "Total $(0 \\times 1) + (0 \\times 1) = \\mathbf{0}$: it falls short of the threshold and outputs 0. Not a red apple.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "215f3e9e57ab": {
+    "zh": "柳丁 (0, 1)",
+    "en": "Orange (0, 1)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "42056588f6a9": {
+    "zh": "總分 $(0 \\times 1) + (1 \\times 1) = \\mathbf{1}$，未達標輸出 0，也不是紅蘋果。<span class=\"bilingual-en\">Score 1, outputs 0 — not an apple.</span>",
+    "en": "Total $(0 \\times 1) + (1 \\times 1) = \\mathbf{1}$: it falls short of the threshold and outputs 0. Not a red apple either.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e45d39321a8a": {
+    "zh": "總分與輸出 · Score versus output",
+    "en": "Total Score vs. Output",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4ab570f6f46a": {
+    "zh": "幾何魔法 · 一條線切開世界 <span class=\"en\">One line splits the world</span>",
+    "en": "Geometric Magic · One Line Splits the World",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "69b661858e97": {
+    "zh": "左 AND 門檻 2 · 右 OR 門檻 1 · matplotlib 精準繪製",
+    "en": "Left: AND, threshold 2 · Right: OR, threshold 1 · drawn precisely with matplotlib",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ab8168e447f4": {
+    "zh": "AND 邏輯 · AND gate",
+    "en": "AND Logic",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8214e95bb699": {
+    "zh": "直線 $x_1 + x_2 = 2$ 把唯一的 (1, 1) 與 (0, 0)、(0, 1)、(1, 0) 完全分開，呈現線性可分。<span class=\"bilingual-en\">Line isolates (1,1); linearly separable.</span>",
+    "en": "The line $x_1 + x_2 = 2$ completely separates the lone point (1, 1) from (0, 0), (0, 1) and (1, 0): the data are linearly separable.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9b3de44e89c7": {
+    "zh": "OR 邏輯 · OR gate",
+    "en": "OR Logic",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c9f8158c06c6": {
+    "zh": "門檻調低為 1，切割線變為 $x_1 + x_2 = 1$ 向左下方平移，只有 (0, 0) 歸為 0。<span class=\"bilingual-en\">Lower the bar; the boundary shifts.</span>",
+    "en": "Lower the threshold to 1 and the cutting line becomes $x_1 + x_2 = 1$, shifted toward the lower left; only (0, 0) is classified as 0.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "436eb955db6a": {
+    "zh": "決策邊界 · Decision boundary",
+    "en": "Decision Boundary",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fdc0a13d9716": {
+    "zh": "單層網路透過調整門檻，在幾何空間中移動決策邊界。<span class=\"bilingual-en\">One threshold slides the whole boundary.</span>",
+    "en": "By adjusting its threshold, a single-layer network moves its decision boundary through geometric space.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3096ff634b66": {
+    "zh": "鷹架小結 · 偉大與致命傷 <span class=\"en\">Takeaway and flaw</span>",
+    "en": "Scaffolded Summary · Greatness and the Fatal Flaw",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7c693fb1f128": {
+    "zh": "小結 · Takeaway",
+    "en": "Takeaway",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0ca9b8dbfc2c": {
+    "zh": "M-P 模型把「累積訊號、超過門檻就開關」的生物直覺，正式翻譯成「加權和 $\\to$ 閾值啟動」的數學形式。<span class=\"bilingual-en\">Biology translated into sum-to-threshold math.</span>",
+    "en": "The M-P model formally translated the biological intuition of \"accumulate signals, switch on once past the threshold\" into the mathematical form \"weighted sum $\\to$ threshold activation\".",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f3fcda2d1ffe": {
+    "zh": "致命限制 · Fatal limits",
+    "en": "Fatal Limitation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e1c2b144a9f1": {
+    "zh": "權重固定、不能學習：教小孩認蘋果，卻不准他從錯誤中長大。下一節的感知機 (Perceptron)，正是為了解開「不能學習」而誕生。<span class=\"bilingual-en\">Fixed weights, no learning — Perceptron comes next.</span>",
+    "en": "The weights are fixed and it cannot learn: it is like teaching a child to recognize apples but forbidding them to grow from their mistakes. The perceptron in the next section was born precisely to fix this \"cannot learn\" problem.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a7993ba76d56": {
+    "zh": "後續路線 <span class=\"en\">Roadmap</span>",
+    "en": "Roadmap",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0136e6867cb5": {
+    "zh": "M-P 神經元",
+    "en": "M-P neuron",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ebb937cdc753": {
+    "zh": "等權固定、無學習，但證明神經元可做邏輯運算。<span class=\"bilingual-en\">Logic from neurons, no learning yet.</span>",
+    "en": "Equal, fixed weights and no learning, but it proved that neurons can perform logical operations.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "83810d9b2866": {
+    "zh": "感知機 Perceptron",
+    "en": "Perceptron",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "232239016b9d": {
+    "zh": "解開「不能學習」：權重可從錯誤中更新。<span class=\"bilingual-en\">Weights learn from mistakes.</span>",
+    "en": "Fixes \"cannot learn\": the weights can be updated from mistakes.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9222df39f567": {
+    "zh": "動起來的神經元",
+    "en": "Neurons that move",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "86229b271cb7": {
+    "zh": "下節課看 Perceptron 怎麼讓神經元動起來。<span class=\"bilingual-en\">Next: neurons that move.</span>",
+    "en": "Next lesson: we'll see how the perceptron gets neurons moving.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2391467faf5e": {
+    "zh": "思考題 · 提取練習 <span class=\"en\">Reflection</span>",
+    "en": "Reflection Questions · Retrieval Practice",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c70b84166dd2": {
+    "zh": "Q1. AND 邏輯下，權重 [1, 1] 時門檻應設為多少？ <span class=\"bilingual-en\">Threshold for AND with weights [1,1]?</span>",
+    "en": "Q1. For AND logic with weights [1, 1], what should the threshold be set to?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ba59e3fb9b23": {
+    "zh": "Q2. M-P 模型的致命限制是什麼？ <span class=\"bilingual-en\">Fatal limit of M-P?</span>",
+    "en": "Q2. What is the fatal limitation of the M-P model?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a2c4b511c994": {
+    "zh": "輸入太多 <span class=\"bilingual-en-inline\">— too many inputs</span>",
+    "en": "Too many inputs",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bf68d985309f": {
+    "zh": "公式太難 <span class=\"bilingual-en-inline\">— math too hard</span>",
+    "en": "The formula is too hard",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1dd150df75e4": {
+    "zh": "權重固定、不能學習 <span class=\"bilingual-en-inline\">— fixed weights, no learning</span>",
+    "en": "The weights are fixed and it cannot learn",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

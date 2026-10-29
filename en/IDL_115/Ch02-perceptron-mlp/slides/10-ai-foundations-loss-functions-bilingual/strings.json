@@ -1,0 +1,754 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 答對了！觀念已接上。 · Correct!": "✓ Correct! The concept has clicked.",
+      "再想一次：回到任務與公式。 · Try again.": "Think again: go back to the task and the formulas."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "c51136b09443": {
+    "zh": "Loss Functions · 索引",
+    "en": "Loss Functions · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cecea0b809d4": {
+    "zh": "<a href=\"#question\">核心問句 · Question</a>",
+    "en": "<a href=\"#question\">The Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a07c80798feb": {
+    "zh": "<a href=\"#notation\">符號先統一 · Notation</a>",
+    "en": "<a href=\"#notation\">Notation First</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "de7abde7ce77": {
+    "zh": "<a href=\"#regression\">回歸三兄弟 · Regression</a>",
+    "en": "<a href=\"#regression\">The Three Regression Brothers</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b7209193c00d": {
+    "zh": "<a href=\"#curves\">曲線看性格 · Curves</a>",
+    "en": "<a href=\"#curves\">Personality from the Curves</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ae0f23dd0c71": {
+    "zh": "<a href=\"#huber\">Huber 折衷 · Huber</a>",
+    "en": "<a href=\"#huber\">Huber’s Compromise</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "687b7aba00f8": {
+    "zh": "<a href=\"#distribution\">分佈對齊 · KL / CE</a>",
+    "en": "<a href=\"#distribution\">Aligning Distributions (KL / CE)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a69da2b3723e": {
+    "zh": "<a href=\"#hinge\">Hinge 邊界 · Hinge</a>",
+    "en": "<a href=\"#hinge\">Hinge Margins</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1569592d1271": {
+    "zh": "<a href=\"#crossentropy\">交叉熵 · Cross-Entropy</a>",
+    "en": "<a href=\"#crossentropy\">Cross-Entropy</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e6755b429f55": {
+    "zh": "<a href=\"#explorer\">互動實算 · Explorer</a>",
+    "en": "<a href=\"#explorer\">Interactive Calculation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "238bdf25a546": {
+    "zh": "<a href=\"#selection\">挑選邏輯 · Selection</a>",
+    "en": "<a href=\"#selection\">The Logic of Choosing</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "21100b9c87f2": {
+    "zh": "<a href=\"#quiz\">課後檢核 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Review Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e0b35a931b6b": {
+    "zh": "常見損失函式：<br>MSE／MAE／Huber／KL／Hinge／交叉熵 <span class=\"en\">Common Loss Functions</span>",
+    "en": "Common Loss Functions:<br>MSE / MAE / Huber / KL / Hinge / Cross-Entropy",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "9534d7f914ad": {
+    "zh": "模型答錯之後，究竟要用什麼數字告訴它「往哪裡改」？<span class=\"bilingual-en\">A loss turns prediction error into a direction for updating the network.</span>",
+    "en": "After the model gets an answer wrong, what number should we use to tell it “which way to change”?",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "e42b5aafc40a": {
+    "zh": "模型答錯，該怎麼罰？ <span class=\"en\">What should a wrong prediction cost?</span>",
+    "en": "The Model Got It Wrong: How Should We Penalize It?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "cba0a8ed1ab8": {
+    "zh": "同樣差 3 分，MSE 會把它平方放大；MAE 只算距離；Huber 先溫柔、後嚴格。分類時，問題又從「差多少」換成「機率分佈對不對」或「離邊界夠不夠遠」。<span class=\"bilingual-en\">Different losses encode different ideas of error: distance, robustness, probability alignment, or margin.</span>",
+    "en": "Off by the same 3 points: MSE squares it and blows it up; MAE just counts the distance; Huber is gentle first, then strict. In classification, the question changes from “how far off?” to “is the probability distribution right?” or “is it far enough from the boundary?”",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "5d2f05294e68": {
+    "zh": "今天的主線 · Today’s throughline",
+    "en": "Today’s main thread",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "7a5938c55068": {
+    "zh": "先辨認任務，再看損失函式在懲罰什麼，最後把「選哪一個」變成可重複的決策。<span class=\"bilingual-en\">Identify the task, inspect the penalty, then choose systematically.</span>",
+    "en": "First identify the task, then look at what the loss function is penalizing, and finally turn “which one should I pick?” into a repeatable decision.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Sustaining Attention",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5c60e9797dc0": {
+    "zh": "符號先統一 <span class=\"en\">Notation First</span>",
+    "en": "Notation First",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "96872811ec15": {
+    "zh": "先把不同公式裡反覆出現的角色固定下來；後面只要換損失函式，不必重新猜符號。<span class=\"bilingual-en\">Fix the notation once, then compare the losses cleanly.</span>",
+    "en": "First pin down the roles that keep showing up across the different formulas; after that, whenever we swap the loss function, we won’t have to guess the symbols all over again.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "67f7deeb1586": {
+    "zh": "網路所有可學引數，例如權重與偏置。<span class=\"bilingual-en\">Trainable parameters such as weights and biases.</span>",
+    "en": "All learnable parameters of the network, such as the weights and biases.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "52ea3b847e55": {
+    "zh": "第 $i$ 筆輸入；$f_\\theta(\\mathbf{x}_i)$ 是模型輸出。<span class=\"bilingual-en\">The input and the model output for sample $i$.</span>",
+    "en": "The $i$-th input; $f_\\theta(\\mathbf{x}_i)$ is the model output.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f23366d48793": {
+    "zh": "目標答案；回歸是數值，分類可是一個標籤或分佈。<span class=\"bilingual-en\">The target value, label, or target distribution.</span>",
+    "en": "The target answer: in regression it is a number; in classification it can be a label or a distribution.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d0d9ecd720c5": {
+    "zh": "Batch size：一次送進模型的樣本數。<span class=\"bilingual-en\">The number of samples in one batch.</span>",
+    "en": "Batch size: the number of samples fed into the model at once.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9cdbe7d6bd8f": {
+    "zh": "分類任務中的類別數；$p_{il}$ 是第 $i$ 筆對類別 $l$ 的預測機率。<span class=\"bilingual-en\">The class count and predicted probability for class $l$.</span>",
+    "en": "The number of classes in a classification task; $p_{il}$ is the predicted probability that sample $i$ belongs to class $l$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b86d74c5da9f": {
+    "zh": "回歸殘差：$e_i=f_\\theta(\\mathbf{x}_i)-y_i$。<span class=\"bilingual-en\">The regression residual between prediction and target.</span>",
+    "en": "Regression residual: $e_i=f_\\theta(\\mathbf{x}_i)-y_i$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3d701d3eb023": {
+    "zh": "一個重要區分 · One key distinction",
+    "en": "One key distinction",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "196a9b2f430b": {
+    "zh": "\n      $$\\text{回歸：比較誤差距離}\\qquad\\text{分類：比較機率或 margin}$$\n      ",
+    "en": "\n      $$\\text{Regression: compare error distances}\\qquad\\text{Classification: compare probabilities or margins}$$\n      ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9348493a432e": {
+    "zh": "同一個「答錯」概念，在不同任務裡要用不同座標描述。<span class=\"bilingual-en\">The same word “error” lives in different coordinates for regression and classification.</span>",
+    "en": "The same notion of “getting it wrong” has to be described in different coordinates for different tasks.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "effe0fe17e71": {
+    "zh": "回歸三兄弟 <span class=\"en\">The Regression Trio</span>",
+    "en": "The Three Regression Brothers",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5dd08ee3a774": {
+    "zh": "回歸先看殘差 $e$：預測和目標差多遠？MSE、MAE、Huber 的差別，不是「會不會算」，而是「怎麼看待大誤差」。<span class=\"bilingual-en\">Regression losses differ mainly in how they treat large residuals.</span>",
+    "en": "For regression, look at the residual $e$ first: how far apart are the prediction and the target? The difference between MSE, MAE, and Huber is not “whether you can compute it” but “how it treats large errors.”",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2cc240701869": {
+    "zh": "MSE（均方誤差） · Mean Squared Error",
+    "en": "MSE (Mean Squared Error)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dbf90030da37": {
+    "zh": "平方讓函式平滑、處處可導；代價是離群點會被平方放大。<span class=\"bilingual-en\">Smooth and gradient-friendly, but highly sensitive to outliers.</span>",
+    "en": "Squaring makes the function smooth and differentiable everywhere; the price is that outliers get amplified by the square.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2e9e45a73469": {
+    "zh": "MAE（平均絕對誤差） · Mean Absolute Error",
+    "en": "MAE (Mean Absolute Error)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f8308444d509": {
+    "zh": "只計算距離，對離群值更穩健；但在 $e=0$ 的尖點不可導，實務上使用次梯度。<span class=\"bilingual-en\">Robust to outliers, with a nondifferentiable point at zero.</span>",
+    "en": "It only measures distance, so it is more robust to outliers; but it is not differentiable at the kink at $e=0$, so in practice a subgradient is used.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "73b01a2eb429": {
+    "zh": "別把「稀疏」說得太滿 · Keep the claim precise",
+    "en": "Don’t overstate “sparsity”",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9e3bd7609a25": {
+    "zh": "MAE 的主要優點是穩健性；「鼓勵稀疏表示」不是它在一般回歸問題中的核心保證，不能和 L1 正則化混為一談。<span class=\"bilingual-en\">MAE is robust; sparsity is a separate L1-regularization idea.</span>",
+    "en": "MAE’s main advantage is robustness; “encouraging sparse representations” is not a core guarantee it gives in ordinary regression problems, and it must not be confused with L1 regularization.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8debb1ee4bb8": {
+    "zh": "曲線看性格 <span class=\"en\">Read the Curves</span>",
+    "en": "Reading Personality from the Curves",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "89966277c5aa": {
+    "zh": "左圖固定回歸殘差 $e$，右圖改用分類 signed margin $\\gamma=yf_\\theta(\\mathbf{x})$；Hinge 不是在問「差幾分」，而是在問「離安全邊界夠不夠遠」。<span class=\"bilingual-en\">Regression uses residuals; hinge uses the signed margin.</span>",
+    "en": "The left plot uses the regression residual $e$, while the right plot switches to the classification signed margin $\\gamma=yf_\\theta(\\mathbf{x})$; hinge loss isn’t asking “how many points off?” but “is it far enough from the safety boundary?”",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1bd714e7f561": {
+    "zh": "Matplotlib 精準曲線：MSE／MAE／Huber 的殘差形狀，以及 Hinge 的 margin 斜線與零損失區 · Precise Matplotlib curves.",
+    "en": "Precise Matplotlib curves: the residual shapes of MSE / MAE / Huber, plus the hinge loss’s sloped margin line and zero-loss region.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "249fa2320aa4": {
+    "zh": "平方",
+    "en": "Square",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e5fc83246aeb": {
+    "zh": "MSE：大錯誤成長最快。<span class=\"bilingual-en\">MSE amplifies large errors.</span>",
+    "en": "MSE: large errors grow fastest.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aaadb628cdd8": {
+    "zh": "絕對值",
+    "en": "Absolute value",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1da9f6eb55cf": {
+    "zh": "MAE：尾端是直線。<span class=\"bilingual-en\">MAE keeps a linear tail.</span>",
+    "en": "MAE: the tails are straight lines.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "29299c63d4ab": {
+    "zh": "折衷",
+    "en": "Compromise",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "90061d48ee29": {
+    "zh": "Huber：小錯平方，大錯線性。<span class=\"bilingual-en\">Huber blends both behaviors.</span>",
+    "en": "Huber: small errors squared, large errors linear.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dc7467d842ef": {
+    "zh": "安全距離",
+    "en": "Safe distance",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "11cd948aaf3c": {
+    "zh": "Hinge：margin 達標後為 0。<span class=\"bilingual-en\">Hinge becomes zero after the margin is met.</span>",
+    "en": "Hinge: 0 once the margin is reached.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c5a15d564543": {
+    "zh": "Huber 的折衷 <span class=\"en\">Huber’s Compromise</span>",
+    "en": "Huber’s Compromise",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c27e6f45007c": {
+    "zh": "分段定義 · Piecewise definition",
+    "en": "Piecewise definition",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "207bcbbbab7b": {
+    "zh": "$\\delta\\gt 0$ 是切換門檻：決定何時從二次區切到線性尾端。<span class=\"bilingual-en\">The hyperparameter $\\delta$ controls the switch point.</span>",
+    "en": "$\\delta\\gt 0$ is the switching threshold: it decides when to switch from the quadratic region to the linear tail.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "75d01f28ada7": {
+    "zh": "像變速箱一樣 · Like a gearbox",
+    "en": "Like a gearbox",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c27f0e55d95f": {
+    "zh": "小誤差需要細緻的平滑梯度，大誤差則避免被平方項拖著暴衝。<span class=\"bilingual-en\">Use a smooth gradient near zero, but resist extreme residuals.</span>",
+    "en": "Small errors need fine, smooth gradients, while large errors should not be dragged into a runaway by the squared term.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "45113c0ee114": {
+    "zh": "不要忘記調 $\\delta$ · Tune the threshold",
+    "en": "Don’t forget to tune $\\delta$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4b8800e39981": {
+    "zh": "$\\delta$ 太小會更像 MAE；太大會更像 MSE。它不是裝飾符號，而是資料尺度相關的超引數。<span class=\"bilingual-en\">A small $\\delta$ behaves like MAE; a large one behaves like MSE.</span>",
+    "en": "If $\\delta$ is too small, it behaves more like MAE; if it is too large, more like MSE. It is not a decorative symbol but a hyperparameter that depends on the scale of the data.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ead488b38c2d": {
+    "zh": "分佈對齊：KL 與 CE <span class=\"en\">Aligning Distributions</span>",
+    "en": "Aligning Distributions: KL and CE",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "be435954c2be": {
+    "zh": "同一預測 $p=(0.6,0.3,0.1)$：soft target 時 KL 很小但 CE 含有目標熵；one-hot 時 KL 與 CE 相等 · Distribution comparison.",
+    "en": "Same prediction $p=(0.6,0.3,0.1)$: with a soft target, KL is small but CE includes the target entropy; with a one-hot target, KL and CE are equal.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "19550ff43a64": {
+    "zh": "它衡量目標分佈 $y$ 與預測分佈 $p$ 的差異；soft target 與知識蒸餾特別適合。<span class=\"bilingual-en\">KL compares a target distribution with a predicted distribution.</span>",
+    "en": "It measures the difference between the target distribution $y$ and the predicted distribution $p$; it is especially well suited to soft targets and knowledge distillation.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a48fe737d6ff": {
+    "zh": "one-hot 的關係 · The one-hot case",
+    "en": "The one-hot relationship",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "12849aa142d4": {
+    "zh": "因為 $H(y)=0$，one-hot 目標下 $D_{\\mathrm{KL}}(y\\Vert p)=CE(y,p)$；soft label 時兩者不再只是同一個數。<span class=\"bilingual-en\">For one-hot targets, KL equals cross-entropy; soft targets preserve the entropy term.</span>",
+    "en": "Because $H(y)=0$, for a one-hot target $D_{\\mathrm{KL}}(y\\Vert p)=CE(y,p)$; with soft labels, the two are no longer simply the same number.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c03569bc2e26": {
+    "zh": "Hinge：不只要答對 <span class=\"en\">Hinge Loss: Correct Is Not Enough</span>",
+    "en": "Hinge: Being Correct Is Not Enough",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c3c53e4c650c": {
+    "zh": "二分類把標籤編成 $y_i\\in\\{-1,+1\\}$，模型輸出一個 score；真正重要的是 signed margin $\\gamma_i=y_i f_\\theta(\\mathbf{x}_i)$。<span class=\"bilingual-en\">Hinge loss evaluates the signed margin, not just the predicted label.</span>",
+    "en": "Binary classification encodes the labels as $y_i\\in\\{-1,+1\\}$, and the model outputs a score; what really matters is the signed margin $\\gamma_i=y_i f_\\theta(\\mathbf{x}_i)$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "26f9ec194f87": {
+    "zh": "$m\\gt 0$ 是 margin 超引數。當 $y_i f_\\theta(\\mathbf{x}_i)\\geq m$，損失才是 0。<span class=\"bilingual-en\">Zero loss requires the signed margin to reach $m$.</span>",
+    "en": "$m\\gt 0$ is the margin hyperparameter. The loss is 0 only when $y_i f_\\theta(\\mathbf{x}_i)\\geq m$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3b252dd0fe2c": {
+    "zh": "精準修正 · Important correction",
+    "en": "A precise correction",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "55132ca9f3dc": {
+    "zh": "「$|f_\\theta(\\mathbf{x})|\\geq m$ 就是 0」少了標籤方向；正確條件是 $y f_\\theta(\\mathbf{x})\\geq m$。分數方向錯了，即使絕對值很大，仍然會被重罰。<span class=\"bilingual-en\">The sign must agree with the label; magnitude alone is not enough.</span>",
+    "en": "“It is 0 once $|f_\\theta(\\mathbf{x})|\\geq m$” leaves out the direction of the label; the correct condition is $y f_\\theta(\\mathbf{x})\\geq m$. If the score points the wrong way, it still gets heavily penalized, even when its absolute value is large.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ba1e69e812bd": {
+    "zh": "幾何直覺 · Geometric intuition",
+    "en": "Geometric intuition",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a54916fbfc1d": {
+    "zh": "Hinge 鼓勵樣本不只跨過決策邊界，還要留出一段安全走廊。<span class=\"bilingual-en\">It asks for a safety corridor around the boundary.</span>",
+    "en": "Hinge loss encourages samples not only to cross the decision boundary but also to leave a safety corridor.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0dee659fcc30": {
+    "zh": "Cross-Entropy：把機率給對的人 <span class=\"en\">Cross-Entropy</span>",
+    "en": "Cross-Entropy: Give the Probability to the Right One",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d9c12795e4d1": {
+    "zh": "多類別交叉熵（41） · Multiclass cross-entropy",
+    "en": "Multiclass cross-entropy (41)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c47d9b9715f0": {
+    "zh": "目標是哪一類，哪一類的 $y_{il}$ 就會把錯誤訊號集中到對應機率 $p_{il}$。預測正確類別的機率越高，損失越小。<span class=\"bilingual-en\">CE rewards high probability on the correct class.</span>",
+    "en": "Whichever class is the target, that class’s $y_{il}$ concentrates the error signal on the corresponding probability $p_{il}$. The higher the predicted probability of the correct class, the smaller the loss.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9c9723c8bae3": {
+    "zh": "網路先輸出未正規化分數 $z_i$。<span class=\"bilingual-en\">The network produces raw scores.</span>",
+    "en": "The network first outputs unnormalized scores $z_i$.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8ea1c0ba93f6": {
+    "zh": "$p_{il}=\\frac{\\exp(z_{il})}{\\sum_{k=1}^{c}\\exp(z_{ik})}$，得到總和為 1 的分佈。<span class=\"bilingual-en\">Softmax turns scores into a distribution.</span>",
+    "en": "$p_{il}=\\frac{\\exp(z_{il})}{\\sum_{k=1}^{c}\\exp(z_{ik})}$, giving a distribution that sums to 1.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e392c9f5859f": {
+    "zh": "二元分類常用 sigmoid，輸出正類機率。<span class=\"bilingual-en\">Binary tasks commonly use sigmoid.</span>",
+    "en": "Binary classification commonly uses a sigmoid, which outputs the probability of the positive class.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8e24bdc69c1d": {
+    "zh": "特徵",
+    "en": "Features",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8aa6a946aa7b": {
+    "zh": "梯度也會塑造倒數第二層的判別性表徵。<span class=\"bilingual-en\">The gradient can shape discriminative penultimate features.</span>",
+    "en": "The gradient also shapes discriminative representations in the penultimate layer.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3994db836e73": {
+    "zh": "前置條件 · Prerequisite",
+    "en": "Prerequisite",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7ae062e8c9f5": {
+    "zh": "CE 的 $p_{il}$ 必須是合法機率：$p_{il}\\in[0,1]$，多類別還要滿足 $\\sum_l p_{il}=1$。因此輸出層通常接 softmax 或 sigmoid。<span class=\"bilingual-en\">Cross-entropy expects probabilities, usually produced by softmax or sigmoid.</span>",
+    "en": "The $p_{il}$ in CE must be valid probabilities: $p_{il}\\in[0,1]$, and in the multiclass case they must also satisfy $\\sum_l p_{il}=1$. That is why the output layer is usually followed by a softmax or a sigmoid.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f53449ac613e": {
+    "zh": "互動實算：改變殘差與 margin <span class=\"en\">Interactive Loss Explorer</span>",
+    "en": "Interactive Calculation: Vary the Residual and the Margin",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fa5bcee43ced": {
+    "zh": "滑動 $e$、$\\gamma$、$\\delta$，圖表會用同一套公式即時計算 MSE、MAE、Huber 與 Hinge。這裡的 Hinge 使用獨立的 signed margin $\\gamma$，不把兩種座標硬塞在一起。<span class=\"bilingual-en\">Adjust the inputs and watch the four losses recompute from their definitions.</span>",
+    "en": "Slide $e$, $\\gamma$, and $\\delta$, and the chart computes MSE, MAE, Huber, and hinge loss in real time from the same set of formulas. The hinge loss here uses its own signed margin $\\gamma$, rather than forcing the two kinds of coordinates together.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e068a6e96245": {
+    "zh": "同一個錯誤，四種懲罰 · Four penalties, computed live",
+    "en": "One error, four penalties",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "88676674576f": {
+    "zh": "回歸殘差 $e$ <output id=\"residualValue\">2.0</output>",
+    "en": "Regression residual $e$ <output id=\"residualValue\">2.0</output>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a8fbe036280f": {
+    "zh": "觀察：當 $|e|$ 變大，MSE 的增長速度最快；當 $\\gamma\\geq 1$，本示範的 Hinge 直接降為 0。<span class=\"bilingual-en\">MSE grows fastest for large residuals; hinge reaches zero once the margin is satisfied.</span>",
+    "en": "Observe: as $|e|$ grows, MSE grows the fastest; once $\\gamma\\geq 1$, the hinge loss in this demo drops straight to 0.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "dbe0a90f99a4": {
+    "zh": "挑選邏輯 <span class=\"en\">How to Choose</span>",
+    "en": "The Logic of Choosing",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "17a5adccc981": {
+    "zh": "不要背「哪個最強」，要問「我的任務、標籤與風險是什麼」。下面這張速查表把選擇條件攤開。<span class=\"bilingual-en\">Choose by task, target format, and the error behavior you need.</span>",
+    "en": "Don’t memorize “which one is the strongest”; ask “what are my task, my labels, and my risks?” The cheat sheet below lays out the selection criteria.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9207c8b888a2": {
+    "zh": "損失 · Loss",
+    "en": "Loss",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "44407fc3457b": {
+    "zh": "適用 · Use when",
+    "en": "Use when",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "93defe0358c7": {
+    "zh": "優點 · Strength",
+    "en": "Strength",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e6b94f0c69c0": {
+    "zh": "注意 · Watch out",
+    "en": "Watch out",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "eea8c88f5112": {
+    "zh": "回歸 <span class=\"bilingual-en\">Regression</span>",
+    "en": "Regression",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cd57fa560cf8": {
+    "zh": "平滑、可導 <span class=\"bilingual-en\">Smooth gradients</span>",
+    "en": "Smooth, differentiable",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a4fa925713cd": {
+    "zh": "離群值敏感 <span class=\"bilingual-en\">Outlier-sensitive</span>",
+    "en": "Sensitive to outliers",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f811101626b9": {
+    "zh": "穩健 <span class=\"bilingual-en\">Robust</span>",
+    "en": "Robust",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "046e106ead5b": {
+    "zh": "零點不可導 <span class=\"bilingual-en\">Nondifferentiable at zero</span>",
+    "en": "Not differentiable at zero",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "409d096d6a53": {
+    "zh": "二次／線性折衷 <span class=\"bilingual-en\">Quadratic-linear compromise</span>",
+    "en": "Quadratic/linear compromise",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ecf534ae8a3d": {
+    "zh": "需調 $\\delta$ <span class=\"bilingual-en\">Tune $\\delta$</span>",
+    "en": "Need to tune $\\delta$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4a982710f040": {
+    "zh": "分佈對齊 <span class=\"bilingual-en\">Distribution matching</span>",
+    "en": "Distribution alignment",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "644e7a8866df": {
+    "zh": "支援 soft target／蒸餾 <span class=\"bilingual-en\">Soft targets and distillation</span>",
+    "en": "Supports soft targets / distillation",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a8cbd23c694b": {
+    "zh": "one-hot 時等於 CE <span class=\"bilingual-en\">Equals CE for one-hot</span>",
+    "en": "Equals CE for one-hot targets",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7311b874fad3": {
+    "zh": "margin 二分類 <span class=\"bilingual-en\">Margin-based binary classification</span>",
+    "en": "Margin-based binary classification",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3e3aaf4abe5f": {
+    "zh": "鼓勵安全距離 <span class=\"bilingual-en\">Encourages a margin</span>",
+    "en": "Encourages a safe distance",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "256d8d1e50f4": {
+    "zh": "多類別／二元分類 <span class=\"bilingual-en\">Classification</span>",
+    "en": "Multiclass / binary classification",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4c79f9093ca4": {
+    "zh": "直接學機率與判別特徵 <span class=\"bilingual-en\">Probabilities and discriminative features</span>",
+    "en": "Learns probabilities and discriminative features directly",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e71997f488fd": {
+    "zh": "輸出需 softmax／sigmoid <span class=\"bilingual-en\">Needs probability outputs</span>",
+    "en": "Output needs softmax / sigmoid",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4eb151a9b3bf": {
+    "zh": "一句話決策樹 · One-line decision tree",
+    "en": "One-line decision tree",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0ed4b93e3c2a": {
+    "zh": "回歸先試 MSE；怕離群值換 MAE 或 Huber。分類通常用 CE；要 soft label／蒸餾看 KL；要明確 margin 的二分類看 Hinge。<span class=\"bilingual-en\">Start with MSE for regression, CE for classification, then switch for robustness, soft targets, or margins.</span>",
+    "en": "For regression, try MSE first; if you’re worried about outliers, switch to MAE or Huber. For classification, CE is the usual choice; for soft labels / distillation, look at KL; for binary classification that needs an explicit margin, look at hinge loss.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "82a709685de1": {
+    "zh": "課後檢核：你真的會挑嗎？ <span class=\"en\">Quick Check</span>",
+    "en": "Review Quiz: Can You Really Choose?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1c9ae82a8f93": {
+    "zh": "不看答案，先用「任務 → 標籤格式 → 想懲罰什麼」三步驟回答。<span class=\"bilingual-en\">Use task, target format, and penalty as your three-step checklist.</span>",
+    "en": "Without looking at the answers, first answer using the three steps “task → label format → what you want to penalize.”",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d25b8609e6a5": {
+    "zh": "1. 哪一個對離群值較穩健？<span class=\"bilingual-en\">Which is more robust to outliers?</span>",
+    "en": "1. Which one is more robust to outliers?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0ebbae2604c1": {
+    "zh": "2. Hinge 為 0 的精確條件？<span class=\"bilingual-en\">When is hinge loss exactly zero?</span>",
+    "en": "2. What is the exact condition for the hinge loss to be 0?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fa4a9e2908c7": {
+    "zh": "3. one-hot 目標下，KL 與 CE？<span class=\"bilingual-en\">For a one-hot target, how do KL and CE relate?</span>",
+    "en": "3. For a one-hot target, how do KL and CE compare?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "23d8ee45522c": {
+    "zh": "相等 · Equal",
+    "en": "Equal",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fc7a294ab316": {
+    "zh": "KL 一定較大 · KL is always larger",
+    "en": "KL is always larger",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "23f721d51d12": {
+    "zh": "沒有關係 · Unrelated",
+    "en": "Unrelated",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ae286c0d23c0": {
+    "zh": "帶走三件事 · Three takeaways",
+    "en": "Three takeaways",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6efd315e0287": {
+    "zh": "回歸看殘差形狀：MSE 放大、MAE 穩健、Huber 折衷。<span class=\"bilingual-en\">For regression: amplify, resist, or compromise.</span>",
+    "en": "For regression, look at the shape of the residual penalty: MSE amplifies, MAE is robust, Huber compromises.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bad94af9900b": {
+    "zh": "分類看分佈或 margin：KL／CE 對齊機率，Hinge 維持安全距離。<span class=\"bilingual-en\">For classification: align probabilities or enforce margins.</span>",
+    "en": "For classification, look at the distribution or the margin: KL / CE align probabilities, hinge keeps a safe distance.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "50aeb84c1b9b": {
+    "zh": "損失函式不是裝飾，它定義了模型收到的學習訊號。<span class=\"bilingual-en\">The loss defines the learning signal.</span>",
+    "en": "A loss function is not decoration: it defines the learning signal the model receives.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "314b627d3ec7": {
+    "zh": "<span>任務 Task</span><span>標籤 Target</span><span>懲罰 Penalty</span><span>驗證 Validate</span>",
+    "en": "<span>Task</span><span>Label</span><span>Penalty</span><span>Validate</span>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

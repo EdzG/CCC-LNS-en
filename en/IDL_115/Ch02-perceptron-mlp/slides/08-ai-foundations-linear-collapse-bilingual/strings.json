@@ -1,0 +1,526 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 正確！": "✓ Correct!",
+      "✗ 再想想。": "✗ Think again."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Contents",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#q1\">大問句 · Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2ed61dd28837": {
+    "zh": "<a href=\"#collapse\">網路坍縮 · Collapse</a>",
+    "en": "<a href=\"#collapse\">Network Collapse</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "098dc11ff2b1": {
+    "zh": "<a href=\"#calc\">手算坍縮 · Calc</a>",
+    "en": "<a href=\"#calc\">Collapse by Hand</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bdb71b46a29a": {
+    "zh": "<a href=\"#relu\">ReLU 救場 · ReLU</a>",
+    "en": "<a href=\"#relu\">ReLU to the Rescue</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cbb764aeec7c": {
+    "zh": "<a href=\"#geo\">一刀 vs 摺紙 · Geometry</a>",
+    "en": "<a href=\"#geo\">One Cut vs Origami</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f014a9a2dbb7": {
+    "zh": "<a href=\"#arch\">架構分岔 · Fork</a>",
+    "en": "<a href=\"#arch\">The Architecture Fork</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e6518e64cba0": {
+    "zh": "<a href=\"#sum\">複習 · Summary</a>",
+    "en": "<a href=\"#sum\">Review</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bd92c9384561": {
+    "zh": "<a href=\"#roadmap\">路線 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "14cbbe72b380": {
+    "zh": "線性疊再多，依然是線性<br>Collapse versus Folding",
+    "en": "Stack Linear Layers All You Want, It's Still Linear<br>Collapse versus Folding",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "8ffb976b2c5f": {
+    "zh": "少了非線性，摩天大樓秒變鐵餅 <span class=\"bilingual-en\">Without nonlinearity, towers flatten to discs.</span>",
+    "en": "Without nonlinearity, a skyscraper instantly turns into a flat disc",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "2643852bdf6d": {
+    "zh": "疊 100 層線性，能彎曲一條線嗎？<small>Can 100 linear layers bend one line?</small>",
+    "en": "Stack 100 linear layers: can they bend even one line?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a3f076a47e5d": {
+    "zh": "當頭棒喝 · 人多不一定力量大 <span class=\"en\">Depth is not power</span>",
+    "en": "A Wake-up Call · More Hands Don't Always Mean More Power",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "851abd93c01a": {
+    "zh": "開場引言 · Opening",
+    "en": "Opening",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "587b6a9058ec": {
+    "zh": "為跨過 XOR 斷層，直覺是把幾十顆、幾百顆神經元一層疊一層，疊成摩天大樓。人多力量大，對吧？<span class=\"bilingual-en\">Past XOR by stacking hundreds of neurons?</span>",
+    "en": "To get across the XOR rift, the instinct is to stack dozens, even hundreds, of neurons layer upon layer into a skyscraper. Many hands make light work, right?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "324df9379222": {
+    "zh": "但若神經元少了一味關鍵秘方，哪怕疊 100 層、1000 層，花幾千萬買 GPU，在數學家眼裡，大樓瞬間坍縮成薄薄鐵餅：本質仍是單層線性迴歸。<span class=\"bilingual-en\">Missing one ingredient, 1000 layers collapse to one.</span>",
+    "en": "But if the neurons are missing one key secret ingredient, then even if you stack 100 layers, 1000 layers, and spend tens of millions on GPUs, in a mathematician's eyes the skyscraper instantly collapses into a thin flat disc: at heart it is still a single-layer linear regression.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7d4eeb72ec0a": {
+    "zh": "這節標題直白又殘酷：線性疊再多，依然是線性。今天拆解這個價值幾百億算力的數學陷阱。<span class=\"bilingual-en\">Linear stacked high is still linear.</span>",
+    "en": "This section's title is blunt and brutal: stack linear layers all you want, it's still linear. Today we take apart this mathematical trap that is worth tens of billions in compute.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ae05f5f8a192": {
+    "zh": "什麼叫網路坍縮 <span class=\"en\">What is collapse</span>",
+    "en": "What Is Network Collapse?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "589f9fdb2a63": {
+    "zh": "三層前饋網路 · Three layers",
+    "en": "Three-layer feedforward network",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fec6338daef5": {
+    "zh": "原料 $\\mathbf{x}$ 經 $W_1$ 旋轉拉伸再過開關 $\\sigma_1$，交給第二層、第三層依樣畫葫蘆，最後吐出 $y$。<span class=\"bilingual-en\">Rotate, squash, repeat — three times.</span>",
+    "en": "The raw input $\\mathbf{x}$ is rotated and stretched by $W_1$, then passes through the switch $\\sigma_1$, and is handed to the second and third layers, which do the same thing, until $y$ comes out at the end.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e2f7886604c9": {
+    "zh": "偷懶設全線性 · All linear",
+    "en": "Taking the lazy route: all linear",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fbf209a5c3a9": {
+    "zh": "若每個 $\\sigma_i$ 只是線性（如 $\\sigma(z) = z$ 或 $2z$），矩陣結合律讓三層直接合併：$$y = V^\\top \\mathbf{x}$$<span class=\"bilingual-en\">Matrices merge; depth evaporates.</span>",
+    "en": "If every $\\sigma_i$ is just linear (e.g. $\\sigma(z) = z$ or $2z$), the associativity of matrix multiplication lets the three layers merge directly: $$y = V^\\top \\mathbf{x}$$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "04b48a6d9843": {
+    "zh": "珍珠奶茶比喻 · Bubble tea",
+    "en": "The bubble tea analogy",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "799be9c64752": {
+    "zh": "茶倒進杯子、再倒進碗、再倒回外帶杯，折騰半天，茶一滴沒變多。這就叫全線性坍縮：以為的深度全是泡沫。<span class=\"bilingual-en\">Pour thrice, taste unchanged — full collapse.</span>",
+    "en": "Pour the tea into a cup, then into a bowl, then back into the takeout cup: after all that fuss, you don't have a single extra drop of tea. That is full linear collapse: the depth you thought you had is all froth.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Sustaining Attention",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "34b63892f00e": {
+    "zh": "手算坍縮 · 情況 A 全線性 <span class=\"en\">Collapse by hand</span>",
+    "en": "Collapse by Hand · Case A: All Linear",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a1d91353be0c": {
+    "zh": "第一層",
+    "en": "Layer 1",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cd3db6bf93d9": {
+    "zh": "第二層",
+    "en": "Layer 2",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5e83a7267922": {
+    "zh": "第三層",
+    "en": "Layer 3",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bd38b6430912": {
+    "zh": "抓戰犯 · One layer in disguise",
+    "en": "Catching the culprit: one layer in disguise",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "22575d75b491": {
+    "zh": "單層模型取 $w_{\\text{等效}} = -192$，$x = 5$ 時 $y = -960$，答案一模一樣。中間兩層是薪水小偷。<span class=\"bilingual-en\">One weight -192 does it all.</span>",
+    "en": "A single-layer model with $w_{\\text{equiv}} = -192$ gives $y = -960$ at $x = 5$: exactly the same answer. The two middle layers are just drawing a paycheck for doing nothing.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d8e889f4501f": {
+    "zh": "層層傳遞 vs 等效單層 · Layered versus equivalent",
+    "en": "Layer by layer vs equivalent single layer",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bed34d074007": {
+    "zh": "情況 B · ReLU 切斷結合律 <span class=\"en\">ReLU breaks the chain</span>",
+    "en": "Case B · ReLU Breaks Associativity",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "aeb5b89430c5": {
+    "zh": "$z_2 = \\max(0, -2 \\times 15) = \\max(0, -30) = \\mathbf{0}$，訊號被「啪」地切斷！<span class=\"bilingual-en\">Snapped to 0.</span>",
+    "en": "$z_2 = \\max(0, -2 \\times 15) = \\max(0, -30) = \\mathbf{0}$: the signal gets snapped off!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "882059703a53": {
+    "zh": "為何救場 · Why it works",
+    "en": "Why it saves the day",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f42afb53a9f8": {
+    "zh": "沒有任何單一常數 $w_{\\text{等效}}$ 能同時擬合所有輸入：非線性打破乘法結合律，網路學會分段開關，獲得扭曲空間、折疊邊界的特徵提煉能力。<span class=\"bilingual-en\">No single weight fits all; regions emerge.</span>",
+    "en": "No single constant $w_{\\text{equiv}}$ can fit all inputs at once: the nonlinearity breaks the associativity of multiplication, the network learns piecewise switches, and it gains the feature-extraction power to warp space and fold decision boundaries.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8ff513bb456c": {
+    "zh": "一刀切 vs 摺紙藝術 <span class=\"en\">One cut versus origami</span>",
+    "en": "One Straight Cut vs the Art of Origami",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "78a254da6d69": {
+    "zh": "左全線性一條直切誤判滿地 · 右非線性封閉曲線完美剝離 · matplotlib 精準繪製",
+    "en": "Left: all linear, one straight cut misclassifies points everywhere · Right: nonlinear, a closed curve separates them perfectly · drawn precisely with matplotlib",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1e5f97ea8bda": {
+    "zh": "全線性 · Linear only",
+    "en": "All linear",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e490334068cd": {
+    "zh": "幾百層矩陣只是旋轉縮放傾斜：平行仍平行，直線仍是直線。同心圓與 XOR 前只能笨拙一刀。<span class=\"bilingual-en\">Rotation only; lines stay lines.</span>",
+    "en": "Hundreds of layers of matrices only rotate, scale, and shear: parallel lines stay parallel, and straight lines stay straight. Faced with concentric circles or XOR, all you can make is one clumsy cut.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "88a3641fc1d8": {
+    "zh": "含非線性 · With sigma",
+    "en": "With nonlinearity",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "57ba49856445": {
+    "zh": "每層啟用把空間折疊彎曲，二維切不開的紅藍點雲在新空間跑到同側，輕輕一刀完美分開。<span class=\"bilingual-en\">Fold space, then one easy cut.</span>",
+    "en": "Each layer's activation folds and bends space, so red and blue point clouds that can't be cut apart in 2D end up on separate sides in the new space, and one gentle cut separates them perfectly.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a7232acb9644": {
+    "zh": "等效邊界 · Effective boundary",
+    "en": "Effective boundary",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9779afe32ced": {
+    "zh": "一句話：非線性啟用函式是神經網路的靈魂；沒有它，深度學習只是昂貴的線性代數徒勞。<span class=\"bilingual-en\">Sigma is the soul of depth.</span>",
+    "en": "In one sentence: the nonlinear activation function is the soul of a neural network; without it, deep learning is just an expensive exercise in futile linear algebra.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c9dce44a4619": {
+    "zh": "命運分岔路 · 兩條路徑 <span class=\"en\">Two fates</span>",
+    "en": "A Fork in Fate · Two Paths",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6ef2267cdb4f": {
+    "zh": "全線性坍縮 ✗ · Collapse",
+    "en": "Full linear collapse ✗",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b2e2f0b85449": {
+    "zh": "層 1：$z_1 = W_1^\\top x$",
+    "en": "Layer 1: $z_1 = W_1^\\top x$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b1a9e0f63037": {
+    "zh": "層 2：$z_2 = W_2^\\top z_1$",
+    "en": "Layer 2: $z_2 = W_2^\\top z_1$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "53506e98b8d4": {
+    "zh": "層 3：$y = W_3^\\top z_2$",
+    "en": "Layer 3: $y = W_3^\\top z_2$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8b4e1700ce69": {
+    "zh": "合併：$y = (W_3^\\top W_2^\\top W_1^\\top) x$，疊 100 層仍是一條直線 <span class=\"bilingual-en-inline\">— 100 layers, one line</span>",
+    "en": "Merged: $y = (W_3^\\top W_2^\\top W_1^\\top) x$; stack 100 layers and it is still one straight line",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "72690dc4ac22": {
+    "zh": "非線性表達 ✓ · Expressive",
+    "en": "Nonlinear expressiveness ✓",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b16bb22324ef": {
+    "zh": "層 1：$h_1 = \\sigma(W_1^\\top x + b_1)$，扭曲空間 <span class=\"bilingual-en-inline\">— fold space</span>",
+    "en": "Layer 1: $h_1 = \\sigma(W_1^\\top x + b_1)$, warps space",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "aa9ce338530d": {
+    "zh": "層 2：$h_2 = \\sigma(W_2^\\top h_1 + b_2)$，打破結合律 <span class=\"bilingual-en-inline\">— break merging</span>",
+    "en": "Layer 2: $h_2 = \\sigma(W_2^\\top h_1 + b_2)$, breaks associativity",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e92559c0a5df": {
+    "zh": "輸出：$y = \\sigma(W_3^\\top h_2 + b_3)$，彎曲甚至封閉邊界 <span class=\"bilingual-en-inline\">— curved, even closed</span>",
+    "en": "Output: $y = \\sigma(W_3^\\top h_2 + b_3)$, curved or even closed boundaries",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d9c5d0ff8a3f": {
+    "zh": "核心結論 · Verdict",
+    "en": "Core conclusion",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2df7afb2b8dd": {
+    "zh": "線性投影負責旋轉縮放，非線性啟用負責折疊空間，唯有兩者交替層疊，神經網路才有真正的深度。<span class=\"bilingual-en\" style=\"color:#fff;\">Rotate and scale with matrices; fold space with sigma.</span>",
+    "en": "Linear projections handle rotation and scaling, nonlinear activations handle folding space; only when the two alternate layer after layer does a neural network have real depth.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "993b8fccebeb": {
+    "zh": "重點複習 · 三條魔咒 <span class=\"en\">Three spells</span>",
+    "en": "Key Review · Three Spells",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dca587d217e1": {
+    "zh": "結合律魔咒",
+    "en": "The associativity spell",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "deed588993d7": {
+    "zh": "全線性三層 $W_3^\\top(W_2^\\top(W_1^\\top \\mathbf{x}))$ 可合併為 $V^\\top \\mathbf{x}$，層數再多也是一層。<span class=\"bilingual-en\">Merge into one.</span>",
+    "en": "An all-linear three-layer network $W_3^\\top(W_2^\\top(W_1^\\top \\mathbf{x}))$ can be merged into $V^\\top \\mathbf{x}$: no matter how many layers, it is still one layer.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "045c942d5d7b": {
+    "zh": "非線性價值",
+    "en": "The value of nonlinearity",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "07021d1e0ad2": {
+    "zh": "$\\sigma(\\cdot)$ 破壞乘法結合律，讓矩陣無法直接相乘坍縮。<span class=\"bilingual-en\">Break the merge.</span>",
+    "en": "$\\sigma(\\cdot)$ breaks the associativity of multiplication, so the matrices can no longer be multiplied together and collapse.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ec76ff9add22": {
+    "zh": "幾何實質",
+    "en": "The geometric essence",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "89ea00142329": {
+    "zh": "線性只旋轉拉伸；非線性做摺紙，創造彎曲甚至封閉決策曲面。<span class=\"bilingual-en\">Fold into curves.</span>",
+    "en": "Linear maps only rotate and stretch; nonlinearity does origami, creating curved and even closed decision surfaces.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a7993ba76d56": {
+    "zh": "後續路線 <span class=\"en\">Roadmap</span>",
+    "en": "Roadmap Ahead",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5e0df4b3ebae": {
+    "zh": "M-P 與感知機",
+    "en": "M-P and the perceptron",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ef1421fc3fd6": {
+    "zh": "一條直線的威力與極限，XOR 斷層浮現。<span class=\"bilingual-en\">One line's power and limit.</span>",
+    "en": "The power and the limits of a single straight line; the XOR rift appears.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0cce868182f1": {
+    "zh": "坍縮 vs 折疊",
+    "en": "Collapse vs folding",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d7c07502003a": {
+    "zh": "深度必須配非線性，否則只是昂貴線性迴歸。<span class=\"bilingual-en\">Depth needs sigma.</span>",
+    "en": "Depth must come with nonlinearity, or it is just an expensive linear regression.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2ccd84655738": {
+    "zh": "選對開關",
+    "en": "Picking the right switch",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9c119440a0ee": {
+    "zh": "下節課挑啟用函式：ReLU、Sigmoid、Tanh 誰來折紙？<span class=\"bilingual-en\">Next: choose the folder.</span>",
+    "en": "Next lesson we choose an activation function: ReLU, sigmoid, or tanh, which one gets to fold the paper?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2391467faf5e": {
+    "zh": "思考題 · 提取練習 <span class=\"en\">Reflection</span>",
+    "en": "Reflection Questions · Retrieval Practice",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8ce82b4d9556": {
+    "zh": "Q1. 全線性三層為何等價於單層？ <span class=\"bilingual-en\">Why do 3 linear layers equal 1?</span>",
+    "en": "Q1. Why is an all-linear three-layer network equivalent to a single layer?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "902cab84c7cd": {
+    "zh": "引數比較少 <span class=\"bilingual-en-inline\">— fewer params</span>",
+    "en": "It has fewer parameters",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5e19fee0b1b8": {
+    "zh": "矩陣結合律可先乘成單一 $V^\\top$ <span class=\"bilingual-en-inline\">— merged by associativity</span>",
+    "en": "By associativity, the matrices can be multiplied first into a single $V^\\top$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4af0e4cbc33f": {
+    "zh": "GPU 太慢 <span class=\"bilingual-en-inline\">— GPU too slow</span>",
+    "en": "The GPU is too slow",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d55ccc9e1955": {
+    "zh": "Q2. 情況 A 中 $w_1=3, w_2=-2, w_3=4$、$\\sigma(z)=2z$、$x=5$ 的等效權重？ <span class=\"bilingual-en\">Equivalent weight?</span>",
+    "en": "Q2. In Case A, with $w_1=3, w_2=-2, w_3=4$, $\\sigma(z)=2z$, and $x=5$, what is the equivalent weight?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f06cb01efac8": {
+    "zh": "Q3. ReLU 為何救得了深度？ <span class=\"bilingual-en\">Why does ReLU save depth?</span>",
+    "en": "Q3. Why can ReLU save depth?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "83d72e8157bb": {
+    "zh": "打破線性結合律，創造分段開關 <span class=\"bilingual-en-inline\">— breaks merging, regions emerge</span>",
+    "en": "It breaks linear associativity and creates piecewise switches",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bdb49a38e24d": {
+    "zh": "讓矩陣變大 <span class=\"bilingual-en-inline\">— bigger matrices</span>",
+    "en": "It makes the matrices bigger",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "414e5818faf5": {
+    "zh": "讓計算變快 <span class=\"bilingual-en-inline\">— faster compute</span>",
+    "en": "It makes computation faster",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

@@ -1,0 +1,1251 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 答對了！觀念已接上。 · Correct!": "✓ Correct! The concept has clicked.",
+      "✗ 再想想，請回到公式與幾何。 · Review the formula and geometry.": "✗ Think again: go back to the formula and the geometry."
+    },
+    "patterns": [
+      {
+        "re": "^目前 (\\d+) / 4 筆預測正確$",
+        "en": "Currently $1 / 4 predictions correct"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [
+    {
+      "key": "f1c39c8261ce",
+      "file": "img-f1c39c8261ce.png"
+    }
+  ],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Chapter Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cecea0b809d4": {
+    "zh": "<a href=\"#question\">核心問句 · Question</a>",
+    "en": "<a href=\"#question\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "48ea22a85743": {
+    "zh": "<a href=\"#opening\">全景地圖 · Overview</a>",
+    "en": "<a href=\"#opening\">Big-Picture Map</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8d15cfb901e3": {
+    "zh": "<a href=\"#neuron\">人工神經元 · Neuron</a>",
+    "en": "<a href=\"#neuron\">Artificial Neuron</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ad308fc8854e": {
+    "zh": "<a href=\"#perceptron\">三大支柱 · Pillars</a>",
+    "en": "<a href=\"#perceptron\">Three Pillars</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5a6803ad1975": {
+    "zh": "<a href=\"#model\">數學模型 · Model</a>",
+    "en": "<a href=\"#model\">Mathematical Model</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b8d7f89a17d8": {
+    "zh": "<a href=\"#calc-a\">範例 A · Example A</a>",
+    "en": "<a href=\"#calc-a\">Example A</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4a838b66df70": {
+    "zh": "<a href=\"#calc-b\">範例 B · Example B</a>",
+    "en": "<a href=\"#calc-b\">Example B</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b3c991da2ca8": {
+    "zh": "<a href=\"#update\">權重更新 · Update</a>",
+    "en": "<a href=\"#update\">Weight Update</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ad4461617383": {
+    "zh": "<a href=\"#interactive\">偏置互動 · Bias</a>",
+    "en": "<a href=\"#interactive\">Interactive Bias</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d63833343a76": {
+    "zh": "<a href=\"#mlp\">MLP 橋樑 · MLP</a>",
+    "en": "<a href=\"#mlp\">The MLP Bridge</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "40d485410beb": {
+    "zh": "<a href=\"#branches\">早期旁支 · Branches</a>",
+    "en": "<a href=\"#branches\">Early Branches</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "670d6aeb650e": {
+    "zh": "<a href=\"#uat\">UAT 定理 · UAT</a>",
+    "en": "<a href=\"#uat\">The UAT</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a8aa0197db3e": {
+    "zh": "<a href=\"#map\">全章地圖 · Map</a>",
+    "en": "<a href=\"#map\">Chapter Map</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5113e2aaa66a": {
+    "zh": "<a href=\"#quiz\">提取練習 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Retrieval Practice</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d68400ed9665": {
+    "zh": "<a href=\"#recap\">重點回顧 · Recap</a>",
+    "en": "<a href=\"#recap\">Recap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16f369bf2a29": {
+    "zh": "← 上一頁",
+    "en": "← Previous",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "005fcdb1efc7": {
+    "zh": "下一頁 →",
+    "en": "Next →",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a0fb99cf43e2": {
+    "zh": "人工智慧基礎理論 · AI FOUNDATIONS",
+    "en": "Foundations of Artificial Intelligence",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "73443c72cbc9": {
+    "zh": "從 <span class=\"accent\">生物神經元</span><br>到 <span class=\"accent2\">萬有逼近</span>",
+    "en": "From <span class=\"accent\">Biological Neurons</span><br>to <span class=\"accent2\">Universal Approximation</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "707c0eaf21e7": {
+    "zh": "Perceptron、XOR、MLP 與 UAT 的一張全景地圖\n      <span class=\"bilingual-en\">A map from biological inspiration to mathematical expressivity.</span>\n    ",
+    "en": "One big-picture map of the perceptron, XOR, the MLP, and the UAT",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d8ff9f431da8": {
+    "zh": "單層 → 多層",
+    "en": "Single-layer → multilayer",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "33fb2b28db7b": {
+    "zh": "公式與幾何",
+    "en": "Formulas and geometry",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "fb5859de78b9": {
+    "zh": "真實數值計算",
+    "en": "Real numerical calculations",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "88013b5fe0dd": {
+    "zh": "大一導論",
+    "en": "Freshman introduction",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "8db0b266a95f": {
+    "zh": "按 ← → 或空白鍵開始\n      <span class=\"bilingual-en\">Use arrow keys or Space to navigate.</span>\n    ",
+    "en": "Press ← → or Space to begin",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "48766334fe1e": {
+    "zh": "\n        如果一顆神經元只能畫一條直線，<br>\n        它怎麼走到能逼近任何連續函式？\n        <small>From one straight line to universal approximation.</small>\n      ",
+    "en": "\n        If a single neuron can only draw one straight line,<br>\n        how does it get all the way to approximating any continuous function?\n      ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "93c8380ff7aa": {
+    "zh": "\n      今天先不推導十幾層的反向傳播矩陣，也不急著寫幾百行 PyTorch。\n      <span class=\"bilingual-en\">No deep backpropagation derivation yet — first build the map.</span>\n    ",
+    "en": "\n      Today we won't derive the backpropagation matrices for a dozen-plus layers, and we're in no hurry to write hundreds of lines of PyTorch either.\n    ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "2613aee9e5ab": {
+    "zh": "先站上山頂：把整座森林看懂\n      <span class=\"en\">Opening Guide — See the Whole Forest First</span>\n    ",
+    "en": "Start at the Summit: Take In the Whole Forest",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8dc088ba6b20": {
+    "zh": "名師導讀 · Professor's Guide",
+    "en": "Professor's Guide",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "11f6f673e6e8": {
+    "zh": "\n        同學，請坐！把揹包放旁邊就好。剛進大一，看到課表上寫著「深度學習」四個字，是不是既興奮又有點皮皮挫？\n        <span class=\"bilingual-en\">Freshman excitement and nerves are both normal.</span>\n      ",
+    "en": "\n        Have a seat, everyone! Just put your backpack down next to you. You've only just started your freshman year, and you see the words “Deep Learning” on your timetable: excited, but also a little bit shaking in your boots?\n      ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9668bc6b2e91": {
+    "zh": "\n        別擔心，今天的主題叫做「一張從生物到深度學習的地圖」。我先當你的嚮導，帶你站在山頂俯瞰整座森林；有了全景地圖，後面每一條羊腸小徑就不會迷失方向。\n        <span class=\"bilingual-en\">Build the map first; details become easier to place.</span>\n      ",
+    "en": "\n        Don't worry. Today's topic is called “A Map from Biology to Deep Learning.” I'll be your guide first, taking you up to the summit to look down over the whole forest; once you have the big-picture map, you won't lose your way on any of the narrow winding trails later on.\n      ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "22d3886677f7": {
+    "zh": "<strong>生物原型</strong><span>Biological neuron</span>",
+    "en": "<strong>Biological prototype</strong><span>Biological neuron</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Sustaining Attention",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "85f21d64c358": {
+    "zh": "人工神經網路到底是什麼？\n      <span class=\"en\">What Is an Artificial Neural Network?</span>\n    ",
+    "en": "What Exactly Is an Artificial Neural Network?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dbfe60715117": {
+    "zh": "生物原型",
+    "en": "Biological prototype",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "64db51afade0": {
+    "zh": "數學抽象",
+    "en": "Math abstraction",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c1d0d12561a9": {
+    "zh": "樹突：接收刺激",
+    "en": "Dendrites: receive stimuli",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "867a58946d76": {
+    "zh": "加權總和",
+    "en": "Weighted sum",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a9f8587fc2ba": {
+    "zh": "啟用：決策開關",
+    "en": "Activation: decision switch",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "310ecfe988f8": {
+    "zh": "輸出",
+    "en": "Output",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1c4f4d0a374d": {
+    "zh": "Biological signal → weighted sum → activation · 生物訊號被抽象成運算",
+    "en": "Biological signal → weighted sum → activation · the biological signal is abstracted into computation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "713738336005": {
+    "zh": "三段運算 · Three Operations",
+    "en": "Three Operations",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "db6946b3dff3": {
+    "zh": "生物神經元接收刺激、累加訊號，超過門檻就放電；人工神經元把這套機制抽離成數學運算。\n            <span class=\"bilingual-en\">Receive, aggregate, then fire.</span>\n          ",
+    "en": "A biological neuron receives stimuli and accumulates signals, and fires once they exceed a threshold; an artificial neuron distills this mechanism into mathematical operations.\n          ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d96287688221": {
+    "zh": "深度學習的積木 · The Basic Brick",
+    "en": "The Building Block of Deep Learning",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "708036af4604": {
+    "zh": "搞懂單一神經元，深度學習就只是把成千上萬個神經元串聯、堆疊起來。\n            <span class=\"bilingual-en\">Deep learning stacks many simple units.</span>\n          ",
+    "en": "Once you understand a single neuron, deep learning is just tens of thousands of neurons chained together and stacked up.\n          ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2b86de69ac6d": {
+    "zh": "抽象化模型 · Mathematical Abstraction",
+    "en": "The Abstracted Model",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c1c91b1cbd06": {
+    "zh": "訊號進來 → 重要性加權 → 偏置與門檻 → 輸出決策。\n        <span class=\"bilingual-en\">Inputs become a weighted decision.</span>\n      ",
+    "en": "Signals come in → weighted by importance → bias and threshold → output decision.\n      ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "328fe548e54b": {
+    "zh": "為什麼還要學 1958 年的 Perceptron？\n      <span class=\"en\">Why Study the 1958 Perceptron Today?</span>\n    ",
+    "en": "Why Still Learn the 1958 Perceptron?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "629be5ea5645": {
+    "zh": "老骨董，卻五臟俱全 · Old but Complete",
+    "en": "An Old Antique, but It Has Everything",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fb62162b8c59": {
+    "zh": "感知機比在座各位的阿公還大，卻把現代深度學習的三大支柱全部端出來：加權、啟用、更新。\n        <span class=\"bilingual-en\">It exposes the three pillars of modern neural learning.</span>\n      ",
+    "en": "The perceptron is older than the grandpas of everyone sitting here, yet it serves up all three pillars of modern deep learning: weighting, activation, and updating.\n      ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e3b81433c6f6": {
+    "zh": "加權輸入",
+    "en": "Weighted inputs",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b4bde251ffbd": {
+    "zh": "$\\sum_i w_i x_i$ 代表綜合考量後的總分。牛肉入不入味可能是 $w_1=0.9$，冷氣涼不涼可能是 $w_2=0.1$。\n          <span class=\"bilingual-en\">Weights encode importance.</span>\n        ",
+    "en": "$\\sum_i w_i x_i$ represents the total score after weighing everything together. Whether the beef is well marinated might be $w_1=0.9$, and whether the air conditioning is cool enough might be $w_2=0.1$.\n        ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "24e693770181": {
+    "zh": "啟用函式",
+    "en": "Activation function",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "95bc144db496": {
+    "zh": "評分加總後需要一個決策開關：總分過門檻就輸出 $1$，否則輸出 $0$。\n          <span class=\"bilingual-en\">The activation turns a score into a decision.</span>\n        ",
+    "en": "Once the scores are summed, you need a decision switch: if the total passes the threshold, output $1$; otherwise output $0$.\n        ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "73eecf861ae1": {
+    "zh": "權重更新",
+    "en": "Weight update",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "53da55cee2b7": {
+    "zh": "電腦猜錯了，就從錯誤修正引數；這個回饋迴圈就是機器學習的核心起點。\n          <span class=\"bilingual-en\">Errors feed parameter updates.</span>\n        ",
+    "en": "When the computer guesses wrong, it corrects its parameters from the error; this feedback loop is the core starting point of machine learning.\n        ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "838931b1e1b9": {
+    "zh": "由小見大",
+    "en": "Big things from small beginnings",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6e1ec95141ac": {
+    "zh": "後面的龐大模型不是憑空出現，而是把這三件事疊加、組合、反覆學習。\n          <span class=\"bilingual-en\">Large models compose the same ideas.</span>\n        ",
+    "en": "The huge models that come later don't appear out of thin air: they stack, combine, and repeatedly learn these same three things.\n        ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6721be2be444": {
+    "zh": "感知機先做什麼？加權總和 → 開關\n      <span class=\"en\">Perceptron Pipeline — Weighted Sum to Binary Decision</span>\n    ",
+    "en": "What Does a Perceptron Do First? Weighted Sum → Switch",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c96a3e2e7266": {
+    "zh": "感知機模型 · Perceptron Model",
+    "en": "The Perceptron Model",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7a4a7bff38b9": {
+    "zh": "訊號進來",
+    "en": "Signals come in",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bd1641e4dc8e": {
+    "zh": "每個特徵 $x_i$ 先乘上自己的權重 $w_i$。\n          <span class=\"bilingual-en\">Scale each input by importance.</span>\n        ",
+    "en": "Each feature $x_i$ is first multiplied by its own weight $w_i$.\n        ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "63a4d7bcbad2": {
+    "zh": "總和評估",
+    "en": "Evaluate the sum",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e063316a2a5c": {
+    "zh": "把加權輸入加總，再加上偏置 $b$，形成 $z$。\n          <span class=\"bilingual-en\">Add the bias to form the score.</span>\n        ",
+    "en": "Add up the weighted inputs, then add the bias $b$, to form $z$.\n        ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "46df5c228bac": {
+    "zh": "決定放電",
+    "en": "Decide whether to fire",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cae985066dc4": {
+    "zh": "$z\\ge0$ 輸出 $1$；$z\\lt0$ 輸出 $0$。\n          <span class=\"bilingual-en\">Threshold the score into 1 or 0.</span>\n        ",
+    "en": "If $z\\ge0$, output $1$; if $z\\lt0$, output $0$.\n        ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2c0976056c27": {
+    "zh": "重點直覺 · Core Intuition",
+    "en": "Core Intuition",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8ec2129884b6": {
+    "zh": "Perceptron 做的不是「理解」；它是在特徵空間裡畫出一條決策邊界，將輸入分到兩側。\n        <span class=\"bilingual-en\">A perceptron separates space with a linear boundary.</span>\n      ",
+    "en": "What a perceptron does is not “understanding”; it draws a decision boundary in feature space and sorts inputs onto its two sides.\n      ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6ca9f95ed342": {
+    "zh": "數值範例 A：預測正確，保持不動\n      <span class=\"en\">Example A — Correct Prediction, No Update</span>\n    ",
+    "en": "Example A: Correct Prediction, No Change",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fa7001195eb9": {
+    "zh": "引數設定 · Parameters",
+    "en": "Parameters",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b5fb8f21c69b": {
+    "zh": "權重：$w_1=0.6$、$w_2=0.8$\n          <span class=\"bilingual-en\">Weights: 0.6 and 0.8.</span>\n        ",
+    "en": "Weights: $w_1=0.6$, $w_2=0.8$\n        ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "af9199bc9057": {
+    "zh": "偏置：$b=-0.9$\n          <span class=\"bilingual-en\">Bias: -0.9.</span>\n        ",
+    "en": "Bias: $b=-0.9$\n        ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5c3307609eca": {
+    "zh": "輸入：$\\mathbf{x}_A=(1,1)$\n          <span class=\"bilingual-en\">Input: (1, 1).</span>\n        ",
+    "en": "Input: $\\mathbf{x}_A=(1,1)$\n        ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ffdac6a8bb46": {
+    "zh": "真實標籤：$y_A=1$\n          <span class=\"bilingual-en\">Target label: 1.</span>\n        ",
+    "en": "True label: $y_A=1$\n        ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "aeed2dff41ef": {
+    "zh": "三步推論 · Three Steps",
+    "en": "Three-Step Inference",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5dc40be90b47": {
+    "zh": "加權總和：\n            $$z=(0.6\\times1)+(0.8\\times1)-0.9=+0.5$$\n            <span class=\"bilingual-en\">The score is +0.5.</span>\n          ",
+    "en": "Weighted sum:\n            $$z=(0.6\\times1)+(0.8\\times1)-0.9=+0.5$$\n          ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "379f21f45cd4": {
+    "zh": "啟用判斷：因為 $z=0.5\\ge0$，所以 $\\hat y_A=1$。\n            <span class=\"bilingual-en\">The threshold outputs 1.</span>\n          ",
+    "en": "Activation check: since $z=0.5\\ge0$, $\\hat y_A=1$.\n          ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c698cc118948": {
+    "zh": "比對結果：$\\hat y_A=y_A=1$，預測相符，不需更新。\n            <span class=\"bilingual-en\">Correct prediction — keep the parameters.</span>\n          ",
+    "en": "Compare: $\\hat y_A=y_A=1$, so the prediction matches and no update is needed.\n          ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "86a85a06a27a": {
+    "zh": "這一筆資料教我們什麼？ · Lesson",
+    "en": "What Does This Data Point Teach Us?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "85b1ba3fb72b": {
+    "zh": "更新不是每次都發生；只有錯誤訊號出現時，模型才需要移動決策邊界。\n        <span class=\"bilingual-en\">Updates happen only when the current boundary makes a mistake.</span>\n      ",
+    "en": "Updates don't happen every time; the model only needs to move its decision boundary when an error signal shows up.\n      ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d0c4a759b9d3": {
+    "zh": "數值範例 B：偏置一鬆，錯誤就露出來\n      <span class=\"en\">Example B — A Looser Bias Reveals the Error</span>\n    ",
+    "en": "Example B: Loosen the Bias and the Error Shows Up",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "399d0e34e586": {
+    "zh": "同一筆資料 $\\mathbf{x}_B=(1,0)$，真實標籤是 $y_B=0$；先看原本偏置，再故意把門檻放寬。\n      <span class=\"bilingual-en\">Use the same input, then compare two bias settings.</span>\n    ",
+    "en": "The same data point $\\mathbf{x}_B=(1,0)$ has true label $y_B=0$; first look at the original bias, then deliberately loosen the threshold.\n    ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ff06bb724839": {
+    "zh": "原本偏置：$b=-0.9$",
+    "en": "Original bias: $b=-0.9$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "778477d5a692": {
+    "zh": "因為 $z\\lt0$，所以 $\\hat y_B=0$。\n          <span class=\"bilingual-en\">The model is correct.</span>\n        ",
+    "en": "Since $z\\lt0$, $\\hat y_B=0$.\n        ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a612515edbd3": {
+    "zh": "結果 · Result",
+    "en": "Result",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "905b1a9dfadd": {
+    "zh": "預測 $0$ 等於真實 $0$，引數維持不變。\n            <span class=\"bilingual-en\">No error signal, no update.</span>\n          ",
+    "en": "The prediction $0$ equals the true $0$, so the parameters stay unchanged.\n          ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fd69fdb6158a": {
+    "zh": "放寬偏置：$b=-0.4$",
+    "en": "Loosened bias: $b=-0.4$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "57ba614bba47": {
+    "zh": "因為 $z\\ge0$，模型輸出 $\\hat y_B=1$，但真實標籤是 $0$。\n          <span class=\"bilingual-en\">The looser threshold causes a false positive.</span>\n        ",
+    "en": "Since $z\\ge0$, the model outputs $\\hat y_B=1$, but the true label is $0$.\n        ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "92741fb0c8c2": {
+    "zh": "抓到錯誤 · Error Detected",
+    "en": "Error Caught",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6941017e753b": {
+    "zh": "模型把輸出判得太積極，需要把邊界往嚴格方向推回去。\n            <span class=\"bilingual-en\">The boundary must become stricter.</span>\n          ",
+    "en": "The model judged the output too eagerly, so the boundary has to be pushed back in the stricter direction.\n          ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1b5bdbf28377": {
+    "zh": "更新前的錯誤訊號 · Error Signal",
+    "en": "The Error Signal Before the Update",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3fcf6e982842": {
+    "zh": "負號告訴模型：這次輸出太大。\n        <span class=\"bilingual-en\">A negative error says the prediction was too high.</span>\n      ",
+    "en": "The negative sign tells the model: this time the output was too large.\n      ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e438e5d98b6b": {
+    "zh": "犯錯不是終點：更新就是學習\n      <span class=\"en\">The Error Is the Learning Signal</span>\n    ",
+    "en": "Making a Mistake Isn't the End: Updating Is Learning",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1f20a22ddcf0": {
+    "zh": "感知機更新規則 · Perceptron Update Rule",
+    "en": "Perceptron Update Rule",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "903b2a096add": {
+    "zh": "本例 $\\eta=0.1$、$y-\\hat y=-1$，因此 $\\Delta w_i=-0.1x_i$、$\\Delta b=-0.1$。\n        <span class=\"bilingual-en\">With learning rate 0.1, the error pushes the score down.</span>\n      ",
+    "en": "In this example $\\eta=0.1$ and $y-\\hat y=-1$, so $\\Delta w_i=-0.1x_i$ and $\\Delta b=-0.1$.\n      ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d24ddb7c22e0": {
+    "zh": "先修正輸入權重",
+    "en": "First correct the input weights",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f5f2d48ec969": {
+    "zh": "$\\Delta w_1=-0.1\\times1=-0.1$，所以 $w_1\\leftarrow0.6-0.1=0.5$。\n          <span class=\"bilingual-en\">Reduce the active feature's weight.</span>\n        ",
+    "en": "$\\Delta w_1=-0.1\\times1=-0.1$, so $w_1\\leftarrow0.6-0.1=0.5$.\n        ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d89362bf454e": {
+    "zh": "沒有出現的特徵不動",
+    "en": "Features that are absent stay put",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "cac8436f689d": {
+    "zh": "$\\Delta w_2=-0.1\\times0=0$，所以 $w_2\\leftarrow0.8$。\n          <span class=\"bilingual-en\">A zero-valued input makes no change.</span>\n        ",
+    "en": "$\\Delta w_2=-0.1\\times0=0$, so $w_2\\leftarrow0.8$.\n        ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "777f96b26b13": {
+    "zh": "門檻變嚴格",
+    "en": "The threshold gets stricter",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ab2a9f1b68b0": {
+    "zh": "$b\\leftarrow-0.4-0.1=-0.5$，往更負的方向移動。\n          <span class=\"bilingual-en\">A lower bias makes firing harder.</span>\n        ",
+    "en": "$b\\leftarrow-0.4-0.1=-0.5$, moving in the more negative direction.\n        ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "985642001688": {
+    "zh": "數學實質 · Mathematical Meaning",
+    "en": "What It Means Mathematically",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "db056d0fed77": {
+    "zh": "因為把 $x_1=1$ 的情況猜得太激進，模型自動把 $w_1$ 調小，同時把門檻 $b$ 調嚴格。這就是神經元自我修正的數學實質！\n        <span class=\"bilingual-en\">Learning moves the boundary away from the mistake.</span>\n      ",
+    "en": "Because it guessed too aggressively on the case $x_1=1$, the model automatically turns $w_1$ down and at the same time makes the threshold $b$ stricter. That is the mathematical essence of a neuron correcting itself!\n      ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4cf7daba83dd": {
+    "zh": "XOR 斷層：一條直線的能力邊界\n      <span class=\"en\">The XOR Gap — Where One Straight Line Fails</span>\n    ",
+    "en": "The XOR Gap: The Limit of What One Straight Line Can Do",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a51892d23fe7": {
+    "zh": "這張精準圖把數學決策邊界直接放進座標平面：AND 能被一條線切開，XOR 的類別卻對角交錯。\n      <span class=\"bilingual-en\">Exact geometry exposes the boundary of a single-layer perceptron.</span>\n    ",
+    "en": "This precise plot puts the mathematical decision boundaries straight onto the coordinate plane: AND can be cut by one line, but the XOR classes alternate diagonally.\n    ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fccf69979c4f": {
+    "zh": "AND：$0.6x_1+0.8x_2-0.9=0$ 可完美分割；XOR：任意單一直線都無法分開兩類。",
+    "en": "AND: $0.6x_1+0.8x_2-0.9=0$ separates it perfectly; XOR: no single straight line can separate the two classes.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "757d2eb03f60": {
+    "zh": "AND · 線性可分",
+    "en": "AND · Linearly separable",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bf737055f263": {
+    "zh": "只有 $(1,1)$ 是 $y=1$，其他三點是 $y=0$；決策邊界可以把它們分到兩側。\n          <span class=\"bilingual-en\">One line is enough.</span>\n        ",
+    "en": "Only $(1,1)$ has $y=1$; the other three points have $y=0$. The decision boundary can split them onto two sides.\n        ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "15227d366573": {
+    "zh": "XOR · 非線性可分",
+    "en": "XOR · Not linearly separable",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3a219c515d27": {
+    "zh": "$y=1$ 位於對角線兩端，$y=0$ 位於另一條對角線兩端；旋轉直線仍然會誤切。\n          <span class=\"bilingual-en\">The labels are diagonally interleaved.</span>\n        ",
+    "en": "The $y=1$ points sit at the two ends of one diagonal and the $y=0$ points at the two ends of the other; however you rotate the line, it still cuts wrong.\n        ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c9e813ee65b6": {
+    "zh": "偏置 $b$ 不是魔法：它會平移同一條邊界\n      <span class=\"en\">Interactive Bias — Shift the Same Decision Boundary</span>\n    ",
+    "en": "The Bias $b$ Isn't Magic: It Shifts the Same Boundary",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a25cb274f70c": {
+    "zh": "拖動偏置，觀察 $0.6x_1+0.8x_2+b=0$ 如何移動；點的顏色由當下真實的 $z$ 計算決定。\n      <span class=\"bilingual-en\">Move the bias and watch every prediction recompute.</span>\n    ",
+    "en": "Drag the bias and watch how $0.6x_1+0.8x_2+b=0$ moves; each point's color is decided by its actual $z$, computed live.\n    ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "70edffeee02c": {
+    "zh": "感知機決策邊界 · Perceptron Boundary",
+    "en": "Perceptron Decision Boundary",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "121d8f4e017f": {
+    "zh": "偏置 $b$",
+    "en": "Bias $b$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "604e703bba13": {
+    "zh": "\n          <strong id=\"boundaryEquation\">0.6x₁ + 0.8x₂ -0.9 = 0</strong>\n          <span>綠線是 $z=0$ 的決策邊界 · The green line is the boundary.</span>\n        ",
+    "en": "\n          <strong id=\"boundaryEquation\">0.6x₁ + 0.8x₂ -0.9 = 0</strong>\n          <span>The green line is the decision boundary $z=0$.</span>\n        ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7ed10ed66431": {
+    "zh": "\n          <strong id=\"boundaryStatus\">目前 4 / 4 筆預測正確</strong>\n          <span id=\"boundaryStatusEn\">All four points are classified correctly.</span>\n        ",
+    "en": "\n          <strong id=\"boundaryStatus\">Currently 4 / 4 predictions correct</strong>\n          <span id=\"boundaryStatusEn\">All four points are classified correctly.</span>\n        ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f518102e1322": {
+    "zh": "互動結論 · Interactive Takeaway",
+    "en": "Interactive Takeaway",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2cf1f1122b15": {
+    "zh": "更新規則不是抽象口號：它就是用錯誤把 $b$ 與 $w$ 推到更能分開資料的位置。\n        <span class=\"bilingual-en\">Learning is geometric boundary correction.</span>\n      ",
+    "en": "The update rule isn't an abstract slogan: it uses errors to push $b$ and $w$ to positions that separate the data better.\n      ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "51f49221a09a": {
+    "zh": "建橋過斷層：MLP 把空間折疊起來\n      <span class=\"en\">The Bridge — MLP Folds the Feature Space</span>\n    ",
+    "en": "Bridging the Gap: The MLP Folds Space",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "edc714994934": {
+    "zh": "輸入層",
+    "en": "Input layer",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "aacdca598459": {
+    "zh": "隱藏層",
+    "en": "Hidden layer",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "8d8fbf6795e8": {
+    "zh": "輸出層",
+    "en": "Output layer",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "7d902f00c368": {
+    "zh": "非線性特徵折疊 · Nonlinear folding",
+    "en": "Nonlinear feature folding",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "591e8bc9bbda": {
+    "zh": "兩條（或更多）線先切特徵，再由輸出層組合 · Hidden layers compose boundaries",
+    "en": "Two (or more) lines first cut the features, then the output layer combines them",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5585e49b2167": {
+    "zh": "單層的牆 · Single-Layer Wall",
+    "en": "The Single-Layer Wall",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1a084b31c314": {
+    "zh": "單一神經元在空間中只能畫出一條筆直的切線，也就是一個超平面。\n            <span class=\"bilingual-en\">One unit gives one linear separator.</span>\n          ",
+    "en": "A single neuron can only draw one straight cut through space, that is, one hyperplane.\n          ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9b71f609a074": {
+    "zh": "多層的橋 · Multi-Layer Bridge",
+    "en": "The Multilayer Bridge",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7aeec4b45697": {
+    "zh": "一條線切不開，就用兩條、三條線交錯折疊，把原本的 XOR 幾何斷層轉成可分的特徵。\n            <span class=\"bilingual-en\">Several nonlinear boundaries can solve XOR.</span>\n          ",
+    "en": "If one line can't separate them, use two or three lines that cross and fold, turning the original XOR geometric gap into separable features.\n          ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "59c64bdec817": {
+    "zh": "多層前饋結構 · Layered Composition",
+    "en": "Multilayer Feedforward Structure",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7b31171d3f52": {
+    "zh": "關鍵不是「多加幾個節點」而已，而是加入隱藏層與非線性啟用函式。\n        <span class=\"bilingual-en\">Depth plus nonlinearity creates new geometry.</span>\n      ",
+    "en": "The key isn't just “adding a few more nodes”; it's adding hidden layers and nonlinear activation functions.\n      ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ae6e6bfa5aa8": {
+    "zh": "早期補充模型：四條探索支線\n      <span class=\"en\">Early Branches — Four Complementary Models</span>\n    ",
+    "en": "Early Supplementary Models: Four Exploratory Branches",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "73cb460e743c": {
+    "zh": "主幹從 Perceptron 走向 MLP；同時，科學家也沿著不同問題探索連續誤差、機率、區域性基底與拓撲。\n      <span class=\"bilingual-en\">Different branches explored different notions of error, probability, locality, and topology.</span>\n    ",
+    "en": "The main trunk runs from the perceptron to the MLP; meanwhile, scientists also explored continuous error, probability, local basis functions, and topology, each driven by a different problem.\n    ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "74f6ef47a419": {
+    "zh": "用連續誤差與 LMS 更新，不只看最後的 $0/1$ 對錯；讓學習訊號更平滑。\n          <span class=\"bilingual-en\">Continuous error with LMS learning.</span>\n        ",
+    "en": "Uses a continuous error and LMS updates instead of looking only at the final $0/1$ right-or-wrong, which makes the learning signal smoother.\n        ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c273224bfca4": {
+    "zh": "Logistic 回歸",
+    "en": "Logistic regression",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d4646e002376": {
+    "zh": "把線性分數轉成機率，使用 Sigmoid 表達「有多像 $1$」。\n          <span class=\"bilingual-en\">Turn scores into probabilities.</span>\n        ",
+    "en": "Turns the linear score into a probability, using the sigmoid to express “how much it looks like $1$.”\n        ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0de027e1598c": {
+    "zh": "RBF 網路",
+    "en": "RBF networks",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ab7b3ecbb1b4": {
+    "zh": "利用區域性徑向基底，讓節點專注於特定區域的相似度。\n          <span class=\"bilingual-en\">Local radial responses shape the representation.</span>\n        ",
+    "en": "Uses local radial basis functions so that each node focuses on similarity within a particular region.\n        ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1b88c50e057e": {
+    "zh": "SOM 自組織對映",
+    "en": "SOM (self-organizing map)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8af055e3d214": {
+    "zh": "模擬皮層拓撲，讓相似輸入在地圖上彼此靠近。\n          <span class=\"bilingual-en\">Preserve neighborhood structure.</span>\n        ",
+    "en": "Mimics cortical topology so that similar inputs end up close to each other on the map.\n        ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a0d894e4dbb1": {
+    "zh": "如何放回主地圖？ · Put Them in Context",
+    "en": "How Do They Fit Back into the Main Map?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8480e6df9411": {
+    "zh": "這些模型是豐富的旁支，不必把它們混成同一個方法；先問：它改變的是誤差、輸出、區域性性，還是拓撲？\n        <span class=\"bilingual-en\">Each branch changes a different design choice.</span>\n      ",
+    "en": "These models are rich side branches; there's no need to blend them into one method. First ask: what does it change: the error, the output, locality, or the topology?\n      ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1ec60df3c8e5": {
+    "zh": "登頂加冕：萬有逼近定理 UAT\n      <span class=\"en\">The Universal Approximation Theorem</span>\n    ",
+    "en": "Crowning the Summit: The Universal Approximation Theorem (UAT)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "01685222d078": {
+    "zh": "\n        隱藏層夠寬，<br>函式就能被逼近。\n        <small>Enough hidden units can approximate continuous functions.</small>\n      ",
+    "en": "\n        With a wide enough hidden layer,<br>a function can be approximated.\n      ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "591e983fd7a0": {
+    "zh": "定理直覺 · Theorem Intuition",
+    "en": "The Intuition Behind the Theorem",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d1bcb5e9dbc0": {
+    "zh": "只要隱藏層神經元數量夠多，多層神經網路就能把任何連續函式逼近到任意精度。\n        <span class=\"bilingual-en\">A sufficiently wide network can approximate any continuous function to arbitrary precision.</span>\n      ",
+    "en": "As long as the hidden layer has enough neurons, a multilayer neural network can approximate any continuous function to arbitrary precision.\n      ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1bac0dd15851": {
+    "zh": "這不是說模型自動學會一切，而是數學上確立了神經網路的函式表達能力極限。\n        <span class=\"bilingual-en\">Expressivity is guaranteed; training is still a separate problem.</span>\n      ",
+    "en": "This doesn't mean the model automatically learns everything; rather, it mathematically establishes the limits of a neural network's power to express functions.\n      ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e3346114fd9b": {
+    "zh": "它回答什麼？ · What It Answers",
+    "en": "What Does It Answer?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d7777116ade0": {
+    "zh": "MLP 的表達能力究竟有多強？UAT 給出理論上的「可以表示」保證。\n          <span class=\"bilingual-en\">It explains representational power.</span>\n        ",
+    "en": "Just how strong is the expressive power of an MLP? The UAT gives a theoretical guarantee that it “can represent” the function.\n        ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ac9e8c194901": {
+    "zh": "它沒有回答什麼？ · What It Does Not Answer",
+    "en": "What Doesn't It Answer?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "0d179512a73a": {
+    "zh": "要多少神經元、如何初始化、如何訓練得好，仍然是工程與最佳化問題。\n          <span class=\"bilingual-en\">Width, optimization, and data remain practical issues.</span>\n        ",
+    "en": "How many neurons you need, how to initialize, and how to train well are still engineering and optimization problems.\n        ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "e78c1e66ca3d": {
+    "zh": "全章地圖：四段階梯進化\n      <span class=\"en\">The Chapter Map — Four Steps Upward</span>\n    ",
+    "en": "The Chapter Map: A Four-Step Evolution",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "2f2967abf49b": {
+    "zh": "從生物到深度學習：一張全景地圖",
+    "en": "From biology to deep learning: one big-picture map",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "c185b89f57cf": {
+    "zh": "抽象化 → 線性決策 → 非線性表達 → 理論保證",
+    "en": "Abstraction → linear decisions → nonlinear expressivity → theoretical guarantee",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "4c16a7bd12bb": {
+    "zh": "表達能力 ↑",
+    "en": "Expressive power ↑",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "c89c17356ceb": {
+    "zh": "加權 + 啟用 + 更新",
+    "en": "Weighting + activation + update",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "3b977897fabe": {
+    "zh": "一條線性邊界",
+    "en": "One linear boundary",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "131f585eb607": {
+    "zh": "XOR 斷層",
+    "en": "The XOR gap",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "5129ab896eef": {
+    "zh": "對角線交錯",
+    "en": "Diagonally interleaved",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "1cb97e0a7bae": {
+    "zh": "單線永遠切不開",
+    "en": "One line never separates it",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "d4350471770c": {
+    "zh": "隱藏層 + 非線性",
+    "en": "Hidden layer + nonlinearity",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "7ef1b4261feb": {
+    "zh": "折疊特徵空間",
+    "en": "Fold the feature space",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "ea32827bbd5b": {
+    "zh": "神經元夠多",
+    "en": "Enough neurons",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "7eec0220501b": {
+    "zh": "逼近任意連續函式",
+    "en": "Approximate any continuous function",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "908579b32cac": {
+    "zh": "先掌握一顆神經元 → 看見 XOR 的牆 → 理解 MLP 的橋 → 帶著 UAT 的表達力繼續前進",
+    "en": "Master one neuron → see the XOR wall → understand the MLP bridge → move on with the expressive power of the UAT",
+    "kp": 15,
+    "ctx": "svg"
+  },
+  "8e23a7212b48": {
+    "zh": "下一站 · Next Stop",
+    "en": "Next Stop",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "9454d65e977b": {
+    "zh": "接下來的反向傳播、梯度下降與深層架構，都可以放回這張地圖：它們是在學習「怎麼找到合適的權重」，而不是重新發明神經元。\n        <span class=\"bilingual-en\">Later topics learn the right parameters for the same compositional units.</span>\n      ",
+    "en": "Backpropagation, gradient descent, and deep architectures, which come next, can all be placed back on this map: they are about learning “how to find the right weights,” not about reinventing the neuron.\n      ",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "47c087ed3455": {
+    "zh": "換你試試看：把地圖說回來\n      <span class=\"en\">Retrieval Practice — Explain the Map Back</span>\n    ",
+    "en": "Your Turn: Explain the Map Back",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "2fbed34a3454": {
+    "zh": "點選答案，檢查自己是否抓住「公式 → 幾何 → 架構」的因果鏈。\n      <span class=\"bilingual-en\">Test the causal chain from formula to geometry to architecture.</span>\n    ",
+    "en": "Click an answer to check whether you've grasped the causal chain “formula → geometry → architecture.”\n    ",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "d692f6491bf3": {
+    "zh": "Q1. 哪一個問題會讓單層 Perceptron 撞牆？<span class=\"bilingual-en\">Which task breaks a single layer?</span>",
+    "en": "Q1. Which problem makes a single-layer perceptron hit the wall?",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "28200efe7f1e": {
+    "zh": "AND：線性可分 <span class=\"bilingual-en\">Linearly separable</span>",
+    "en": "AND: linearly separable",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "066f04275163": {
+    "zh": "XOR：對角線交錯 <span class=\"bilingual-en\">Diagonally interleaved</span>",
+    "en": "XOR: diagonally interleaved",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "2bd7558f589e": {
+    "zh": "Q2. 範例 A 的 $z$ 是多少？<span class=\"bilingual-en\">What is z in Example A?</span>",
+    "en": "Q2. What is $z$ in Example A?",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "d2c326ac7070": {
+    "zh": "$+0.5$，所以輸出 $1$ <span class=\"bilingual-en\">Correct output</span>",
+    "en": "$+0.5$, so the output is $1$",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "1c2fd878133c": {
+    "zh": "$-0.5$，所以輸出 $0$ <span class=\"bilingual-en\">Incorrect sign</span>",
+    "en": "$-0.5$, so the output is $0$",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "cfdb9016a1c4": {
+    "zh": "Q3. 錯誤更新後，偏置往哪裡走？<span class=\"bilingual-en\">How does the bias move after the error?</span>",
+    "en": "Q3. After the error update, which way does the bias move?",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "fa0e43c098e8": {
+    "zh": "變得更正，讓模型更容易放電 <span class=\"bilingual-en\">Make firing easier</span>",
+    "en": "It becomes more positive, making it easier for the model to fire",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "0ae085d4ab89": {
+    "zh": "變得更負，讓模型更嚴格 <span class=\"bilingual-en\">Make firing stricter</span>",
+    "en": "It becomes more negative, making the model stricter",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "4793d578371f": {
+    "zh": "提示 · Hint",
+    "en": "Hint",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "0e5530e91f12": {
+    "zh": "先回到 $z=w_1x_1+w_2x_2+b$，再問：這次錯誤是輸出太大，還是太小？\n        <span class=\"bilingual-en\">Read the sign of the error before changing parameters.</span>\n      ",
+    "en": "First go back to $z=w_1x_1+w_2x_2+b$, then ask: was this error an output that was too large, or too small?\n      ",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "4e08eb24f3e3": {
+    "zh": "四句話帶走整章\n      <span class=\"en\">Four Sentences to Take Away</span>\n    ",
+    "en": "Four Sentences to Take the Whole Chapter With You",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "c4a8c2fb0078": {
+    "zh": "神經元是積木",
+    "en": "Neurons are building blocks",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "f2946513426d": {
+    "zh": "生物放電被抽象成「加權總和＋偏置＋啟用開關」。\n          <span class=\"bilingual-en\">A biological idea becomes a mathematical unit.</span>\n        ",
+    "en": "Biological firing is abstracted into “weighted sum + bias + activation switch.”\n        ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "00cbfb5236f8": {
+    "zh": "感知機三支柱",
+    "en": "The perceptron's three pillars",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "d59dd9e81885": {
+    "zh": "加權輸入、啟用函式、權重更新，構成學習的最小回饋迴圈。\n          <span class=\"bilingual-en\">Weights, activation, and feedback form the core loop.</span>\n        ",
+    "en": "Weighted inputs, the activation function, and weight updates form the smallest feedback loop of learning.\n        ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "f7b28e053c1b": {
+    "zh": "斷層催生架構",
+    "en": "The gap gave birth to the architecture",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "c251c7c82159": {
+    "zh": "單層只能畫直線；為了穿越 XOR，MLP 用隱藏層與非線性折疊特徵空間。\n          <span class=\"bilingual-en\">XOR motivates depth and nonlinearity.</span>\n        ",
+    "en": "A single layer can only draw straight lines; to get across XOR, the MLP uses hidden layers and nonlinearity to fold the feature space.\n        ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "28b17a11d04c": {
+    "zh": "表達力有理論底氣",
+    "en": "Expressive power has a theoretical backbone",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "9b70cbbde259": {
+    "zh": "神經元數量足夠時，網路能逼近任何連續函式；這確立了深度學習的理論潛力。\n          <span class=\"bilingual-en\">UAT establishes broad expressive power.</span>\n        ",
+    "en": "With enough neurons, a network can approximate any continuous function; this establishes the theoretical potential of deep learning.\n        ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "13eecb4c88d4": {
+    "zh": "本章主線 · The Main Line",
+    "en": "The Main Line of This Chapter",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "a6a237c00774": {
+    "zh": "<b>生物原型 → Perceptron → XOR 斷層 → MLP → UAT</b>\n        <span class=\"bilingual-en\">From biological inspiration to universal approximation.</span>\n      ",
+    "en": "<b>Biological prototype → Perceptron → The XOR gap → MLP → UAT</b>\n      ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "4d9ab6fa67a0": {
+    "zh": "\n      ── Lesson Complete · 本章結束 ──\n      <span class=\"bilingual-en\">Next: backpropagation, gradient descent, and deeper architectures.</span>\n    ",
+    "en": "\n      ── Lesson Complete ──\n      <span class=\"bilingual-en\">Next: backpropagation, gradient descent, and deeper architectures.</span>\n    ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "a8fb5528c0d2": {
+    "zh": "章節索引 / Outline",
+    "en": "Chapter index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "f2759d61687a": {
+    "zh": "投影片控制",
+    "en": "Slide controls",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "034ac200a9fe": {
+    "zh": "四段學習路徑",
+    "en": "Four-stage learning path",
+    "kp": 3,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "33d23fd5ae19": {
+    "zh": "生物神經元到人工神經元的抽象化",
+    "en": "Abstraction from a biological neuron to an artificial neuron",
+    "kp": 4,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "d85bcb068f82": {
+    "zh": "AND 與 XOR 的精準幾何比較圖",
+    "en": "Precise geometric comparison of AND and XOR",
+    "kp": 10,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "b36a5263abd5": {
+    "zh": "調整偏置 b",
+    "en": "Adjust bias b",
+    "kp": 11,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "8e73845a33e2": {
+    "zh": "多層感知機解決 XOR 的網路圖",
+    "en": "Network diagram of a multilayer perceptron solving XOR",
+    "kp": 12,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "b25bccd3c3c0": {
+    "zh": "從生物神經元到 Perceptron、MLP、UAT 的四段進化地圖",
+    "en": "Four-stage evolution map from biological neurons to the perceptron, MLP, and UAT",
+    "kp": 15,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

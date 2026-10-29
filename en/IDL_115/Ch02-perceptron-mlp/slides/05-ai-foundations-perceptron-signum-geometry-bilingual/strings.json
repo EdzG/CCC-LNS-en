@@ -1,0 +1,891 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 答對了！觀念已接上。 · Correct!": "✓ Correct! The concept has clicked.",
+      "再想一次：回到輸出編碼與更新條件。 · Try again.": "Think again: go back to the output encoding and the update condition."
+    },
+    "patterns": [
+      {
+        "re": "^原始投影 p\\(x\\) · Raw projection: (-?\\d+(?:\\.\\d+)?)$",
+        "en": "Raw projection p(x): $1"
+      },
+      {
+        "re": "^決策分數 s\\(x\\) · Shifted score: (-?\\d+(?:\\.\\d+)?)$",
+        "en": "Decision score s(x): $1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "a643b31c73b9": {
+    "zh": "Perceptron · 索引",
+    "en": "Perceptron · Outline",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cecea0b809d4": {
+    "zh": "<a href=\"#question\">核心問句 · Question</a>",
+    "en": "<a href=\"#question\">Key Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ad308fc8854e": {
+    "zh": "<a href=\"#pillars\">三大支柱 · Pillars</a>",
+    "en": "<a href=\"#pillars\">Three Pillars</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bc3979d21942": {
+    "zh": "<a href=\"#signum\">Signum 對比 · Signum</a>",
+    "en": "<a href=\"#signum\">Signum Compared</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f50ce9ec3494": {
+    "zh": "<a href=\"#error\">±1 誤差 · Error</a>",
+    "en": "<a href=\"#error\">±1 Error</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d9005eff0439": {
+    "zh": "<a href=\"#derive\">公式推導 · Derivation</a>",
+    "en": "<a href=\"#derive\">Deriving the Rule</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "993024ecb15c": {
+    "zh": "<a href=\"#wrong\">手算一：猜錯 · Wrong</a>",
+    "en": "<a href=\"#wrong\">Example 1: Wrong Guess</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "58dd1001f25a": {
+    "zh": "<a href=\"#right\">手算二：猜對 · Correct</a>",
+    "en": "<a href=\"#right\">Example 2: Correct Guess</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "97b005ad9102": {
+    "zh": "<a href=\"#geometry\">決策幾何 · Geometry</a>",
+    "en": "<a href=\"#geometry\">Decision Geometry</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "94f0f88cc751": {
+    "zh": "<a href=\"#projection\">投影分數 · Projection</a>",
+    "en": "<a href=\"#projection\">Projection Score</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5113e2aaa66a": {
+    "zh": "<a href=\"#quiz\">提取練習 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Retrieval Practice</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7d7a35a927d8": {
+    "zh": "<a href=\"#recap\">回顧與修正 · Recap</a>",
+    "en": "<a href=\"#recap\">Recap and Corrections</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b705f98971c9": {
+    "zh": "人工智慧基礎 · AI FOUNDATIONS",
+    "en": "AI FOUNDATIONS",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "a62f469f8f15": {
+    "zh": "Perceptron<br><span class=\"accent\">Signum · 更新 · 幾何</span><br><span class=\"accent2\">Signum · Updates · Geometry</span>",
+    "en": "Perceptron<br><span class=\"accent\">Signum · Updates · Geometry</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "dce7c872dd23": {
+    "zh": "把「老骨董」拆成三個可計算的支柱\n      <span class=\"bilingual-en\">Three computable pillars inside the classic model.</span>\n    ",
+    "en": "Taking the “antique” apart into three computable pillars",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "997b39163f43": {
+    "zh": "\n      <span class=\"chip\">加權輸入 Weighted Input</span>\n      <span class=\"chip\">±1 啟用 Signum</span>\n      <span class=\"chip\">超平面 Geometry</span>\n    ",
+    "en": "\n      <span class=\"chip\">Weighted input</span>\n      <span class=\"chip\">±1 activation: Signum</span>\n      <span class=\"chip\">Hyperplane geometry</span>\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "913ff3ce6ad4": {
+    "zh": "向下滾動：先看輸出編碼，再看錯誤如何驅動更新\n      <span class=\"bilingual-en\" style=\"color:#b0c4de;\">Scroll down: encode, update, then visualize.</span>\n    ",
+    "en": "Scroll down: first see how the output is encoded, then how errors drive the updates",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a2df9af97b92": {
+    "zh": "換成 $+1$ 與 $-1$，<br>為什麼錯誤會變漂亮？<small>Why does the error become cleaner with $+1$ and $-1$?</small>",
+    "en": "Switch to $+1$ and $-1$:<br>why does the error suddenly look so neat?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "b2acee4a4582": {
+    "zh": "我們不是為了把符號換得更酷，而是讓「猜錯多少」直接暴露成 $\\pm 2$。\n      <span class=\"bilingual-en\">The recoding makes a wrong prediction reveal a fixed magnitude: $\\pm 2$.</span>\n    ",
+    "en": "We aren’t swapping the symbols just to look cooler; we do it so that “how wrong the guess was” shows up directly as $\\pm 2$.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "459dde1a805b": {
+    "zh": "今天的主線 · Today’s Thread",
+    "en": "Today’s Main Thread",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "91d80efc276f": {
+    "zh": "先辨識三大支柱，再把 Signum 的誤差推成更新公式，最後把公式放回特徵平面。\n        <span class=\"bilingual-en\">Pillars → Signum error → update rule → feature geometry.</span>\n      ",
+    "en": "First identify the three pillars, then turn the Signum error into the update rule, and finally put the rule back onto the feature plane.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep attention",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4678cda5b6c8": {
+    "zh": "Perceptron 的三大支柱 <span class=\"en\">Three Pillars of the Perceptron</span>",
+    "en": "The Three Pillars of the Perceptron",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f609ae50fa22": {
+    "zh": "現代模型再複雜，也仍能在這裡看到「輸入如何被加總、輸出如何做決策、錯誤如何改設定值」的骨架。\n      <span class=\"bilingual-en\">Complex models still echo weighted inputs, decisions, and parameter updates.</span>\n    ",
+    "en": "However complex modern models get, you can still see this skeleton in them: “how the inputs are summed, how the output makes a decision, and how errors change the parameters.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "05e96a47547e": {
+    "zh": "加權輸入 <span class=\"bilingual-en\">Weighted input</span>",
+    "en": "Weighted input",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "25cbcfb68e1d": {
+    "zh": "每個特徵乘上權重，表示它在目前決策中的影響力。\n          <span class=\"bilingual-en\">Weights encode feature influence.</span>\n        ",
+    "en": "Each feature is multiplied by a weight, which expresses how much influence it has on the current decision.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0a86c22388d0": {
+    "zh": "啟用函式 <span class=\"bilingual-en\">Activation</span>",
+    "en": "Activation function",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "93194aad94c5": {
+    "zh": "把連續的總分轉成類別符號，決定輸出哪一側。\n          <span class=\"bilingual-en\">An activation turns a score into a class sign.</span>\n        ",
+    "en": "Turns the continuous total score into a class sign, deciding which side the output falls on.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a93db4cf6846": {
+    "zh": "權重更新 <span class=\"bilingual-en\">Weight update</span>",
+    "en": "Weight update",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "beeeeed34cd3": {
+    "zh": "預測錯誤時，沿著標籤指向修正設定值；猜對則保持不動。\n          <span class=\"bilingual-en\">Mistakes move parameters; correct cases stay still.</span>\n        ",
+    "en": "When the prediction is wrong, correct the parameters in the direction the label points; when the guess is right, leave them where they are.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "59f7aabc18ea": {
+    "zh": "牛肉麵比喻 · Noodle-shop Analogy",
+    "en": "Beef-Noodle Analogy",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b2cccb844735": {
+    "zh": "牛肉入不入味與冷氣涼不涼可以有不同權重；模型不是「有感覺」，只是把重要性寫進乘法。\n        <span class=\"bilingual-en\">Different features get different numerical influence.</span>\n      ",
+    "en": "Whether the beef is well-marinated and whether the air conditioning is cold enough can carry different weights; the model doesn’t “have feelings,” it just writes importance into a multiplication.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b4d836bd16a4": {
+    "zh": "從格子派到正負號派 <span class=\"en\">Binary Step vs. Signum</span>",
+    "en": "From Team Bins to Team Signs",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "531254007cf1": {
+    "zh": "二元步階使用 $\\{0,1\\}$；Signum 改用 $\\{+1,-1\\}$，讓「方向」直接留在標籤裡。\n      <span class=\"bilingual-en\">Binary Step uses $\\{0,1\\}$; Signum keeps class direction as $\\{+1,-1\\}$.</span>\n    ",
+    "en": "The binary step uses $\\{0,1\\}$; Signum switches to $\\{+1,-1\\}$, so the “direction” stays right inside the label.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "49b4b5278021": {
+    "zh": "二元步階 · Binary Step",
+    "en": "Binary Step",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2017217f3942": {
+    "zh": "輸出像分班格子：不是 1，就是 0。\n            <span class=\"bilingual-en\">A crisp two-bin decision.</span>\n          ",
+    "en": "The output is like sorting students into two classrooms: if it isn’t 1, it’s 0.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "55e0c4cab9b4": {
+    "zh": "適合二元開關 <span class=\"bilingual-en\">A binary switch.</span>",
+    "en": "Good for a binary on/off switch",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7e891d3cedd6": {
+    "zh": "誤差差值不會固定成同一個量級 <span class=\"bilingual-en\">The error gap is less symmetric.</span>",
+    "en": "The error difference doesn’t settle at one fixed magnitude",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "73ca6295f9cd": {
+    "zh": "符號函式 · Signum",
+    "en": "Sign Function (Signum)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5e405358ccc3": {
+    "zh": "等於零的邊界案例先略過，重點放在兩側方向。\n            <span class=\"bilingual-en\">Ignore the zero edge case and focus on direction.</span>\n          ",
+    "en": "Set aside the edge case of exactly zero for now; the focus is the direction on each side.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "04522adbab65": {
+    "zh": "正類是 $+1$，負類是 $-1$ <span class=\"bilingual-en\">Positive is $+1$; negative is $-1$.</span>",
+    "en": "The positive class is $+1$, the negative class is $-1$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0e6439cda699": {
+    "zh": "猜錯時差值必為 $\\pm 2$ <span class=\"bilingual-en\">A mistake always creates $\\pm 2$.</span>",
+    "en": "When the guess is wrong, the difference is always $\\pm 2$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9658d1381ff3": {
+    "zh": "編碼的效果 · Why the recoding helps",
+    "en": "What the Recoding Does",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "474cc7677658": {
+    "zh": "這不是改變資料的真實意義，而是換一種對更新規則更友善的表示法。\n        <span class=\"bilingual-en\">The labels change representation, not meaning.</span>\n      ",
+    "en": "This doesn’t change what the data really means; it is just a different representation that is friendlier to the update rule.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5cda7a617f0e": {
+    "zh": "四種組合，其實只剩兩種結果 <span class=\"en\">Four Combinations, Two Outcomes</span>",
+    "en": "Four Combinations, Really Only Two Outcomes",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "80f3319bfaef": {
+    "zh": "在 $\\{+1,-1\\}$ 的世界裡，先把 $y_i-o_i$ 寫出來，更新規則就不再像黑箱。\n      <span class=\"bilingual-en\">Expand $y_i-o_i$ and the update rule becomes transparent.</span>\n    ",
+    "en": "In the world of $\\{+1,-1\\}$, once you write out $y_i-o_i$, the update rule stops looking like a black box.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d16e1ad0d1fa": {
+    "zh": "$+1$ 猜 $+1$",
+    "en": "$+1$ guessed as $+1$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1bb9c2deb4a2": {
+    "zh": "$-1$ 猜 $-1$",
+    "en": "$-1$ guessed as $-1$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "36a08d5acd56": {
+    "zh": "$+1$ 猜 $-1$",
+    "en": "$+1$ guessed as $-1$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2cde485fad92": {
+    "zh": "$-1$ 猜 $+1$",
+    "en": "$-1$ guessed as $+1$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6619b742c898": {
+    "zh": "誤差的壓縮結論 · Compressed Error",
+    "en": "The Error in a Nutshell",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8e173a83c3a3": {
+    "zh": "猜對是 0；猜錯只有 $\\pm 2$，因此修正方向由 $y_i$ 決定。\n        <span class=\"bilingual-en\">Correct means zero; wrong means a signed step of magnitude two.</span>\n      ",
+    "en": "A correct guess gives 0; a wrong guess can only give $\\pm 2$, so the direction of the correction is decided by $y_i$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c1d59ee04687": {
+    "zh": "把差值推成更新 <span class=\"en\">From Error Difference to Update</span>",
+    "en": "Turning the Difference into an Update",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "151ad98ac584": {
+    "zh": "一般規則 · General rule",
+    "en": "General rule",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4ec3d29a70fe": {
+    "zh": "這條式子把誤差乘上特徵，形成設定值修正量。\n            <span class=\"bilingual-en\">Error times input becomes the parameter correction.</span>\n          ",
+    "en": "This formula multiplies the error by the feature to form the parameter correction.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2720059d9638": {
+    "zh": "只看猜錯案例 · Misclassified case",
+    "en": "Misclassified cases only",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "70b200156a2e": {
+    "zh": "因此可改寫為：\n            <span class=\"bilingual-en\">For a mistake, the rule simplifies to:</span>\n          ",
+    "en": "So it can be rewritten as:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9f2f8c3d9e76": {
+    "zh": "偏置也一起更新 · Bias update",
+    "en": "The bias is updated too",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "189426ea43eb": {
+    "zh": "若把偏置視為常數特徵 $1$，它同樣沿著錯誤方向修正。\n            <span class=\"bilingual-en\">Treating bias as a constant feature gives the same logic.</span>\n          ",
+    "en": "If we treat the bias as a constant feature $1$, it is corrected along the error direction in the same way.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f4dff9e806fa": {
+    "zh": "名詞辨識 · Name the loss correctly",
+    "en": "Get the term right",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "773ca2c98127": {
+    "zh": "這裡的 $y_i-o_i$ 是感知機的預測誤差，不是 Lasso 的罰金；Lasso 是另一種正則化方法。\n            <span class=\"bilingual-en\">This is perceptron error, not a Lasso penalty.</span>\n          ",
+    "en": "Here $y_i-o_i$ is the perceptron’s prediction error, not a Lasso penalty; Lasso is a different regularization method.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bd7a02700066": {
+    "zh": "批次版本 · Batch form",
+    "en": "Batch form",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "73897667da3d": {
+    "zh": "$\\mathcal{M}$ 表示目前被分錯的樣本集合；只累加需要修正的資料。\n        <span class=\"bilingual-en\">Sum only over the misclassified set $\\mathcal{M}$.</span>\n      ",
+    "en": "$\\mathcal{M}$ denotes the set of currently misclassified samples; we sum only over the data that needs correcting.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "81ca27d055af": {
+    "zh": "手算一：猜錯了 <span class=\"en\">Worked Example 1 — Wrong Prediction</span>",
+    "en": "Worked Example 1: A Wrong Guess",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "25030096bf28": {
+    "zh": "把「讀書時數」當成唯一特徵：$x_i=10$，真實標籤是 $y_i=-1$（不及格）。\n      <span class=\"bilingual-en\">One feature: ten study hours, but the true class is $-1$.</span>\n    ",
+    "en": "Take “hours of study” as the only feature: $x_i=10$, and the true label is $y_i=-1$ (fail).",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f8609099ced2": {
+    "zh": "欄位 · Item",
+    "en": "Item",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b27a5915f222": {
+    "zh": "設定／計算 · Setting / Calculation",
+    "en": "Setting / Calculation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a612515edbd3": {
+    "zh": "結果 · Result",
+    "en": "Result",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "04f0dd396848": {
+    "zh": "初始設定 · Initial",
+    "en": "Initial setup",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cb278e419171": {
+    "zh": "準備推論 · Ready",
+    "en": "Ready for inference",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c9dc4bc3ff48": {
+    "zh": "總分 · Score",
+    "en": "Total score",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2ed6e48677e0": {
+    "zh": "$+1$，猜錯 · Wrong",
+    "en": "$+1$, wrong",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ef71479fb35a": {
+    "zh": "更新 · Update",
+    "en": "Update",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8986942e908f": {
+    "zh": "先算總分",
+    "en": "Compute the score first",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5d97dc63c801": {
+    "zh": "$z=5\\gt 0$，所以輸出 $+1$。\n        <span class=\"bilingual-en\">A positive score predicts $+1$.</span>",
+    "en": "$z=5\\gt 0$, so the output is $+1$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "41256259b176": {
+    "zh": "抓到錯誤",
+    "en": "Catch the error",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ef0bc99f4ee4": {
+    "zh": "$y_i-o_i=-2$，修正方向朝負類。\n        <span class=\"bilingual-en\">The error points toward class $-1$.</span>",
+    "en": "$y_i-o_i=-2$, so the correction points toward the negative class.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "81dadbdfd415": {
+    "zh": "更新權重",
+    "en": "Update the weight",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "043f0ef1746e": {
+    "zh": "更新偏置",
+    "en": "Update the bias",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "93df0ae54c4b": {
+    "zh": "讀懂結果 · Read the result",
+    "en": "Reading the result",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d41a31d0d8ae": {
+    "zh": "模型不是被「狠狠修理」，而是依照可追蹤的乘法把錯誤放大到輸入尺度，再改變下一次決策。\n        <span class=\"bilingual-en\">The correction is traceable: error scaled by the input changes the next decision.</span>\n      ",
+    "en": "The model isn’t getting “punished hard”; through a traceable multiplication, the error is scaled up to the size of the input, which then changes the next decision.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "263aa0e83716": {
+    "zh": "手算二：猜對了 <span class=\"en\">Worked Example 2 — Correct Prediction</span>",
+    "en": "Worked Example 2: A Correct Guess",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "59095dc69ad9": {
+    "zh": "換一筆資料：$x_i=1$、$y_i=-1$，並沿用剛剛更新後的 $w=-1.5$ 與 $w_0=-0.2$。\n      <span class=\"bilingual-en\">Reuse the updated parameters on a new negative example.</span>\n    ",
+    "en": "Take a new data point: $x_i=1$, $y_i=-1$, and keep the just-updated $w=-1.5$ and $w_0=-0.2$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4665d40cfb29": {
+    "zh": "總分與輸出 · Score and output",
+    "en": "Score and output",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "38931fd82347": {
+    "zh": "真實標籤也是 $-1$，因此 $o_i=y_i$。\n          <span class=\"bilingual-en\">The prediction matches the true label.</span>\n        ",
+    "en": "The true label is also $-1$, so $o_i=y_i$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b596bfff67d8": {
+    "zh": "不需要更新 · No update needed",
+    "en": "No update needed",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "94d36385d16b": {
+    "zh": "所以 $w$ 與 $w_0$ 保持原值；猜對就原地不動。\n            <span class=\"bilingual-en\">Correct predictions leave the parameters unchanged.</span>\n          ",
+    "en": "So $w$ and $w_0$ keep their values; a correct guess stays put.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6d7c91a2357e": {
+    "zh": "對照前一例 · Compare with Example 1",
+    "en": "Compare with Example 1",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "95f54602341c": {
+    "zh": "猜錯帶來有方向的修正；猜對把修正量消成 0。\n            <span class=\"bilingual-en\">Mistakes move; correct cases stay still.</span>\n          ",
+    "en": "A wrong guess brings a correction with a direction; a correct guess cancels the correction down to 0.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "069d326f46d0": {
+    "zh": "一句話 · One sentence",
+    "en": "In One Sentence",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "61abff13147f": {
+    "zh": "Perceptron 的學習不是每筆資料都改，而是僅在預測與標籤不一致時改。\n        <span class=\"bilingual-en\">Learning happens only when prediction and label disagree.</span>\n      ",
+    "en": "The perceptron doesn’t learn by changing on every data point; it changes only when the prediction and the label disagree.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1441b47b9d57": {
+    "zh": "Perceptron 是幾何雕刻家嗎？ <span class=\"en\">Decision Boundary and Normal Vector</span>",
+    "en": "Is the Perceptron a Geometry Sculptor?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0ff875640c03": {
+    "zh": "它確實在特徵平面上畫出邊界，但單一 Perceptron 畫的是直線；真正的超能力是用權重決定方向。\n      <span class=\"bilingual-en\">A single perceptron draws a linear boundary; weights set its orientation.</span>\n    ",
+    "en": "It does draw a boundary on the feature plane, but a single perceptron draws a straight line; its real superpower is using the weights to set the direction.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1f27c4399b2d": {
+    "zh": "虛線是決策邊界；品紅箭頭是法向量，永遠垂直於邊界 · Boundary and normal.",
+    "en": "The dashed line is the decision boundary; the magenta arrow is the normal vector, always perpendicular to the boundary.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2231d5c7469b": {
+    "zh": "核心公式 · Core equation",
+    "en": "Core equation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "20184efc582b": {
+    "zh": "當 $s(\\mathbf{x})=0$ 時得到決策邊界；正負號分別位於邊界兩側。\n            <span class=\"bilingual-en\">The sign of the score selects a side of the boundary.</span>\n          ",
+    "en": "Setting $s(\\mathbf{x})=0$ gives the decision boundary; the positive and negative signs lie on the two sides of the boundary.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "275c0781f486": {
+    "zh": "法向量的工作 · What the normal does",
+    "en": "What the normal vector does",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "38178137f285": {
+    "zh": "$\\mathbf{w}=[w_1,w_2]$ 決定邊界的垂直方向；改變權重就會旋轉這條線。\n            <span class=\"bilingual-en\">Weights orient the perpendicular direction.</span>\n          ",
+    "en": "$\\mathbf{w}=[w_1,w_2]$ sets the direction perpendicular to the boundary; changing the weights rotates this line.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "757545227ce8": {
+    "zh": "重要修正 · Important correction",
+    "en": "Important correction",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a6656968add8": {
+    "zh": "單一 Perceptron 本身只能做線性切割；「非線性切割」需要特徵轉換或多層網路，不是這一條直線自己完成。\n            <span class=\"bilingual-en\">Nonlinear separation needs transformed features or multiple layers.</span>\n          ",
+    "en": "A single perceptron by itself can only make linear cuts; a “nonlinear cut” needs feature transformations or a multilayer network, and is not something this one straight line does on its own.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "933aea56f60b": {
+    "zh": "投影分數：把二維資料壓成一條軸 <span class=\"en\">Projection Score: 2D to 1D</span>",
+    "en": "Projection Score: Squeezing 2D Data onto One Axis",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b2c602909b7d": {
+    "zh": "選擇 $\\mathbf{w}=[1,1]$ 時，先看原始投影 $p(\\mathbf{x})=\\mathbf{w}^{\\top}\\mathbf{x}$；再加上偏置得到決策分數 $s(\\mathbf{x})=p(\\mathbf{x})+b$。\n      <span class=\"bilingual-en\">Project first, then shift the score with the bias.</span>\n    ",
+    "en": "With $\\mathbf{w}=[1,1]$, first look at the raw projection $p(\\mathbf{x})=\\mathbf{w}^{\\top}\\mathbf{x}$; then add the bias to get the decision score $s(\\mathbf{x})=p(\\mathbf{x})+b$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "16b1c6c9c23b": {
+    "zh": "十個樣本的實算 · Ten Samples, Real Computation",
+    "en": "Ten Samples, Actually Computed",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "121d8f4e017f": {
+    "zh": "偏置 $b$",
+    "en": "Bias $b$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "dd8a46a369df": {
+    "zh": "資料點 A 的原始投影為 5，資料點 B 的原始投影為 16；滑動偏置，觀察整條分數軸如何平移。\n        <span class=\"bilingual-en\">Class A projects to 5; class B projects to 16. Bias shifts every score.</span>\n      ",
+    "en": "The A points have a raw projection of 5 and the B points a raw projection of 16; slide the bias and watch the whole score axis shift.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e9b7065ed561": {
+    "zh": "類間與類內 · Between and within classes",
+    "en": "Between and within classes",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fc64d9f6c08d": {
+    "zh": "本例讓同類樣本的原始投影集中在 5 或 16，清楚展示「投影後的分數軸」；這是觀察工具，不代表 Perceptron 自動完成降維學習。\n          <span class=\"bilingual-en\">The projection is an analysis lens, not automatic dimensionality reduction.</span>\n        ",
+    "en": "In this example the raw projections of same-class samples are concentrated at 5 or 16, which clearly shows the “projected score axis”; this is an observation tool and does not mean the perceptron automatically learns a dimensionality reduction.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4fc741b8c224": {
+    "zh": "由分數回到分類 · From score to class",
+    "en": "From score back to class",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2a2457a04272": {
+    "zh": "以 0 為決策基準時，$s(\\mathbf{x})\\gt 0$ 輸出 $+1$，$s(\\mathbf{x})\\lt 0$ 輸出 $-1$。\n          <span class=\"bilingual-en\">The sign of the shifted score gives the class.</span>\n        ",
+    "en": "With 0 as the decision threshold, $s(\\mathbf{x})\\gt 0$ outputs $+1$ and $s(\\mathbf{x})\\lt 0$ outputs $-1$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to action",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "eaad3484f49b": {
+    "zh": "三題提取練習 <span class=\"en\">Three Retrieval Questions</span>",
+    "en": "Three Retrieval Practice Questions",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1ee43b872f42": {
+    "zh": "不要只認公式；請把每個符號放回「輸出、錯誤、幾何」的因果鏈。\n      <span class=\"bilingual-en\">Place every symbol back into the causal chain.</span>\n    ",
+    "en": "Don’t just recognize formulas; put each symbol back into the causal chain of “output, error, geometry.”",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ad3fd9e4d43e": {
+    "zh": "Q1 · Signum 猜錯時，$y_i-o_i$ 是什麼？<span class=\"bilingual-en\">What is the error magnitude for a Signum mistake?</span>",
+    "en": "Q1 · When Signum guesses wrong, what is $y_i-o_i$?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "33e7cb29809e": {
+    "zh": "Q2 · 法向量 $\\mathbf{w}$ 代表什麼？<span class=\"bilingual-en\">What does $\\mathbf{w}$ represent?</span>",
+    "en": "Q2 · What does the normal vector $\\mathbf{w}$ represent?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "20156c2a4c31": {
+    "zh": "邊界的垂直方向 <span class=\"bilingual-en\">The perpendicular direction</span>",
+    "en": "The direction perpendicular to the boundary",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9ca3dd5ef622": {
+    "zh": "資料筆數 <span class=\"bilingual-en\">The sample count</span>",
+    "en": "The number of data samples",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3e133a1e9fc5": {
+    "zh": "固定學習率 <span class=\"bilingual-en\">The learning rate</span>",
+    "en": "A fixed learning rate",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "23d9084ba9fd": {
+    "zh": "Q3 · 什麼情況下設定值不動？<span class=\"bilingual-en\">When do parameters stay unchanged?</span>",
+    "en": "Q3 · When do the parameters stay unchanged?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "fe4bcdbe917b": {
+    "zh": "每次都動 <span class=\"bilingual-en\">Every sample</span>",
+    "en": "They change every time",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7bf2cdcd1580": {
+    "zh": "只要 $z\\gt 0$ <span class=\"bilingual-en\">Whenever $z\\gt 0$</span>",
+    "en": "Whenever $z\\gt 0$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7bbb4b0577d6": {
+    "zh": "預測正確 <span class=\"bilingual-en\">When prediction is correct</span>",
+    "en": "When the prediction is correct",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "21fc85e2389d": {
+    "zh": "答題策略 · Retrieval Strategy",
+    "en": "Answering Strategy",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "41108c2c8312": {
+    "zh": "先判斷標籤編碼，再判斷是否猜錯，最後才代入更新式。\n        <span class=\"bilingual-en\">Encode → compare → update.</span>\n      ",
+    "en": "First determine the label encoding, then whether the guess is wrong, and only then plug into the update rule.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7aafeaf21b5e": {
+    "zh": "把 Perceptron 帶走 <span class=\"en\">Take the Perceptron With You</span>",
+    "en": "Take the Perceptron With You",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "764f29da9471": {
+    "zh": "Signum 把類別寫成方向",
+    "en": "Signum writes classes as directions",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bcaea2941490": {
+    "zh": "正類 $+1$、負類 $-1$，錯誤因此呈現 $\\pm2$。\n          <span class=\"bilingual-en\">Labels carry direction; mistakes become $\\pm2$.</span>\n        ",
+    "en": "Positive class $+1$, negative class $-1$, so errors show up as $\\pm2$.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "772b9f3b83e9": {
+    "zh": "只修正分錯的樣本",
+    "en": "Only correct misclassified samples",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3228ab95f21b": {
+    "zh": "猜錯才更新；猜對時 $y_i-o_i=0$。\n          <span class=\"bilingual-en\">Mistakes move parameters; correct cases do not.</span>\n        ",
+    "en": "Update only when wrong; when right, $y_i-o_i=0$.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "542e7d15015f": {
+    "zh": "權重就是法向量",
+    "en": "The weights are the normal vector",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "49e9236d16db": {
+    "zh": "$\\mathbf{w}$ 垂直於 $s(\\mathbf{x})=0$ 的決策邊界。\n          <span class=\"bilingual-en\">Weights define the boundary’s normal.</span>\n        ",
+    "en": "$\\mathbf{w}$ is perpendicular to the decision boundary $s(\\mathbf{x})=0$.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7ccf959291f4": {
+    "zh": "再走向多層與非線性",
+    "en": "Next: on to multiple layers and nonlinearity",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2bc26f667962": {
+    "zh": "若一條直線不夠，就需要特徵轉換或 MLP。\n          <span class=\"bilingual-en\">Next: feature transforms or multilayer networks.</span>\n        ",
+    "en": "If one straight line isn’t enough, you need feature transformations or an MLP.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2e24193e4962": {
+    "zh": "最小記憶句 · Minimal Memory",
+    "en": "The Minimal Takeaway",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7c86aa45746f": {
+    "zh": "<b>Signum 把錯誤變成方向；更新把方向寫回權重；幾何把權重畫成法向量。</b>\n        <span class=\"bilingual-en\">Signum exposes direction, updates write it into weights, geometry makes it visible.</span>\n      ",
+    "en": "<b>Signum turns errors into directions; the update writes the direction back into the weights; geometry draws the weights as a normal vector.</b>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8645995efb68": {
+    "zh": "下一步 · Next Step",
+    "en": "Next Step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bb7f0b50b247": {
+    "zh": "帶著這三個問題進入下一節：邊界能否分開資料？錯誤會不會收斂？多層網路如何突破單一直線？\n        <span class=\"bilingual-en\">Ask: separability, convergence, and how multilayer nets escape one line.</span>\n      ",
+    "en": "Take these three questions into the next section: Can the boundary separate the data? Will the errors converge? How does a multilayer network break past a single straight line?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a8fb5528c0d2": {
+    "zh": "章節索引 / Outline",
+    "en": "Chapter outline",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "1537744a8278": {
+    "zh": "十個樣本的投影分數圖",
+    "en": "Projection score chart for ten samples",
+    "kp": 10,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "aa172d1c0f18": {
+    "zh": "調整 bias",
+    "en": "Adjust bias",
+    "kp": 10,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "6702b559353b": {
+    "zh": "原始投影 p(x) · Raw projection",
+    "en": "Raw projection p(x)",
+    "kp": 10,
+    "ctx": "chart"
+  },
+  "c854208942b8": {
+    "zh": "決策分數 s(x) · Shifted score",
+    "en": "Decision score s(x)",
+    "kp": 10,
+    "ctx": "chart"
+  },
+  "e327cdc907fc": {
+    "zh": "分數 · Score",
+    "en": "Score",
+    "kp": 10,
+    "ctx": "chart"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

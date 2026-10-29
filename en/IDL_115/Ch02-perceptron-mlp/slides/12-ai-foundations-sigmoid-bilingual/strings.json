@@ -1,0 +1,544 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 正確！": "✓ Correct!",
+      "✗ 再想想。": "✗ Think again."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#q1\">大問句 · Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bb804f0faa1f": {
+    "zh": "<a href=\"#hard\">硬脾氣 · Hard</a>",
+    "en": "<a href=\"#hard\">Hard Temper</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "53b4498e334f": {
+    "zh": "<a href=\"#sig\">溫柔開關 · Sigmoid</a>",
+    "en": "<a href=\"#sig\">The Gentle Switch</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "10fbdec1242a": {
+    "zh": "<a href=\"#calc\">手算蘋果 · Calc</a>",
+    "en": "<a href=\"#calc\">The Apple by Hand</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3ba1db0d02f1": {
+    "zh": "<a href=\"#grad\">鏈式梯度 · Gradient</a>",
+    "en": "<a href=\"#grad\">Chain-Rule Gradient</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d134e4222712": {
+    "zh": "<a href=\"#vanish\">飽和警示 · Saturation</a>",
+    "en": "<a href=\"#vanish\">Saturation Warning</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2b8bbdf7297d": {
+    "zh": "<a href=\"#geo\">AND 與 XOR · Geometry</a>",
+    "en": "<a href=\"#geo\">AND and XOR</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b8103d1293fb": {
+    "zh": "<a href=\"#dance\">兩步舞曲 · Two steps</a>",
+    "en": "<a href=\"#dance\">The Two-Step Dance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5d7794b2ce45": {
+    "zh": "<a href=\"#sum\">小結 · Summary</a>",
+    "en": "<a href=\"#sum\">Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bd92c9384561": {
+    "zh": "<a href=\"#roadmap\">路線 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Questions to Think About</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f35bb152394a": {
+    "zh": "溫柔的開關 Sigmoid<br>Gentle Switch, Honest Odds",
+    "en": "The Gentle Switch: Sigmoid",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "46567c9c0a33": {
+    "zh": "別只喊對錯，說出你有幾分把握 <span class=\"bilingual-en\">Not just right or wrong — how sure?</span>",
+    "en": "Don't just shout right or wrong: say how sure you are",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "7977dee116a9": {
+    "zh": "咔嚓一刀之外，能溫柔地說信心嗎？<small>Past the hard cut — can we express confidence?</small>",
+    "en": "Beyond the one hard chop, can we gently express how confident we are?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a75a92ae451c": {
+    "zh": "名師導讀 · 鼻祖的壞脾氣 <span class=\"en\">The ancestor's temper</span>",
+    "en": "Professor's Guide · The Ancestor's Bad Temper",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "851abd93c01a": {
+    "zh": "開場引言 · Opening",
+    "en": "Opening Remarks",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7b44f96ba522": {
+    "zh": "感知機看資料非黑即白：總分沒過門檻直接切成 0，過了就變 1，權重更新動作太大，換張新考卷就不會寫。<span class=\"bilingual-en\">Perceptron snaps 0 or 1, then stumbles on fresh exams.</span>",
+    "en": "The perceptron sees data in pure black and white: if the total score misses the threshold it is cut straight to 0, and if it clears it, it becomes 1. Its weight updates are too big, so hand it a new exam and it can't answer.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7f8c9c2e7f17": {
+    "zh": "今天的主角是收拾爛攤子的溫柔開關：不管輸入多大或多小，輸出永遠乖乖落在 0 到 1 之間，變成連續機率。<span class=\"bilingual-en\">Today's fix squeezes every score into a calm 0-to-1 odds.</span>",
+    "en": "Today's star is the gentle switch that cleans up the mess: no matter how large or small the input, the output always lands obediently between 0 and 1 and becomes a continuous probability.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "533f98dee201": {
+    "zh": "先澄清講義原文一處口誤：1960 年電子電腦早已誕生並商用，並非「還沒誕生」；1960 年真正的新事是 ADALINE 與溫柔學習。<span class=\"bilingual-en\">Computers already existed in 1960; the novelty was gentle learning.</span>",
+    "en": "First, let me correct a slip in the original lecture notes: by 1960 electronic computers had long been invented and were in commercial use, so they had not \"not yet been born\". What was really new in 1960 was ADALINE and gentle learning.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4d458092611b": {
+    "zh": "硬脾氣 · 59 分與 9 分同罵法 <span class=\"en\">Hard and brittle</span>",
+    "en": "Hard Temper · 59 Points and 9 Points Get the Same Scolding",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "66943d7cfe1f": {
+    "zh": "硬階躍：只分對錯 · Binary verdict only",
+    "en": "Hard step: only right or wrong",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "df2adbb18462": {
+    "zh": "離散之痛 · Discrete pain",
+    "en": "The Pain of Being Discrete",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d75947a6a735": {
+    "zh": "誤差只有對或錯，修正建議長得一樣，更新一步太大，泛化差。<span class=\"bilingual-en\">Binary error, oversized steps, poor generalization.</span>",
+    "en": "The error is only right or wrong, so every correction looks the same, each update step is too big, and generalization is poor.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "343a81935114": {
+    "zh": "像只看及格線的老師：不問差幾分，錯了就重罰。<span class=\"bilingual-en\">A teacher who only sees pass or fail.</span>",
+    "en": "Like a teacher who only looks at the passing line: never asks how many points you were short, just punishes you hard when you're wrong.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep attention",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b658ac62b13d": {
+    "zh": "溫柔開關 · Sigmoid <span class=\"en\">The gentle switch</span>",
+    "en": "The Gentle Switch: Sigmoid",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f0d71b2dba49": {
+    "zh": "定義 · Definition",
+    "en": "Definition",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c0e7441309a4": {
+    "zh": "無論 $z$ 趨向正無窮或負無窮，輸出永遠乖乖落在 $(0, 1)$ 之間，變成連續機率。<span class=\"bilingual-en\">Any score in, a calm odds between 0 and 1 out.</span>",
+    "en": "Whether $z$ goes to positive or negative infinity, the output always lands obediently in $(0, 1)$ and becomes a continuous probability.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d8e1a6ccb73c": {
+    "zh": "左 S 曲線標記 (1, 0.731) · 右導數峰頂居中、尾端貼零 · matplotlib 精準繪製",
+    "en": "Left: S-curve with (1, 0.731) marked · Right: derivative peaks in the center and hugs zero at the tails · drawn precisely with matplotlib",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8c2d83bf7c72": {
+    "zh": "為何溫柔 · Why gentle",
+    "en": "Why Gentle",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "edbd773d192d": {
+    "zh": "感知機只會喊對或錯；Sigmoid 會說「88% 信心是紅蘋果（0.88）」，連續誤差讓權重平滑調整。<span class=\"bilingual-en\">Confidence instead of shouting; smoother updates.</span>",
+    "en": "The perceptron can only shout right or wrong; sigmoid can say \"88% confident it's a red apple (0.88)\", and the continuous error lets the weights adjust smoothly.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0bc2904445ac": {
+    "zh": "導數 · Derivative",
+    "en": "Derivative",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "129666e95639": {
+    "zh": "中間最陡、兩尾平坦：這張形狀圖同時預告了梯度消失的陷阱。<span class=\"bilingual-en\">Steep in the middle, flat at the tails.</span>",
+    "en": "Steepest in the middle, flat at both tails: this shape also previews the vanishing gradient trap.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "53d6d4d25bae": {
+    "zh": "動手滑滑看 · Slide the score",
+    "en": "Try the Slider",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3cbd533254a9": {
+    "zh": "總分 $z = <span id=\"zVal\">1.0</span>$，機率 $\\sigma(z) = $ <b><span id=\"oVal\">0.731</span></b><span class=\"bilingual-en\">Drag and watch odds move smoothly.</span>",
+    "en": "Total score $z = <span id=\"zVal\">1.0</span>$, probability $\\sigma(z) = $ <b><span id=\"oVal\">0.731</span></b><span class=\"bilingual-en\">Drag the slider and watch the probability change smoothly.</span>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6890247dd4f0": {
+    "zh": "手算蘋果 · 73.1% 的把握 <span class=\"en\">Score the apple</span>",
+    "en": "The Apple by Hand · 73.1% Sure",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "072cd947ad41": {
+    "zh": "總分",
+    "en": "Total score",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "54efb2482f70": {
+    "zh": "套開關",
+    "en": "Apply the switch",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d118e177daab": {
+    "zh": "$\\sigma(1) = 1 / (1 + e^{-1}) \\approx 1 / 1.368 \\approx \\mathbf{0.731}$，73.1% 機率是紅蘋果。<span class=\"bilingual-en\">73.1% a red apple.</span>",
+    "en": "$\\sigma(1) = 1 / (1 + e^{-1}) \\approx 1 / 1.368 \\approx \\mathbf{0.731}$, a 73.1% probability that it's a red apple.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d7b31136ddb1": {
+    "zh": "誤差",
+    "en": "Error",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d666151e1486": {
+    "zh": "真實 $y_i = 1$，連續誤差 $1 - 0.731 = \\mathbf{0.269}$，不再只是對或錯。<span class=\"bilingual-en\">Off by exactly 0.269.</span>",
+    "en": "The true label is $y_i = 1$, so the continuous error is $1 - 0.731 = \\mathbf{0.269}$, no longer just right or wrong.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3e1e8e454bbe": {
+    "zh": "鏈式梯度 · 誤差回傳一小步 <span class=\"en\">Chain rule step</span>",
+    "en": "Chain-Rule Gradient · Sending the Error Back One Small Step",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "037f42159679": {
+    "zh": "正確鏈式 · Correct chain",
+    "en": "The Correct Chain",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "533e5fd4c5ce": {
+    "zh": "講義原文梯度行列符號混亂（$\\partial y/\\partial o$、$a$、$o$ 混用且數字 $-2 \\times 10$ 無出處），此處以 MSE 損失重算如下。<span class=\"bilingual-en\">Text's chain lines were garbled; recomputed below.</span>",
+    "en": "In the original lecture notes the gradient lines mixed up their symbols ($\\partial y/\\partial o$, $a$ and $o$ were used interchangeably, and the number $-2 \\times 10$ came from nowhere), so here it is recomputed below with the MSE loss.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6f69a3ec7fe4": {
+    "zh": "代入數字 · Numbers in",
+    "en": "Plugging In Numbers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b41385002beb": {
+    "zh": "學習率 $\\eta = 0.1$ 時，$\\beta_1 \\leftarrow 0.5 - 0.1 \\times (-0.85) \\approx \\mathbf{0.585}$，溫柔前進一小步。<span class=\"bilingual-en\">One gentle step to 0.585.</span>",
+    "en": "With learning rate $\\eta = 0.1$, $\\beta_1 \\leftarrow 0.5 - 0.1 \\times (-0.85) \\approx \\mathbf{0.585}$: one gentle small step forward.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fcd0dc64a6ce": {
+    "zh": "飽和警示 · 溫柔的代價 <span class=\"en\">Gentleness costs</span>",
+    "en": "Saturation Warning · The Price of Gentleness",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "021646ce3f76": {
+    "zh": "梯度消失 · Vanishing gradient",
+    "en": "Vanishing Gradient",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7b7abaf477fc": {
+    "zh": "若輸入掉進飽和區如 $a = -10$，則 $o \\approx 1/(1+e^{10}) \\approx \\mathbf{0.000045}$，且 $\\sigma' \\approx \\mathbf{0.000045}$，梯度近乎零，權重幾乎學不到東西。<span class=\"bilingual-en\">Saturated input, near-zero gradient, learning stalls.</span>",
+    "en": "If the input falls into the saturated region, e.g. $a = -10$, then $o \\approx 1/(1+e^{10}) \\approx \\mathbf{0.000045}$ and $\\sigma' \\approx \\mathbf{0.000045}$: the gradient is almost zero and the weights learn almost nothing.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "041a9348f82e": {
+    "zh": "講義原文此處誤標為 ReLU 反例：數字實為 Sigmoid 飽和，已正名；ReLU 在負區是直接歸零而非趨近零。<span class=\"bilingual-en\">Text mislabeled it ReLU; it is sigmoid saturation.</span>",
+    "en": "The original lecture notes mislabeled this as a ReLU counterexample: the numbers are actually sigmoid saturation, so the name has been corrected. In the negative region ReLU goes straight to zero rather than approaching zero.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a1be6c16286f": {
+    "zh": "AND 可分，XOR 不可分 <span class=\"en\">AND splits, XOR resists</span>",
+    "en": "AND Is Separable, XOR Is Not",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7ba275788be9": {
+    "zh": "左 AND 直線 $x_1+x_2=1.5$ 切開 (1,1) · 右 XOR 無一直線可分 · matplotlib 精準繪製",
+    "en": "Left: AND, the line $x_1+x_2=1.5$ cuts off (1,1) · Right: XOR, no single line separates it · drawn precisely with matplotlib",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ab8168e447f4": {
+    "zh": "AND 邏輯 · AND gate",
+    "en": "AND Gate",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "06fc924f6bfe": {
+    "zh": "權重 $[1,1]$、偏置 $-1.5$ 時，直線 $x_1+x_2=1.5$ 隔開唯一的 (1,1)。<span class=\"bilingual-en\">One line isolates (1,1).</span>",
+    "en": "With weights $[1,1]$ and bias $-1.5$, the line $x_1+x_2=1.5$ separates the lone point (1,1).",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86cceb03072f": {
+    "zh": "XOR 困境 · XOR trouble",
+    "en": "The XOR Dilemma",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4bb281263da2": {
+    "zh": "(0,0) 與 (1,1) 同類、(0,1) 與 (1,0) 另一類，任何單一直線都分不開，須靠 MLP 折疊空間。<span class=\"bilingual-en\">No single line; depth must fold.</span>",
+    "en": "(0,0) and (1,1) are one class and (0,1) and (1,0) the other; no single straight line can separate them, so we need an MLP to fold the space.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e0a9f43fe227": {
+    "zh": "神經元兩步舞曲 <span class=\"en\">Two-step dance</span>",
+    "en": "The Neuron's Two-Step Dance",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2e1802c2f472": {
+    "zh": "線性加總",
+    "en": "Linear sum",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6c94255c4844": {
+    "zh": "上一層傳來的東西乘上重要性再加起來，得總分 $a_i$。<span class=\"bilingual-en\">Weight, sum, score $a_i$.</span>",
+    "en": "Multiply what comes in from the previous layer by its importance and add it all up to get the total score $a_i$.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "67992536481f": {
+    "zh": "非線性啟用",
+    "en": "Nonlinear activation",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "03a9b3f67df1": {
+    "zh": "丟進神奇開關 $\\sigma(\\cdot)$ 得輸出 $z_i$；Sigmoid 正是其中一種溫柔開關。<span class=\"bilingual-en\">Squash with sigma, output $z_i$.</span>",
+    "en": "Throw it into the magic switch $\\sigma(\\cdot)$ to get the output $z_i$; sigmoid is exactly one such gentle switch.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2aa162951822": {
+    "zh": "疊夠多層",
+    "en": "Stack enough layers",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5f2880c3257f": {
+    "zh": "正確非線性加深疊，複雜資料結構才分得開。<span class=\"bilingual-en\">Stack deep, carve complex worlds.</span>",
+    "en": "Stack the right nonlinearity deep enough, and only then can complex data structures be separated.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0149587879b8": {
+    "zh": "內部運算 · Inside one neuron",
+    "en": "Inside One Neuron",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d50cbfa9509e": {
+    "zh": "第一步畫直線，第二步給彎曲；交替才有深度學習的魔法。<span class=\"bilingual-en\">Linear first, bending second.</span>",
+    "en": "Step one draws a straight line, step two adds the bend; only by alternating them do you get the magic of deep learning.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3aafa6c8dc38": {
+    "zh": "小結 · 溫柔且誠實 <span class=\"en\">Gentle and honest</span>",
+    "en": "Summary · Gentle and Honest",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7c693fb1f128": {
+    "zh": "小結 · Takeaway",
+    "en": "Takeaway",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "fce31eb73c59": {
+    "zh": "Sigmoid 把任意總分壓進 $(0,1)$ 變成機率，連續誤差帶來平滑更新；代價是飽和區梯度消失。<span class=\"bilingual-en\" style=\"color:#fff;\">Odds in, smooth steps; saturated tails stall.</span>",
+    "en": "Sigmoid squeezes any total score into $(0,1)$ as a probability, and the continuous error brings smooth updates; the price is vanishing gradients in the saturated regions.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to action",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a7993ba76d56": {
+    "zh": "後續路線 <span class=\"en\">Roadmap</span>",
+    "en": "The Road Ahead",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "99b01402519c": {
+    "zh": "感知機",
+    "en": "Perceptron",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9924bedc3777": {
+    "zh": "硬階躍非黑即白，泛化差。<span class=\"bilingual-en\">Hard steps, fragile.</span>",
+    "en": "A hard step, pure black and white; poor generalization.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6164b8be8a96": {
+    "zh": "ADALINE 與 Sigmoid",
+    "en": "ADALINE and Sigmoid",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cc31c0545531": {
+    "zh": "連續誤差加溫柔開關，學得平滑。<span class=\"bilingual-en\">Smooth error, gentle switch.</span>",
+    "en": "Continuous error plus a gentle switch: learning becomes smooth.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c8a18c3ec33d": {
+    "zh": "多層感知機",
+    "en": "Multilayer Perceptron",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "97a243dc6c7e": {
+    "zh": "疊出隱藏層，用摺紙解決 XOR。<span class=\"bilingual-en\">Next: fold away XOR.</span>",
+    "en": "Stack up hidden layers and solve XOR by folding the paper.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2391467faf5e": {
+    "zh": "思考題 · 提取練習 <span class=\"en\">Reflection</span>",
+    "en": "Questions to Think About · Retrieval Practice",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "abca1941d25e": {
+    "zh": "Q1. Sigmoid 輸出範圍？ <span class=\"bilingual-en\">Output range?</span>",
+    "en": "Q1. What is the output range of sigmoid?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "983d9bfdc7af": {
+    "zh": "Q2. $z = 1$ 時 $\\sigma(z)$ 約為？ <span class=\"bilingual-en\">Value at 1?</span>",
+    "en": "Q2. When $z = 1$, $\\sigma(z)$ is approximately?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "36b0772b0218": {
+    "zh": "Q3. $a = -10$ 時發生什麼事？ <span class=\"bilingual-en\">At -10?</span>",
+    "en": "Q3. What happens when $a = -10$?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3c707e7d33df": {
+    "zh": "輸出爆炸 <span class=\"bilingual-en-inline\">— explodes</span>",
+    "en": "The output explodes",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1530b5626772": {
+    "zh": "學習加速 <span class=\"bilingual-en-inline\">— speeds up</span>",
+    "en": "Learning speeds up",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "17a3be0adb94": {
+    "zh": "飽和、梯度近零、學不動 <span class=\"bilingual-en-inline\">— saturated, stalled</span>",
+    "en": "Saturation: the gradient is near zero and learning stalls",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

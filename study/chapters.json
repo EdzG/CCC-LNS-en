@@ -187,79 +187,124 @@
    "decks": [
     {
      "href": "IDL_115/Ch02-perceptron-mlp/idl115-w2-perceptron-mlp.html",
-     "en": null
+     "en": {
+      "units": 1018,
+      "translated": 1018
+     }
     }
    ],
    "slides": [
     {
      "label": "01 AI foundations perceptron to UAT",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/01-ai-foundations-perceptron-to-uat-bilingual.html",
-     "en": null
+     "en": {
+      "units": 203,
+      "translated": 203
+     }
     },
     {
      "label": "02 AI foundations 2 1 biological neuron",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/02-ai-foundations-2-1-biological-neuron-bilingual.html",
-     "en": null
+     "en": {
+      "units": 159,
+      "translated": 159
+     }
     },
     {
      "label": "03 AI foundations M-P neuron",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/03-ai-foundations-mp-neuron-bilingual.html",
-     "en": null
+     "en": {
+      "units": 80,
+      "translated": 80
+     }
     },
     {
      "label": "04 AI foundations M-P to MLP",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/04-ai-foundations-mp-to-mlp-bilingual.html",
-     "en": null
+     "en": {
+      "units": 105,
+      "translated": 105
+     }
     },
     {
      "label": "05 AI foundations perceptron signum geometry",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/05-ai-foundations-perceptron-signum-geometry-bilingual.html",
-     "en": null
+     "en": {
+      "units": 144,
+      "translated": 144
+     }
     },
     {
      "label": "06 Perceptron limitations XOR generalization",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/06-perceptron-limitations-xor-generalization-bilingual.html",
-     "en": null
+     "en": {
+      "units": 211,
+      "translated": 211
+     }
     },
     {
      "label": "07 AI foundations ADALINE sigmoid MLP",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/07-ai-foundations-adaline-sigmoid-mlp-bilingual.html",
-     "en": null
+     "en": {
+      "units": 131,
+      "translated": 131
+     }
     },
     {
      "label": "08 AI foundations linear collapse",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/08-ai-foundations-linear-collapse-bilingual.html",
-     "en": null
+     "en": {
+      "units": 85,
+      "translated": 85
+     }
     },
     {
      "label": "09 Deep learning activation functions",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/09-deep-learning-activation-functions-bilingual.html",
-     "en": null
+     "en": {
+      "units": 95,
+      "translated": 95
+     }
     },
     {
      "label": "10 AI foundations loss functions",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/10-ai-foundations-loss-functions-bilingual.html",
-     "en": null
+     "en": {
+      "units": 123,
+      "translated": 123
+     }
     },
     {
      "label": "11 AI foundations ADALINE",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/11-ai-foundations-adaline-bilingual.html",
-     "en": null
+     "en": {
+      "units": 103,
+      "translated": 103
+     }
     },
     {
      "label": "12 AI foundations sigmoid",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/12-ai-foundations-sigmoid-bilingual.html",
-     "en": null
+     "en": {
+      "units": 88,
+      "translated": 88
+     }
     },
     {
      "label": "13 AI foundations RBF SOM",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/13-ai-foundations-rbf-som-bilingual.html",
-     "en": null
+     "en": {
+      "units": 137,
+      "translated": 137
+     }
     },
     {
      "label": "14 AI foundations UAT chapter 4",
      "href": "IDL_115/Ch02-perceptron-mlp/slides/14-ai-foundations-uat-chapter4-bilingual.html",
-     "en": null
+     "en": {
+      "units": 230,
+      "translated": 230
+     }
     }
    ],
    "sections": [
@@ -267,108 +312,108 @@
      "kp": 1,
      "id": "kp1",
      "badge": "1",
-     "title": null,
+     "title": "Introduction: a map from biology to abstraction",
      "quizzes": 4
     },
     {
      "kp": 2,
      "id": "kp2",
      "badge": "2.1",
-     "title": null,
+     "title": "Biological Neurons: Soma, Dendrites, Synapse",
      "quizzes": 4
     },
     {
      "kp": 3,
      "id": "kp3",
      "badge": "2.2",
-     "title": null,
+     "title": "The McCulloch-Pitts Model: The First Mathematical Neuron",
      "quizzes": 4
     },
     {
      "kp": 4,
      "id": "kp4",
      "badge": "2.3–2.4",
-     "title": null,
+     "title": "The Perceptron with Binary Activation: The First Neuron That Learns",
      "quizzes": 4
     },
     {
      "kp": 5,
      "id": "kp5",
      "badge": "2.5",
-     "title": null,
+     "title": "kp5 (badge 2.5) The Perceptron with Signum Activation: The Update Rule and Two Derivations",
      "quizzes": 4
     },
     {
      "kp": 6,
      "id": "kp6",
      "badge": "2.6",
-     "title": null,
+     "title": "kp6 (badge 2.6) Limitations of the Perceptron: The XOR Counterexample and the Generalization Problem",
      "quizzes": 4
     },
     {
      "kp": 7,
      "id": "kp7",
      "badge": "2.7.1–2.7.2",
-     "title": null,
+     "title": "kp7 (badge 2.7.1–2.7.2) MLP Structure and the Computation Inside a Neuron",
      "quizzes": 4
     },
     {
      "kp": 8,
      "id": "kp8",
      "badge": "2.7.3",
-     "title": null,
+     "title": "Why we need non-linear activation functions: stack as many linear layers as you like, it's still linear",
      "quizzes": 4
     },
     {
      "kp": 9,
      "id": "kp9",
      "badge": "2.8",
-     "title": null,
+     "title": "An overview of 13 activation functions: from linear to maxout",
      "quizzes": 4
     },
     {
      "kp": 10,
      "id": "kp10",
      "badge": "2.9",
-     "title": null,
+     "title": "Common loss functions: MSE / MAE / Huber / KL / Hinge / cross-entropy",
      "quizzes": 4
     },
     {
      "kp": 11,
      "id": "kp11",
      "badge": "3.1",
-     "title": null,
+     "title": "ADALINE and MADALINE: replacing the binary output with a continuous error",
      "quizzes": 4
     },
     {
      "kp": 12,
      "id": "kp12",
      "badge": "3.2",
-     "title": null,
+     "title": "Logistic Regression: A Probabilistic Classifier as a Single-Neuron Network",
      "quizzes": 4
     },
     {
      "kp": 13,
      "id": "kp13",
      "badge": "3.3–3.4",
-     "title": null,
+     "title": "RBF Networks and Self-Organizing Maps: Fixed Basis Functions and Unsupervised Topology",
      "quizzes": 4
     },
     {
      "kp": 14,
      "id": "kp14",
      "badge": "4",
-     "title": null,
+     "title": "The Universal Approximation Theorem and the Chapter Conclusion",
      "quizzes": 4
     }
    ],
    "quizzes": 56,
    "en": {
-    "units": 0,
-    "translated": 0,
+    "units": 1259,
+    "translated": 1259,
     "review": 0,
     "stale": 0,
-    "toggle": false
+    "toggle": true
    },
    "nav": true
   },

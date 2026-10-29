@@ -1,0 +1,585 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 正確！把值域、形狀與導數一起記住。": "✓ Correct! Remember range, shape, and derivative together.",
+      "✗ 再想想：題目問的是函數的核心角色。": "✗ Think again: the question is about the function's core role."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#q1\">大問句 · Question</a>",
+    "en": "<a href=\"#q1\">Big question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "45d1340f864c": {
+    "zh": "<a href=\"#why\">為何非線性 · Why</a>",
+    "en": "<a href=\"#why\">Why nonlinearity</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2e42ae589692": {
+    "zh": "<a href=\"#palette\">三個判準 · Criteria</a>",
+    "en": "<a href=\"#palette\">Three criteria</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "454dd7b002bd": {
+    "zh": "<a href=\"#families\">13 種家族 · Families</a>",
+    "en": "<a href=\"#families\">13 functions, 4 families</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7a2db3c94599": {
+    "zh": "<a href=\"#geometry\">幾何全景 · Geometry</a>",
+    "en": "<a href=\"#geometry\">Geometric overview</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c21139464c14": {
+    "zh": "<a href=\"#relu\">ReLU 深入 · Deep dive</a>",
+    "en": "<a href=\"#relu\">ReLU deep dive</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5b2516174057": {
+    "zh": "<a href=\"#repair\">修補家族 · Repairs</a>",
+    "en": "<a href=\"#repair\">Repair variants</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5113e2aaa66a": {
+    "zh": "<a href=\"#quiz\">提取練習 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Retrieval practice</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "58db44000910": {
+    "zh": "<a href=\"#roadmap\">學習路線 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Learning roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6908f098ff62": {
+    "zh": "激活函數調色盤<br>Activation Functions",
+    "en": "The Activation Function Palette",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "e3270b242e96": {
+    "zh": "沒有非線性，深度網路只是變胖的線性模型 <span class=\"bilingual-en\" style=\"color:#cbd5e1\">Without nonlinearity, depth is only a wider linear model.</span>",
+    "en": "Without nonlinearity, a deep network is just a fatter linear model.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "e0c3db6f67f6": {
+    "zh": "BIG QUESTION · 大問句",
+    "en": "BIG QUESTION",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "5265686d43f5": {
+    "zh": "為什麼神經網路一定要「彎」？<small>Why must a neural network bend?</small>",
+    "en": "Why must a neural network “bend”?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "3897096cd1a0": {
+    "zh": "因為只有彎曲，模型才有機會畫出複雜的決策邊界。<span class=\"bilingual-en\">Curvature creates expressive decision boundaries.</span>",
+    "en": "Because only by bending does the model get a chance to draw complex decision boundaries.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "5b9a4869ebe9": {
+    "zh": "先抓住核心：非線性是表達力的來源 <span class=\"bilingual-en\">Nonlinearity creates expressive power.</span>",
+    "en": "Grasp the core first: nonlinearity is the source of expressive power",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "968d23aac8f2": {
+    "zh": "講師導讀 · Opening idea",
+    "en": "Instructor's introduction",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9026f535bc8e": {
+    "zh": "如果每一層都只做加法與乘法，不管堆疊多少層，整座網路最後仍可合併成一個線性轉換。就像把幾張透明薄膜疊起來，看到的世界仍然是平的。<span class=\"bilingual-en\">Stacked linear layers still collapse into one linear map.</span>",
+    "en": "If every layer only does addition and multiplication, then no matter how many layers you stack, the whole network can still be merged into a single linear transformation in the end. It's like stacking several transparent sheets: the world you see through them is still flat.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "58dcedb6b9b5": {
+    "zh": "激活函數加入非線性，讓特徵空間可以被折疊、切開與重新組合；這正是深度模型能表達複雜模式的原因。<span class=\"bilingual-en\">Activations fold and reshape feature space.</span>",
+    "en": "Activation functions add nonlinearity, so the feature space can be folded, cut apart, and recombined; this is exactly why deep models can express complex patterns.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b736552b72b6": {
+    "zh": "線性坍縮 · Linear collapse",
+    "en": "Linear collapse",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0918f5f41b20": {
+    "zh": "沒有非線性，深度只是計算步驟變多，不是模型能力變強。<span class=\"bilingual-en\">More layers, same linear family.</span>",
+    "en": "Without nonlinearity, depth only means more computation steps, not a more capable model.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3c1688ad273c": {
+    "zh": "挑選激活函數，只問三件事 <span class=\"bilingual-en\">Three questions for every activation.</span>",
+    "en": "Choosing an activation function: just ask three things",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "91e04fa00943": {
+    "zh": "長什麼樣 · Shape",
+    "en": "What does it look like? (Shape)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2f35c1d70b21": {
+    "zh": "是直線、S 形、鐘形，還是折線？形狀決定它如何改造輸入。<span class=\"bilingual-en\">Shape determines the transformation.</span>",
+    "en": "Is it a straight line, an S-curve, a bell, or a piecewise line? The shape determines how it transforms the input.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d6f6db5c0098": {
+    "zh": "輸出到哪裡 · Range",
+    "en": "Where does the output go? (Range)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8cad02a2e8b7": {
+    "zh": "值域是否落在 $[0,1]$？這決定能否當機率，也影響訊號是否容易偏移。<span class=\"bilingual-en\">Range controls probability use and signal scale.</span>",
+    "en": "Does the range fall in $[0,1]$? This decides whether the output can serve as a probability, and also affects whether the signal tends to shift.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4a8abab855e2": {
+    "zh": "導數剩多少 · Derivative",
+    "en": "How much derivative is left? (Derivative)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "731a9a3d4fad": {
+    "zh": "反向傳播靠鏈式法則；導數接近 0，梯度就可能消失。<span class=\"bilingual-en\">Derivatives guide backpropagation.</span>",
+    "en": "Backpropagation relies on the chain rule; when the derivative is close to 0, the gradient may vanish.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "68981e3897ea": {
+    "zh": "把導數想成修正指南 · Derivative as a correction guide",
+    "en": "Think of the derivative as a correction guide",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b6ec94bc0e49": {
+    "zh": "導數不是裝飾，而是告訴網路「這個權重該往哪裡、改多少」。<span class=\"bilingual-en\">The derivative says where and how much to update.</span>",
+    "en": "The derivative is not decoration: it tells the network “which way this weight should move, and by how much.”",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e4b0369d9254": {
+    "zh": "13 種激活函數：先分成四個家族 <span class=\"bilingual-en\">Thirteen functions, four families.</span>",
+    "en": "13 activation functions: first sort them into four families",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d1df555b17eb": {
+    "zh": "基礎款 · Basic",
+    "en": "Basic",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3c29905ef6b4": {
+    "zh": "<b>Linear、Binary Step、Sign、Softmax</b>。線性適合回歸輸出；階躍與符號函數幾乎不可導；Softmax 專門把多分類分數變成機率分佈。<span class=\"bilingual-en\">Linear, hard thresholds, sign, and cross-class probabilities.</span>",
+    "en": "<b>Linear, Binary Step, Sign, Softmax</b>. Linear suits regression outputs; the step and sign functions are almost non-differentiable; Softmax is dedicated to turning multiclass scores into a probability distribution.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9913c51f016c": {
+    "zh": "S 形有界款 · Bounded",
+    "en": "S-shaped, bounded",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "516cf2a9d488": {
+    "zh": "<b>Sigmoid、tanh、Gaussian/RBF</b>。輸出有界、形狀平滑，但 sigmoid 與 tanh 在飽和區會遇到梯度消失。<span class=\"bilingual-en\">Smooth bounded curves, with saturation risk.</span>",
+    "en": "<b>Sigmoid, tanh, Gaussian/RBF</b>. Bounded outputs and smooth shapes, but sigmoid and tanh run into vanishing gradients in their saturation regions.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "20729ae3baf9": {
+    "zh": "ReLU 家族 · ReLU family",
+    "en": "ReLU family",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "19cf8d0f7ee3": {
+    "zh": "<b>ReLU、ELU、Softplus、Leaky ReLU、PReLU</b>。正區間保留梯度，成為現代深度學習的主力；修補款則處理 dying ReLU。<span class=\"bilingual-en\">The modern workhorses, with repairs for dead units.</span>",
+    "en": "<b>ReLU, ELU, Softplus, Leaky ReLU, PReLU</b>. They keep the gradient on the positive side, which made them the workhorses of modern deep learning; the repair variants deal with dying ReLU.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6021197161f4": {
+    "zh": "跨層特殊款 · Cross-layer",
+    "en": "Cross-layer special",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d2df4873eb14": {
+    "zh": "<b>Maxout</b> 從多個候選值中取最大值，表達力強，也能與 dropout 配合。<span class=\"bilingual-en\">Maxout selects the strongest candidate response.</span>",
+    "en": "<b>Maxout</b> takes the maximum of several candidate values; it is highly expressive and also works well with dropout.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "423eed86c82b": {
+    "zh": "不要死背清單 · Use the role, not the list",
+    "en": "Don't memorize the list",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f8fdae229431": {
+    "zh": "重點不是記住 13 個名字，而是知道「輸出層要什麼值域、隱藏層要什麼梯度」。<span class=\"bilingual-en\">Choose by role: output semantics and trainability.</span>",
+    "en": "The point is not to remember 13 names, but to know “what range the output layer needs, and what gradient the hidden layers need.”",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3431924cb91e": {
+    "zh": "幾何全景：S 形會飽和，ReLU 會折彎 <span class=\"bilingual-en\">Geometry: saturation versus folding.</span>",
+    "en": "Geometric overview: S-curves saturate, ReLU folds",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "49b61fc037f5": {
+    "zh": "四張曲線同時比較形狀、值域與梯度區域 · Four curves compared by shape, range, and gradient.",
+    "en": "Four curves side by side, comparing shape, range, and gradient regions.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8f4ebb1f7351": {
+    "zh": "S 形在兩端會變平，代表導數逐漸接近 0；tanh 的輸出以 0 為中心，通常比 sigmoid 更適合隱藏層。<span class=\"bilingual-en\">Smooth but saturating; tanh is zero-centered.</span>",
+    "en": "The S-curve flattens at both ends, meaning its derivative gradually approaches 0; tanh's output is centered at 0, so it is usually better suited to hidden layers than sigmoid.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fb4636114dbe": {
+    "zh": "正區間保留近似 1 的導數；Leaky ReLU 讓負區間保留小斜率，避免神經元永久沉默。<span class=\"bilingual-en\">Positive gradients survive; leaks keep negative units alive.</span>",
+    "en": "The positive side keeps a derivative of about 1; Leaky ReLU keeps a small slope on the negative side, preventing neurons from going permanently silent.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3bb57a239054": {
+    "zh": "ReLU 為何成為里程碑？ <span class=\"bilingual-en\">Why ReLU changed deep learning.</span>",
+    "en": "Why did ReLU become a milestone?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0322def70d46": {
+    "zh": "核心規則 · Core rule",
+    "en": "Core rule",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "043cc2b4c2b9": {
+    "zh": "正值段像線性函數，負值段把訊號歸零。<span class=\"bilingual-en\">Linear for positive inputs, zero for negative inputs.</span>",
+    "en": "On the positive side it acts like a linear function; on the negative side it zeroes out the signal.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0bac60c29c6c": {
+    "zh": "前向計算 · Forward",
+    "en": "Forward pass",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "732af2bdff21": {
+    "zh": "$a=0.5\\times4=2$，所以 $o=\\max(0,2)=2$。<span class=\"bilingual-en\">The positive signal passes through.</span>",
+    "en": "$a=0.5\\times4=2$, so $o=\\max(0,2)=2$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2230e498bbf5": {
+    "zh": "輸出預測 · Output",
+    "en": "Output prediction",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f1273dee485c": {
+    "zh": "若 $w_2=1.2$，則 $y=1.2\\times2=2.4$。<span class=\"bilingual-en\">The next layer receives 2.4.</span>",
+    "en": "If $w_2=1.2$, then $y=1.2\\times2=2.4$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c1635c87d2a5": {
+    "zh": "鏈式法則 · Chain rule",
+    "en": "Chain rule",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "020cb5456a9f": {
+    "zh": "導數對輸入的反應 · Derivative response",
+    "en": "How the derivative responds to the input",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b9d2f926acaf": {
+    "zh": "把滑鼠移到圖上，觀察 sigmoid 在兩端趨近 0，而 ReLU 在正區間維持 1。<span class=\"bilingual-en\">Sigmoid fades at the edges; ReLU stays active on the positive side.</span>",
+    "en": "Move your mouse over the chart and watch sigmoid approach 0 at both ends, while ReLU stays at 1 on the positive side.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "549977b174f1": {
+    "zh": "ReLU 也會「死」：修補家族登場 <span class=\"bilingual-en\">ReLU can die; repair variants help.</span>",
+    "en": "ReLU can “die” too: enter the repair family",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bf15f7d3ef3a": {
+    "zh": "死掉的 ReLU · Dying ReLU",
+    "en": "Dying ReLU",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f59bf30146e0": {
+    "zh": "若 $a=-1$，則 $o=0$ 且導數為 0；誤差信號回不去，權重更新也變成 0。<span class=\"bilingual-en\">Negative input can permanently block updates.</span>",
+    "en": "If $a=-1$, then $o=0$ and the derivative is 0; the error signal cannot flow back, and the weight update becomes 0 as well.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d24a37c59067": {
+    "zh": "梯度：$1.2\\times0\\times4=0$。<span class=\"bilingual-en\">The gradient is cut off.</span>",
+    "en": "Gradient: $1.2\\times0\\times4=0$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4782379edeee": {
+    "zh": "Leaky ReLU 在負區間使用小斜率 $0.01$；PReLU 讓 $\\alpha$ 可學習；ELU 則用平滑指數曲線修補負區間。<span class=\"bilingual-en\">Small or learnable negative slopes keep gradients alive.</span>",
+    "en": "Leaky ReLU uses a small slope of $0.01$ on the negative side; PReLU makes $\\alpha$ learnable; ELU repairs the negative side with a smooth exponential curve.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "24ba848503d3": {
+    "zh": "核心精神：不要讓負區間完全失去學習訊號。<span class=\"bilingual-en\">Keep a learning signal on the negative side.</span>",
+    "en": "The core idea: don't let the negative side lose its learning signal completely.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "64f4f337c78c": {
+    "zh": "輸出層的選擇：值域決定任務 <span class=\"bilingual-en\">Output activations follow the task.</span>",
+    "en": "Choosing the output layer: the range follows the task",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "15b08271fe12": {
+    "zh": "任務 · Task",
+    "en": "Task",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fa2bc7c8cbae": {
+    "zh": "常用函數 · Activation",
+    "en": "Common function",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a11f32d91035": {
+    "zh": "原因 · Why",
+    "en": "Reason",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "24108451e657": {
+    "zh": "回歸 · Regression",
+    "en": "Regression",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7a614361c5a3": {
+    "zh": "輸出可為任意實數 <span class=\"bilingual-en\">Unbounded real value</span>",
+    "en": "The output can be any real number",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fc629fe669db": {
+    "zh": "二元分類 · Binary",
+    "en": "Binary classification",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "94249cb67e6d": {
+    "zh": "輸出落在 $[0,1]$ <span class=\"bilingual-en\">Probability-like score</span>",
+    "en": "The output falls in $[0,1]$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2c9a6d6fd233": {
+    "zh": "多分類 · Multiclass",
+    "en": "Multiclass classification",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7a9b1ed21364": {
+    "zh": "各類別總和為 1 <span class=\"bilingual-en\">A probability distribution</span>",
+    "en": "The outputs over all classes sum to 1",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "03aaedc19ece": {
+    "zh": "Softmax 的直覺 · Softmax intuition",
+    "en": "The intuition behind Softmax",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c1bf9f758f0b": {
+    "zh": "它不是逐點獨立運算，而是同時看整個類別向量，像把一張餅分給所有類別。<span class=\"bilingual-en\">It normalizes all class scores together.</span>",
+    "en": "It does not operate on each element independently; it looks at the whole class vector at once, like dividing one pie among all the classes.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d2515136ed6d": {
+    "zh": "提取練習：把函數放回正確位置 <span class=\"bilingual-en\">Retrieval practice.</span>",
+    "en": "Retrieval practice: put each function back in its proper place",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e83ce9de4632": {
+    "zh": "Q1. 為什麼隱藏層不能全部使用 Linear？<span class=\"bilingual-en\">Why not use Linear everywhere?</span>",
+    "en": "Q1. Why can't the hidden layers all use Linear?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "32de69e3e4e6": {
+    "zh": "因為輸出太小 <span class=\"bilingual-en\">The outputs are too small</span>",
+    "en": "Because the outputs are too small",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4b6ecd4f44a6": {
+    "zh": "因為多層線性仍可合併成一層線性 <span class=\"bilingual-en\">Stacked linear maps collapse</span>",
+    "en": "Because multiple linear layers can still be merged into a single linear layer",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ebfb65d48fd0": {
+    "zh": "因為沒有導數 <span class=\"bilingual-en\">There is no derivative</span>",
+    "en": "Because there is no derivative",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "09018a03f771": {
+    "zh": "Q2. ReLU 的負區間會發生什麼？<span class=\"bilingual-en\">What happens for negative ReLU input?</span>",
+    "en": "Q2. What happens on ReLU's negative side?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cc639759e2d3": {
+    "zh": "輸出變成 1 <span class=\"bilingual-en\">Output becomes one</span>",
+    "en": "The output becomes 1",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f1f192a5e7e8": {
+    "zh": "導數固定為 1 <span class=\"bilingual-en\">Derivative stays one</span>",
+    "en": "The derivative is fixed at 1",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "891276fa5216": {
+    "zh": "輸出與導數都可能變成 0 <span class=\"bilingual-en\">Output and derivative can be zero</span>",
+    "en": "Both the output and the derivative may become 0",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5052518d7a3c": {
+    "zh": "Q3. 多分類輸出通常為何使用 Softmax？<span class=\"bilingual-en\">Why use Softmax for multiclass output?</span>",
+    "en": "Q3. Why is Softmax usually used for multiclass outputs?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "993465fabbcf": {
+    "zh": "它把分數轉成總和為 1 的分佈 <span class=\"bilingual-en\">It creates a sum-to-one distribution</span>",
+    "en": "It turns the scores into a distribution that sums to 1",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6e95bfb27be8": {
+    "zh": "它一定沒有梯度消失 <span class=\"bilingual-en\">It never vanishes</span>",
+    "en": "It never suffers from vanishing gradients",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "40b9e5cde725": {
+    "zh": "它只輸出 0 或 1 <span class=\"bilingual-en\">It outputs only zero or one</span>",
+    "en": "It outputs only 0 or 1",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9d9a371ef54a": {
+    "zh": "下一步學習路線 <span class=\"bilingual-en\">What to learn next.</span>",
+    "en": "Next steps on the learning roadmap",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f62cd21c546b": {
+    "zh": "反向傳播 · Backprop",
+    "en": "Backpropagation",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "95c1326ac52e": {
+    "zh": "把激活函數的導數放回鏈式法則，理解梯度如何穿越多層。<span class=\"bilingual-en\">Trace gradients through layers.</span>",
+    "en": "Put the activation functions' derivatives back into the chain rule to understand how gradients pass through many layers.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3ac47adf6027": {
+    "zh": "初始化 · Initialization",
+    "en": "Initialization",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "052ebb79bdb2": {
+    "zh": "比較 Xavier、He initialization 如何配合 sigmoid、tanh 與 ReLU。<span class=\"bilingual-en\">Match initialization to activation.</span>",
+    "en": "Compare how Xavier and He initialization pair with sigmoid, tanh, and ReLU.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "63b1b8ba87c7": {
+    "zh": "架構選擇 · Architecture",
+    "en": "Architecture choices",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "13d9520738fa": {
+    "zh": "理解 CNN、Transformer 為何偏好不同的正規化與激活策略。<span class=\"bilingual-en\">Connect activations to modern architectures.</span>",
+    "en": "Understand why CNNs and Transformers favor different normalization and activation strategies.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c6c4ed6bb3e2": {
+    "zh": "今日一句話 · One-line takeaway",
+    "en": "Today's one-line takeaway",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5b017114ccc6": {
+    "zh": "激活函數不是裝飾：值域決定輸出語意，導數決定學習訊號，形狀決定模型能否彎出複雜邊界。<span class=\"bilingual-en\">Range gives meaning, derivatives enable learning, and shape gives expressive power.</span>",
+    "en": "Activation functions are not decoration: the range determines what the output means, the derivative determines the learning signal, and the shape determines whether the model can bend into complex boundaries.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}

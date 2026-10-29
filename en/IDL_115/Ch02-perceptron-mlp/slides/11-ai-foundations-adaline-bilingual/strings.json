@@ -1,0 +1,634 @@
+{
+  "_runtime": {
+    "exact": {
+      "✓ 正確！": "✓ Correct!",
+      "✗ 再想想。": "✗ Think again."
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "16edb676c2b8": {
+    "zh": "<a href=\"#q1\">大問句 · Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bb804f0faa1f": {
+    "zh": "<a href=\"#hard\">硬脾氣 · Hard</a>",
+    "en": "<a href=\"#hard\">Hard Temper</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "18d2047d6d38": {
+    "zh": "<a href=\"#adaline\">溫柔革命 · ADALINE</a>",
+    "en": "<a href=\"#adaline\">The Gentle Revolution: ADALINE</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b262ea86e453": {
+    "zh": "<a href=\"#calc\">手算誤差 · Calc</a>",
+    "en": "<a href=\"#calc\">Computing the Error by Hand</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "eb24491d8888": {
+    "zh": "<a href=\"#lms\">LMS 碗 · Loss</a>",
+    "en": "<a href=\"#lms\">The LMS Bowl</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b9d6e1cedacb": {
+    "zh": "<a href=\"#gd\">梯度下滑 · Descent</a>",
+    "en": "<a href=\"#gd\">Sliding Down the Gradient</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3c2f7e29db40": {
+    "zh": "<a href=\"#geo\">邊界對比 · Boundary</a>",
+    "en": "<a href=\"#geo\">Boundary Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7b228867d76a": {
+    "zh": "<a href=\"#sum\">總結 · Summary</a>",
+    "en": "<a href=\"#sum\">Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bd92c9384561": {
+    "zh": "<a href=\"#roadmap\">路線 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Reflection Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e1a37630627e": {
+    "zh": "溫柔革命 ADALINE<br>Smooth Error Wins",
+    "en": "ADALINE, the Gentle Revolution<br>Smooth Error Wins",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "12edf749dcc4": {
+    "zh": "別急著做決定，先量誤差有多痛 <span class=\"bilingual-en\">Measure the pain before deciding.</span>",
+    "en": "Don't rush to a decision: first measure how much the error hurts",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "2f38459d1de2": {
+    "zh": "只知對錯，不知錯多少，能學好嗎？<small>Right or wrong — but by how much?</small>",
+    "en": "If it only knows right or wrong, but not how wrong, can it learn well?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a75a92ae451c": {
+    "zh": "名師導讀 · 鼻祖的壞脾氣 <span class=\"en\">The ancestor's temper</span>",
+    "en": "Guided Reading · The Ancestor's Bad Temper",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "851abd93c01a": {
+    "zh": "開場引言 · Opening",
+    "en": "Opening",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cd83d5432bb5": {
+    "zh": "前幾節聊了感知機，頂著鼻祖光環，卻有致命老毛病：脾氣太硬、不講道理，非黑即白。<span class=\"bilingual-en\">Perceptron judges black or white, never shades.</span>",
+    "en": "In the previous sections we talked about the perceptron. It wears the halo of the founding ancestor, yet it has a fatal old flaw: its temper is too hard, it won't listen to reason, and everything is black or white.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "83935a2d5d96": {
+    "zh": "總分沒過門檻直接切成 0，過了就變 1。猜錯時誤差只有離散的對或錯，像只分及格與不及格的老師，不在乎 59 分還是 9 分。<span class=\"bilingual-en\">Discrete error, same advice for 59 or 9.</span>",
+    "en": "If the total score doesn't clear the threshold, it is cut straight to 0; if it does, it becomes 1. When it guesses wrong, the error is only a discrete right or wrong, like a teacher who only sorts students into pass and fail and doesn't care whether you scored 59 or 9.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1d85ac5434fa": {
+    "zh": "硬閾值讓權重更新動作太大，換張新考卷就不會寫：泛化能力差。今天看 1960 年的溫柔革命怎麼收拾爛攤子。<span class=\"bilingual-en\">Hard steps generalize poorly; 1960 brings softness.</span>",
+    "en": "The hard threshold makes the weight updates too drastic, so given a new exam paper it can't answer: poor generalization. Today we'll see how the gentle revolution of 1960 cleaned up the mess.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "516b0a1d369c": {
+    "zh": "硬閾值 · 錯 1 次或沒錯 <span class=\"en\">Hard and brittle</span>",
+    "en": "Hard Threshold · Either One Mistake or None",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "10e080934005": {
+    "zh": "59分與9分同一種罵法",
+    "en": "59 and 9 get the same scolding",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "11cd892a04c7": {
+    "zh": "硬階躍：59 與 9 同判不及格 · Same verdict",
+    "en": "Hard step: 59 and 9 both get the same \"fail\" verdict",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "cd316da4d09b": {
+    "zh": "離散誤差 · Discrete error",
+    "en": "Discrete error",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dc340de4d71c": {
+    "zh": "誤差只有對或錯，修正建議長得一樣，更新動作太大，邊界常常學歪。<span class=\"bilingual-en\">Binary error, oversized updates, skewed borders.</span>",
+    "en": "The error is only right or wrong, so every correction suggestion looks the same; the updates are too large, and the boundary is often learned skewed.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5562dc8feb0d": {
+    "zh": "像只看及格線的老師：不問你差幾分，錯了就重罰，換卷就倒。<span class=\"bilingual-en\">A teacher who only sees pass or fail.</span>",
+    "en": "Like a teacher who only looks at the passing line: never asks how many points you were short, punishes you hard for any mistake, and you fall apart as soon as the exam changes.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep attention",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e28b4ec46a91": {
+    "zh": "1960 溫柔革命 · 先別做決定 <span class=\"en\">Decide later</span>",
+    "en": "1960, the Gentle Revolution · Don't Decide Yet",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a09dc1f151e7": {
+    "zh": "核心突破 · Breakthrough",
+    "en": "Core breakthrough",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4f48e81446bf": {
+    "zh": "Widrow 與 Hoff 提出 <b>ADALINE（自適應線性神經元）</b>：拿尚未套啟用函式、熱騰騰的加權和總分直接跟真實標籤 $y_i$ 相比。<span class=\"bilingual-en\">Compare the raw score, not the verdict.</span>",
+    "en": "Widrow and Hoff proposed <b>ADALINE (Adaptive Linear Neuron)</b>: take the piping-hot weighted-sum score, before any activation function is applied, and compare it directly with the true label $y_i$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a0db3c756aa6": {
+    "zh": "感知機 · Perceptron",
+    "en": "Perceptron",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "81cdaf13ad96": {
+    "zh": "做完決定才比對：二元輸出 0/1 對標籤 <span class=\"bilingual-en-inline\">— decide first</span>",
+    "en": "Decides first, then compares: binary output 0/1 against the label",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e82e7cf0e54d": {
+    "zh": "誤差離散：只知對錯 <span class=\"bilingual-en-inline\">— binary</span>",
+    "en": "Discrete error: only knows right or wrong",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4a3dc0219de0": {
+    "zh": "硬碰硬更新 <span class=\"bilingual-en-inline\">— harsh steps</span>",
+    "en": "Head-on, harsh updates",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c544ef75a5f5": {
+    "zh": "先比對再決定：加權和總分對標籤 <span class=\"bilingual-en-inline\">— score first</span>",
+    "en": "Compares first, then decides: weighted-sum score against the label",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4d6d14fd76ac": {
+    "zh": "誤差連續：知道少幾分 <span class=\"bilingual-en-inline\">— how much</span>",
+    "en": "Continuous error: knows how many points it is short",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2449f714404c": {
+    "zh": "平滑溫柔更新 <span class=\"bilingual-en-inline\">— smooth steps</span>",
+    "en": "Smooth, gentle updates",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bb5b785b2cbb": {
+    "zh": "身高比喻 · Height analogy",
+    "en": "Height analogy",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d25bdb231e9b": {
+    "zh": "真實 170，感知機只猜高於 160 與否；ADALINE 猜 165，誤差 5，猜 175，誤差 -5。連續誤差讓調整更平滑，泛化更好。<span class=\"bilingual-en\">Continuous error guides gentle tuning.</span>",
+    "en": "The true height is 170; the perceptron only guesses whether it is above 160 or not. ADALINE guesses 165, error 5; guesses 175, error -5. Continuous error makes the adjustments smoother and generalization better.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "215545cc5ef7": {
+    "zh": "手算誤差 · 紅蘋果打幾分 <span class=\"en\">Score the apple</span>",
+    "en": "Computing the Error by Hand · What Score Does the Red Apple Get?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b43ea404bf6c": {
+    "zh": "加權和",
+    "en": "Weighted sum",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a1f8d52ea8cf": {
+    "zh": "$z = w_1 x_1 + w_0 = 0.5 \\times 10 + 1 = \\mathbf{6}$，此處停住，還沒套開關。<span class=\"bilingual-en\">Raw score 6, no squash yet.</span>",
+    "en": "$z = w_1 x_1 + w_0 = 0.5 \\times 10 + 1 = \\mathbf{6}$: stop right here, the switch hasn't been applied yet.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1160ddd59460": {
+    "zh": "比對標籤",
+    "en": "Compare with the label",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "27ef9c294f48": {
+    "zh": "真實 $y_i = 10$，連續誤差 $10 - 6 = \\mathbf{4}$，清楚知道少打 4 分。<span class=\"bilingual-en\">Short by exactly 4.</span>",
+    "en": "The true value is $y_i = 10$, so the continuous error is $10 - 6 = \\mathbf{4}$: we know clearly that the score is 4 points short.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cd5f1ae3bd76": {
+    "zh": "對比感知機",
+    "en": "Compare with the perceptron",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0840eefd1a37": {
+    "zh": "感知機只會喊錯或對；ADALINE 的 4 分資訊就是泛化更強的秘密。<span class=\"bilingual-en\">Four points of extra signal.</span>",
+    "en": "The perceptron can only shout \"wrong\" or \"right\"; ADALINE's 4 points of information are the secret to its stronger generalization.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2f15ae7079ae": {
+    "zh": "離散 vs 連續誤差 · Discrete versus continuous",
+    "en": "Discrete vs. continuous error",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "651aece1bdf1": {
+    "zh": "LMS 二次損失 · 碗裝誤差 <span class=\"en\">A bowl of errors</span>",
+    "en": "LMS Quadratic Loss · A Bowl of Errors",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3882bb0ee37a": {
+    "zh": "LMS 損失 · Quadratic loss",
+    "en": "LMS loss",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7480c88ea064": {
+    "zh": "別管正負號，誤差平方再求和：懲罰離群值，圖形是平滑拋物線，好處理。<span class=\"bilingual-en\">Square, sum, smooth bowl.</span>",
+    "en": "Never mind the plus or minus sign: square the errors and then sum them. This penalizes outliers, and the graph is a smooth parabola that is easy to work with.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fdbd2aa2e44b": {
+    "zh": "左硬階躍離散 · 右拋物線碗與梯度路徑 · matplotlib 精準繪製",
+    "en": "Left: discrete hard step · Right: parabolic bowl with the gradient path · drawn precisely with matplotlib",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5940800ce1dc": {
+    "zh": "為何平方 · Why square",
+    "en": "Why square?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "daa1dc50e9f9": {
+    "zh": "平方放大離群懲罰，且處處可微，梯度明確，替下降法鋪路。<span class=\"bilingual-en\">Outliers hurt more; gradients exist.</span>",
+    "en": "Squaring amplifies the penalty on outliers, and it is differentiable everywhere, so the gradient is well defined, paving the way for descent methods.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8424a17256de": {
+    "zh": "方法 · Method",
+    "en": "Method",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "192d036979da": {
+    "zh": "連續總分直接比標籤，誤差連續，更新溫柔。<span class=\"bilingual-en\">Compare raw, update gently.</span>",
+    "en": "Compare the continuous total score directly with the label: the error is continuous, and the updates are gentle.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cf5c5c4f3b8d": {
+    "zh": "梯度下降 · 順坡滑下山谷 <span class=\"en\">Slide downhill</span>",
+    "en": "Gradient Descent · Sliding Down the Slope into the Valley",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fc95d6193f68": {
+    "zh": "梯度與更新 · Gradient and update",
+    "en": "Gradient and update",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cffbd28b4b7e": {
+    "zh": "梯度是山坡最陡方向；誤差乘輸入即貢獻度，沿反方向滑向谷底，$\\eta$ 決定步幅。<span class=\"bilingual-en\">Steepest slope reversed; eta sets stride.</span>",
+    "en": "The gradient is the steepest direction up the hillside; error times input is each weight's contribution, so we slide the opposite way toward the valley floor, and $\\eta$ sets the step size.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1963554ca9ac": {
+    "zh": "歷史地位 · Legacy",
+    "en": "Historical significance",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5b21ea587b07": {
+    "zh": "LMS / Widrow-Hoff 法則是現代所有梯度下降最佳化器的早期雛形：平滑溫柔改錯，不硬碰硬。<span class=\"bilingual-en\">Ancestor of every optimizer.</span>",
+    "en": "The LMS / Widrow-Hoff rule is the early prototype of every modern gradient-descent optimizer: it corrects errors smoothly and gently instead of head-on.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0a7e57afaf96": {
+    "zh": "邊界對比 · 學歪 vs 穩健 <span class=\"en\">Skewed versus steady</span>",
+    "en": "Boundary Comparison · Skewed vs. Robust",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "58b2a17e93ff": {
+    "zh": "左感知機邊界學歪 · 右 ADALINE 更穩健 · matplotlib 精準繪製",
+    "en": "Left: perceptron boundary learned skewed · Right: ADALINE is more robust · drawn precisely with matplotlib",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8b2126027d1c": {
+    "zh": "感知機邊界 · Perceptron",
+    "en": "Perceptron boundary",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4ce1011657cc": {
+    "zh": "雖能切開訓練集，但離散誤差讓邊界學歪，新資料一來就破功。<span class=\"bilingual-en\">Cuts training, fails fresh data.</span>",
+    "en": "It can split the training set, but the discrete error makes the boundary skewed, and it falls apart as soon as new data arrive.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a7b6f351d591": {
+    "zh": "ADALINE 邊界 · ADALINE",
+    "en": "ADALINE boundary",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "69421cf91908": {
+    "zh": "連續誤差加梯度下降畫出更穩健的邊界，沒見過的資料表現更好。<span class=\"bilingual-en\">Smooth error, steadier border.</span>",
+    "en": "Continuous error plus gradient descent draws a more robust boundary that performs better on unseen data.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "188115ba6ca4": {
+    "zh": "MADALINE · 溫柔且強大 <span class=\"en\">Gentle and strong</span>",
+    "en": "MADALINE · Gentle and Powerful",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b8f7009a7bb8": {
+    "zh": "輸入",
+    "en": "Input",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "a112470213a7": {
+    "zh": "ADALINE 層",
+    "en": "ADALINE layer",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "310ecfe988f8": {
+    "zh": "輸出",
+    "en": "Output",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "ce1edd997403": {
+    "zh": "堆疊溫柔單元，處理非線性任務",
+    "en": "Stack gentle units for nonlinear tasks",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "b7e8c74623cf": {
+    "zh": "MADALINE：最早的多層嘗試 · Early deep stack",
+    "en": "MADALINE: the earliest multilayer attempt",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7b97a33af777": {
+    "zh": "進化三階段 · Three stages",
+    "en": "Three stages of evolution",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "be10b36fd4e3": {
+    "zh": "1962 MRI 只能調前段；1988 MRII 前後皆可調；1990 MRIII 更深層全面可訓。<span class=\"bilingual-en\">Tunable range keeps growing.</span>",
+    "en": "1962 MRI could only tune the front part; 1988 MRII could tune both front and back; 1990 MRIII made even deeper layers fully trainable.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5c54d116d687": {
+    "zh": "歷史意義 · Meaning",
+    "en": "Historical significance",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b26c7650308f": {
+    "zh": "反向傳播還沒流行，MADALINE 已證明：簡單單元分層堆疊是處理複雜問題的正確道路。<span class=\"bilingual-en\">Stacking simple units works.</span>",
+    "en": "Before backpropagation became popular, MADALINE had already proven that stacking simple units in layers is the right path to solving complex problems.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fff377d24ed9": {
+    "zh": "命運分岔 · 硬 vs 溫柔 <span class=\"en\">Hard versus gentle</span>",
+    "en": "A Fork in Fate · Hard vs. Gentle",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e0c37d2536f2": {
+    "zh": "硬更新，依賴二元啟用 <span class=\"bilingual-en-inline\">— hard steps</span>",
+    "en": "Hard updates that rely on a binary activation",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "07724d8b75a8": {
+    "zh": "邊界易學歪，泛化差 <span class=\"bilingual-en-inline\">— skewed, fragile</span>",
+    "en": "Boundary easily learned skewed, poor generalization",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "20f1c9e5bbc7": {
+    "zh": "平滑梯度下降，連續誤差 <span class=\"bilingual-en-inline\">— smooth descent</span>",
+    "en": "Smooth gradient descent, continuous error",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1a1125c101d9": {
+    "zh": "邊界穩健，新資料更好 <span class=\"bilingual-en-inline\">— steady, generalizes</span>",
+    "en": "Robust boundary, better on new data",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4501e9f34294": {
+    "zh": "一句話 · One line",
+    "en": "In one sentence",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a55607995fb7": {
+    "zh": "從硬閾值感知到連續自適應學習：先量誤差，再做決定。<span class=\"bilingual-en\" style=\"color:#fff;\">Measure first, decide later.</span>",
+    "en": "From hard-threshold perception to continuous adaptive learning: measure the error first, then make the decision.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to action",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a7993ba76d56": {
+    "zh": "後續路線 <span class=\"en\">Roadmap</span>",
+    "en": "Roadmap Ahead",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "99b01402519c": {
+    "zh": "感知機",
+    "en": "Perceptron",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "84835cb0d400": {
+    "zh": "鼻祖登場，硬閾值非黑即白。<span class=\"bilingual-en\">Hard ancestor arrives.</span>",
+    "en": "The founding ancestor arrives: a hard threshold, everything black or white.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "eb4bac773ff7": {
+    "zh": "連續誤差加梯度，分層堆疊擴大可訓範圍。<span class=\"bilingual-en\">Smooth error, growing stack.</span>",
+    "en": "Continuous error plus gradients; stacking in layers widens what can be trained.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d4c349638cd4": {
+    "zh": "摺紙解 XOR",
+    "en": "Solving XOR with Origami",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b16bf6cb9d3a": {
+    "zh": "下節用摺紙藝術解決 XOR 難題。<span class=\"bilingual-en\">Next: fold away XOR.</span>",
+    "en": "Next section: we use the art of origami to solve the XOR problem.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2391467faf5e": {
+    "zh": "思考題 · 提取練習 <span class=\"en\">Reflection</span>",
+    "en": "Reflection Questions · Retrieval Practice",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "094aa9d17af8": {
+    "zh": "Q1. ADALINE 與感知機的最大不同？ <span class=\"bilingual-en\">Key difference?</span>",
+    "en": "Q1. What is the biggest difference between ADALINE and the perceptron?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c5dc8933d322": {
+    "zh": "層數更多 <span class=\"bilingual-en-inline\">— more layers</span>",
+    "en": "More layers",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2c3524e35152": {
+    "zh": "拿未套啟用的加權和比標籤 <span class=\"bilingual-en-inline\">— raw score first</span>",
+    "en": "It compares the weighted sum, before the activation, with the label",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c47364a56278": {
+    "zh": "不用權重 <span class=\"bilingual-en-inline\">— no weights</span>",
+    "en": "It uses no weights",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "81cad92694aa": {
+    "zh": "Q2. 紅蘋果例中連續誤差是多少？ <span class=\"bilingual-en\">Apple error?</span>",
+    "en": "Q2. In the red-apple example, what is the continuous error?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0666cc9848bd": {
+    "zh": "Q3. MADALINE 的歷史意義？ <span class=\"bilingual-en\">Why MADALINE matters?</span>",
+    "en": "Q3. What is the historical significance of MADALINE?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7476430cffb5": {
+    "zh": "證明分層堆疊簡單單元是正確道路 <span class=\"bilingual-en-inline\">— stacking works</span>",
+    "en": "It proved that stacking simple units in layers is the right path",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2029a4f6df1b": {
+    "zh": "證明單層就夠 <span class=\"bilingual-en-inline\">— one layer enough</span>",
+    "en": "It proved that a single layer is enough",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "14a00e1ae687": {
+    "zh": "發明 GPU <span class=\"bilingual-en-inline\">— invented GPU</span>",
+    "en": "It invented the GPU",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub",
+    ".sub-en"
+  ]
+}
