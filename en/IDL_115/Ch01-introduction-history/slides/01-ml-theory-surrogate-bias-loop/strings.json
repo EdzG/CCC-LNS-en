@@ -1,0 +1,1297 @@
+{
+  "_runtime": {
+    "exact": {
+      "地圖是替代品 Surrogate，只保留與決策有關的結構，不是實地本身。": "A map is a surrogate: it keeps only the structure that matters for decisions; it is not the territory itself.",
+      "MSE = (4+16+25)/3 = 15；平方讓 +5 與 -5 同樣被懲罰，且大錯代價急遽放大。": "MSE = (4+16+25)/3 = 15; squaring penalizes +5 and -5 equally, and makes the cost of large errors grow sharply.",
+      "NFL：沒有「等差」這個先入為主，下一個是 8、100 或長頸鹿在數學上皆可能。": "NFL: without the preconception that the sequence is arithmetic, the next item could mathematically be 8, 100, or a giraffe."
+    },
+    "patterns": [
+      {
+        "re": "^✓ 正確！ ([\\s\\S]*)$",
+        "en": "✓ Correct! $T1"
+      },
+      {
+        "re": "^✗ 再想想 — 看看提示： ([\\s\\S]*)$",
+        "en": "✗ Think again. Here's a hint: $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".en-sub"
+  ],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Section Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\" class=\"active\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\" class=\"active\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c308d3753c50": {
+    "zh": "<a href=\"#bigq\">大問句 · Big Question</a>",
+    "en": "<a href=\"#bigq\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "89a6a5927b03": {
+    "zh": "<a href=\"#map\">地圖≠實地 · Map ≠ Territory</a>",
+    "en": "<a href=\"#map\">Map ≠ Territory</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "98cdcf835484": {
+    "zh": "<a href=\"#goodmap\">好地圖兩標準 · Good Map</a>",
+    "en": "<a href=\"#goodmap\">Two Criteria for a Good Map</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "dd5aeaae5012": {
+    "zh": "<a href=\"#popper\">波普爾的猜想 · Popper</a>",
+    "en": "<a href=\"#popper\">Popper's Conjectures</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "314ffa8e6ee7": {
+    "zh": "<a href=\"#triad\">三部曲總覽 · Triad</a>",
+    "en": "<a href=\"#triad\">The Trilogy: Overview</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "39e1269d0b9a": {
+    "zh": "<a href=\"#hypothesis\">假設空間 · Hypothesis</a>",
+    "en": "<a href=\"#hypothesis\">Hypothesis Space</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "323c5a2240c0": {
+    "zh": "<a href=\"#loss\">評分機制 · Loss</a>",
+    "en": "<a href=\"#loss\">Scoring Mechanism (Loss)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f18f44a429d9": {
+    "zh": "<a href=\"#msecalc\">MSE 現場算 · MSE Live</a>",
+    "en": "<a href=\"#msecalc\">Computing MSE Live</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3e05c9f52424": {
+    "zh": "<a href=\"#optim\">搜尋策略 · Optimization</a>",
+    "en": "<a href=\"#optim\">Search Strategy (Optimization)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9521dc5ed91c": {
+    "zh": "<a href=\"#nfl\">沒有免費午餐 · No Free Lunch</a>",
+    "en": "<a href=\"#nfl\">No Free Lunch</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "18de07897a35": {
+    "zh": "<a href=\"#bias\">成見是前提 · Bias is Prerequisite</a>",
+    "en": "<a href=\"#bias\">Bias Is a Prerequisite</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5ab8f66524d5": {
+    "zh": "<a href=\"#loop\">完整迴圈 · Full Loop</a>",
+    "en": "<a href=\"#loop\">The Full Loop</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7900c6536270": {
+    "zh": "<a href=\"#overfit\">泛化與過擬合 · Generalization</a>",
+    "en": "<a href=\"#overfit\">Generalization and Overfitting</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "76e0068f70f2": {
+    "zh": "<a href=\"#roadmap\">路線圖 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Questions to Ponder</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9f6ae24ab9c9": {
+    "zh": "<a href=\"#closing\">結語 · Closing</a>",
+    "en": "<a href=\"#closing\">Closing Remarks</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6475e3674008": {
+    "zh": "ML THEORY · 機器學習基礎理論",
+    "en": "ML THEORY · Foundations of Machine Learning Theory",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "7181546c41ff": {
+    "zh": "模型是地圖，不是實地<br><span style=\"color:#38bdf8; font-size:0.72em;\">Models are Maps, Not the Territory</span>",
+    "en": "Models Are Maps, Not the Territory",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b4eacd2bfe05": {
+    "zh": "從假設空間到泛化：用一張地圖學會「假設、評分、搜尋」",
+    "en": "From hypothesis space to generalization: using a map to learn “hypothesize, score, search”",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "5ca23f2a7e5b": {
+    "zh": "<span>歸納偏置 Inductive Bias</span> · <span>損失 Loss $S(f)$</span> · <span>最佳化 $\\arg\\min$</span> · <span>No Free Lunch</span>",
+    "en": "<span>Inductive bias</span> · <span>Loss $S(f)$</span> · <span>Optimization $\\arg\\min$</span> · <span>No Free Lunch</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "c1a77f01652a": {
+    "zh": "Scroll Mode · 自學預習版 <span class=\"bilingual-en-inline\" style=\"color:#94a3b8;\">(Scroll Mode · self-study)</span> ｜ 中英雙語 Bilingual",
+    "en": "Scroll Mode · Self-Study Preview Edition | Chinese–English Bilingual",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "64af8ec5dc9e": {
+    "zh": "你手上的地圖，<br>就是馬路本身嗎？\n    <small>Is the map in your hand the road itself? <span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">If every map is \"false\", what makes a map \"good\"?</span></small>\n  ",
+    "en": "Is the map in your hand<br>the road itself?\n    <small>If every map is “false”, what makes a map “good”?</small>\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "5d1b3268daf7": {
+    "zh": "每張地圖都是假的，但有些地圖能帶你買到炸雞、有些讓你掉進許願池。<span class=\"bilingual-en\">Every map is false — good maps explain now and predict next.</span>",
+    "en": "Every map is false, but some maps lead you to fried chicken, while others drop you into a wishing fountain.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "566456b13e9c": {
+    "zh": "什麼叫「地圖不是實地」？<span class=\"en\">What does \"Map ≠ Territory\" mean?</span>",
+    "en": "What does “the map is not the territory” mean?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a99a5af73020": {
+    "zh": "Fig 1 · 雜亂的真實世界 vs 乾淨的替代品 Surrogate <span class=\"bilingual-en\" style=\"font-size:13px;\">(messy reality vs clean surrogate)</span>",
+    "en": "Fig 1 · The messy real world vs. a clean surrogate",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "aa3f529e4969": {
+    "zh": "開場提問 · Opening Question",
+    "en": "Opening Question",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e412521309f1": {
+    "zh": "你打開 Google 地圖，藍色的線是柏油路嗎？灰色方塊是鋼筋水泥嗎？<br>走進手機螢幕只會撞壞 iPhone。<span class=\"bilingual-en\">Is the blue line asphalt? No — it's a surrogate.</span>",
+    "en": "You open Google Maps: is the blue line asphalt? Are the gray blocks steel and concrete?<br>Try walking into your phone screen and all you'll do is smash your iPhone.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "490871d34547": {
+    "zh": "核心定義 · Core Definition",
+    "en": "Core Definition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9bf393a002f7": {
+    "zh": "<b>替代品 (Surrogate)</b>：真實世界有百萬片樹葉、坑洞、野貓打架，地圖全部忽略，只留下「路在哪裡」。<span class=\"bilingual-en\">Surrogate: ignore noise, keep decision-relevant structure.</span>",
+    "en": "<b>Surrogate</b>: the real world has millions of leaves, potholes, and stray cats fighting; the map ignores all of it and keeps only “where the road is.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a6ff9e3fdb3c": {
+    "zh": "機器學習的<b>模型 (Model)</b> 就是同一回事：世界充滿混亂與雜訊，我們做不出一顆「等於宇宙本身」的水晶球，只能做一張夠用的地圖。<span class=\"bilingual-en\">Models are maps of chaos — useful, not identical.</span>",
+    "en": "A machine-learning <b>model</b> is exactly the same thing: the world is full of chaos and noise, and we can't build a crystal ball that “equals the universe itself”; all we can do is make a map that is good enough.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b7583c39bade": {
+    "zh": "直覺 · Intuition",
+    "en": "Intuition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6844c37f88ba": {
+    "zh": "地圖把「會不會跌倒」簡化成「這裡有坑請繞路」；模型把「明天下不下雨」簡化成「氣壓+濕度的函數」。<span class=\"bilingual-en\">Simplify to what matters for decisions.</span>",
+    "en": "A map simplifies “will I trip?” into “there's a pothole here, please go around”; a model simplifies “will it rain tomorrow?” into “a function of air pressure + humidity.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a3c922ad2bf0": {
+    "zh": "什麼才叫「好地圖」？<span class=\"en\">What makes a map \"good\"?</span>",
+    "en": "What makes a “good map”?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9132f4fdfae3": {
+    "zh": "既然每張地圖都是假的，評判標準只剩兩件事。<span class=\"bilingual-en\">If all maps are false, judge them by two things.</span>",
+    "en": "Since every map is false anyway, only two criteria are left for judging one.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b278f0d0f484": {
+    "zh": "① 能解釋現在 <span class=\"bilingual-en-inline\">(Explain Now)</span>",
+    "en": "① Explains the present",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "536b8f1b5f89": {
+    "zh": "你站在校門口，地圖能標出「你就在校門口」。<span class=\"bilingual-en\">You’re at the gate — map marks it correctly.</span>",
+    "en": "You're standing at the school gate, and the map can mark “you are at the school gate.”",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5d86e1de1fb6": {
+    "zh": "對應：<b>訓練誤差 (Training Error) 低</b><span class=\"bilingual-en\">fits observed data</span>",
+    "en": "Corresponds to: <b>low training error</b>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "344a65e011c2": {
+    "zh": "反面：連自己看過的考題都答錯的地圖，別信<span class=\"bilingual-en\">fails on seen data → useless</span>",
+    "en": "Flip side: a map that gets even the exam questions it has already seen wrong is not to be trusted",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fee519e9f84c": {
+    "zh": "陷阱：死背答案也能低訓練誤差<span class=\"bilingual-en\">memorization ≠ understanding</span>",
+    "en": "Trap: rote-memorizing the answers can also give low training error",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7ed455819281": {
+    "zh": "② 能預測未來 <span class=\"bilingual-en-inline\">(Predict Next)</span>",
+    "en": "② Predicts the future",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e417faf9e5cb": {
+    "zh": "地圖說「右轉 50m 有炸雞」，你真的買到炸雞。<span class=\"bilingual-en\">Map says “50m right for fried chicken” — you get it.</span>",
+    "en": "The map says “turn right, 50 m, fried chicken,” and you really do get your fried chicken.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "746836e83627": {
+    "zh": "對應：<b>測試誤差 (Test Error) 低 / 泛化 (Generalization) 強</b><span class=\"bilingual-en\">works on unseen data</span>",
+    "en": "Corresponds to: <b>low test error / strong generalization</b>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "28f394cd2f04": {
+    "zh": "反面：照地圖走卻掉進許願池 = 過擬合<span class=\"bilingual-en\">overfitting = great map, wrong world</span>",
+    "en": "Flip side: following the map and falling into the wishing well = overfitting",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "33190e208c8f": {
+    "zh": "關鍵：這才是科學要的「預測力」<span class=\"bilingual-en\">prediction is the real test</span>",
+    "en": "Key: this is the “predictive power” science is after",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e7fbdf8e105a": {
+    "zh": "一句話總結 · One-liner",
+    "en": "One-liner",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "83d70c08a513": {
+    "zh": "好地圖 = 同時通過「解釋力」與「預測力」的替代品；機器學習要的就是這個。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">Good map = low training error + low test error.</span>",
+    "en": "Good map = a surrogate that passes both the “explanatory power” test and the “predictive power” test; that is exactly what machine learning wants.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8968947ab4a2": {
+    "zh": "波普爾怎麼看科學？<span class=\"en\">Popper on Science</span>",
+    "en": "How does Popper see science?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e5530f7ee6f0": {
+    "zh": "引言 · Quote — Karl Popper",
+    "en": "Quote — Karl Popper",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2d04f79bd4c8": {
+    "zh": "科學不是呆坐路邊看螞蟻爬、突然大徹大悟；科學是先大膽地<b>猜</b>一個規律，然後拿現實去拼命打臉它。打不死的猜想，就暫時留著用。<span class=\"bilingual-en\">Science = bold conjecture + severe attempts to refute. Survivors stay.</span>",
+    "en": "Science is not sitting by the roadside watching ants crawl until you suddenly reach enlightenment; science is boldly <b>guessing</b> a law first, then using reality to try as hard as possible to slap it down. A guess that can't be knocked down gets kept and used, for now.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6d7fe13ad0fc": {
+    "zh": "猜想 · Conjecture",
+    "en": "Conjecture",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "79a544faf5b0": {
+    "zh": "先丟出一個候選函數 $f$：「我猜世界長這樣」。<span class=\"bilingual-en\">Propose a candidate $f$: \"world looks like this\".</span>",
+    "en": "First, throw out a candidate function $f$: “I guess the world looks like this.”",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "245081341acc": {
+    "zh": "證偽 · Falsification",
+    "en": "Falsification",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5bc0e34ef1a3": {
+    "zh": "用資料檢驗：猜錯就扣分（損失變大），猜對就加分。<span class=\"bilingual-en\">Test against data; loss measures mismatch.</span>",
+    "en": "Test it against data: a wrong guess loses points (the loss goes up), a right guess gains points.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "81ab1d35c875": {
+    "zh": "這正是機器學習的靈魂：<b>假設 → 評分 → 搜尋</b>，不斷猜、打臉、修正。<span class=\"bilingual-en\">That's ML: hypothesize → score → search.</span>",
+    "en": "This is the very soul of machine learning: <b>hypothesize → score → search</b>, guessing, getting slapped down, and correcting, over and over.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep attention",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2e2c07dfb84a": {
+    "zh": "機器學習三部曲：開菜單、請評委、抓戰犯<span class=\"en\">The Three Steps: Hypothesize · Score · Search</span>",
+    "en": "The three steps of machine learning: write the menu, call in the judges, find the culprit",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "227690e14bb5": {
+    "zh": "從線性迴歸到大型語言模型，全世界所有機器學習只有這三步。<span class=\"bilingual-en\">From linear regression to LLMs — only three steps.</span>",
+    "en": "From linear regression to large language models, all machine learning in the world comes down to just these three steps.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e6dc6f2356a0": {
+    "zh": "假設空間 $\\mathcal{F}$<br><span style=\"font-weight:400; font-size:18px; color:var(--ink-soft);\">Hypothesis Class</span>",
+    "en": "Hypothesis space $\\mathcal{F}$<br><span style=\"font-weight:400; font-size:18px; color:var(--ink-soft);\">Hypothesis class</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f87484d3af24": {
+    "zh": "決定菜單上有什麼：直線？決策樹？神經網路？<span class=\"bilingual-en\">Menu of candidates: lines? trees? nets?</span>",
+    "en": "Decide what's on the menu: straight lines? Decision trees? Neural networks?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "db3d8a9b3879": {
+    "zh": "評分機制 $S(f)$<br><span style=\"font-weight:400; font-size:18px; color:var(--ink-soft);\">Loss Function</span>",
+    "en": "Scoring mechanism $S(f)$<br><span style=\"font-weight:400; font-size:18px; color:var(--ink-soft);\">Loss function</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "565b142c0e41": {
+    "zh": "毒舌評審打分：分數越低 = 錯得越不離譜。<span class=\"bilingual-en\">Loss: lower = less wrong.</span>",
+    "en": "A sharp-tongued judge hands out scores: the lower the score = the less outrageously wrong.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3fe08abba93e": {
+    "zh": "搜尋 $\\arg\\min$<br><span style=\"font-weight:400; font-size:18px; color:var(--ink-soft);\">Optimization</span>",
+    "en": "Search $\\arg\\min$<br><span style=\"font-weight:400; font-size:18px; color:var(--ink-soft);\">Optimization</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7a60a5ec89b1": {
+    "zh": "摸黑走下山谷，把罪孽值最低的 $f$ 抓出來。<span class=\"bilingual-en\">Search loss landscape for minimum.</span>",
+    "en": "Feel your way down the valley in the dark and catch the $f$ with the lowest sin score.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "51af98e6a79a": {
+    "zh": "直覺對照 · Analogy Map",
+    "en": "Analogy map",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c94fb09785e0": {
+    "zh": "<b>熱炒店 vs 義大利餐廳</b> = 你先決定「世界大概長什麼樣」；<b>評審試吃</b> = 損失函數；<b>抓戰犯</b> = 最佳化找到最好吃那道。<span class=\"bilingual-en\">Pick cuisine → judges score → crown winner.</span>",
+    "en": "<b>Taiwanese stir-fry joint vs. Italian restaurant</b> = you first decide “roughly what the world looks like”; <b>the judges' tasting</b> = the loss function; <b>finding the culprit</b> = optimization finding the tastiest dish.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b94a09725926": {
+    "zh": "第一步：假設空間 $\\mathcal{F}$ — 決定菜單上有什麼<span class=\"en\">Step 1: Hypothesis Class $\\mathcal{F}$</span>",
+    "en": "Step 1: Hypothesis class $\\mathcal{F}$ — decide what's on the menu",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b64a1d20c152": {
+    "zh": "符號先講白話 · Notation in Plain Words",
+    "en": "Notation in plain words",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "65f85a2fad73": {
+    "zh": "花體 $\\mathcal{F}$ 就是「候選函數的大菜單」；$f \\in \\mathcal{F}$ 表示「這道菜 $f$ 在菜單裡」。<span class=\"bilingual-en\">$\\mathcal{F}$ = menu; $f \\in \\mathcal{F}$ = dish on menu.</span>",
+    "en": "The calligraphic $\\mathcal{F}$ is just “the big menu of candidate functions”; $f \\in \\mathcal{F}$ means “this dish $f$ is on the menu.”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2a72f438dc01": {
+    "zh": "$$ \\mathcal{F} = \\{ f : \\text{所有你願意考慮的函數} \\} $$",
+    "en": "$$ \\mathcal{F} = \\{ f : \\text{all the functions you are willing to consider} \\} $$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cc0ba644e56e": {
+    "zh": "你一開始對世界的「成見」就寫在這裡。<span class=\"bilingual-en\">Your prior bias lives here.</span>",
+    "en": "Your initial “preconceptions” about the world are written right here.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8ed4b1df42ae": {
+    "zh": "線性模型 <span class=\"bilingual-en-inline\">(Linear)</span>",
+    "en": "Linear model",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "04b610c0d3f5": {
+    "zh": "「輸入跟輸出成正比的直線」。<span class=\"bilingual-en\">Assume straight-line relation.</span>",
+    "en": "“A straight line where output is proportional to input.”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "58d2d45d44da": {
+    "zh": "適合：趨勢穩定",
+    "en": "Good for: stable trends",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "969a382bd89d": {
+    "zh": "決策樹 <span class=\"bilingual-en-inline\">(Decision Tree)</span>",
+    "en": "Decision tree",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "008452d5670d": {
+    "zh": "一層一層做二分法：「是/否」切割空間。<span class=\"bilingual-en\">Hierarchical yes/no splits.</span>",
+    "en": "Splits in two, level by level: carves up the space with “yes/no” questions.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "feed881e3bdd": {
+    "zh": "像：玩 20 問",
+    "en": "Like: playing 20 Questions",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "930ca01c2d7d": {
+    "zh": "適合：規則清晰",
+    "en": "Good for: clear-cut rules",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2e62812661fd": {
+    "zh": "深度網路 <span class=\"bilingual-en-inline\">(Deep Net)</span>",
+    "en": "Deep network",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "61dca9a1b6b3": {
+    "zh": "多層特徵組合，階層抽象。<span class=\"bilingual-en\">Layered abstraction.</span>",
+    "en": "Combines features over many layers, abstracting level by level.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "80c9386f7ae1": {
+    "zh": "像：千層蛋糕",
+    "en": "Like: a mille-feuille cake",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6233b56d7aba": {
+    "zh": "適合：超複雜關係",
+    "en": "Good for: super-complex relationships",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7cc49c57704f": {
+    "zh": "關鍵提醒 · Key Point",
+    "en": "Key point",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c6315a87604f": {
+    "zh": "菜單越大不一定越好；越大越容易「挑到只會背答案的菜」— 這就是之後的過擬合伏筆。<span class=\"bilingual-en\">Larger $\\mathcal{F}$ ≠ better; bigger menu → easier to overfit.</span>",
+    "en": "A bigger menu isn't necessarily better; the bigger it is, the easier it is to “pick a dish that only memorizes the answers” — this foreshadows overfitting, coming later.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "74dea38cb0a6": {
+    "zh": "第二步：評分機制 $S(f)$ — 毒舌評審來打分<span class=\"en\">Step 2: Scoring $S(f)$ — Loss Function</span>",
+    "en": "Step 2: Scoring Mechanism $S(f)$ — The Harsh Judge Hands Out Scores",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "496365fcaf28": {
+    "zh": "核心規則 · Core Rule",
+    "en": "Core Rule",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "01bc8847aab3": {
+    "zh": "候選模型那麼多，誰是天選之子？需要一個打分標準：<b>損失函數 (Loss)</b> — 分數越低越好，因為它衡量「你錯得多離譜」。<span class=\"bilingual-en\">Loss measures how wrong; lower is better.</span>",
+    "en": "With so many candidate models, which one is the chosen one? We need a scoring standard: the <b>loss function</b> — the lower the score, the better, because it measures “how badly you're wrong.”",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "40bf1ce8c458": {
+    "zh": "均方誤差 MSE · Mean Squared Error",
+    "en": "Mean Squared Error (MSE)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bd0b30f99c02": {
+    "zh": "白話：每個人「猜錯的距離」先平方（讓正負都變正、離譜的錯加倍懲罰），再平均。<span class=\"bilingual-en\">Square each error (erase sign, amplify big misses), then average.</span>",
+    "en": "In plain words: first square each person's “miss distance” (so positive and negative errors all become positive, and outrageous errors get punished extra hard), then take the average.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5e0b83511f6d": {
+    "zh": "$y_i$ 真實分數、$\\hat{y}_i$ 預測分數、$n$ 人數。<span class=\"bilingual-en\">$y_i$ true, $\\hat y_i$ predicted, $n$ count.</span>",
+    "en": "$y_i$ is the true score, $\\hat{y}_i$ the predicted score, and $n$ the number of people.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "db6b6600d0f7": {
+    "zh": "實例算給你看：三位同學的罪孽值<span class=\"en\">Worked Example: MSE = 15</span>",
+    "en": "Worked Example: The Sin Scores of Three Classmates",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "675946e10957": {
+    "zh": "Fig 2 · 平方誤差長條圖：$4+16+25$ 平均為 $15$ <span class=\"bilingual-en\" style=\"font-size:13px;\">(squared errors averaged)</span>",
+    "en": "Fig 2 · Bar chart of squared errors: $4+16+25$ averages to $15$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ee964e3dce25": {
+    "zh": "同學",
+    "en": "Student",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "516ffa1b30c5": {
+    "zh": "$y$ 真實",
+    "en": "$y$ true",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c391520db3d9": {
+    "zh": "$\\hat y$ 預測",
+    "en": "$\\hat y$ predicted",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2a5743324bf1": {
+    "zh": "誤差 $y-\\hat y$",
+    "en": "Error $y-\\hat y$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "249fa2320aa4": {
+    "zh": "平方",
+    "en": "Squared",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d076bfa58594": {
+    "zh": "平均 Average →",
+    "en": "Average →",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8b7090903ab6": {
+    "zh": "逐步演算 · Step-by-step",
+    "en": "Step-by-step",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "950e09f9a2aa": {
+    "zh": "這個 $15$ 就是模型 $f$ 的「罪孽值」。下一步：想辦法讓它更小！<span class=\"bilingual-en\">This 15 is $f$'s loss — now minimize it.</span>",
+    "en": "This $15$ is model $f$'s “sin score.” Next step: find a way to make it smaller!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "17df5d1bc3c4": {
+    "zh": "為什麼平方？① 負號消失（$+5$ 與 $-5$ 都是錯）② 大錯重罰：$5^2=25$ 比 $2^2=4$ 痛六倍。<span class=\"bilingual-en\">Why square? erase sign + punish big errors.</span>",
+    "en": "Why square? ① The minus sign disappears ($+5$ and $-5$ are both errors). ② Big errors get heavy penalties: $5^2=25$ hurts six times as much as $2^2=4$.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "de50231da87b": {
+    "zh": "第三步：最佳化搜尋 — 摸黑走下山谷<span class=\"en\">Step 3: Optimization — Walk Down the Valley</span>",
+    "en": "Step 3: Optimization Search — Feeling Your Way Down the Valley in the Dark",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d8847a3314fa": {
+    "zh": "那個嚇人的公式，白話翻譯",
+    "en": "That scary formula, translated into plain words",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a98b40c31861": {
+    "zh": "請從菜單 $\\mathcal{F}$ 裡，把能讓損失 $S(f)$ 縮到最小（$\\min$）的模型抓出來（$\\arg$），封為 $\\hat{f}$（最棒的那道菜）。<span class=\"bilingual-en\">Pick $f$ in menu that minimizes loss; call it $\\hat f$.</span>",
+    "en": "From the menu $\\mathcal{F}$, pick out ($\\arg$) the model that shrinks the loss $S(f)$ to its minimum ($\\min$), and crown it $\\hat{f}$ (the very best dish).",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c6af5f440817": {
+    "zh": "記號：$\\arg\\min$ 回傳「誰最小」；$\\min$ 回傳「最小值是多少」。我們要的是冠軍本身，不是分數。<span class=\"bilingual-en\">$\\arg\\min$ returns who; $\\min$ returns value.</span>",
+    "en": "Notation: $\\arg\\min$ returns “who is the smallest”; $\\min$ returns “what the smallest value is.” What we want is the champion itself, not its score.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "59141a04fb6b": {
+    "zh": "Fig 3 · 左：平滑碗（凸）高效求解；右：崎嶇山脈（非凸）需梯度下降 <span class=\"bilingual-en\" style=\"font-size:13px;\">(convex vs non-convex)</span>",
+    "en": "Fig 3 · Left: a smooth bowl (convex), solved efficiently; right: a rugged mountain range (non-convex), which needs gradient descent",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "eefa700c5e61": {
+    "zh": "地形決定方法 · Terrain decides method",
+    "en": "The terrain decides the method",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "aa79c2a26884": {
+    "zh": "<b>凸最佳化 (Convex)</b>：像平滑的碗，往下滑一定到谷底 → 有解析解 / 高效求解器。<span class=\"bilingual-en\">Bowl → slide to bottom.</span>",
+    "en": "<b>Convex optimization</b>: like a smooth bowl, sliding downhill is guaranteed to reach the bottom → closed-form solutions / efficient solvers.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f86cde8ba4ab": {
+    "zh": "<b>非凸 (Non-convex)</b>：九彎十八拐的山脈（如神經網路）→ 閉眼用腳探哪邊較低，一步一步往下，即<b>梯度下降 (Gradient Descent)</b>。<span class=\"bilingual-en\">Rugged → step by steepest descent.</span>",
+    "en": "<b>Non-convex</b>: a mountain range full of twists and turns (like a neural network) → close your eyes, feel with your feet which side is lower, and go down one step at a time. That is <b>gradient descent</b>.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a3605ab3976a": {
+    "zh": "把損失想成海拔：你在濃霧的山中，只能感覺腳下坡度（梯度），就往最陡的下坡跨一小步，重複直到平地。<span class=\"bilingual-en\">Feel slope under feet, step downhill.</span>",
+    "en": "Think of the loss as altitude: you're in the mountains in thick fog and can only feel the slope under your feet (the gradient), so you take a small step in the steepest downhill direction, and repeat until you reach flat ground.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bc78280b343b": {
+    "zh": "梯度下降模擬 · Gradient Descent Simulation — Loss 隨步數下降 <span class=\"bilingual-en-inline\">(loss vs steps)</span>",
+    "en": "Gradient Descent Simulation — the loss decreases with the number of steps",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1a03a25622dc": {
+    "zh": "沒有免費午餐：沒有成見，就沒有智慧<span class=\"en\">No Free Lunch: No Bias, No Learning</span>",
+    "en": "No Free Lunch: No Bias, No Intelligence",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f976d7ddcbc8": {
+    "zh": "Fig 4 · $2,4,6$ 下一個是 $8$？$100$？還是長頸鹿？<span class=\"bilingual-en\" style=\"font-size:13px;\">(2,4,6 → next?)</span>",
+    "en": "Fig 4 · After $2,4,6$, is the next one $8$? $100$? Or a giraffe?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "50d19a8917ea": {
+    "zh": "定理白話 · Theorem in Plain Words",
+    "en": "The Theorem in Plain Words",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6f574e9790cc": {
+    "zh": "<b>沒有免費午餐定理 (No Free Lunch Theorem)</b>：若對問題不做任何先驗假設，不存在一個演算法能在所有問題上都表現優異。<span class=\"bilingual-en\">No universal winner without assumptions.</span>",
+    "en": "<b>No Free Lunch theorem</b>: if you make no prior assumptions about the problem, there is no algorithm that performs well on all problems.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "925bf8fff375": {
+    "zh": "思想實驗 · Thought Experiment",
+    "en": "Thought Experiment",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c6b64373f079": {
+    "zh": "看到 $2,4,6$，你直覺猜 $8$（等差）。但若沒有「這是等差數列」的<b>歸納偏置 (Inductive Bias)</b>，下一個也可以是 $100$、或一隻長頸鹿 — 資料本身不告訴你。<span class=\"bilingual-en\">Without \"arithmetic\" bias, data says nothing.</span>",
+    "en": "Seeing $2,4,6$, you intuitively guess $8$ (an arithmetic progression). But without the <b>inductive bias</b> that “this is an arithmetic sequence,” the next one could just as well be $100$, or a giraffe — the data itself doesn't tell you.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0ed70f93a259": {
+    "zh": "直覺的 $8$ 正是你偷偷加進去的成見。<span class=\"bilingual-en\">Your $8$ is hidden bias.</span>",
+    "en": "That intuitive $8$ is exactly the bias you secretly slipped in.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5dd74c7b2917": {
+    "zh": "金句 · Takeaway",
+    "en": "Takeaway",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f1c9b9490b39": {
+    "zh": "別想找一把能開全天下所有鎖的萬能鑰匙；大膽施加合理的成見，才是演算法有威力的關鍵。<span class=\"bilingual-en\">Don't seek a master key; pick the right bias.</span>",
+    "en": "Don't go looking for a master key that opens every lock in the world; boldly imposing a reasonable bias is the key to an algorithm's power.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "74bbff28ad7d": {
+    "zh": "機器學習不是消除偏見，而是選對偏見<span class=\"en\">ML is not to remove bias, but to choose it</span>",
+    "en": "Machine learning isn't about eliminating bias; it's about choosing the right bias",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f13fac8633fc": {
+    "zh": "錯誤想像 <span class=\"bilingual-en-inline\">(Myth)</span>",
+    "en": "Misconception",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "283c2dd6d46d": {
+    "zh": "理想 AI 完全客觀、沒有預設立場<span class=\"bilingual-en\">fully objective, no assumption</span>",
+    "en": "The ideal AI is perfectly objective, with no preconceptions",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a6236f5c198a": {
+    "zh": "資料自己會說話<span class=\"bilingual-en\">data speaks for itself</span>",
+    "en": "The data speaks for itself",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8608fe9564fd": {
+    "zh": "結果：寸步難行（2,4,6 怎麼猜都可）<span class=\"bilingual-en\">paralysis: anything goes</span>",
+    "en": "Result: you can't take a single step (any guess after 2, 4, 6 is equally valid)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0576a62e556f": {
+    "zh": "正確理解 <span class=\"bilingual-en-inline\">(Reality)</span>",
+    "en": "Correct understanding",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "03593742c596": {
+    "zh": "<b>歸納偏置 (Inductive Bias)</b> = 先猜世界長什麼樣<span class=\"bilingual-en\">prior guess on world shape</span>",
+    "en": "<b>Inductive bias</b> = first guessing what the world looks like",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9e9b05b02b65": {
+    "zh": "假設空間 $\\mathcal{F}$ 就是把偏置寫下來<span class=\"bilingual-en\">$\\mathcal{F}$ encodes your bias</span>",
+    "en": "The hypothesis space $\\mathcal{F}$ is that bias written down",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "42c6216bb347": {
+    "zh": "結果：有成見才有泛化能力<span class=\"bilingual-en\">bias → generalization</span>",
+    "en": "Result: only with preconceptions can a model generalize",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a784ef69d086": {
+    "zh": "哲學對照 · Philosophy",
+    "en": "Philosophical parallel",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5c330c35657b": {
+    "zh": "呼應波普爾：科學從「大膽猜」開始；機器學習從「選 $\\mathcal{F}$」開始。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">Science starts with conjecture; ML starts with $\\mathcal{F}$.</span>",
+    "en": "Echoing Popper: science starts with a “bold guess”; machine learning starts with “choosing $\\mathcal{F}$”.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "78db8fc41957": {
+    "zh": "總覽：從假設到泛化的完整迴圈<span class=\"en\">Overview: Full Loop from Hypothesis to Generalization</span>",
+    "en": "Overview: the complete loop from hypothesis to generalization",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5aed9cf89286": {
+    "zh": "把四個盒子連成一個會呼吸的迴圈。<span class=\"bilingual-en\">Connect four boxes into a breathing loop.</span>",
+    "en": "Connect the four boxes into a loop that breathes.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1c2765e8a900": {
+    "zh": "機器學習學習迴圈：假設 · 評分 · 搜尋 · 泛化",
+    "en": "The ML learning loop: hypothesize · score · search · generalize",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "d74b2dc5d0be": {
+    "zh": "「模型是地圖，不是實地」— 從假設空間到真實世界預測",
+    "en": "“The model is the map, not the territory”: from hypothesis space to real-world prediction",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "a8a716f99089": {
+    "zh": "歸納偏置 Inductive Bias",
+    "en": "Inductive bias",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "77875ea870e3": {
+    "zh": "假設空間  F",
+    "en": "Hypothesis space  F",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "1344161a401f": {
+    "zh": "• 候選函數集合 f ∈ F",
+    "en": "• Set of candidate functions f ∈ F",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "61888f0a3262": {
+    "zh": "• 先驗結構限制：",
+    "en": "• Prior structural constraints:",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "da270b7639f9": {
+    "zh": "- 線性 (直線關係)",
+    "en": "- Linear (straight-line relations)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "1d1b2867d542": {
+    "zh": "- 決策樹 (空間切割)",
+    "en": "- Decision tree (splits the space)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "9326a244de50": {
+    "zh": "- 神經網絡 (多層組合)",
+    "en": "- Neural network (layered composition)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "20a7a024f6d0": {
+    "zh": "評分機制 S(f)",
+    "en": "Scoring mechanism S(f)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "9b17beb5545e": {
+    "zh": "• Loss 越低越好",
+    "en": "• Lower loss is better",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "ab79ee8b4b29": {
+    "zh": "• 依貼合度排序函數",
+    "en": "• Ranks functions by goodness of fit",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "1aa073e43cf1": {
+    "zh": "- MSE (迴歸)",
+    "en": "- MSE (regression)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "b7a2e93ef6c2": {
+    "zh": "- Cross-Entropy (分類)",
+    "en": "- Cross-entropy (classification)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "53408c3a5668": {
+    "zh": "搜尋策略",
+    "en": "Search strategy",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "e9a29b698c4b": {
+    "zh": "• 遍歷損失地形尋極小",
+    "en": "• Traverse the loss landscape for a minimum",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "3d39b9d84e76": {
+    "zh": "- 凸：解析解 / 高效求解",
+    "en": "- Convex: closed form / efficient solvers",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "0e337fa8640d": {
+    "zh": "- 非凸：梯度下降 SGD",
+    "en": "- Non-convex: gradient descent (SGD)",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "b8f7009a7bb8": {
+    "zh": "輸入",
+    "en": "Input",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "fd444edcdc4d": {
+    "zh": "評估",
+    "en": "Evaluate",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "c70a985b9e97": {
+    "zh": "泛化能力 Generalization",
+    "en": "Generalization",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "b8283ed85d71": {
+    "zh": "未見測試資料誤差低",
+    "en": "Low error on unseen test data",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "cc8881ccf374": {
+    "zh": "訓練低 + 測試高 = 過擬合",
+    "en": "Low train + high test = overfitting",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "5a39d6a0a191": {
+    "zh": "輸出 f*",
+    "en": "Output f*",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "78052596f444": {
+    "zh": "沒有免費午餐 No Free Lunch",
+    "en": "No Free Lunch",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "cca236afae03": {
+    "zh": "無假設便無學習",
+    "en": "No assumptions, no learning",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "901f0a59cd5d": {
+    "zh": "泛化不佳 → 修正 F",
+    "en": "Poor generalization → revise F",
+    "kp": 13,
+    "ctx": "svg"
+  },
+  "c3357e9e3eaf": {
+    "zh": "Fig 5 · 你的講義 SVG 原圖重繪為可縮放向量版（保留配色與迴圈語意）<span class=\"bilingual-en\" style=\"font-size:13px;\">(loop: hypothesize → score → search → generalize → revise)</span>",
+    "en": "Fig 5 · The SVG figure from your lecture notes, redrawn as a scalable vector version (keeping its colors and the meaning of the loop)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bc7e59262391": {
+    "zh": "怎麼讀這張圖 · How to read",
+    "en": "How to read this figure",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "feb8a70df6ce": {
+    "zh": "外層虛線框 = 歸納偏置的約束範疇；$1\\to2\\to3$ 是正向流程；$3\\to$泛化是輸出；泛化失敗的虛線箭頭回到假設 — 這就是「學習迴圈」。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">Outer dashed = bias scope; solid = forward; dashed back = revise when generalization fails.</span>",
+    "en": "Outer dashed box = the scope constrained by the inductive bias; $1\\to2\\to3$ is the forward flow; $3\\to$ generalization is the output; the dashed arrow from a generalization failure back to the hypothesis: that is the “learning loop”.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to action",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ac53f79bf65a": {
+    "zh": "泛化與過擬合：為什麼只背答案會考砸？<span class=\"en\">Generalization &amp; Overfitting</span>",
+    "en": "Generalization and overfitting: why does just memorizing answers make you bomb the exam?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d7bf56e94fd5": {
+    "zh": "訓練誤差低不代表學會了；像「把考古題答案背起來」的人，換張考卷就露餡。<span class=\"bilingual-en\">Low training error ≠ learned; memorizing past exams fails on new paper.</span>",
+    "en": "Low training error doesn't mean the model has learned; like someone who memorized the answers to past exams, it gets exposed as soon as the exam paper changes.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "f246d4ee6536": {
+    "zh": "模型複雜度 vs 誤差 · Model Complexity vs Error — 訓練誤差持續降、測試誤差先降後升 <span class=\"bilingual-en-inline\">(overfitting valley)</span>",
+    "en": "Model complexity vs. error: training error keeps falling, while test error first falls and then rises (the overfitting valley)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "45515bd3c341": {
+    "zh": "理想區 · Sweet spot",
+    "en": "Sweet spot",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "0b1fb933406b": {
+    "zh": "測試誤差最低點：既解釋現在、又預測未來。<span class=\"bilingual-en\">Test error minimum = good map.</span>",
+    "en": "The lowest point of the test error: it both explains the present and predicts the future.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "c18435f1b8dd": {
+    "zh": "過擬合區 · Overfitting",
+    "en": "Overfitting zone",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "f7cfe54090f0": {
+    "zh": "訓練誤差持續降、測試誤差飆升：地圖把「坑洞的形狀」也當成「路」。<span class=\"bilingual-en\">Fits noise as if it's signal.</span>",
+    "en": "Training error keeps falling while test error shoots up: the map treats even “the shape of the potholes” as “the road”.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "eb81d7a2f9ab": {
+    "zh": "下一步路線圖<span class=\"en\">Roadmap — Where to next?</span>",
+    "en": "Roadmap: where to next?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "6dfb04913221": {
+    "zh": "偏差-變異權衡 <span class=\"bilingual-en-inline\">(Bias-Variance Tradeoff)</span>",
+    "en": "Bias-variance tradeoff",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "c1e71799c49f": {
+    "zh": "菜單太窄 = 偏差高（看不見真相）；菜單太寬 = 變異高（把雜訊當真相）。<span class=\"bilingual-en\">Too narrow = bias; too wide = variance.</span>",
+    "en": "Menu too narrow = high bias (can't see the truth); menu too wide = high variance (mistakes noise for the truth).",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "78862937cc06": {
+    "zh": "正則化與驗證 <span class=\"bilingual-en-inline\">(Regularization &amp; Validation)</span>",
+    "en": "Regularization and validation",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "0122904480cc": {
+    "zh": "用驗證集當「模擬考」，用正則化懲罰過度複雜的 $f$。<span class=\"bilingual-en\">Mock exam + penalize complexity.</span>",
+    "en": "Use a validation set as a “mock exam”, and use regularization to penalize an overly complex $f$.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "0df4e8546c73": {
+    "zh": "從凸到非凸的實戰 <span class=\"bilingual-en-inline\">(Convex → Non-convex)</span>",
+    "en": "From convex to non-convex in practice",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "ad53288c8cc2": {
+    "zh": "線性模型的解析解 $\\leftrightarrow$ 神經網路的 SGD、Adam 與學習率調校。<span class=\"bilingual-en\">Closed form ↔ SGD/Adam &amp; LR tuning.</span>",
+    "en": "The closed-form solution of linear models $\\leftrightarrow$ SGD, Adam, and learning-rate tuning for neural networks.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "ad85347a72d2": {
+    "zh": "思考題 · 提取練習<span class=\"en\">Reflection — Test Your Understanding</span>",
+    "en": "Reflection · Retrieval Practice",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "3941e8010ad4": {
+    "zh": "Q1. 為什麼說「地圖不是實地」？哪個選項最貼近講義原意？<span class=\"bilingual-en\">Why \"map ≠ territory\"? Which captures the idea?</span>",
+    "en": "Q1. Why do we say “the map is not the territory”? Which option comes closest to what the notes mean?",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "f7d0a004e33c": {
+    "zh": "A. 地圖畫得不夠漂亮 <span class=\"bilingual-en-inline\">(map not pretty)</span>",
+    "en": "A. The map isn’t drawn nicely enough",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "491f17045891": {
+    "zh": "B. 模型是對真實世界的簡化替代品，有用但不等於真相 <span class=\"bilingual-en-inline\">(surrogate, useful not identical)</span>",
+    "en": "B. A model is a simplified surrogate for the real world: useful, but not the same as the truth",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "6efc10ca4409": {
+    "zh": "C. 地圖一定比實地小張 <span class=\"bilingual-en-inline\">(map smaller)</span>",
+    "en": "C. A map is always smaller than the territory",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "fe25a6aa61f6": {
+    "zh": "D. 實地會隨時間消失 <span class=\"bilingual-en-inline\">(territory vanishes)</span>",
+    "en": "D. The territory disappears over time",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "a3ceca7f3023": {
+    "zh": "Q2. 用講義的 MSE 例子：$y=[80,90,70]$, $\\hat y=[82,86,75]$，MSE 是多少？為什麼要平方？<span class=\"bilingual-en\">MSE? Why square?</span>",
+    "en": "Q2. Using the MSE example from the notes: $y=[80,90,70]$, $\\hat y=[82,86,75]$, what is the MSE? Why do we square the errors?",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "8ff3a3d5d240": {
+    "zh": "A. 15.2，因為要讓數字變大 <span class=\"bilingual-en-inline\">(make bigger)</span>",
+    "en": "A. 15.2, because it makes the numbers bigger",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "598ad2b34eac": {
+    "zh": "B. 15，因為直接平均誤差 <span class=\"bilingual-en-inline\">(average raw error)</span>",
+    "en": "B. 15, because it just averages the errors directly",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "5e923ddbe12f": {
+    "zh": "C. 15，因為 $(4+16+25)/3$；平方消除正負並放大大錯 <span class=\"bilingual-en-inline\">($4+16+25)/3; erase sign, amplify big errors</span>",
+    "en": "C. 15, because $(4+16+25)/3$; squaring removes the sign and amplifies large errors",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "b46e2a971094": {
+    "zh": "D. 45，因為加總就好 <span class=\"bilingual-en-inline\">(sum only)</span>",
+    "en": "D. 45, because you just add them up",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "4136e0fc9115": {
+    "zh": "Q3. 沒有免費午餐定理在說什麼？看到 $2,4,6$ 為什麼不能確定下一個是 $8$？<span class=\"bilingual-en\">No Free Lunch: why 2,4,6 → 8 not guaranteed?</span>",
+    "en": "Q3. What does the No Free Lunch theorem say? When you see $2,4,6$, why can’t you be sure the next one is $8$?",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "f2e45d8ae9da": {
+    "zh": "A. 沒有「等差數列」的歸納偏置，資料本身允許任何下一個值 <span class=\"bilingual-en-inline\">(no bias → anything goes)</span>",
+    "en": "A. Without the inductive bias “it’s an arithmetic sequence”, the data by itself allows any next value",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "c3cbc539221b": {
+    "zh": "B. 因為 $8$ 算錯了，應該是 $10$ <span class=\"bilingual-en-inline\">($8$ miscalc.)</span>",
+    "en": "B. Because $8$ is a miscalculation; it should be $10$",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "cbdf045e5631": {
+    "zh": "C. 因為機器學習只能處理圖片 <span class=\"bilingual-en-inline\">(only images)</span>",
+    "en": "C. Because machine learning can only handle images",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "e56e074880bf": {
+    "zh": "D. 因為資料太少，永遠無解 <span class=\"bilingual-en-inline\">(too little data, hopeless)</span>",
+    "en": "D. Because there is too little data, so it can never be solved",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "42f963268285": {
+    "zh": "選一個合適的成見，<br>去理解這個世界。\n    <small>Pick the right bias to understand the world. <span class=\"bilingual-en\" style=\"font-size:18px;\">Models aren't truth — good maps predict.</span></small>\n  ",
+    "en": "Pick the right bias,<br>and use it to understand the world.\n    <small><span class=\"bilingual-en\" style=\"font-size:18px;\">Models aren't truth — good maps predict.</span></small>\n  ",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "c2c240686e78": {
+    "zh": "提假設 $\\mathcal{F}$ · 定損失 $S(f)$ · 找最佳 $\\hat f = \\arg\\min S(f)$<span class=\"bilingual-en\">Hypothesize $\\mathcal{F}$ · define loss $S(f)$ · search $\\hat f$.</span>",
+    "en": "Hypothesize $\\mathcal{F}$ · define the loss $S(f)$ · find the best $\\hat f = \\arg\\min S(f)$",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "de7923e49269": {
+    "zh": "冰晶簡約亮色主題 · 與 ising-to-rbm-bilingual 一致 <span class=\"bilingual-en-inline\">(ice-crystal light theme)</span> ｜ 單檔 HTML · 離線可播",
+    "en": "Clean ice-crystal light theme · consistent with ising-to-rbm-bilingual | Single-file HTML · plays offline",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "1cd2024c1120": {
+    "zh": "公式由 MathJax 3 渲染 · 圖表由 Chart.js 4 繪製 · 示意圖由 matplotlib 生成並 base64 內嵌",
+    "en": "Formulas rendered by MathJax 3 · charts drawn with Chart.js 4 · diagrams generated with matplotlib and embedded as base64",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "fd1dc1baa47b": {
+    "zh": "梯度 magnitude",
+    "en": "Gradient magnitude",
+    "kp": 10,
+    "ctx": "chart"
+  },
+  "9ed745a7bac0": {
+    "zh": "Steps  步數",
+    "en": "Steps",
+    "kp": 10,
+    "ctx": "chart"
+  },
+  "1a8b701e95d3": {
+    "zh": "簡單",
+    "en": "Simple",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "16e8a91871a9": {
+    "zh": "適中-",
+    "en": "Moderate−",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "4834a6eed6da": {
+    "zh": "適中",
+    "en": "Moderate",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "a2f0207f64de": {
+    "zh": "適中+",
+    "en": "Moderate+",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "7fb103d49fdf": {
+    "zh": "複雜",
+    "en": "Complex",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "da6a66f37392": {
+    "zh": "過複雜",
+    "en": "Too complex",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "bcfd11b0f04b": {
+    "zh": "訓練誤差 Training",
+    "en": "Training error",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "a5846273fe95": {
+    "zh": "測試誤差 Test",
+    "en": "Test error",
+    "kp": 14,
+    "ctx": "chart"
+  },
+  "1f4d7f2db629": {
+    "zh": "Error 誤差",
+    "en": "Error",
+    "kp": 14,
+    "ctx": "chart"
+  }
+}

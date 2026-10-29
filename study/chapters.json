@@ -19,7 +19,10 @@
     {
      "label": "01 ML theory surrogate bias loop",
      "href": "IDL_115/Ch01-introduction-history/slides/01-ml-theory-surrogate-bias-loop.html",
-     "en": null
+     "en": {
+      "units": 212,
+      "translated": 212
+     }
     },
     {
      "label": "02 ML vector representation mapping",
