@@ -1,0 +1,906 @@
+{
+  "_runtime": {
+    "exact": {
+      "✔ 正確！在選單裡找最低分菜。": "✔ Correct! Find the lowest-scoring dish on the menu.",
+      "✔ 正確！格子派與數線派。": "✔ Correct! The grid camp and the number-line camp.",
+      "✔ 正確！線性分類器一條直線切不開。": "✔ Correct! A linear classifier's single straight line can't separate them.",
+      "✔ 正確！$s\to a\to r$ 。": "✔ Correct! $s\to a\to r$ .",
+      "✗ 再想想：最低分才是最佳。": "✗ Think again: the lowest score is the best.",
+      "✗ 提示：分類格子、回歸數線。": "✗ Hint: classification is a grid, regression is a number line.",
+      "✗ 提示：對角同類一條線切不開。": "✗ Hint: when diagonal corners share a class, one line can't separate them.",
+      "✗ 提示：$s\to a\to r$ 糖果迴路。": "✗ Hint: $s\to a\to r$ — the candy loop."
+    },
+    "patterns": [
+      {
+        "re": "^✔ 正確！(\\$s[\\s\\S]*r\\$) 。$",
+        "en": "✔ Correct! $1 ."
+      },
+      {
+        "re": "^✗ 提示：(\\$s[\\s\\S]*r\\$) 糖果迴路。$",
+        "en": "✗ Hint: $1 — the candy loop."
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "b8bb31e17014": {
+    "zh": "<a href=\"#cover\">封面</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d80673983057": {
+    "zh": "<a href=\"#q1\">靈魂拷問</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "92edcbe1367c": {
+    "zh": "<a href=\"#threesteps\">三步曲</a>",
+    "en": "<a href=\"#threesteps\">Three Steps</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4273b3d606ab": {
+    "zh": "<a href=\"#threefamilies\">三武學</a>",
+    "en": "<a href=\"#threefamilies\">Three Schools</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6ba5ab8ab720": {
+    "zh": "<a href=\"#andxor\">AND vs XOR 幾何</a>",
+    "en": "<a href=\"#andxor\">AND vs XOR Geometry</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "50ba626411f4": {
+    "zh": "<a href=\"#logicloop\">邏輯·學習·梯度</a>",
+    "en": "<a href=\"#logicloop\">Logic · Learning · Gradient</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2ab09ab65eca": {
+    "zh": "<a href=\"#summary\">總結</a>",
+    "en": "<a href=\"#summary\">Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3142636d1b65": {
+    "zh": "<a href=\"#quiz\">思考測驗</a>",
+    "en": "<a href=\"#quiz\">Think-It-Through Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ef615c0d42ac": {
+    "zh": "<a href=\"#roadmap\">學習路線</a>",
+    "en": "<a href=\"#roadmap\">Learning Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "500cc96362ee": {
+    "zh": "機器學習尋寶地圖<br>三步曲·三武學·線性終數",
+    "en": "Machine Learning Treasure Map<br>Three Steps · Three Schools · The Fate of Linearity",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "17784e6a823c": {
+    "zh": "點菜·試吃·找廚神；有老師·沒老師·社會滾打；一條直線凍結浪潮 <span class=\"bilingual-en\" style=\"color:#cbd5e1;font-size:18px;display:inline;\">Order, taste, find the chef; supervised, unsupervised, RL; a line freezes the wave.</span>",
+    "en": "Order the dish, taste it, find the master chef; with a teacher, without a teacher, learning the hard way out in the world; one straight line freezes the whole wave",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "191131518e0f": {
+    "zh": "\n      <span>🍽 假設類別 ℱ</span>\n      <span>🔍 評分 S(f)</span>\n      <span>🧭 搜尋 Optimization</span>\n      <span>❄️ Minsky 1969</span>\n    ",
+    "en": "\n      <span>🍽 Hypothesis class ℱ</span>\n      <span>🔍 Scoring S(f)</span>\n      <span>🧭 Search (optimization)</span>\n      <span>❄️ Minsky 1969</span>\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "afc490816a6e": {
+    "zh": "▾ SCROLL TO EXPLORE · 長頁自學模式",
+    "en": "▾ SCROLL TO EXPLORE · Long-Page Self-Study Mode",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aedc2ad9d89c": {
+    "zh": "BIG QUESTION · 靈魂拷問",
+    "en": "BIG QUESTION",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "151534b42534": {
+    "zh": "滿漢全席選單上，<br>哪道菜是最佳模型？<small>On a banquet of models, which dish is the best?</small>",
+    "en": "On a full imperial banquet menu,<br>which dish is the best model?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "534e193cd158": {
+    "zh": "答案就藏在三步曲裡：選單、評分、搜尋。<span class=\"bilingual-en\">Answer in three steps: menu, scoring, search.</span>",
+    "en": "The answer is hidden in the three steps: the menu, the scoring, the search.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a656e7aefe28": {
+    "zh": "S1 · 引起動機 · MOTIVATE",
+    "en": "S1 · MOTIVATE",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "75a5a1c2740a": {
+    "zh": "機器學習三步曲：點菜·試吃·找廚神 <span class=\"en\">Three Steps — Hypothesis, Scoring, Search</span>",
+    "en": "The Three Steps of Machine Learning: Order, Taste, Find the Master Chef",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f9abe27246df": {
+    "zh": "全章靈魂一句話：在候選選單裡找讓評分最低的那道菜。<span class=\"bilingual-en\">Soul in one line: find the dish with lowest score on the menu.</span>",
+    "en": "The whole chapter in one line: on the menu of candidates, find the dish with the lowest score.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8573fbc9d12b": {
+    "zh": "假設類別 $\\mathcal{F}$ <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Menu</span>",
+    "en": "Hypothesis class $\\mathcal{F}$ <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">(the menu)</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "42cdd74b7ccb": {
+    "zh": "餐廳賣什麼菜？線性模型 = 義大利麵專賣；神經網路 = 分子創意餐廳。所有候選函式的集合 $\\mathcal{F}$ 即選單。<span class=\"bilingual-en\">Linear = pasta shop; neural net = molecular gastronomy.</span>",
+    "en": "What dishes does the restaurant serve? A linear model = a pasta-only shop; a neural network = a creative molecular-gastronomy restaurant. The set $\\mathcal{F}$ of all candidate functions is the menu.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "14c42d3708d6": {
+    "zh": "評分機制 $S(f)$ <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Critic</span>",
+    "en": "Scoring mechanism $S(f)$ <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">(the critic)</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0522c99ea564": {
+    "zh": "毒舌評論家打分：差越多分越高（損失大），越好吃分越低。目標是讓損失最小。<span class=\"bilingual-en\">Bigger gap = higher loss; want minimal.</span>",
+    "en": "A sharp-tongued critic hands out scores: the further off the dish is, the higher the score (large loss); the tastier it is, the lower the score. The goal is to make the loss as small as possible.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a0089d51e10a": {
+    "zh": "搜尋策略 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Search in Fog</span>",
+    "en": "Search strategy <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">(searching in the fog)</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7bf416db5146": {
+    "zh": "在迷霧大山找最低山谷：梯度下降像盲人摸象，一步步往下走到碗底。<span class=\"bilingual-en\">Foggy mountain: gradient descent steps to valley.</span>",
+    "en": "Finding the lowest valley on a fog-covered mountain: gradient descent is like the blind men feeling the elephant, walking downhill step by step until it reaches the bottom of the bowl.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9c714bce5f88": {
+    "zh": "公式 · 一句話翻譯",
+    "en": "Formula · In one sentence",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "006e9df5bcca": {
+    "zh": "「最佳模型 $\\hat{f}$ 就是在選單 $\\mathcal{F}$ 裡找讓評分 $S(f)$ 最低的那一個。」<span class=\"bilingual-en\">Best model = lowest scoring dish on the menu.</span>",
+    "en": "“The best model $\\hat{f}$ is the one on the menu $\\mathcal{F}$ that makes the score $S(f)$ the lowest.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0ff8641234f0": {
+    "zh": "直覺 · 翻譯秘訣",
+    "en": "Intuition · Translation tips",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "73682046d1d8": {
+    "zh": "$:=$ 是「定義為」、$\\arg\\min$ 是「讓最小的引數」、$f \\in \\mathcal{F}$ 是「在選單裡」。<span class=\"bilingual-en\">$:=$ defines, $\\arg\\min$ = arg achieving min.</span>",
+    "en": "$:=$ means “is defined as”, $\\arg\\min$ means “the argument that makes it smallest”, and $f \\in \\mathcal{F}$ means “on the menu”.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "89bb3f41f8d0": {
+    "zh": "S2 · 維持注意 · SUSTAIN",
+    "en": "S2 · SUSTAIN",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5ffbcf84caa3": {
+    "zh": "三大武功家族 <span class=\"en\">Three Families</span>",
+    "en": "The Three Great Martial-Arts Families",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9e9219518236": {
+    "zh": "像武俠小說的少林武當峨眉：有老師、沒老師、社會滾打。<span class=\"bilingual-en\">Like Shaolin/Wudang/Emei: supervised, unsupervised, RL.</span>",
+    "en": "Like the Shaolin, Wudang, and Emei schools in a wuxia novel: with a teacher, without a teacher, and learning the hard way out in the world.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0f092f7e31ae": {
+    "zh": "有老師",
+    "en": "With a teacher",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "48da8c54d17f": {
+    "zh": "監督式 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Supervised</span>",
+    "en": "Supervised",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "102365570c6c": {
+    "zh": "帶標籤考卷，寫錯立刻糾正。",
+    "en": "Labeled answer sheets; every mistake is corrected right away.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bf313555190b": {
+    "zh": "<b>分類</b>·格子派：貓/狗、及格/不及格<span class=\"bilingual-en\">Cats vs dogs, pass/fail.</span>",
+    "en": "<b>Classification</b> · the box camp: cat/dog, pass/fail",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f8db3502884f": {
+    "zh": "<b>迴歸</b>·數線派：房價、分數<span class=\"bilingual-en\">Price, score — continuous.</span>",
+    "en": "<b>Regression</b> · the number-line camp: house prices, scores",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9b29d986268b": {
+    "zh": "沒老師",
+    "en": "Without a teacher",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0f36ef47a5ac": {
+    "zh": "非監督式 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Unsupervised</span>",
+    "en": "Unsupervised",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a34dcd5067fd": {
+    "zh": "丟 100 張無標籤照片，自己找模式。",
+    "en": "Throw in 100 unlabeled photos and let it find the patterns on its own.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b4ab8e353e5e": {
+    "zh": "<b>分群</b>：像的湊一坨<span class=\"bilingual-en\">Cluster similar.</span>",
+    "en": "<b>Clustering</b>: lump the similar ones together",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "360cd003ffc6": {
+    "zh": "<b>降維</b>：行李箱壓成紙片<span class=\"bilingual-en\">Suitcase → paper.</span>",
+    "en": "<b>Dimensionality reduction</b>: squash a suitcase flat into a sheet of paper",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4f91f149b956": {
+    "zh": "社會滾打",
+    "en": "School of hard knocks",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8e51594328a3": {
+    "zh": "強化學習 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Reinforcement</span>",
+    "en": "Reinforcement learning",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "aea7bb95794b": {
+    "zh": "不給考卷，丟進環境「棍棒教育」。",
+    "en": "No answer sheet; it is thrown into an environment for some “tough-love education”.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5fc3fc4fc516": {
+    "zh": "Agent 過程：$s$狀態亂 → $a$收拾 → $r$糖果<span class=\"bilingual-en\">State $s$ messy → action $a$ tidy → reward $r$.</span>",
+    "en": "The agent's process: $s$ state is messy → $a$ tidy up → $r$ candy",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b2cd7fc7b682": {
+    "zh": "跌倒被電（負獎）、放對給糖（正獎）<span class=\"bilingual-en\">Fall = shock, tidy = candy.</span>",
+    "en": "Fall down and get shocked (negative reward); put things in the right place and get candy (positive reward)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7ca0c1169f9f": {
+    "zh": "尋寶圖",
+    "en": "Treasure map",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "96140499972f": {
+    "zh": "一張圖看懂 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">One Map</span>",
+    "en": "Understand It in One Map",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "54c101277325": {
+    "zh": "分類迴歸是監督兩派；分群降維是非監督兩派；RL 是環境互動派。<span class=\"bilingual-en\">Classify/regress; cluster/reduce; interact.</span>",
+    "en": "Classification and regression are the two supervised camps; clustering and dimensionality reduction are the two unsupervised camps; RL is the camp that learns by interacting with the environment.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "39a32614665f": {
+    "zh": "S2 · 核心幾何 · GEOMETRY",
+    "en": "S2 · Core Geometry · GEOMETRY",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1ce6289d7288": {
+    "zh": "Perceptron 線性切割 vs XOR 非線性侷限 <span class=\"en\">Linear Cut vs Non-linear Limit</span>",
+    "en": "The Perceptron's Linear Cut vs the XOR Non-linear Limit",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a189fc8d303c": {
+    "zh": "第一次 AI 冬眠的核心幾何鐵證：一條直線能切 AND，卻切不開 XOR。<span class=\"bilingual-en\">Core geometry of first winter: line cuts AND, not XOR.</span>",
+    "en": "The core geometric proof behind the first AI winter: one straight line can split AND, but cannot split XOR.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "88f110435252": {
+    "zh": "matplotlib 精準：AND 線性可分 vs XOR 非線性不可分 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Precise geometry</span>",
+    "en": "Precise matplotlib geometry: AND is linearly separable vs XOR is not linearly separable",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4f07d64cfd1e": {
+    "zh": "左 $x_1+x_2=1.5$ 一刀切開 (1,1)；右四角對角同類——任何直線均切不開 · Left cuts; right diagonally inseparable.",
+    "en": "Left: $x_1+x_2=1.5$ cuts (1,1) off in a single stroke. Right: diagonally opposite corners share a class, so no straight line can separate them.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7f8075f6a900": {
+    "zh": "為何 AND 可 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Why AND Works</span>",
+    "en": "Why AND Works",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ad805af83b55": {
+    "zh": "僅 (1,1) 為 1，其餘為 0，一條 $x_1+x_2=1.5$ 剛好分離。<span class=\"bilingual-en\">Only (1,1)=1, line $x_1+x_2=1.5$ separates.</span>",
+    "en": "Only (1,1) is 1 and the rest are 0, so the single line $x_1+x_2=1.5$ separates them exactly.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1d162fb61eb1": {
+    "zh": "為何 XOR 不可 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Why XOR Fails</span>",
+    "en": "Why XOR Fails",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2566bdc7312c": {
+    "zh": "$(0,1)/(1,0)=1$ vs $(0,0)/(1,1)=0$ 對角同類，任何直線均包裹錯誤。<span class=\"bilingual-en\">Diagonal same class — no line.</span>",
+    "en": "$(0,1)/(1,0)=1$ vs $(0,0)/(1,1)=0$: diagonal corners share a class, so any straight line ends up wrapping in a wrong point.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5aaa87b17e6d": {
+    "zh": "S2 · 邏輯·學習·梯度 · LOOP",
+    "en": "S2 · Logic · Learning · Gradient · LOOP",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "44e906cb46c0": {
+    "zh": "邏輯開、學習與最佳化迴路 <span class=\"en\">Logic, Learning &amp; Gradient Loop</span>",
+    "en": "Logic Gates, Learning &amp; the Optimization Loop",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fea45ccc98f8": {
+    "zh": "M-P 神經做邏輯開（AND/OR/NOT）→ Hebb 一起放電一起接線→ ADALINE 梯度下降追求誤差最小。<span class=\"bilingual-en\">M-P logic → Hebb wiring → ADALINE gradient.</span>",
+    "en": "M-P neurons implement logic gates (AND/OR/NOT) → Hebb: cells that fire together wire together → ADALINE uses gradient descent to minimize the error.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1758d0137722": {
+    "zh": "M-P 1943 · 邏輯開",
+    "en": "M-P 1943 · Logic gates",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c63fe7e9994c": {
+    "zh": "AND/OR/NOT 通用",
+    "en": "Universal AND/OR/NOT",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "76342e4ae2d7": {
+    "zh": "輸入&加總·閾值判斷",
+    "en": "Inputs & sum · threshold",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "3ec1ad342f95": {
+    "zh": "Hebb 1949 · 接線",
+    "en": "Hebb 1949 · Wiring",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "639e34eda3cb": {
+    "zh": "相關性學習雛形",
+    "en": "Early correlation learning",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "44dce75b76c3": {
+    "zh": "一起放電·連結變強",
+    "en": "Fire together · link strengthens",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e06f9114dc81": {
+    "zh": "ADALINE 1960 · 梯度",
+    "en": "ADALINE 1960 · Gradient",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "bd41ca44595f": {
+    "zh": "誤差地形梯度下降",
+    "en": "Gradient descent on error landscape",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e0b5de612283": {
+    "zh": "沿谷底走·持續微調",
+    "en": "Walk the valley floor · keep fine-tuning",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c72ee602f656": {
+    "zh": "邏輯通用·相關性·梯度——三步曲的例項化",
+    "en": "Universal logic · correlation · gradient: the three-step recipe in action",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "6183393c5f54": {
+    "zh": "邏輯開預設假設，Hebb 給學習哲學，梯度完成搜尋 · Logic sets hypothesis, Hebb inspires learning, gradient completes search.",
+    "en": "Logic gates preset the hypothesis, Hebb supplies the learning philosophy, and the gradient completes the search.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a02cd3ca5ce9": {
+    "zh": "連動關鍵",
+    "en": "How They Connect",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "094c6d575515": {
+    "zh": "M-P 證明神經可邏輯，Hebb 提出相關性學，ADALINE 以梯度讓搜尋可收斂。<span class=\"bilingual-en\">M-P proves logic, Hebb proposes correlation, ADALINE makes search convergent.</span>",
+    "en": "M-P proved that neurons can do logic, Hebb proposed correlation learning, and ADALINE used the gradient to make the search converge.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9313c7e22a0d": {
+    "zh": "S3 · 喚起行動 · ACTIVATE",
+    "en": "S3 · Call to Action · ACTIVATE",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "214df7528f16": {
+    "zh": "一張圖看懂全章 <span class=\"en\">One Map for the Chapter</span>",
+    "en": "The Whole Chapter in One Map",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a8387cbaf837": {
+    "zh": "元件",
+    "en": "Component",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "79a4181f4cf3": {
+    "zh": "白話",
+    "en": "Plain words",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fd09bbf0d64d": {
+    "zh": "公式 / 關鍵",
+    "en": "Formula / key idea",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20586159d639": {
+    "zh": "例項",
+    "en": "Example",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "57ce089f734a": {
+    "zh": "<b>假設 $ℋ$</b>",
+    "en": "<b>Hypothesis $ℋ$</b>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cc42317acacc": {
+    "zh": "餐廳選單",
+    "en": "The restaurant menu",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "276a66ce9121": {
+    "zh": "$ℋ$ 線性 / 神經網路",
+    "en": "$ℋ$ linear / neural network",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6b2e38cfafe4": {
+    "zh": "義大利麵 vs 分子料理",
+    "en": "Pasta vs molecular gastronomy",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bf9421fdc9fa": {
+    "zh": "<b>評分 $S(f)$</b>",
+    "en": "<b>Scoring $S(f)$</b>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "10062268e739": {
+    "zh": "毒舌評論家",
+    "en": "The sharp-tongued critic",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f14b6a6b5594": {
+    "zh": "損失越大分越高",
+    "en": "The bigger the loss, the higher the score",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cf07a19ff8c7": {
+    "zh": "差多 = 高損失",
+    "en": "Way off = high loss",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0a4379b26417": {
+    "zh": "<b>搜尋</b>",
+    "en": "<b>Search</b>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2aed184380d7": {
+    "zh": "摸黑找谷底",
+    "en": "Feeling for the valley floor in the dark",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8134997ecc0b": {
+    "zh": "梯度下降 $Δw=-η\\nabla Loss$",
+    "en": "Gradient descent $Δw=-η\\nabla Loss$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e5aa14cf28cc": {
+    "zh": "盲人摸象往下走",
+    "en": "Groping downhill like the blind men and the elephant",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "28f653dc1e63": {
+    "zh": "<b>監督學習</b>",
+    "en": "<b>Supervised learning</b>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f8870ca407e4": {
+    "zh": "有老師考卷",
+    "en": "A teacher with an answer key",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e1e0cf6cb96e": {
+    "zh": "分類格子 / 回歸數線",
+    "en": "Classification grid / regression number line",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "056f053f29b6": {
+    "zh": "貓/狗、房價",
+    "en": "Cat/dog, house prices",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3332a7818e8e": {
+    "zh": "<b>非監督</b>",
+    "en": "<b>Unsupervised</b>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0d04c57b40af": {
+    "zh": "自己找模式",
+    "en": "Find the patterns yourself",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "583eefe5be42": {
+    "zh": "分群 / 降維壓成紙片",
+    "en": "Clustering / dimensionality reduction squashes it into a sheet of paper",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "562f364bd07e": {
+    "zh": "尖耳貓 vs 垂耳狗",
+    "en": "Pointy-eared cats vs floppy-eared dogs",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f8cbcf0bf413": {
+    "zh": "$s\\to a \\to r$ 糖/電",
+    "en": "$s\\to a \\to r$ candy/shock",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4794b4f487b2": {
+    "zh": "收拾玩具得糖",
+    "en": "Tidy up the toys, get candy",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e4a0674d8eab": {
+    "zh": "核心公式",
+    "en": "Core Formula",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "daa0a392a7da": {
+    "zh": "在選單裡找最低分菜。<span class=\"bilingual-en\">Lowest scoring dish on the menu.</span>",
+    "en": "Find the lowest-scoring dish on the menu.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3d82c69323d2": {
+    "zh": "一句話復習",
+    "en": "One-Line Review",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d5c6c906917e": {
+    "zh": "假設決定能力上限、評分決定方向、搜尋決定能否到達。<span class=\"bilingual-en\">Hypothesis sets ceiling, scoring sets direction, search decides arrival.</span>",
+    "en": "The hypothesis sets the ceiling on capability, the scoring sets the direction, and the search decides whether you get there.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f9bd3bebe1b7": {
+    "zh": "本章金句 · Key Message",
+    "en": "Key Message of This Chapter",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b7151a6750f8": {
+    "zh": "「沒有地圖就進山，會迷路。」先畫出 $ℋ$ / $S$ / 搜尋的三角，再選武學派別。<span class=\"bilingual-en\">“No map, lost mountain.” Draw the triangle first, then pick the school.</span>",
+    "en": "“Head into the mountains without a map and you will get lost.” First draw the $ℋ$ / $S$ / search triangle, then choose your martial-arts school.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "eb945cb118e0": {
+    "zh": "S3 · 思考測驗 · CHECK",
+    "en": "S3 · Thinking Quiz · CHECK",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8f843c94153d": {
+    "zh": "思考測驗：你會點菜嗎？ <span class=\"en\">Quiz — Can You Order?</span>",
+    "en": "Thinking Quiz: Can You Order from the Menu?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a14f1d64f7fa": {
+    "zh": "Q1. $\\hat{f} := \\arg\\min_{f \\in \\mathcal{F}} S(f)$ 在講義中的白話是？<span class=\"bilingual-en\">White-box meaning?</span>",
+    "en": "Q1. What does $\\hat{f} := \\arg\\min_{f \\in \\mathcal{F}} S(f)$ mean in plain words, as the notes put it?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "aa24bbca82b7": {
+    "zh": "在選單裡找讓評分最高的菜<span class=\"bilingual-en\" style=\"font-size:16px;\">Highest score</span>",
+    "en": "Find the dish on the menu with the highest score",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "176645ac0f62": {
+    "zh": "在選單 $\\mathcal{F}$ 裡找讓評分 $S(f)$ 最低的模型<span class=\"bilingual-en\" style=\"font-size:16px;\">Lowest $S(f)$ in $\\mathcal{F}$</span>",
+    "en": "Find the model in the menu $\\mathcal{F}$ with the lowest score $S(f)$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2ebda0456ba5": {
+    "zh": "毒舌評論家不需要<span class=\"bilingual-en\" style=\"font-size:16px;\">No critic needed</span>",
+    "en": "The sharp-tongued critic isn't needed",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9bc9e45a11c7": {
+    "zh": "搜尋不用梯度下降<span class=\"bilingual-en\" style=\"font-size:16px;\">No gradient</span>",
+    "en": "The search doesn't need gradient descent",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b372e232051a": {
+    "zh": "Q2. 分類 vs 回歸的區別？<span class=\"bilingual-en\">Classify vs Regress?</span>",
+    "en": "Q2. What is the difference between classification and regression?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "43a84f2f9bcd": {
+    "zh": "分類·格子派（貓/狗），回歸·數線派（房價/分數）<span class=\"bilingual-en\" style=\"font-size:16px;\">Grid vs number line</span>",
+    "en": "Classification is the grid camp (cat/dog); regression is the number-line camp (house prices/scores)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "719b89033c67": {
+    "zh": "都是分類<span class=\"bilingual-en\" style=\"font-size:16px;\">Both classify</span>",
+    "en": "Both are classification",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9992b1552cec": {
+    "zh": "都是降維<span class=\"bilingual-en\" style=\"font-size:16px;\">Both reduce</span>",
+    "en": "Both are dimensionality reduction",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a681530ff3ad": {
+    "zh": "分類是非監督<span class=\"bilingual-en\" style=\"font-size:16px;\">Classify unsupervised</span>",
+    "en": "Classification is unsupervised",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dedef991a7d5": {
+    "zh": "Q3. 為何單層感知機不能解 XOR？<span class=\"bilingual-en\">Why not XOR?</span>",
+    "en": "Q3. Why can't a single-layer perceptron solve XOR?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "83e5c85b82a3": {
+    "zh": "因為是線性分類器，一條直線切不開對角四角<span class=\"bilingual-en\" style=\"font-size:16px;\">Line cannot cut diagonal</span>",
+    "en": "Because it is a linear classifier, and one straight line cannot separate the diagonal corners of the four",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e2e7400cb2ae": {
+    "zh": "因為沒有老師<span class=\"bilingual-en\" style=\"font-size:16px;\">No teacher</span>",
+    "en": "Because there is no teacher",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2b564dff3958": {
+    "zh": "因為是強化學習<span class=\"bilingual-en\" style=\"font-size:16px;\">RL</span>",
+    "en": "Because it is reinforcement learning",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fe1eac68a154": {
+    "zh": "因為資料太多<span class=\"bilingual-en\" style=\"font-size:16px;\">Too much data</span>",
+    "en": "Because there is too much data",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5245e2a2212f": {
+    "zh": "Q4. RL 的核心迴路是？<span class=\"bilingual-en\">RL loop?</span>",
+    "en": "Q4. What is the core loop of RL?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a013b7f8cd60": {
+    "zh": "$\\mathcal{F}$ 選單<span class=\"bilingual-en\" style=\"font-size:16px;\">Menu</span>",
+    "en": "$\\mathcal{F}$ Menu",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4aa078d438d5": {
+    "zh": "分群降維<span class=\"bilingual-en\" style=\"font-size:16px;\">Cluster reduce</span>",
+    "en": "Clustering and dimensionality reduction",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "81e3534bbc5d": {
+    "zh": "$s$狀態 $→$ $a$收拾 $→$ $r$糖果/電擊<span class=\"bilingual-en\" style=\"font-size:16px;\">$s\\to a\\to r$</span>",
+    "en": "$s$ state $→$ $a$ tidy up $→$ $r$ candy/shock",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e75f33b5880b": {
+    "zh": "S3 · 路線導引 · PATH",
+    "en": "S3 · Route Guide · PATH",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "66844f94e999": {
+    "zh": "下一步：帶地圖進山 <span class=\"en\">Next — Into the Mountain with Map</span>",
+    "en": "Next: Into the Mountains with a Map",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3ac5ff35484d": {
+    "zh": "STEP 1 · 1–2 週",
+    "en": "STEP 1 · Weeks 1–2",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c8010408a4b6": {
+    "zh": "用公式點菜 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Order with Formula</span>",
+    "en": "Order with the Formula",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3162a488c1d0": {
+    "zh": "對任務寫 $\\mathcal{F}$ / $S$ / 搜尋三角，判斷線性還是深度。<span class=\"bilingual-en\">Write triangle for any task.</span>",
+    "en": "For a task, write down its $\\mathcal{F}$ / $S$ / search triangle and decide whether it calls for a linear or a deep model.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "87381ac6be76": {
+    "zh": "STEP 2 · 2–3 週",
+    "en": "STEP 2 · Weeks 2–3",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2c1166e9c1cb": {
+    "zh": "選武學 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Pick School</span>",
+    "en": "Pick a School",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "90237b260b66": {
+    "zh": "有標籤選監督（分類/回歸），無標籤選非監督（分群/降維），互動選 RL。<span class=\"bilingual-en\">Label → supervised; no label → unsupervised; interact → RL.</span>",
+    "en": "Labels → supervised (classification/regression); no labels → unsupervised (clustering/dimensionality reduction); interaction → RL.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7ba1802c96a8": {
+    "zh": "STEP 3 · 3–4 週",
+    "en": "STEP 3 · Weeks 3–4",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "04311e73f971": {
+    "zh": "畫幾何 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Draw Geometry</span>",
+    "en": "Draw the Geometry",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "63a50724d879": {
+    "zh": "畫 AND/XOR 四點，測一條直線能否切開。<span class=\"bilingual-en\">Try one line on four corners.</span>",
+    "en": "Plot the four AND/XOR points and test whether one straight line can separate them.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "614c84fe4c62": {
+    "zh": "STEP 4 · 持續",
+    "en": "STEP 4 · Ongoing",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "49b8af9de604": {
+    "zh": "學梯度 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Learn Gradient</span>",
+    "en": "Learn the Gradient",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1c0cdab68438": {
+    "zh": "理解 $Δw=-η\\nabla Loss$ 為何能找到谷底。<span class=\"bilingual-en\">Why gradient finds valley.</span>",
+    "en": "Understand why $Δw=-η\\nabla Loss$ can find the valley floor.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6e0ed77c7795": {
+    "zh": "\n  SlidePro · 機器學習尋寶地圖 · 中英雙語自學版 · 冰晶簡約主題 · MathJax + Chart.js<br>\n  <span style=\"color:var(--text-low);\">Treasure Map — Bilingual Self-Study · Ice Crystal Theme</span>\n",
+    "en": "\n  SlidePro · Machine Learning Treasure Map · Chinese–English Bilingual Self-Study Edition · Ice Crystal Minimal Theme · MathJax + Chart.js\n",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
