@@ -243,20 +243,31 @@
     ],
     throwOnError: false, ignoredClasses: ['katex']
   };
+  // MathJax: nothing is typeset before releaseMathJax() (held pages), and every typeset is
+  // queued on MathJax.startup.promise, because overlapping typesets break on replaced nodes.
+  var mjReleased = !MJ_HELD;
   function mathJax() { return window.MathJax && window.MathJax.typesetPromise ? window.MathJax : null; }
+  function mjQueue(fn) {
+    var mj = mathJax();
+    if (!mj || !mjReleased) return;
+    var p = (mj.startup && mj.startup.promise) || Promise.resolve();
+    mj.startup.promise = p.then(fn).catch(function () { /* keep the queue alive */ });
+  }
   function renderMath(el) {
     if (window.renderMathInElement) { try { window.renderMathInElement(el, MATH_OPTS); } catch (e) { /* page renders later */ } }
   }
   function renderMathAll(els) {
     if (!els.length) return;
-    var mj = mathJax();
-    if (mj) { mj.typesetPromise(els).catch(function () { /* page typesets later */ }); return; }
+    if (window.MathJax && (window.MathJax.version || MJ_HELD)) {
+      mjQueue(function () { return window.MathJax.typesetPromise(els.filter(function (e) { return e.isConnected; })); });
+      return;
+    }
     els.forEach(renderMath);
   }
   // MathJax keeps a list of typeset items per node; drop them before replacing the content.
   function clearMath(el) {
     var mj = mathJax();
-    if (mj && mj.typesetClear && el.querySelector('mjx-container')) { try { mj.typesetClear([el]); } catch (e) { /* ignore */ } }
+    if (mj && mj.typesetClear && mjReleased) { try { mj.typesetClear([el]); } catch (e) { /* ignore */ } }
   }
   var MATH_RE = /\$|\\\(|\\\[/;
 
@@ -381,7 +392,8 @@
   }
   function walkConfig(o, visit, depth) {
     if (!o || depth > 10) return;
-    var plain = Array.isArray(o) || Object.getPrototypeOf(o) === Object.prototype;
+    var proto = Object.getPrototypeOf(o);                 // Chart.js builds scales with Object.create(null)
+    var plain = Array.isArray(o) || proto === Object.prototype || proto === null;
     if (!plain) return;
     Object.keys(o).forEach(function (k) {
       var v = o[k];
@@ -509,6 +521,7 @@
     document.documentElement.classList.remove('en-pending');
     if (!(opts && opts.noSave)) { try { localStorage.setItem(STORE_KEY, target); } catch (e) { /* storage blocked */ } }
     updateButton();
+    placeButton();              // the body may just have become visible (en-pending)
     redrawDemos();
   }
   var pendingLang = null;
@@ -546,6 +559,7 @@
   }
   // Decks have their own fixed controls in the top-right corner (theme switch): sit left of them.
   function placeButton() {
+    if (!btn) return;
     btn.style.right = '12px';
     for (var tries = 0; tries < 4; tries++) {
       var r = btn.getBoundingClientRect(), hit = null;
@@ -598,17 +612,18 @@
     buildUi();
     hookCharts();
     observer.observe(document.body, OBS_OPTS);
-    if (MJ_HELD) releaseMathJax();
     load();
   }
+  // Held MathJax pages: the first typeset runs once, after the initial language is applied.
   function releaseMathJax() {
-    var go = function () { window.MathJax.typesetPromise().catch(function () { /* ignore */ }); };
+    mjReleased = true;
+    var go = function () { return window.MathJax.typesetPromise().catch(function () { /* ignore */ }); };
     var mj = window.MathJax;
-    if (mj.version && mj.startup && mj.startup.promise) { mj.startup.promise.then(go); return; }
+    if (mj.version && mj.startup && mj.startup.promise) { mj.startup.promise = mj.startup.promise.then(go); return; }
     var prev = mj.startup.ready;
     mj.startup.ready = function () {
       if (prev) prev(); else window.MathJax.startup.defaultReady();
-      window.MathJax.startup.promise.then(go);
+      window.MathJax.startup.promise = window.MathJax.startup.promise.then(go);
     };
   }
 
@@ -671,6 +686,7 @@
     loaded = true; api.ready = true;
     if (saved === 'en' || pendingLang === 'en') setLang('en', { noSave: pendingLang !== 'en' });
     else document.documentElement.classList.remove('en-pending');
+    if (MJ_HELD) releaseMathJax();
   });
   }
 

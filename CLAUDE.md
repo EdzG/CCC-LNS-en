@@ -87,11 +87,17 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   extract.py updates `zh` and sets `"review": true`; re-check the inline tags in `en`, then delete
   the flag.
 - **Math is never translated.** Keep every `$...$`, `$$...$$`, `\(...\)` exactly as in the source.
+  One exception: Chinese inside a `\text{...}` argument (e.g. `\text{所有你願意考慮的函數}`) is
+  translated, and nothing else in that formula changes. In a bilingual block whose two halves
+  repeat a formula, the English keeps it once.
 - **MathJax pages (the decks).** MathJax (SVG) may typeset before a deferred script runs, so
   inject.py puts toggle.js *without* `defer` right after the inline `window.MathJax = {...}` config.
   toggle.js then sets `MathJax.startup.typeset = false`, captures on DOMContentLoaded, and starts the
-  typeset itself. Swaps call `MathJax.typesetClear([el])` before replacing content and
-  `MathJax.typesetPromise(els)` after. `mjx-container` is skipped like `.katex`.
+  typeset itself, once, after strings.json has loaded and the initial language is applied (a swap
+  during a running typeset leaves MathJax with detached nodes and every later typeset fails).
+  Swaps call `MathJax.typesetClear([el])` before replacing content, and every
+  `MathJax.typesetPromise(els)` is queued on `MathJax.startup.promise`. `mjx-container` is skipped
+  like `.katex`.
 - **Sections on decks:** pages without `data-kp` number the outermost `section, .section` elements
   1..n in document order; that number is the unit's `kp` (and `kpN` in coverage `--shots`).
 - **Chart.js:** chart strings are translated in the chart's config (`chart.config._config`, every
