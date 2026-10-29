@@ -1,0 +1,943 @@
+{
+  "_runtime": {
+    "exact": {
+      "分群無 $\\mathbf{y}$、自找模式；分類有 $\\mathbf{x}+\\mathbf{y}$ 監督。公式同形、靈魂不同。": "Clustering has no $\\mathbf{y}$ and finds patterns on its own; classification is supervised with $\\mathbf{x}+\\mathbf{y}$. Same form of formula, different soul.",
+      "同批點 $m=2$ 粗或 $m=5$ 細皆可；超參數 $m$ 是粒度旋鈕，無唯一正解。": "The same set of points works with a coarse $m=2$ or a fine $m=5$; the hyperparameter $m$ is a granularity knob, and there is no single correct answer.",
+      "演示推開類間（紅低藍高）並收攏類內（揉成 (3,3) 與 (16,16)），幾何分數即標籤。": "The demo pushes the classes apart (red low, blue high) and pulls each class together (squeezed into (3,3) and (16,16)); the geometric score is the label."
+    },
+    "patterns": [
+      {
+        "re": "^✓ 正確！ ([\\s\\S]*)$",
+        "en": "✓ Correct! $T1"
+      },
+      {
+        "re": "^✗ 再想想 — ([\\s\\S]*)$",
+        "en": "✗ Think again — $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "341cbae7d2bf": {
+    "zh": "CH · 章節索引",
+    "en": "CH · Chapter Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\" class=\"active\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\" class=\"active\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c308d3753c50": {
+    "zh": "<a href=\"#bigq\">大問句 · Big Question</a>",
+    "en": "<a href=\"#bigq\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f16e0ee536c3": {
+    "zh": "<a href=\"#night\">夜市比喻 · Night Market</a>",
+    "en": "<a href=\"#night\">Night Market Analogy</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "db427dc02f4b": {
+    "zh": "<a href=\"#supervised-recap\">監督回顧 · Recap</a>",
+    "en": "<a href=\"#supervised-recap\">Supervised Recap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e715fa1c33b3": {
+    "zh": "<a href=\"#clustering\">分群 · Clustering</a>",
+    "en": "<a href=\"#clustering\">Clustering</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8776cfaeb9e2": {
+    "zh": "<a href=\"#formula6\">公式 fθ · Eq.6</a>",
+    "en": "<a href=\"#formula6\">Formula fθ · Eq. 6</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b6223bb17d49": {
+    "zh": "<a href=\"#ambiguity\">模糊性 · Ambiguity</a>",
+    "en": "<a href=\"#ambiguity\">Ambiguity</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "fc339507bbca": {
+    "zh": "<a href=\"#granularity\">粒度演示 · Granularity</a>",
+    "en": "<a href=\"#granularity\">Granularity Demo</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "08eac208ef05": {
+    "zh": "<a href=\"#dimred\">降維 · Dimensionality Red.</a>",
+    "en": "<a href=\"#dimred\">Dimensionality Reduction</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2f46537b4d26": {
+    "zh": "<a href=\"#colorblind\">色盲幾何 · Color-blind</a>",
+    "en": "<a href=\"#colorblind\">Color-Blind Geometry</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f7017d2adc6c": {
+    "zh": "<a href=\"#geometry\">幾何視角 · Geometry</a>",
+    "en": "<a href=\"#geometry\">Geometric View</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3f98329ab1b5": {
+    "zh": "<a href=\"#arch\">架構圖 · Architecture</a>",
+    "en": "<a href=\"#arch\">Architecture Diagram</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7b228867d76a": {
+    "zh": "<a href=\"#summary\">總結 · Summary</a>",
+    "en": "<a href=\"#summary\">Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "76e0068f70f2": {
+    "zh": "<a href=\"#roadmap\">路線圖 · Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "818c31e9bcb8": {
+    "zh": "<a href=\"#quiz\">思考題 · Quiz</a>",
+    "en": "<a href=\"#quiz\">Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9f6ae24ab9c9": {
+    "zh": "<a href=\"#closing\">結語 · Closing</a>",
+    "en": "<a href=\"#closing\">Closing</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0c2b48fde6b2": {
+    "zh": "ML THEORY IV · 非監督式學習",
+    "en": "ML THEORY IV · Unsupervised Learning",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "6e3036e5ae68": {
+    "zh": "把大笨蛋變聰明的幾何遊戲<br><span style=\"color:#38bdf8; font-size:0.62em;\">Unsupervised: Find Structure Without Labels</span>",
+    "en": "A Geometry Game That Turns a Total Dummy into a Smart One<br><span style=\"color:#38bdf8; font-size:0.62em;\">Unsupervised: Find Structure Without Labels</span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "fd46e9646695": {
+    "zh": "分群與降維 — 沒有標籤，也能發現秩序",
+    "en": "Clustering and Dimensionality Reduction — Discovering Order Even Without Labels",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b2b01a0d832f": {
+    "zh": "<span>$f_\\theta: \\mathbb{R}^d\\to\\{\\ell_1..\\ell_m\\}$</span> · <span>$f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$</span> · <span>$p<d$< span=\"\"> · <span>找結構</span></d$<></span>",
+    "en": "<span>$f_\\theta: \\mathbb{R}^d\\to\\{\\ell_1..\\ell_m\\}$</span> · <span>$f_\\theta: \\mathbb{R}^d\\to\\mathbb{R}^p$</span> · <span>$p<d$< span=\"\"> · <span>find structure</span></d$<></span>",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "02f0763f8dbe": {
+    "zh": "Scroll Mode · 自學預習版 <span class=\"bilingual-en-inline\" style=\"color:#94a3b8;\">(Scroll · self-study)</span> ｜ 中英雙語 Bilingual",
+    "en": "Scroll Mode · Self-Study Preview Edition | Chinese–English Bilingual",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "df896393bc2d": {
+    "zh": "沒有標籤，<br>怎麼學？\n    <small>No labels — how to learn? <span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">Group by similarity; compress to see structure.</span></small>\n  ",
+    "en": "No labels —<br>how do we learn?\n    <small><span class=\"bilingual-en\" style=\"font-size:18px; margin-top:12px;\">Group by similarity; compress to see structure.</span></small>\n  ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "1a17f725c072": {
+    "zh": "把小白丟進士林夜市：不告訴名字，只靠「看起來像」分堆、看「壓扁後緊不緊」找規律。<span class=\"bilingual-en\">Drop novice in night market: group by look, compress by geometry.</span>",
+    "en": "Drop a total newbie into Shilin Night Market: don't tell them any names, and they sort things into piles purely by “looks alike” and find patterns by checking “how tight things are after being squashed flat.”",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "87fb6fb25b0b": {
+    "zh": "S1 · 引起動機",
+    "en": "S1 · Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "fd90ad403208": {
+    "zh": "士林夜市小白<span class=\"en\">Night Market Novice</span>",
+    "en": "The Shilin Night Market Newbie",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e64e21cb9050": {
+    "zh": "人情比喻 · Human Story",
+    "en": "Everyday Analogy",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7e41640fb903": {
+    "zh": "外國小白沒吃過台灣小吃，你只說：「把看起來、聞起來很像的放一組。」<span class=\"bilingual-en\">Foreign novice: “group by look &amp; smell”.</span>",
+    "en": "A foreign newbie has never tried Taiwanese street food, and all you tell them is: “Put the things that look and smell alike into one group.”",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b08969c704c5": {
+    "zh": "黑黏蒸籠組",
+    "en": "Black, sticky, steamer group",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "65a5f64803ca": {
+    "zh": "黑黑黏黏在蒸籠裡 → 一組（其實是豬血糕）<span class=\"bilingual-en\">Black sticky steamed → one pile.</span>",
+    "en": "Black, sticky, and sitting in a steamer → one group (it's actually pig's blood cake)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b9cd28517a51": {
+    "zh": "金黃油炸組",
+    "en": "Golden deep-fried group",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "935d7153e55f": {
+    "zh": "金黃雞排形 → 另一組（不知道叫什麼，但結構對了）<span class=\"bilingual-en\">Golden fried → another; structure found.</span>",
+    "en": "Shaped like a golden fried chicken cutlet → another group (no idea what it's called, but the structure is right)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a812a5e519b8": {
+    "zh": "小白不知道名字（<b>沒有標籤 no labels</b>），但已發現底層結構（<b>找結構 find structure</b>）。<span class=\"bilingual-en\">No names, yet structure emerges.</span>",
+    "en": "The newbie doesn't know the names (<b>no labels</b>), yet has already discovered the underlying structure (<b>find structure</b>).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c99c0abc75c0": {
+    "zh": "監督回顧 vs 非監督<span class=\"en\">Supervised vs Unsupervised</span>",
+    "en": "Supervised Recap vs. Unsupervised",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bd84e2dceefd": {
+    "zh": "監督 分類<span class=\"bilingual-en-inline\">(Supervised)</span>",
+    "en": "Supervised: classification",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "13d9ada860f0": {
+    "zh": "有 $\\mathbf{x}$ + $\\mathbf{y}$ 帶標籤考卷<span class=\"bilingual-en\">labeled pairs</span>",
+    "en": "Has $\\mathbf{x}$ + $\\mathbf{y}$: a labeled answer sheet",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "10fca7773db4": {
+    "zh": "老師指著答：這是拉麵<span class=\"bilingual-en\">teacher points</span>",
+    "en": "The teacher points and gives the answer: this is ramen",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6ce00be034ac": {
+    "zh": "學 $f_\\theta: \\mathbb{R}^d\\to\\{\\ell\\}$<span class=\"bilingual-en\">learn mapping</span>",
+    "en": "Learn $f_\\theta: \\mathbb{R}^d\\to\\{\\ell\\}$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ca579eb061db": {
+    "zh": "非監督 分群/降維<span class=\"bilingual-en-inline\">(Unsupervised)</span>",
+    "en": "Unsupervised: clustering / dimensionality reduction",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2523d0752a24": {
+    "zh": "只有 $\\mathbf{x}$ 無 $\\mathbf{y}$ 空白卷<span class=\"bilingual-en\">$\\mathbf{x}$ only</span>",
+    "en": "Only $\\mathbf{x}$, no $\\mathbf{y}$: a blank answer sheet",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e1a45453f348": {
+    "zh": "自己找模式<span class=\"bilingual-en\">find pattern alone</span>",
+    "en": "Find patterns on your own",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "59fb4d050038": {
+    "zh": "學 $f_\\theta$ 發現結構<span class=\"bilingual-en\">discover structure</span>",
+    "en": "Learn $f_\\theta$ to discover structure",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "190d584058bd": {
+    "zh": "S2 · 維持注意",
+    "en": "S2 · Keep Your Attention",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8684bb34c354": {
+    "zh": "分群：不告訴名字，自己組隊<span class=\"en\">Clustering: Group Without Names</span>",
+    "en": "Clustering: No Names Given, Form Your Own Teams",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7ae4f3bdc346": {
+    "zh": "打卡資料：$x_1$ 圖書館時數、$x_2$ 電動間時數，$d=2$，$\\mathbf{x}\\in\\mathbb{R}^2$。<span class=\"bilingual-en\">Check-in data: library vs gaming hrs, $\\mathbf{x}\\in\\mathbb{R}^2$.</span>",
+    "en": "Check-in data: $x_1$ = hours in the library, $x_2$ = hours in the arcade, $d=2$, $\\mathbf{x}\\in\\mathbb{R}^2$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aacf803b44ec": {
+    "zh": "$\\ell_1$ 學霸<span class=\"bilingual-en-inline\">(Grind)</span>",
+    "en": "$\\ell_1$ Bookworms",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6418ebb1ec12": {
+    "zh": "$x_1$ 大 $x_2$ 小<span class=\"bilingual-en\">$x_1$ high, $x_2$ low.</span>",
+    "en": "$x_1$ high, $x_2$ low",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "264630365736": {
+    "zh": "$\\ell_2$ 電競<span class=\"bilingual-en-inline\">(Gamer)</span>",
+    "en": "$\\ell_2$ Gamers",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "301c578a395a": {
+    "zh": "$x_1$ 小 $x_2$ 大<span class=\"bilingual-en\">$x_1$ low, $x_2$ high.</span>",
+    "en": "$x_1$ low, $x_2$ high",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cd5281e3505f": {
+    "zh": "$\\ell_3$ 普通<span class=\"bilingual-en-inline\">(Average)</span>",
+    "en": "$\\ell_3$ Average",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ba51d94e8dd4": {
+    "zh": "$x_1,x_2$ 皆一般<span class=\"bilingual-en\">Both moderate.</span>",
+    "en": "Both $x_1,x_2$ moderate",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3f4548cf6cce": {
+    "zh": "電腦把點撒在 $\\mathbb{R}^2$ 平面，自然看到三坨。<span class=\"bilingual-en\">Scatter in $\\mathbb{R}^2$ → three blobs emerge.</span>",
+    "en": "The computer scatters the points on the $\\mathbb{R}^2$ plane and naturally sees three blobs.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "44fc90c49f8a": {
+    "zh": "公式長一樣，靈魂不一樣<span class=\"en\">Same Formula, Different Soul — Eq.6</span>",
+    "en": "Same Formula, Different Soul",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "63d5881112d0": {
+    "zh": "分群公式 · Eq.6",
+    "en": "Clustering Formula · Eq.6",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "742fbb0b1948": {
+    "zh": "把每位同學分派到其中一個格子。<span class=\"bilingual-en\">Assign each $\\mathbf{x}$ to a box $\\ell_i$.</span>",
+    "en": "Assign each student to one of the boxes.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ba514c8f079a": {
+    "zh": "分類<span class=\"bilingual-en-inline\">(Classification)</span>",
+    "en": "Classification",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "691ba03ef488": {
+    "zh": "有 $\\mathbf{x}+\\mathbf{y}$ 帶標籤考卷來考試<span class=\"bilingual-en\">Labeled exam.</span>",
+    "en": "Takes the exam with a labeled answer sheet of $\\mathbf{x}+\\mathbf{y}$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9d23ea8c6df8": {
+    "zh": "分群<span class=\"bilingual-en-inline\">(Clustering)</span>",
+    "en": "Clustering",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "854aabca9c9a": {
+    "zh": "只有 $\\mathbf{x}$ 空白卷，自己找模式<span class=\"bilingual-en\">Blank paper, self-find.</span>",
+    "en": "Has only a blank sheet of $\\mathbf{x}$ and finds the patterns on its own",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3f47396f12e0": {
+    "zh": "關鍵差異 · Key",
+    "en": "Key Difference",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3839e9eaff6c": {
+    "zh": "公式字面相同，差在「有無 $\\mathbf{y}$ 監督」。<span class=\"bilingual-en\">Formula same; supervision differs.</span>",
+    "en": "The formulas are literally the same; the difference is “whether there is $\\mathbf{y}$ supervision”.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1879cb796172": {
+    "zh": "分群的模糊性：你要分多細？<span class=\"en\">Ambiguity: How Fine?</span>",
+    "en": "The Ambiguity of Clustering: How Fine Do You Want It?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bd93775f5f67": {
+    "zh": "答案不唯一 · Not Unique",
+    "en": "The Answer Is Not Unique",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c2e366609dec": {
+    "zh": "$m=3$ 很好，但電競群可否再分 FPS vs RPG？學霸可否與普通人合併？<span class=\"bilingual-en\">Split gamers into FPS/RPG? Merge grind with average?</span>",
+    "en": "$m=3$ works well, but could the gamer cluster be split further into FPS vs RPG? Could the bookworms be merged with the average students?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d4488196bb28": {
+    "zh": "大群可細分",
+    "en": "Big clusters can be split",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "693e5ee4de85": {
+    "zh": "依滑鼠點擊頻率、鍵盤操作數再切<span class=\"bilingual-en\">Split by click rate, keystrokes.</span>",
+    "en": "Split further by mouse-click rate and number of keystrokes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ae26b61c5c23": {
+    "zh": "小群可合併",
+    "en": "Small clusters can be merged",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "675128bef7e9": {
+    "zh": "粒度（granularity）由你決定：$m=2$ 粗、$m=3$ 中、$m=5$ 細<span class=\"bilingual-en\">$m=2$ coarse, $m=5$ fine.</span>",
+    "en": "You decide the granularity: $m=2$ coarse, $m=3$ medium, $m=5$ fine",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d9cafa91ba8f": {
+    "zh": "超參數 $m$ 是「你要看多細」的旋鈕。<span class=\"bilingual-en\">Hyperparameter $m$ = granularity knob.</span>",
+    "en": "The hyperparameter $m$ is the “how fine do you want to look” knob.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5ae59ec720a6": {
+    "zh": "粒度演示：$m=2$ vs $m=5$<span class=\"en\">Granularity Demo</span>",
+    "en": "Granularity Demo: $m=2$ vs $m=5$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4335d4954686": {
+    "zh": "Fig 1 · 同一批點，$m=2$ 粗分 vs $m=5$ 細分 — 答案不唯一 <span class=\"bilingual-en\" style=\"font-size:13px;\">(same data, different $m$)</span>",
+    "en": "Fig 1 · The same set of points, $m=2$ coarse split vs $m=5$ fine split: the answer is not unique",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fddc17108a4a": {
+    "zh": "怎麼讀 · How to Read",
+    "en": "How to Read",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "85c8c7a18e9f": {
+    "zh": "左：兩大坨橢圓；右：五小坨，各 X 為簇中心。粗細取決於任務。<span class=\"bilingual-en\">Left: 2 ellipses; right: 5 mini-clusters.</span>",
+    "en": "Left: two big elliptical blobs; right: five small blobs, each X is a cluster center. How coarse or fine to go depends on the task.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e5445edf618a": {
+    "zh": "降維：把高維色盲變看得懂<span class=\"en\">Dimensionality Reduction: Make Color-blind See</span>",
+    "en": "Dimensionality Reduction: Making the Color-Blind See",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fe016fd74fff": {
+    "zh": "比喻 · Analogy",
+    "en": "Analogy",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fffa18fce88c": {
+    "zh": "電腦色盲只懂黑白灰度，紅藍球在它眼裡都是灰點。<span class=\"bilingual-en\">Computer sees grayscale only; red &amp; blue both gray.</span>",
+    "en": "A color-blind computer only understands black-and-white grayscale; to its eyes, red and blue balls are both gray dots.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7637ace57566": {
+    "zh": "降維公式 · Eq.7",
+    "en": "Dimensionality Reduction Formula · Eq.7",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fddd9b303795": {
+    "zh": "把看不懂的大維度向量，壓成看得懂的小維度嵌入。<span class=\"bilingual-en\">Compress big vector to small embedding.</span>",
+    "en": "Squeeze a large-dimensional vector you can't make sense of into a small-dimensional embedding you can.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "cb82ff8e52fc": {
+    "zh": "翻譯：「丟 $\\mathbb{R}^d$ 原料，映射成 $\\mathbb{R}^p$ 果汁，$p<d$」。<span class=\"bilingual-en\">High-dim in, low-dim out.</d$」。<span>",
+    "en": "In plain words: “Throw in $\\mathbb{R}^d$ raw ingredients, map them into $\\mathbb{R}^p$ juice, $p&lt;d$”.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "93607486eb3e": {
+    "zh": "降維幾何演示：拉開、揉緊<span class=\"en\">Geometric Demo: Push Apart, Tighten</span>",
+    "en": "A Geometric Demo of Dimensionality Reduction: Push Apart, Pull Together",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e0eb88d010f3": {
+    "zh": "利用監督資訊輔助（式 7 與式 4 的演示），手動對點雲做兩件事。<span class=\"bilingual-en\">With supervision (Eq.7/4 demo): two operations.</span>",
+    "en": "With the help of supervision information (a demo of Eq. 7 and Eq. 4), we do two things to the point cloud by hand.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "281690c194ea": {
+    "zh": "推開類間",
+    "en": "Push the classes apart",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ba71bbf115b9": {
+    "zh": "把混在一起的灰點雲拉開：紅低、藍高<span class=\"bilingual-en\">Pull classes apart.</span>",
+    "en": "Pull apart the mixed-up gray point cloud: red low, blue high",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0522ad834f2b": {
+    "zh": "收攏類內",
+    "en": "Pull each class together",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4d1eedb55b2e": {
+    "zh": "零散的紅/藍各揉成緊密一小團：(3,3) 與 (16,16)<span class=\"bilingual-en\">Tighten within class.</span>",
+    "en": "Squeeze the scattered red and blue points each into one tight little clump: (3,3) and (16,16)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2f935112b257": {
+    "zh": "色盲也能分",
+    "en": "Even a color-blind person can tell them apart",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f479818f32fb": {
+    "zh": "分數 $y=5$ 藍 vs $16$ 暖，幾何即標籤<span class=\"bilingual-en\">Score 5 vs 16 = label by geometry.</span>",
+    "en": "Score $y=5$ blue vs. $16$ warm: the geometry is the label",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a612515edbd3": {
+    "zh": "結果 · Result",
+    "en": "Result",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cc19705ccb9e": {
+    "zh": "原本在 $[5,10]$ 灰度散佈的 10 顆球，壓成低溫 5 分與高溫 16 分兩團。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">10 gray balls in [5,10] → tight 5 vs 16.</span>",
+    "en": "The 10 balls that were originally spread in gray tones over $[5,10]$ are squeezed into two clumps: a cool one at a score of 5 and a warm one at a score of 16.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "20f7f42ccbb2": {
+    "zh": "非監督核心幾何映射可視化<span class=\"en\">Core Geometric Mapping — Visual</span>",
+    "en": "Visualizing the Core Geometric Mappings of Unsupervised Learning",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "69f80cdb23e8": {
+    "zh": "Fig 2 · 左：分群模糊性（不同 $m$）；右：監督式降維（類間拉開、類內收攏） <span class=\"bilingual-en\" style=\"font-size:13px;\">(Left: clustering $m$; Right: supervised DR)</span>",
+    "en": "Fig 2 · Left: the ambiguity of clustering (different $m$); right: supervised dimensionality reduction (classes pushed apart, each class pulled together)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "57f64c1e0579": {
+    "zh": "左圖怎麼讀",
+    "en": "How to read the left plot",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4d3e29d51ace": {
+    "zh": "虛線為 coarse 切割 $x_1+x_2=0$，X 為簇中心，點色為投影分數。<span class=\"bilingual-en\">Dashed = coarse cut; X = centers; color = score.</span>",
+    "en": "The dashed line is the coarse cut $x_1+x_2=0$, the X's are the cluster centers, and the point colors are the projection scores.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e6f06eb3c47c": {
+    "zh": "右圖怎麼讀",
+    "en": "How to read the right plot",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5cc1f7c811cb": {
+    "zh": "金線為權重方向 $s=x_1+x_2$，青虛線為正交投影路徑，暖/藍為遠/近。<span class=\"bilingual-en\">Gold = weight line; cyan = projection.</span>",
+    "en": "The gold line is the weight direction $s=x_1+x_2$, the cyan dashed lines are the orthogonal projection paths, and warm/blue mean far/near.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3d5a32b9d4b6": {
+    "zh": "非監督式核心架構：找模式、找結構<span class=\"en\">Architecture: Find Patterns</span>",
+    "en": "The Core Architecture of Unsupervised Learning: Finding Patterns, Finding Structure",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b267861bed7a": {
+    "zh": "非監督式學習核心架構：找模式、找結構",
+    "en": "Core architecture of unsupervised learning: find patterns, find structure",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "c021d82ee38e": {
+    "zh": "無標籤資料輸入 (原料) → 發現隱含模式與低維結構",
+    "en": "Unlabeled data in (raw material) → discover hidden patterns and low-dim structure",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "42953313e2a3": {
+    "zh": "數據集 X ∈ R^d",
+    "en": "Dataset X ∈ R^d",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "fc1a90e29e0a": {
+    "zh": "包含 n 個無標籤樣本",
+    "en": "Contains n unlabeled samples",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "0e7c417992f6": {
+    "zh": "包含 d 個高維特徵",
+    "en": "Contains d high-dim features",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "f6c975a30949": {
+    "zh": "發現",
+    "en": "Discover",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "bc5327630a00": {
+    "zh": "發現結構 f_θ (式 5/7)",
+    "en": "Discover structure f_θ (Eq. 5/7)",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "c4cada284233": {
+    "zh": "在無標籤資料 X 中發現模式",
+    "en": "Find patterns in unlabeled data X",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "d3a5dff3131d": {
+    "zh": "分群模式發現 (式 5/6)",
+    "en": "Clustering: pattern discovery (Eq. 5/6)",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "2f43cbd670be": {
+    "zh": "同一批點，不同簇數 m 切法",
+    "en": "Same points, cut with different cluster counts m",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "227fe537c226": {
+    "zh": "降維模式發現 (式 7)",
+    "en": "Dim. reduction: pattern discovery (Eq. 7)",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "518f8607327e": {
+    "zh": "高維點雲 → 低維流形嵌入 ( p < d )",
+    "en": "High-dim point cloud → low-dim manifold embedding ( p < d )",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "310ecfe988f8": {
+    "zh": "輸出",
+    "en": "Output",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "0363380665a2": {
+    "zh": "目標輸出 y (式 5/7)",
+    "en": "Target output y (Eq. 5/7)",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "141e29398fa8": {
+    "zh": "發現的隱含結構資訊",
+    "en": "The hidden structure discovered",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "e2514475cf76": {
+    "zh": "分群標籤 ∈ {ℓ₁..ℓm}",
+    "en": "Cluster labels ∈ {ℓ₁..ℓm}",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "744d195bca81": {
+    "zh": "使用者自訂群數 m",
+    "en": "User-chosen number of clusters m",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "c7036782517a": {
+    "zh": "嵌入向量 ∈ R^p",
+    "en": "Embedding vector ∈ R^p",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "1bd967badb9b": {
+    "zh": "降噪、視覺化 (p=2/3)、特徵萃取",
+    "en": "Denoising, visualization (p=2/3), feature extraction",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "5598a8ed1b3b": {
+    "zh": "色階 / 分數漸層 ( p=1 演示 )",
+    "en": "Color scale / score gradient ( p=1 demo )",
+    "kp": 12,
+    "ctx": "svg"
+  },
+  "182a357889c9": {
+    "zh": "Fig 3 · 非監督核心架構：找模式、找結構（講義 SVG 原圖重繪）<span class=\"bilingual-en\" style=\"font-size:13px;\">(input → discover → output; clustering vs reduction)</span>",
+    "en": "Fig 3 · The core architecture of unsupervised learning: finding patterns, finding structure (a redraw of the original SVG from the lecture notes)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "71e2fbc30b8e": {
+    "zh": "S3 · 喚起行動",
+    "en": "S3 · Call to Action",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "428d6fbbe87c": {
+    "zh": "總結：混亂中發現秩序<span class=\"en\">Summary — Find Order in Chaos</span>",
+    "en": "Summary: Discovering Order in Chaos",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f761404608c0": {
+    "zh": "分群 Clustering<span class=\"bilingual-en-inline\">(Eq.6)</span>",
+    "en": "Clustering<span class=\"bilingual-en-inline\">(Eq.6)</span>",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "be8cde6f45de": {
+    "zh": "士林夜市組隊：無標籤靠特徵分粗/中/細，$m$ 由粒度決定。<span class=\"bilingual-en\">Group by similarity; $m$ = granularity.</span>",
+    "en": "Forming teams at the Shilin Night Market: with no labels, group by features into coarse/medium/fine groups; $m$ is set by the granularity.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ffda38709ace": {
+    "zh": "降維 Reduction<span class=\"bilingual-en-inline\">(Eq.7)</span>",
+    "en": "Dimensionality Reduction<span class=\"bilingual-en-inline\">(Eq.7)</span>",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7b89fe2dc431": {
+    "zh": "高維壓扁成緊密低維嵌入，色盲也能分顏色。<span class=\"bilingual-en\">Compress high-dim → tight low-dim embedding.</span>",
+    "en": "Squash high dimensions into a tight low-dimensional embedding, so even a color-blind person can tell the colors apart.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fc81246a2ced": {
+    "zh": "一句話 · One-liner",
+    "en": "One-liner",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "dd6731e8e3c8": {
+    "zh": "非監督 = 不靠老師指答案，靠幾何讓秩序自己浮現。<span class=\"bilingual-en\" style=\"color:#cbd5e0;\">No teacher; geometry reveals order.</span>",
+    "en": "Unsupervised = no teacher pointing out the answers; geometry lets the order emerge on its own.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "eb81d7a2f9ab": {
+    "zh": "下一步路線圖<span class=\"en\">Roadmap — Where to next?</span>",
+    "en": "Next Steps: The Roadmap",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "539193eac092": {
+    "zh": "K-means 實戰 <span class=\"bilingual-en-inline\">(K-means)</span>",
+    "en": "K-means in practice",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "683f3945a386": {
+    "zh": "如何迭代找簇中心？ Lloyd 算法收斂到哪？<span class=\"bilingual-en\">Iterative centers; where does it converge?</span>",
+    "en": "How do we find the cluster centers iteratively? Where does Lloyd's algorithm converge to?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "518ac0d0747b": {
+    "zh": "流形與嵌入 <span class=\"bilingual-en-inline\">(Manifold &amp; Embedding)</span>",
+    "en": "Manifolds and embeddings",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "142866120b68": {
+    "zh": "PCA / t-SNE / UMAP 各自保留什麼結構？<span class=\"bilingual-en\">What structure is preserved?</span>",
+    "en": "What structure do PCA / t-SNE / UMAP each preserve?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "78d067e100cb": {
+    "zh": "評估無標籤 <span class=\"bilingual-en-inline\">(Evaluate Without Labels)</span>",
+    "en": "Evaluating without labels",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "5fa49df76a86": {
+    "zh": "沒有 $y$ 怎麼評好壞？輪廓係數、重建誤差。<span class=\"bilingual-en\">Silhouette, reconstruction error.</span>",
+    "en": "Without $y$, how do we judge good or bad? Silhouette coefficient, reconstruction error.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ad85347a72d2": {
+    "zh": "思考題 · 提取練習<span class=\"en\">Reflection — Test Your Understanding</span>",
+    "en": "Reflection Questions · Retrieval Practice",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "e4b328f3e3d4": {
+    "zh": "Q1. 分群與分類公式同為 $f:\\mathbb{R}^d\\to\\{\\ell\\}$，最大差別是？<span class=\"bilingual-en\">Difference?</span>",
+    "en": "Q1. Clustering and classification share the same formula $f:\\mathbb{R}^d\\to\\{\\ell\\}$. What is the biggest difference?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "99d91f02309d": {
+    "zh": "A. 分群有標籤、分類沒有 <span class=\"bilingual-en-inline\">(swapped)</span>",
+    "en": "A. Clustering has labels, classification does not",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "efbf445fdd8f": {
+    "zh": "B. 分群無 $\\mathbf{y}$ 須自找模式；分類有 $\\mathbf{x}+\\mathbf{y}$ 帶標籤 <span class=\"bilingual-en-inline\">(clustering no $\\mathbf{y}$; classification labeled)</span>",
+    "en": "B. Clustering has no $\\mathbf{y}$ and must find patterns on its own; classification has $\\mathbf{x}+\\mathbf{y}$, i.e. labels",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "58814104885a": {
+    "zh": "C. 兩者完全相同 <span class=\"bilingual-en-inline\">(identical)</span>",
+    "en": "C. The two are exactly the same",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "2a1591a3b227": {
+    "zh": "D. 分群只能分 2 類 <span class=\"bilingual-en-inline\">(only 2)</span>",
+    "en": "D. Clustering can only form 2 classes",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "45a63469e860": {
+    "zh": "Q2. 分群的「模糊性」指什麼？$m=2$ 與 $m=5$ 哪個對？<span class=\"bilingual-en\">Ambiguity?</span>",
+    "en": "Q2. What does the “ambiguity” of clustering mean? Which is right, $m=2$ or $m=5$?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "74be9180b124": {
+    "zh": "A. 模糊指算錯 <span class=\"bilingual-en-inline\">(miscalc.)</span>",
+    "en": "A. Ambiguity means a miscalculation",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "692ad3e8b84d": {
+    "zh": "B. $m=5$ 一定優於 $m=2$ <span class=\"bilingual-en-inline\">(5 always better)</span>",
+    "en": "B. $m=5$ is always better than $m=2$",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "dcd099972ff4": {
+    "zh": "C. 同批點可粗分 $m=2$ 也可細分 $m=5$，粒度 $m$ 由任務決定，無唯一正解 <span class=\"bilingual-en-inline\">(same data, $m$ = granularity)</span>",
+    "en": "C. The same points can be split coarsely with $m=2$ or finely with $m=5$; the granularity $m$ is set by the task, and there is no single correct answer",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "e2fb0ae6422c": {
+    "zh": "D. $m$ 不能改 <span class=\"bilingual-en-inline\">(fixed)</span>",
+    "en": "D. $m$ cannot be changed",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "369d13d6c5e3": {
+    "zh": "Q3. 降維 $f:\\mathbb{R}^d\\to\\mathbb{R}^p$（$p<d$）在演示中如何讓色盲分顏色？<span class=\"bilingual-en\">How does DR help color-blind?</d$）在演示中如何讓色盲分顏色？<span>",
+    "en": "Q3. In the demo, how does dimensionality reduction $f:\\mathbb{R}^d\\to\\mathbb{R}^p$ ($p&lt;d$) let a color-blind person tell the colors apart?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "3a0a50942c2b": {
+    "zh": "A. 推開類間、收攏類內 → 低分 3.5 vs 高分 16.0 兩緊密團 <span class=\"bilingual-en-inline\">(push apart + tighten)</span>",
+    "en": "A. Push the classes apart and pull each class together → two tight clumps, a low score of 3.5 vs. a high score of 16.0",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "c4ff99210c47": {
+    "zh": "B. 隨機打散 <span class=\"bilingual-en-inline\">(random scatter)</span>",
+    "en": "B. Scatter the points randomly",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "a473e4072d74": {
+    "zh": "C. 只放大噪聲 <span class=\"bilingual-en-inline\">(amplify noise)</span>",
+    "en": "C. Only amplify the noise",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "83e8cce1feab": {
+    "zh": "D. 把 $d$ 變大 <span class=\"bilingual-en-inline\">(increase $d$)</span>",
+    "en": "D. Make $d$ larger",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "f1398609db2a": {
+    "zh": "沒有老師，<br>也能找到秩序。\n    <small>No teacher, still order. <span class=\"bilingual-en\" style=\"font-size:18px;\">Cluster by closeness, reduce to reveal shape.</span></small>\n  ",
+    "en": "Even without a teacher,<br>you can find order.\n    <small><span class=\"bilingual-en\" style=\"font-size:18px;\">Cluster by closeness, reduce to reveal shape.</span></small>\n  ",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "b5b64c1a89bb": {
+    "zh": "$f:\\mathbb{R}^d\\to\\{\\ell\\}$ 分群 vs $f:\\mathbb{R}^d\\to\\mathbb{R}^p$ 降維<span class=\"bilingual-en\">Clustering vs reduction — two faces of unsupervised.</span>",
+    "en": "$f:\\mathbb{R}^d\\to\\{\\ell\\}$ clustering vs. $f:\\mathbb{R}^d\\to\\mathbb{R}^p$ dimensionality reduction",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "a3cf332a434b": {
+    "zh": "冰晶簡約亮色主題 · 與前三講一致 <span class=\"bilingual-en-inline\">(ice-crystal light, full-width)</span> ｜ 單檔 HTML · 離線可播",
+    "en": "Ice-crystal minimalist light theme · consistent with the previous three lectures | single-file HTML · plays offline",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "aa9c2101bc13": {
+    "zh": "公式由 MathJax 3 渲染 · 幾何由 matplotlib 精準數據繪製（DPI 200, 16:9）並 base64 內嵌",
+    "en": "Formulas rendered by MathJax 3 · geometry plotted with matplotlib from exact data (DPI 200, 16:9) and embedded as base64",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Chapter index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
