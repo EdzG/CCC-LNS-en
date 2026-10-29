@@ -56,7 +56,7 @@
   var BLOCK = /^(P|LI|H[1-6]|TD|TH|FIGCAPTION|DIV|SECTION|UL|OL|DL|DT|DD|TABLE|THEAD|TBODY|TFOOT|TR|FIGURE|DETAILS|SUMMARY|PRE|BLOCKQUOTE|NAV|HEADER|FOOTER|MAIN|ARTICLE|ASIDE|FORM|FIELDSET|LEGEND|OPTION|OPTGROUP|HR|BODY)$/;
   var OPAQUE = /^(INPUT|SELECT|TEXTAREA|BUTTON|CANVAS|SVG|IFRAME|VIDEO|AUDIO|IMG|OBJECT|MATH)$/;
   var SKIP_TAG = /^(SCRIPT|STYLE|NOSCRIPT|TEMPLATE)$/;
-  var SKIP_SEL = '.katex, .ai-illustration, #en-toggle';
+  var SKIP_SEL = '.katex, .ai-illustration, #en-toggle, [data-en-skip]';
   var BOUNDARY_SEL = 'p,li,h1,h2,h3,h4,h5,h6,td,th,figcaption,div,section,ul,ol,dl,dt,dd,table,tr,figure,details,summary,pre,blockquote,nav,header,footer,main,article,aside,form,fieldset,legend,option,hr,' +
     'input,select,textarea,button,canvas,svg,iframe,video,audio,img,object,math,script,style,noscript,template';
   var ATTRS = ['title', 'alt', 'placeholder', 'aria-label'];
@@ -132,7 +132,7 @@
     var els = Array.prototype.slice.call(root.querySelectorAll(sel));
     if (root.matches && root.matches(sel)) els.unshift(root);
     els.forEach(function (el) {
-      if (el.closest('script,style,.ai-illustration,#en-toggle')) return;
+      if (el.closest('script,style,.ai-illustration,#en-toggle,[data-en-skip]')) return;
       ATTRS.forEach(function (a) {
         var v = el.getAttribute(a);
         if (v && hasHan(v)) {
@@ -290,7 +290,7 @@
   }
   function ignorable(node) {
     var el = node.nodeType === 1 ? node : node.parentElement;
-    return !el || !!el.closest('.katex, .ai-illustration, #en-toggle, script, style');
+    return !el || !!el.closest('.katex, .ai-illustration, #en-toggle, [data-en-skip], script, style');
   }
   function translateNode(n) {
     if (ignorable(n) || insideUnit(n)) return;
