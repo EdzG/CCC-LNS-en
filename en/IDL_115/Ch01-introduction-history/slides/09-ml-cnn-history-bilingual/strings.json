@@ -1,0 +1,1130 @@
+{
+  "_runtime": {
+    "exact": {
+      "✔ 正確！攪平讓二維相鄰距離遠。": "✔ Correct! Flattening pushes pixels that are adjacent in 2D far apart.",
+      "✔ 正確！2分高分命中橫線。": "✔ Correct! A high score of 2 means a hit on the horizontal line.",
+      "✔ 正確！ReLU + GPU + Dropout。": "✔ Correct! ReLU + GPU + Dropout.",
+      "✔ 正確！對抗 vs 加噪去噪。": "✔ Correct! Adversarial vs. add-noise-then-denoise.",
+      "✗ 再想想：關鍵是空間關係。": "✗ Think again: the key is spatial relationships.",
+      "✗ 提示：0×-1+0×-1+1×1+1×1=2。": "✗ Hint: 0×-1+0×-1+1×1+1×1=2.",
+      "✗ 提示：2012 全明星三武功。": "✗ Hint: the three signature moves of the 2012 all-star team.",
+      "✗ 提示：GAN 互傷害、擴散雪花還原。": "✗ Hint: GAN networks hurt each other; diffusion restores from snow."
+    },
+    "patterns": [
+      {
+        "re": "^高分格 (\\d+)/9 亮起$",
+        "en": "$1/9 high-score cells lit"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "b8bb31e17014": {
+    "zh": "<a href=\"#cover\">封面</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d80673983057": {
+    "zh": "<a href=\"#q1\">靈魂拷問</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "af2a4c6e1e89": {
+    "zh": "<a href=\"#pillars\">四站史</a>",
+    "en": "<a href=\"#pillars\">Four Stops</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "fe8e0d2e1934": {
+    "zh": "<a href=\"#cnn\">CNN 誕生</a>",
+    "en": "<a href=\"#cnn\">Birth of CNN</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "60641c20c3b2": {
+    "zh": "<a href=\"#conv\">卷積計算</a>",
+    "en": "<a href=\"#conv\">Convolution</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "571ef254351d": {
+    "zh": "<a href=\"#winter\">冬眠 SVM</a>",
+    "en": "<a href=\"#winter\">Winter &amp; SVM</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "069eae50d3e5": {
+    "zh": "<a href=\"#revival\">2006 復興</a>",
+    "en": "<a href=\"#revival\">2006 Revival</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c21503c492d0": {
+    "zh": "<a href=\"#generative\">生成式</a>",
+    "en": "<a href=\"#generative\">Generative</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "dde5a6ab93e3": {
+    "zh": "<a href=\"#timeline\">全景時譜</a>",
+    "en": "<a href=\"#timeline\">Full Timeline</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3142636d1b65": {
+    "zh": "<a href=\"#quiz\">思考測驗</a>",
+    "en": "<a href=\"#quiz\">Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ef615c0d42ac": {
+    "zh": "<a href=\"#roadmap\">學習路線</a>",
+    "en": "<a href=\"#roadmap\">Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f1de28cc5915": {
+    "zh": "從攤平的大笨蛋<br>到雪花還原的生成流形",
+    "en": "From the Big Dummy That Flattens<br>to the Generative Manifold That Restores Snowflakes",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "04e718d05e91": {
+    "zh": "1980 別攤平 → 冬眠 → 2006 逐層喚醒 → 2012 全明星 → 生成對抗與擴散 <span class=\"bilingual-en\" style=\"color:#cbd5e1;font-size:18px;display:inline;\">Don’t flatten → winter → layer-wise awakening → all-star → GAN &amp; Diffusion.</span>",
+    "en": "1980 don’t flatten → winter → 2006 layer-by-layer awakening → 2012 all-stars → adversarial generation and diffusion",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "afc490816a6e": {
+    "zh": "▾ SCROLL TO EXPLORE · 長頁自學模式",
+    "en": "▾ SCROLL TO EXPLORE · Long-Page Self-Study Mode",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aedc2ad9d89c": {
+    "zh": "BIG QUESTION · 靈魂拷問",
+    "en": "BIG QUESTION",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "0bd41bb1bb43": {
+    "zh": "為何要「攤平」會毀掉一張圖？<br>又為何一片雪花能變回名畫？<small>Why does flattening destroy an image? How can snow become a masterpiece?</small>",
+    "en": "Why does “flattening” ruin an image?<br>And why can a flurry of snow turn back into a masterpiece?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "41f52207441e": {
+    "zh": "前者在幾何，後者在機率——CNN 守住二維，擴散學會逆向去噪。<span class=\"bilingual-en\">Former is geometry, latter is probability — CNN keeps 2D, diffusion learns denoising.</span>",
+    "en": "The first is about geometry, the second about probability: CNNs preserve the 2D structure, and diffusion learns to reverse the noise (denoising).",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a656e7aefe28": {
+    "zh": "S1 · 引起動機 · MOTIVATE",
+    "en": "S1 · MOTIVATE",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "56880672fd4e": {
+    "zh": "四站時光機 <span class=\"en\">Four Stops — Flatten → Winter → Revival → Generation</span>",
+    "en": "The Four-Stop Time Machine",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7a7ea398be20": {
+    "zh": "攤平破壞結構 → 冬眠（梯度消失+無算力）→ 逐層無監督喚醒 → 全明星引爆 → 生成學會畫畫。<span class=\"bilingual-en\">Flatten breaks → winter (vanishing+no compute) → layer-wise awakening → all-star → generative painting.</span>",
+    "en": "Flattening destroys structure → winter (vanishing gradients + no compute) → layer-by-layer unsupervised awakening → the all-stars ignite it → generative models learn to paint.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "33e2a73b8af1": {
+    "zh": "CNN 誕生 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Neocognitron → LeNet-5</span>",
+    "en": "Birth of CNN <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Neocognitron → LeNet-5</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "17fc0dec8d82": {
+    "zh": "局部連結 + 權重共享，保二維、平移不變、參數銳減。<span class=\"bilingual-en\">Local + sharing → keep 2D, translation invariant.</span>",
+    "en": "Local connectivity + weight sharing: keeps the 2D structure, gives translation invariance, and slashes the parameter count.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6317d2245b2c": {
+    "zh": "冬眠 SVM <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Kernel Wins</span>",
+    "en": "Winter &amp; SVM <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Kernel Wins</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "fd617708095e": {
+    "zh": "梯度消失 + 無算力資料；SVM 以高維映射一刀切成主流。<span class=\"bilingual-en\">Vanishing + no data; SVM cuts in high-D.</span>",
+    "en": "Vanishing gradients + no compute or data; SVMs, which separate the classes with one clean cut after a high-dimensional mapping, become the mainstream.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "18f61181d014": {
+    "zh": "復興全明星 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">DBN → AlexNet</span>",
+    "en": "The All-Star Revival <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">DBN → AlexNet</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1ad547b59792": {
+    "zh": "逐層預訓練解凍深層；ReLU + GPU + Dropout 引爆。<span class=\"bilingual-en\">Layer-wise thaws deep; ReLU+GPU+Dropout explodes.</span>",
+    "en": "Layer-wise pretraining thaws deep networks; ReLU + GPU + Dropout set off the explosion.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1675e77318db": {
+    "zh": "生成流形 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">GAN / Diffusion</span>",
+    "en": "The Generative Manifold <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">GAN / Diffusion</span>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "31f2987ef421": {
+    "zh": "GAN 對抗互傷害；擴散 加噪→去噪，雪花還原。<span class=\"bilingual-en\">GAN adversarial; Diffusion snow→restore.</span>",
+    "en": "GANs: two networks fighting and hurting each other; diffusion: add noise → remove noise, turning snow back into the picture.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "86342d8dcebd": {
+    "zh": "直覺 · 拼圖與放大鏡",
+    "en": "Intuition · Jigsaw Puzzle and Magnifying Glass",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "eb5a851e7149": {
+    "zh": "攤平是把拼圖倒成一排；卷積是拿同一放大鏡掃全圖找螞蟻。<span class=\"bilingual-en\">Flatten = dump puzzle in a line; convolution = same magnifier scans for ants.</span>",
+    "en": "Flattening is pouring a jigsaw puzzle out into a single line; convolution is sweeping the same magnifying glass over the whole picture looking for ants.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "89bb3f41f8d0": {
+    "zh": "S2 · 維持注意 · SUSTAIN",
+    "en": "S2 · SUSTAIN",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a53fc3cbc891": {
+    "zh": "1 · CNN 誕生：別把影像攤平成大笨蛋 <span class=\"en\">CNN — Don’t Flatten, Convolve</span>",
+    "en": "1 · The Birth of CNN: Don’t Be the Big Dummy That Flattens the Image",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3aae12d1de22": {
+    "zh": "Neocognitron（福島 1980）提出兩大神功，LeCun 以 Backprop 於 1989 實作為 LeNet-5 認手寫支票。<span class=\"bilingual-en\">Neocognitron two tricks → LeNet-5 with Backprop reads checks.</span>",
+    "en": "The Neocognitron (Fukushima, 1980) introduced two great tricks; in 1989 LeCun implemented them with backprop as LeNet-5, which read handwritten checks.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e6c1347dfd11": {
+    "zh": "兩大神功",
+    "en": "Two great tricks",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c00978d258e7": {
+    "zh": "局部連結",
+    "en": "Local connectivity",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "97fe6b3a9424": {
+    "zh": "只看 3×3 / 5×5 小方塊",
+    "en": "Looks only at 3×3 / 5×5 patches",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "73793be10e91": {
+    "zh": "權重共享",
+    "en": "Weight sharing",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b87792f983be": {
+    "zh": "同一濾鏡掃全圖",
+    "en": "One filter scans the whole image",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "3d9f444ba2ae": {
+    "zh": "平移不變性：同一放大鏡找螞蟻",
+    "en": "Translation invariance: one magnifier finds the ants",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a55ee878277d": {
+    "zh": "LeNet-5 (1989): Backprop + 卷積 = 認手寫支票",
+    "en": "LeNet-5 (1989): backprop + convolution = reads handwritten checks",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a9719804f95c": {
+    "zh": "局部看小窗、同一濾鏡掃全圖 → 保二維、平移不變、參數銳減 · Local + sharing → keep 2D &amp; invariant.",
+    "en": "Look through a small local window, scan the whole image with the same filter → keeps the 2D structure, translation invariant, far fewer parameters.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "27d1e1b4a69f": {
+    "zh": "為何別攤平 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Why Not Flatten</span>",
+    "en": "Why Not Flatten",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6ba74f208ebe": {
+    "zh": "「8」上下圈在二維相鄰，攤平後隔 4900 位——空間結構被摧毀。<span class=\"bilingual-en\">Adjacent in 2D, far in 1D — structure destroyed.</span>",
+    "en": "The top and bottom loops of an “8” are neighbors in 2D, but after flattening they are 4900 positions apart: the spatial structure is destroyed.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2a4626ef2e7f": {
+    "zh": "放大鏡比喻",
+    "en": "The Magnifying-Glass Analogy",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "beeedd01fb19": {
+    "zh": "拿同一放大鏡掃全圖找螞蟻，無論左上或右下皆可——權重共享即平移不變。<span class=\"bilingual-en\">Same magnifier scans for ants — sharing = invariance.</span>",
+    "en": "Sweep the same magnifying glass over the whole picture to look for ants, and it works whether they are top-left or bottom-right: weight sharing is translation invariance.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7d39df37733a": {
+    "zh": "貢獻",
+    "en": "Contribution",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a8a58abb974e": {
+    "zh": "為後世 CNN（AlexNet→ResNet→Vision Transformer 的對手）奠定兩大公理。<span class=\"bilingual-en\">Two axioms for all later CNNs.</span>",
+    "en": "Laid down the two axioms for every later CNN (AlexNet → ResNet → the rivals of the Vision Transformer).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d40f26ba86e1": {
+    "zh": "公式 · 卷積（互相關）",
+    "en": "Formula · Convolution (Cross-Correlation)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c6c91a4a69c0": {
+    "zh": "濾鏡 $W$（如 $2\\times2$ 橫線檢測 $[ -1 -1 ; 1 1 ]$）在 $X$ 上滑動，對應相乘再求和即特徵圖。<span class=\"bilingual-en\">Slide $W$ over $X$, multiply-sum → feature map.</span>",
+    "en": "A filter $W$ (e.g. a $2\\times2$ horizontal-line detector $[ -1 -1 ; 1 1 ]$) slides over $X$; multiplying the overlapping entries and summing gives the feature map.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9e2cbd325696": {
+    "zh": "S2 · 數值演示 · NUMERIC",
+    "en": "S2 · Numeric Demo",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "47a378402f29": {
+    "zh": "卷積怎麼算：橫線檢測 $4\\times4 \\to 3\\times3$ <span class=\"en\">Convolution in Numbers</span>",
+    "en": "How convolution is computed: horizontal-line detection, $4\\times4 \\to 3\\times3$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "48a0cf60f658": {
+    "zh": "輸入 $X$（$4\\times4$ 橫線）與濾鏡 $W$（$2\\times2$ 橫線檢測）在 $(0,0)$ 得 $0$、$(1,0)$ 得 $2$ 高分。<span class=\"bilingual-en\">Input $X$ vs filter $W$: (0,0)=0 blank, (1,0)=2 hit.</span>",
+    "en": "With input $X$ (a $4\\times4$ horizontal line) and filter $W$ (a $2\\times2$ horizontal-line detector), position $(0,0)$ gives $0$ and $(1,0)$ gives a high score of $2$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6e8b8e85588c": {
+    "zh": "matplotlib 精準：攤平破結構 vs 滑動保幾何 vs 特徵圖 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Precise convolution</span>",
+    "en": "Precise matplotlib view: flattening breaks the structure vs. sliding preserves the geometry vs. the feature map",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "eb58cf991fec": {
+    "zh": "左 16 維攤平破結構；中同一 $2\\times2$ 濾鏡掃描 $(0,0)=0$ vs $(1,0)=2$；右 $3\\times3$ 特徵圖高分即橫線 · Flatten breaks; sliding preserves; map highlights line.",
+    "en": "Left: flattening to 16 dimensions breaks the structure; middle: the same $2\\times2$ filter scans $(0,0)=0$ vs. $(1,0)=2$; right: in the $3\\times3$ feature map, the high scores are the horizontal line.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "01f582c223a5": {
+    "zh": "兩次掃描帳單",
+    "en": "The bill for two scans",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d5ddf60fadfd": {
+    "zh": "$(0,0)$：$0\\cdot-1+0\\cdot-1+0\\cdot1+0\\cdot1=0$（空白）<br>$(1,0)$：$0\\cdot-1+0\\cdot-1+1\\cdot1+1\\cdot1=2$（命中）<br>$(1,1)$ 同 $2$，特徵圖對應高亮。<span class=\"bilingual-en\">Blank 0, hit 2 — map lights up.</span>",
+    "en": "$(0,0)$: $0\\cdot-1+0\\cdot-1+0\\cdot1+0\\cdot1=0$ (blank)<br>$(1,0)$: $0\\cdot-1+0\\cdot-1+1\\cdot1+1\\cdot1=2$ (hit)<br>$(1,1)$ also gives $2$, and the corresponding cells of the feature map light up.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e5aaab632c97": {
+    "zh": "靈魂",
+    "en": "The soul of it",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fbbd96ce6375": {
+    "zh": "局部連結保幾何、權重共享減參數且平移不變——CNN 兩大公理。<span class=\"bilingual-en\">Local keeps geometry; sharing cuts params &amp; gives invariance.</span>",
+    "en": "Local connectivity preserves geometry; weight sharing cuts parameters and gives translation invariance. These are the two axioms of CNNs.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9b22692fac97": {
+    "zh": "互動：拉動閾值看特徵圖二值化 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Threshold the map</span>",
+    "en": "Interactive: drag the threshold to binarize the feature map",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8033cde110d4": {
+    "zh": "閾值 <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(map ≥ thr → 1)</span>：",
+    "en": "Threshold <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(map ≥ thr → 1)</span>:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "20532b4eaf17": {
+    "zh": "高分格 6/9 亮起",
+    "en": "6/9 high-score cells lit",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "658d67dcbcf7": {
+    "zh": "S2 · 冬眠期 · WINTER",
+    "en": "S2 · Winter",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ebb90ef253fb": {
+    "zh": "2 · 冬眠與 SVM 興起（1980s–2006） <span class=\"en\">Winter &amp; SVM Rise</span>",
+    "en": "2 · The winter and the rise of SVMs (1980s–2006)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0b49d242bd04": {
+    "zh": "深層學不進去（梯度消失）、沒算力資料；SVM 以高維映射一刀切成主流。<span class=\"bilingual-en\">Deep won’t learn (vanishing), no compute; SVM cuts in high-D.</span>",
+    "en": "Deep networks wouldn't learn (vanishing gradients), and there was neither the compute nor the data; SVMs became the mainstream by mapping to high dimensions and splitting the data with a single cut.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3a1170246b8f": {
+    "zh": "梯度消失·誊號衰減",
+    "en": "Vanishing gradient · signal decay",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "b816183afa8e": {
+    "zh": "輸出誤差 → 回傳衰減→ 前層學不動",
+    "en": "Output error → decays on the way back → early layers can't learn",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "39554558f5dc": {
+    "zh": "前層死",
+    "en": "Early layers dead",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "5a2052f4602d": {
+    "zh": "輸出學得動",
+    "en": "Output still learns",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "12db3baad3c3": {
+    "zh": "深層·誊號歸零",
+    "en": "Deep layers · signal goes to zero",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "005fa4ff0e31": {
+    "zh": "SVM：二維切不開→高維一刀切",
+    "en": "SVM: can't split in 2D → one cut in high-D",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "85b92e072ca0": {
+    "zh": "核映射至無限維、數學穩固",
+    "en": "Kernel maps to infinite dims, solid math",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "3e073634af68": {
+    "zh": "神經網路冷宮·核方法主流",
+    "en": "Neural nets in the doghouse · kernel methods reign",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "111be37e4103": {
+    "zh": "深層梯度歸零，前層凍結；SVM 高維一刀切 · Deep gradients vanish; SVM cuts in high-D.",
+    "en": "In deep networks the gradient goes to zero and the early layers freeze; SVMs split the data with a single cut in high dimensions.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "16b3c75f7541": {
+    "zh": "為何冬眠",
+    "en": "Why the winter",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d71d1809e53a": {
+    "zh": "反向傳播深層時誤差信號衰減至歸零，前層欸歸不動。<span class=\"bilingual-en\">Error signal decays to zero in deep layers.</span>",
+    "en": "In backpropagation through deep networks, the error signal decays to zero, so the early layers can't learn.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ab97c940f78b": {
+    "zh": "沒錢沒算力",
+    "en": "No money, no compute",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "907796ac49e5": {
+    "zh": "CPU 慢如龜、資料少，大型網路不現實。<span class=\"bilingual-en\">Slow CPU, tiny data — large nets impossible.</span>",
+    "en": "CPUs were as slow as turtles and data was scarce, so large networks weren't realistic.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4597cc21d822": {
+    "zh": "SVM 魔法",
+    "en": "SVM magic",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "af1cc4e91fc2": {
+    "zh": "「切不開就升維」——隱式映射至超高維，再複雜的結也一刀切。<span class=\"bilingual-en\">If not separable, lift to high-D and cut.</span>",
+    "en": "“If you can't split it, lift it to a higher dimension”: an implicit mapping to a very high-dimensional space, where even the most tangled knot is cut with a single stroke.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7dd567a1bdc2": {
+    "zh": "S2 · 復興 · REVIVAL",
+    "en": "S2 · Revival",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "641ddf54db96": {
+    "zh": "3 · 2006 復興：一層一層學 <span class=\"en\">2006 Revival — Layer-wise Pretraining</span>",
+    "en": "3 · The 2006 revival: learning one layer at a time",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ac3345194683": {
+    "zh": "Hinton &amp; Salakhutdinov 以 DBN 無監督逐層預訓練打破冰河：先感受資料長相，再微調。<span class=\"bilingual-en\">DBN layer-wise unsupervised pretraining broke winter: feel data, then fine-tune.</span>",
+    "en": "Hinton &amp; Salakhutdinov broke the ice age with unsupervised layer-wise pretraining of DBNs: first get a feel for what the data looks like, then fine-tune.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "04cab1fd6eab": {
+    "zh": "第1層·像素",
+    "en": "Layer 1 · pixels",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "0f9d0545ea0d": {
+    "zh": "看點",
+    "en": "Sees dots",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "3edaf9c3ffdf": {
+    "zh": "像素",
+    "en": "Pixels",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "e5af27191e80": {
+    "zh": "第2層·線條",
+    "en": "Layer 2 · lines",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "c185f30d698a": {
+    "zh": "邊緣線條",
+    "en": "Edges and lines",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "677064ea1e6d": {
+    "zh": "線條",
+    "en": "Lines",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "661e7043c76c": {
+    "zh": "第3層·器官",
+    "en": "Layer 3 · parts",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "6ca434fb7247": {
+    "zh": "鼻子眼睛",
+    "en": "Noses, eyes",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "ca73bf06e4ba": {
+    "zh": "器官",
+    "en": "Parts",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "ae62181ae87d": {
+    "zh": "微調",
+    "en": "Fine-tune",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "b9d816fa3cab": {
+    "zh": "Backprop 整體",
+    "en": "Backprop on the whole",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "9017633f9836": {
+    "zh": "終調",
+    "en": "Final tune",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "351ebb9dcaf5": {
+    "zh": "一層一層先感受，再反向傳播微調——緩解梯度消失",
+    "en": "Get a feel one layer at a time, then fine-tune with backpropagation: eases vanishing gradients",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "861f39488f28": {
+    "zh": "單層先感受資料，再整體微調——紂凍· Layer-wise feel, then tune — thaw.",
+    "en": "Each single layer first gets a feel for the data, then the whole network is fine-tuned: the thaw.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5a779f366456": {
+    "zh": "公式 · 逐層初始化",
+    "en": "Formula · layer-wise initialization",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8d2db5b39a08": {
+    "zh": "$$單層 RBM 逐層無監督預訓練 \\to \\text{Backprop 微調}$$",
+    "en": "$$\\text{Single-layer RBM unsupervised layer-wise pretraining} \\to \\text{Backprop fine-tuning}$$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7aa56b3ae102": {
+    "zh": "每層先學 p(資料)，初始化好後再用監督信號整體優化，梯度不再歸零。<span class=\"bilingual-en\">Each layer learns p(data) first; then supervised fine-tuning — gradients survive.</span>",
+    "en": "Each layer first learns p(data); once the network is well initialized, the supervised signal optimizes it as a whole, and the gradients no longer go to zero.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ea311a6b82d2": {
+    "zh": "S2 · 全明星 · ALL-STAR",
+    "en": "S2 · All-Star",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5e5c94b4b400": {
+    "zh": "4 · AlexNet 2012：點燃全明星週末 <span class=\"en\">AlexNet — All-Star Weekend</span>",
+    "en": "4 · AlexNet 2012: kicking off the all-star weekend",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "77cfb6e1035a": {
+    "zh": "集 ReLU、GPU、Dropout 三大武功於一身，在 ImageNet 樫空出世。<span class=\"bilingual-en\">ReLU + GPU + Dropout together on ImageNet.</span>",
+    "en": "Combining the three signature moves ReLU, GPU and Dropout in one, it burst onto the scene at ImageNet.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "817491ff826e": {
+    "zh": "正數直輸、負數歸零；計算快、梯度永不消失。<span class=\"bilingual-en\">Fast, gradient never vanishes.</span>",
+    "en": "Positive values pass straight through, negative values become zero; fast to compute, and the gradient never vanishes.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "27d7daa1042c": {
+    "zh": "顯卡並行",
+    "en": "Parallel graphics cards",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8b94140621f4": {
+    "zh": "放棄 CPU、用 GPU 並行，訓練從週縮至天。<span class=\"bilingual-en\">From weeks to days.</span>",
+    "en": "Dropping the CPU for parallel GPUs cut training time from weeks to days.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f91c10d378a0": {
+    "zh": "棍棒教育",
+    "en": "Tough love",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b9dfdefdc38c": {
+    "zh": "隨機關掉部分神經元，強迫剩余學更穩健特徵。<span class=\"bilingual-en\">Random off → robust features.</span>",
+    "en": "Randomly switch off some of the neurons, forcing the rest to learn more robust features.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7d0e4a8410cb": {
+    "zh": "ImageNet 霸榜",
+    "en": "Topping the ImageNet leaderboard",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4a7012a698cf": {
+    "zh": "大幅超越傳統方法，點燃深度學習熱潮。<span class=\"bilingual-en\">Huge margin, ignites deep learning.</span>",
+    "en": "It beat traditional methods by a wide margin and ignited the deep learning boom.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0b7c62fb8206": {
+    "zh": "互動：ReLU vs Sigmoid 梯度對比 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Gradient comparison</span>",
+    "en": "Interactive: ReLU vs. sigmoid gradient comparison",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8e0601170727": {
+    "zh": "S2 · 生成流形 · GENERATIVE",
+    "en": "S2 · Generative Manifolds",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e72034ccc44a": {
+    "zh": "5 · 生成形模：GAN 對抗 vs 擴散需花 <span class=\"en\">Generative — GAN vs Diffusion</span>",
+    "en": "5 · Generative models: GAN's adversarial game vs. diffusion's snow",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8e6d084bc0c4": {
+    "zh": "GAN 讓兩神經互相傷害；擴散「加噪再去噪」，雪花還原。<span class=\"bilingual-en\">GAN makes two nets hurt each other; Diffusion adds then removes snow.</span>",
+    "en": "GANs make two neural networks hurt each other; diffusion “adds noise, then removes it” and restores the image from snow.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b7f2c6e8e7cd": {
+    "zh": "生成器畫假畫騙判別器，判別器拆穿假畫——對抗到分不出真假。<span class=\"bilingual-en\">Generator fools, Discriminator exposes.</span>",
+    "en": "The generator paints fakes to fool the discriminator, and the discriminator exposes the fakes, until the two fight to the point where real and fake can't be told apart.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2e1dd2730097": {
+    "zh": "品質高，但訓練不穩、模式崩潰 <span class=\"bilingual-en\">(high quality, unstable)</span>",
+    "en": "High quality, but unstable training and mode collapse",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dd8e0c9de243": {
+    "zh": "核心公式對抗損失 <span class=\"bilingual-en\">(adversarial loss)</span>",
+    "en": "The core formula is the adversarial loss",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5620d41764fc": {
+    "zh": "擴散 2020 <span class=\"bilingual-en\" style=\"font-size:14px;color:var(--ink-soft);\">Add Noise, Denoise</span>",
+    "en": "Diffusion 2020 <span class=\"bilingual-en\" style=\"font-size:14px;color:var(--ink-soft);\">Add Noise, Denoise</span>",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4660d9f1d197": {
+    "zh": "訓練時逐步加雪花至純噪聲；教網路逐步去雪花還原。<span class=\"bilingual-en\">Add snow to pure noise; learn to denoise step by step.</span>",
+    "en": "During training, snow is added step by step until only pure noise remains; the network is taught to remove the snow step by step and restore the image.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d85d1b451ae7": {
+    "zh": "訓練穩、品質極高，Midjourney/SD 背後 <span class=\"bilingual-en\">(stable, SOTA)</span>",
+    "en": "Stable training, extremely high quality; it powers Midjourney/SD",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7736c40ba494": {
+    "zh": "核心「需花還原術」 <span class=\"bilingual-en\">(snow restoration)</span>",
+    "en": "The core is the “snow restoration trick”",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1f1929b1bc14": {
+    "zh": "逆向學 $p_\\theta(x_{t-1}|x_t)$ 去噪。<span class=\"bilingual-en\">Learn reverse denoising.</span>",
+    "en": "Learn the reverse $p_\\theta(x_{t-1}|x_t)$ to denoise.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c6cbfb74a00d": {
+    "zh": "GAN · 互相傷害",
+    "en": "GAN · hurting each other",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "c2b0242301ac": {
+    "zh": "生成器",
+    "en": "Generator",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "4bcc646838cd": {
+    "zh": "判別器",
+    "en": "Discriminator",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "cdaf9f504abf": {
+    "zh": "假畫騙真 vs 拆穿·對抗到分不出",
+    "en": "Fakes to fool vs. exposing · fight until indistinguishable",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "f023e2c9a367": {
+    "zh": "擴散·雪花還原",
+    "en": "Diffusion · restoring from snow",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "df1e364c311e": {
+    "zh": "清晰圖",
+    "en": "Clear image",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "eb6729b87a41": {
+    "zh": "→加噪→",
+    "en": "→add noise→",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "5c7c64e3c7ea": {
+    "zh": "純雪花",
+    "en": "Pure snow",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "adf2dab8fc8f": {
+    "zh": "逆向去噪學生成·給雪花變名畫",
+    "en": "Learn to generate by reverse denoising · snow into a masterpiece",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "38e6029d5503": {
+    "zh": "左對抗互傷害；右加噪至雪花再逆向去噪生成 · Adversarial vs snow-to-masterpiece.",
+    "en": "Left: the two networks hurt each other adversarially; right: add noise until it's snow, then generate by reverse denoising.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "25e8f7caace3": {
+    "zh": "S2 · 全景時譜 · TIMELINE",
+    "en": "S2 · Big-Picture Timeline · TIMELINE",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bc023e845f4b": {
+    "zh": "演進全景時譜 <span class=\"en\">Evolution Timeline</span>",
+    "en": "The Full Timeline of the Evolution",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "52ca167e4ddf": {
+    "zh": "別攪平　<span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Don’t Flatten</span>",
+    "en": "Don’t flatten",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2a82dd20260a": {
+    "zh": "福島提局部連結 + 權重共享，保二維。<span class=\"bilingual-en\">Local + sharing keeps 2D.</span>",
+    "en": "Fukushima proposes local connectivity + weight sharing, preserving the 2D structure.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "caa0fac4b039": {
+    "zh": "LeCun + Backprop = 認支票<span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Reads Checks</span>",
+    "en": "LeCun + Backprop = reading checks",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "89e56c193ee9": {
+    "zh": "結合卷積與反向傳播成為 CNN 鼻祖。<span class=\"bilingual-en\">CNN ancestor.</span>",
+    "en": "Combining convolution with backpropagation, it became the ancestor of CNNs.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3d911e771d24": {
+    "zh": "1980s–2006 · 冬眠",
+    "en": "1980s–2006 · Winter",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5cf1ec916478": {
+    "zh": "梯度消失 + 無算力<span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Winter</span>",
+    "en": "Vanishing gradients + no compute",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c35fd278a65e": {
+    "zh": "深層難訓；SVM 以核一刀切主流。<span class=\"bilingual-en\">Deep hard; SVM wins.</span>",
+    "en": "Deep networks are hard to train; SVMs, with kernels that cut cleanly in one stroke, take over the mainstream.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "af29073e9930": {
+    "zh": "Hinton 逐層喚醒<span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Layer-wise Awakening</span>",
+    "en": "Hinton’s layer-wise awakening",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4e025e384ca1": {
+    "zh": "無監督預訓練解凍。<span class=\"bilingual-en\">Unsupervised pretraining thaws.</span>",
+    "en": "Unsupervised pretraining thaws things out.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c9072478de12": {
+    "zh": "ImageNet 樫空出世，點燃熱潮。<span class=\"bilingual-en\">Ignites deep learning.</span>",
+    "en": "Bursts onto the scene at ImageNet and ignites the boom.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e9e09ddd94d4": {
+    "zh": "2014–2020 · 生成",
+    "en": "2014–2020 · Generative",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0418655e67f8": {
+    "zh": "GAN 對抗 / 擴散雪花<span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Generative</span>",
+    "en": "GAN adversaries / diffusion snowflakes",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b9d3d84315ff": {
+    "zh": "學會畫畫；雪花還原術。<span class=\"bilingual-en\">Learns to paint; snow restoration.</span>",
+    "en": "Learns to paint; the art of restoring an image from snow.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "eb945cb118e0": {
+    "zh": "S3 · 思考測驗 · CHECK",
+    "en": "S3 · Thinking Quiz · CHECK",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d24c7dddef83": {
+    "zh": "思考測驗：你懂 CNN 的魂嗎？ <span class=\"en\">Quiz — Do You Get CNN?</span>",
+    "en": "Thinking Quiz: Do You Get the Soul of CNNs?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "89b6bf845c3b": {
+    "zh": "Q1. 為何攪平會毀掉圖像結構？<span class=\"bilingual-en\">Why flatten destroys?</span>",
+    "en": "Q1. Why does flattening destroy an image’s structure?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "541d099a8e99": {
+    "zh": "因為像素變多了<span class=\"bilingual-en\" style=\"font-size:16px;\">More pixels</span>",
+    "en": "Because there are more pixels",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2e0174f160f4": {
+    "zh": "二維相鄰像素攪開後距離遠、空間關係破壞<span class=\"bilingual-en\" style=\"font-size:16px;\">Adjacent in 2D far in 1D</span>",
+    "en": "Pixels adjacent in 2D end up far apart once flattened, destroying their spatial relationships",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4ab869783804": {
+    "zh": "因為沒用 ReLU<span class=\"bilingual-en\" style=\"font-size:16px;\">No ReLU</span>",
+    "en": "Because ReLU wasn’t used",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e004f6447e74": {
+    "zh": "因為沒用 GPU<span class=\"bilingual-en\" style=\"font-size:16px;\">No GPU</span>",
+    "en": "Because a GPU wasn’t used",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a43c2b252a14": {
+    "zh": "Q2. $X(4\\times4)$ 橫線與 $W(2\\times2)$ 檢測在 (1,0) 得分是？<span class=\"bilingual-en\">Score at (1,0)?</span>",
+    "en": "Q2. Detecting a horizontal line in $X(4\\times4)$ with $W(2\\times2)$, what is the score at (1,0)?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f605ec9c78d2": {
+    "zh": "$0\\cdot-1+0\\cdot-1+1\\cdot1+1\\cdot1=2$ 高分命中<span class=\"bilingual-en\" style=\"font-size:16px;\">2 hit</span>",
+    "en": "$0\\cdot-1+0\\cdot-1+1\\cdot1+1\\cdot1=2$, a high-scoring hit",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6887df658a40": {
+    "zh": "0 空白<span class=\"bilingual-en\" style=\"font-size:16px;\">0 blank</span>",
+    "en": "0, blank",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2a68f06cdb9c": {
+    "zh": "Q3. AlexNet 三大武功是？<span class=\"bilingual-en\">AlexNet trio?</span>",
+    "en": "Q3. What are AlexNet’s three great martial-arts moves?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ca4d2283061d": {
+    "zh": "SVM + 核方法 + 歸一化<span class=\"bilingual-en\" style=\"font-size:16px;\">SVM kernel norm</span>",
+    "en": "SVM + kernel methods + normalization",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "256b0316f65f": {
+    "zh": "GAN + 擴散 + VAE<span class=\"bilingual-en\" style=\"font-size:16px;\">GAN Diffusion VAE</span>",
+    "en": "GAN + diffusion + VAE",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "437fcdd447c4": {
+    "zh": "Q4. GAN vs 擴散的核心差異？<span class=\"bilingual-en\">GAN vs Diffusion?</span>",
+    "en": "Q4. What is the core difference between GANs and diffusion?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5b379206fbc0": {
+    "zh": "GAN 對抗互傷害；擴散加噪再逆向去噪<span class=\"bilingual-en\" style=\"font-size:16px;\">Adversarial vs add then denoise</span>",
+    "en": "GANs fight each other adversarially; diffusion adds noise, then reverses it by denoising",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "71a93aa4f5ee": {
+    "zh": "都是分類器<span class=\"bilingual-en\" style=\"font-size:16px;\">Both classifiers</span>",
+    "en": "Both are classifiers",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f41bd9d55d4c": {
+    "zh": "都是攪平<span class=\"bilingual-en\" style=\"font-size:16px;\">Both flatten</span>",
+    "en": "Both flatten",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "300a11248b01": {
+    "zh": "GAN 是線性<span class=\"bilingual-en\" style=\"font-size:16px;\">GAN linear</span>",
+    "en": "GANs are linear",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e75f33b5880b": {
+    "zh": "S3 · 路線導引 · PATH",
+    "en": "S3 · Learning Path · PATH",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "defde1757097": {
+    "zh": "下一步：去 2017 看 Transformer <span class=\"en\">Next — 2017 Transformer</span>",
+    "en": "Next Step: On to 2017 and the Transformer",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3ac5ff35484d": {
+    "zh": "STEP 1 · 1–2 週",
+    "en": "STEP 1 · 1–2 weeks",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d0ec17cdb8aa": {
+    "zh": "手算卷積 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Hand-calc Convolution</span>",
+    "en": "Compute convolutions by hand",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e5ffccf223d6": {
+    "zh": "用 $4\\times4$ / $2\\times2$ 改閾值、改濾鏡，觀察特徵圖高低。<span class=\"bilingual-en\">Vary thr/filter, watch map.</span>",
+    "en": "Using $4\\times4$ / $2\\times2$, change the threshold and the filter, and watch the feature map go high and low.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "87381ac6be76": {
+    "zh": "STEP 2 · 2–3 週",
+    "en": "STEP 2 · 2–3 weeks",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a772ca094efe": {
+    "zh": "實作 LeNet-5 迷你版 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Mini LeNet</span>",
+    "en": "Implement a mini LeNet-5",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d99cdee6ff54": {
+    "zh": "在 MNIST 訓卷積小網路，比攪平全連接。<span class=\"bilingual-en\">Compare conv vs flatten.</span>",
+    "en": "Train a small convolutional network on MNIST and compare it with a flattened fully connected one.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7ba1802c96a8": {
+    "zh": "STEP 3 · 3–4 週",
+    "en": "STEP 3 · 3–4 weeks",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cdb8fd440ece": {
+    "zh": "玩生成對抗 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Play GAN</span>",
+    "en": "Play with generative adversarial networks",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "15fb818bcc6f": {
+    "zh": "訓練迷你 GAN，觀察生成器與判別器拉據。<span class=\"bilingual-en\">Watch generator vs discriminator.</span>",
+    "en": "Train a mini GAN and watch the tug-of-war between the generator and the discriminator.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "614c84fe4c62": {
+    "zh": "STEP 4 · 持續",
+    "en": "STEP 4 · Ongoing",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a4101f008cd3": {
+    "zh": "預習 Transformer <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Preview Transformer</span>",
+    "en": "Preview the Transformer",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "77aa83650e27": {
+    "zh": "思考：卷積局部觀窗與注意力全局視野差異。<span class=\"bilingual-en\">Local window vs global attention.</span>",
+    "en": "Think about it: the difference between convolution’s local viewing window and attention’s global field of view.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "87099ee251cf": {
+    "zh": "\n  SlidePro · CNN 興生成流形 · 中英雙語自學版 · 冰晶簡約主題 · MathJax + Chart.js<br>\n  <span style=\"color:var(--text-low);\">CNN to Generative — Bilingual Self-Study · Ice Crystal Theme</span>\n",
+    "en": "\n  SlidePro · CNN and the Generative Manifold · Bilingual Self-Study Edition · Ice Crystal Minimal Theme · MathJax + Chart.js\n",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Section index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "2bb3cac71ec4": {
+    "zh": "高分 ≥ thr",
+    "en": "High ≥ thr",
+    "kp": 5,
+    "ctx": "chart"
+  },
+  "24524aa989a4": {
+    "zh": "低分 < thr",
+    "en": "Low < thr",
+    "kp": 5,
+    "ctx": "chart"
+  },
+  "a37ef5b6dbf2": {
+    "zh": "Sigmoid 梯度 (vanishing)",
+    "en": "Sigmoid gradient (vanishing)",
+    "kp": 8,
+    "ctx": "chart"
+  },
+  "b49424e6981a": {
+    "zh": "ReLU 梯度 (stable 0/1)",
+    "en": "ReLU gradient (stable 0/1)",
+    "kp": 8,
+    "ctx": "chart"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
