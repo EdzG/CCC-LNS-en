@@ -1,0 +1,3296 @@
+{
+ "course": "IDL_115",
+ "chapters": [
+  {
+   "id": "Ch01-introduction-history",
+   "num": 1,
+   "title": "Introduction and History",
+   "lecture": "IDL_115/Ch01-introduction-history/index.html",
+   "decks": [
+    "IDL_115/Ch01-introduction-history/idl115-w1-dl-intro-history.html"
+   ],
+   "slides": [
+    {
+     "label": "01 ML theory surrogate bias loop",
+     "href": "IDL_115/Ch01-introduction-history/slides/01-ml-theory-surrogate-bias-loop.html"
+    },
+    {
+     "label": "02 ML vector representation mapping",
+     "href": "IDL_115/Ch01-introduction-history/slides/02-ml-vector-representation-mapping.html"
+    },
+    {
+     "label": "03 ML classification vs. regression",
+     "href": "IDL_115/Ch01-introduction-history/slides/03-ml-classification-vs-regression.html"
+    },
+    {
+     "label": "04 ML unsupervised clustering DR",
+     "href": "IDL_115/Ch01-introduction-history/slides/04-ml-unsupervised-clustering-dr.html"
+    },
+    {
+     "label": "05 ML DR and RL",
+     "href": "IDL_115/Ch01-introduction-history/slides/05-ml-dr-and-rl.html"
+    },
+    {
+     "label": "06 Pattern recognition statistical classification",
+     "href": "IDL_115/Ch01-introduction-history/slides/06-pattern-recognition-statistical-classification-bilingual.html"
+    },
+    {
+     "label": "07 ML regression dimensionality reduction",
+     "href": "IDL_115/Ch01-introduction-history/slides/07-ml-regression-dimensionality-reduction-bilingual.html"
+    },
+    {
+     "label": "08 ML AI history M-P perceptron",
+     "href": "IDL_115/Ch01-introduction-history/slides/08-ml-ai-history-mp-perceptron-bilingual.html"
+    },
+    {
+     "label": "09 ML CNN history",
+     "href": "IDL_115/Ch01-introduction-history/slides/09-ml-cnn-history-bilingual.html"
+    },
+    {
+     "label": "10 ML overview treasure map",
+     "href": "IDL_115/Ch01-introduction-history/slides/10-ml-overview-treasure-map-bilingual.html"
+    }
+   ],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": "Introduction: The Model Is a Map, Not the Territory",
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": "Machine Learning Model: Turning the World into Vectors",
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "3.1",
+     "title": "Supervised Learning: Learning from Labeled Data",
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "3.2",
+     "title": "Unsupervised Learning: Finding Structure in Unlabeled Data",
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3.3",
+     "title": "Supervised vs. Unsupervised Dimensionality Reduction, and Reinforcement Learning",
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "4.1",
+     "title": "The Six Method Families of Statistical Classification",
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "4.2",
+     "title": "Statistical Regression and Dimensionality Reduction",
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "5.1",
+     "title": "Early History: From McCulloch-Pitts to the Perceptron and ADALINE",
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "5.4",
+     "title": "CNNs and Modern History: Winter, Revival, Generative Models, and Transformers",
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "6",
+     "title": "Conclusion: The Three-Step Process, Task Taxonomy, and the Neural Network Timeline",
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 40,
+   "en": {
+    "units": 824,
+    "translated": 824,
+    "review": 0,
+    "stale": 0,
+    "toggle": true
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch02-perceptron-mlp",
+   "num": 2,
+   "title": "From Perceptron to Feedforward Neural Networks",
+   "lecture": "IDL_115/Ch02-perceptron-mlp/index.html",
+   "decks": [
+    "IDL_115/Ch02-perceptron-mlp/idl115-w2-perceptron-mlp.html"
+   ],
+   "slides": [
+    {
+     "label": "01 AI foundations perceptron to UAT",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/01-ai-foundations-perceptron-to-uat-bilingual.html"
+    },
+    {
+     "label": "02 AI foundations 2 1 biological neuron",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/02-ai-foundations-2-1-biological-neuron-bilingual.html"
+    },
+    {
+     "label": "03 AI foundations M-P neuron",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/03-ai-foundations-mp-neuron-bilingual.html"
+    },
+    {
+     "label": "04 AI foundations M-P to MLP",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/04-ai-foundations-mp-to-mlp-bilingual.html"
+    },
+    {
+     "label": "05 AI foundations perceptron signum geometry",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/05-ai-foundations-perceptron-signum-geometry-bilingual.html"
+    },
+    {
+     "label": "06 Perceptron limitations XOR generalization",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/06-perceptron-limitations-xor-generalization-bilingual.html"
+    },
+    {
+     "label": "07 AI foundations ADALINE sigmoid MLP",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/07-ai-foundations-adaline-sigmoid-mlp-bilingual.html"
+    },
+    {
+     "label": "08 AI foundations linear collapse",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/08-ai-foundations-linear-collapse-bilingual.html"
+    },
+    {
+     "label": "09 Deep learning activation functions",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/09-deep-learning-activation-functions-bilingual.html"
+    },
+    {
+     "label": "10 AI foundations loss functions",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/10-ai-foundations-loss-functions-bilingual.html"
+    },
+    {
+     "label": "11 AI foundations ADALINE",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/11-ai-foundations-adaline-bilingual.html"
+    },
+    {
+     "label": "12 AI foundations sigmoid",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/12-ai-foundations-sigmoid-bilingual.html"
+    },
+    {
+     "label": "13 AI foundations RBF SOM",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/13-ai-foundations-rbf-som-bilingual.html"
+    },
+    {
+     "label": "14 AI foundations UAT chapter 4",
+     "href": "IDL_115/Ch02-perceptron-mlp/slides/14-ai-foundations-uat-chapter4-bilingual.html"
+    }
+   ],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3–2.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "2.7.1–2.7.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "2.7.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "2.8",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "2.9",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "3.3–3.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 56,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch03-backprop-optimization",
+   "num": 3,
+   "title": "Backpropagation and Optimization",
+   "lecture": "IDL_115/Ch03-backprop-optimization/index.html",
+   "decks": [
+    "IDL_115/Ch03-backprop-optimization/idl115-w3-backprop-optimization.html"
+   ],
+   "slides": [
+    {
+     "label": "01 Backpropagation and optimization",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/01-backpropagation-and-optimization-bilingual.html"
+    },
+    {
+     "label": "02 Gradient descent learning rate",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/02-gradient-descent-learning-rate-bilingual.html"
+    },
+    {
+     "label": "03 Convergence criteria",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/03-convergence-criteria-bilingual.html"
+    },
+    {
+     "label": "04 Line search steepest descent",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/04-line-search-steepest-descent-bilingual.html"
+    },
+    {
+     "label": "05 Momentum acceleration",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/05-momentum-acceleration-bilingual.html"
+    },
+    {
+     "label": "06 Backpropagation chain rule",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/06-backpropagation-chain-rule-bilingual.html"
+    },
+    {
+     "label": "07 Stochastic gradient descent",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/07-stochastic-gradient-descent-bilingual.html"
+    },
+    {
+     "label": "08 Mini batch SGD epoch",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/08-mini-batch-sgd-epoch-bilingual.html"
+    },
+    {
+     "label": "09 SGD convergence analysis",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/09-sgd-convergence-analysis-bilingual.html"
+    },
+    {
+     "label": "10 AdaGrad adaptive learning rates",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/10-adagrad-adaptive-learning-rates-bilingual.html"
+    },
+    {
+     "label": "11 RMSProp and adam",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/11-rmsprop-and-adam-bilingual.html"
+    },
+    {
+     "label": "12 Flat minima and SAM motivation",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/12-flat-minima-and-sam-motivation-bilingual.html"
+    },
+    {
+     "label": "13 Vanilla SAM",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/13-vanilla-sam-bilingual.html"
+    },
+    {
+     "label": "14 Efficient and adaptive SAM",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/14-efficient-and-adaptive-sam-bilingual.html"
+    },
+    {
+     "label": "15 Overparameterized convergence",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/15-overparameterized-convergence-bilingual.html"
+    },
+    {
+     "label": "16 Chapter 3 synthesis and summary",
+     "href": "IDL_115/Ch03-backprop-optimization/slides/16-chapter3-synthesis-and-summary-bilingual.html"
+    }
+   ],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.2–2.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "4.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "4.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "5.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "5.2–5.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "6.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "6.2–6.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "7.1–7.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "7.3–8",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 64,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch04-cnn",
+   "num": 4,
+   "title": "Convolutional Neural Networks",
+   "lecture": "IDL_115/Ch04-cnn/index.html",
+   "decks": [],
+   "slides": [
+    {
+     "label": "01 CNN vs. MLP",
+     "href": "IDL_115/Ch04-cnn/slides/01-cnn-vs-mlp-bilingual.html"
+    },
+    {
+     "label": "02 LeNet CNN skeleton",
+     "href": "IDL_115/Ch04-cnn/slides/02-lenet-cnn-skeleton-bilingual.html"
+    },
+    {
+     "label": "03 Conv three stages prewitt",
+     "href": "IDL_115/Ch04-cnn/slides/03-conv-three-stages-prewitt-bilingual.html"
+    },
+    {
+     "label": "04 Discrete conv cross correlation",
+     "href": "IDL_115/Ch04-cnn/slides/04-discrete-conv-cross-correlation-bilingual.html"
+    },
+    {
+     "label": "05 Sparse connectivity parameter sharing",
+     "href": "IDL_115/Ch04-cnn/slides/05-sparse-connectivity-parameter-sharing-bilingual.html"
+    },
+    {
+     "label": "06 Translation equivariance",
+     "href": "IDL_115/Ch04-cnn/slides/06-translation-equivariance-bilingual.html"
+    },
+    {
+     "label": "07 Stride channels padding dimensions",
+     "href": "IDL_115/Ch04-cnn/slides/07-stride-channels-padding-dimensions-bilingual.html"
+    },
+    {
+     "label": "08 Detector and pooling",
+     "href": "IDL_115/Ch04-cnn/slides/08-detector-and-pooling-bilingual.html"
+    },
+    {
+     "label": "09 Pooling invariance downsampling",
+     "href": "IDL_115/Ch04-cnn/slides/09-pooling-invariance-downsampling-bilingual.html"
+    },
+    {
+     "label": "10 Infinitely strong prior dynamic pooling GAP",
+     "href": "IDL_115/Ch04-cnn/slides/10-infinitely-strong-prior-dynamic-pooling-gap-bilingual.html"
+    },
+    {
+     "label": "11 Weight initialization xavier he PCA",
+     "href": "IDL_115/Ch04-cnn/slides/11-weight-initialization-xavier-he-pca-bilingual.html"
+    },
+    {
+     "label": "12 ImageNet ILSVRC AlexNet",
+     "href": "IDL_115/Ch04-cnn/slides/12-imagenet-ilsvrc-alexnet-bilingual.html"
+    },
+    {
+     "label": "13 VGG stacked small kernels",
+     "href": "IDL_115/Ch04-cnn/slides/13-vgg-stacked-small-kernels-bilingual.html"
+    },
+    {
+     "label": "14 Inception GoogLeNet dimension reduction",
+     "href": "IDL_115/Ch04-cnn/slides/14-inception-googlenet-dimension-reduction-bilingual.html"
+    },
+    {
+     "label": "15 U-Net contracting expansive segmentation",
+     "href": "IDL_115/Ch04-cnn/slides/15-unet-contracting-expansive-segmentation-bilingual.html"
+    },
+    {
+     "label": "16 ResNet DenseNet compound scaling",
+     "href": "IDL_115/Ch04-cnn/slides/16-resnet-densenet-compound-scaling-bilingual.html"
+    }
+   ],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "3 / 3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "3.1.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3.1.2–3.1.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "3.1.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3.1.5–3.1.7",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.2–3.2.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.2.4–3.2.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.2.6–3.2.9",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "5.1–5.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "5.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "5.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "5.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "5.6–6",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 64,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch05-regularization-overfitting",
+   "num": 5,
+   "title": "Regularization and Overfitting",
+   "lecture": "IDL_115/Ch05-regularization-overfitting/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "5.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "5.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "6.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "6.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "6.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "7 / 8.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "9",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "10–12",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 64,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch06-theoretical-foundations-generalization",
+   "num": 6,
+   "title": "Theoretical Foundations of Generalization",
+   "lecture": "IDL_115/Ch06-theoretical-foundations-generalization/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "2.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.3.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "4.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "4.1.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "4.1.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "4.1.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "4.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "4.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "5.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "5.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 21,
+     "id": "kp21",
+     "badge": "5.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 22,
+     "id": "kp22",
+     "badge": "5.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 23,
+     "id": "kp23",
+     "badge": "5.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 24,
+     "id": "kp24",
+     "badge": "5.6",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 25,
+     "id": "kp25",
+     "badge": "6",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 25,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch07-boltzmann-machines",
+   "num": 7,
+   "title": "Boltzmann Machines",
+   "lecture": "IDL_115/Ch07-boltzmann-machines/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "4.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "4.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "4.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "4.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "6.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "6.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "7",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 79,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch08-rnn-lstm",
+   "num": 8,
+   "title": "Recurrent Neural Networks and LSTM",
+   "lecture": "IDL_115/Ch08-rnn-lstm/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1–2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3.1–2.3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.3.3–2.3.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.3.6–2.3.8",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.1–3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.3–3.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "4.1.1–4.1.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "4.1.4–4.1.7",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "4.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "4.3.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "4.3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "5.1–5.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "5.3–5.4",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 16,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch09-attention-transformers",
+   "num": 9,
+   "title": "Attention and Transformers",
+   "lecture": "IDL_115/Ch09-attention-transformers/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.4.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.4.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "2.4.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "2.5",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.1–3.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.2.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.2.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.2.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "3.2.4–3.2.5",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "3.3.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "3.3.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "3.3.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "3.4.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "3.4.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "4",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 21,
+     "id": "kp21",
+     "badge": "4.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 22,
+     "id": "kp22",
+     "badge": "4.2.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 23,
+     "id": "kp23",
+     "badge": "4.2.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 24,
+     "id": "kp24",
+     "badge": "4.2.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 25,
+     "id": "kp25",
+     "badge": "5",
+     "title": null,
+     "quizzes": 2
+    }
+   ],
+   "quizzes": 50,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch10-ssm-mamba",
+   "num": 10,
+   "title": "State Space Models and Mamba",
+   "lecture": "IDL_115/Ch10-ssm-mamba/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "§1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "§2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "§3.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "§3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "§3.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "§3.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "§4.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "§4.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "§4.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "§4.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "§5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "§6",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "§7",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 13,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch11-large-language-models",
+   "num": 11,
+   "title": "Large Language Models",
+   "lecture": "IDL_115/Ch11-large-language-models/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3-2.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "3.1-3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "7.1-7.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "7.3.1-7.3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "8.1-8.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "8.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "9-10",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 64,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch12-variational-models",
+   "num": 12,
+   "title": "Variational Models",
+   "lecture": "IDL_115/Ch12-variational-models/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.1.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.1.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.1.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "3.2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "3.2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "3.2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "3.2.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "3.2.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "3.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "3.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 21,
+     "id": "kp21",
+     "badge": "3.6",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 22,
+     "id": "kp22",
+     "badge": "4",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 22,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch13-gmmn",
+   "num": 13,
+   "title": "Generative Moment Matching Networks",
+   "lecture": "IDL_115/Ch13-gmmn/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2.1",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.2.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "6",
+     "title": null,
+     "quizzes": 3
+    }
+   ],
+   "quizzes": 34,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch14-gan",
+   "num": 14,
+   "title": "Generative Adversarial Networks",
+   "lecture": "IDL_115/Ch14-gan/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "§1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "§2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "§2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "§2.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "§2.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "§2.6–2.7",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "§3.1–3.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "§3.6–3.7",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "§4.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "§4.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "§4.3–4.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "§5.1–5.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "§5.4–5.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "§5.6–5.13",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "§6",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "§7–8",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 16,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch15-diffusion-models",
+   "num": 15,
+   "title": "Diffusion Models",
+   "lecture": "IDL_115/Ch15-diffusion-models/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.4.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.4.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "2.4.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "2.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "2.6-2.7",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.2-3.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "3.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "6-7",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 64,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch16-deep-metric-learning-self-supervised",
+   "num": 16,
+   "title": "Deep Metric Learning and Self-Supervised Learning",
+   "lecture": "IDL_115/Ch16-deep-metric-learning-self-supervised/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "4.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "4.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "4.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "4.5",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "4.6",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "4.7",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "4.8",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "5.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "5.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "5.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "5.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "5.6.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "5.6.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "5.6.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "6",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 20,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch17-graph-neural-networks",
+   "num": 17,
+   "title": "Graph Neural Networks",
+   "lecture": "IDL_115/Ch17-graph-neural-networks/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "4",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "5.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "5.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "6.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "6.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "7",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "7.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "7.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "8",
+     "title": null,
+     "quizzes": 2
+    }
+   ],
+   "quizzes": 28,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch18-deep-rl",
+   "num": 18,
+   "title": "Deep Reinforcement Learning",
+   "lecture": "IDL_115/Ch18-deep-rl/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "5.1",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "5.2",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "5.3",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "7.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "7.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "8.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "8.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "8.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "8.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "8.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "8.5.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "8.5.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "8.6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 21,
+     "id": "kp21",
+     "badge": "9.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 22,
+     "id": "kp22",
+     "badge": "9.2",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 23,
+     "id": "kp23",
+     "badge": "10.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 24,
+     "id": "kp24",
+     "badge": "10.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 25,
+     "id": "kp25",
+     "badge": "10.3",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 26,
+     "id": "kp26",
+     "badge": "11",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 100,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch19-fewshot-metalearning",
+   "num": 19,
+   "title": "Few-Shot Learning and Meta-Learning",
+   "lecture": "IDL_115/Ch19-fewshot-metalearning/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "§1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "§2.1–2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "§2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "§3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "§4.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "§4.2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "§4.2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "§4.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "§5.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "§5.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "§5.3–5.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "§5.5–5.6",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "§6.1–6.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "§6.3–6.4",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 14,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch20-compression-distillation",
+   "num": 20,
+   "title": "Network Compression and Knowledge Distillation",
+   "lecture": "IDL_115/Ch20-compression-distillation/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.1.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.1.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.1.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "2.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.2",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "3.2.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "3.2.4",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "3.3",
+     "title": null,
+     "quizzes": 1
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "4",
+     "title": null,
+     "quizzes": 1
+    }
+   ],
+   "quizzes": 16,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch21-practical-deep-learning-tips",
+   "num": 21,
+   "title": "Practical Tips for Deep Learning",
+   "lecture": "IDL_115/Ch21-practical-deep-learning-tips/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "3.2.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "3.2.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "3.2.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "3.2.4",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "4.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "4.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "4.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "4.4.1",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "4.4.2",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "4.4.3",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "4.4.4",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "4.4.5",
+     "title": null,
+     "quizzes": 2
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "4.5",
+     "title": null,
+     "quizzes": 2
+    }
+   ],
+   "quizzes": 34,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  },
+  {
+   "id": "Ch22-coding-neural-networks",
+   "num": 22,
+   "title": "Coding Neural Networks",
+   "lecture": "IDL_115/Ch22-coding-neural-networks/index.html",
+   "decks": [],
+   "slides": [],
+   "sections": [
+    {
+     "kp": 1,
+     "id": "kp1",
+     "badge": "1",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 2,
+     "id": "kp2",
+     "badge": "2.1.1–2.1.3",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 3,
+     "id": "kp3",
+     "badge": "2.1.4–2.1.5",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 4,
+     "id": "kp4",
+     "badge": "2.1.6–2.1.10",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 5,
+     "id": "kp5",
+     "badge": "2.1.11",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 6,
+     "id": "kp6",
+     "badge": "2.1.12–2.1.14",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 7,
+     "id": "kp7",
+     "badge": "2.1.15–2.1.17",
+     "title": null,
+     "quizzes": 3
+    },
+    {
+     "kp": 8,
+     "id": "kp8",
+     "badge": "2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 9,
+     "id": "kp9",
+     "badge": "3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 10,
+     "id": "kp10",
+     "badge": "3.2.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 11,
+     "id": "kp11",
+     "badge": "3.2.2",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 12,
+     "id": "kp12",
+     "badge": "3.2.3–3.2.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 13,
+     "id": "kp13",
+     "badge": "3.2.5",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 14,
+     "id": "kp14",
+     "badge": "3.2.6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 15,
+     "id": "kp15",
+     "badge": "3.2.7",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 16,
+     "id": "kp16",
+     "badge": "3.2.8–3.2.9",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 17,
+     "id": "kp17",
+     "badge": "3.3.1",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 18,
+     "id": "kp18",
+     "badge": "3.3.2–3.3.4",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 19,
+     "id": "kp19",
+     "badge": "3.3.5–3.3.6",
+     "title": null,
+     "quizzes": 4
+    },
+    {
+     "kp": 20,
+     "id": "kp20",
+     "badge": "4",
+     "title": null,
+     "quizzes": 4
+    }
+   ],
+   "quizzes": 74,
+   "en": {
+    "units": 0,
+    "translated": 0,
+    "review": 0,
+    "stale": 0,
+    "toggle": false
+   },
+   "nav": true
+  }
+ ]
+}

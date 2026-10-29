@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IDL 115 Study Dashboard</title>
+<!-- Personal study dashboard for IDL_115. Chapter list: study/chapters.json (built by
+     study/build_chapters.py). Progress: localStorage written by en/nav.js ('ccc-lns-study:*').
+     See CLAUDE.md ("Study layer"). -->
+<style>
+  :root{
+    --bg:#f4f6f5; --surface:#ffffff; --surface-2:#eef2f1; --ink:#1b2428; --muted:#5f6b70;
+    --line:#d9e0de; --accent:#0d9488; --accent-ink:#ffffff; --accent-soft:#d5efeb;
+    --good:#15803d; --good-soft:#dcf3e3; --warn:#a16207; --warn-soft:#fbefd2;
+    --track:#e3e8e6; --shadow:0 1px 2px rgba(0,0,0,.05),0 2px 8px rgba(0,0,0,.04);
+    --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0f1517; --surface:#172024; --surface-2:#1d292e; --ink:#e3eaec; --muted:#93a3a8;
+      --line:#2b3a40; --accent:#2dd4bf; --accent-ink:#06201d; --accent-soft:#123a36;
+      --good:#4ade80; --good-soft:#123222; --warn:#fbbf24; --warn-soft:#3a2d0c;
+      --track:#26343a; --shadow:none; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0f1517; --surface:#172024; --surface-2:#1d292e; --ink:#e3eaec; --muted:#93a3a8;
+    --line:#2b3a40; --accent:#2dd4bf; --accent-ink:#06201d; --accent-soft:#123a36;
+    --good:#4ade80; --good-soft:#123222; --warn:#fbbf24; --warn-soft:#3a2d0c;
+    --track:#26343a; --shadow:none; color-scheme:dark;
+  }
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--font);}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px 48px;}
+
+  header{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:28px 0 20px;}
+  header .titles{flex:1 1 320px;min-width:0;}
+  h1{margin:0;font-size:clamp(1.4rem,3.6vw,1.9rem);line-height:1.2;letter-spacing:-.01em;}
+  .sub{margin:4px 0 0;color:var(--muted);}
+  .sub a{color:var(--muted);}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;}
+  .seg{display:inline-flex;align-items:center;gap:2px;padding:3px;border:1px solid var(--line);border-radius:99px;background:var(--surface);}
+  .seg .lbl{padding:0 6px 0 9px;color:var(--muted);font-size:12px;}
+  .seg button{border:0;background:none;color:var(--ink);font:600 13px/1 var(--font);padding:7px 11px;border-radius:99px;cursor:pointer;}
+  .seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);}
+
+  .continue{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;padding:18px 20px;margin-bottom:16px;
+    background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);}
+  .continue .where{flex:1 1 260px;min-width:0;}
+  .continue .k{margin:0;color:var(--muted);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+  .continue .t{margin:2px 0 0;font-size:1.1rem;font-weight:650;}
+  .continue .s{margin:2px 0 0;color:var(--muted);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;border:0;
+    background:var(--accent);color:var(--accent-ink);font:650 15px/1 var(--font);text-decoration:none;cursor:pointer;}
+  .btn:hover{filter:brightness(1.06);}
+
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:24px;}
+  .stat{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;}
+  .stat .v{display:block;font-size:1.35rem;font-weight:700;font-variant-numeric:tabular-nums;}
+  .stat .l{display:block;color:var(--muted);font-size:12.5px;}
+
+  h2{margin:0 0 10px;font-size:1rem;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:12px;}
+  .ch{display:flex;flex-direction:column;gap:10px;padding:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);min-width:0;}
+  .ch.recent{border-color:var(--accent);}
+  .ch-top{display:flex;align-items:flex-start;gap:10px;}
+  .num{flex:none;min-width:2.6em;padding:3px 0;border-radius:8px;background:var(--surface-2);color:var(--muted);font-weight:700;font-size:13px;text-align:center;font-variant-numeric:tabular-nums;}
+  .ch h3{flex:1;min-width:0;margin:0;font-size:1rem;line-height:1.35;}
+  .ch h3 a{text-decoration:none;}
+  .ch h3 a:hover{text-decoration:underline;}
+  .pill{flex:none;padding:3px 8px;border-radius:99px;font-size:12px;font-weight:650;white-space:nowrap;}
+  .pill.en{background:var(--good-soft);color:var(--good);}
+  .pill.part{background:var(--warn-soft);color:var(--warn);}
+  .pill.zh{background:var(--surface-2);color:var(--muted);}
+  .meter{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .meter .bar{flex:1;height:6px;border-radius:99px;background:var(--track);overflow:hidden;}
+  .meter .fill{height:100%;border-radius:99px;background:var(--accent);}
+  .meter .fill.full{background:var(--good);}
+  .last{margin:0;font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .last b{color:var(--ink);font-weight:600;}
+  .links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;}
+  .links a,.links summary{display:inline-flex;align-items:center;padding:6px 11px;border:1px solid var(--line);border-radius:8px;
+    background:var(--surface);font-size:13px;font-weight:600;text-decoration:none;cursor:pointer;}
+  .links a:hover,.links summary:hover{background:var(--surface-2);}
+  .links a.primary{background:var(--accent-soft);border-color:transparent;}
+  details.slides{flex-basis:100%;}
+  details.slides summary{list-style:none;}
+  details.slides summary::-webkit-details-marker{display:none;}
+  details.slides summary::after{content:"\25BE";margin-left:6px;font-size:11px;color:var(--muted);}
+  details.slides[open] summary::after{content:"\25B4";}
+  details.slides ol{margin:8px 0 0;padding:0;list-style:none;display:grid;gap:2px;}
+  details.slides li a{display:block;padding:5px 8px;border:0;border-radius:6px;font-weight:500;}
+  .empty,.err{padding:24px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:14px;}
+  footer{margin-top:28px;color:var(--muted);font-size:12.5px;}
+  footer button{border:0;background:none;color:var(--muted);font:inherit;text-decoration:underline;cursor:pointer;padding:0;}
+
+  @media (max-width:560px){
+    header{padding-top:20px;}
+    .stats{gap:8px;}
+    .stat{padding:10px;}
+    .stat .v{font-size:1.15rem;}
+    .continue{padding:16px;}
+    .continue .btn{width:100%;justify-content:center;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="titles">
+      <h1>IDL 115 Study Dashboard</h1>
+      <p class="sub">Introductory Deep Learning · <a href="../index.html">course site</a></p>
+    </div>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Lecture language">
+        <span class="lbl">Lectures</span>
+        <button type="button" data-lang="en">English</button>
+        <button type="button" data-lang="zh" lang="zh-Hant">中文</button>
+      </div>
+      <div class="seg" role="group" aria-label="Theme">
+        <button type="button" data-theme="auto">Auto</button>
+        <button type="button" data-theme="light">Light</button>
+        <button type="button" data-theme="dark">Dark</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="continue" id="continue" aria-live="polite"></section>
+  <div class="stats" id="stats"></div>
+
+  <h2 id="chapters-h">Chapters</h2>
+  <div class="grid" id="chapters" aria-labelledby="chapters-h"></div>
+
+  <footer>
+    Progress (quizzes, reading position) is saved in this browser only.
+    <button type="button" id="reset">Reset all progress</button>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var NS = 'ccc-lns-study:';
+  var LANG_KEY = 'ccc-lns-lang';         // en/toggle.js reads this
+  var ROOT = '../';
+
+  function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* storage blocked */ } }
+  function getJSON(k) { try { return JSON.parse(get(k)); } catch (e) { return null; } }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function ago(t) {
+    if (!t) return '';
+    var s = (Date.now() - t) / 1000;
+    if (s < 90) return 'just now';
+    if (s < 3600) return Math.round(s / 60) + ' min ago';
+    if (s < 86400 * 1.5) return Math.round(s / 3600) + ' h ago';
+    if (s < 86400 * 14) return Math.round(s / 86400) + ' days ago';
+    return new Date(t).toLocaleDateString();
+  }
+
+  // ---------- theme and lecture language ----------
+  function applyTheme(t) {
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    else document.documentElement.removeAttribute('data-theme');
+    document.querySelectorAll('[data-theme]').forEach(function (b) {
+      if (b.tagName === 'BUTTON') b.setAttribute('aria-pressed', String(b.getAttribute('data-theme') === (t || 'auto')));
+    });
+  }
+  applyTheme(get(NS + 'theme') || 'auto');
+  document.querySelectorAll('button[data-theme]').forEach(function (b) {
+    b.addEventListener('click', function () { var t = b.getAttribute('data-theme'); set(NS + 'theme', t); applyTheme(t); });
+  });
+
+  // English is the default here; toggle.js keeps 中 as its own default for direct visits.
+  if (get(LANG_KEY) === null) set(LANG_KEY, 'en');
+  function applyLang() {
+    var l = get(LANG_KEY) === 'zh' ? 'zh' : 'en';
+    document.querySelectorAll('button[data-lang]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === l));
+    });
+  }
+  applyLang();
+  document.querySelectorAll('button[data-lang]').forEach(function (b) {
+    b.addEventListener('click', function () { set(LANG_KEY, b.getAttribute('data-lang')); applyLang(); render(); });
+  });
+
+  // ---------- progress from en/nav.js ----------
+  function progress(c) {
+    var q = (getJSON(NS + 'quiz:' + c.id) || {}).q || {}, solved = 0;
+    c.sections.forEach(function (s) {
+      for (var i = 0; i < s.quizzes; i++) if (q[s.id + '.' + i] === 1) solved++;
+    });
+    var pos = getJSON(NS + 'pos:' + c.id);
+    var sec = pos && c.sections.filter(function (s) { return s.id === pos.kp; })[0];
+    return { solved: solved, pos: sec ? pos : null, sec: sec || null };
+  }
+  function secLabel(s) { return '§' + s.badge.replace(/^§\s*/, '') + (s.title ? ' ' + s.title : ''); }
+  function enStatus(c) {
+    var e = c.en;
+    if (!e.toggle || !e.units) return { cls: 'zh', text: 'Chinese only', pct: 0 };
+    var pct = Math.floor(e.translated / e.units * 100);
+    return pct >= 100 ? { cls: 'en', text: 'English', pct: 100 } : { cls: 'part', text: 'English ' + pct + '%', pct: pct };
+  }
+
+  var DATA = null;
+  function render() {
+    var chs = DATA.chapters, last = getJSON(NS + 'last');
+    var lastCh = last && chs.filter(function (c) { return c.id === last.ch; })[0];
+    var zhMode = get(LANG_KEY) === 'zh';
+
+    // continue
+    var box = document.getElementById('continue');
+    if (lastCh) {
+      var p = progress(lastCh);
+      box.innerHTML = '<div class="where"><p class="k">Continue where you left off</p>' +
+        '<p class="t">Ch' + pad(lastCh.num) + ' · ' + esc(lastCh.title) + '</p>' +
+        '<p class="s">' + (p.sec ? esc(secLabel(p.sec)) + ' · ' : '') + esc(ago(last.t)) + '</p></div>' +
+        '<a class="btn" href="' + esc(ROOT + lastCh.lecture) + '">Continue reading <span aria-hidden="true">→</span></a>';
+    } else {
+      var first = chs[0];
+      box.innerHTML = '<div class="where"><p class="k">Start here</p><p class="t">Ch' + pad(first.num) + ' · ' + esc(first.title) +
+        '</p><p class="s">Your reading position and quiz results will show up here.</p></div>' +
+        '<a class="btn" href="' + esc(ROOT + first.lecture) + '">Start reading <span aria-hidden="true">→</span></a>';
+    }
+
+    // stats
+    var solved = 0, total = 0, started = 0, english = 0;
+    chs.forEach(function (c) {
+      var p = progress(c); solved += p.solved; total += c.quizzes; if (p.pos) started++;
+      if (enStatus(c).cls === 'en') english++;
+    });
+    document.getElementById('stats').innerHTML =
+      '<div class="stat"><span class="v">' + started + '/' + chs.length + '</span><span class="l">chapters started</span></div>' +
+      '<div class="stat"><span class="v">' + solved + '/' + total + '</span><span class="l">quizzes solved</span></div>' +
+      '<div class="stat"><span class="v">' + english + '/' + chs.length + '</span><span class="l">chapters in English</span></div>';
+
+    // chapters
+    document.getElementById('chapters').innerHTML = chs.map(function (c) {
+      var p = progress(c), en = enStatus(c);
+      var pct = c.quizzes ? Math.round(p.solved / c.quizzes * 100) : 0;
+      var lec = ROOT + c.lecture;
+      var note = en.cls === 'zh' && !zhMode ? ' (Chinese)' : '';
+      var links = '<a class="primary" href="' + esc(lec) + '">Lecture' + note + '</a>' +
+        c.decks.map(function (d) { return '<a href="' + esc(ROOT + d) + '">Condensed deck</a>'; }).join('');
+      if (c.slides.length) {
+        links += '<details class="slides"><summary>Slides (' + c.slides.length + ')</summary><ol>' +
+          c.slides.map(function (s) { return '<li><a href="' + esc(ROOT + s.href) + '">' + esc(s.label) + '</a></li>'; }).join('') +
+          '</ol></details>';
+      }
+      return '<article class="ch' + (lastCh === c ? ' recent' : '') + '">' +
+        '<div class="ch-top"><span class="num">Ch' + pad(c.num) + '</span>' +
+        '<h3><a href="' + esc(lec) + '">' + esc(c.title) + '</a></h3>' +
+        '<span class="pill ' + en.cls + '" title="' + (c.en.units ? c.en.translated + ' of ' + c.en.units + ' text blocks translated' : 'Not translated yet') + '">' + en.text + '</span></div>' +
+        '<div class="meter" title="Quizzes answered correctly"><div class="bar" role="progressbar" aria-label="Quizzes solved" aria-valuemin="0" aria-valuemax="' + c.quizzes + '" aria-valuenow="' + p.solved + '">' +
+        '<div class="fill' + (pct >= 100 ? ' full' : '') + '" style="width:' + pct + '%"></div></div><span>' + p.solved + '/' + c.quizzes + ' quizzes</span></div>' +
+        '<p class="last">' + (p.sec ? 'Last read <b>' + esc(secLabel(p.sec)) + '</b> · ' + esc(ago(p.pos.t)) : 'Not started') + '</p>' +
+        '<div class="links">' + links + '</div></article>';
+    }).join('');
+  }
+
+  document.getElementById('reset').addEventListener('click', function () {
+    if (!confirm('Clear all saved quiz results and reading positions in this browser?')) return;
+    try {
+      Object.keys(localStorage).forEach(function (k) { if (k.indexOf(NS) === 0 && k !== NS + 'theme') localStorage.removeItem(k); });
+    } catch (e) { /* storage blocked */ }
+    render();
+  });
+
+  // Progress written in another tab (a lecture page) shows up here without reloading.
+  window.addEventListener('storage', function (e) { if (DATA && e.key && e.key.indexOf(NS) === 0) render(); });
+  window.addEventListener('pageshow', function (e) { if (DATA && e.persisted) render(); });
+
+  fetch('chapters.json', { cache: 'no-cache' }).then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(function (d) {
+    DATA = d;
+    if (!d.chapters || !d.chapters.length) {
+      document.getElementById('chapters').innerHTML = '<div class="empty">No chapters in chapters.json. Run <code>python3 study/build_chapters.py</code>.</div>';
+      return;
+    }
+    render();
+  }).catch(function (e) {
+    document.getElementById('continue').hidden = true;
+    document.getElementById('chapters').innerHTML = '<div class="err">Could not load chapters.json (' + esc(e.message) +
+      '). Serve the repo over HTTP: <code>python3 -m http.server 8000</code>, then open <code>localhost:8000/study/</code>.</div>';
+  });
+})();
+</script>
+</body>
+</html>
