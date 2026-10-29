@@ -1,0 +1,1395 @@
+{
+  "_runtime": {
+    "exact": {
+      "✔ 正確！稜角幾何讓切點卡軸上→係數歸零，自動選特徵。": "✔ Correct! The corner geometry makes the tangent point get stuck on an axis → the coefficient goes to zero, so features are selected automatically.",
+      "✔ 正確！譜即 Σ 的特徵值/向量，選最大變異方向為主成分。": "✔ Correct! The spectrum is the eigenvalues/eigenvectors of Σ; the direction of maximum variance is chosen as the principal component.",
+      "✔ 正確！嵌入後 5 分藍 vs 16 分暖，色盲用分數即可辨色。": "✔ Correct! After embedding, blue scores 5 vs. warm scores 16, so the color-blind computer can tell the colors apart just from the scores.",
+      "✔ 正確！b 整體平移分數，w 決定方向；s(1,1)=2→12。": "✔ Correct! b shifts all the scores as a whole, while w sets the direction; s(1,1)=2→12.",
+      "✗ 再想想：關鍵是幾何形狀（圓 vs 菱），不是罰金大小。": "✗ Think again: the key is the geometric shape (circle vs. diamond), not the size of the penalty.",
+      "✗ 提示：譜 = 特徵值，哪個方向最亂就保留哪個。": "✗ Hint: spectrum = eigenvalues; keep whichever direction is the most spread out.",
+      "✗ 提示：監督後紅藍被拉開揉緊，分數已可分。": "✗ Hint: after supervision, red and blue have been pulled apart and squeezed tight, so the scores already separate them.",
+      "✗ 提示：平移整片點雲的是哪個參數？": "✗ Hint: which parameter shifts the whole point cloud?"
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "b8bb31e17014": {
+    "zh": "<a href=\"#cover\">封面</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d80673983057": {
+    "zh": "<a href=\"#q1\">靈魂拷問</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d8927cfcdfdb": {
+    "zh": "<a href=\"#pillars\">兩大支柱</a>",
+    "en": "<a href=\"#pillars\">Two Pillars</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c53b860ca337": {
+    "zh": "<a href=\"#regression\">統計回歸</a>",
+    "en": "<a href=\"#regression\">Statistical Regression</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "25f5b5e6c8be": {
+    "zh": "<a href=\"#lasso-calc\">Lasso 數值</a>",
+    "en": "<a href=\"#lasso-calc\">Lasso by the Numbers</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4302a7a30026": {
+    "zh": "<a href=\"#sparsity\">稀疏幾何</a>",
+    "en": "<a href=\"#sparsity\">Sparsity Geometry</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f1ef5d7ea37": {
+    "zh": "<a href=\"#pca\">譜降維 PCA</a>",
+    "en": "<a href=\"#pca\">Spectral DR: PCA</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "82ad531a06b8": {
+    "zh": "<a href=\"#supervised\">監督式降維</a>",
+    "en": "<a href=\"#supervised\">Supervised DR</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3e7230376a30": {
+    "zh": "<a href=\"#mapping\">映射演示</a>",
+    "en": "<a href=\"#mapping\">Mapping Demo</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4c4ce7a50098": {
+    "zh": "<a href=\"#summary\">總結對照</a>",
+    "en": "<a href=\"#summary\">Summary Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3142636d1b65": {
+    "zh": "<a href=\"#quiz\">思考測驗</a>",
+    "en": "<a href=\"#quiz\">Thinking Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ef615c0d42ac": {
+    "zh": "<a href=\"#roadmap\">學習路線</a>",
+    "en": "<a href=\"#roadmap\">Learning Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a95d7687efbf": {
+    "zh": "統計回歸 × 統計降維<br>從罰金到壓扁的幾何藝術",
+    "en": "Statistical Regression × Statistical Dimensionality Reduction<br>The Geometric Art of Going from Penalties to Squeezing",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "ff6f34b17d5f": {
+    "zh": "教電腦當算命先生，用幾何把行李箱壓成紙片 <span class=\"bilingual-en\" style=\"color:#cbd5e1;font-size:18px;display:inline;\">Teach machines to predict, and squeeze suitcases into paper — penalty &amp; geometry.</span>",
+    "en": "Teach the computer to be a fortune-teller, and use geometry to squash a suitcase flat as a sheet of paper",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "a8dd39a1fe15": {
+    "zh": "\n      <span>📐 最小平方 · Least Squares</span>\n      <span>💰 罰金幾何 · Penalty Geometry</span>\n      <span>📦 主成分 · PCA</span>\n      <span>🎨 側資訊 · Side Info</span>\n    ",
+    "en": "\n      <span>📐 Least Squares</span>\n      <span>💰 Penalty Geometry</span>\n      <span>📦 Principal Components (PCA)</span>\n      <span>🎨 Side Information</span>\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "afc490816a6e": {
+    "zh": "▾ SCROLL TO EXPLORE · 長頁自學模式",
+    "en": "▾ SCROLL TO EXPLORE · Long-Page Self-Study Mode",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "aedc2ad9d89c": {
+    "zh": "BIG QUESTION · 靈魂拷問",
+    "en": "BIG QUESTION",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "6a506bd2cb96": {
+    "zh": "為何電腦會「學歪」？<br>又為何高維數據要「壓扁」才看得懂？<small>Why do models overfit? Why must high-D data be squeezed to be understood?</small>",
+    "en": "Why do computers “learn crooked”?<br>And why does high-dimensional data have to be “squashed flat” before we can make sense of it?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "21db59d4c86f": {
+    "zh": "一個要「罰」——用幾何逼係數變乖；一個要「壓」——用幾何把混亂的行李箱摺成紙片。<span class=\"bilingual-en\">One needs a penalty to tame coefficients; the other needs squeezing to reveal structure.</span>",
+    "en": "One needs a “penalty”: geometry forces the coefficients to behave. The other needs “squashing”: geometry folds a messy suitcase into a sheet of paper.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a656e7aefe28": {
+    "zh": "S1 · 引起動機 · MOTIVATE",
+    "en": "S1 · MOTIVATE",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "346c1e2b344c": {
+    "zh": "兩大支柱：預測與壓縮 <span class=\"en\">Two Pillars — Prediction &amp; Compression</span>",
+    "en": "The Two Pillars: Prediction and Compression",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b2372db4b2f0": {
+    "zh": "回歸管「從 $X$ 猜 $y$」，降維管「把 $\\mathbb{R}^d$ 變 $\\mathbb{R}^p$（$p \\lt d$）還保留靈魂」。一個對準標籤，一個對準結構。<span class=\"bilingual-en\">Regression: $X\\to y$ prediction. Reduction: $\\mathbb{R}^d\\to\\mathbb{R}^p$ with soul preserved.</span>",
+    "en": "Regression is in charge of “guessing $y$ from $X$”; dimensionality reduction is in charge of “turning $\\mathbb{R}^d$ into $\\mathbb{R}^p$ ($p \\lt d$) while keeping its soul.” One aims at the labels, the other at the structure.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b0357bbbfd67": {
+    "zh": "統計回歸 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Regression</span>",
+    "en": "Statistical Regression",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "bdceaa290016": {
+    "zh": "找 $f_\\theta(X)\\approx y$，用誤差 $\\|y-\\hat y\\|^2$ 當罪過值；怕學歪就加罰金 $\\lambda\\|\\theta\\|$。<span class=\"bilingual-en\">Find $f_\\theta\\approx y$; penalize wild $\\theta$.</span>",
+    "en": "Find $f_\\theta(X)\\approx y$, using the error $\\|y-\\hat y\\|^2$ as the “sin score”; if you're afraid it will learn crooked, add a penalty $\\lambda\\|\\theta\\|$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1d9f54436165": {
+    "zh": "特徵 $X$ → 標籤 $y$，線性只是起點。<span class=\"bilingual-en\">Features → label; linear is just the start.</span>",
+    "en": "Features $X$ → label $y$; linear is just the starting point.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9be0260c8bdd": {
+    "zh": "統計降維 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Reduction</span>",
+    "en": "Statistical Dimensionality Reduction",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a2e1e23e555b": {
+    "zh": "把行李箱壓成紙片：譜方法看幾何（特徵值）、機率方法看潛在因子。<span class=\"bilingual-en\">Squeeze suitcase to paper: spectral = geometry, probabilistic = latent factors.</span>",
+    "en": "Squash the suitcase into a sheet of paper: spectral methods look at geometry (eigenvalues), probabilistic methods look at latent factors.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "520137574798": {
+    "zh": "監督時更狠：同類揉緊、異類拉開。<span class=\"bilingual-en\">Supervised: tighten within, pull apart between.</span>",
+    "en": "With supervision it gets even more ruthless: squeeze same-class points tight, pull different classes apart.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f24e0f286ac6": {
+    "zh": "共同語言：幾何 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Geometry unifies</span>",
+    "en": "The Common Language: Geometry",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cdccca78baf4": {
+    "zh": "Lasso 的稜角讓係數歸零、PCA 的方向讓變異最大、監督降維把空間拉扯重塑——全是幾何在說話。<span class=\"bilingual-en\">Lasso corners → sparsity; PCA direction → max variance; supervised pull/push → new space.</span>",
+    "en": "Lasso's corners send coefficients to zero, PCA's direction maximizes variance, and supervised dimensionality reduction stretches and reshapes the space: it's geometry doing the talking every time.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "73f1bad823ba": {
+    "zh": "奧卡姆剃刀 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Occam's Razor</span>",
+    "en": "Occam's Razor",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e4c4be1b6dcc": {
+    "zh": "能簡單就別複雜：Lasso 把不重要特徵係數壓到 0，降維把 $d$ 維減到 $p$ 維——都在刪。<span class=\"bilingual-en\">Simpler wins: zero out weak features, shrink dimensions.</span>",
+    "en": "If it can be simple, don't make it complicated: Lasso squeezes the coefficients of unimportant features to 0, and dimensionality reduction cuts $d$ dimensions down to $p$. Both are deleting things.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "eb7c01606dcd": {
+    "zh": "直覺 · 一句話記住 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">One-Liner</span>",
+    "en": "Intuition · Remember It in One Sentence",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "fbe99e5e5998": {
+    "zh": "回歸是「算命」——給線索猜分數；降維是「收納」——把亂衣櫃摺到看得懂的抽屜。<span class=\"bilingual-en\">Regression = fortune-telling from clues; reduction = folding a messy closet.</span>",
+    "en": "Regression is “fortune-telling”: given clues, guess the score. Dimensionality reduction is “tidying up”: fold a messy closet into drawers you can make sense of.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "89bb3f41f8d0": {
+    "zh": "S2 · 維持注意 · SUSTAIN",
+    "en": "S2 · SUSTAIN",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "07bdfe58cb6b": {
+    "zh": "一、統計回歸：教電腦當算命先生 <span class=\"en\">Regression — Fortune-Telling Machine</span>",
+    "en": "1. Statistical Regression: Teaching the Computer to Be a Fortune-Teller",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "90e1b462edeb": {
+    "zh": "特徵 $X$（讀書時數、缺課次數）→ 標籤 $y$（期末分數），回歸找 $f_\\theta$ 使 $\\hat y = f_\\theta(X)$ 最接近 $y$。<span class=\"bilingual-en\">Features $X$ → label $y$; find $f_\\theta$ with $\\hat y\\approx y$.</span>",
+    "en": "Features $X$ (hours studied, number of absences) → label $y$ (final exam score); regression finds $f_\\theta$ such that $\\hat y = f_\\theta(X)$ is as close as possible to $y$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3e581e00ed09": {
+    "zh": "特徵 X",
+    "en": "Features X",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "074b0d5d2bcd": {
+    "zh": "讀書/缺課",
+    "en": "Study/absences",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "db58ca099a48": {
+    "zh": "線性假設",
+    "en": "Linear assumption",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7574063b456d": {
+    "zh": "預測 ŷ",
+    "en": "Prediction ŷ",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "abb84b4596c7": {
+    "zh": "分數",
+    "en": "Score",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "2e27284d8311": {
+    "zh": "線性回歸：多讀 1h +5 分，缺課 1 次 −10 分",
+    "en": "Linear regression: +1h study = +5 pts, 1 absence = −10 pts",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7e480868a990": {
+    "zh": "ŷ = θ1·讀書 + θ2·缺課 + b",
+    "en": "ŷ = θ1·study + θ2·absences + b",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c64f5e207bfd": {
+    "zh": "罪過值 MSE = (1/n) Σ (y − ŷ)² → 最小化",
+    "en": "Sin score MSE = (1/n) Σ (y − ŷ)² → minimize",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ac946f6a23ec": {
+    "zh": "特徵→模型→預測，誤差平方為罪，目標最小化 · Features → model → prediction; squared error is the sin.",
+    "en": "Features → model → prediction; the squared error is the sin, and the goal is to minimize it.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "65f37d30a1c1": {
+    "zh": "線性假設 · Linear World",
+    "en": "The Linear Assumption",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b00edf7420ce": {
+    "zh": "「多讀 1 小時 +5 分」是線性直覺：$\\hat y = \\theta_1 x_1 + \\theta_2 x_2 + b$。簡單、可解釋、凸優化。<span class=\"bilingual-en\">Linear: $\\hat y=\\theta_1x_1+\\theta_2x_2+b$ — simple &amp; convex.</span>",
+    "en": "“Study 1 more hour, get +5 points” is linear intuition: $\\hat y = \\theta_1 x_1 + \\theta_2 x_2 + b$. Simple, interpretable, and a convex optimization problem.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "618fdddcc1bf": {
+    "zh": "罪過值 MSE <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Sin Value</span>",
+    "en": "The MSE Sin Score",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6746b1323642": {
+    "zh": "預測差太多就重罰，且平方後不論正負都算罪。電腦的唯一 KPI：讓總罪過最小。<span class=\"bilingual-en\">Big gap = big squared sin; minimize total.</span>",
+    "en": "If a prediction is way off, it gets heavily penalized, and after squaring, an error counts as a sin whether it is positive or negative. The computer's one and only KPI: make the total sin as small as possible.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "40512880de62": {
+    "zh": "何時失靈 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">When It Fails</span>",
+    "en": "When It Fails",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "15536b72f4c9": {
+    "zh": "為貼合考古題（訓練集）學出離譜係數 $-50000$——過擬合警報，需罰金。<span class=\"bilingual-en\">Fitting training quirks with huge $\\theta$ → overfit, needs penalty.</span>",
+    "en": "To fit the past exam questions (the training set), it learns an absurd coefficient like $-50000$: an overfitting alarm, and a penalty is needed.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a2c68e1723aa": {
+    "zh": "公式 · 線性回歸與最小平方",
+    "en": "Formula · Linear Regression and Least Squares",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "28acaddfb16a": {
+    "zh": "最小化 $\\mathcal{L}_{\\text{MSE}}$ 即讓預測貼近真相；但無正則時 $\\theta$ 可能失控。<span class=\"bilingual-en\">Minimize MSE to fit; without penalty $\\theta$ may explode.</span>",
+    "en": "Minimizing $\\mathcal{L}_{\\text{MSE}}$ means making the predictions stick close to the truth; but without regularization, $\\theta$ can spiral out of control.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3793325d0689": {
+    "zh": "S2 · 罰金幾何 · PENALTY",
+    "en": "S2 · Penalty Geometry",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fc37a3da460b": {
+    "zh": "怕高的係數：Ridge 與 Lasso <span class=\"en\">Taming Wild Coefficients</span>",
+    "en": "Coefficients Afraid of Heights: Ridge and Lasso",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0ee41e5616d3": {
+    "zh": "罰金加在罪過值後：$\\mathcal{L} = \\text{MSE} + \\alpha\\|\\theta\\|$。Ridge 用 $\\ell_2$ 讓係數溫和，Lasso 用 $\\ell_1$ 讓係數歸零。<span class=\"bilingual-en\">Add penalty $\\alpha\\|\\theta\\|$: Ridge ($\\ell_2$) smooths, Lasso ($\\ell_1$) zeros out.</span>",
+    "en": "Add the penalty on top of the sin score: $\\mathcal{L} = \\text{MSE} + \\alpha\\|\\theta\\|$. Ridge uses $\\ell_2$ to keep coefficients mild; Lasso uses $\\ell_1$ to drive coefficients to zero.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0d9242ea42ce": {
+    "zh": "Ridge · $\\ell_2$ 溫和派",
+    "en": "Ridge · $\\ell_2$, the Gentle Camp",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c4f3cba986a0": {
+    "zh": "Tikhonov 1943/1962，圓形單位球。<span class=\"bilingual-en\">Circular ball, smooth.</span>",
+    "en": "Tikhonov 1943/1962, a circular unit ball.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a1d4d1eb3cd4": {
+    "zh": "罰金 $\\alpha\\|\\theta\\|_2^2=\\alpha\\sum\\theta_j^2$：$\\theta=10000$ → 罰 $10^8$，逼溫和 <span class=\"bilingual-en\">(huge $\\theta$ = huge fine)</span>",
+    "en": "Penalty $\\alpha\\|\\theta\\|_2^2=\\alpha\\sum\\theta_j^2$: $\\theta=10000$ → a fine of $10^8$, which forces it to stay mild",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1267865cad98": {
+    "zh": "幾何圓滑 → 係數縮小但不為 0 <span class=\"bilingual-en\">(shrink, not zero)</span>",
+    "en": "Smooth geometry → coefficients shrink but don't become 0",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "01106780e0c0": {
+    "zh": "適合共線特徵、穩定解 <span class=\"bilingual-en\">(stable with collinearity)</span>",
+    "en": "Good for collinear features; gives a stable solution",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2705878bb302": {
+    "zh": "球面光滑 → 切點不在軸上。<span class=\"bilingual-en\">Smooth ball → rarely on axis.</span>",
+    "en": "The ball's surface is smooth → the tangent point does not land on an axis.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "66f6ba556974": {
+    "zh": "Lasso · $\\ell_1$ 稜角派",
+    "en": "Lasso · $\\ell_1$, the Sharp-Cornered Camp",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5766bb913250": {
+    "zh": "Tibshirani 1996，菱形單位球，有稜角。<span class=\"bilingual-en\">Diamond, pointy.</span>",
+    "en": "Tibshirani 1996, a diamond-shaped unit ball with sharp corners.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "75c78f79d385": {
+    "zh": "罰金 $\\alpha\\|\\theta\\|_1=\\alpha\\sum|\\theta_j|$：絕對值在 0 點不平滑 <span class=\"bilingual-en\">($|\\theta|$ kinky at 0)</span>",
+    "en": "Penalty $\\alpha\\|\\theta\\|_1=\\alpha\\sum|\\theta_j|$: the absolute value is not smooth at 0",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "97516a7a220d": {
+    "zh": "幾何有稜角 → 切點卡在軸上→$\\theta_j=0$ <span class=\"bilingual-en\">(corner → zero)</span>",
+    "en": "Cornered geometry → the tangent point gets stuck on an axis → $\\theta_j=0$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b47713473088": {
+    "zh": "自動特徵選擇，稀疏解 <span class=\"bilingual-en\">(auto-select, sparse)</span>",
+    "en": "Automatic feature selection, sparse solution",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "98fdc13be50a": {
+    "zh": "稜角 → 壓到軸上→稀疏。<span class=\"bilingual-en\">Pointy → hits axis → sparse.</span>",
+    "en": "Corners → pressed onto an axis → sparse.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fcc70200bbf5": {
+    "zh": "Ridge · 圓滑球：切點不在軸上",
+    "en": "Ridge · smooth ball: tangent point off the axes",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4e79517c7ed2": {
+    "zh": "ℓ2 ≤ C (圓)",
+    "en": "ℓ2 ≤ C (circle)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "de75229f2334": {
+    "zh": "切點（θ1,θ2 ≠0）",
+    "en": "Tangent point (θ1,θ2 ≠0)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5ca3472aab77": {
+    "zh": "Lasso · 菱形尖角：切點卡軸上 → 稀疏",
+    "en": "Lasso · diamond corners: tangent point on an axis → sparse",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "6f4ae4bacb24": {
+    "zh": "ℓ1 ≤ C (菱)",
+    "en": "ℓ1 ≤ C (diamond)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4f772a14bec8": {
+    "zh": "θ1=0 稀疏點",
+    "en": "θ1=0 sparse point",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "f0f8cf600d88": {
+    "zh": "左圓右菱：等高線（藍虛線）與罰金球相切；稜角讓 Lasso 卡軸上 → 係數歸零 · Smooth vs pointy: tangency decides sparsity.",
+    "en": "Circle on the left, diamond on the right: the contour lines (blue dashed) touch the penalty ball; the corners make Lasso stick to an axis → coefficients go to zero.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9e2cbd325696": {
+    "zh": "S2 · 數值演示 · NUMERIC",
+    "en": "S2 · Numeric Demo",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "771378eafffd": {
+    "zh": "Lasso 數值：為何逼到 0 <span class=\"en\">Why Lasso Zeros Out — Numbers</span>",
+    "en": "Lasso by the Numbers: Why It Pushes to 0",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e676e3d8cdce": {
+    "zh": "單一特徵 $\\theta_2$（缺課），罰金 $\\alpha|\\theta_2|$，$\\alpha=100$。大係數罰重，小係數便宜，0 免費。<span class=\"bilingual-en\">One feature $\\theta_2$, penalty $100|\\theta_2|$: big = expensive, zero = free.</span>",
+    "en": "A single feature $\\theta_2$ (number of absences), penalty $\\alpha|\\theta_2|$, $\\alpha=100$. Big coefficients are fined heavily, small ones are cheap, and 0 is free.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6d36b71e321a": {
+    "zh": "罰金隨係數變化（可調 $\\alpha$） · Penalty vs Coefficient",
+    "en": "Penalty as the Coefficient Changes (adjustable $\\alpha$)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "994bd11a0636": {
+    "zh": "罰金係數 $\\alpha$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(drag)</span>：",
+    "en": "Penalty coefficient $\\alpha$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(drag)</span>:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4d207f165abe": {
+    "zh": "— 零點始終免費",
+    "en": "— zero is always free",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3a4db62f55e8": {
+    "zh": "三種選擇的帳單",
+    "en": "The Bill for Three Choices",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fea21d954b48": {
+    "zh": "$\\alpha=100$ 時：<br>$\\theta_2=-10$ → $100\\cdot10=1000$（付不起）<br>$\\theta_2=-0.1$ → $100\\cdot0.1=10$（便宜）<br>$\\theta_2=0$ → $0$（免費，刪特徵）<span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Big → bankruptcy; zero → free &amp; sparse.</span>",
+    "en": "When $\\alpha=100$:<br>$\\theta_2=-10$ → $100\\cdot10=1000$ (can't afford it)<br>$\\theta_2=-0.1$ → $100\\cdot0.1=10$ (cheap)<br>$\\theta_2=0$ → $0$ (free; the feature is deleted)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f4900fe8c56f": {
+    "zh": "為何 0 特別誘人 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Why Zero Wins</span>",
+    "en": "Why 0 Is So Tempting",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c6ea8f7bfd25": {
+    "zh": "$\\ell_1$ 在 0 點不平滑、有稜角，對小係數懲罰敏感，優化路徑易卡尖角 → 自動刪「穿藍襪子」這類無用特徵。<span class=\"bilingual-en\">Kink at 0 is sticky → optimizer gets trapped → auto-deletes noise features.</span>",
+    "en": "$\\ell_1$ is not smooth at 0 and has a sharp corner there; it penalizes small coefficients sensitively, so the optimization path easily gets stuck at the corner → it automatically deletes useless features like “wears blue socks.”",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "dcec57b85e3e": {
+    "zh": "S2 · 幾何魔術 · GEOMETRY",
+    "en": "S2 · Geometric Magic",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "86503e4cd332": {
+    "zh": "稀疏的幾何魔術：圖上看懂 <span class=\"en\">Sparsity Geometry — See It</span>",
+    "en": "The Geometric Magic of Sparsity: See It on the Plot",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3ae3e7f9a760": {
+    "zh": "左：誤差等高線（藍）與 $\\ell_1$ 菱（橙）相切於尖角 → $\\theta_1=0$。右：輸入→輸出映射 $s(\\mathbf{x})=w^\\top\\mathbf{x}+b$ 的分數色階與平移。<span class=\"bilingual-en\">Left tangency at corner → zero; right linear mapping &amp; bias shift.</span>",
+    "en": "Left: the error contours (blue) touch the $\\ell_1$ diamond (orange) at a corner → $\\theta_1=0$. Right: the score color scale and shift of the input→output mapping $s(\\mathbf{x})=w^\\top\\mathbf{x}+b$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dd66e52cdf2c": {
+    "zh": "左：Lasso 單位球與稀疏切點 · 稜角卡軸 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Diamond tangency</span>",
+    "en": "Left: Lasso Unit Ball and Sparse Tangent Point · Corners Stick to the Axes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cdfbd5e78e02": {
+    "zh": "橙菱 $\\ell_1\\le0.5$ 四角在軸上；藍虛線為 MSE 等高線，交於 $(0,0.5)$ → $\\theta_1=0$ 稀疏解 <span class=\"bilingual-en\" style=\"font-size:14px;\">Orange diamond corners on axes; intersection at $(0,0.5)$.</span>",
+    "en": "The orange diamond $\\ell_1\\le0.5$ has its four corners on the axes; the blue dashed lines are MSE contours, which meet it at $(0,0.5)$ → the sparse solution $\\theta_1=0$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "462c1e186619": {
+    "zh": "右：線性映射 $s(\\mathbf{x})=x_1+x_2+b$ 的色階與偏置平移 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Scores &amp; bias shift</span>",
+    "en": "Right: Color Scale and Bias Shift of the Linear Mapping $s(\\mathbf{x})=x_1+x_2+b$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "034d05085a93": {
+    "zh": "偏置 $b$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(shifts scores)</span>：",
+    "en": "Bias $b$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(shifts scores)</span>:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "46b96eb0bda6": {
+    "zh": "色階 $x_1+x_2+b$（低分藍→高分暖）",
+    "en": "Color scale $x_1+x_2+b$ (low scores blue → high scores warm)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c899e8b4eb36": {
+    "zh": "點 $\\mathbf{x}=(1,1)$：$b=0$ 時 $s=2$（低分藍）；$b=10$ 時 $s=12$（整片平移 10） <span class=\"bilingual-en\" style=\"font-size:14px;\">$\\mathbf{x}=(1,1)$: $2$ at $b=0$, $12$ at $b=10$.</span>",
+    "en": "Point $\\mathbf{x}=(1,1)$: at $b=0$, $s=2$ (low score, blue); at $b=10$, $s=12$ (the whole map shifts by 10)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7c693fb1f128": {
+    "zh": "小結 · Takeaway",
+    "en": "Takeaway",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "583e33dcb790": {
+    "zh": "罰金幾何決定稀疏：圓滑→縮小，稜角→歸零；映射幾何決定分數：$w$ 定方向，$b$ 定平移。<span class=\"bilingual-en\">Geometry decides: smooth → shrink, pointy → zero; $w$ sets direction, $b$ sets shift.</span>",
+    "en": "Penalty geometry decides sparsity: smooth → shrink, corners → zero. Mapping geometry decides the scores: $w$ sets the direction, $b$ sets the shift.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "102e7cb34404": {
+    "zh": "S2 · 譜降維 · SPECTRAL",
+    "en": "S2 · Spectral Dimensionality Reduction",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "731ef673a27d": {
+    "zh": "譜降維 PCA：把行李箱壓扁 <span class=\"en\">PCA — Squeeze the Suitcase</span>",
+    "en": "Spectral Dimensionality Reduction with PCA: Squashing the Suitcase",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4d4a32624b1f": {
+    "zh": "數據活在 $\\mathbb{R}^d$，PCA 找「變異最大」的線性方向投影到 $\\mathbb{R}^2$（或 $\\mathbb{R}^p$），特徵值即譜。<span class=\"bilingual-en\">Live in $\\mathbb{R}^d$, project to $p$ dims along max variance — eigenvalues = spectrum.</span>",
+    "en": "The data live in $\\mathbb{R}^d$; PCA finds the linear directions of “largest variance” and projects onto $\\mathbb{R}^2$ (or $\\mathbb{R}^p$); the eigenvalues are the spectrum.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ab7f2cafbaa2": {
+    "zh": "matplotlib 精準繪製：點雲協方差譜 $\\lambda_1=6.01$ vs $\\lambda_2=0.47$；PC1（橙實線）為最大變異方向，虛線為投影；色階為 PC1 分數 · Precise: covariance spectrum &amp; orthogonal projection.",
+    "en": "Drawn precisely with matplotlib: the covariance spectrum of the point cloud, $\\lambda_1=6.01$ vs $\\lambda_2=0.47$; PC1 (solid orange line) is the direction of largest variance, the dashed lines are the projections, and the color scale is the PC1 score.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6367d955b9c8": {
+    "zh": "為何是特徵值 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Why Eigen</span>",
+    "en": "Why Eigenvalues",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f04f830a6d72": {
+    "zh": "協方差 $\\Sigma$ 的特徵向量即主方向，特徵值即該方向變異量；譜分析故名「譜降維」。<span class=\"bilingual-en\">Eigenvectors = directions; eigenvalues = variance.</span>",
+    "en": "The eigenvectors of the covariance $\\Sigma$ are the principal directions, and the eigenvalues are the variance along those directions; it is spectral analysis, hence the name “spectral dimensionality reduction.”",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e82babdeb01e": {
+    "zh": "行李箱比喻 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Suitcase</span>",
+    "en": "The Suitcase Analogy",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "661e6745071d": {
+    "zh": "高維行李箱硬塞進紙箱：PCA 讓你選「最鼓的方向」壓，丟掉最扁的方向。<span class=\"bilingual-en\">Stuff suitcase into paper: keep bulging, drop flat.</span>",
+    "en": "Cramming a high-dimensional suitcase into a cardboard box: PCA lets you pick the “bulgiest direction” to squash along and throw away the flattest direction.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "28d0e8551c4f": {
+    "zh": "線性局限 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">Linear Limit</span>",
+    "en": "The Linear Limitation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2cade5603b75": {
+    "zh": "PCA 僅線性投影；流形彎曲時需核 PCA / t-SNE / UMAP。<span class=\"bilingual-en\">Linear only; curved manifolds need nonlinear.</span>",
+    "en": "PCA is only a linear projection; when the manifold is curved, you need kernel PCA / t-SNE / UMAP.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "91ac5bb56898": {
+    "zh": "公式 · PCA 目標",
+    "en": "Formula · The PCA Objective",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3e566a709c1a": {
+    "zh": "最大變異方向即 $\\Sigma$ 最大特徵值對應特徵向量；譜即 $\\{\\lambda_i\\}$。<span class=\"bilingual-en\">Max variance direction = top eigenvector of $\\Sigma$.</span>",
+    "en": "The direction of maximum variance is the eigenvector belonging to the largest eigenvalue of $\\Sigma$; the spectrum is $\\{\\lambda_i\\}$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a1a40de9285b": {
+    "zh": "S2 · 機率式降維 · PROBABILISTIC",
+    "en": "S2 · Probabilistic Dimensionality Reduction",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2726d95b3eba": {
+    "zh": "機率式與監督式降維：色盲辨色 <span class=\"en\">Probabilistic &amp; Supervised — Color-Blind Task</span>",
+    "en": "Probabilistic and Supervised Dimensionality Reduction: Telling Colors Apart While Color-Blind",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d20ca01cf083": {
+    "zh": "機率式假設 $x$ 由潛在因子 + 雜訊生成；監督式再加側資訊 $y$（紅/藍標籤），重塑空間：<b>拉開類間、揉緊類內</b>。<span class=\"bilingual-en\">Latent factors + noise; supervised adds $y$ to reshape: pull between, tighten within.</span>",
+    "en": "Probabilistic methods assume $x$ is generated by latent factors + noise; supervised methods also add side information $y$ (red/blue labels) to reshape the space: <b>pull the classes apart, squeeze each class tight</b>.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7d4f20eeeb74": {
+    "zh": "無監督因子 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Unsupervised</span>",
+    "en": "Unsupervised Factors",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e944a447e6b7": {
+    "zh": "灰度 [5,10] 混散，10 顆球看不出差別。<span class=\"bilingual-en\">Grey blur, no separation.</span>",
+    "en": "Grayscale values [5,10] all mixed together; you can't tell the 10 balls apart.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bb619d8c920d": {
+    "zh": "假設 $\\mathbf{x}=W\\mathbf{z}+\\epsilon$，$\\mathbf{z}$ 為潛因子 <span class=\"bilingual-en\">(latent)</span>",
+    "en": "Assume $\\mathbf{x}=W\\mathbf{z}+\\epsilon$, where $\\mathbf{z}$ is the latent factor",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c3b9a1e0aff5": {
+    "zh": "因子分析 / pPCA 找結構，不知顏色 <span class=\"bilingual-en\">(find structure blind)</span>",
+    "en": "Factor analysis / pPCA find structure without knowing the colors",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f9cdc3e2d3d9": {
+    "zh": "色盲視角：全是灰球 <span class=\"bilingual-en\">(all grey)</span>",
+    "en": "The color-blind view: all the balls are grey",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "56f24491c4cf": {
+    "zh": "監督式拉扯 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);font-weight:400;\">Supervised Pull/Push</span>",
+    "en": "Supervised Push and Pull",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e4d78371e689": {
+    "zh": "已知紅/藍，幾何改造 $\\mathbf{x}\\to\\mathbf{y}$（$d=2\\to p=1$）。<span class=\"bilingual-en\">With labels, reshape $\\mathbf{x}\\to\\mathbf{y}$.</span>",
+    "en": "With red/blue known, reshape the geometry $\\mathbf{x}\\to\\mathbf{y}$ ($d=2\\to p=1$).",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c5812f9b481a": {
+    "zh": "<b>推開類間</b>：紅雲 vs 藍雲遠離 <span class=\"bilingual-en\">(push apart)</span>",
+    "en": "<b>Push the classes apart</b>: the red cloud and the blue cloud move away from each other",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "32da53e41407": {
+    "zh": "<b>收攏類內</b>：各自揉成緊團 (3,3) vs (16,16) <span class=\"bilingual-en\">(tighten within)</span>",
+    "en": "<b>Pull each class together</b>: each one squeezes into a tight cluster, (3,3) vs (16,16)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ae30c43db73b": {
+    "zh": "結果：分數 5 分藍、16 分暖，色盲也能分 <span class=\"bilingual-en\">(scores 5 vs 16)</span>",
+    "en": "Result: a score of 5 is blue and 16 is warm, so even the color-blind can tell them apart",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6a993928431f": {
+    "zh": "輸入 X：灰度混散 [5,10]",
+    "en": "Input X: grey, mixed [5,10]",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "b7cef1bc6280": {
+    "zh": "色盲眼中全灰",
+    "en": "All grey to the color-blind",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "1e1e48bb7256": {
+    "zh": "fθ 映射",
+    "en": "fθ mapping",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "63142d2cd81c": {
+    "zh": "式7",
+    "en": "Eq. 7",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "b3364a04d9ca": {
+    "zh": "監督後：拉開 + 揉緊",
+    "en": "Supervised: push apart + squeeze",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "7426139edf05": {
+    "zh": "類間拉開",
+    "en": "Classes pushed apart",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "24adf7415d8e": {
+    "zh": "紅團 (3,3)",
+    "en": "Red cluster (3,3)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "63922aa650ea": {
+    "zh": "藍團 (16,16)",
+    "en": "Blue cluster (16,16)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "e59d1b3be229": {
+    "zh": "嵌入 y (p=1)：分數",
+    "en": "Embedding y (p=1): score",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "fbd812d2ae61": {
+    "zh": "5分藍",
+    "en": "5 = blue",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "79816cfe7b10": {
+    "zh": "16分暖",
+    "en": "16 = warm",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "2f935112b257": {
+    "zh": "色盲也能分",
+    "en": "Color-blind can tell",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "3377731fbaca": {
+    "zh": "緊團 + 遠離 = 可分",
+    "en": "Tight + far = separable",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "8a6db4e97eb9": {
+    "zh": "無監督混散 → 監督拉扯：類間遠、類內緊、p=1 分數即可辨色 · Blur → supervised pull/push → separable scores.",
+    "en": "Unsupervised: all mixed → supervised push and pull: classes far apart, each class tight, and a p=1 score is enough to tell the colors apart.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7df31340d74f": {
+    "zh": "S2 · 幾何演示 · DEMO",
+    "en": "S2 · Geometric Demo · DEMO",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4c3d06e8cfd8": {
+    "zh": "降維幾何演示：式 7 映射 $d=2\\to p=1$ <span class=\"en\">Geometric Demo — Mapping $d=2\\\\to p=1$</span>",
+    "en": "Dimensionality reduction geometric demo: the Eq. 7 mapping $d=2\\to p=1$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c759eb983a6d": {
+    "zh": "線性映射 $s(\\mathbf{x})=w^\\top\\mathbf{x}+b$ 中 $w$ 定投影方向、$b$ 定平移；監督側資訊決定如何拉扯空間。<span class=\"bilingual-en\">$w$ sets direction, $b$ sets shift; side info decides pull/push.</span>",
+    "en": "In the linear mapping $s(\\mathbf{x})=w^\\top\\mathbf{x}+b$, $w$ sets the projection direction and $b$ sets the shift; the supervised side information decides how the space gets pulled and pushed.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "92e75bc2a1f7": {
+    "zh": "matplotlib 精準：左輸入 $X$ 灰度混疊 [5,10] → 中映射 $w=[1,1], b$ 平移熱圖 → 右嵌入 $y$ 緊團 5 vs 16 可分 · Precise heat, contours &amp; tight clusters.",
+    "en": "Precise matplotlib rendering: left, input $X$ with grayscale values [5,10] mixed together → middle, heat map of the mapping $w=[1,1], b$ with its shift → right, the embedding $y$ in tight clusters, 5 vs 16, separable.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1ae69ae06b17": {
+    "zh": "公式 · 監督式幾何重塑（式 7 示意）",
+    "en": "Formula · Supervised geometric reshaping (illustration of Eq. 7)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "874995080c16": {
+    "zh": "$$\\mathbf{y}=f_\\theta(\\mathbf{x}),\\quad \\text{監督目標：}\\max\\text{類間距離} + \\min\\text{類內散佈}$$",
+    "en": "$$\\mathbf{y}=f_\\theta(\\mathbf{x}),\\quad \\text{Supervised goal: }\\max\\text{between-class distance} + \\min\\text{within-class scatter}$$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "512752c0c136": {
+    "zh": "無監督找結構，監督用標籤 $y$ 重塑度量；$b$ 平移整片點雲，$w$ 決定最具判別的方向。<span class=\"bilingual-en\">Unsupervised finds structure; supervised reshapes metric with $y$; $b$ shifts, $w$ orients.</span>",
+    "en": "Unsupervised methods find structure; supervised methods use the labels $y$ to reshape the metric. $b$ shifts the whole point cloud, and $w$ picks the most discriminative direction.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9313c7e22a0d": {
+    "zh": "S3 · 喚起行動 · ACTIVATE",
+    "en": "S3 · Call to Action · ACTIVATE",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3b072c9940b4": {
+    "zh": "總結：罰金讓模型變乖，壓扁讓數據變懂 <span class=\"en\">Summary — Penalties Tame, Squeezing Clarifies</span>",
+    "en": "Summary: penalties make models behave, squeezing makes data understandable",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f0273e25e002": {
+    "zh": "支柱",
+    "en": "Pillar",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3020a8aa52b1": {
+    "zh": "核心問",
+    "en": "Core question",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cce604160bcf": {
+    "zh": "幾何",
+    "en": "Geometry",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f0c566d8f1a1": {
+    "zh": "關鍵公式",
+    "en": "Key formula",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "22df475c56ed": {
+    "zh": "選型心法",
+    "en": "When to pick it",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9414b4b3ef08": {
+    "zh": "<b>線性回歸</b>",
+    "en": "<b>Linear regression</b>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cd0c37d2a530": {
+    "zh": "$X\\to y$ 怎麼最準",
+    "en": "How to map $X\\to y$ most accurately",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e684ee2f2417": {
+    "zh": "誤差等高線",
+    "en": "Error contours",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7ee12a7c2016": {
+    "zh": "基準、可解釋、小樣本穩",
+    "en": "Baseline, interpretable, stable with small samples",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "644c67d889ff": {
+    "zh": "係數太大怎罰",
+    "en": "How to penalize coefficients that are too large",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "83cae0dcb049": {
+    "zh": "圓球 → 縮小",
+    "en": "Round ball → shrink",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a07c22720097": {
+    "zh": "共線多、求穩",
+    "en": "Heavy collinearity, want stability",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "67fe78b2849e": {
+    "zh": "如何自動選特徵",
+    "en": "How to select features automatically",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8847de96a0d4": {
+    "zh": "菱尖 → 歸零",
+    "en": "Diamond corners → zero",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e484a6bf89dd": {
+    "zh": "高維稀疏、要選特徵",
+    "en": "High-dimensional, sparse, need feature selection",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "76f5dabc4fa8": {
+    "zh": "<b>PCA（譜）</b>",
+    "en": "<b>PCA (spectral)</b>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "80ab87162619": {
+    "zh": "往哪壓最亂",
+    "en": "Which direction to squeeze along where the data is most spread out",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5edcf1d1e1aa": {
+    "zh": "特徵向量/值",
+    "en": "Eigenvectors/eigenvalues",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "153c216efaff": {
+    "zh": "無監督、線性、本底降維",
+    "en": "Unsupervised, linear, the baseline dimensionality reduction",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "89eb30431a6a": {
+    "zh": "<b>機率式降維</b>",
+    "en": "<b>Probabilistic dimensionality reduction</b>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d0cc10bbfa24": {
+    "zh": "潛因子是誰",
+    "en": "Who are the latent factors",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0b95942eea40": {
+    "zh": "生成 $Wz+\\epsilon$",
+    "en": "Generate $Wz+\\epsilon$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "82dd8a41630e": {
+    "zh": "假潛結構、去噪",
+    "en": "Assume latent structure, denoising",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "384fce47d07c": {
+    "zh": "如何讓類可分",
+    "en": "How to make classes separable",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7c3465e4b8a7": {
+    "zh": "拉開/揉緊",
+    "en": "Pull apart / pull together",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b8a3b998a862": {
+    "zh": "有標籤、要可分嵌入",
+    "en": "Have labels, need a separable embedding",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8de7eaf5b5e6": {
+    "zh": "沒有萬能模型 · No Free Lunch",
+    "en": "No one-size-fits-all model · No Free Lunch",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "94583b48e226": {
+    "zh": "特徵多且可刪 → Lasso 稀疏；<br>共線重、求穩 → Ridge 縮小；<br>無標籤想看結構 → PCA；<br>有標籤想分開 → 監督拉扯；<br>彎曲流形 → 非線性降維。<span class=\"bilingual-en\">Many deletable → Lasso; collinear → Ridge; no labels → PCA; labels → supervised pull/push.</span>",
+    "en": "Many features that can be dropped → Lasso, sparse;<br>heavy collinearity, want stability → Ridge, shrink;<br>no labels, want to see structure → PCA;<br>labels, want to separate classes → supervised pull/push;<br>curved manifold → nonlinear dimensionality reduction.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e49a03ecbbf4": {
+    "zh": "一句話複習 <span class=\"bilingual-en\" style=\"font-size:16px;font-weight:400;color:var(--ink-soft);\">One-Liners</span>",
+    "en": "One-line review",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b239786ae8e7": {
+    "zh": "Ridge 圓→縮、Lasso 尖→零、PCA 壓最亂、監督拉開揉緊——全是幾何在說話。<span class=\"bilingual-en\">Ridge shrink, Lasso zero, PCA max variance, supervised pull/push — all geometry.</span>",
+    "en": "Ridge round → shrink, Lasso pointy → zero, PCA squeezes along the most spread-out direction, supervised pulls apart and pulls together: it is all geometry talking.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f9bd3bebe1b7": {
+    "zh": "本章金句 · Key Message",
+    "en": "Key message of this chapter · Key Message",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9aa708a00bec": {
+    "zh": "「罰金教模型做人，幾何教數據說話。」先問要預測還是要看懂，再選罰的形狀與壓的方向。<span class=\"bilingual-en\">“Penalties teach models; geometry lets data speak.” Ask predict or perceive, then pick shape &amp; direction.</span>",
+    "en": "“Penalties teach models to behave; geometry teaches data to speak.” First ask whether you want to predict or to understand, then pick the shape of the penalty and the direction of the squeeze.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "eb945cb118e0": {
+    "zh": "S3 · 思考測驗 · CHECK",
+    "en": "S3 · Thinking Quiz · CHECK",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f1264d252838": {
+    "zh": "思考測驗：你是罰金派還是壓扁派？ <span class=\"en\">Quiz — Penalty or Squeeze?</span>",
+    "en": "Thinking quiz: are you Team Penalty or Team Squeeze?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0f5282f75b04": {
+    "zh": "Q1. 為何 Lasso 能讓係數變 0 而 Ridge 通常不能？<span class=\"bilingual-en\">Why Lasso zeros but Ridge not?</span>",
+    "en": "Q1. Why can Lasso drive coefficients to 0 while Ridge usually cannot?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "adbfb5b3b3c2": {
+    "zh": "Ridge 罰金更大 <span class=\"bilingual-en\" style=\"font-size:16px;\">Ridge penalty larger</span>",
+    "en": "Ridge's penalty is larger",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0811785780d8": {
+    "zh": "Lasso 的 $\\ell_1$ 菱有稜角、切點易卡軸上→稀疏 <span class=\"bilingual-en\" style=\"font-size:16px;\">$\\ell_1$ diamond corner → axis</span>",
+    "en": "Lasso's $\\ell_1$ diamond has corners, so the tangent point easily lands on an axis → sparsity",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c45c94141b2c": {
+    "zh": "Lasso 只能用於分類 <span class=\"bilingual-en\" style=\"font-size:16px;\">Lasso only for classification</span>",
+    "en": "Lasso can only be used for classification",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5b8f285d6d80": {
+    "zh": "Ridge 沒有 $\\alpha$ <span class=\"bilingual-en\" style=\"font-size:16px;\">Ridge has no α</span>",
+    "en": "Ridge has no $\\alpha$",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c524cb1c4599": {
+    "zh": "Q2. PCA 的「譜」指什麼？選投影方向的依據是？<span class=\"bilingual-en\">What is spectrum in PCA? Criterion?</span>",
+    "en": "Q2. What does the “spectrum” in PCA refer to? What is the criterion for choosing the projection direction?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6b4efbef5463": {
+    "zh": "選偏置 $b$ 最大的方向 <span class=\"bilingual-en\" style=\"font-size:16px;\">Max bias</span>",
+    "en": "Pick the direction with the largest bias $b$",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8d90ba249875": {
+    "zh": "選誤差最小但不看變異 <span class=\"bilingual-en\" style=\"font-size:16px;\">Min error w/o variance</span>",
+    "en": "Pick the smallest error without looking at the variance",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c1aba23d643e": {
+    "zh": "協方差 $\\Sigma$ 的特徵值/向量，選變異最大方向 <span class=\"bilingual-en\" style=\"font-size:16px;\">Eigen of Σ, max variance</span>",
+    "en": "The eigenvalues/eigenvectors of the covariance $\\Sigma$; pick the direction of maximum variance",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6a2e9e71c409": {
+    "zh": "隨機選方向 <span class=\"bilingual-en\" style=\"font-size:16px;\">Random</span>",
+    "en": "Pick a random direction",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "32a85c3ceadb": {
+    "zh": "Q3. 監督式降維「拉開類間、揉緊類內」後，色盲電腦靠什麼分紅藍？<span class=\"bilingual-en\">After pull/push, how does color-blind separate?</span>",
+    "en": "Q3. After supervised dimensionality reduction “pushes the classes apart and pulls each class together,” what does the color-blind computer use to tell red from blue?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ce6bac0c27eb": {
+    "zh": "靠嵌入分數 $y$ 的高低（5 分藍 vs 16 分暖） <span class=\"bilingual-en\" style=\"font-size:16px;\">Scores 5 vs 16</span>",
+    "en": "How high or low the embedding score $y$ is (5 = blue vs 16 = warm)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7f116c02ef41": {
+    "zh": "靠原始灰度 [5,10] <span class=\"bilingual-en\" style=\"font-size:16px;\">Original grey [5,10]</span>",
+    "en": "The original grayscale values [5,10]",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b4d8be506d8d": {
+    "zh": "靠隨機猜 <span class=\"bilingual-en\" style=\"font-size:16px;\">Random guess</span>",
+    "en": "Random guessing",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cf426ce6ed4e": {
+    "zh": "靠把 $\\alpha$ 調大 <span class=\"bilingual-en\" style=\"font-size:16px;\">Increase α</span>",
+    "en": "Turning $\\alpha$ up",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4fddd7556593": {
+    "zh": "Q4. 線性映射 $s(\\mathbf{x})=w^\\top\\mathbf{x}+b$ 中 $b$ 的作用是？<span class=\"bilingual-en\">Role of $b$ in $s=w^\\top x+b$?</span>",
+    "en": "Q4. In the linear mapping $s(\\mathbf{x})=w^\\top\\mathbf{x}+b$, what does $b$ do?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1355050c3ff2": {
+    "zh": "讓 $\\ell_1$ 變圓 <span class=\"bilingual-en\" style=\"font-size:16px;\">Make ℓ1 round</span>",
+    "en": "Makes $\\ell_1$ round",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "49daaf292b32": {
+    "zh": "決定稀疏性 <span class=\"bilingual-en\" style=\"font-size:16px;\">Decides sparsity</span>",
+    "en": "Determines sparsity",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "68840d8ed7ba": {
+    "zh": "整體平移分數，$b=10$ 則 $s(1,1)=2→12$ <span class=\"bilingual-en\" style=\"font-size:16px;\">Global shift: 2→12</span>",
+    "en": "Shifts all scores globally; with $b=10$, $s(1,1)=2→12$",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3d9b5e6322ea": {
+    "zh": "只能為 0 <span class=\"bilingual-en\" style=\"font-size:16px;\">Must be 0</span>",
+    "en": "Can only be 0",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e75f33b5880b": {
+    "zh": "S3 · 路線導引 · PATH",
+    "en": "S3 · Learning Path · PATH",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1e7c8fffd866": {
+    "zh": "下一步：從罰金到壓扁的路線 <span class=\"en\">Next Steps — From Penalty to Squeeze</span>",
+    "en": "Next steps: the route from penalties to squeezing",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3ac5ff35484d": {
+    "zh": "STEP 1 · 1–2 週",
+    "en": "STEP 1 · 1–2 weeks",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "15c43ef8d399": {
+    "zh": "手算 Ridge vs Lasso <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Hand-calc penalties</span>",
+    "en": "Hand-calculate Ridge vs Lasso",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "79b9386d81a9": {
+    "zh": "固定 MSE，掃 $\\alpha$ 從 10→200，觀察 $\\theta$ 從縮小到歸零的臨界點。<span class=\"bilingual-en\">Sweep α, watch shrink→zero threshold.</span>",
+    "en": "Fix the MSE, sweep $\\alpha$ from 10→200, and watch for the critical point where $\\theta$ goes from shrinking to zero.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "87381ac6be76": {
+    "zh": "STEP 2 · 2–3 週",
+    "en": "STEP 2 · 2–3 weeks",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "22aeab9f61f8": {
+    "zh": "PCA 實作與譜分析 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">PCA &amp; spectrum</span>",
+    "en": "PCA implementation and spectral analysis",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "312a32a9307e": {
+    "zh": "對同一數據做 PCA，畫特徵值衰減與累積變異，選 $p$。<span class=\"bilingual-en\">Plot eigenvalues &amp; cumulative variance to pick $p$.</span>",
+    "en": "Run PCA on the same data, plot the eigenvalue decay and the cumulative variance, and choose $p$.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7ba1802c96a8": {
+    "zh": "STEP 3 · 3–4 週",
+    "en": "STEP 3 · 3–4 weeks",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8bc6eea83776": {
+    "zh": "監督拉扯小實驗 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Supervised pull/push lab</span>",
+    "en": "A small supervised pull/push experiment",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8cb7539da94d": {
+    "zh": "用有標籤數據訓練線性嵌入，視覺化「拉開/揉緊」前後的可分性。<span class=\"bilingual-en\">Train embedding; visualize before/after separability.</span>",
+    "en": "Train a linear embedding on labeled data and visualize the separability before and after “pulling apart / pulling together.”",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "614c84fe4c62": {
+    "zh": "STEP 4 · 持續",
+    "en": "STEP 4 · Ongoing",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e783b8b9530c": {
+    "zh": "非線性降維探險 <span class=\"bilingual-en\" style=\"font-size:16px;color:var(--ink-soft);\">Nonlinear expedition</span>",
+    "en": "Nonlinear dimensionality reduction expedition",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e462955823be": {
+    "zh": "在彎曲流形上比較 PCA vs t-SNE/UMAP，體會線性局限。<span class=\"bilingual-en\">Compare linear vs nonlinear on curved manifolds.</span>",
+    "en": "Compare PCA vs t-SNE/UMAP on curved manifolds and get a feel for the limits of linear methods.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a4a943971d2b": {
+    "zh": "給自學者的提醒 · Note",
+    "en": "A reminder for self-learners · Note",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f06e33f847cc": {
+    "zh": "每學一招就問：它罰什麼形狀？它壓哪個方向？它何時失靈？答得出來才算會選模型。<span class=\"bilingual-en\">Ask: what shape does it penalize? which direction does it keep? when does it fail?</span>",
+    "en": "Every time you learn a new technique, ask: What shape does it penalize? Which direction does it squeeze along? When does it break down? Only when you can answer these can you really choose a model.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "adfda56c1bbc": {
+    "zh": "\n  SlidePro · 統計回歸 × 統計降維 · 中英雙語自學版 · 冰晶簡約主題 · MathJax + Chart.js 互動版<br>\n  <span style=\"color:var(--text-low);\">Regression × Reduction — Bilingual Self-Study · Ice Crystal Theme</span>\n",
+    "en": "\n  SlidePro · Statistical Regression × Statistical Dimensionality Reduction · Bilingual Self-Study Edition · Ice Crystal Minimal Theme · MathJax + Chart.js Interactive Edition\n",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5dbec2f3ec03": {
+    "zh": "章節索引",
+    "en": "Chapter index",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "ef95d649d8c2": {
+    "zh": "Lasso |θ|·α (尖, 稜角)",
+    "en": "Lasso |θ|·α (sharp, cornered)",
+    "kp": 6,
+    "ctx": "chart"
+  },
+  "27326e97927d": {
+    "zh": "Ridge θ²·α/10 (圓滑, 對照)",
+    "en": "Ridge θ²·α/10 (smooth, for comparison)",
+    "kp": 6,
+    "ctx": "chart"
+  },
+  "2bf602b0c560": {
+    "zh": "係數 θ₂",
+    "en": "Coefficient θ₂",
+    "kp": 6,
+    "ctx": "chart"
+  },
+  "e5bf09ab2100": {
+    "zh": "罰金",
+    "en": "Penalty",
+    "kp": 6,
+    "ctx": "chart"
+  },
+  "5e9cc334b0a0": {
+    "zh": "ℓ1 ≤0.5 (菱)",
+    "en": "ℓ1 ≤0.5 (diamond)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "1787ab2b6121": {
+    "zh": "稀疏解 (0,0.5)",
+    "en": "Sparse solution (0,0.5)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "71a035c45dcc": {
+    "zh": "OLS 中心 (0.7,0.5)",
+    "en": "OLS center (0.7,0.5)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "6d3606577904": {
+    "zh": "對角線分數 x₁+x₂+b (b 平移)",
+    "en": "Diagonal score x₁+x₂+b (b shifts)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "9bfae8144b75": {
+    "zh": "決策邊界 x₁+x₂+b=0 投影",
+    "en": "Decision boundary x₁+x₂+b=0 (projected)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "1163e0b3e718": {
+    "zh": "樣本 (1,1)",
+    "en": "Sample (1,1)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "6dd1f98f769c": {
+    "zh": "位置 x (對角線代理)",
+    "en": "Position x (diagonal proxy)",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "358010ab6a3e": {
+    "zh": "分數 s = x₁+x₂+b",
+    "en": "Score s = x₁+x₂+b",
+    "kp": 7,
+    "ctx": "chart"
+  },
+  "_hide": [
+    ".en-sub"
+  ]
+}
