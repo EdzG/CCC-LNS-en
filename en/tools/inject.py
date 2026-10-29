@@ -3,12 +3,16 @@
     .venv/bin/python en/tools/inject.py IDL_115/Ch01-introduction-history [--check]
     .venv/bin/python en/tools/inject.py IDL_115/Ch01-introduction-history/slides/01-x.html
     .venv/bin/python en/tools/inject.py --all --nav [--check]
+    .venv/bin/python en/tools/inject.py --home [--check]
 
 Lecture page (index.html): toggle.js and nav.js. --nav: nav.js only (every chapter gets it;
 toggle.js only goes into translated ones); an existing toggle.js line is never removed.
---all: every IDL_115 chapter. Other pages (slide decks): toggle.js only. On a page with an
-inline MathJax config the toggle.js line has no defer and goes right after that config
-script, so toggle.js can hold MathJax's startup typeset (see toggle.js).
+--all --nav: nav.js into every IDL_115 page (lecture pages, condensed decks, slides).
+Other pages (decks): toggle.js and nav.js (nav.js shows only a dashboard/lecture bar there).
+On a page with an inline MathJax config the toggle.js line has no defer and goes right after
+that config script, so toggle.js can hold MathJax's startup typeset (see toggle.js).
+--home: the professor's root index.html gets study/home.js (redirect to the dashboard), as
+the first thing after <meta charset>, so his page never paints.
 """
 import argparse
 import re
@@ -20,6 +24,42 @@ SCRIPTS = {
     'toggle': re.compile(r'<script[^>]*\ben/toggle\.js\b[^>]*>\s*</script>'),
     'nav': re.compile(r'<script[^>]*\ben/nav\.js\b[^>]*>\s*</script>'),
 }
+HOME_RE = re.compile(r'<script[^>]*\bstudy/home\.js\b[^>]*>\s*</script>[ \t]*\r?\n?')
+HOME_LINE = '<script src="study/home.js"></script>'
+
+
+def process_home(check):
+    path = REPO / 'index.html'
+    with open(path, encoding='utf-8', newline='') as f:
+        html = f.read()
+    nl = '\r\n' if '\r\n' in html else '\n'
+    found = [m.group(0).strip() for m in HOME_RE.finditer(html)]
+    if found == [HOME_LINE]:
+        print('index.html: home ok')
+        return True
+    if check:
+        print(f'index.html: home MISSING or wrong: {found!r}')
+        return False
+    html = HOME_RE.sub('', html)
+    m = re.search(r'<meta charset[^>]*>[ \t]*\r?\n', html, re.I) or re.search(r'<head[^>]*>[ \t]*\r?\n', html, re.I)
+    if not m:
+        sys.exit('index.html: no <meta charset> or <head> line')
+    html = html[:m.end()] + HOME_LINE + nl + html[m.end():]
+    with open(path, 'w', encoding='utf-8', newline='') as f:
+        f.write(html)
+    print('index.html: home injected')
+    return True
+
+
+def all_pages():
+    out = []
+    for d in sorted((REPO / 'IDL_115').iterdir()):
+        if not (d / 'index.html').is_file():
+            continue
+        out.append(d.relative_to(REPO).as_posix())
+        decks = sorted(f for f in d.glob('*.html') if f.name != 'index.html') + sorted((d / 'slides').glob('*.html'))
+        out += [f.relative_to(REPO).as_posix()[:-5] for f in decks]
+    return out
 
 
 MATHJAX_CONFIG = re.compile(r'<script>\s*(?:window\.)?MathJax\s*=\s*\{.*?</script>[ \t]*\r?\n', re.S)
@@ -70,16 +110,17 @@ def main():
     ap.add_argument('chapter', nargs='?')
     ap.add_argument('--all', action='store_true', help='every IDL_115 chapter')
     ap.add_argument('--nav', action='store_true', help='nav.js only')
+    ap.add_argument('--home', action='store_true', help='root index.html: redirect to the dashboard')
     ap.add_argument('--check', action='store_true', help='exit 1 if a line is missing or wrong')
     args = ap.parse_args()
+    if args.home:
+        sys.exit(0 if process_home(args.check) else 1)
     if bool(args.chapter) == args.all:
-        ap.error('give a chapter or --all')
-    chapters = ([d.relative_to(REPO).as_posix() for d in sorted((REPO / 'IDL_115').iterdir())
-                 if (d / 'index.html').is_file()] if args.all else [chapter_arg(args.chapter)])
-    if args.nav and not all(is_lecture(ch) for ch in chapters):
-        ap.error('--nav is for lecture pages (index.html) only')
-    ok = all([process(ch, ['nav'] if args.nav else ['toggle', 'nav'] if is_lecture(ch) else ['toggle'], args.check)
-              for ch in chapters])
+        ap.error('give a chapter, --all or --home')
+    if args.all and not args.nav:
+        ap.error('--all needs --nav (toggle.js only goes into translated pages)')
+    chapters = all_pages() if args.all else [chapter_arg(args.chapter)]
+    ok = all([process(ch, ['nav'] if args.nav else ['toggle', 'nav'], args.check) for ch in chapters])
     if args.check:
         sys.exit(0 if ok else 1)
 

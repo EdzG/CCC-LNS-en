@@ -18,8 +18,9 @@ disable-model-invocation: true
 5. Check for new chapters, new slides, and new or changed `assets/*.png` in translated chapters
    (a changed chart needs a new redraw).
 6. Study layer:
-   - `.venv/bin/python en/tools/inject.py --all --nav` (new chapters get nav.js; existing ones
-     whose index.html the professor replaced get it back),
+   - `.venv/bin/python en/tools/inject.py --all --nav` (new chapters, decks and slides get
+     nav.js; pages the professor replaced get it back) and `.venv/bin/python en/tools/inject.py --home`
+     (his root index.html must keep redirecting to the dashboard),
    - `python3 study/build_chapters.py`. For each warning about a missing English title, add the
      chapter to `study/titles_en.json` (a short English title from the page's heading) and re-run.
      A "no section.card[data-kp]" warning means the new page has a different structure: report it.

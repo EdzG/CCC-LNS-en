@@ -17,8 +17,10 @@ and slide decks (`slides/*.html`); all of them can get the overlay.
 ## The overlay rule (most important)
 **Never hand-edit the professor's files.** All English lives under `en/`.
 The only changes to upstream files are injected `<script>` lines before `</head>` in each
-chapter's `index.html`, added by `en/tools/inject.py` (idempotent, so it can be re-run after a
-merge): nav.js in **every** IDL_115 chapter, toggle.js only in translated ones.
+page, added by `en/tools/inject.py` (idempotent, so it can be re-run after a merge): nav.js in
+**every** IDL_115 page (lecture pages, condensed decks, slides), toggle.js only in translated ones,
+and `study/home.js` in the professor's root `index.html` (it redirects to the dashboard, so the
+dashboard is the site's front page; `index.html?upstream` still shows his page).
 
 ```html
 <script src="../../en/toggle.js" data-chapter="IDL_115/ChNN-xxx" defer></script>
@@ -47,6 +49,7 @@ en/
 study/
 ├─ index.html                        # personal dashboard (English UI), served at /study/
 ├─ build_chapters.py                 # stdlib-only: scan IDL_115/ -> chapters.json
+├─ home.js                           # injected into the root index.html: redirect to /study/
 ├─ serve.py                          # local server: / -> /study/ (stdlib only)
 ├─ chapters.json                     # generated, committed; never hand-edit
 └─ titles_en.json                    # hand-written English chapter titles (new chapter = add one)
@@ -56,7 +59,8 @@ study/
 Every tool takes a page: `IDL_115/<chapter>` (its `index.html`) or a deck file
 (`IDL_115/<chapter>/slides/01-x.html`, `IDL_115/<chapter>/idl115-w1-x.html`). The page id is the
 path without `.html` (lecture: the folder). It is toggle.js's `data-chapter` and the folder under
-`en/` holding that page's `strings.json`, `notes.md` and `assets/`. Decks get toggle.js only (no nav.js).
+`en/` holding that page's `strings.json`, `notes.md` and `assets/`. Decks get toggle.js (once
+translated) and nav.js, which shows only a small bottom-left bar there (⌂ Dashboard, ‹ Lecture).
 
 ## How the engine works (design decisions, keep consistent)
 toggle.js runs synchronously when its deferred `<script>` executes: the whole page is parsed,
@@ -157,9 +161,10 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - `window.__EN__` exposes `setLang`, `collect()`, `misses`, `hanCanvases()`, `ready` for the tools.
 
 ## Tools
-- `inject.py <ch> [--check]`: adds the toggle.js and nav.js lines before `</head>`, byte-exact
+- `inject.py <page> [--check]`: adds the toggle.js and nav.js lines before `</head>`, byte-exact
   otherwise (upstream files are CRLF; keep it that way). `--nav` adds nav.js only (never removes
-  toggle.js); `--all` runs on every IDL_115 chapter (`inject.py --all --nav` after a sync).
+  toggle.js); `--all --nav` covers every IDL_115 page, decks included; `--home` injects
+  `study/home.js` into the root `index.html` right after `<meta charset>` (run both after a sync).
 - `extract.py <ch> [--prune] [--browser firefox --dry-run]`: merges units into strings.json,
   keeps existing `en`, prints translated/total per section. `--dry-run` compares the key set.
 - `coverage.py <ch> [--expect-clean chrome,kp1,guide:1] [--shots kp1,guide:1 --out scratch/shots]`:
@@ -236,10 +241,9 @@ English. Same rules: never edit upstream files; only the injected nav.js line.
   (e.g. Ch06) are wider than the screen, which also pushes the 中/EN pill off-screen.
 
 ## Running and checking
-- Serve locally: `python3 study/serve.py` (port 8000; `--lan` to reach it from a phone), open
-  `http://localhost:8000/` → redirects to the dashboard `/study/`. The professor's course site is
-  still at `/index.html` (never edit it to change the landing page), chapters at `/IDL_115/<chapter>/`.
-  Plain `python3 -m http.server 8000` also works, but `/` is then the course site.
+- Serve locally: `python3 study/serve.py` (port 8000; `--lan` to reach it from a phone) or plain
+  `python3 -m http.server 8000`; `/` lands on the dashboard either way (serve.py redirects, and the
+  injected `study/home.js` does it on any host). The professor's front page: `/index.html?upstream`.
   (`file://` blocks fetching strings.json and chapters.json.)
 - Tooling uses a venv at `.venv/` with `playwright` and `matplotlib`
   (`python3 -m venv .venv && .venv/bin/pip install playwright matplotlib && .venv/bin/playwright install chromium`).

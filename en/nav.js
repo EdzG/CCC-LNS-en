@@ -1,6 +1,7 @@
 /* Study navigation for the CCC-LNS lecture pages: section scroll-spy, prev/next section and
  * chapter, a link to the study dashboard, per-chapter scroll restore, and quiz progress.
- * Loaded by one injected line per chapter (en/tools/inject.py --nav):
+ * On deck/slide pages (no section.card) only a small bar: dashboard + back to the lecture.
+ * Loaded by one injected line per page (en/tools/inject.py --nav):
  *   <script src="../../en/nav.js" data-chapter="IDL_115/ChNN-xxx" defer></script>
  * Independent of toggle.js: it never calls it. It reads the page DOM, writes localStorage
  * keys under 'ccc-lns-study:', and marks its own UI data-en-skip so toggle.js ignores it.
@@ -24,10 +25,35 @@
   function load(k) { try { return JSON.parse(localStorage.getItem(NS + k)); } catch (e) { return null; } }
   function save(k, v) { try { localStorage.setItem(NS + k, JSON.stringify(v)); } catch (e) { /* storage blocked */ } }
 
+  var THEME = [
+    ':root{--sn-bg:#ffffff;--sn-fg:#1f2430;--sn-muted:#64748b;--sn-border:#cbd5e1;--sn-hover:#f1f5f9;--sn-accent:#0d9488;--sn-on:#ffffff;--sn-done:#16a34a;--sn-shadow:0 4px 16px rgba(0,0,0,.16);}',
+    '@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sn-bg:#1e293b;--sn-fg:#e2e8f0;--sn-muted:#94a3b8;--sn-border:#475569;--sn-hover:#334155;--sn-accent:#14b8a6;--sn-on:#0f172a;--sn-done:#4ade80;--sn-shadow:0 4px 16px rgba(0,0,0,.5);}}',
+    ':root[data-theme="dark"]{--sn-bg:#1e293b;--sn-fg:#e2e8f0;--sn-muted:#94a3b8;--sn-border:#475569;--sn-hover:#334155;--sn-accent:#14b8a6;--sn-on:#0f172a;--sn-done:#4ade80;--sn-shadow:0 4px 16px rgba(0,0,0,.5);}'
+  ];
+
   // ---------- sections and quizzes ----------
   var cards = Array.prototype.filter.call(document.querySelectorAll('section.card[data-kp]'),
     function (c) { return /^kp\d+$/.test(c.id); });
-  if (!cards.length) return;
+  if (!cards.length) { deckBar(); return; }
+
+  // Deck and slide pages: bottom-left (decks keep their own back-to-top button bottom-right).
+  function deckBar() {
+    var lecture = ROOT + CHAPTER.split('/').slice(0, 2).join('/') + '/index.html';
+    var st = document.createElement('style'); st.id = 'study-nav-style';
+    st.textContent = THEME.concat([
+      '#study-nav{position:fixed;left:12px;bottom:12px;z-index:150;display:flex;gap:2px;padding:3px;border-radius:99px;border:1px solid var(--sn-border);background:var(--sn-bg);box-shadow:var(--sn-shadow);font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;}',
+      '#study-nav a{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 12px;border:0;border-radius:99px;box-shadow:none;background:none;color:var(--sn-fg);text-decoration:none;}',   // decks style bare a
+      '#study-nav a:hover{background:var(--sn-hover);}',
+      '#study-nav a:focus-visible{outline:2px solid var(--sn-accent);outline-offset:1px;}'
+    ]).join('\n');
+    document.head.appendChild(st);
+    var bar = document.createElement('div');
+    bar.id = 'study-nav'; bar.setAttribute('role', 'navigation'); bar.setAttribute('aria-label', 'Study navigation');
+    bar.setAttribute('data-en-skip', '');
+    bar.innerHTML = '<a href="' + DASH + '" title="Study dashboard">\u2302 Dashboard</a>' +
+      '<a href="' + lecture + '" title="Back to this chapter\'s lecture page">\u2039 Lecture</a>';
+    document.body.appendChild(bar);
+  }
   function badgeOf(c) { var b = c.querySelector('.badge, .card-badge'); return b ? b.textContent.trim() : String(c.dataset.kp); }
   function titleEl(c) { return c.querySelector('.card-title, .card-head h3'); }
   function quizzesOf(c) {
@@ -154,10 +180,7 @@
   }).observe(document.documentElement, { attributes: true, attributeOldValue: true, attributeFilter: ['lang', 'class'] });
 
   // ---------- UI ----------
-  var CSS = [
-    ':root{--sn-bg:#ffffff;--sn-fg:#1f2430;--sn-muted:#64748b;--sn-border:#cbd5e1;--sn-hover:#f1f5f9;--sn-accent:#0d9488;--sn-on:#ffffff;--sn-done:#16a34a;--sn-shadow:0 4px 16px rgba(0,0,0,.16);}',
-    '@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--sn-bg:#1e293b;--sn-fg:#e2e8f0;--sn-muted:#94a3b8;--sn-border:#475569;--sn-hover:#334155;--sn-accent:#14b8a6;--sn-on:#0f172a;--sn-done:#4ade80;--sn-shadow:0 4px 16px rgba(0,0,0,.5);}}',
-    ':root[data-theme="dark"]{--sn-bg:#1e293b;--sn-fg:#e2e8f0;--sn-muted:#94a3b8;--sn-border:#475569;--sn-hover:#334155;--sn-accent:#14b8a6;--sn-on:#0f172a;--sn-done:#4ade80;--sn-shadow:0 4px 16px rgba(0,0,0,.5);}',
+  var CSS = THEME.concat([
     '#study-nav{position:fixed;right:12px;bottom:12px;z-index:150;display:flex;align-items:center;gap:2px;padding:3px;border-radius:99px;border:1px solid var(--sn-border);background:var(--sn-bg);box-shadow:var(--sn-shadow);font:600 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif;}',
     '#study-nav .sn-b{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:34px;padding:0 9px;border:0;border-radius:99px;background:none;color:var(--sn-fg);font:inherit;text-decoration:none;cursor:pointer;}',
     '#study-nav .sn-b:hover{background:var(--sn-hover);}',
@@ -179,7 +202,7 @@
     '@keyframes study-flash{0%,60%{background:var(--sn-accent);color:var(--sn-on);}100%{}}',
     '.study-flash{animation:study-flash 1.2s ease-out;}',
     '.study-done::after{content:" \\2713";color:var(--sn-done);font-weight:700;}'
-  ].join('\n');
+  ]).join('\n');
 
   var bar, drawer, posBtn, prevB, nextB, prevCh, nextCh;
   function el(tag, attrs, text) {
