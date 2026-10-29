@@ -132,6 +132,16 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   pattern. In `en`, `$1` inserts capture group 1 as-is; `$T1` inserts it translated by that
   same lookup (e.g. `"^✗ 答錯：([\s\S]*)$" → "✗ Incorrect: $T1"`). The original Chinese is kept
   per text node so switching back restores it. Do not edit demo JavaScript.
+- **Script text with rendered math:** when a page writes runtime text with `innerHTML` and renders
+  KaTeX right away (Ch02 quiz feedback: `'✗ 答錯：'+expl` then `renderMath()`), the observer sees the
+  line already split around `.katex` nodes. toggle.js rebuilds the line from each formula's TeX
+  source (`annotation[encoding="application/x-tex"]`, as `$…$`), translates it whole, writes it back
+  as text and re-renders; switching back restores it. Lookups treat `\(x\)` and `$x$` (and
+  `\[x\]`, `$$x$$`) as equal, so `$T1` finds `expl` translations written with either delimiter.
+- **Live elements inside units:** swapping a unit keeps its live `[id]` descendants (e.g.
+  `<output id=…>` in a `<label>`, `#boundaryStatus`): the new copies are replaced by the original
+  nodes, which get `data-en-live`. Page scripts keep working on them, and text inside them counts
+  as runtime text (translated through `_runtime`, misses reported by coverage).
 - **Observer hygiene:** the observer is disconnected during bulk swaps and math re-rendering,
   and `takeRecords()` discards our own writes. It ignores nodes inside `.katex` and inside static
   units, and KaTeX records (added `.katex` nodes) never count as content changes.

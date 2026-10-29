@@ -169,13 +169,18 @@
       var e = S[k];
       if (!e || !e.en) return;
       var isHtml = e.ctx !== 'attr' && e.ctx !== 'expl' && e.ctx !== 'svg' && e.ctx !== 'chart' && !e.attr;
-      textMap[normalize(isHtml ? htmlToText(e.zh) : e.zh)] = isHtml ? htmlToText(e.en) : e.en;
+      textMap[canonMath(normalize(isHtml ? htmlToText(e.zh) : e.zh))] = isHtml ? htmlToText(e.en) : e.en;
     });
     runtime.compiled = (runtime.patterns || []).map(function (p) { return { re: new RegExp(p.re), en: p.en }; });
   }
+  // \(x\) and $x$ (\[x\] and $$x$$) compare equal: text rebuilt from rendered math uses $.
+  function canonMath(s) {
+    return s.replace(/\\\[([\s\S]+?)\\\]/g, function (_, m) { return '$$' + m + '$$'; })
+            .replace(/\\\(([\s\S]+?)\\\)/g, function (_, m) { return '$' + m + '$'; });
+  }
   function lookup(s) {
     if (runtime.exact && runtime.exact[s] != null) return runtime.exact[s];
-    var t = textMap[normalize(s)];
+    var t = textMap[canonMath(normalize(s))];
     return t != null ? t : null;
   }
   function translateLine(line) {
@@ -264,6 +269,17 @@
     }
     els.forEach(renderMath);
   }
+  // Swap a unit's innerHTML but keep its live [id] elements (e.g. <output id=…> inside a
+  // <label>): page scripts cache those nodes, so the new copies are replaced by the originals.
+  function setHtmlKeepIds(el, html) {
+    var live = {};
+    el.querySelectorAll('[id]').forEach(function (n) { live[n.id] = n; });
+    el.innerHTML = html;
+    el.querySelectorAll('[id]').forEach(function (n) {
+      var old = live[n.id];
+      if (old && old !== n) { n.replaceWith(old); old.setAttribute('data-en-live', ''); }
+    });
+  }
   // MathJax keeps a list of typeset items per node; drop them before replacing the content.
   function clearMath(el) {
     var mj = mathJax();
@@ -284,7 +300,7 @@
       if (u.cur === 'en') return false;
       if (u.attr) el.setAttribute(u.attr, t.en);
       else if (u.ctx === 'svg') el.textContent = t.en;
-      else { clearMath(el); el.innerHTML = t.en; }
+      else { clearMath(el); setHtmlKeepIds(el, t.en); }
       u.cur = 'en';
       return !u.attr && u.ctx !== 'svg' && MATH_RE.test(t.en);
     }
@@ -292,7 +308,7 @@
     if (u.cur !== 'en') return false;
     if (u.attr) el.setAttribute(u.attr, u.zh);
     else if (u.ctx === 'svg') el.textContent = u.zh;
-    else { clearMath(el); el.innerHTML = u.zh; }
+    else { clearMath(el); setHtmlKeepIds(el, u.zh); }
     u.cur = 'zh';
     return !u.attr && u.ctx !== 'svg' && MATH_RE.test(u.zh);
   }
@@ -334,8 +350,11 @@
 
   // Runtime (script-generated) text.
   var written = new Map();      // text node -> {zh, en}
+  // A live [id] element kept across a swap (setHtmlKeepIds) is written by page scripts, so the
+  // text inside it is runtime text even though it sits inside a unit.
   function insideUnit(node) {
     for (var n = node.nodeType === 1 ? node : node.parentNode; n && n !== document.body; n = n.parentNode) {
+      if (n.nodeType === 1 && n.hasAttribute('data-en-live')) return false;
       if (unitEls.has(n)) return true;
     }
     return false;
@@ -363,10 +382,60 @@
     while (w.nextNode()) out.push(w.currentNode);
     return out;
   }
+  // Script-written text whose math the page renders right away (e.g. quiz feedback written
+  // with innerHTML and then renderMath()) reaches us already split around .katex nodes, so the
+  // line is rebuilt with each formula's TeX source, translated whole, written back as text and
+  // re-rendered.
+  var mathWritten = new Map();  // element -> {zh, en} (raw text with $...$)
+  function rawWithMath(el) {
+    var out = '';
+    el.childNodes.forEach(function (n) {
+      if (n.nodeType === 3) { out += n.data; return; }
+      if (n.nodeType !== 1) return;
+      var k = n.classList.contains('katex-display') ? n : n.classList.contains('katex') ? n : null;
+      if (!k) { out += rawWithMath(n); return; }
+      var a = k.querySelector('annotation[encoding="application/x-tex"]');
+      var display = k.classList.contains('katex-display');
+      out += a ? (display ? '$$' + a.textContent + '$$' : '$' + a.textContent + '$') : k.textContent;
+    });
+    return out;
+  }
+  function mathTargets(root) {
+    var set = new Set();
+    root.querySelectorAll('.katex').forEach(function (k) {
+      var outer = k.parentElement && k.parentElement.closest('.katex-display') || k;
+      var el = outer.parentElement;
+      if (el && !ignorable(el) && !insideUnit(el)) set.add(el);
+    });
+    return set;
+  }
+  function translateMathEl(el) {
+    var raw = rawWithMath(el), rec = mathWritten.get(el);
+    if (rec && raw === rec.en) return;
+    if (!hasHan(raw)) return;
+    var r = translateText(raw);
+    if (r == null || hasHan(r)) miss('runtime', normalize(r != null ? r : raw).slice(0, 120), el);
+    if (r == null) return;
+    mathWritten.set(el, { zh: raw, en: r });
+    el.textContent = r;
+    renderMath(el);
+  }
   function runtimePass(target) {
-    if (target === 'en') { textNodesIn(document.body).forEach(translateNode); return; }
+    if (target === 'en') {
+      var targets = mathTargets(document.body);
+      targets.forEach(translateMathEl);
+      textNodesIn(document.body).forEach(function (n) {
+        for (var p = n.parentElement; p; p = p.parentElement) if (targets.has(p)) return;
+        translateNode(n);
+      });
+      return;
+    }
     written.forEach(function (rec, n) { if (n.isConnected && n.data === rec.en) n.data = rec.zh; });
     written.clear();
+    mathWritten.forEach(function (rec, el) {
+      if (el.isConnected && rawWithMath(el) === rec.en) { el.textContent = rec.zh; renderMath(el); }
+    });
+    mathWritten.clear();
   }
 
   // Canvas: translate text drawn while EN is on.
@@ -485,7 +554,7 @@
   }
   function handle(records) {
     if (swapping) return;
-    var guideDirty = false, nodes = [];
+    var guideDirty = false, nodes = [], mathEls = new Set();
     records.forEach(function (rec) {
       var t = rec.target;
       if (ignorable(t)) return;
@@ -495,13 +564,21 @@
         return;
       }
       if (insideUnit(t)) return;
+      if (rec.type === 'childList' && isKatexRecord(rec)) { mathEls.add(t.closest('.katex-display') ? t.closest('.katex-display').parentElement : t); return; }
       if (rec.type === 'characterData') nodes.push(t);
       else rec.addedNodes.forEach(function (n) { nodes = nodes.concat(textNodesIn(n)); });
     });
     swapping = true;
     try {
       if (guideDirty) recaptureGuide();
-      if (lang === 'en' && loaded) nodes.forEach(function (n) { if (n.isConnected) translateNode(n); });
+      if (lang === 'en' && loaded) {
+        mathEls.forEach(function (el) { if (el.isConnected) translateMathEl(el); });
+        nodes.forEach(function (n) {
+          if (!n.isConnected) return;
+          for (var p = n.parentElement; p; p = p.parentElement) if (mathEls.has(p)) return;
+          translateNode(n);
+        });
+      }
     } finally {
       observer.takeRecords();      // drop the records our own writes just produced
       swapping = false;
