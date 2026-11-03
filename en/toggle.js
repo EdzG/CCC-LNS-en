@@ -71,7 +71,7 @@
 
   var dynamicSel = [];          // from strings.json _dynamic
   var units = [];               // {el, key, zh, text, ctx, kp, attr?, cur}
-  var unitEls = new WeakSet();
+  var unitEls = new WeakMap();   // unit element -> unit
   var expl = [];                // data-expl values (translated via $T only, never mutated)
 
   function tag(el) { return el.tagName.toUpperCase(); }
@@ -106,7 +106,7 @@
     var text = el.textContent;
     if (!hasHan(text)) return;
     var u = { el: el, key: keyOf(text), zh: zh, raw: text, text: normalize(text), ctx: ctx, kp: kpOf(el, ctx, guideKp), cur: 'zh' };
-    units.push(u); unitEls.add(el);
+    units.push(u); unitEls.set(el, u);
   }
   function collectSvg(svg, ctx, guideKp) {
     svg.querySelectorAll('text').forEach(function (t) {
@@ -161,7 +161,7 @@
   }
 
   // ---------- strings ----------
-  var S = {}, runtime = { exact: {}, patterns: [] }, images = [], hide = [], textMap = {}, loaded = false, loadError = null;
+  var S = {}, runtime = { exact: {}, patterns: [] }, images = [], hide = [], zhText = [], textMap = {}, loaded = false, loadError = null;
   function buildMaps() {
     textMap = {};
     Object.keys(S).forEach(function (k) {
@@ -260,6 +260,10 @@
   }
   function renderMath(el) {
     if (window.renderMathInElement) { try { window.renderMathInElement(el, MATH_OPTS); } catch (e) { /* page renders later */ } }
+  }
+  function rerenderMath(el) {
+    if (window.MathJax && (window.MathJax.version || MJ_HELD)) renderMathAll([el]);
+    else renderMath(el);
   }
   function renderMathAll(els) {
     if (!els.length) return;
@@ -385,13 +389,15 @@
   // Script-written text whose math the page renders right away (e.g. quiz feedback written
   // with innerHTML and then renderMath()) reaches us already split around .katex nodes, so the
   // line is rebuilt with each formula's TeX source, translated whole, written back as text and
-  // re-rendered.
+  // re-rendered. Decks do the same with MathJax (typesetPromise right after innerHTML): an
+  // mjx-container's TeX comes from MathJax's own math item.
   var mathWritten = new Map();  // element -> {zh, en} (raw text with $...$)
   function rawWithMath(el) {
     var out = '';
     el.childNodes.forEach(function (n) {
       if (n.nodeType === 3) { out += n.data; return; }
       if (n.nodeType !== 1) return;
+      if (tag(n) === 'MJX-CONTAINER') { out += mjxTex(n); return; }
       var k = n.classList.contains('katex-display') ? n : n.classList.contains('katex') ? n : null;
       if (!k) { out += rawWithMath(n); return; }
       var a = k.querySelector('annotation[encoding="application/x-tex"]');
@@ -400,8 +406,20 @@
     });
     return out;
   }
+  function mjxTex(c) {
+    var mj = mathJax(), doc = mj && mj.startup && mj.startup.document;
+    var items = doc && doc.getMathItemsWithin ? doc.getMathItemsWithin(c) : [];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].typesetRoot === c) return items[i].display ? '$$' + items[i].math + '$$' : '$' + items[i].math + '$';
+    }
+    return c.textContent;
+  }
   function mathTargets(root) {
     var set = new Set();
+    root.querySelectorAll('mjx-container').forEach(function (c) {
+      var el = c.parentElement;
+      if (el && !ignorable(el) && !insideUnit(el)) set.add(el);
+    });
     root.querySelectorAll('.katex').forEach(function (k) {
       var outer = k.parentElement && k.parentElement.closest('.katex-display') || k;
       var el = outer.parentElement;
@@ -417,8 +435,9 @@
     if (r == null || hasHan(r)) miss('runtime', normalize(r != null ? r : raw).slice(0, 120), el);
     if (r == null) return;
     mathWritten.set(el, { zh: raw, en: r });
+    clearMath(el);
     el.textContent = r;
-    renderMath(el);
+    rerenderMath(el);
   }
   function runtimePass(target) {
     if (target === 'en') {
@@ -433,9 +452,33 @@
     written.forEach(function (rec, n) { if (n.isConnected && n.data === rec.en) n.data = rec.zh; });
     written.clear();
     mathWritten.forEach(function (rec, el) {
-      if (el.isConnected && rawWithMath(el) === rec.en) { el.textContent = rec.zh; renderMath(el); }
+      if (el.isConnected && rawWithMath(el) === rec.en) { clearMath(el); el.textContent = rec.zh; rerenderMath(el); }
     });
     mathWritten.clear();
+  }
+
+  // Page scripts reading text: some decks pick a quiz explanation by searching a card's innerText
+  // for Chinese keywords. For elements matching a _zhText selector, innerText reads the original
+  // Chinese while EN is on.
+  function zhTextOf(node) {
+    if (node.nodeType === 3) { var w = written.get(node); return w && node.data === w.en ? w.zh : node.data; }
+    if (node.nodeType !== 1) return '';
+    var u = unitEls.get(node);
+    if (u && u.cur === 'en' && !u.attr) return u.raw;
+    var s = '';
+    node.childNodes.forEach(function (n) { s += zhTextOf(n); });
+    return s;
+  }
+  var innerTextDesc = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'innerText');
+  if (innerTextDesc && innerTextDesc.get) {
+    Object.defineProperty(HTMLElement.prototype, 'innerText', {
+      configurable: true, enumerable: innerTextDesc.enumerable, set: innerTextDesc.set,
+      get: function () {
+        var el = this;
+        if (lang === 'en' && zhText.some(function (sel) { return el.matches(sel); })) return zhTextOf(el);
+        return innerTextDesc.get.call(el);
+      }
+    });
   }
 
   // Canvas: translate text drawn while EN is on.
@@ -455,8 +498,12 @@
     };
   });
   function redrawDemos() {
-    document.querySelectorAll('.demo').forEach(function (d) {
+    // Decks have no .demo wrappers: fire every control on the page instead.
+    var demos = document.querySelectorAll('.demo');
+    if (!demos.length) demos = [document.body];
+    Array.prototype.forEach.call(demos, function (d) {
       d.querySelectorAll('input[type=range], input[type=number], select').forEach(function (c) {
+        if (c.closest('[data-en-skip]')) return;
         c.dispatchEvent(new Event('input', { bubbles: true }));
         if (tag(c) === 'SELECT') c.dispatchEvent(new Event('change', { bubbles: true }));
       });
@@ -549,8 +596,24 @@
   var swapping = false;
   function isKatexRecord(rec) {
     return Array.prototype.some.call(rec.addedNodes, function (n) {
-      return n.nodeType === 1 && (n.matches('.katex, .katex-display') || !!n.querySelector('.katex'));
+      return n.nodeType === 1 && (n.matches('.katex, .katex-display, mjx-container') || !!n.querySelector('.katex, mjx-container'));
     });
+  }
+  // The element holding each added formula (MathJax may typeset inside a nested <strong>).
+  function mathParents(rec) {
+    var out = [];
+    rec.addedNodes.forEach(function (n) {
+      if (n.nodeType !== 1) return;
+      var list = n.matches('.katex, mjx-container') ? [n] : n.querySelectorAll('.katex, mjx-container');
+      Array.prototype.forEach.call(list, function (k) {
+        var o = (k.parentElement && k.parentElement.closest('.katex-display')) || k;
+        // KaTeX's auto-render wraps each formula in a bare <span>: climb past such wrappers.
+        while (o.parentElement && o.parentElement !== rec.target &&
+               normalize(o.parentElement.textContent) === normalize(o.textContent)) o = o.parentElement;
+        if (o.parentElement && !ignorable(o.parentElement)) out.push(o.parentElement);
+      });
+    });
+    return out;
   }
   function handle(records) {
     if (swapping) return;
@@ -564,7 +627,7 @@
         return;
       }
       if (insideUnit(t)) return;
-      if (rec.type === 'childList' && isKatexRecord(rec)) { mathEls.add(t.closest('.katex-display') ? t.closest('.katex-display').parentElement : t); return; }
+      if (rec.type === 'childList' && isKatexRecord(rec)) mathParents(rec).forEach(function (el) { mathEls.add(el); });
       if (rec.type === 'characterData') nodes.push(t);
       else rec.addedNodes.forEach(function (n) { nodes = nodes.concat(textNodesIn(n)); });
     });
@@ -723,6 +786,15 @@
     get loadError() { return loadError; },
     hanCanvases: function () { return Array.from(hanCanvases).filter(function (c) { return c.isConnected; }); },
     setLang: setLang, normalize: normalize, sha1: sha1, keyOf: keyOf, translateText: translateText,
+    // Translated units whose visible text has Chinese again: a page script rewrote them, so
+    // they belong in _dynamic.
+    rewritten: function () {
+      var get = innerTextDesc && innerTextDesc.get;
+      return units.filter(function (u) {
+        if (!u.el.isConnected || u.cur !== 'en' || u.attr) return false;
+        return hasHan(u.ctx === 'svg' || !get ? u.el.textContent : get.call(u.el));
+      }).map(function (u) { return { key: u.key, kp: u.kp, ctx: u.ctx, path: pathOf(u.el), text: normalize(u.el.textContent).slice(0, 90) }; });
+    },
     collect: function () {
       return units.concat(expl).filter(function (u) { return u.el.isConnected; }).map(function (u) {
         var t = S[u.key];
@@ -758,6 +830,7 @@
     runtime = S._runtime || { exact: {}, patterns: [] };
     images = S._images || [];
     hide = S._hide || [];
+    zhText = S._zhText || [];
     if (hide.length) {
       var st = document.createElement('style'); st.id = 'en-hide-style';
       st.textContent = hide.map(function (h) { return 'html.en-on ' + h; }).join(',\n') + '{display:none!important;}';

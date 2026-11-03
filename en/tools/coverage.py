@@ -122,6 +122,9 @@ def check(chapter, browser):
         for d in redraw:
             for issue in d['issues']:
                 findings[f"kp{d['kp']}" if d['kp'] else 'chrome'].append(('redraw', f"demo {d['id']}: {issue}"))
+        for r in page.evaluate('window.__EN__.rewritten()'):
+            sec = f"kp{r['kp']}" if r['kp'] else 'chrome'
+            findings[sec].append(('rewritten', f"{r['key']} {r['path']} (page script wrote Chinese: add to _dynamic)\n{'':20}{short(r['text'], 90)}"))
         for m in page.evaluate('window.__EN__.misses'):
             sec = f"kp{m['kp']}" if m['kp'] else 'chrome'
             findings[sec].append((m['where'], f"{m['path']}\n{'':20}{short(m['text'], 90)}"))

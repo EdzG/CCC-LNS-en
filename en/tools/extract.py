@@ -20,7 +20,7 @@ from _common import (REPO, chapter_arg, close_guide, guide_keys, html_of, key_of
 def strings_dir(chapter):
     return strings_path(chapter).parent
 
-RESERVED = ('_runtime', '_dynamic', '_images', '_hide', '_stale')
+RESERVED = ('_runtime', '_dynamic', '_images', '_hide', '_zhText', '_stale')
 
 
 def collect(chapter, browser):
@@ -78,8 +78,9 @@ def main():
     out = {'_runtime': old.get('_runtime', {'exact': {}, 'patterns': []}),
            '_dynamic': old.get('_dynamic', []),
            '_images': old.get('_images', [])}
-    if old.get('_hide'):
-        out['_hide'] = old['_hide']
+    for k in ('_hide', '_zhText'):
+        if old.get(k):
+            out[k] = old[k]
     stale = dict(old.get('_stale', {}))
     review = 0
     for k, u in units.items():

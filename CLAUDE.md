@@ -138,13 +138,24 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   source (`annotation[encoding="application/x-tex"]`, as `$…$`), translates it whole, writes it back
   as text and re-renders; switching back restores it. Lookups treat `\(x\)` and `$x$` (and
   `\[x\]`, `$$x$$`) as equal, so `$T1` finds `expl` translations written with either delimiter.
+  Decks do the same with MathJax (`fb.innerHTML = …` then `typesetPromise([fb])`): an
+  `mjx-container`'s TeX comes from MathJax's math item (`getMathItemsWithin`). The rebuilt element
+  is the one holding the formula (past KaTeX's bare wrapper `<span>`), so a formula inside one
+  `<strong>` of a readout rebuilds only that `<strong>`. Deck quiz feedback therefore needs a
+  whole-line pattern per prefix (`^❌ 答錯了！\s*請重新思考：([\s\S]*)$` → `❌ Incorrect! Think again: $T1`)
+  plus an `exact` entry for each explanation.
+- **`_zhText`** (list of CSS selectors): while EN is on, `innerText` of a matching element returns
+  the original Chinese (units' captured text, runtime text's Chinese). For page JS that picks text by
+  searching for Chinese keywords: the Ch03/Ch04 decks choose each quiz explanation with
+  `card.innerText.includes('題目 1')` (or `.q-num`, `.q`), so their strings.json has
+  `"_zhText": [".quiz-card", ".q-num", ".q"]`; without it most explanations come out empty in EN.
 - **Live elements inside units:** swapping a unit keeps its live `[id]` descendants (e.g.
   `<output id=…>` in a `<label>`, `#boundaryStatus`): the new copies are replaced by the original
   nodes, which get `data-en-live`. Page scripts keep working on them, and text inside them counts
   as runtime text (translated through `_runtime`, misses reported by coverage).
 - **Observer hygiene:** the observer is disconnected during bulk swaps and math re-rendering,
   and `takeRecords()` discards our own writes. It ignores nodes inside `.katex` and inside static
-  units, and KaTeX records (added `.katex` nodes) never count as content changes.
+  units, and math records (added `.katex` / `mjx-container` nodes) never count as content changes.
 - **教授祕笈 guides** live in `window.__GUIDES__` and are injected by `openGuide(n)` into
   `#guide-title`/`#guide-body`. The observer sees that childList change (a microtask, before the
   page's 50 ms renderMath), captures fresh units (`ctx: "guide"`, `kp` = guide number found by
@@ -152,7 +163,8 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - **Canvas:** `CanvasRenderingContext2D.prototype.fillText/strokeText` are wrapped. In EN mode
   the text goes through `_runtime`; unmatched Han text is recorded as a miss. Because demos draw
   during parse, every language switch fires `input` on each `.demo`'s range/number/select
-  controls (and `change` on selects) so canvases redraw at once. coverage.py reports demos
+  controls (and `change` on selects; on decks, which have no `.demo`, every such control on the
+  page outside `[data-en-skip]`) so canvases redraw at once. coverage.py reports demos
   that draw Chinese but don't redraw this way (Ch01: KP6 only redraws on its 計算 button).
 - **`_images`** (list of filenames): only `img` whose src basename is listed is swapped to
   `en/<chapter>/assets/<file>` in EN mode. No HEAD checks. Decks embed their images as `data:`
@@ -165,10 +177,10 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
   If the saved state is EN, the body stays hidden (pill visible) until strings.json arrives (1.5 s max).
 - Missing translation in EN mode: the Chinese stays visible with class `en-missing` (dashed
   amber outline). Never show an empty block.
-- **strings.json** reserved keys start with `_`: `_runtime`, `_dynamic`, `_images`, `_hide`, `_stale`
+- **strings.json** reserved keys start with `_`: `_runtime`, `_dynamic`, `_images`, `_hide`, `_zhText`, `_stale`
   (keys that vanished from the page; `--prune` deletes them). Every other key is a unit:
   `{zh, en, kp, ctx: page|svg|attr|expl|guide|chart, attr?, review?}`; `kp: 0` = page chrome.
-- `window.__EN__` exposes `setLang`, `collect()`, `misses`, `hanCanvases()`, `ready` for the tools.
+- `window.__EN__` exposes `setLang`, `collect()`, `rewritten()`, `misses`, `hanCanvases()`, `ready` for the tools.
 
 ## Tools
 - `inject.py <page> [--check]`: adds the toggle.js and nav.js lines before `</head>`, byte-exact
@@ -180,7 +192,10 @@ KaTeX has not rendered yet (the page renders at load+50 ms / auto-render onload+
 - `coverage.py <ch> [--expect-clean chrome,kp1,guide:1] [--shots kp1,guide:1 --out scratch/shots]`:
   EN mode, clicks through every quiz and demo (decks: scrolls the page, then clicks every button and
   fires every control), opens every guide, and lists per section
-  (`chrome`, `kpN`, `guide:N`) the `static`, `runtime`, `canvas` and `redraw` findings.
+  (`chrome`, `kpN`, `guide:N`) the `static`, `runtime`, `canvas`, `redraw` and `rewritten` findings.
+  `rewritten` = a translated unit whose visible text has Chinese again after the exercise: a page
+  script fills that element (often before toggle.js captures it, so extract.py can't warn), and it
+  belongs in `_dynamic`, with its strings in `_runtime`.
 
 - `navcheck.py [<ch> ...] [--browser firefox]`: per chapter, sections/quizzes found == chapters.json,
   wrong/right/wrong quiz answers record 0/1/1, prev/next section, chapter links, scroll restore after
