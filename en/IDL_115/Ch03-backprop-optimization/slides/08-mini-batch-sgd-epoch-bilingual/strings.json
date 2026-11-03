@@ -1,0 +1,1341 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "一個 Epoch 的嚴格定義為將全部 $\\lfloor n/b \\rfloor$ 個不相交批次各使用過一次進行參數更新，相當於完整掃過一次訓練集。": "Strictly defined, one epoch uses each of all $\\lfloor n/b \\rfloor$ disjoint batches once for a parameter update, which amounts to one complete pass over the training set.",
+      "Mini-Batch SGD 每次計算批次內 $b$ 個樣本的平均梯度 $\\frac{1}{b}\\sum_{i \\in \\mathcal{B}} \\nabla f_i(w)$，有效壓低了單樣本更新的高方差。": "At each step, mini-batch SGD computes the average gradient $\\frac{1}{b}\\sum_{i \\in \\mathcal{B}} \\nabla f_i(w)$ of the $b$ samples in the batch, which effectively suppresses the high variance of single-sample updates.",
+      "批次 $b$ 越大，小批次梯度越接近母體全梯度，近似誤差項 $\\|e_t\\|_2^2$ 依 $1/b$ 比例縮小，收斂漸進行為越逼近 Full-Batch。": "The larger the batch $b$, the closer the mini-batch gradient gets to the full population gradient; the approximation error term $\\|e_t\\|_2^2$ shrinks in proportion to $1/b$, and the asymptotic convergence behavior gets ever closer to full-batch.",
+      "式 (29) 含有有限母體校正因子 $(1 - b/n)$，對應無放回抽樣；式 (30) 為標準獨立同分布之有放回抽樣 $\\sigma^2/b$。": "Eq. (29) contains the finite-population correction factor $(1 - b/n)$, which corresponds to sampling without replacement; Eq. (30) is standard i.i.d. sampling with replacement, $\\sigma^2/b$.",
+      "最優點 w* (0, 0)": "Optimum w* (0, 0)",
+      "即時狀態指示 (HUD)": "Live status (HUD)",
+      "當前 Batch Size b：": "Current batch size b:",
+      "抽樣機制：": "Sampling mechanism:",
+      "無放回劃分 (Without Replacement)": "without replacement",
+      "有放回抽樣 (With Replacement)": "with replacement",
+      "理論方差 E[‖e_t‖²]：": "Theoretical variance E[‖e_t‖²]:",
+      "本步取樣噪聲 ‖e_t‖：": "Sampling noise this step ‖e_t‖:",
+      "GPU 算力利用率估算：": "Estimated GPU utilization:",
+      "當前損失值 f(w)：": "Current loss f(w):",
+      "真實梯度範數 ‖∇f‖：": "True gradient norm ‖∇f‖:",
+      "累計迭代步數 (Step)：": "Total iterations (steps):",
+      "Epoch 進度：": "Epoch progress:",
+      "狀態判定：": "Status:",
+      "🔴 極端噪聲 · 醉漢隨機遊走 (GPU利用率極低)": "🔴 Extreme noise · drunkard's random walk (very low GPU utilization)",
+      "🟡 中度抖動 · 震盪探索 (邊際GPU並行)": "🟡 Moderate jitter · oscillating exploration (marginal GPU parallelism)",
+      "🔵 黃金折衷 · 穩定高效收斂 (Tensor Core滿意)": "🔵 Golden compromise · stable, efficient convergence (Tensor Cores satisfied)",
+      "🟢 平滑筆直 · 近乎確定性下降 (GPU滿載)": "🟢 Smooth and straight · near-deterministic descent (GPU fully loaded)",
+      "一個 Epoch 的嚴格定義為將全部": "Strictly defined, one epoch uses each of all",
+      "個不相交批次各使用過一次進行參數更新，相當於完整掃過一次訓練集。": "disjoint batches once for a parameter update, which amounts to one complete pass over the training set.",
+      "Mini-Batch SGD 每次計算批次內": "At each step, mini-batch SGD computes, over the",
+      "個樣本的平均梯度": "samples in the batch, the average gradient",
+      "，有效壓低了單樣本更新的高方差。": ", which effectively suppresses the high variance of single-sample updates.",
+      "批次": "The larger the batch",
+      "越大，小批次梯度越接近母體全梯度，近似誤差項": "is, the closer the mini-batch gradient gets to the full population gradient; the approximation error term",
+      "依": "shrinks in proportion to",
+      "比例縮小，收斂漸進行為越逼近 Full-Batch。": "and the asymptotic convergence behavior gets ever closer to full-batch.",
+      "式 (29) 含有有限母體校正因子": "Eq. (29) contains the finite-population correction factor",
+      "，對應無放回抽樣；式 (30) 為標準獨立同分布之有放回抽樣": ", which corresponds to sampling without replacement; Eq. (30) is standard i.i.d. sampling with replacement,"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^GPU 算力利用率: ([-\\d.]+)%$",
+        "en": "GPU utilization: $1%"
+      },
+      {
+        "re": "^理論相對方差: ([-\\d.]+)$",
+        "en": "Rel. variance: $1"
+      },
+      {
+        "re": "^第 (\\d+) Epoch \\((\\d+)/(\\d+) 批次\\)$",
+        "en": "epoch $1 ($2/$3 batches)"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "832c57672bb9": {
+    "zh": "KP08 · 索引",
+    "en": "KP08 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5cbc621b2194": {
+    "zh": "<a href=\"#dilemma-compromise\">黃金折衷 · Dilemma &amp; Tradeoff</a>",
+    "en": "<a href=\"#dilemma-compromise\">The golden compromise</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cd08f69c53c7": {
+    "zh": "<a href=\"#partitioning\">無放回劃分 · Partitioning (23)–(24)</a>",
+    "en": "<a href=\"#partitioning\">Partitioning without replacement, (23)–(24)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d6dc58ed77c1": {
+    "zh": "<a href=\"#epoch-definition\">Epoch 定義 · Definition 1</a>",
+    "en": "<a href=\"#epoch-definition\">Definition of an epoch</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "dfdb0120ca90": {
+    "zh": "<a href=\"#minibatch-formula\">更新式與 GPU · Update Eq (25)</a>",
+    "en": "<a href=\"#minibatch-formula\">The update rule and GPUs</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b36b099fafc3": {
+    "zh": "<a href=\"#proposition1-convergence\">命題 1 收斂界 · Proposition 1</a>",
+    "en": "<a href=\"#proposition1-convergence\">Proposition 1: convergence bounds</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "770becd8e916": {
+    "zh": "<a href=\"#variance-analysis\">方差期望分析 · Variance Eq (29)–(30)</a>",
+    "en": "<a href=\"#variance-analysis\">Expected variance analysis</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d468011dd6de": {
+    "zh": "<a href=\"#spectrum-tradeoff\">Batch 光譜 · Spectrum Tradeoff</a>",
+    "en": "<a href=\"#spectrum-tradeoff\">The batch spectrum</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ece1eed43973": {
+    "zh": "<a href=\"#comparison\">三大策略對比 · Comparison Matrix</a>",
+    "en": "<a href=\"#comparison\">Comparing the three strategies</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "efc2ad9cb9e3": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Maxims</a>",
+    "en": "<a href=\"#master-maxims\">The master's four iron laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "07a073ff87d7": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint Quiz</a>",
+    "en": "<a href=\"#quiz\">Questions to think about</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a99bdcc9e779": {
+    "zh": "Mini-Batch SGD 與 Epoch：單筆太吵、全批太慢的黃金折衷\n      <span class=\"hero-title-en\">Mini-Batch SGD &amp; Epochs: Variance Reduction, GPU Matrix Vectorization, and Epoch Traversal</span>\n    ",
+    "en": "Mini-Batch SGD and Epochs: the Golden Compromise Between \"One Sample Is Too Noisy\" and \"the Full Batch Is Too Slow\"",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "ef71e090dc3d": {
+    "zh": "\n      單樣本更新方差劇烈如醉漢，全批次計算巨慢且視訊記憶體崩潰！Mini-Batch SGD 每次隨機抽取 $b$ 筆樣本取均值，兼具隨機探索性與硬體並行效率。深度剖析無放回劃分式 (23)–(24)、Epoch 定義、命題 1 誤差界 $\\mathcal{O}(1/t + \\|e_t\\|^2)$ 及方差衰減定理 $(1 - b/n)\\frac{\\sigma^2}{b}$。\n    ",
+    "en": "Single-sample updates have a variance as wild as a drunkard's walk; the full batch computes painfully slowly and blows up GPU memory! Mini-batch SGD randomly draws $b$ samples each time and averages them, combining random exploration with hardware parallel efficiency. An in-depth look at the without-replacement partitioning of Eqs. (23)–(24), the definition of an epoch, the error bound of Proposition 1, $\\mathcal{O}(1/t + \\|e_t\\|^2)$, and the variance decay theorem $(1 - b/n)\\frac{\\sigma^2}{b}$.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "0d4d71982aed": {
+    "zh": "\n      「單筆太吵、全批太慢：Mini-Batch 如何成為深度學習的黃金折衷？」\n      <small>單樣本步步隨機振盪，全批次視訊記憶體爆炸計算龜速！Mini-batch 結合 GPU 矩陣向量化與常數方差衰減，橫掃現代 AI 訓練架構！<br>\n        <span class=\"bilingual-en-inline\">Single-sample SGD suffers extreme variance while full-batch gradient descent is computationally prohibitive; Mini-Batch SGD achieves the golden compromise between variance reduction and GPU throughput!</span>\n      </small>\n    ",
+    "en": "\"One sample is too noisy and the full batch is too slow: how did the mini-batch become the golden compromise of deep learning?\" <small>Single samples oscillate randomly at every step; the full batch blows up GPU memory and computes at a snail's pace! The mini-batch combines GPU matrix vectorization with a variance decay by a constant factor, and it sweeps across modern AI training architectures!<br> </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "fe91049dfdc2": {
+    "zh": "02 / 核心動機 · Motivation &amp; Dilemma",
+    "en": "02 / Core Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3830bdf0156c": {
+    "zh": "兩難抉擇與黃金折衷：為什麼需要 Mini-Batch SGD？\n    <span class=\"en\">The Optimization Dilemma: Why Mini-Batch SGD Dominates Modern Deep Learning</span>\n  ",
+    "en": "A dilemma and a golden compromise: why do we need mini-batch SGD?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "68f0a4affa78": {
+    "zh": "🔴 極端一：Single-Sample SGD ($b=1$)",
+    "en": "🔴 Extreme 1: single-sample SGD ($b=1$)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0cc8767b846d": {
+    "zh": "<strong>方差極大：</strong>每步只抽 1 筆樣本，梯度隨機噪聲高達 $\\sigma^2$，軌跡如醉漢漫步，極度抖動。",
+    "en": "<strong>Huge variance:</strong> each step draws only 1 sample, the random gradient noise is as large as $\\sigma^2$, and the trajectory jitters wildly like a drunkard's walk.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1a37b2221278": {
+    "zh": "<strong>硬體浪費：</strong>無法填滿 GPU 數千核心，計算受限於記憶體頻寬（Memory Bandwidth Bound），算力利用率常低於 5%。",
+    "en": "<strong>Wasted hardware:</strong> it cannot fill the thousands of GPU cores; computation is memory-bandwidth bound, and compute utilization is often below 5%.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e5b8918f7b68": {
+    "zh": "<strong>優勢：</strong>單步計算成本極低，且劇烈噪聲具備極強的逃離鞍點與尖銳局部極小值能力。",
+    "en": "<strong>Strength:</strong> each step is very cheap to compute, and the violent noise gives it a very strong ability to escape saddle points and sharp local minima.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8935bb8433ab": {
+    "zh": "🟢 極端二：Full-Batch GD ($b=n$)",
+    "en": "🟢 Extreme 2: full-batch GD ($b=n$)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "fd893246805a": {
+    "zh": "<strong>計算龜速：</strong>每更新一步必須完整遍歷資料集全體 $n$ 筆樣本，在海量資料集（如百萬影像或百億文字）下每步極度昂貴。",
+    "en": "<strong>Snail-paced computation:</strong> every update must traverse all $n$ samples of the dataset, so on massive datasets (millions of images or tens of billions of words of text) each step is extremely expensive.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2c83bea0a8fd": {
+    "zh": "<strong>視訊記憶體爆炸：</strong>全資料集啟用值與梯度無法一次性塞入顯示卡 VRAM，直接引發 Out-Of-Memory (OOM)。",
+    "en": "<strong>GPU memory blowup:</strong> the activations and gradients of the whole dataset cannot fit into the graphics card's VRAM at once, which immediately triggers an out-of-memory (OOM) error.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a9978d1a903f": {
+    "zh": "<strong>泛化欠佳：</strong>完全無噪聲的精確梯度容易收斂到平坦度較差的尖銳極小值（Sharp Minima）。",
+    "en": "<strong>Poorer generalization:</strong> the completely noise-free exact gradient tends to converge to sharp minima, which are less flat.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e3d00d24dd5b": {
+    "zh": "黃金折衷：Mini-Batch SGD ($1 &lt; b &lt; n$)",
+    "en": "The golden compromise: mini-batch SGD ($1 &lt; b &lt; n$)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6aac19acc109": {
+    "zh": "每次隨機抽取 $b$ 筆資料（Batch Size，批次大小），以這小批樣本的<strong>平均梯度</strong>進行參數更新！",
+    "en": "Each time, randomly draw $b$ data points (the batch size) and update the parameters with the <strong>average gradient</strong> of this small batch of samples!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "312569087e41": {
+    "zh": "<strong>核心成效：</strong>一方面利用大數法則將梯度方差壓低至約 $\\sigma^2/b$，收斂更穩定；另一方面將 $b$ 筆前向與反向運算打包為高吞吐矩陣乘法（Batch GEMM），發揮 GPU 龐大並行算力。因此文獻中所稱的「SGD」，實務上九成九皆指 Mini-Batch SGD！",
+    "en": "<strong>Core effect:</strong> on the one hand, the law of large numbers pushes the gradient variance down to about $\\sigma^2/b$, so convergence is more stable; on the other hand, the $b$ forward and backward computations are packed into high-throughput matrix multiplications (batch GEMM), harnessing the GPU's massive parallel compute. That is why, when the literature says \"SGD\", in practice it means mini-batch SGD 99% of the time!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9f7627d59e56": {
+    "zh": "03 / 數學基礎 · Data Partitioning",
+    "en": "03 / Mathematical Foundation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6047d0bf84b6": {
+    "zh": "資料怎麼切：式 (23)–(24) 無放回劃分 vs Bootstrapping\n    <span class=\"en\">Dataset Partitioning: Disjoint Partitions (23)–(24) vs. Bootstrapping</span>\n  ",
+    "en": "How to split the data: partitioning without replacement, Eqs. (23)–(24), vs bootstrapping",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8a268ca7394b": {
+    "zh": "無放回劃分的集合論定義（式 (23)–(24)）",
+    "en": "Set-theoretic definition of partitioning without replacement (Eqs. (23)–(24))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6adbd5025358": {
+    "zh": "在進入最佳化迴圈前，標準做法是將大小為 $n$ 的訓練資料集 $\\mathcal{D}$ 隨機置換打亂（Shuffle），然後切分為 $\\lfloor n/b \\rfloor$ 個大小為 $b$ 的互斥子集 $\\mathcal{B}_i$（Simple random sampling without replacement）：",
+    "en": "Before entering the optimization loop, the standard practice is to randomly permute (shuffle) the training dataset $\\mathcal{D}$ of size $n$ and then split it into $\\lfloor n/b \\rfloor$ mutually exclusive subsets $\\mathcal{B}_i$ of size $b$ (simple random sampling without replacement):",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3d962363847e": {
+    "zh": "<strong>物理意義：</strong>所有子集聯集完整覆蓋整個訓練集 $\\mathcal{D}$（式 23），且任意兩批次之間交集為空集（式 24）。這保證了在一個週期內，每個訓練樣本恰好被模型「看過且僅看過一次」！",
+    "en": "<strong>Physical meaning:</strong> the union of all the subsets covers the whole training set $\\mathcal{D}$ (Eq. 23), and any two batches have an empty intersection (Eq. 24). This guarantees that within one cycle, every training sample is \"seen by the model exactly once\"!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0869808efbbc": {
+    "zh": "1. 無放回抽樣 (Without Replacement)",
+    "en": "1. Sampling without replacement",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e1313601f084": {
+    "zh": "先對整個資料集進行全域隨機重排（Random Permutation），再依序切分成固定大小塊。保證資料利用完全均勻，杜絕偏差。",
+    "en": "First apply a global random permutation to the whole dataset, then cut it in order into chunks of fixed size. This guarantees the data is used completely evenly and rules out bias.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d10cf04052c2": {
+    "zh": "2. 有放回抽樣 (Bootstrapping)",
+    "en": "2. Sampling with replacement (bootstrapping)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "984cd477643d": {
+    "zh": "每步獨立均勻地從 $\\mathcal{D}$ 抽 $b$ 筆。批次間不再互斥（$\\mathcal{B}_i \\cap \\mathcal{B}_j \\neq \\varnothing$），式 (24) 失效。約有 $1 - 1/e \\approx 63.2\\%$ 獨特樣本被抽中，其餘被遺漏。",
+    "en": "Each step independently and uniformly draws $b$ points from $\\mathcal{D}$. Batches are no longer mutually exclusive ($\\mathcal{B}_i \\cap \\mathcal{B}_j \\neq \\varnothing$), and Eq. (24) no longer holds. About $1 - 1/e \\approx 63.2\\%$ of the distinct samples get drawn, and the rest are missed.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fdcb015fbc3e": {
+    "zh": "3. 為什麼深度學習偏好無放回？",
+    "en": "3. Why does deep learning prefer sampling without replacement?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d122fa582e7b": {
+    "zh": "無放回能確保每筆珍貴資料獲得平等的梯度貢獻，避免特定樣本被反覆過度訓練，同時有利於循序記憶體讀取與 DataLoader 預取快取。",
+    "en": "Sampling without replacement ensures that every precious data point makes an equal gradient contribution and keeps particular samples from being repeatedly overtrained; it also favors sequential memory reads and DataLoader prefetch caching.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8fcea6163071": {
+    "zh": "4. 若 $n$ 不能被 $b$ 整除怎麼辦？",
+    "en": "4. What if $n$ is not divisible by $b$?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "efa23742f863": {
+    "zh": "最後剩餘的 $n - b\\lfloor n/b \\rfloor$ 筆資料，常見處理方式為：保留為尺寸較小的最後一批，或在 DataLoader 中設定 <code>drop_last=True</code> 直接捨棄，避免批次大小動態變化損害 GPU 運算元編譯效益。",
+    "en": "The $n - b\\lfloor n/b \\rfloor$ data points left over at the end are usually handled in one of two ways: keep them as a smaller final batch, or set <code>drop_last=True</code> in the DataLoader to discard them outright, so that a changing batch size does not hurt the efficiency of GPU operator compilation.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c39c041630b1": {
+    "zh": "04 / 核心概念 · Epoch Definition",
+    "en": "04 / Core Concept",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b6565333362e": {
+    "zh": "Epoch 是什麼？Definition 1 與週期遍歷的本質\n    <span class=\"en\">What is an Epoch? Definition 1 and the Anatomy of Full Dataset Traversal</span>\n  ",
+    "en": "What is an epoch? Definition 1 and the nature of a full traversal",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "477f6aef8078": {
+    "zh": "定義 1（Epoch，訓練週期）",
+    "en": "Definition 1 (epoch, training cycle)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bac6b6e26591": {
+    "zh": "<strong>Definition 1：</strong>一個 Epoch 定義為最佳化演算法將全部 $\\lfloor n/b \\rfloor$ 個不相交批次（Batches）<strong>各使用過一次</strong>做參數更新的完整過程。實務訓練通常會執行數十至數百個 Epoch，直到驗證集損失收斂。",
+    "en": "<strong>Definition 1:</strong> an epoch is defined as the complete process in which the optimization algorithm uses each of the $\\lfloor n/b \\rfloor$ disjoint batches <strong>once</strong> for a parameter update. In practice, training usually runs tens to hundreds of epochs, until the validation loss converges.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d8fed92c6bdd": {
+    "zh": "<strong>口語涵義：</strong>「把整份訓練資料由頭到尾完整掃一輪」。",
+    "en": "<strong>In plain words:</strong> \"sweep through the whole training set once, from start to finish.\"",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6f7ed21060b6": {
+    "zh": "Epoch 全景架構：無放回遍歷、光譜折衷與深度學習反直覺",
+    "en": "The epoch at a glance: traversal without replacement, the spectrum trade-off, and deep-learning surprises",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5c98181f27d5": {
+    "zh": "EPOCH 完整遍歷框 (整份資料集 D 掃一輪)",
+    "en": "EPOCH: one full traversal (sweep the whole dataset D once)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "ea11bbf72117": {
+    "zh": "批次 B1 (正在更新 ★)",
+    "en": "Batch B1 (being updated ★)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "961091c92ee1": {
+    "zh": "大小 b 筆樣本 (互斥)",
+    "en": "b samples (mutually exclusive)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "757af525f85c": {
+    "zh": "GPU 向量化前向/反向",
+    "en": "GPU-vectorized forward/backward",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "72e3be59c298": {
+    "zh": "批次 B2 (排隊中)",
+    "en": "Batch B2 (queued)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "66005c13b26f": {
+    "zh": "大小 b 筆樣本",
+    "en": "b samples",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "a93502e27973": {
+    "zh": "等待下一拍 step 更新",
+    "en": "Waits for the next update step",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "0d2c1c70d8a8": {
+    "zh": "最後批次 B_last (第 ⌊n/b⌋ 批)",
+    "en": "Last batch B_last (batch no. ⌊n/b⌋)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "9be072d81eb9": {
+    "zh": "大小 b 筆樣本 (掃完本輪)",
+    "en": "b samples (finishes this pass)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3c6ac0528b48": {
+    "zh": "完成此批即達成 1 Epoch！",
+    "en": "Finish this batch and that's 1 epoch!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "12f636bfbe4b": {
+    "zh": "下輪 Epoch 前重新 Shuffle",
+    "en": "Reshuffle before the next epoch",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "89c1f6f50d82": {
+    "zh": "Batch Size 權衡光譜：",
+    "en": "Batch size trade-off spectrum:",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c8141344ddd8": {
+    "zh": "b = 1 (太吵)",
+    "en": "b = 1 (too noisy)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "a20d933bd52c": {
+    "zh": "Mini-Batch (黃金折衷 · 主流)",
+    "en": "Mini-batch (golden compromise · mainstream)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e9e43ed361d7": {
+    "zh": "b = n (太慢 / OOM)",
+    "en": "b = n (too slow / OOM)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5142b6ca2d5d": {
+    "zh": "方差大 · 軌跡抖 · GPU閒置",
+    "en": "High variance · jittery path · idle GPU",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "d467c7acfac9": {
+    "zh": "方差低 · GPU加速 · 泛化好",
+    "en": "Low variance · GPU speedup · generalizes well",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e2b643f0e797": {
+    "zh": "每步貴 · 視訊記憶體爆 · 無逃逸噪聲",
+    "en": "Costly steps · VRAM blowup · no escape noise",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "abc1a3cdbf89": {
+    "zh": "反直覺一：名為 SGD，實為 Mini-Batch",
+    "en": "Surprise 1: called SGD, actually mini-batch",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "302ac58ea339": {
+    "zh": "文獻與 PyTorch 中所稱的「SGD」，實務上九成九",
+    "en": "The \"SGD\" of the literature and of PyTorch, in practice, 99% of the time",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "864e9bd3157d": {
+    "zh": "皆指 Mini-Batch SGD（b 通常為 32~256），",
+    "en": "means mini-batch SGD (b is usually 32~256),",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c728a9148c2d": {
+    "zh": "而非純單樣本（b=1）更新！",
+    "en": "not pure single-sample (b=1) updates!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "dc90da70dd77": {
+    "zh": "反直覺二：穩不等於快，大 Batch 有代價",
+    "en": "Surprise 2: stable is not fast; big batches have a cost",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "7837664e1e05": {
+    "zh": "Batch 越大雜訊越小、越像全梯度，但每步計算更昂貴，",
+    "en": "The bigger the batch, the less noise and the closer to the full gradient, but each step costs more,",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5ea6cb576a27": {
+    "zh": "且每個 Epoch 參數更新步數成反比銳減（僅 ⌊n/b⌋ 步）——",
+    "en": "and the number of updates per epoch drops in inverse proportion (only ⌊n/b⌋ steps),",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "acbbd8b42af1": {
+    "zh": "盲目擴大 Batch 並不能縮短總訓練壁鐘時間！",
+    "en": "so blindly enlarging the batch does not cut total wall-clock training time!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "d45949c4f96d": {
+    "zh": "圖 1：Epoch 無放回劃分架構、Batch Size 光譜與深度學習兩大反直覺觀念",
+    "en": "Fig. 1: The without-replacement partitioning of an epoch, the batch-size spectrum, and two counterintuitive ideas in deep learning",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "456b8ce42076": {
+    "zh": "Epoch、Batch 與 Step 的關係",
+    "en": "How epochs, batches and steps relate",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "147946c84629": {
+    "zh": "理解深度學習訓練程序，需釐清三個維度：",
+    "en": "To understand the deep-learning training procedure, three dimensions need to be sorted out:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "db2a3835746a": {
+    "zh": "<strong>Step（迭代步）：</strong>執行一次式 (25) 更新，消耗 1 個 Batch。",
+    "en": "<strong>Step (iteration):</strong> one execution of the update in Eq. (25), consuming 1 batch.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "81dafe6ea88d": {
+    "zh": "<strong>Batch Size ($b$)：</strong>單步內同時參與梯度計算的樣本數量。",
+    "en": "<strong>Batch size ($b$):</strong> the number of samples taking part in the gradient computation within one step.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5ab91d971a0d": {
+    "zh": "<strong>Epoch（週期）：</strong>消耗 $\\lfloor n/b \\rfloor$ 個 Step，將全部資料集遍歷一次。",
+    "en": "<strong>Epoch (cycle):</strong> consumes $\\lfloor n/b \\rfloor$ steps and traverses the whole dataset once.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3c0cd05e112c": {
+    "zh": "若資料量 $n=60,000$、批次 $b=64$，則 1 個 Epoch 包含 $\\lfloor 60000/64 \\rfloor = 937$ 次更新。訓練 50 個 Epoch 等同進行 $46,850$ 次參數迭代！",
+    "en": "If the data size is $n=60,000$ and the batch is $b=64$, then 1 epoch contains $\\lfloor 60000/64 \\rfloor = 937$ updates. Training for 50 epochs amounts to $46,850$ parameter iterations!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cfe4d029d7f1": {
+    "zh": "05 / 運算機制 · Update Rule &amp; Hardware",
+    "en": "05 / How the Computation Works",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fec31604f695": {
+    "zh": "更新規則：式 (25) 與 GPU 矩陣向量化加速\n    <span class=\"en\">Mini-Batch SGD Update Rule (25) and GPU Tensor Core Acceleration</span>\n  ",
+    "en": "The update rule: Eq. (25) and GPU matrix-vectorized acceleration",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "61f424ad935a": {
+    "zh": "Mini-Batch SGD 核心更新公式（式 (25)）",
+    "en": "The core mini-batch SGD update formula (Eq. (25))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "25ee0d41b446": {
+    "zh": "設在第 $k$ 步迭代中，最佳化演算法選取的批次記為 $\\mathcal{B}_{k'}$（包含 $b$ 個樣本索引）：",
+    "en": "At iteration $k$, denote the batch chosen by the optimization algorithm by $\\mathcal{B}_{k'}$ (containing $b$ sample indices):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "dd74109a0456": {
+    "zh": "<strong>工程註記：</strong>實務中因子 $1/b$ 有時會被直接吸納入學習率 $\\eta$ 當中，其梯度下降幾何方向完全等價。",
+    "en": "<strong>Engineering note:</strong> in practice, the factor $1/b$ is sometimes absorbed directly into the learning rate $\\eta$; the geometric direction of the gradient descent is exactly the same.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bb649f6fdae5": {
+    "zh": "1. 為什麼 GPU 特別青睞 Mini-Batch？",
+    "en": "1. Why do GPUs especially favor mini-batches?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "74da5efd6429": {
+    "zh": "單樣本前向傳播是矩陣與向量乘法（GEMV），運算受限於記憶體頻寬；Mini-batch 將 $b$ 個輸入拼接為矩陣 $\\boldsymbol{X} \\in \\mathbb{R}^{b \\times d}$，前向與反向全轉換為通用矩陣相乘（GEMM），大幅提升運算強度與 Tensor Core 吞吐量。",
+    "en": "Forward propagation of a single sample is a matrix-vector multiplication (GEMV), and the computation is limited by memory bandwidth; a mini-batch stacks the $b$ inputs into a matrix $\\boldsymbol{X} \\in \\mathbb{R}^{b \\times d}$, turning the whole forward and backward pass into general matrix-matrix multiplications (GEMM), which greatly raises arithmetic intensity and Tensor Core throughput.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "dbf687debc37": {
+    "zh": "2. 記憶體容量 vs 批次大小瓶頸",
+    "en": "2. The bottleneck of memory capacity vs batch size",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "08eed5f1c4fc": {
+    "zh": "批次大小 $b$ 越大，反向傳播需暫存的前向啟用值（Activations）體積呈線性正比增加。當 $b$ 超過顯示卡 VRAM 上限時即引發 OOM，促使實務常採用梯度累積（Gradient Accumulation）在邏輯上擴大有效批次。",
+    "en": "The larger the batch size $b$, the larger the volume of forward activations that backpropagation must keep, in linear proportion. Once $b$ exceeds the graphics card's VRAM limit, OOM occurs, which is why practitioners often use gradient accumulation to enlarge the effective batch logically.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6d1be51cf150": {
+    "zh": "3. 步長調整的線性縮放規律",
+    "en": "3. The linear scaling rule for adjusting the step size",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a1a199ce6497": {
+    "zh": "當硬體算力允許將批次大小從 $b$ 擴大為 $k \\cdot b$ 時，為了保持每個 Epoch 的總更新強度對齊，學習率通常需同步放大：$\\eta \\leftarrow k \\cdot \\eta$，並搭配學習率預熱（Warmup）防止訓練初期散逸。",
+    "en": "When the hardware compute allows the batch size to grow from $b$ to $k \\cdot b$, then to keep the total update strength per epoch aligned, the learning rate usually has to be scaled up as well: $\\eta \\leftarrow k \\cdot \\eta$, together with a learning-rate warmup to keep training from diverging early on.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f67f61c794b7": {
+    "zh": "4. 軟體實作：DataLoader 預取快取",
+    "en": "4. Software implementation: DataLoader prefetch caching",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cca136c532bd": {
+    "zh": "現代框架使用多執行緒（Multi-worker）在 CPU 背景預先打亂、切塊並將批次資料非同步傳輸至 GPU 視訊記憶體（Pinned Memory），徹底消除 GPU 等待磁碟 I/O 的管線停頓。",
+    "en": "Modern frameworks use multiple workers on the CPU in the background to shuffle and chunk the data in advance and transfer the batches asynchronously into GPU memory (pinned memory), completely eliminating pipeline stalls where the GPU waits on disk I/O.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1ef466af4f8f": {
+    "zh": "06 / 理論收斂界 · Proposition 1",
+    "en": "06 / Theoretical Convergence Bounds",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d1d755e0bf05": {
+    "zh": "命題 1：收斂率界與梯度近似誤差 $\\|e_t\\|_2^2$\n    <span class=\"en\">Proposition 1: Convergence Rates under Gradient Approximation Error</span>\n  ",
+    "en": "Proposition 1: convergence-rate bounds and the gradient approximation error $\\|e_t\\|_2^2$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "737198f1f562": {
+    "zh": "梯度近似分解（式 (26)）與命題 1（式 (27)–(28)）",
+    "en": "Gradient approximation decomposition (Eq. (26)) and Proposition 1 (Eqs. (27)–(28))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e28a83ad8954": {
+    "zh": "將小批次平均梯度視為全資料集真實梯度 $\\nabla f(\\boldsymbol{w}^{(t)})$ 與隨機近似誤差向量 $e_t$ 的疊加：",
+    "en": "Treat the mini-batch average gradient as the sum of the true gradient over the whole dataset, $\\nabla f(\\boldsymbol{w}^{(t)})$, and a random approximation error vector $e_t$:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1a82446fc6f0": {
+    "zh": "當使用固定步長 $\\eta^{(k)}=\\eta$ 時，演算法收斂率界（Proposition 1）分為兩大情境：",
+    "en": "With a fixed step size $\\eta^{(k)}=\\eta$, the algorithm's convergence-rate bounds (Proposition 1) fall into two main cases:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7bafd294ac76": {
+    "zh": "<strong>一般凸或非凸函式 $f$（式 (27)）：</strong>\n        $$ \\min_{0 \\le k \\le t-1} \\|\\nabla f(\\boldsymbol{w}^{(k)})\\|_2^2 \\le \\mathcal{O}\\left(\\frac{1}{t}+\\left\\|e_{t}\\right\\|_{2}^{2}\\right) \\tag{27} $$\n      ",
+    "en": "<strong>General convex or non-convex functions $f$ (Eq. (27)):</strong>         $$ \\min_{0 \\le k \\le t-1} \\|\\nabla f(\\boldsymbol{w}^{(k)})\\|_2^2 \\le \\mathcal{O}\\left(\\frac{1}{t}+\\left\\|e_{t}\\right\\|_{2}^{2}\\right) \\tag{27} $$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b7aa4f567cbb": {
+    "zh": "<strong>$\\mu$-強凸且 $L$-平滑目標函式 $f_i$（式 (28)）：</strong>\n        $$ \\mathbb{E}\\left[f(\\boldsymbol{w}^{(t)})-f^*\\right] \\le \\mathcal{O}\\left(\\left(1-\\frac{\\mu}{L}\\right)^{t}+\\left\\|e_{t}\\right\\|_{2}^{2}\\right) \\tag{28} $$\n      ",
+    "en": "<strong>$\\mu$-strongly convex and $L$-smooth objective functions $f_i$ (Eq. (28)):</strong>         $$ \\mathbb{E}\\left[f(\\boldsymbol{w}^{(t)})-f^*\\right] \\le \\mathcal{O}\\left(\\left(1-\\frac{\\mu}{L}\\right)^{t}+\\left\\|e_{t}\\right\\|_{2}^{2}\\right) \\tag{28} $$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d26ace0168f5": {
+    "zh": "第一項：決定性收斂速度",
+    "en": "First term: the deterministic convergence speed",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a22d7c3fcf1d": {
+    "zh": "凸函式下以亞線性速度 $\\mathcal{O}(1/t)$ 衰減；強凸條件下以幾何級數線性速度 $\\mathcal{O}((1-\\mu/L)^t)$ 快速收縮。隨著迭代步數 $t \\to \\infty$，第一項必然衰減歸零。",
+    "en": "For convex functions it decays at the sublinear rate $\\mathcal{O}(1/t)$; under strong convexity it shrinks fast, at the geometric (linear) rate $\\mathcal{O}((1-\\mu/L)^t)$. As the number of iterations $t \\to \\infty$, the first term is bound to decay to zero.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "175c41fd7a0d": {
+    "zh": "第二項：隨機方差底噪 $\\|e_t\\|_2^2$",
+    "en": "Second term: the random variance noise floor $\\|e_t\\|_2^2$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f838a4ea3507": {
+    "zh": "代表 Mini-Batch 取樣噪聲所造成的不可消除極限底噪。在固定步長 $\\eta$ 下，參數無法精確收斂到最優點 $w^*$，而是在極小值周圍半徑正比於 $\\|e_t\\|_2^2$ 的方差球內持續振盪！",
+    "en": "It represents the irreducible noise floor caused by mini-batch sampling noise. With a fixed step size $\\eta$, the parameters cannot converge exactly to the optimum $w^*$; instead they keep oscillating inside a variance ball around the minimum whose radius is proportional to $\\|e_t\\|_2^2$!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a15428056be1": {
+    "zh": "\n    <strong>核心推論：</strong>增大批次大小 $b$ 能夠直接壓低誤差範數期望 $\\mathbb{E}[\\|e_t\\|_2^2]$，使收斂界逼近 Full-batch 梯度下降的極限（式 (31)）。若要徹底消減此誤差底噪，必須配合學習率衰減排程（Learning Rate Decay）或 Polyak 平均。\n    <span class=\"bilingual-en\">Increasing batch size b shrinks the gradient approximation error norm ||e_t||^2, pulling convergence closer to full-batch rates at the cost of heavier per-step computation.</span>\n  ",
+    "en": "<strong>Key corollary:</strong> increasing the batch size $b$ directly lowers the expected error norm $\\mathbb{E}[\\|e_t\\|_2^2]$, bringing the convergence bound close to the limit of full-batch gradient descent (Eq. (31)). To eliminate this error floor completely, it must be paired with a learning-rate decay schedule or Polyak averaging.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6e96d58305c7": {
+    "zh": "07 / 方差分析 · Variance Bounds",
+    "en": "07 / Variance Analysis",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ffdc6d81f895": {
+    "zh": "梯度誤差期望分析：式 (29)–(30) 抽樣方差定理\n    <span class=\"en\">Expected Gradient Error Norm: Finite Population Correction in (29)–(30)</span>\n  ",
+    "en": "Expected gradient error analysis: the sampling variance theorem of Eqs. (29)–(30)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "052703ec845c": {
+    "zh": "兩種抽樣機制下的誤差方差期望（式 (29)–(30)）",
+    "en": "Expected error variance under the two sampling mechanisms (Eqs. (29)–(30))",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "efb4c04a2dcb": {
+    "zh": "設母體資料集梯度方差為 $\\sigma^2 = \\frac{1}{n}\\sum_{i=1}^n \\|\\nabla f_i(w) - \\nabla f(w)\\|_2^2$：",
+    "en": "Let the gradient variance of the population dataset be $\\sigma^2 = \\frac{1}{n}\\sum_{i=1}^n \\|\\nabla f_i(w) - \\nabla f(w)\\|_2^2$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dde763268294": {
+    "zh": "$$ \\begin{align*} &amp; \\mathbb{E}\\left[\\left\\|e_{t}\\right\\|_{2}^{2}\\right]=\\left(1-\\frac{b}{n}\\right) \\frac{\\sigma^{2}}{b}, \\quad \\text{（without replacement，無放回抽樣）} \\tag{29}\\\\ &amp; \\mathbb{E}\\left[\\left\\|e_{t}\\right\\|_{2}^{2}\\right]=\\frac{\\sigma^{2}}{b}, \\quad \\text{（with replacement，有放回抽樣）} \\tag{30} \\end{align*} $$",
+    "en": "$$ \\begin{align*} &amp; \\mathbb{E}\\left[\\left\\|e_{t}\\right\\|_{2}^{2}\\right]=\\left(1-\\frac{b}{n}\\right) \\frac{\\sigma^{2}}{b}, \\quad \\text{(without replacement)} \\tag{29}\\\\ &amp; \\mathbb{E}\\left[\\left\\|e_{t}\\right\\|_{2}^{2}\\right]=\\frac{\\sigma^{2}}{b}, \\quad \\text{(with replacement)} \\tag{30} \\end{align*} $$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c90c92153872": {
+    "zh": "<strong>關鍵因子：有限母體校正係數（Finite Population Correction, FPC）$(1 - b/n)$</strong>",
+    "en": "<strong>Key factor: the finite population correction (FPC) $(1 - b/n)$</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5a95eaae0950": {
+    "zh": "1. 有放回抽樣：標準 $1/b$ 獨立衰減",
+    "en": "1. With replacement: the standard independent $1/b$ decay",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "26b6fabe834f": {
+    "zh": "每次抽樣相互獨立，由獨立同分布大數法則可知，平均梯度的方差嚴格等於母體方差除以樣本數 $\\sigma^2/b$。即使 $b \\to n$，方差仍有 $\\sigma^2/n &gt; 0$。",
+    "en": "Each draw is independent, so by the law of large numbers for i.i.d. samples, the variance of the average gradient equals exactly the population variance divided by the number of samples, $\\sigma^2/b$. Even as $b \\to n$, the variance is still $\\sigma^2/n &gt; 0$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8cfe776c3b27": {
+    "zh": "2. 無放回抽樣：$b=n$ 時方差嚴格歸零",
+    "en": "2. Without replacement: the variance is exactly zero when $b=n$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ce91cee0ecb6": {
+    "zh": "在無放回抽樣下，當 $b=n$ 時，係數 $(1 - b/n) = 0$，誤差方差嚴格歸零！此時小批次梯度與母體全梯度完全重合，不存在任何隨機性。",
+    "en": "Under sampling without replacement, when $b=n$ the factor $(1 - b/n) = 0$, and the error variance is exactly zero! The mini-batch gradient then coincides completely with the population's full gradient, with no randomness at all.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "52187143eb52": {
+    "zh": "3. 實務情境：巨量資料下兩者近乎等同",
+    "en": "3. In practice: with massive data the two are nearly the same",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5a445ad99f32": {
+    "zh": "現代深度學習訓練集規模龐大（例如 $n = 10^6, b = 128$），此時 $b/n \\approx 0.000128$，$(1 - b/n) \\approx 0.99987 \\approx 1$。兩者方差數值極為接近，但無放回確保了每個樣本在週期內不重複被取樣。",
+    "en": "Modern deep-learning training sets are huge (for example $n = 10^6, b = 128$), so $b/n \\approx 0.000128$ and $(1 - b/n) \\approx 0.99987 \\approx 1$. The two variances are extremely close numerically, but sampling without replacement ensures that no sample is drawn twice within a cycle.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fa5894c8a70b": {
+    "zh": "4. 邊際方差效益遞減律",
+    "en": "4. The law of diminishing marginal returns on variance",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a8ec1963545b": {
+    "zh": "方差隨 $1/b$ 雙曲線下降：將 $b$ 從 1 提升至 32 可將方差降低 96.8%；但若要將方差再降一半，必須將 $b$ 再翻倍至 64。盲目追求低噪聲會耗費極其龐大的運算開銷。",
+    "en": "The variance falls along a $1/b$ hyperbola: raising $b$ from 1 to 32 reduces the variance by 96.8%; but to halve the variance again, $b$ must be doubled again, to 64. Blindly chasing low noise costs an enormous amount of computation.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "72ef91cfd3c6": {
+    "zh": "08 / 參數權衡 · Spectrum Tradeoff",
+    "en": "08 / Weighing the Parameter",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2273d0bee9d3": {
+    "zh": "Batch Size 光譜：從微觀噪聲到宏觀吞吐的權衡\n    <span class=\"en\">The Batch Size Spectrum: Microscopic Noise vs. Macroscopic Throughput</span>\n  ",
+    "en": "The batch-size spectrum: a trade-off from microscopic noise to macroscopic throughput",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "317f6f7ca3fe": {
+    "zh": "深度學習中 Batch Size 的四個關鍵區間",
+    "en": "The four key ranges of batch size in deep learning",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "28012ca75e30": {
+    "zh": "<strong>微批次區間 ($b = 1 \\sim 8$)：</strong>噪聲極大，具備最強的隨機跳出局部極小能力；但 GPU 算力利用率極低，每步耗時大部分浪費在核心啟動（Kernel Launch Overhead）與記憶體傳輸。",
+    "en": "<strong>Micro-batch range ($b = 1 \\sim 8$):</strong> extremely noisy, with the strongest ability to jump randomly out of local minima; but GPU compute utilization is extremely low, and most of each step's time is wasted on kernel launch overhead and memory transfers.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b43dbc297e3e": {
+    "zh": "<strong>甜蜜黃金區間 ($b = 32 \\sim 256$)：</strong>工業界最主流設定。完美契合 GPU Warp（32 執行緒）與 Tensor Core 瓦片尺寸，計算達到 compute-bound，兼備平滑梯度與足夠噪聲。",
+    "en": "<strong>Golden sweet-spot range ($b = 32 \\sim 256$):</strong> the most mainstream setting in industry. It fits the GPU warp (32 threads) and Tensor Core tile sizes perfectly, so the computation becomes compute-bound, with both a smooth gradient and enough noise.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ce828260136c": {
+    "zh": "<strong>大批次並行區間 ($b = 512 \\sim 8192$)：</strong>多卡分散式資料並行（DDP）常用。可大幅提升總體吞吐量，但需搭配動態學習率線性縮放與 LARS/LAMB 等最佳化器，否則泛化能力嚴重退化。",
+    "en": "<strong>Large-batch parallel range ($b = 512 \\sim 8192$):</strong> common in multi-GPU distributed data parallel (DDP) training. It can greatly raise overall throughput, but it must be paired with dynamic linear learning-rate scaling and optimizers such as LARS/LAMB; otherwise generalization degrades badly.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "814bafe12dea": {
+    "zh": "<strong>極限全批次區間 ($b = n$)：</strong>梯度精確確定，可使用高階牛頓類演算法；但在現代大模型中無法實施（視訊記憶體 OOM），且缺乏隨機噪聲導致模型容易卡死在尖銳鞍點。",
+    "en": "<strong>Extreme full-batch range ($b = n$):</strong> the gradient is exact and deterministic, so higher-order Newton-type algorithms can be used; but it cannot be done for modern large models (GPU memory OOM), and the lack of random noise makes the model prone to getting stuck at sharp saddle points.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b92ddddbfa40": {
+    "zh": "09 / 橫向對比 · Comparison Matrix",
+    "en": "09 / Side-by-Side Comparison",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "009bff266af0": {
+    "zh": "三大梯度下降策略全維度橫向矩陣對比\n    <span class=\"en\">Comprehensive Comparison Matrix: Single-Sample vs. Mini-Batch vs. Full-Batch</span>\n  ",
+    "en": "A full side-by-side comparison matrix of the three gradient descent strategies",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "61b34a147c85": {
+    "zh": "比較維度",
+    "en": "Dimension",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3eca379d6bc2": {
+    "zh": "<strong>抽樣方式</strong>",
+    "en": "<strong>Sampling scheme</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c41b76ce20fa": {
+    "zh": "每次隨機抽 1 筆樣本",
+    "en": "Draws 1 random sample each time",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2e00f13dfa9e": {
+    "zh": "<span class=\"tag-badge blue\">無放回劃分 $\\lfloor n/b \\rfloor$ 個批次</span>",
+    "en": "<span class=\"tag-badge blue\">Partitioned without replacement into $\\lfloor n/b \\rfloor$ batches</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6d1511b2b239": {
+    "zh": "完整使用資料集全體 $n$ 筆",
+    "en": "Uses all $n$ points of the full dataset",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "93b6b4b50884": {
+    "zh": "<strong>單步計算代價</strong>",
+    "en": "<strong>Cost per step</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "85cf7b867a47": {
+    "zh": "<span class=\"tag-badge green\">極低 $\\mathcal{O}(d)$</span>",
+    "en": "<span class=\"tag-badge green\">Very low $\\mathcal{O}(d)$</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "de1e28e04172": {
+    "zh": "中等 $\\mathcal{O}(b \\cdot d)$（矩陣平行加速）",
+    "en": "Moderate $\\mathcal{O}(b \\cdot d)$ (parallel matrix acceleration)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bb3beb9b380f": {
+    "zh": "<span class=\"tag-badge red\">極高 $\\mathcal{O}(n \\cdot d)$</span>",
+    "en": "<span class=\"tag-badge red\">Very high $\\mathcal{O}(n \\cdot d)$</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "52ab3155d2a2": {
+    "zh": "<strong>梯度方差 $\\|e_t\\|^2$</strong>",
+    "en": "<strong>Gradient variance $\\|e_t\\|^2$</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a5907e18aad3": {
+    "zh": "<span class=\"tag-badge red\">極大 $\\sigma^2$（隨機漫步）</span>",
+    "en": "<span class=\"tag-badge red\">Very large $\\sigma^2$ (random walk)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b807594379d5": {
+    "zh": "受控衰減 $(1 - b/n)\\frac{\\sigma^2}{b}$",
+    "en": "Controlled decay $(1 - b/n)\\frac{\\sigma^2}{b}$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "37847328b5b8": {
+    "zh": "<span class=\"tag-badge green\">嚴格為 0（精確無偏）</span>",
+    "en": "<span class=\"tag-badge green\">Exactly 0 (exact, unbiased)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b56f909b5106": {
+    "zh": "<strong>GPU 硬體並行度</strong>",
+    "en": "<strong>GPU hardware parallelism</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7d34106f533e": {
+    "zh": "極差（Memory-bound，利用率 &lt; 5%）",
+    "en": "Very poor (memory-bound, utilization &lt; 5%)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e270dfb530f5": {
+    "zh": "<span class=\"tag-badge green\">極佳（GEMM 密集，利用率 &gt; 80%）</span>",
+    "en": "<span class=\"tag-badge green\">Excellent (GEMM-dense, utilization &gt; 80%)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c76484eb7cd7": {
+    "zh": "極佳（受限於單卡記憶體上限）",
+    "en": "Excellent (limited by single-card memory)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "11da81fc9b1e": {
+    "zh": "<strong>視訊記憶體佔用 (VRAM)</strong>",
+    "en": "<strong>GPU memory usage (VRAM)</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7017e680a732": {
+    "zh": "<span class=\"tag-badge green\">極小（僅存單樣本啟用值）</span>",
+    "en": "<span class=\"tag-badge green\">Tiny (stores one sample's activations only)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3bd355a31d33": {
+    "zh": "中等（與 $b$ 線性正比，可調）",
+    "en": "Moderate (linear in $b$, adjustable)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6a1dfe29898e": {
+    "zh": "<span class=\"tag-badge red\">極大（大資料集必爆視訊記憶體 OOM）</span>",
+    "en": "<span class=\"tag-badge red\">Huge (large datasets are sure to hit GPU memory OOM)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "131fb769c8e2": {
+    "zh": "<strong>鞍點與極值逃逸</strong>",
+    "en": "<strong>Escaping saddle points and extrema</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0895af5b56d7": {
+    "zh": "<span class=\"tag-badge green\">極強（噪聲助攻跳出局部坑）</span>",
+    "en": "<span class=\"tag-badge green\">Very strong (noise helps it jump out of local pits)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e01213793f0a": {
+    "zh": "良好（適度噪聲誘導平坦極小）",
+    "en": "Good (moderate noise steers toward flat minima)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6763d0379498": {
+    "zh": "<span class=\"tag-badge red\">極弱（容易受困於鞍點或尖銳坑）</span>",
+    "en": "<span class=\"tag-badge red\">Very weak (easily trapped at saddle points or in sharp pits)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8825c5b28429": {
+    "zh": "<strong>測試集泛化表現</strong>",
+    "en": "<strong>Generalization on the test set</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "26fad5649e7b": {
+    "zh": "良好但收斂波動劇烈",
+    "en": "Good, but convergence fluctuates wildly",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "74188bd66aec": {
+    "zh": "<span class=\"tag-badge green\">最優（平坦極小值泛化最佳）</span>",
+    "en": "<span class=\"tag-badge green\">Best (flat minima generalize best)</span>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9f27e92b5818": {
+    "zh": "容易過度擬合尖銳極小值",
+    "en": "Prone to overfitting into sharp minima",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "edfd61b9d413": {
+    "zh": "<strong>每 Epoch 更新次數</strong>",
+    "en": "<strong>Updates per epoch</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "657958e39453": {
+    "zh": "$n$ 次頻繁更新",
+    "en": "$n$ frequent updates",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "561837cba47a": {
+    "zh": "$\\lfloor n/b \\rfloor$ 次高質量更新",
+    "en": "$\\lfloor n/b \\rfloor$ high-quality updates",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b3cba26c2e32": {
+    "zh": "僅 1 次更新",
+    "en": "Only 1 update",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4b249594c853": {
+    "zh": "10 / 設計原則 · Master Maxims",
+    "en": "10 / Design Principles",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "15e7089fc25f": {
+    "zh": "大師四大鐵律：Mini-Batch 與 Epoch 實踐憲章\n    <span class=\"en\">Master Maxims: Four Inviolable Principles of Mini-Batch Optimization</span>\n  ",
+    "en": "The master's four iron laws: a practical charter for mini-batches and epochs",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d078e701508d": {
+    "zh": "鐵律一：GPU 契合律（Hardware Alignment）",
+    "en": "Iron law 1: hardware alignment",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "393f71fb7e59": {
+    "zh": "Batch Size 務必設定為 2 的冪次（32、64、128、256）或硬體架構瓦片尺寸倍數。這能確保 GPU Warp（32 threads）與 Tensor Core 矩陣單元對齊，杜絕執行緒閒置與記憶體跨行浪費。",
+    "en": "Always set the batch size to a power of 2 (32, 64, 128, 256) or a multiple of the hardware's tile size. This keeps GPU warps (32 threads) and Tensor Core matrix units aligned, eliminating idle threads and memory wasted across rows.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c0e088f30867": {
+    "zh": "鐵律二：方差縮放律（Variance Scaling Law）",
+    "en": "Iron law 2: the variance scaling law",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "412a7da77927": {
+    "zh": "梯度估計方差以 $1/b$ 衰減。過度追求大批次帶來的降噪邊際收益遞減，卻會成倍犧牲每 Epoch 的更新次數與視訊記憶體；「適度噪聲」是模型訓練不可或缺的探索動力。",
+    "en": "The variance of the gradient estimate decays as $1/b$. Chasing ever larger batches brings diminishing marginal returns in noise reduction, yet sacrifices updates per epoch and GPU memory several times over; \"moderate noise\" is an indispensable driver of exploration in model training.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c718107f8b47": {
+    "zh": "鐵律三：週期遍歷律（Epoch Traversal Rule）",
+    "en": "Iron law 3: the epoch traversal rule",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a8cfa650427c": {
+    "zh": "嚴格執行無放回劃分式 (23)–(24)，且在每個 Epoch 開始前重新進行隨機置換（Shuffle）。防止固定批次組合產生週期性系統偏差，確保所有樣本均勻參與梯度回饋。",
+    "en": "Strictly follow the without-replacement partitioning of Eqs. (23)–(24), and redo the random permutation (shuffle) before every epoch. This prevents fixed batch combinations from producing periodic systematic bias and ensures that all samples take part evenly in the gradient feedback.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4b3991196cee": {
+    "zh": "鐵律四：泛化平坦律（Flat Minima Principle）",
+    "en": "Iron law 4: the flat minima principle",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "13ff94e63870": {
+    "zh": "Mini-Batch 隨機梯度噪聲扮演了強大的隱式正則化（Implicit Regularization）角色，能夠自動篩除泛化極差的尖銳極小值（Sharp Minima），引導參數收斂至寬廣平坦的優質低谷。",
+    "en": "The random gradient noise of mini-batches plays a powerful role as implicit regularization: it automatically filters out sharp minima that generalize very poorly and guides the parameters to converge into wide, flat, high-quality valleys.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3231d39e0fc7": {
+    "zh": "11 / 動態模擬 · Interactive Lab",
+    "en": "11 / Dynamic Simulation",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "04ec0df64b67": {
+    "zh": "互動實驗室：Batch Size 調節器與隨機最佳化動態對比\n    <span class=\"en\">Interactive Lab: Batch Size Regulator, Gradient Variance, and GPU Compute Efficiency</span>\n  ",
+    "en": "Interactive lab: a batch-size regulator and a dynamic comparison of stochastic optimization",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9da98a63c2be": {
+    "zh": "批次大小 $b$：",
+    "en": "Batch size $b$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "13985b0bfa2d": {
+    "zh": "抽樣模式：",
+    "en": "Sampling mode:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2a88d95599f7": {
+    "zh": "無放回劃分 (Without Replacement, 式 29)",
+    "en": "Partition without replacement (Eq. 29)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c47838fd23ca": {
+    "zh": "有放回抽樣 (With Replacement, 式 30)",
+    "en": "Sample with replacement (Eq. 30)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "79bc261b5980": {
+    "zh": "單步迭代 (Step)",
+    "en": "One step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "55d3a95af7ee": {
+    "zh": "連續 10 步 (Run 10)",
+    "en": "10 steps in a row",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fd7326ce23df": {
+    "zh": "重置 (Reset)",
+    "en": "Reset",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cd4729b99088": {
+    "zh": "<strong>當前 Batch Size b：</strong> 16<br><strong>抽樣機制：</strong> 無放回劃分 (Without Replacement)<br><strong>理論方差 E[‖e_t‖²]：</strong> 0.3375<br><strong>本步取樣噪聲 ‖e_t‖：</strong> 0.0000<br><strong>GPU 算力利用率估算：</strong> 76%<br><strong>當前損失值 f(w)：</strong> 17.7160<br><strong>真實梯度範數 ‖∇f‖：</strong> 9.330<br><strong>累計迭代步數 (Step)：</strong> 0<br><strong>Epoch 進度：</strong> 第 0 Epoch (0/16 批次)<br><strong>狀態判定：</strong><br>",
+    "en": "<strong>Current batch size b:</strong> 16<br><strong>Sampling mechanism:</strong> without replacement<br><strong>Theoretical variance E[‖e_t‖²]:</strong> 0.3375<br><strong>Sampling noise this step ‖e_t‖:</strong> 0.0000<br><strong>Estimated GPU utilization:</strong> 76%<br><strong>Current loss f(w):</strong> 17.7160<br><strong>True gradient norm ‖∇f‖:</strong> 9.330<br><strong>Total iterations (steps):</strong> 0<br><strong>Epoch progress:</strong> epoch 0 (0/16 batches)<br><strong>Status:</strong><br>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d4a3dd9e69c1": {
+    "zh": "🔵 黃金折衷 · 穩定高效收斂 (Tensor Core滿意)",
+    "en": "🔵 Golden compromise · stable, efficient convergence (Tensor Cores happy)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "90f746b2c082": {
+    "zh": "12 / 檢驗點 · Checkpoint Quiz",
+    "en": "12 / Checkpoint",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "95fd01c67781": {
+    "zh": "隨堂自我檢測：精準掌握 Mini-Batch 與 Epoch 關鍵\n    <span class=\"en\">Checkpoint Quiz: Testing Core Comprehension of Mini-Batch SGD and Epoch Properties</span>\n  ",
+    "en": "In-class self-test: get the key points of mini-batches and epochs exactly right",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6868ec7a1462": {
+    "zh": "1. 在 Definition 1 中，一個「Epoch」代表什麼？",
+    "en": "1. In Definition 1, what does one \"epoch\" mean?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ad14071c91be": {
+    "zh": "A. 只更新模型最後輸出層一次",
+    "en": "A. Updating only the model's last output layer once",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "712e623ab6a6": {
+    "zh": "B. 所有 $\\lfloor n/b \\rfloor$ 個不相交批次各用過一次",
+    "en": "B. Each of the $\\lfloor n/b \\rfloor$ disjoint batches has been used once",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "daea4b7becf4": {
+    "zh": "C. 只隨機跑一個批次的梯度更新",
+    "en": "C. Running the gradient update of just one random batch",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "504765bda8d6": {
+    "zh": "D. 等同於一次精確的 Full-Batch 梯度下降步",
+    "en": "D. The same as one exact full-batch gradient descent step",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fcd445c774ff": {
+    "zh": "2. 式 (25) Mini-Batch 更新與單樣本 SGD 式 (22) 最核心的數學差別是？",
+    "en": "2. What is the most essential mathematical difference between the mini-batch update of Eq. (25) and single-sample SGD, Eq. (22)?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "194427653009": {
+    "zh": "A. 運算過程中完全不計算梯度",
+    "en": "A. No gradient is computed at any point",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "859660453451": {
+    "zh": "B. 對批次內 $b$ 筆樣本的個別梯度取算術平均",
+    "en": "B. It takes the arithmetic mean of the individual gradients of the $b$ samples in the batch",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a56b11450432": {
+    "zh": "C. 強制固定學習率 $\\eta = 1$ 不允許衰減",
+    "en": "C. It forces a fixed learning rate $\\eta = 1$ and allows no decay",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "83c89fb3d287": {
+    "zh": "D. 僅更新神經網路的偏置項（Bias）",
+    "en": "D. It updates only the network's bias terms",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4481f3176219": {
+    "zh": "3. 根據 Proposition 1，當批次大小 $b$ 增大時，梯度近似誤差範數 $\\|e_t\\|_2^2$ 通常如何變化？",
+    "en": "3. According to Proposition 1, how does the gradient approximation error norm $\\|e_t\\|_2^2$ usually change as the batch size $b$ grows?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6a40294a9bb6": {
+    "zh": "A. 顯著減小，使收斂速度與軌跡更逼近 Full-Batch",
+    "en": "A. It shrinks markedly, so the convergence speed and trajectory get closer to full-batch",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c01ce2e4588d": {
+    "zh": "B. 呈指數級放大，引發訓練散逸",
+    "en": "B. It grows exponentially, making training diverge",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2c3617ee9e07": {
+    "zh": "C. 恆為精確之零向量",
+    "en": "C. It is always exactly the zero vector",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0a65d9e7c8b4": {
+    "zh": "D. 與批次大小 $b$ 完全無關",
+    "en": "D. It has nothing to do with the batch size $b$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "968bb4a09019": {
+    "zh": "4. 關於梯度誤差期望式 (29) 與 (30)，分別對應哪種抽樣機制？",
+    "en": "4. Which sampling mechanism do the expected gradient errors of Eqs. (29) and (30) correspond to, respectively?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3b1f4df06963": {
+    "zh": "A. 式 (29) 為無放回抽樣 (without replacement)；式 (30) 為有放回抽樣 (with replacement)",
+    "en": "A. Eq. (29) is sampling without replacement; Eq. (30) is sampling with replacement",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d0659cfe0586": {
+    "zh": "B. 兩者皆為有放回抽樣 (with replacement)",
+    "en": "B. Both are sampling with replacement",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "789e54d4db17": {
+    "zh": "C. 式 (29) 為單樣本抽樣；式 (30) 為全批次抽樣",
+    "en": "C. Eq. (29) is single-sample sampling; Eq. (30) is full-batch sampling",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4ee8bb1cf0d6": {
+    "zh": "D. 兩者在數學上完全恆等且抽樣方式相同",
+    "en": "D. The two are mathematically identical and use the same sampling scheme",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

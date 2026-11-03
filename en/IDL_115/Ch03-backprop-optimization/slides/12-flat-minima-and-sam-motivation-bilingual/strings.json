@@ -1,0 +1,1189 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "平坦極小值的核心特徵是解的鄰域": "The core feature of a flat minimum is that within the solution's neighborhood",
+      "內損失保持低位（": "the loss stays low (",
+      "），而尖銳極小值在離開谷底後損失急劇攀升。": "), whereas at a sharp minimum the loss climbs steeply once you leave the valley floor.",
+      "平坦極小值的核心特徵是解的鄰域 $B_\\rho(\\boldsymbol{w}^*)$ 內損失保持低位（$\\Delta L \\approx 0$），而尖銳極小值在離開谷底後損失急劇攀升。": "The core feature of a flat minimum is that within the solution's neighborhood $B_\\rho(\\boldsymbol{w}^*)$ the loss stays low ($\\Delta L \\approx 0$), whereas at a sharp minimum the loss climbs steeply once you leave the valley floor.",
+      "雖然 SAM 等經驗研究顯示平坦解往往泛化優異，但 Dinh et al. [43] 等研究指出平坦度受權重尺度變換（re-scaling）影響，學界對其是否為泛化的唯一本質因素仍在深入辯論。": "Although empirical studies such as SAM show that flat solutions often generalize well, studies such as Dinh et al. [43] point out that flatness is affected by weight re-scaling, and the field is still actively debating whether it is the sole essential factor in generalization.",
+      "小批次 SGD 的隨機梯度噪聲具備 Langevin 擴散效應，能輕易震盪逃離陡峭尖銳的狹窄針谷，最終穩定沉降於寬廣的平坦盆地；二階方法則易沿著高曲率直奔尖銳解。": "The stochastic gradient noise of mini-batch SGD has a Langevin diffusion effect: it can easily oscillate its way out of steep, sharp, narrow needle valleys and finally settle steadily in wide, flat basins; second-order methods, by contrast, tend to follow the high curvature straight to sharp solutions.",
+      "SAM 將被動依賴 SGD 偏置升級為主動防禦：在目標函式中引入": "SAM upgrades passive reliance on SGD's bias into an active defense: it introduces into the objective function",
+      "，主動將參數推往整片鄰域損失都低的平坦區域。": ", actively pushing the parameters toward flat regions where the loss is low across the whole neighborhood.",
+      "SAM 將被動依賴 SGD 偏置升級為主動防禦：在目標函式中引入 $\\max_{\\|\\boldsymbol{\\epsilon}\\| \\le \\rho} L(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$，主動將參數推往整片鄰域損失都低的平坦區域。": "SAM upgrades passive reliance on SGD's bias into an active defense: it introduces into the objective function $\\max_{\\|\\boldsymbol{\\epsilon}\\| \\le \\rho} L(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$, actively pushing the parameters toward flat regions where the loss is low across the whole neighborhood.",
+      "SAM 探索鄰域 B_ρ (ρ = 0.6)": "SAM search neighborhood B_ρ (ρ = 0.6)",
+      "參數微擾 w →": "perturbation w →",
+      "損失 L(w)": "loss L(w)",
+      "當前參數微擾 ‖Δw‖：": "Current parameter perturbation ‖Δw‖:",
+      "尖銳針谷曲率 k_sharp：": "Sharp needle-valley curvature k_sharp:",
+      "平坦寬碗曲率 k_flat：": "Flat wide-bowl curvature k_flat:",
+      "尖銳解測試損失 L_sharp：": "Sharp solution test loss L_sharp:",
+      "平坦解測試損失 L_flat：": "Flat solution test loss L_flat:",
+      "曲率敏銳度比 (k_sharp / k_flat)：": "Curvature sharpness ratio (k_sharp / k_flat):",
+      "泛化損失差距 (L_sharp − L_flat)：": "Generalization loss gap (L_sharp − L_flat):",
+      "狀態判定：": "Status:",
+      "🎯 零微擾基準：兩者訓練損失完全相同 (L = 0.0000)": "🎯 Zero-perturbation baseline: both have exactly the same training loss (L = 0.0000)"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^針谷 L_sharp = (\\S+) \\(飆出天際！\\)$",
+        "en": "needle L_sharp = $1 (sky-high!)"
+      },
+      {
+        "re": "^針谷 L_sharp = (.*)$",
+        "en": "needle L_sharp = $1"
+      },
+      {
+        "re": "^寬碗 L_flat = (.*)$",
+        "en": "bowl L_flat = $1"
+      },
+      {
+        "re": "^尖銳針谷 k_sharp = (.*)$",
+        "en": "sharp needle k_sharp = $1"
+      },
+      {
+        "re": "^平坦寬碗 k_flat = (.*)$",
+        "en": "flat bowl k_flat = $1"
+      },
+      {
+        "re": "^💥 針谷損失急劇飆升！泛化鴻溝高達 (\\S+) 倍（ΔL 差距 = \\+(\\S+)）$",
+        "en": "💥 The needle valley's loss shoots up! The generalization gap is as large as $1× (ΔL gap = +$2)"
+      },
+      {
+        "re": "^⚡ 寬碗平穩吸收微擾：平坦解損失增幅僅 \\+(\\S+)$",
+        "en": "⚡ The wide bowl absorbs the perturbation smoothly: the flat solution's loss rises by only +$1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "974e05762789": {
+    "zh": "KP12 · 索引",
+    "en": "KP12 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "eb90ec443f56": {
+    "zh": "<a href=\"#generalization-puzzle\">泛化謎團 · Generalization Puzzle</a>",
+    "en": "<a href=\"#generalization-puzzle\">Generalization Puzzle</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8814d502952e": {
+    "zh": "<a href=\"#flat-vs-sharp-geometry\">幾何對決 · Flat vs Sharp (Fig. 6)</a>",
+    "en": "<a href=\"#flat-vs-sharp-geometry\">Geometric Duel: Flat vs. Sharp (Fig. 6)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01fbc67ad697": {
+    "zh": "<a href=\"#distribution-shift\">測試偏移 · Distribution Shift</a>",
+    "en": "<a href=\"#distribution-shift\">Test Shift: Distribution Shift</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "77486d815d38": {
+    "zh": "<a href=\"#curvature-math\">局部幾何 · Curvature &amp; Hessian</a>",
+    "en": "<a href=\"#curvature-math\">Local Geometry: Curvature &amp; Hessian</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b6200b2066d4": {
+    "zh": "<a href=\"#optimizer-bias\">最佳化器偏置 · Optimizer Bias</a>",
+    "en": "<a href=\"#optimizer-bias\">Optimizer Bias</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d03b793f4ac3": {
+    "zh": "<a href=\"#academic-debate\">學界爭辯 · Academic Debate</a>",
+    "en": "<a href=\"#academic-debate\">Academic Debate</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e46e6227a564": {
+    "zh": "<a href=\"#sam-genesis\">SAM 動機 · Genesis of SAM</a>",
+    "en": "<a href=\"#sam-genesis\">Motivation for SAM</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9f6e53ccd307": {
+    "zh": "<a href=\"#comparison\">全維度對照 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Full Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "af223638dffb": {
+    "zh": "<a href=\"#quiz\">隨堂測驗 · Checkpoints</a>",
+    "en": "<a href=\"#quiz\">Checkpoint Quizzes</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "448f4bf068cf": {
+    "zh": "平坦極小值與 SAM 動機：為什麼「平坦」可能更好\n      <span class=\"hero-title-en\">Flat Minima &amp; Motivation for SAM: Why Flatter is Better for Generalization</span>\n    ",
+    "en": "Flat Minima and the Motivation for SAM: Why \"Flat\" May Be Better",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "0f5a6d87c1db": {
+    "zh": "\n      反向傳播能找到損失函式的局部極小值，但並非所有局部極小值都享有相同的泛化命運。經驗研究（Foret et al., 2020）揭示：平坦極小值（Flat Minima）對測試分佈偏移與參數微擾 $\\Delta\\boldsymbol{w}$ 穩健抗震，而尖銳極小值（Sharp Minima）則極端脆弱。透視 Hessian 譜特徵、SGD 隱式正則化與主動懲罰鄰域損失的 SAM 正規化革新。\n    ",
+    "en": "Backpropagation can find local minima of the loss function, but not all local minima share the same fate when it comes to generalization. Empirical research (Foret et al., 2020) shows that flat minima are robust to test distribution shift and to parameter perturbations $\\Delta\\boldsymbol{w}$, while sharp minima are extremely fragile. A look at Hessian spectral properties, the implicit regularization of SGD, and the paradigm shift of SAM, which actively penalizes the loss in a neighborhood.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a1a77eb91efe": {
+    "zh": "\n      「兩個模型訓練 Loss 都是 0.001，為什麼一個在測試集神采奕奕，另一個卻一碰即碎？」\n      <small>局部極小值不是隻有深度，更有「形狀」——尖銳針谷如履薄冰，平坦寬碗穩若磐石！<br>\n        <span class=\"bilingual-en-inline\">Identical training loss does not guarantee equal test performance: sharp minima collapse under slight shifts, while flat valleys cushion perturbations.</span>\n      </small>\n    ",
+    "en": "\"Two models both reach a training loss of 0.001, so why does one shine on the test set while the other shatters at the slightest touch?\"\n      <small>A local minimum has not only a depth but also a \"shape\": a sharp needle valley is like walking on thin ice, while a flat wide bowl is as steady as a rock!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "795b02a7f1dc": {
+    "zh": "02 / 泛化之謎 · Generalization Puzzle",
+    "en": "02 / The Generalization Puzzle",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b9e32edfd16b": {
+    "zh": "泛化之謎：相同訓練損失，為何走向截然不同的測試命運？\n    <span class=\"en\">The Generalization Puzzle: Identical Training Loss Diverging into Opposite Test Fates</span>\n  ",
+    "en": "The generalization puzzle: why does the same training loss lead to completely different fates on the test set?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5d58e25774e3": {
+    "zh": "過度參數化神經網路的深層悖論",
+    "en": "The deep paradox of overparameterized neural networks",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d9cfc4228c1a": {
+    "zh": "現代深度神經網路通常擁有數百萬至數千億參數，遠超過訓練樣本數。根據過度參數化理論，損失曲面上存在難以計數的局部極小值點 $\\boldsymbol{w}^*$，它們都能達到極低的經驗訓練損失：",
+    "en": "Modern deep neural networks usually have millions to hundreds of billions of parameters, far more than the number of training samples. According to overparameterization theory, the loss surface has countless local minima $\\boldsymbol{w}^*$, all of which can reach a very low empirical training loss:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c7b419d98fe6": {
+    "zh": "然而，在獨立未見的測試集評估時，卻屢屢觀察到令人震驚的分化現象：<strong>$\\boldsymbol{w}_{\\text{sharp}}^*$ 的測試誤差大幅飆升（過度擬合），而 $\\boldsymbol{w}_{\\text{flat}}^*$ 卻能維持頂尖水準！</strong>這說明單純依賴「訓練損失數值大小」無法衡量泛化品質，極小值周遭的幾何結構才是決定模型命運的關鍵。",
+    "en": "Yet when evaluated on an independent, unseen test set, a striking divergence is observed again and again: <strong>the test error of $\\boldsymbol{w}_{\\text{sharp}}^*$ soars (overfitting), while $\\boldsymbol{w}_{\\text{flat}}^*$ stays at a top level!</strong> This shows that \"the size of the training loss\" alone cannot measure the quality of generalization; the geometric structure around the minimum is what decides the model's fate.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a7ae4078318a": {
+    "zh": "傳統純最佳化視角 (Optimization Only)",
+    "en": "The traditional pure optimization view",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ac82f073a829": {
+    "zh": "傳統凸最佳化理論將目標侷限於尋找滿足 $\\nabla L(\\boldsymbol{w}) = \\mathbf{0}$ 且 $L(\\boldsymbol{w}) &lt; \\epsilon$ 的數值解。在此視角下，所有全域最優解都是平等的，完全忽略了單點解周圍的地貌陡峭程度。",
+    "en": "Traditional convex optimization theory limits the goal to finding a numerical solution that satisfies $\\nabla L(\\boldsymbol{w}) = \\mathbf{0}$ and $L(\\boldsymbol{w}) &lt; \\epsilon$. In this view, all global optima are equal, and the steepness of the terrain around a single-point solution is completely ignored.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8cf6f590a744": {
+    "zh": "泛化幾何學視角 (Generalization Geometry)",
+    "en": "The generalization geometry view",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "df7a5a2e232a": {
+    "zh": "神經網路的實質泛化取決於解周邊整個鄰域 $B_\\rho(\\boldsymbol{w}^*)$ 的穩健度。平坦極小值能吸納現實世界微小的資料分佈偏移，使得模型在面對擾動時具備極高的泛化容錯能力。",
+    "en": "How well a neural network really generalizes depends on the robustness of the whole neighborhood $B_\\rho(\\boldsymbol{w}^*)$ around the solution. Flat minima can absorb the small shifts in data distribution found in the real world, giving the model a very high tolerance for generalization when facing perturbations.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2b61713d2ada": {
+    "zh": "03 / 幾何對決 · Geometric Duel (Fig. 6)",
+    "en": "03 / Geometric Duel (Fig. 6)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0ba195c54029": {
+    "zh": "Fig. 6 幾何對決：Sharp 尖峰陡壁 vs Flat 寬碗淺谷\n    <span class=\"en\">Geometric Duel: Sharp Needle Cliffs vs Flat Bowl Basins (Foret et al., 2020)</span>\n  ",
+    "en": "Fig. 6, geometric duel: sharp needle with steep walls vs. flat wide bowl with a shallow valley",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "474fd6c81ea2": {
+    "zh": "圖 Fig. 6：尖銳極小值 vs 平坦極小值之幾何對決（Foret et al., 2020）",
+    "en": "Fig. 6: Sharp vs. flat minima, a geometric duel (Foret et al., 2020)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "929a21bc900d": {
+    "zh": "相同訓練損失 L_train(w*) ≈ 0 下，等長參數微擾 Δw 觸發截然不同的泛化命運",
+    "en": "Same training loss L_train(w*) ≈ 0; equal perturbations Δw lead to very different generalization",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "109ee8dbe8d4": {
+    "zh": "尖銳極小值（Sharp Minimum · 脆弱解）",
+    "en": "Sharp minimum (fragile solution)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "74b3609a336a": {
+    "zh": "參數 w",
+    "en": "Parameter w",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9597fbcacb6a": {
+    "zh": "損失 L",
+    "en": "Loss L",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "78ce6cd515fb": {
+    "zh": "w* (谷底)",
+    "en": "w* (bottom)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "4bdcf54c94dd": {
+    "zh": "ΔL 劇烈爆炸 💥",
+    "en": "ΔL explodes 💥",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5de1b2c63c57": {
+    "zh": "高曲率 λ_max ≫ 0 · 分佈偏移極端脆弱",
+    "en": "High curvature λ_max ≫ 0 · very fragile under distribution shift",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5eeb404cce8e": {
+    "zh": "平坦極小值（Flat Minimum · 穩健解）",
+    "en": "Flat minimum (robust solution)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "f9a6ad4bb7cc": {
+    "zh": "平坦鄰域 B_ρ(w*)",
+    "en": "Flat neighborhood B_ρ(w*)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "da20f3f68206": {
+    "zh": "ΔL ≈ 0 幾乎不變 ✅",
+    "en": "ΔL ≈ 0, almost unchanged ✅",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "013f9d3bccb7": {
+    "zh": "低曲率 λ_max ≈ 0 · 擾動下泛化高度穩健",
+    "en": "Low curvature λ_max ≈ 0 · generalizes robustly under perturbation",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "43bfef8ab8d3": {
+    "zh": "① 同訓練損失 ≠ 同測試命運",
+    "en": "① Same training loss ≠ same test fate",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8f51aa6f248c": {
+    "zh": "單點最優僅代表訓練擬合完美",
+    "en": "A single-point optimum only means a perfect training fit",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c60a264e157a": {
+    "zh": "鄰域曲率才決定泛化能力上限",
+    "en": "Neighborhood curvature sets the generalization ceiling",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d92f26b4cd4f": {
+    "zh": "② SAM 動機：懲罰鄰域最大上升",
+    "en": "② SAM motivation: penalize the max rise in the neighborhood",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1422460dda77": {
+    "zh": "修改最佳化目標為 min_w max_{||ε||≤ρ} L",
+    "en": "Change the objective to min_w max_{||ε||≤ρ} L",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "40ca42d32371": {
+    "zh": "主動避開針尖，專挑平坦開闊寬谷",
+    "en": "Actively avoid needle tips, seek flat, open wide valleys",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ae1cc0f3dd35": {
+    "zh": "③ 學界未竟之辯：平坦即充要嗎？",
+    "en": "③ An open debate: is flatness necessary and sufficient?",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b0e1bdfb95ca": {
+    "zh": "文獻指出 re-scaling 效應的存在",
+    "en": "The literature points to a re-scaling effect",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "817549b72de8": {
+    "zh": "平坦度與隱式正則化共同主導泛化",
+    "en": "Flatness and implicit regularization jointly drive generalization",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e82c0292b7d2": {
+    "zh": "圖 Fig. 6：尖銳針谷（左）與平坦寬碗（右）在等長參數微擾 $\\Delta\\boldsymbol{w}$ 下的損失響應對比（參考 Foret et al., 2020）",
+    "en": "Fig. 6: The loss response of a sharp needle valley (left) and a flat wide bowl (right) under equal parameter perturbations $\\Delta\\boldsymbol{w}$ (after Foret et al., 2020)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "56139fbf2b7d": {
+    "zh": "Fig. 6 幾何定義與本質剖析",
+    "en": "Fig. 6: geometric definitions and what they really mean",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "94d13c737ca8": {
+    "zh": "<strong>Sharp minimum（尖銳極小值）：</strong>最優解置身於一個高曲率「尖峰倒立」的深谷中。周圍損失曲面陡峭，微小的參數漂移 $\\Delta\\boldsymbol{w}$ 就會讓損失值劇烈抬升，付出災難性的效能代價。",
+    "en": "<strong>Sharp minimum:</strong> the optimum sits in a deep, high-curvature valley shaped like an \"inverted spike\". The loss surface around it is steep, so a tiny parameter drift $\\Delta\\boldsymbol{w}$ makes the loss rise sharply, at a disastrous cost in performance.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7c997b23d1cb": {
+    "zh": "<strong>Flat minimum（平坦極小值）：</strong>最優解落入一個低曲率「開闊平原」的淺碗中。在解的整個鄰域 $B_\\rho(\\boldsymbol{w}^*)$ 內，損失值幾乎保持水平，對任何微擾皆展現鈍感。",
+    "en": "<strong>Flat minimum:</strong> the optimum falls into a shallow bowl on a low-curvature \"open plain\". Throughout the solution's neighborhood $B_\\rho(\\boldsymbol{w}^*)$, the loss stays almost level, and it is insensitive to any small perturbation.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "471081418212": {
+    "zh": "<strong>「平坦」的真實數學意涵：</strong>並非單一離散點上的數值最低，而是<strong>「解在整片鄰域內，損失函式均維持在極低水平」</strong>的拓撲特性！",
+    "en": "<strong>What \"flat\" really means mathematically:</strong> not the lowest value at a single discrete point, but the topological property that <strong>\"the loss stays very low throughout the whole neighborhood of the solution\"</strong>!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a0a9037cc315": {
+    "zh": "\n        當我們從訓練集走向真實測試集時，分佈的微小差異相當於在權重空間中施加了 $\\Delta\\boldsymbol{w}$。平坦解穩如泰山，尖銳解卻跌落深淵。\n        <span class=\"bilingual-en\">Flatness implies low loss sustained across the entire local neighborhood rather than a sharp drop at a single isolated point. Under distribution shifts, flat minima maintain performance while sharp minima collapse.</span>\n      ",
+    "en": "When we go from the training set to a real test set, the small difference in distribution is like applying a $\\Delta\\boldsymbol{w}$ in weight space. The flat solution stands as firm as a mountain, while the sharp solution falls into the abyss.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "09ab3105caeb": {
+    "zh": "04 / 微擾機制 · Perturbation Mechanics",
+    "en": "04 / Perturbation Mechanics",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3a7629f24b2c": {
+    "zh": "測試分佈偏移與參數微擾：為什麼權重「漂移」在所難免？\n    <span class=\"en\">Distribution Shift &amp; Parameter Perturbations: Why Weight Drifts Are Inevitable</span>\n  ",
+    "en": "Test distribution shift and parameter perturbation: why is weight \"drift\" unavoidable?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bbd75d111a24": {
+    "zh": "分佈偏移在參數空間的微擾等價模型",
+    "en": "Modeling distribution shift as an equivalent perturbation in parameter space",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "02ad4cc6ab35": {
+    "zh": "假設真實測試資料分佈為 $P_{\\text{test}}$，而訓練資料分佈為 $P_{\\text{train}}$。由於取樣誤差或環境變化，$L_{\\text{test}}(\\boldsymbol{w}) \\neq L_{\\text{train}}(\\boldsymbol{w})$。在經驗損失曲面上，這等價於<strong>測試集的真實損失曲面相對於訓練集發生了水平位移 $\\Delta\\boldsymbol{w}$</strong>：",
+    "en": "Suppose the true test data distribution is $P_{\\text{test}}$ and the training data distribution is $P_{\\text{train}}$. Because of sampling error or environmental change, $L_{\\text{test}}(\\boldsymbol{w}) \\neq L_{\\text{train}}(\\boldsymbol{w})$. On the empirical loss surface, this is equivalent to <strong>the test set's true loss surface being shifted horizontally by $\\Delta\\boldsymbol{w}$ relative to the training set's</strong>:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "806e0bb0bed4": {
+    "zh": "因此，模型在測試集上的泛化損失增加量，直接等價於在訓練集上承受參數微擾後的損失上升量：",
+    "en": "So the increase in the model's generalization loss on the test set is directly equivalent to the rise in loss on the training set after a parameter perturbation:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e7af5ced7955": {
+    "zh": "<strong>結論：</strong>若解在尖銳針谷，$\\Delta L$ 呈指數級爆炸；若解在平坦寬碗，$\\Delta L \\approx 0$，泛化差距被強行抹平！",
+    "en": "<strong>Conclusion:</strong> if the solution is in a sharp needle valley, $\\Delta L$ explodes exponentially; if the solution is in a flat wide bowl, $\\Delta L \\approx 0$, and the generalization gap is forcibly flattened!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f3676d54693e": {
+    "zh": "1. 資料分佈漂移 (Distribution Shift)",
+    "en": "1. Distribution shift",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2472d31e94bd": {
+    "zh": "訓練集與測試集之間無處不在的光照、角度、領域差異，會微幅偏移最優解的座標，平坦解能無痛吸納此類分佈偏移。",
+    "en": "The ever-present differences in lighting, angle and domain between the training and test sets slightly shift the coordinates of the optimum; a flat solution absorbs this kind of distribution shift painlessly.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4a3cefd2e7de": {
+    "zh": "2. 數值量化與截斷 (Quantization Noise)",
+    "en": "2. Numerical quantization and truncation (quantization noise)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5ab6ac20901e": {
+    "zh": "模型在推論部署時轉為 FP16 或 INT8 量化，權重被強制四捨五入產生 $\\Delta\\boldsymbol{w}$。平坦解在量化後精度幾乎零衰減！",
+    "en": "When a model is deployed for inference in FP16 or INT8, its weights are forcibly rounded, producing a $\\Delta\\boldsymbol{w}$. A flat solution loses almost no accuracy after quantization!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3875054ea77b": {
+    "zh": "3. 隨機評估機制 (Stochastic Evaluation)",
+    "en": "3. Stochastic evaluation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f3a8f536a2d8": {
+    "zh": "Dropout 遮罩抽樣、BatchNorm 統計量滑動平均的微小晃動，皆在權重鄰域內引發動態抖動，平坦解具備天然防禦力。",
+    "en": "Sampling of dropout masks and small wobbles in BatchNorm's moving-average statistics all cause dynamic jitter within the weight neighborhood; a flat solution has a natural defense against them.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cc8876090a96": {
+    "zh": "4. 泛化穩健性本質 (Robustness Ceiling)",
+    "en": "4. The essence of generalization robustness (robustness ceiling)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "434e5b090e07": {
+    "zh": "「泛化良好」的本質是模型決策對輸入與參數的小擾動具備局部不變性（Local Invariance），這與平坦度幾何高度契合。",
+    "en": "The essence of \"generalizing well\" is that the model's decisions are locally invariant to small perturbations of the input and the parameters, which matches the geometry of flatness closely.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "57e873b59525": {
+    "zh": "05 / 數學基石 · Curvature &amp; Hessian Spectrum",
+    "en": "05 / Mathematical Foundation: Curvature &amp; Hessian Spectrum",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3d1ad07a1e0d": {
+    "zh": "局部幾何與 Hessian 譜：二階泰勒展開下的平坦度度量\n    <span class=\"en\">Local Geometry &amp; Hessian Spectrum: Quantifying Flatness via Second-Order Taylor Expansion</span>\n  ",
+    "en": "Local geometry and the Hessian spectrum: measuring flatness with a second-order Taylor expansion",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "60da8b21b3e2": {
+    "zh": "極小值處的二階泰勒展開與曲率矩陣",
+    "en": "Second-order Taylor expansion at a minimum and the curvature matrix",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cfe6a611a6a2": {
+    "zh": "在任意局部極小值點 $\\boldsymbol{w}^*$ 處，一階梯度歸零 $\\nabla L(\\boldsymbol{w}^*) = \\mathbf{0}$。將損失函式在鄰域微擾 $\\Delta\\boldsymbol{w}$ 處展開：",
+    "en": "At any local minimum $\\boldsymbol{w}^*$, the first-order gradient vanishes, $\\nabla L(\\boldsymbol{w}^*) = \\mathbf{0}$. Expanding the loss function at a perturbation $\\Delta\\boldsymbol{w}$ in the neighborhood:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "663937892f5e": {
+    "zh": "記 Hessian 矩陣 $\\boldsymbol{H} = \\nabla^2 L(\\boldsymbol{w}^*)$。損失的增幅 $\\Delta L$ 在二階近似下完全由 Hessian 矩陣二次型決定：",
+    "en": "Write the Hessian matrix as $\\boldsymbol{H} = \\nabla^2 L(\\boldsymbol{w}^*)$. To second order, the increase in loss $\\Delta L$ is determined entirely by the Hessian's quadratic form:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8bebbbccb70f": {
+    "zh": "其中 $\\lambda_{\\max}(\\boldsymbol{H})$ 為 Hessian 矩陣的最大特徵值。<strong>若 $\\lambda_{\\max}$ 極大，沿最大麴率方向稍微位移損失即告崩潰（尖銳解）；若 $\\lambda_{\\max}$ 很小，則所有方向皆為平緩寬谷（平坦解）！</strong>",
+    "en": "where $\\lambda_{\\max}(\\boldsymbol{H})$ is the largest eigenvalue of the Hessian matrix. <strong>If $\\lambda_{\\max}$ is very large, a slight move along the direction of greatest curvature makes the loss collapse (a sharp solution); if $\\lambda_{\\max}$ is small, every direction is a gentle, wide valley (a flat solution)!</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2ec3cb0c8095": {
+    "zh": "譜範數：最大特徵值 $\\lambda_{\\max}(\\boldsymbol{H})$",
+    "en": "Spectral norm: the largest eigenvalue $\\lambda_{\\max}(\\boldsymbol{H})$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "687899a3f5aa": {
+    "zh": "反映最差情況下的曲率峰值。SAM 演算法本質上正是沿著由 $\\lambda_{\\max}$ 對應的主特徵向量方向進行最壞情況探索與主動壓制。",
+    "en": "It reflects the worst-case peak curvature. The SAM algorithm, in essence, explores the worst case along the principal eigenvector corresponding to $\\lambda_{\\max}$ and actively suppresses it.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "66ca01c2bd88": {
+    "zh": "矩陣跡：平均曲率 $\\operatorname{Tr}(\\boldsymbol{H}) = \\sum \\lambda_i$",
+    "en": "Matrix trace: the average curvature $\\operatorname{Tr}(\\boldsymbol{H}) = \\sum \\lambda_i$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "449c1fc55e79": {
+    "zh": "若微擾 $\\Delta\\boldsymbol{w} \\sim \\mathcal{N}(\\mathbf{0}, \\sigma^2 \\boldsymbol{I})$，平均損失上升量期望為 $\\mathbb{E}[\\Delta L] = \\frac{1}{2} \\sigma^2 \\operatorname{Tr}(\\boldsymbol{H})$。平坦解的跡必然顯著較小。",
+    "en": "If the perturbation is $\\Delta\\boldsymbol{w} \\sim \\mathcal{N}(\\mathbf{0}, \\sigma^2 \\boldsymbol{I})$, the expected average rise in loss is $\\mathbb{E}[\\Delta L] = \\frac{1}{2} \\sigma^2 \\operatorname{Tr}(\\boldsymbol{H})$. The trace of a flat solution is necessarily much smaller.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e5f79bdc7da7": {
+    "zh": "06 / 演算法偏置 · Optimizer Inductive Bias",
+    "en": "06 / Algorithmic Bias: Optimizer Inductive Bias",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "38b731cfcf88": {
+    "zh": "最佳化器歸納偏置：一階 SGD 噪聲偏好平坦解 vs 大 Batch/二階鑽入尖銳解\n    <span class=\"en\">Optimizer Inductive Bias: First-Order SGD Favors Flat Minima vs Second-Order/Large-Batch Traps</span>\n  ",
+    "en": "Optimizer inductive bias: the noise of first-order SGD prefers flat solutions vs. large batches and second-order methods drilling into sharp ones",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "53282be8fb4c": {
+    "zh": "回顧本章開頭（§1）：演算法選擇如何決定收斂解的幾何形貌？",
+    "en": "Recall the start of this chapter (§1): how does the choice of algorithm determine the geometry of the solution it converges to?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b04289e8324f": {
+    "zh": "在隨機梯度下降（SGD）中，小批次取樣引入了顯著的隨機梯度噪聲。該噪聲的協方差矩陣可近似為：",
+    "en": "In stochastic gradient descent (SGD), mini-batch sampling introduces substantial stochastic gradient noise. The covariance matrix of this noise can be approximated as:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5789a185125e": {
+    "zh": "<strong>噪聲擴散效應（Langevin Dynamics）：</strong>在曲率極高的尖銳針谷中，梯度噪聲方差極大，強大的隨機熱運動會持續把參數「踢出」窄谷；相反，在平坦寬盆地中，梯度噪聲平緩微弱，參數能夠穩定沉降。這形成了一種隱式正則化（Implicit Regularization），驅使 SGD 偏愛平坦解！",
+    "en": "<strong>The noise diffusion effect (Langevin dynamics):</strong> in a sharp needle valley with very high curvature, the gradient noise has a very large variance, and the strong random thermal motion keeps \"kicking\" the parameters out of the narrow valley; in a flat, wide basin, by contrast, the gradient noise is gentle and weak, and the parameters can settle steadily. This forms a kind of implicit regularization that drives SGD to prefer flat solutions!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e7347c1f2866": {
+    "zh": "小批次 SGD (Small-Batch SGD)",
+    "en": "Small-batch SGD",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2d7658b593f2": {
+    "zh": "維持適度的隨機梯度噪聲，具備持續逃脫尖銳鞍點與窄谷的能力。經驗上往往收斂至平坦度極佳的盆地，展現頂級泛化性。",
+    "en": "It keeps a moderate amount of stochastic gradient noise and keeps the ability to escape sharp saddle points and narrow valleys. Empirically it often converges to very flat basins and shows top-level generalization.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d069a2a5300a": {
+    "zh": "大批次 SGD (Large-Batch SGD)",
+    "en": "Large-batch SGD",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "34bb2ddd9a3f": {
+    "zh": "超大 Batch Size 抹平了取樣噪聲，最佳化行為逼近全梯度下降。參數往往貪婪地陷落於起點附近的尖銳極小值，出現嚴重的泛化退化。",
+    "en": "A very large batch size smooths out the sampling noise, and the optimization behaves almost like full-gradient descent. The parameters often greedily fall into a sharp minimum near the starting point, and generalization degrades badly.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8515d6f24d66": {
+    "zh": "二階牛頓法 (Second-Order Newton)",
+    "en": "Second-order Newton's method",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3c7f9e17da2a": {
+    "zh": "透過 $\\boldsymbol{H}^{-1}$ 補償曲率差異，在高曲率方向縮步、低曲率方向大步，極容易精準釘死在局部高曲率尖峰點，難以尋得平坦解。",
+    "en": "It compensates for curvature differences through $\\boldsymbol{H}^{-1}$, taking short steps in high-curvature directions and long steps in low-curvature ones, so it very easily pins itself precisely onto a local high-curvature spike and has trouble finding flat solutions.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c619acedf38e": {
+    "zh": "主動平坦化需求 (Need for Active Pursuit)",
+    "en": "The need for active pursuit",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a2991adfe62c": {
+    "zh": "被動等待 SGD 噪聲隨機跌入平坦解往往依賴大量超參數調校。業界迫切需要一種<strong>「主動最佳化目標以尋求平坦解」</strong>的演算法機制！",
+    "en": "Passively waiting for SGD noise to happen to drop into a flat solution often depends on a lot of hyperparameter tuning. The field urgently needs an algorithmic mechanism that <strong>\"actively shapes the optimization objective to seek flat solutions\"</strong>!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "81f55d87f4ae": {
+    "zh": "07 / 學界爭辯 · Academic Debate on Flatness",
+    "en": "07 / Academic Debate on Flatness",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e6e38f0a4028": {
+    "zh": "學界未竟之辯：平坦度是泛化的充分條件嗎？隱式正則化與 Re-scaling 爭議\n    <span class=\"en\">The Academic Debate: Is Flatness Sufficient for Generalization? Re-scaling &amp; Implicit Bias</span>\n  ",
+    "en": "An unsettled academic debate: is flatness a sufficient condition for generalization? Implicit regularization and the re-scaling controversy",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6a994e58f4cb": {
+    "zh": "Dinh et al. (2017) 提出的尺度變換悖論（The Re-scaling Paradox）",
+    "en": "The re-scaling paradox raised by Dinh et al. (2017)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "72ae4b4ce49a": {
+    "zh": "「平坦極小值一定泛化更好」的主張在學術界引發了持久而激烈的辯論。Dinh 等人在著名論文《Sharp Minima Can Generalize for Deep Nets》[43] 中指出：在具備非負齊次啟用函式（如 ReLU）的神經網路中，存在參數尺度的自由度：",
+    "en": "The claim that \"flat minima always generalize better\" has sparked a long and heated debate in academia. In their well-known paper \"Sharp Minima Can Generalize for Deep Nets\" [43], Dinh et al. point out that in neural networks with non-negatively homogeneous activation functions (such as ReLU), there is a freedom in the scale of the parameters:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "49708b63c7a5": {
+    "zh": "此變換下，<strong>神經網路的函式預測完全不變，泛化表現毫無差異</strong>；但其 Hessian 矩陣卻會被縮放 $\\alpha^2$ 倍！換言之：<strong>僅僅透過人為重新縮放權重座標，就能將一個平坦解任意偽造成極度尖銳解</strong>。這揭示了單純的幾何平坦度是依賴於參數化方式的（Parametrization-Dependent）。",
+    "en": "Under this transformation, <strong>the network's function and predictions are completely unchanged, and its generalization performance is no different at all</strong>; but its Hessian matrix gets scaled by a factor of $\\alpha^2$! In other words, <strong>just by artificially rescaling the weight coordinates, a flat solution can be disguised as an extremely sharp one at will</strong>. This reveals that pure geometric flatness depends on how the model is parametrized (parametrization-dependent).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ecb49279bd3d": {
+    "zh": "現代共識：平坦度與多重正則機制的交響曲",
+    "en": "The modern consensus: a symphony of flatness and multiple regularization mechanisms",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f0be4de0bf2a": {
+    "zh": "儘管面臨尺度變換挑戰，現代深度學習社群達成了高度建設性的共識：",
+    "en": "Despite the re-scaling challenge, the modern deep learning community has reached a highly constructive consensus:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "31af5567e6d9": {
+    "zh": "<strong>相對平坦度（Scale-Invariant Sharpness）：</strong>考慮權重尺度自適應的微擾半徑（如 ASAM Kwon et al., 2021），消除 re-scaling 假象。",
+    "en": "<strong>Relative flatness (scale-invariant sharpness):</strong> use a perturbation radius that adapts to the weight scale (e.g. ASAM, Kwon et al., 2021) to remove the re-scaling illusion.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "889ef566a904": {
+    "zh": "<strong>PAC-Bayes 理論支撐：</strong>平坦極小值為 PAC-Bayesian 泛化界（如 Neyshabur et al.）提供了嚴謹的後驗分佈體積支援。",
+    "en": "<strong>Support from PAC-Bayes theory:</strong> flat minima provide rigorous posterior-volume support for PAC-Bayesian generalization bounds (e.g. Neyshabur et al.).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7d04d7a14b6f": {
+    "zh": "<strong>實用工程價值：</strong>在固定的權重衰減（Weight Decay）與標準初始化約束下，「主動追求平坦解」依舊是提升神經網路泛化上限最可靠強大的實用手段之一！",
+    "en": "<strong>Practical engineering value:</strong> under fixed weight decay and standard initialization constraints, \"actively pursuing flat solutions\" is still one of the most reliable and powerful practical ways to raise a neural network's generalization ceiling!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c57cd52fe596": {
+    "zh": "08 / 正規化躍遷 · Genesis of SAM",
+    "en": "08 / Paradigm Leap: Genesis of SAM",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "72384c7ffe90": {
+    "zh": "SAM 核心動機：從被動祈求 SGD 轉為主動在損失中懲罰鄰域最大上升量\n    <span class=\"en\">The Genesis of SAM: From Passively Hoping for SGD Noise to Actively Penalizing Neighborhood Loss</span>\n  ",
+    "en": "The core motivation of SAM: from passively praying to SGD to actively penalizing the maximum rise in loss over a neighborhood",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5e3a01ff74a9": {
+    "zh": "Sharpness-Aware Minimization (SAM) 的 Min-Max 最佳化目標",
+    "en": "The min-max optimization objective of Sharpness-Aware Minimization (SAM)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "68a86bd6f992": {
+    "zh": "受「平坦極小值泛化更優」的深刻啟發，Foret et al. (ICLR 2021) [20] 提出了 <strong>SAM（Sharpness-Aware Minimization）</strong>。SAM 的革命性突破在於徹底拋棄了被動祈求 SGD 噪聲的僥倖心理，直接將「平坦度」作為顯式懲罰項納入最佳化目標：",
+    "en": "Deeply inspired by the idea that \"flat minima generalize better\", Foret et al. (ICLR 2021) [20] proposed <strong>SAM (Sharpness-Aware Minimization)</strong>. SAM's revolutionary breakthrough is that it completely abandons the wishful thinking of passively hoping for SGD noise, and puts \"flatness\" directly into the optimization objective as an explicit penalty term:",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9ca13e4cd1e1": {
+    "zh": "$$ \\min_{\\boldsymbol{w}} L^{\\text{SAM}}(\\boldsymbol{w}) \\quad \\text{其中} \\quad L^{\\text{SAM}}(\\boldsymbol{w}) \\triangleq \\max_{\\|\\boldsymbol{\\epsilon}\\|_2 \\le \\rho} L(\\boldsymbol{w} + \\boldsymbol{\\epsilon}) $$",
+    "en": "$$ \\min_{\\boldsymbol{w}} L^{\\text{SAM}}(\\boldsymbol{w}) \\quad \\text{where} \\quad L^{\\text{SAM}}(\\boldsymbol{w}) \\triangleq \\max_{\\|\\boldsymbol{\\epsilon}\\|_2 \\le \\rho} L(\\boldsymbol{w} + \\boldsymbol{\\epsilon}) $$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "927b7675f085": {
+    "zh": "等價分解為「當前點損失 + 鄰域尖銳度懲罰」：",
+    "en": "It decomposes equivalently into \"the loss at the current point + a neighborhood sharpness penalty\":",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "35c2b490abb2": {
+    "zh": "$$ \\min_{\\boldsymbol{w}} \\left\\{ L(\\boldsymbol{w}) + \\underbrace{\\left[ \\max_{\\|\\boldsymbol{\\epsilon}\\|_2 \\le \\rho} L(\\boldsymbol{w} + \\boldsymbol{\\epsilon}) - L(\\boldsymbol{w}) \\right]}_{\\text{Sharpness Penalty (平坦度懲罰項)}} \\right\\} $$",
+    "en": "$$ \\min_{\\boldsymbol{w}} \\left\\{ L(\\boldsymbol{w}) + \\underbrace{\\left[ \\max_{\\|\\boldsymbol{\\epsilon}\\|_2 \\le \\rho} L(\\boldsymbol{w} + \\boldsymbol{\\epsilon}) - L(\\boldsymbol{w}) \\right]}_{\\text{sharpness penalty}} \\right\\} $$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "019ea9d38e7d": {
+    "zh": "<strong>最佳化哲學：</strong>SAM 不僅追求自身點的損失 $L(\\boldsymbol{w})$ 夠低，更強烈懲罰鄰域 $\\ell_2$ 球內的最壞情況損失上升！若周圍隨便一動就急劇飆高，該點將被嚴懲；唯有「整片鄰域都保持在低損失」的平坦解，才能成為全域性極小點！",
+    "en": "<strong>The optimization philosophy:</strong> SAM not only wants the loss $L(\\boldsymbol{w})$ at the point itself to be low enough, it also strongly penalizes the worst-case rise in loss inside the $\\ell_2$ ball around it! If the loss shoots up as soon as you move a little in any direction, that point is heavily penalized; only a flat solution, where \"the whole neighborhood stays at a low loss\", can become the global minimum!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "cb67ce6d717b": {
+    "zh": "展望 KP13：從動機跨向 Vanilla SAM 演算法實現",
+    "en": "Looking ahead to KP13: from motivation to implementing the Vanilla SAM algorithm",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3e46a19be3d7": {
+    "zh": "如何以單一迭代的計算開銷求解這個雙層 Min-Max 問題？SAM 巧妙利用一階泰勒近似，推匯出閉式最劣擾動方向 $\\hat{\\boldsymbol{\\epsilon}}(\\boldsymbol{w}) \\approx \\rho \\frac{\\nabla L(\\boldsymbol{w})}{\\|\\nabla L(\\boldsymbol{w})\\|_2}$，僅需兩次反向傳播即可精準實現平坦化。具體推導與程式碼實現將在 <strong>KP13（§6.1 Vanilla SAM）</strong> 全面揭曉！",
+    "en": "How do we solve this two-level min-max problem at the cost of a single iteration? SAM cleverly uses a first-order Taylor approximation to derive the closed-form worst-case perturbation direction $\\hat{\\boldsymbol{\\epsilon}}(\\boldsymbol{w}) \\approx \\rho \\frac{\\nabla L(\\boldsymbol{w})}{\\|\\nabla L(\\boldsymbol{w})\\|_2}$, and needs only two backward passes to achieve flattening precisely. The detailed derivation and code implementation will be fully revealed in <strong>KP13 (§6.1 Vanilla SAM)</strong>!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a9595f68338e": {
+    "zh": "09 / 全維對比 · Comprehensive Matrix",
+    "en": "09 / Full Comparison: Comprehensive Matrix",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2fe8f985a4f0": {
+    "zh": "尖銳極小值 vs 平坦極小值全維度對照總表\n    <span class=\"en\">Comprehensive Comparison: Sharp Minima vs Flat Minima in Deep Learning</span>\n  ",
+    "en": "Sharp minima vs. flat minima: a full comparison table across all dimensions",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0d8f173042e9": {
+    "zh": "比較維度 / 特徵",
+    "en": "Dimension / property",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b19bf66cd5b5": {
+    "zh": "尖銳極小值 (Sharp Minimum)",
+    "en": "Sharp minimum",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "31cefaa377ed": {
+    "zh": "平坦極小值 (Flat Minimum)",
+    "en": "Flat minimum",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cd7b93cf4f25": {
+    "zh": "<strong>幾何地貌與形狀</strong>",
+    "en": "<strong>Terrain and shape</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c9ffbe62366f": {
+    "zh": "極度狹窄的針尖峭壁，離開最優點極小距離即直面陡坡",
+    "en": "An extremely narrow needle-tip cliff; a tiny distance from the optimum you face a steep slope",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "29c7441d240f": {
+    "zh": "寬廣平緩的開闊盆地，整片鄰域內均維持在極低損失",
+    "en": "A wide, gentle, open basin; the loss stays very low throughout the whole neighborhood",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "497588531ce2": {
+    "zh": "<strong>Hessian 譜特徵</strong>",
+    "en": "<strong>Hessian spectrum</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fdd557b3d1ec": {
+    "zh": "最大特徵值 $\\lambda_{\\max} \\gg 0$，矩陣跡 $\\operatorname{Tr}(\\boldsymbol{H})$ 巨大，高曲率主導",
+    "en": "Largest eigenvalue $\\lambda_{\\max} \\gg 0$, huge trace $\\operatorname{Tr}(\\boldsymbol{H})$, dominated by high curvature",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "609858150a80": {
+    "zh": "最大特徵值 $\\lambda_{\\max} \\approx 0$，特徵值譜普遍平緩且低矮",
+    "en": "Largest eigenvalue $\\lambda_{\\max} \\approx 0$, an eigenvalue spectrum that is generally gentle and low",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "659ec2867ffc": {
+    "zh": "<strong>參數微擾敏感度</strong>",
+    "en": "<strong>Sensitivity to parameter perturbation</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6a00c2948307": {
+    "zh": "極度敏感：等長微擾 $\\Delta\\boldsymbol{w}$ 誘發 $\\Delta L$ 呈爆炸式飆升",
+    "en": "Extremely sensitive: an equal perturbation $\\Delta\\boldsymbol{w}$ makes $\\Delta L$ shoot up explosively",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0b9b9bc003f2": {
+    "zh": "高度鈍感：等長微擾 $\\Delta\\boldsymbol{w}$ 誘發 $\\Delta L \\approx 0$，幾乎無感知",
+    "en": "Highly insensitive: an equal perturbation $\\Delta\\boldsymbol{w}$ gives $\\Delta L \\approx 0$, barely noticeable",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8cd23b7fd693": {
+    "zh": "<strong>測試分佈偏移穩健性</strong>",
+    "en": "<strong>Robustness to test distribution shift</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "387408035ccc": {
+    "zh": "極端脆弱：微小取樣偏差或協變數漂移即導致效能斷崖下跌",
+    "en": "Extremely fragile: a small sampling bias or covariate shift makes performance fall off a cliff",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a94087211c72": {
+    "zh": "高度穩健：天然吸收分佈漂移、FP16/INT8 量化噪聲與評估波動",
+    "en": "Highly robust: naturally absorbs distribution drift, FP16/INT8 quantization noise and evaluation fluctuations",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2e61752d08b0": {
+    "zh": "<strong>容易產生的最佳化條件</strong>",
+    "en": "<strong>Optimization conditions that tend to produce it</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4711880ba7e8": {
+    "zh": "超大 Batch Size、全梯度 GD、無噪聲二階牛頓法/擬牛頓法",
+    "en": "Very large batch size, full-gradient GD, noise-free second-order Newton / quasi-Newton methods",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f0026bc06c51": {
+    "zh": "小批次 SGD（噪聲擴散逃逸）、SAM 顯式鄰域極值懲罰",
+    "en": "Small-batch SGD (escape by noise diffusion), SAM's explicit penalty on the neighborhood maximum",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9af504a8e3b1": {
+    "zh": "<strong>泛化鴻溝表現</strong>",
+    "en": "<strong>Generalization gap</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e190d00d8f0c": {
+    "zh": "訓練損失 $\\approx 0$ 但測試損失巨大，泛化差距嚴重惡化",
+    "en": "Training loss $\\approx 0$ but a huge test loss; the generalization gap gets badly worse",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8b4ab0a8ab82": {
+    "zh": "測試損失高度貼合訓練損失，展現頂尖泛化水準",
+    "en": "Test loss closely matches training loss, showing top-level generalization",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d96c7f2d8e8c": {
+    "zh": "<strong>SAM 演算法應對態度</strong>",
+    "en": "<strong>How the SAM algorithm treats it</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "db1fbec910b7": {
+    "zh": "強烈驅逐：內層 $\\max$ 偵測到邊界暴漲，施加巨額懲罰迫其離開",
+    "en": "Strongly expelled: the inner $\\max$ detects the surge at the boundary and imposes a huge penalty to force it away",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6e222aaecb4d": {
+    "zh": "主動尋求：鄰域最大損失極小，被評定為全域性最優平坦吸引子",
+    "en": "Actively sought: the maximum loss in the neighborhood is minimal, so it is rated the globally optimal flat attractor",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4e37d7736734": {
+    "zh": "10 / 智慧結晶 · Four Master Maxims",
+    "en": "10 / Distilled Wisdom: Four Master Maxims",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "89c06a97174c": {
+    "zh": "大師四大鐵律：平坦度與泛化幾何不變法則\n    <span class=\"en\">The Four Master Maxims of Flat Minima and Generalization Geometry</span>\n  ",
+    "en": "The master's four iron laws: invariant rules of flatness and generalization geometry",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1d5204a265f2": {
+    "zh": "一、同損殊途律：訓練同分不同命，鄰域曲率定乾坤",
+    "en": "1. The law of same loss, different paths: the same training score does not mean the same fate; neighborhood curvature decides it all",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8c1ef7eb7a75": {
+    "zh": "訓練損失收斂至 0 僅證明模型記住了資料；單點深淺不足憑，唯有解周遭整片鄰域的平坦度，才是決定模型在未見測試集上生死存亡的終極天花板。",
+    "en": "A training loss that converges to 0 only proves that the model has memorized the data; the depth of a single point means little, and only the flatness of the whole neighborhood around the solution is the ultimate ceiling that decides whether the model lives or dies on the unseen test set.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5c676ea6aa35": {
+    "zh": "二、微擾穩健律：分佈偏移皆微擾，平坦寬碗化千愁",
+    "en": "2. The law of robustness to perturbation: every distribution shift is a perturbation, and a flat wide bowl dissolves a thousand worries",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "99fca41328a6": {
+    "zh": "從領域漂移、資料取樣噪聲到邊緣裝置 INT8 量化截斷，本質皆為參數空間的微擾位移；平坦解以極微小的二階曲率二次型，徹底化解泛化爆炸危機。",
+    "en": "From domain drift and data sampling noise to INT8 quantization truncation on edge devices, all are in essence small displacements in parameter space; a flat solution, with its tiny second-order curvature quadratic form, fully defuses the crisis of exploding generalization error.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "62a48f40f12e": {
+    "zh": "三、偏置塑造律：隨機噪聲逃針尖，演算法選擇定地貌",
+    "en": "3. The law of bias shaping: random noise escapes the needle tips; the choice of algorithm decides the terrain",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c02bc3664b87": {
+    "zh": "小批次 SGD 的梯度噪聲是上帝賜予的天然平坦漏斗，持續踢散尖銳解；大 Batch 與二階法過度算計，反而扼殺隨機探索，直墜高曲率陷阱。",
+    "en": "The gradient noise of small-batch SGD is a natural flattening funnel, a gift from God, that keeps knocking the optimizer out of sharp solutions; large batches and second-order methods calculate too much, and end up killing random exploration and plunging straight into high-curvature traps.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b9ee4248d452": {
+    "zh": "四、主動防禦律：告別隨機祈求路，Min-Max 顯式鑄平坦",
+    "en": "4. The law of active defense: say goodbye to praying for luck; min-max explicitly forges flatness",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c637f9570204": {
+    "zh": "與其被動期待隨機最佳化器撞上平坦解，SAM 選擇在損失函式中主動向鄰域極端值開戰。以 Min-Max 框架將平坦化寫入目標，開啟現代穩健學習新紀元！",
+    "en": "Rather than passively hoping a stochastic optimizer will bump into a flat solution, SAM chooses to wage war on the neighborhood's extreme values actively, inside the loss function. By writing flattening into the objective through a min-max framework, it opens a new era of modern robust learning!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Hands-On Simulation: Interactive Simulation Lab",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6829da89be19": {
+    "zh": "互動探索實驗室：雙曲面微擾模擬器（平坦寬碗 vs 尖銳針谷即時泛化差距）\n    <span class=\"en\">Interactive Lab: Flat Basin vs Sharp Needle Perturbation Simulator</span>\n  ",
+    "en": "Interactive exploration lab: a two-surface perturbation simulator (live generalization gap between a flat wide bowl and a sharp needle valley)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "197e2fafdef3": {
+    "zh": "微擾位移量 $\\|\\Delta w\\|$：",
+    "en": "Perturbation size $\\|\\Delta w\\|$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "862534d4852b": {
+    "zh": "針谷曲率 $k_{\\text{sharp}}$：",
+    "en": "Needle-valley curvature $k_{\\text{sharp}}$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0cce9f742b6a": {
+    "zh": "寬碗曲率 $k_{\\text{flat}}$：",
+    "en": "Wide-bowl curvature $k_{\\text{flat}}$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1eecdf2dac9f": {
+    "zh": "微擾步進 (+0.1)",
+    "en": "Perturbation step (+0.1)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4edecac4d92f": {
+    "zh": "極端偏移 (1.2)",
+    "en": "Extreme shift (1.2)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6c92ba4272b8": {
+    "zh": "重置為零 (0.0)",
+    "en": "Reset to zero (0.0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d563ff502258": {
+    "zh": "<strong>當前參數微擾 ‖Δw‖：</strong> 0.60<br><strong>尖銳針谷曲率 k_sharp：</strong> 20.0<br><strong>平坦寬碗曲率 k_flat：</strong> 0.60<br><strong>尖銳解測試損失 L_sharp：</strong> 7.200<br><strong>平坦解測試損失 L_flat：</strong> 0.216<br><strong>曲率敏銳度比 (k_sharp / k_flat)：</strong> 33.3x<br><strong>泛化損失差距 (L_sharp − L_flat)：</strong> +6.984<br><strong>狀態判定：</strong><br>",
+    "en": "<strong>Current parameter perturbation ‖Δw‖:</strong> 0.60<br><strong>Sharp needle-valley curvature k_sharp:</strong> 20.0<br><strong>Flat wide-bowl curvature k_flat:</strong> 0.60<br><strong>Sharp solution test loss L_sharp:</strong> 7.200<br><strong>Flat solution test loss L_flat:</strong> 0.216<br><strong>Curvature sharpness ratio (k_sharp / k_flat):</strong> 33.3x<br><strong>Generalization loss gap (L_sharp − L_flat):</strong> +6.984<br><strong>Status:</strong><br>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "760dfaf4a597": {
+    "zh": "⚡ 寬碗平穩吸收微擾：平坦解損失增幅僅 +0.22",
+    "en": "⚡ The wide bowl absorbs the perturbation smoothly: the flat solution's loss rises by only +0.22",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "730242133164": {
+    "zh": "12 / 實戰檢核 · Checkpoint Quizzes",
+    "en": "12 / Hands-On Check: Checkpoint Quizzes",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fa43c1ccace8": {
+    "zh": "觀念隨堂測驗：檢驗你對平坦極小值與 SAM 動機的掌握\n    <span class=\"en\">Checkpoint Quizzes: Test Your Grasp on Flat Minima &amp; SAM Foundations</span>\n  ",
+    "en": "Concept checkpoint quiz: test your grasp of flat minima and the motivation for SAM",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ec1c95984cc6": {
+    "zh": "1. 根據 Fig. 6，flat minimum（平坦極小值）與 sharp minimum（尖銳極小值）的主要幾何差異是？",
+    "en": "1. According to Fig. 6, what is the main geometric difference between a flat minimum and a sharp minimum?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bd934593bdf9": {
+    "zh": "A. flat minimum 的訓練損失值必然顯著高於 sharp minimum",
+    "en": "A. A flat minimum's training loss is necessarily much higher than a sharp minimum's",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "750655cfdc69": {
+    "zh": "B. flat minimum 解的鄰域內損失幾乎不變，sharp minimum 則隨微擾急劇上升",
+    "en": "B. Around a flat minimum the loss barely changes within the neighborhood, while around a sharp minimum it rises sharply under perturbation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "82dacc07ff2d": {
+    "zh": "C. sharp minimum 在高維神經網路中已被證明一定具有更好的測試泛化效能",
+    "en": "C. Sharp minima have been proven to always generalize better on the test set in high-dimensional neural networks",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9882decc8ff0": {
+    "zh": "D. 兩者在局部 Hessian 矩陣特徵值譜上數學完全相同",
+    "en": "D. The two have mathematically identical eigenvalue spectra of the local Hessian matrix",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3f22022e3e9f": {
+    "zh": "2. 關於深度學習學界對「平坦極小值泛化更好」的主張，下列敘述何者最為客觀準確？",
+    "en": "2. Regarding the deep learning community's claim that \"flat minima generalize better\", which statement is the most objective and accurate?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "49f2b21b6569": {
+    "zh": "A. 該主張已被數學嚴格證明為充要條件，學界無任何爭議",
+    "en": "A. The claim has been rigorously proven to be a necessary and sufficient condition, and there is no debate in academia",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9091a67e2100": {
+    "zh": "B. 獲得大量實證研究（如 Foret et al. [20]）支援，但文獻中對 re-scaling 依賴性等仍有學術辯論",
+    "en": "B. It is supported by a large body of empirical research (e.g. Foret et al. [20]), but the literature still debates issues such as its dependence on re-scaling",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "65f63009f745": {
+    "zh": "C. 該主張已在現代大模型訓練中被全面否定並證明無效",
+    "en": "C. The claim has been completely refuted and shown to be invalid in modern large-model training",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "81a8cee6ee0a": {
+    "zh": "D. 該理論僅適用於單層線性感知機，無法推廣至深度神經網路",
+    "en": "D. The theory applies only to single-layer linear perceptrons and cannot be extended to deep neural networks",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "04c4f917e1ad": {
+    "zh": "3. 回顧最佳化演算法特質，一階方法（如小批次 SGD）相較於二階方法（如 Newton），在收斂解的「形狀」上有何關鍵傾向？",
+    "en": "3. Recalling the properties of optimization algorithms, compared with second-order methods (such as Newton's), what key tendency do first-order methods (such as mini-batch SGD) have regarding the \"shape\" of the solution they converge to?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e9a886edd073": {
+    "zh": "A. 一階方法因隨機噪聲較小，傾向收斂到極度尖銳的極小值",
+    "en": "A. Because their random noise is smaller, first-order methods tend to converge to extremely sharp minima",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4b3a6e128252": {
+    "zh": "B. 一階方法（含小批次隨機噪聲）具隱式正則化偏置，傾向找到更平坦的局部極小值",
+    "en": "B. First-order methods (with mini-batch random noise) have an implicit regularization bias and tend to find flatter local minima",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2df635d3301b": {
+    "zh": "C. 一階與二階方法在解的平坦度分佈上完全隨機，毫無幾何傾向性",
+    "en": "C. The flatness of the solutions found by first- and second-order methods is completely random, with no geometric tendency at all",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "423ee8697d10": {
+    "zh": "D. 一階方法在非凸高維空間中永遠無法收斂至局部極小值",
+    "en": "D. First-order methods can never converge to a local minimum in a non-convex, high-dimensional space",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "71ba0c5bc7d7": {
+    "zh": "4. 尖銳度感知最小化（Sharpness-Aware Minimization, SAM）演算法提出的核心動機是？",
+    "en": "4. What is the core motivation behind the Sharpness-Aware Minimization (SAM) algorithm?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "27ee8d5d9c4a": {
+    "zh": "A. 取代反向傳播中的鏈式法則以大幅加速每次迭代計算",
+    "en": "A. To replace the chain rule in backpropagation and greatly speed up the computation of each iteration",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ead45ce7a951": {
+    "zh": "B. 主動尋找平坦解，透過 Min-Max 框架懲罰解鄰域內的最大損失上升量",
+    "en": "B. To actively seek flat solutions, penalizing the maximum rise in loss within the solution's neighborhood through a min-max framework",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ce2469d6d09a": {
+    "zh": "C. 徹底消除神經網路損失曲面上的所有局部極小值與鞍點",
+    "en": "C. To completely eliminate all local minima and saddle points on a neural network's loss surface",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e27912fd0f83": {
+    "zh": "D. 確保網路權重範數在訓練過程中嚴格單調遞增",
+    "en": "D. To ensure that the norm of the network weights increases strictly monotonically during training",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

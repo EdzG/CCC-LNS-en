@@ -1,0 +1,1168 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "SWP 對每個權重獨立以機率 $\\beta$ 進行白努力抽樣，遮罩分佈服從 $m_i \\sim \\mathrm{Bernoulli}(\\beta)$。": "SWP samples each weight independently with a Bernoulli trial of probability $\\beta$, so the mask follows $m_i \\sim \\mathrm{Bernoulli}(\\beta)$.",
+      "式 (55) 定義 $\\mathcal{B}^+$ 為擾動後損失增加幅度超過預設閾值 $\\alpha$ 的銳度敏感子集：$\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*)-\\mathcal{L}(\\boldsymbol{w}) \\gt \\alpha$。": "Eq. (55) defines $\\mathcal{B}^+$ as the sharpness-sensitive subset whose loss increase after perturbation exceeds the preset threshold $\\alpha$: $\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*)-\\mathcal{L}(\\boldsymbol{w}) \\gt \\alpha$.",
+      "ASAM 引入滿足 $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}=T_{\\boldsymbol{w}}^{-1}$ 的正規化運算元，使幾何銳度量測對任意權重線性重縮放（re-scaling）保持嚴格尺度不變性。": "ASAM introduces a normalization operator satisfying $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}=T_{\\boldsymbol{w}}^{-1}$, which keeps the geometric sharpness measure strictly scale-invariant under any linear re-scaling of the weights.",
+      "由期望線性性質與獨立性，$\\mathbb{E}[\\widehat{\\boldsymbol{\\epsilon}}_i] = \\frac{1}{\\beta}\\mathbb{E}[m_i]\\mathbb{E}[\\boldsymbol{\\epsilon}^*_i] = \\frac{1}{\\beta}\\cdot \\beta\\cdot \\mathbb{E}[\\boldsymbol{\\epsilon}^*_i] = \\mathbb{E}[\\boldsymbol{\\epsilon}^*_i]$，因此 SWP 估計嚴格期望無偏。": "By linearity of expectation and independence, $\\mathbb{E}[\\widehat{\\boldsymbol{\\epsilon}}_i] = \\frac{1}{\\beta}\\mathbb{E}[m_i]\\mathbb{E}[\\boldsymbol{\\epsilon}^*_i] = \\frac{1}{\\beta}\\cdot \\beta\\cdot \\mathbb{E}[\\boldsymbol{\\epsilon}^*_i] = \\mathbb{E}[\\boldsymbol{\\epsilon}^*_i]$, so the SWP estimate is strictly unbiased in expectation.",
+      "SWP 抽樣狀態：": "SWP sampling status:",
+      "• 本次選中權重數：": "• Weights selected this time:",
+      "• 權重維度運算節省：": "• Computation saved over weight dimensions:",
+      "SDS 資料篩選狀態：": "SDS data-selection status:",
+      "• 第二次反向傳播節省：": "• Second backpropagation saved:",
+      "ASAM 尺度不變性對比：": "ASAM scale-invariance comparison:",
+      "• Vanilla SAM 銳度：": "• Vanilla SAM sharpness:",
+      "• ASAM 自適應銳度：": "• ASAM adaptive sharpness:",
+      "🧪 系統運作中：請調整上方滑桿檢驗 SWP 無偏性與 ASAM 尺度不變性": "🧪 System running: adjust the sliders above to test SWP's unbiasedness and ASAM's scale invariance",
+      "SWP 權重遮罩視覺化（16 個權重，藍色 = 選中 m=1，灰色 = 遮罩 m=0）": "SWP weight mask (16 weights; blue = selected m=1, gray = masked m=0)",
+      "Vanilla SAM: 固定球 ||ε||₂ ≤ ρ": "Vanilla SAM: fixed ball ||ε||₂ ≤ ρ",
+      "ASAM: 自適應 ||T_w⁻¹ ε||₂ ≤ ρ": "ASAM: adaptive ||T_w⁻¹ ε||₂ ≤ ρ",
+      "ASAM 引入滿足": "ASAM introduces a normalization operator satisfying",
+      "的正規化運算元，使幾何銳度量測對任意權重線性重縮放（re-scaling）保持嚴格尺度不變性。": ", which keeps the geometric sharpness measure strictly scale-invariant under any linear re-scaling of the weights."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^• 白努力抽樣率 β： (\\S+)$",
+        "en": "• Bernoulli sampling rate β: $1"
+      },
+      {
+        "re": "^• 補償加權係數 1/β： (\\S+) \\(維持期望無偏\\)$",
+        "en": "• Compensating weight 1/β: $1 (keeps it unbiased in expectation)"
+      },
+      {
+        "re": "^• 銳度敏感閾值 α： (\\S+)$",
+        "en": "• Sharpness-sensitivity threshold α: $1"
+      },
+      {
+        "re": "^• 敏感樣本 B⁺ 佔比： (.+)$",
+        "en": "• Share of sensitive samples B⁺: $1"
+      },
+      {
+        "re": "^• 權重縮放倍率 s： (\\S+)$",
+        "en": "• Weight scaling factor s: $1"
+      },
+      {
+        "re": "^\\(誤差: (\\S+)\\)$",
+        "en": "(error: $1)"
+      },
+      {
+        "re": "^(\\([\\d.]+%\\)) \\(累計 (\\d+) 次蒙地卡羅\\)$",
+        "en": "$1 ($2 Monte Carlo runs so far)"
+      },
+      {
+        "re": "^⚡ 尺度不變性驗證透過：ASAM 銳度恆定 = (\\S+) \\(Vanilla 漂移至 (\\S+)\\)$",
+        "en": "⚡ Scale invariance verified: ASAM sharpness stays at $1 (Vanilla drifts to $2)"
+      },
+      {
+        "re": "^ASAM vs Vanilla SAM 擾動邊界（當前權重尺度 s = (\\S+)）$",
+        "en": "ASAM vs Vanilla SAM perturbation bounds (current weight scale s = $1)"
+      },
+      {
+        "re": "^銳度 = (\\S+) \\(失真!\\)$",
+        "en": "Sharpness = $1 (distorted!)"
+      },
+      {
+        "re": "^銳度 = (\\S+) \\(嚴格不變 ★\\)$",
+        "en": "Sharpness = $1 (invariant ★)"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#kp14-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "387706e48042": {
+    "zh": "KP14 · 索引",
+    "en": "KP14 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0204f8ebc3a8": {
+    "zh": "<a href=\"#motivation\">動機背景 · Motivation</a>",
+    "en": "<a href=\"#motivation\">Motivation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d9b09c3404c2": {
+    "zh": "<a href=\"#swp\">SWP 隨機遮罩 · SWP (Eq. 54)</a>",
+    "en": "<a href=\"#swp\">SWP Random Mask (Eq. 54)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "621cca0ee186": {
+    "zh": "<a href=\"#sds\">SDS 樣本篩選 · SDS (Eq. 55)</a>",
+    "en": "<a href=\"#sds\">SDS Sample Selection (Eq. 55)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "77ffba699a38": {
+    "zh": "<a href=\"#asam\">ASAM 尺度不變 · ASAM (Eq. 56-57)</a>",
+    "en": "<a href=\"#asam\">ASAM Scale Invariance (Eq. 56-57)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "060f5671a070": {
+    "zh": "<a href=\"#sds-asam-diagram\">機制向量圖解 · Visual Blueprint</a>",
+    "en": "<a href=\"#sds-asam-diagram\">Mechanisms, Vector Diagram</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2ffe2cff0f8a": {
+    "zh": "<a href=\"#comparison\">全方位架構對照 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Full Architecture Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "795a43d30841": {
+    "zh": "<a href=\"#master-maxims\">四大鐵律 · Master Maxims</a>",
+    "en": "<a href=\"#master-maxims\">Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ad493db66dc7": {
+    "zh": "Efficient SAM（SWP、SDS）與 Adaptive SAM（ASAM）\n      <span class=\"hero-title-en\">Efficient SAM (SWP, SDS) &amp; Adaptive SAM (ASAM): Slashing Backprop Overhead &amp; Scale-Invariant Sharpness</span>\n    ",
+    "en": "Efficient SAM (SWP, SDS) and Adaptive SAM (ASAM)\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "054fea8cf6b3": {
+    "zh": "\n      Vanilla SAM 每步需兩次反向傳播，計算成本是標準 SGD 的約兩倍，且對參數計量尺度極度敏感。Efficient SAM (ESAM) 同時從權重空間（SWP 隨機遮罩）與資料空間（SDS 銳度樣本篩選）雙向節省算力且期望無偏；Adaptive SAM (ASAM) 引入正規化運算元 $T_{\\boldsymbol{w}}^{-1}$，達成對權重縮放完全不變的自適應平坦度度量！\n    ",
+    "en": "Vanilla SAM needs two backward passes per step, so its computational cost is about twice that of standard SGD, and it is extremely sensitive to the scale on which the parameters are measured. Efficient SAM (ESAM) saves compute from both the weight space (SWP random masks) and the data space (SDS sharpness-based sample selection) while staying unbiased in expectation; Adaptive SAM (ASAM) introduces a normalization operator $T_{\\boldsymbol{w}}^{-1}$, giving an adaptive flatness measure that is completely invariant to weight rescaling!",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "0051485d7d6b": {
+    "zh": "\n      「兩倍反傳太貴、尺度縮放就破功？Efficient SAM 與 ASAM 如何破局？」\n      <small>SWP 砍權重維度且期望無偏，SDS 挑關鍵樣本省資料維度；ASAM 引入正規化運算元，讓銳度對尺度縮放百毒不侵！<br>\n        <span class=\"bilingual-en-inline\">Vanilla SAM doubles training time and falters under re-scaling. SWP cuts weight dimensions unbiasedly, SDS prunes non-sensitive samples, and ASAM achieves true scale invariance!</span>\n      </small>\n    ",
+    "en": "\"Two backward passes are too expensive, and rescaling breaks it? How do Efficient SAM and ASAM get out of this bind?\"\n      <small>SWP cuts the weight dimensions while staying unbiased in expectation, and SDS picks the key samples to save on the data dimension; ASAM introduces a normalization operator that makes sharpness immune to rescaling!<br>\n        \n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "2dc896aa3e82": {
+    "zh": "02 / 動機背景 · Motivation &amp; The Two Bottlenecks",
+    "en": "02 / Motivation &amp; The Two Bottlenecks",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "802ab0657f72": {
+    "zh": "動機：Vanilla SAM 太慢且對尺度敏感\n    <span class=\"en\">Motivation: Why Vanilla SAM is Slow and Scale-Sensitive</span>\n  ",
+    "en": "Motivation: Vanilla SAM Is Too Slow and Sensitive to Scale\n  ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "fb6377e3f615": {
+    "zh": "Vanilla SAM 的兩大工程與幾何痛點",
+    "en": "Vanilla SAM's Two Pain Points: Engineering and Geometry",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0f4116e2f824": {
+    "zh": "\n      在 KP13 中，我們看到 Vanilla SAM 藉由 min-max 雙層最佳化在鄰域球中探尋最慘擾動 $\\boldsymbol{\\epsilon}^*$，顯著壓制了尖銳極小值。然而在真實生產環境中，Vanilla SAM 迅速面臨了兩大嚴峻障礙：\n    ",
+    "en": "In KP13 we saw Vanilla SAM use bi-level min-max optimization to search the neighborhood ball for the worst perturbation $\\boldsymbol{\\epsilon}^*$, markedly suppressing sharp minima. In real production settings, however, Vanilla SAM quickly runs into two serious obstacles:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d7d38407901f": {
+    "zh": "<strong>痛點一：計算成本昂貴（$2\\times$ 反向傳播）：</strong><br>\n        每一步迭代都需要先在原點 $\\boldsymbol{w}$ 計算一次反向傳播以求得擾動向量 $\\boldsymbol{\\epsilon}^*$；隨後在擾動點 $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*$ 再執行一次反向傳播求取更新梯度。在大型語言模型或海量視覺模型訓練中，訓練時間直接翻倍，耗電與算力預算令人卻步。\n      ",
+    "en": "<strong>Pain point 1: expensive computation ($2\\times$ backpropagation):</strong><br>\n        Every iteration must first run one backpropagation at the origin $\\boldsymbol{w}$ to get the perturbation vector $\\boldsymbol{\\epsilon}^*$, then run another backpropagation at the perturbed point $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*$ to get the update gradient. When training large language models or huge vision models, the training time simply doubles, and the power and compute budgets are daunting.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0c0af19fb961": {
+    "zh": "<strong>痛點二：對參數尺度敏感（Scale Sensitivity）：</strong><br>\n        Vanilla SAM 採用固定半徑 $\\rho$ 約束 $\\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho$。如果將網路權重乘上一個可逆縮放矩陣 $\\boldsymbol{A}$（例如卷積層與 BatchNorm 間的通道等價重縮放），網路功能毫無變化，但計算出的銳度數值卻發生劇烈形變！這導致平坦度量測嚴重依賴權重單位。\n      ",
+    "en": "<strong>Pain point 2: sensitivity to parameter scale (scale sensitivity):</strong><br>\n        Vanilla SAM uses a constraint with a fixed radius $\\rho$, $\\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho$. If the network's weights are multiplied by an invertible scaling matrix $\\boldsymbol{A}$ (e.g. the equivalent channel rescaling between a convolutional layer and BatchNorm), the network's function does not change at all, yet the computed sharpness value is badly distorted! As a result, the flatness measurement depends heavily on the units of the weights.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "389a5aa84cf5": {
+    "zh": "Efficient SAM (ESAM) 的突破路徑",
+    "en": "The Breakthrough Path of Efficient SAM (ESAM)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "eaf0ff878b6b": {
+    "zh": "<strong>專註解決算力瓶頸：</strong>",
+    "en": "<strong>Focused on the compute bottleneck:</strong>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6fa5c4ca7ce5": {
+    "zh": "<strong>Stochastic Weight Perturbation (SWP)：</strong>隨機遮罩，每步僅擾動部分權重，期望無偏。",
+    "en": "<strong>Stochastic Weight Perturbation (SWP):</strong> a random mask; each step perturbs only some of the weights, unbiased in expectation.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f61a3878917c": {
+    "zh": "<strong>Sharpness-sensitive Data Selection (SDS)：</strong>資料篩選，僅對銳度敏感樣本執行二次反向傳播。",
+    "en": "<strong>Sharpness-sensitive Data Selection (SDS):</strong> data selection; only sharpness-sensitive samples go through the second backpropagation.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1525ff74662b": {
+    "zh": "<strong>綜合成效：</strong>將額外反傳開銷大幅砍半，大幅逼近常規 SGD 訓練速度！",
+    "en": "<strong>Overall effect:</strong> cuts the extra backprop overhead roughly in half, coming close to the training speed of ordinary SGD!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c78cc8dbd78c": {
+    "zh": "Adaptive SAM (ASAM) 的突破路徑",
+    "en": "The Breakthrough Path of Adaptive SAM (ASAM)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d5b25f2051e2": {
+    "zh": "<strong>專註解決尺度幾何缺陷：</strong>",
+    "en": "<strong>Focused on the geometric flaw of scale:</strong>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d7e739d1edfe": {
+    "zh": "<strong>正規化運算元 $T_{\\boldsymbol{w}}^{-1}$：</strong>自適應權重各維度的大小，動態調整擾動半徑。",
+    "en": "<strong>Normalization operator $T_{\\boldsymbol{w}}^{-1}$:</strong> adapts to the magnitude of each weight dimension and adjusts the perturbation radius dynamically.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b1c7b7a0b056": {
+    "zh": "<strong>尺度不變性（Scale Invariance）：</strong>保證在任意可逆線性變換 $\\boldsymbol{w} \\to \\boldsymbol{A}\\boldsymbol{w}$ 下，銳度評估精確不變。",
+    "en": "<strong>Scale invariance:</strong> guarantees that the sharpness estimate stays exactly the same under any invertible linear transformation $\\boldsymbol{w} \\to \\boldsymbol{A}\\boldsymbol{w}$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d8484a4f3c21": {
+    "zh": "<strong>綜合成效：</strong>消除了 BatchNorm 或多層網路尺度失衡引發的最佳化失穩。",
+    "en": "<strong>Overall effect:</strong> removes the optimization instability caused by BatchNorm or by scale imbalance across the layers of a network.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "85f4b6d08b91": {
+    "zh": "03 / 權重維度加速 · Stochastic Weight Perturbation (SWP)",
+    "en": "03 / Speeding Up Along the Weight Dimension · Stochastic Weight Perturbation (SWP)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5290d3d14c34": {
+    "zh": "SWP：隨機子集擾動 — 式 (54) 與期望無偏性\n    <span class=\"en\">Stochastic Weight Perturbation (SWP): Equation (54) &amp; Unbiased Estimation</span>\n  ",
+    "en": "SWP: Perturbing a Random Subset, Eq. (54), and Unbiasedness in Expectation\n  ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a1ed2a61c95e": {
+    "zh": "\n    Vanilla SAM 對網路全部 $n$ 個參數都進行最慘擾動計算。ESAM 提出 <strong>Stochastic Weight Perturbation（SWP）</strong>，每步透過隨機白努力遮罩（Bernoulli Mask）抽樣，僅對部分權重施加擾動。\n    <span class=\"bilingual-en\">SWP avoids perturbing all parameters by sampling a random binary mask, drastically reducing inner maximization computation while maintaining unbiased expectation.</span>\n  ",
+    "en": "Vanilla SAM computes the worst perturbation for all $n$ parameters of the network. ESAM proposes <strong>stochastic weight perturbation (SWP)</strong>: at each step it samples a random Bernoulli mask and perturbs only some of the weights.\n    ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "96af3240b3a7": {
+    "zh": "式 (54) 數學形式與遮罩定義",
+    "en": "Eq. (54): Mathematical Form and Mask Definition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ac1609170b54": {
+    "zh": "SWP 在每步獨立抽取一個隨機二元遮罩向量 $\\boldsymbol{m}=[m_1,\\ldots,m_n]^{\\top}$，其中每個分量獨立同分布服從白努力分佈：",
+    "en": "At each step SWP independently draws a random binary mask vector $\\boldsymbol{m}=[m_1,\\ldots,m_n]^{\\top}$, each of whose components is i.i.d. Bernoulli:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "70fff9a4bcfb": {
+    "zh": "其中 $\\beta \\in (0, 1]$ 為選中機率超參數。接著用遮罩乘以完整最壞擾動 $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$，並除以 $\\beta$ 進行無偏補償：",
+    "en": "where $\\beta \\in (0, 1]$ is the selection-probability hyperparameter. The mask then multiplies the full worst perturbation $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$, and the result is divided by $\\beta$ as an unbiasedness correction:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "37fc68c67075": {
+    "zh": "（註：若表示為逐元素遮罩向量，即 $\\widehat{\\boldsymbol{\\epsilon}}(\\boldsymbol{w}) = \\frac{1}{\\beta} (\\boldsymbol{m} \\odot \\boldsymbol{\\epsilon}^*(\\boldsymbol{w}))$）。",
+    "en": "(Note: written as an element-wise mask vector, this is $\\widehat{\\boldsymbol{\\epsilon}}(\\boldsymbol{w}) = \\frac{1}{\\beta} (\\boldsymbol{m} \\odot \\boldsymbol{\\epsilon}^*(\\boldsymbol{w}))$.)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b482bd6038b2": {
+    "zh": "關鍵數學性質：少算卻嚴格期望無偏（Unbiasedness Proof）",
+    "en": "Key Mathematical Property: Less Computation, Yet Strictly Unbiased in Expectation (Unbiasedness Proof)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3d55615e6e2e": {
+    "zh": "為什麼 SWP 丟棄了大部分權重的擾動計算，卻不會導致最佳化方向偏離？核心在於以下嚴謹的期望等式：",
+    "en": "Why does SWP, which throws away the perturbation computation for most of the weights, not make the optimization direction drift? The heart of it is the following rigorous identity in expectation:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4bb5182b7f78": {
+    "zh": "<strong>證明關鍵：</strong>",
+    "en": "<strong>Key to the proof:</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "50887f8ec7c4": {
+    "zh": "二元隨機變數 $m_i$ 的期望值精確等於 $\\mathbb{E}[m_i] = 1 \\cdot \\beta + 0 \\cdot (1-\\beta) = \\beta$。",
+    "en": "The expected value of the binary random variable $m_i$ is exactly $\\mathbb{E}[m_i] = 1 \\cdot \\beta + 0 \\cdot (1-\\beta) = \\beta$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3cadedd2da82": {
+    "zh": "抽樣遮罩 $m_i$ 是外生隨機生成的，與目標梯度及最壞擾動 $\\boldsymbol{\\epsilon}^*$ 嚴格獨立。",
+    "en": "The sampled mask $m_i$ is generated exogenously at random and is strictly independent of the objective's gradient and of the worst perturbation $\\boldsymbol{\\epsilon}^*$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "41ee14cbabbd": {
+    "zh": "補償因子 $\\frac{1}{\\beta}$ 精確抵消了抽樣機率 $\\beta$！因此在期望上，SWP 近似擾動與 Vanilla SAM 完全一致！",
+    "en": "The correction factor $\\frac{1}{\\beta}$ exactly cancels the sampling probability $\\beta$! So in expectation, the SWP approximate perturbation is exactly the same as Vanilla SAM's!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6c7fdf2d1b2f": {
+    "zh": "1. 節省權重維度運算",
+    "en": "1. Saving Computation Along the Weight Dimension",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0935d64e4a02": {
+    "zh": "僅有 $\\beta$ 比例（如 $\\beta=0.5$）的權重需要執行內層擾動更新與記憶體搬移，大幅降低硬體快取壓力。",
+    "en": "Only a fraction $\\beta$ (e.g. $\\beta=0.5$) of the weights need the inner perturbation update and memory moves, which greatly reduces pressure on the hardware cache.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7e9496a12dc1": {
+    "zh": "2. 隨機正則化效應",
+    "en": "2. A Random Regularization Effect",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "db62ad201c74": {
+    "zh": "動態隨機遮罩為擾動引入了類似 Dropout 的隨機探索噪聲，進一步協助權重脫離淺層次局部極小值。",
+    "en": "The dynamic random mask adds Dropout-like exploratory noise to the perturbation, which further helps the weights escape shallow local minima.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "af0209b3e40f": {
+    "zh": "04 / 資料維度加速 · Sharpness-sensitive Data Selection (SDS)",
+    "en": "04 / Speeding Up Along the Data Dimension · Sharpness-sensitive Data Selection (SDS)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "96defe158271": {
+    "zh": "SDS：只對「銳度敏感」樣本做 SAM — 式 (55)\n    <span class=\"en\">Sharpness-sensitive Data Selection (SDS): Equation (55) &amp; Sample Filtering</span>\n  ",
+    "en": "SDS: Apply SAM Only to \"Sharpness-Sensitive\" Samples, Eq. (55)\n  ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fbba0a5a143c": {
+    "zh": "\n    SWP 從「權重維度」省運算；而 <strong>Sharpness-sensitive Data Selection（SDS）</strong> 則切換到「資料維度」進行深度剪枝。\n    <span class=\"bilingual-en\">While SWP prunes in weight space, SDS filters the mini-batch in data space—only executing SAM backprop on samples that truly exhibit high sharpness.</span>\n  ",
+    "en": "SWP saves computation along the \"weight dimension\"; <strong>sharpness-sensitive data selection (SDS)</strong> switches to the \"data dimension\" and prunes deeply there.\n    ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "93d7381752e3": {
+    "zh": "式 (55) 銳度敏感子集 $\\mathcal{B}^+$ 與鈍感子集 $\\mathcal{B}^-$",
+    "en": "Eq. (55): The Sharpness-Sensitive Subset $\\mathcal{B}^+$ and the Insensitive Subset $\\mathcal{B}^-$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3714080451b5": {
+    "zh": "給定當前 mini-batch $\\mathcal{B}$，並非所有樣本處於尖銳地形。SDS 透過前向評估擾動前後的損失漲幅，將樣本劃分為兩部分：",
+    "en": "Given the current mini-batch $\\mathcal{B}$, not every sample sits on sharp terrain. SDS uses a forward evaluation of the loss increase before and after the perturbation to split the samples into two parts:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "37bfed67e57d": {
+    "zh": "其中 $\\alpha &gt; 0$ 為銳度靈敏度閾值超參數。",
+    "en": "where $\\alpha &gt; 0$ is the sharpness-sensitivity threshold hyperparameter.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "85b3141c57a9": {
+    "zh": "SDS 的分流計算邏輯",
+    "en": "How SDS Routes the Computation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d92894c26f61": {
+    "zh": "<strong>$\\mathcal{B}^+$（銳度敏感子集）：</strong><br>\n        擾動後損失增加量超過閾值 $\\alpha$。代表這些樣本正處於險峻的斜坡或懸崖邊緣，<strong>必須進入 SAM 的第二步反向傳播</strong>，對其幾何銳度施加嚴懲。\n      ",
+    "en": "<strong>$\\mathcal{B}^+$ (the sharpness-sensitive subset):</strong><br>\n        The loss increase after the perturbation exceeds the threshold $\\alpha$. These samples sit on a treacherous slope or at the edge of a cliff, so they <strong>must go through SAM's second-step backpropagation</strong>, which heavily penalizes their geometric sharpness.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bf78719a1627": {
+    "zh": "<strong>$\\mathcal{B}^-$（平坦鈍感子集）：</strong><br>\n        擾動後損失幾乎不變或漲幅微弱。代表這些樣本已經位於平坦的寬谷之中，<strong>直接跳過第二步昂貴的反向傳播</strong>，節省大量 GPU 運算。\n      ",
+    "en": "<strong>$\\mathcal{B}^-$ (the flat, insensitive subset):</strong><br>\n        The loss after the perturbation barely changes or rises only slightly. These samples already sit in a wide, flat valley, so they <strong>skip the expensive second-step backpropagation</strong>, saving a lot of GPU computation.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7b5acf945cb5": {
+    "zh": "\n      <strong>雙劍合璧：</strong>在 Efficient SAM (ESAM) 中，SWP 與 SDS 協同生效——權重維度砍半、資料維度過濾，使得總體訓練時間從 Vanilla SAM 的 $\\sim 2.0\\times$ 驟降至約 $\\mathbf{1.2\\times \\sim 1.3\\times}$，同時幾乎完全保留 SAM 卓越的泛化增益！\n    ",
+    "en": "<strong>Two swords combined:</strong> in Efficient SAM (ESAM), SWP and SDS work together: the weight dimension is cut in half and the data dimension is filtered, so the total training time drops from Vanilla SAM's $\\sim 2.0\\times$ to about $\\mathbf{1.2\\times \\sim 1.3\\times}$, while almost all of SAM's excellent generalization gain is kept!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4d9d84f59abf": {
+    "zh": "05 / 幾何尺度不變性 · Adaptive SAM (ASAM)",
+    "en": "05 / Geometric Scale Invariance · Adaptive SAM (ASAM)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0883959769e8": {
+    "zh": "Adaptive SAM：尺度不變的 sharpness — 式 (56)–(57)\n    <span class=\"en\">Adaptive SAM (ASAM): Achieving Scale-Invariant Sharpness (Eqs. 56–57)</span>\n  ",
+    "en": "Adaptive SAM: Scale-Invariant Sharpness, Eqs. (56)–(57)\n  ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "363f77fb4dce": {
+    "zh": "Vanilla SAM 的尺度敏感痛點解析",
+    "en": "Analyzing Vanilla SAM's Scale-Sensitivity Problem",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f454eed13ed8": {
+    "zh": "\n      在現代深度神經網路（如含卷積、全連線與 BatchNorm / LayerNorm）中，權重存在固有的<strong>縮放對稱性（Scale Invariance of Predictions）</strong>。\n      例如：令第一層權重 $\\boldsymbol{w}_1 \\to c \\boldsymbol{w}_1$ 同時第二層權重 $\\boldsymbol{w}_2 \\to \\frac{1}{c} \\boldsymbol{w}_2$（$c &gt; 0$），網路的輸出與分類結果完全相同！\n    ",
+    "en": "In modern deep neural networks (e.g. those with convolutional and fully connected layers and BatchNorm / LayerNorm), the weights have an inherent <strong>scaling symmetry (scale invariance of predictions)</strong>.\n      For example, if the first layer's weights become $\\boldsymbol{w}_1 \\to c \\boldsymbol{w}_1$ while the second layer's weights become $\\boldsymbol{w}_2 \\to \\frac{1}{c} \\boldsymbol{w}_2$ ($c &gt; 0$), the network's output and classification are exactly the same!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bf89e306885d": {
+    "zh": "\n      然而，Vanilla SAM 的約束是<strong>各向同性的固定球 $\\|\\boldsymbol{\\epsilon}\\|_2 \\le \\rho$</strong>。當權重被縮小 $c$ 倍時，固定半徑 $\\rho$ 相對於權重本身變得極大；反之當權重被放大時，$\\rho$ 變得微不足道。這導致式 (50) 定義的 sharpness 隨人為的權重縮放而劇烈跳動，破壞了平坦度量測的真實性。\n    ",
+    "en": "However, Vanilla SAM's constraint is an <strong>isotropic fixed ball $\\|\\boldsymbol{\\epsilon}\\|_2 \\le \\rho$</strong>. When the weights are shrunk by a factor of $c$, the fixed radius $\\rho$ becomes huge relative to the weights; conversely, when the weights are enlarged, $\\rho$ becomes negligible. As a result, the sharpness defined in Eq. (50) jumps around with artificial weight rescaling, which destroys the validity of the flatness measurement.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ee63748f7cd1": {
+    "zh": "式 (56) 正規化運算元 $T_{\\boldsymbol{w}}^{-1}$ 的代數約束",
+    "en": "Eq. (56): The Algebraic Constraint on the Normalization Operator $T_{\\boldsymbol{w}}^{-1}$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a7b591a498b0": {
+    "zh": "ASAM 引入了一個依賴權重的正規化變換運算元 $T_{\\boldsymbol{w}}^{-1}$。對於任意可逆線性縮放矩陣 $\\boldsymbol{A}$，該運算元必須嚴格滿足式 (56)：",
+    "en": "ASAM introduces a weight-dependent normalization operator $T_{\\boldsymbol{w}}^{-1}$. For any invertible linear scaling matrix $\\boldsymbol{A}$, this operator must strictly satisfy Eq. (56):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a6802d9fd6c3": {
+    "zh": "<strong>實務常用構造：</strong>對角矩陣 $T_{\\boldsymbol{w}} = \\operatorname{diag}(|w_1|+\\gamma, |w_2|+\\gamma, \\ldots, |w_n|+\\gamma)$。當權重縮放 $\\boldsymbol{A}=\\operatorname{diag}(s_1, \\ldots, s_n)$ 時，$T_{\\boldsymbol{A}\\boldsymbol{w}} = \\boldsymbol{A} T_{\\boldsymbol{w}}$，其逆矩陣 $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1} = T_{\\boldsymbol{w}}^{-1} \\boldsymbol{A}^{-1}$，因此 $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A} = T_{\\boldsymbol{w}}^{-1}$ 恆成立！",
+    "en": "<strong>A common construction in practice:</strong> the diagonal matrix $T_{\\boldsymbol{w}} = \\operatorname{diag}(|w_1|+\\gamma, |w_2|+\\gamma, \\ldots, |w_n|+\\gamma)$. When the weights are scaled by $\\boldsymbol{A}=\\operatorname{diag}(s_1, \\ldots, s_n)$, $T_{\\boldsymbol{A}\\boldsymbol{w}} = \\boldsymbol{A} T_{\\boldsymbol{w}}$, and its inverse is $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1} = T_{\\boldsymbol{w}}^{-1} \\boldsymbol{A}^{-1}$, so $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A} = T_{\\boldsymbol{w}}^{-1}$ always holds!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0f1f1dce23d8": {
+    "zh": "式 (57) 自適應 Sharpness 最佳化目標",
+    "en": "Eq. (57): The Adaptive Sharpness Optimization Objective",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "51b275681711": {
+    "zh": "將各向同性的 $\\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho$ 升級為由運算元正規化的自適應約束，ASAM 的最佳化目標定義為：",
+    "en": "Upgrading the isotropic $\\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho$ to an adaptive constraint normalized by the operator, ASAM's optimization objective is defined as:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "983dca854f0e": {
+    "zh": "<strong>尺度不變性嚴謹證明：</strong>",
+    "en": "<strong>Rigorous proof of scale invariance:</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fe93340f984e": {
+    "zh": "考慮縮放後的權重 $\\boldsymbol{w}' = \\boldsymbol{A}\\boldsymbol{w}$ 與對應擾動 $\\boldsymbol{\\epsilon}' = \\boldsymbol{A}\\boldsymbol{\\epsilon}$。",
+    "en": "Consider the scaled weights $\\boldsymbol{w}' = \\boldsymbol{A}\\boldsymbol{w}$ and the corresponding perturbation $\\boldsymbol{\\epsilon}' = \\boldsymbol{A}\\boldsymbol{\\epsilon}$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2d3da8f6254d": {
+    "zh": "約束條件變換：$\\|T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{\\epsilon}'\\|_p = \\|T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}\\boldsymbol{\\epsilon}\\|_p = \\|T_{\\boldsymbol{w}}^{-1}\\boldsymbol{\\epsilon}\\|_p \\le \\rho$。",
+    "en": "The constraint transforms as: $\\|T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{\\epsilon}'\\|_p = \\|T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}\\boldsymbol{\\epsilon}\\|_p = \\|T_{\\boldsymbol{w}}^{-1}\\boldsymbol{\\epsilon}\\|_p \\le \\rho$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4f909495a566": {
+    "zh": "目標函式差值：$\\mathcal{L}(\\boldsymbol{A}\\boldsymbol{w} + \\boldsymbol{A}\\boldsymbol{\\epsilon}) - \\mathcal{L}(\\boldsymbol{A}\\boldsymbol{w}) = \\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon}) - \\mathcal{L}(\\boldsymbol{w})$。",
+    "en": "The difference in the objective: $\\mathcal{L}(\\boldsymbol{A}\\boldsymbol{w} + \\boldsymbol{A}\\boldsymbol{\\epsilon}) - \\mathcal{L}(\\boldsymbol{A}\\boldsymbol{w}) = \\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon}) - \\mathcal{L}(\\boldsymbol{w})$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5a285ab649df": {
+    "zh": "<strong>結論：式 (57) 的自適應銳度在任意可逆縮放下恆定不變（Scale-Invariant），徹底根除了 Vanilla SAM 的度量畸變！</strong>",
+    "en": "<strong>Conclusion: the adaptive sharpness of Eq. (57) stays constant under any invertible scaling (it is scale-invariant), completely eliminating Vanilla SAM's measurement distortion!</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3867d0b0a257": {
+    "zh": "06 / 視覺架構圖解 · Visual Architecture Blueprint",
+    "en": "06 / Visual Architecture Blueprint",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4bec24a6fa24": {
+    "zh": "三大核心機制圖解：SWP 權重遮罩、SDS 樣本篩選與 ASAM 尺度不變性\n    <span class=\"en\">Visual Blueprint: SWP Weight Masking, SDS Data Selection &amp; ASAM Scale Invariance</span>\n  ",
+    "en": "The Three Core Mechanisms Illustrated: SWP Weight Masks, SDS Sample Selection, and ASAM Scale Invariance\n  ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a5935ca52d5f": {
+    "zh": "\n          Efficient SAM（SWP + SDS）雙向加速機制 與 Adaptive SAM（ASAM）尺度不變幾何\n        ",
+    "en": "Efficient SAM (SWP + SDS) two-way speed-up and Adaptive SAM (ASAM) scale-invariant geometry",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "620e5523ebb5": {
+    "zh": "【SWP】隨機子集擾動（權重空間加速）",
+    "en": "[SWP] Random-subset perturbation (speed-up in weight space)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "e0e83c538aac": {
+    "zh": "二元遮罩 mᵢ ~ Bernoulli(β)，隨機選取部分權重計算擾動",
+    "en": "Binary mask mᵢ ~ Bernoulli(β) picks some weights at random to perturb",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "e60b944d2a69": {
+    "zh": "\n            式 (54)：ε̂(w) ≈ (1/β) · m ⊙ ε*(w)\n          ",
+    "en": "Eq. (54): ε̂(w) ≈ (1/β) · m ⊙ ε*(w)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "3883476ce4ed": {
+    "zh": "\n            ★ 核心保證：E[ε̂] = ε* 期望嚴格無偏，少算權重不失方向！\n          ",
+    "en": "★ Core guarantee: E[ε̂] = ε*, strictly unbiased; fewer weights, same direction!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "a8a2534c6b01": {
+    "zh": "【SDS】銳度敏感資料篩選（資料空間加速）",
+    "en": "[SDS] Sharpness-sensitive data selection (speed-up in data space)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "0776c21868a4": {
+    "zh": "式 (55)：只對擾動後損失漲幅 L(w+ε*)-L(w) > α 的樣本做 SAM",
+    "en": "Eq. (55): apply SAM only to samples whose loss increase L(w+ε*)-L(w) > α",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "9feeb6821dfe": {
+    "zh": "深紅 B⁺（銳度敏感，進入 SAM 反傳）",
+    "en": "Dark red B⁺ (sharpness-sensitive, goes through SAM backprop)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "360884f266db": {
+    "zh": "淺粉 B⁻（平坦鈍感，跳過二次反傳）",
+    "en": "Light pink B⁻ (flat, insensitive, skips the second backprop)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "ab3f95b2391f": {
+    "zh": "★ 節省約 50%~70% 樣本的反向傳播運算！",
+    "en": "★ Saves the backprop computation for about 50%~70% of samples!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "af7bed548fe0": {
+    "zh": "Vanilla SAM：尺度敏感 (Scale-Sensitive ✘)",
+    "en": "Vanilla SAM: scale-sensitive (Scale-Sensitive ✘)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "721f4b9ded5d": {
+    "zh": "固定半徑 ||ε||≤ρ 球，重縮放 w ➡ Aw 後幾何失真",
+    "en": "Fixed-radius ||ε||≤ρ ball; rescaling w ➡ Aw distorts the geometry",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "404babbefdfc": {
+    "zh": "固定圓球 ||ε||₂ ≤ ρ",
+    "en": "Fixed ball ||ε||₂ ≤ ρ",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "f20b5ca1860d": {
+    "zh": "縮放前: 銳度 = 0.40",
+    "en": "Before scaling: sharpness = 0.40",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "9e9c90131e4d": {
+    "zh": "縮放後: 銳度 = 0.95 ⚠",
+    "en": "After scaling: sharpness = 0.95 ⚠",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "f6bceed02e29": {
+    "zh": "固定圓與等高線脫節，",
+    "en": "The fixed circle no longer matches the contours,",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "7349b679e823": {
+    "zh": "平坦度數值完全失真！",
+    "en": "so the flatness value is completely distorted!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "2b4ca5a7a5a2": {
+    "zh": "Adaptive SAM (ASAM)：尺度不變 (Scale-Invariant ✔)",
+    "en": "Adaptive SAM (ASAM): scale-invariant (Scale-Invariant ✔)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "4d4b78b37547": {
+    "zh": "自適應運算元 ||T_w⁻¹ ε||≤ρ，隨權重縮放自動等比貼合",
+    "en": "Adaptive operator ||T_w⁻¹ ε||≤ρ stretches proportionally as the weights scale",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "584f69b07aea": {
+    "zh": "自適應橢圓 ||T_w⁻¹ε|| ≤ ρ",
+    "en": "Adaptive ellipse ||T_w⁻¹ε|| ≤ ρ",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "bbc5841908b9": {
+    "zh": "縮放後: 銳度 = 0.40 ★",
+    "en": "After scaling: sharpness = 0.40 ★",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "36b1493726e2": {
+    "zh": "幾何銳度嚴格恆定！",
+    "en": "Geometric sharpness stays strictly constant!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "8955870a8720": {
+    "zh": "\n            2× 反傳太貴 ➡ SWP 省權重維度、SDS 省樣本維度；ASAM 引入正規化運算元解決尺度敏感！\n          ",
+    "en": "2× backprop is too expensive ➡ SWP saves on weight dimensions, SDS on sample dimensions; ASAM's normalization operator fixes scale sensitivity!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "6c72cb211dee": {
+    "zh": "圖 1：Efficient SAM 與 Adaptive SAM 核心機制向量對照圖解",
+    "en": "Figure 1: Vector diagram comparing the core mechanisms of Efficient SAM and Adaptive SAM",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ac6b06dc17fa": {
+    "zh": "三大技術精妙之處剖析",
+    "en": "What Makes the Three Techniques Clever",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a619612e2dcb": {
+    "zh": "<strong>SWP 的精妙：</strong>不對全部權重做擾動，每步隨機取樣白努力遮罩 $\\boldsymbol{m}$。由於 $\\mathbb{E}[m_i]=\\beta$，除以 $\\beta$ 補償後期望完全無偏，以極低開銷保持 SAM 的宏觀搜尋方向。",
+    "en": "<strong>The cleverness of SWP:</strong> instead of perturbing all the weights, it samples a Bernoulli mask $\\boldsymbol{m}$ at each step. Since $\\mathbb{E}[m_i]=\\beta$, after the $\\beta$ correction the expectation is completely unbiased, keeping SAM's overall search direction at very low cost.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "da4d1aa3c9c4": {
+    "zh": "<strong>SDS 的精妙：</strong>深知不同樣本「貧富不均」。只有損失變化劇烈的 $\\mathcal{B}^+$ 值得消耗昂貴的第二次反向傳播；平坦鈍感的 $\\mathcal{B}^-$ 迅速略過，效率大幅躍升。",
+    "en": "<strong>The cleverness of SDS:</strong> it knows that samples are \"unequally rich\". Only $\\mathcal{B}^+$, whose loss changes sharply, is worth the expensive second backpropagation; the flat, insensitive $\\mathcal{B}^-$ is skipped quickly, and efficiency jumps.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1c1e3b124e3c": {
+    "zh": "<strong>ASAM 的精妙：</strong>揭開固定歐氏球 $\\|\\boldsymbol{\\epsilon}\\|_2\\le\\rho$ 在過參數化網路中的度量陷阱，透過 $T_{\\boldsymbol{w}}^{-1}$ 抵消線性縮放，讓銳度回歸客觀純粹的幾何平坦度。",
+    "en": "<strong>The cleverness of ASAM:</strong> it exposes the measurement trap of the fixed Euclidean ball $\\|\\boldsymbol{\\epsilon}\\|_2\\le\\rho$ in over-parameterized networks, and uses $T_{\\boldsymbol{w}}^{-1}$ to cancel linear scaling, so that sharpness returns to an objective, pure geometric flatness.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9d963ac8e5b1": {
+    "zh": "07 / 綜合對照 · Architectural Matrix",
+    "en": "07 / Architectural Matrix",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "25e84023803e": {
+    "zh": "維度 / 演算法",
+    "en": "Dimension / Algorithm",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "45ba7094d26e": {
+    "zh": "標準 SGD (ERM)",
+    "en": "Standard SGD (ERM)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "df6914cec742": {
+    "zh": "<strong>核心最佳化目標</strong>",
+    "en": "<strong>Core optimization objective</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "474fb64c1967": {
+    "zh": "單純最小化經驗損失 $\\min \\mathcal{L}(\\boldsymbol{w})$",
+    "en": "Simply minimizes the empirical loss, $\\min \\mathcal{L}(\\boldsymbol{w})$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "39c3f123b1f7": {
+    "zh": "min-max 雙層目標 $\\min_{\\boldsymbol{w}}\\max_{\\|\\boldsymbol{\\epsilon}\\|\\le\\rho}\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$",
+    "en": "Bi-level min-max objective $\\min_{\\boldsymbol{w}}\\max_{\\|\\boldsymbol{\\epsilon}\\|\\le\\rho}\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5d54a57ad794": {
+    "zh": "SWP 隨機權重遮罩 + SDS 敏感樣本篩選",
+    "en": "SWP random weight mask + SDS sensitive-sample selection",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8dbeb7426640": {
+    "zh": "自適應尺度正規化 $\\min_{\\boldsymbol{w}}\\max_{\\|T_{\\boldsymbol{w}}^{-1}\\boldsymbol{\\epsilon}\\|\\le\\rho}\\Delta\\mathcal{L}$",
+    "en": "Adaptive scale normalization $\\min_{\\boldsymbol{w}}\\max_{\\|T_{\\boldsymbol{w}}^{-1}\\boldsymbol{\\epsilon}\\|\\le\\rho}\\Delta\\mathcal{L}$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5a9d55e35bce": {
+    "zh": "<strong>每步反向傳播開銷</strong>",
+    "en": "<strong>Backpropagation cost per step</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8785b4ce813f": {
+    "zh": "$1\\times$ 基準反傳",
+    "en": "$1\\times$ baseline backprop",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d1112f64e2a3": {
+    "zh": "約 $2.0\\times$（全權重、全樣本兩次反傳）",
+    "en": "About $2.0\\times$ (two backward passes over all weights and all samples)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6467e153a5d9": {
+    "zh": "<strong>約 $1.2\\times \\sim 1.3\\times$</strong>（顯著加速）",
+    "en": "<strong>About $1.2\\times \\sim 1.3\\times$</strong> (a marked speed-up)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c0acb60b070e": {
+    "zh": "約 $2.0\\times$（重點在幾何尺度修正）",
+    "en": "About $2.0\\times$ (the focus is on correcting geometric scale)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c1397f2dcbf4": {
+    "zh": "<strong>權重空間擾動方式</strong>",
+    "en": "<strong>Perturbation in weight space</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "af74e81dda55": {
+    "zh": "無擾動",
+    "en": "No perturbation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7e686633b75b": {
+    "zh": "全體權重均勻歐氏擾動",
+    "en": "Uniform Euclidean perturbation of all weights",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "da91bba05167": {
+    "zh": "<strong>SWP 隨機遮罩</strong> $m_i \\sim \\mathrm{Bernoulli}(\\beta)$，期望無偏",
+    "en": "<strong>SWP random mask</strong> $m_i \\sim \\mathrm{Bernoulli}(\\beta)$, unbiased in expectation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4bb59f24e265": {
+    "zh": "按權重絕對值自適應拉伸擾動向量",
+    "en": "Stretches the perturbation vector adaptively according to the absolute values of the weights",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a48cef734ace": {
+    "zh": "<strong>資料空間篩選方式</strong>",
+    "en": "<strong>Selection in data space</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a6aa1cbfe78a": {
+    "zh": "全批次 mini-batch",
+    "en": "Full mini-batch",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b3554327ffc0": {
+    "zh": "全批次 mini-batch 均計算兩次反傳",
+    "en": "Two backward passes over the full mini-batch",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "34f264981024": {
+    "zh": "<strong>SDS 篩選</strong>：僅對 $\\Delta\\mathcal{L}&gt;\\alpha$ 之 $\\mathcal{B}^+$ 做二次反傳",
+    "en": "<strong>SDS selection</strong>: only $\\mathcal{B}^+$ with $\\Delta\\mathcal{L}&gt;\\alpha$ gets the second backward pass",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "61fb64d47f53": {
+    "zh": "<strong>尺度不變性 (Scale Invariance)</strong>",
+    "en": "<strong>Scale invariance</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "22c192fbab3f": {
+    "zh": "無（梯度依賴尺度）",
+    "en": "None (the gradient depends on scale)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9769c38dd80a": {
+    "zh": "<strong>無</strong>（固定半徑 $\\rho$，縮放時銳度失真）",
+    "en": "<strong>None</strong> (fixed radius $\\rho$; sharpness is distorted under scaling)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d73cf0fca1ff": {
+    "zh": "無（繼承固定 $\\rho$ 球約束）",
+    "en": "None (inherits the fixed $\\rho$-ball constraint)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "374678fc78fa": {
+    "zh": "<strong>有（嚴格尺度不變）</strong>：$T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}=T_{\\boldsymbol{w}}^{-1}$",
+    "en": "<strong>Yes (strictly scale-invariant)</strong>: $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}=T_{\\boldsymbol{w}}^{-1}$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "555205259db9": {
+    "zh": "<strong>工程適用主戰場</strong>",
+    "en": "<strong>Main engineering use case</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7832a18f5867": {
+    "zh": "基準 Baseline 訓練",
+    "en": "Baseline training",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "03e3de71bebb": {
+    "zh": "中小規模模型、高泛化要求競賽",
+    "en": "Small and medium models, competitions that demand strong generalization",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "873cf5bfae08": {
+    "zh": "<strong>海量資料、大型 Transformer / ViT 訓練</strong>",
+    "en": "<strong>Huge datasets, training large Transformers / ViTs</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5c13b84d31d6": {
+    "zh": "<strong>含 BatchNorm、通道縮放敏感的深層 CNN / 視覺網路</strong>",
+    "en": "<strong>Deep CNNs / vision networks with BatchNorm that are sensitive to channel scaling</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d37a622df8a1": {
+    "zh": "08 / 智慧結晶 · Master Maxims",
+    "en": "08 / Master Maxims",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7ad7b27c7ec8": {
+    "zh": "大師四大鐵律：高效與自適應最佳化心法\n    <span class=\"en\">The Four Master Maxims of Efficient and Adaptive SAM</span>\n  ",
+    "en": "The Master's Four Iron Laws: The Mindset of Efficient and Adaptive Optimization\n  ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1e63348634f0": {
+    "zh": "一、隨機遮罩無偏律：抽樣遮罩除以機率，少算權重不失方向",
+    "en": "1. The Law of Unbiased Random Masks: Divide the Sampled Mask by Its Probability; Fewer Weights Computed, No Loss of Direction",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2d488949bb42": {
+    "zh": "SWP 抽取白努力遮罩 $m_i \\sim \\mathrm{Bernoulli}(\\beta)$，以 $1/\\beta$ 補償幅度。因 $\\mathbb{E}[m_i]=\\beta$，期望擾動精確等於完整 $\\boldsymbol{\\epsilon}^*$！算力大幅省下，最佳化主航道絲毫不偏。",
+    "en": "SWP draws a Bernoulli mask $m_i \\sim \\mathrm{Bernoulli}(\\beta)$ and compensates the magnitude with $1/\\beta$. Since $\\mathbb{E}[m_i]=\\beta$, the expected perturbation equals the full $\\boldsymbol{\\epsilon}^*$ exactly! Compute is greatly reduced, and the main course of the optimization does not drift one bit.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2b3439eba29d": {
+    "zh": "二、資料敏感篩選律：非全體皆需重罰，損失激增之 $\\mathcal{B}^+$ 始走 SAM",
+    "en": "2. The Law of Sensitive Data Selection: Not Everyone Needs Heavy Punishment; Only $\\mathcal{B}^+$, Whose Loss Surges, Goes Through SAM",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f091729299c5": {
+    "zh": "並非所有樣本都陷於危境。SDS 以 $\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*)-\\mathcal{L}(\\boldsymbol{w}) &gt; \\alpha$ 挑出懸崖邊的敏感子集 $\\mathcal{B}^+$；其餘樣本安居平地，無須耗費昂貴的第二次反向傳播。",
+    "en": "Not every sample is in danger. SDS uses $\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*)-\\mathcal{L}(\\boldsymbol{w}) &gt; \\alpha$ to pick out the sensitive subset $\\mathcal{B}^+$ at the cliff edge; the remaining samples rest safely on flat ground and need no expensive second backpropagation.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "20bf211bb83c": {
+    "zh": "三、運算元尺度不變律：$T_{\\boldsymbol{w}}^{-1}$ 逆變抵消線性縮放，幾何度量超脫單位",
+    "en": "3. The Law of Operator Scale Invariance: $T_{\\boldsymbol{w}}^{-1}$ Varies Inversely to Cancel Linear Scaling; the Geometric Measure Transcends Units",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "96ef40cec9ac": {
+    "zh": "度量平坦度不可因權重單位變換而扭曲。ASAM 引入滿足 $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}=T_{\\boldsymbol{w}}^{-1}$ 的正規化運算元，讓擾動邊界隨網路內部標度自主適應，回歸純粹的曲率本質。",
+    "en": "A flatness measure must not be distorted by a change in the units of the weights. ASAM introduces a normalization operator satisfying $T_{\\boldsymbol{A}\\boldsymbol{w}}^{-1}\\boldsymbol{A}=T_{\\boldsymbol{w}}^{-1}$, letting the perturbation boundary adapt on its own to the network's internal scales and returning to the pure essence of curvature.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6905d0b90b16": {
+    "zh": "四、效能泛化統一律：速度與尺度雙破局，大模型邁向平坦實戰",
+    "en": "4. The Law of Unified Efficiency and Generalization: Breaking Through on Both Speed and Scale, Large Models Move Toward Flatness in Practice",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f50f1e3644e4": {
+    "zh": "ESAM 破除了兩倍反傳的算力枷鎖，ASAM 根除了尺度形變的穩定性隱患。兩者共同推動 SAM 從實驗室玩具躍升為工業級超大規模神經網路的標配最佳化利器。",
+    "en": "ESAM breaks the compute shackles of doubled backprop, and ASAM eliminates the stability hazard of scale distortion. Together they have taken SAM from a lab toy to a standard, industrial-grade optimization tool for very large neural networks.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5469b7d0f495": {
+    "zh": "09 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "09 / Interactive Simulation Lab",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d5b43ba7f364": {
+    "zh": "互動探索實驗室：SWP 隨機遮罩模擬器 與 ASAM 尺度不變性驗證\n    <span class=\"en\">Interactive Lab: SWP Bernoulli Mask Simulator &amp; ASAM Scale-Invariance Live Verification</span>\n  ",
+    "en": "Interactive Lab: SWP Random-Mask Simulator and a Check of ASAM's Scale Invariance\n  ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "12ab45a7b941": {
+    "zh": "SWP 選中機率 $\\beta$：",
+    "en": "SWP selection probability $\\beta$:",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "465a78b7a497": {
+    "zh": "ASAM 尺度因子 $s$：",
+    "en": "ASAM scale factor $s$:",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4f916fde6b78": {
+    "zh": "SDS 銳度門檻 $\\alpha$：",
+    "en": "SDS sharpness threshold $\\alpha$:",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1a4d557205c8": {
+    "zh": "隨機抽樣 SWP 遮罩",
+    "en": "Sample an SWP mask",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8da6d8a9470b": {
+    "zh": "蒙地卡羅驗證無偏性",
+    "en": "Monte Carlo check of unbiasedness",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "426890d39480": {
+    "zh": "重設尺度 (Reset)",
+    "en": "Reset scale (Reset)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f637e1452cd8": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. <strong>SWP 期望無偏性驗證</strong>：點選「隨機抽樣 SWP 遮罩」，觀察 16 個權重方塊中被選中（藍色）與遮罩（灰色）的比例；點選「蒙地卡羅驗證無偏性」，累計多輪抽樣平均值，觀察其逼近完整 $\\boldsymbol{\\epsilon}^*$ 的微小誤差！<br>\n      2. <strong>ASAM 尺度不變性即時驗證</strong>：滑動「ASAM 尺度因子 $s$」，觀察 Vanilla SAM 的銳度數值隨 $s$ 發生嚴重形變，而 ASAM 的自適應銳度數值始終<strong>完全保持恆定（誤差為 0.000）</strong>！\n    ",
+    "en": "🧪 <strong>Hands-on challenge:</strong><br>\n      1. <strong>Check SWP's unbiasedness in expectation</strong>: click \"Sample an SWP mask\" and look at the proportion of the 16 weight squares that are selected (blue) versus masked (gray); click \"Monte Carlo check of unbiasedness\" to average over many rounds of sampling and watch how small its error from the full $\\boldsymbol{\\epsilon}^*$ gets!<br>\n      2. <strong>Live check of ASAM's scale invariance</strong>: slide \"ASAM scale factor $s$\" and watch Vanilla SAM's sharpness value distort badly as $s$ changes, while ASAM's adaptive sharpness value always <strong>stays perfectly constant (error 0.000)</strong>!",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8712b7f39a64": {
+    "zh": "10 / 實戰檢驗 · Concept Checkpoint",
+    "en": "10 / Concept Checkpoint",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Feedback on Concepts\n  ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b998a73a2fc6": {
+    "zh": "題目 1：SWP 中二元遮罩 $m_i$ 的抽樣分佈是？",
+    "en": "Question 1: What is the sampling distribution of the binary mask $m_i$ in SWP?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "35c2d7b5acc2": {
+    "zh": "A. 均勻分佈 $U(0,1)$",
+    "en": "A. The uniform distribution $U(0,1)$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "769dc6f778ac": {
+    "zh": "C. 高斯分佈",
+    "en": "C. The Gaussian distribution",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "766605df13dc": {
+    "zh": "D. 恆為 1",
+    "en": "D. Always 1",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0f473e01ec2c": {
+    "zh": "題目 2：SDS 中 $\\mathcal{B}^{+}$ 的定義條件是？",
+    "en": "Question 2: What is the condition that defines $\\mathcal{B}^{+}$ in SDS?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bef51e4be6f8": {
+    "zh": "A. 損失 $\\mathcal{L}(\\boldsymbol{w})=0$",
+    "en": "A. The loss $\\mathcal{L}(\\boldsymbol{w})=0$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "356736555583": {
+    "zh": "C. 梯度範數小於 $\\alpha$",
+    "en": "C. The gradient norm is less than $\\alpha$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cc6311f4d4bc": {
+    "zh": "D. 屬於驗證集",
+    "en": "D. It belongs to the validation set",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e96ded7c7a89": {
+    "zh": "題目 3：ASAM 相對於 Vanilla SAM 的主要改進是？",
+    "en": "Question 3: What is ASAM's main improvement over Vanilla SAM?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2bc04e283dec": {
+    "zh": "A. 完全不需要算梯度",
+    "en": "A. It needs no gradients at all",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8d7e3778e8ba": {
+    "zh": "B. sharpness 量測對權重 re-scaling 具尺度不變性",
+    "en": "B. Its sharpness measure is scale-invariant to weight re-scaling",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "988f8c31ddff": {
+    "zh": "C. 只用一次反向傳播",
+    "en": "C. It uses only one backward pass",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "979c1a371426": {
+    "zh": "D. 取消 min-max 結構",
+    "en": "D. It removes the min-max structure",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "284823a030f3": {
+    "zh": "題目 4：SWP 近似 $\\widehat{\\boldsymbol{\\epsilon}}(\\boldsymbol{w})$ 的期望為何仍等於 $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$？",
+    "en": "Question 4: Why is the expectation of the SWP approximation $\\widehat{\\boldsymbol{\\epsilon}}(\\boldsymbol{w})$ still equal to $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$?",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "30f853f3e7d9": {
+    "zh": "A. 因為 $\\mathbb{E}[m_i]=\\beta$ 且 $m_i$ 與 $\\boldsymbol{\\epsilon}^*$ 獨立，$\\frac{1}{\\beta}\\mathbb{E}[m_i]\\mathbb{E}[\\boldsymbol{\\epsilon}^*_i]=\\mathbb{E}[\\boldsymbol{\\epsilon}^*_i]$",
+    "en": "A. Because $\\mathbb{E}[m_i]=\\beta$ and $m_i$ is independent of $\\boldsymbol{\\epsilon}^*$, $\\frac{1}{\\beta}\\mathbb{E}[m_i]\\mathbb{E}[\\boldsymbol{\\epsilon}^*_i]=\\mathbb{E}[\\boldsymbol{\\epsilon}^*_i]$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b12e562f9e52": {
+    "zh": "B. 因為遮罩全為 1",
+    "en": "B. Because the mask is all ones",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1c1109719a96": {
+    "zh": "C. 因為 $\\beta=0$",
+    "en": "C. Because $\\beta=0$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5b722e7e2a3a": {
+    "zh": "D. 因為不做擾動",
+    "en": "D. Because no perturbation is done",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

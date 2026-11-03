@@ -1,0 +1,1355 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "RMSProp 的核心貢獻是將 AdaGrad 的梯度平方無界累積和改為指數移動平均（EMA），賦予優化器遺忘遠古梯度的能力，避免了步長早夭歸零。": "RMSProp's core contribution is replacing AdaGrad's unbounded cumulative sum of squared gradients with an exponential moving average (EMA), giving the optimizer the ability to forget ancient gradients and keeping the step size from dying out to zero prematurely.",
+      "Adam 同時維護梯度的均值（一階矩 $\\boldsymbol{m}$，對應動量方向）與未中心化方差（二階矩 $v$，對應 RMSProp 坐標尺度縮放）。": "Adam maintains both the mean of the gradient (the first moment $\\boldsymbol{m}$, corresponding to the momentum direction) and its uncentered variance (the second moment $v$, corresponding to RMSProp's per-coordinate scaling).",
+      "偏置修正（式 (44)–(45)）除以 $1-\\gamma^k$，旨在消除因 $\\boldsymbol{m}$ 和 $v$ 初始化為 0 導致早期估計值被系統性嚴重低估的缺陷。": "Bias correction (Eqs. (44)–(45)) divides by $1-\\gamma^k$ to remove the flaw that, because $\\boldsymbol{m}$ and $v$ are initialized to 0, the early estimates are systematically and severely underestimated.",
+      "Adam 是現代深度學習中最主流、最適應各類複雜模型（如 Transformer、ResNet 等）的預設優化器。": "Adam is the most mainstream default optimizer in modern deep learning, the one best suited to all kinds of complex models (such as Transformers and ResNets).",
+      "谷底 (0, 0)": "Min (0, 0)",
+      "當前步數 k：": "Current step k:",
+      "座標 (x, y)：": "Position (x, y):",
+      "損失值 f(x, y)：": "Loss f(x, y):",
+      "梯度範數 ‖∇f‖：": "Gradient norm ‖∇f‖:",
+      "一階矩 m (raw)：": "First moment m (raw):",
+      "修正後 m̂ (corrected)：": "Corrected m̂:",
+      "二階矩 v (raw)：": "Second moment v (raw):",
+      "修正後 v̂ (corrected)：": "Corrected v̂:",
+      "修正倍率 (1/(1−βᵏ))：": "Correction factor (1/(1−βᵏ)):",
+      "偏置修正開關：": "Bias correction switch:",
+      "已開啟 (ON)": "ON",
+      "已關閉 (OFF)": "OFF",
+      "狀態判定：": "Status:",
+      "✅ 成功收斂抵達谷底 (|∇f| < 0.05)": "✅ Converged to the valley floor (|∇f| < 0.05)",
+      "⚠️ 未偏置修正：初值為 0 導致早期矩估計嚴重被低估！": "⚠️ No bias correction: zero initialization makes the early moment estimates severely underestimated!",
+      "🏃 沿著狹長峽谷高速推進中...": "🏃 Advancing fast along the narrow ravine..."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^1階: (\\S+) \\| 2階: (\\S+)$",
+        "en": "1st: $1 | 2nd: $2"
+      },
+      {
+        "re": "^🚀 偏置修正生效中：初期動量/方差無偏校準！\\(校準倍率: (\\S+) / (\\S+)\\)$",
+        "en": "🚀 Bias correction at work: early momentum/variance calibrated to be unbiased! (calibration factors: $1 / $2)"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "6be9de52d2e1": {
+    "zh": "KP11 · 索引",
+    "en": "KP11 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ccb84ceab452": {
+    "zh": "<a href=\"#adagrad-flaw\">歷史死局 · AdaGrad Flaw</a>",
+    "en": "<a href=\"#adagrad-flaw\">Historical Dead End: AdaGrad's Flaw</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4dc8a0b00f2f": {
+    "zh": "<a href=\"#rmsprop-ema\">遺忘機制 · RMSProp EMA</a>",
+    "en": "<a href=\"#rmsprop-ema\">Forgetting Mechanism: RMSProp EMA</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2d83adf957eb": {
+    "zh": "<a href=\"#rmsprop-analysis\">機制深探 · RMSProp Deep Dive</a>",
+    "en": "<a href=\"#rmsprop-analysis\">Mechanism Deep Dive: RMSProp</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ebd51d6f741c": {
+    "zh": "<a href=\"#adam-unification\">雙矩合體 · Adam Dual Moments</a>",
+    "en": "<a href=\"#adam-unification\">Two Moments Combined: Adam</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01dae70fa342": {
+    "zh": "<a href=\"#bias-correction\">偏置修正 · Bias Correction</a>",
+    "en": "<a href=\"#bias-correction\">Bias Correction</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4b513ed20405": {
+    "zh": "<a href=\"#bias-derivation\">嚴密推導 · Unbiased Proof</a>",
+    "en": "<a href=\"#bias-derivation\">Rigorous Derivation: Unbiasedness</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e2c2c2f212a0": {
+    "zh": "<a href=\"#final-update\">最終更新 · Final Update</a>",
+    "en": "<a href=\"#final-update\">Final Update</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f04a3d27afe5": {
+    "zh": "<a href=\"#three-column-evolution\">三欄演進 · Three Columns</a>",
+    "en": "<a href=\"#three-column-evolution\">Three-Column Evolution</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8d9fc457623f": {
+    "zh": "<a href=\"#comparison\">橫向矩陣 · Comparison Matrix</a>",
+    "en": "<a href=\"#comparison\">Comparison Matrix</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2536b81fa3f2": {
+    "zh": "<a href=\"#master-maxims\">大師箴言 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">Master's Maxims</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Checkpoint Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "39bba1a57acb": {
+    "zh": "RMSProp 與 Adam：現代深度學習的預設優化器\n      <span class=\"hero-title-en\">RMSProp &amp; Adam: Exponential Decay, Dual Moments, and Bias-Corrected Adaptive Optimization</span>\n    ",
+    "en": "RMSProp and Adam: The Default Optimizers of Modern Deep Learning",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d75165cf3f32": {
+    "zh": "\n      AdaGrad 的單調累積讓學習率步入早夭死局；RMSProp 引入指數移動平均（EMA）賦予演算法「遺忘舊梯度」的自由；而 Adam 則將一階動量方向與二階 RMSProp 尺度完美合體，輔以巧妙的偏置修正（Bias Correction）機制，成為引領現代深度學習架構的絕對預設王者。\n    ",
+    "en": "AdaGrad's monotonic accumulation sends the learning rate to a premature death; RMSProp introduces an exponential moving average (EMA), giving the algorithm the freedom to \"forget old gradients\"; and Adam perfectly combines the first-order momentum direction with the second-order RMSProp scale, aided by a clever bias correction mechanism, becoming the undisputed default king that leads modern deep learning architectures.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a2c624091ec4": {
+    "zh": "\n      「步長早夭怎麼救？方向與尺度如何兼得？」\n      <small>AdaGrad 累積平方讓學習率只跌不升終致凍結；RMSProp 說「學會遺忘才能重生」，Adam 則問「能不能既看慣性方向，又按特徵方差動態縮放步長？」<br>\n        <span class=\"bilingual-en-inline\">How do we resurrect frozen learning rates and unify momentum directions with coordinate-wise adaptive scales?</span>\n      </small>\n    ",
+    "en": "\"How do we rescue a step size that dies too early? How can we have both direction and scale?\"\n      <small>AdaGrad's accumulated squares make the learning rate only fall, never rise, until it finally freezes; RMSProp says \"only by learning to forget can you be reborn\", and Adam asks \"can we follow the direction of inertia and, at the same time, scale the step size dynamically according to each feature's variance?\"<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "393ff09b08be": {
+    "zh": "02 / 歷史死局 · AdaGrad's Accumulation Dilemma",
+    "en": "02 / Historical Dead End: AdaGrad's Accumulation Dilemma",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d508d6f30b24": {
+    "zh": "AdaGrad 的致命死穴：梯度平方無限累積與步長早夭\n    <span class=\"en\">The Fatal Flaw of AdaGrad: Monotonic Gradient Accumulation and Premature Step-Size Freezing</span>\n  ",
+    "en": "AdaGrad's fatal flaw: unbounded accumulation of squared gradients and the premature death of the step size",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e353a01e58e3": {
+    "zh": "AdaGrad 的累積機制與步長衰減公式",
+    "en": "AdaGrad's accumulation mechanism and step-size decay formula",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "01451df6ba44": {
+    "zh": "AdaGrad 為每個參數維度獨立維護梯度平方和，實現了頻繁更新維度邁小步、稀疏特徵維度邁大步的自適應縮放：",
+    "en": "AdaGrad keeps a separate sum of squared gradients for each parameter dimension, achieving adaptive scaling: small steps for frequently updated dimensions, large steps for sparse feature dimensions:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2faf5e02f01d": {
+    "zh": "<strong>致命死穴：</strong>由於每一步的梯度平方項 $(\\nabla f)_i^2 \\ge 0$，累積量 $G_i$ 隨迭代次數 $k$ 呈<strong>單調不減</strong>（Monotonically Non-Decreasing）遞增。隨著訓練輪數推進，$G_i \\to \\infty$，分母急劇膨脹，使得有效學習率 $\\frac{\\eta}{\\sqrt{G_i + \\varepsilon}} \\to 0$！",
+    "en": "<strong>Fatal flaw:</strong> since the squared-gradient term $(\\nabla f)_i^2 \\ge 0$ at every step, the accumulated quantity $G_i$ grows <strong>monotonically non-decreasing</strong> with the iteration count $k$. As training goes on, $G_i \\to \\infty$, the denominator swells sharply, and the effective learning rate $\\frac{\\eta}{\\sqrt{G_i + \\varepsilon}} \\to 0$!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b3c628d9f915": {
+    "zh": "1. 無限累積的重負",
+    "en": "1. The burden of unbounded accumulation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c63ceffde598": {
+    "zh": "歷史所有梯度的平方被毫無保留地疊加。訓練初期在陡峭斜坡上產生的巨大梯度，會永久性地把分母撐大，哪怕後來進入平緩開闊地，步長也再也無法復甦。",
+    "en": "The squares of all past gradients are piled up without any discount. The huge gradients produced on steep slopes early in training permanently inflate the denominator, so even after the model later reaches gentle, open ground, the step size can never recover.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c7c6f1c56a71": {
+    "zh": "2. 步長過早歸零",
+    "en": "2. The step size goes to zero too early",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9d16f09aefad": {
+    "zh": "神經網路訓練需要成千上萬輪迭代。AdaGrad 往往在訓練進行到中盤時，有效步長就已衰減到 $10^{-7}$ 以下，參數更新徹底「假死」，遠未抵達極小點便停滯不前。",
+    "en": "Training a neural network takes thousands upon thousands of iterations. With AdaGrad, the effective step size has often already decayed below $10^{-7}$ by the middle of training; parameter updates go completely \"comatose\", stalling long before reaching the minimum.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "897e20acac9f": {
+    "zh": "3. 局部地形的過度懲罰",
+    "en": "3. Over-penalizing the local terrain",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2de6e3eb22a4": {
+    "zh": "非凸損失曲面千變萬化。千百步前走過懸崖的統計記憶，不應該持續懲罰當前所處的平緩盆地。古典 AdaGrad 缺乏對時間的感知維度。",
+    "en": "Non-convex loss surfaces vary endlessly. The statistical memory of a cliff passed hundreds or thousands of steps ago should not keep penalizing the gentle basin you are in now. Classic AdaGrad lacks any sense of time.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e2b2d8188d9b": {
+    "zh": "4. 遺忘機制的呼喚",
+    "en": "4. The call for a forgetting mechanism",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4abe24203f56": {
+    "zh": "若要保持長期持續學習的能力，優化器必須學會「遺忘」遠古時期的梯度，只關注近期地形的二階統計——這正是 RMSProp 與 Adam 誕生的關鍵契機！",
+    "en": "To keep the ability to learn over the long run, the optimizer must learn to \"forget\" gradients from the distant past and focus only on the second-order statistics of the recent terrain. This is exactly the key opportunity that gave birth to RMSProp and Adam!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2d1c8ca5d4c8": {
+    "zh": "03 / 遺忘革命 · RMSProp &amp; Exponential Moving Average",
+    "en": "03 / The Forgetting Revolution: RMSProp &amp; Exponential Moving Average",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "54236c651c89": {
+    "zh": "式 (40)–(41) RMSProp 遺忘機制：指數移動平均 EMA 解除步長死亡詛咒\n    <span class=\"en\">RMSProp: Exponentially Decaying Averages Rescuing Optimization from Premature Freezing</span>\n  ",
+    "en": "Eqs. (40)–(41), RMSProp's forgetting mechanism: the exponential moving average (EMA) lifts the curse of step-size death",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4b175b9ca1ad": {
+    "zh": "RMSProp 梯度平方指數移動平均（式 (40)）與參數更新（式 (41)）",
+    "en": "RMSProp's exponential moving average of squared gradients (Eq. (40)) and parameter update (Eq. (41))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0827a4960f62": {
+    "zh": "AdaGrad 的累積和只增不減，長期後學習率會過度衰減。RMSProp [42] 的改進靈感來自動量——用<strong>指數移動平均（exponentially decaying average）</strong>取代簡單累積和，讓舊梯度資訊逐漸被遺忘。",
+    "en": "AdaGrad's accumulated sum only grows, so over time the learning rate decays too much. The improvement in RMSProp [42] is inspired by momentum: it replaces the simple accumulated sum with an <strong>exponentially decaying average</strong>, so that old gradient information is gradually forgotten.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7f21cf0ab4e1": {
+    "zh": "維護梯度平方的移動平均（式 (40)）：",
+    "en": "Maintain a moving average of the squared gradient (Eq. (40)):",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d7c9fac09a02": {
+    "zh": "其中 $\\gamma \\in [0, 1]$ 是遺忘因子（通常設為 $\\gamma = 0.9$）。參數更新式（式 (41)）：",
+    "en": "where $\\gamma \\in [0, 1]$ is the forgetting factor (usually set to $\\gamma = 0.9$). The parameter update (Eq. (41)):",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6f1995e8d6e8": {
+    "zh": "<strong>核心行為解讀：</strong>RMSProp 的行為類似 AdaGrad，但分母是指數衰減平均而非無限累加，避免了學習率過早歸零的問題。當梯度變小時，$v$ 會動態回落，使步長重新放大！",
+    "en": "<strong>Reading the core behavior:</strong> RMSProp behaves like AdaGrad, but its denominator is an exponentially decaying average rather than an unbounded sum, which avoids the problem of the learning rate going to zero too early. When the gradient becomes small, $v$ falls back dynamically, and the step size grows again!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "aa8548db2a57": {
+    "zh": "\n    在 RMSProp 的遞推式中，展開 $v^{(k+1)}$ 可見其本質是歷史梯度平方的幾何加權平均：\n    $v^{(k+1)} = (1-\\gamma) \\sum_{\\tau=0}^k \\gamma^{k-\\tau} \\|\\nabla f(\\boldsymbol{w}^{(\\tau)})\\|_2^2$。\n    時間距今越遠的步數 $\\tau$，其權重衰減為 $\\gamma^{k-\\tau}$。當 $\\gamma = 0.9$ 時，$0.9^{10} \\approx 0.35$，$0.9^{22} \\approx 0.098$。演算法本質上只保留最近約 $\\frac{1}{1-\\gamma} \\approx 10$ 步的局部幾何資訊！\n    <span class=\"bilingual-en\">By replacing monotonic sums with exponentially decaying averages, RMSProp limits historical memory to an effective window of 1/(1-gamma) iterations. When gradients shrink, v decreases, dynamically reviving the step size.</span>\n  ",
+    "en": "Expanding $v^{(k+1)}$ in RMSProp's recursion shows that it is, in essence, a geometrically weighted average of past squared gradients:\n    $v^{(k+1)} = (1-\\gamma) \\sum_{\\tau=0}^k \\gamma^{k-\\tau} \\|\\nabla f(\\boldsymbol{w}^{(\\tau)})\\|_2^2$.\n    The further step $\\tau$ lies in the past, the more its weight decays, as $\\gamma^{k-\\tau}$. With $\\gamma = 0.9$, $0.9^{10} \\approx 0.35$ and $0.9^{22} \\approx 0.098$. In essence, the algorithm keeps only the local geometric information of roughly the last $\\frac{1}{1-\\gamma} \\approx 10$ steps!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a81fc8ae8489": {
+    "zh": "04 / 機制深探 · RMSProp Deep Dive",
+    "en": "04 / Mechanism Deep Dive: RMSProp",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9e90b3c8e793": {
+    "zh": "RMSProp 深度解構：半衰期記憶窗與自適應坐標縮放\n    <span class=\"en\">Deep Mechanics of RMSProp: Half-Life Memory Windows &amp; Non-Stationary Adaptation</span>\n  ",
+    "en": "RMSProp deconstructed: the half-life memory window and adaptive per-coordinate scaling",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "259ef5827ebd": {
+    "zh": "1. 記憶半衰期定理",
+    "en": "1. The memory half-life theorem",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f0dc7154ad4f": {
+    "zh": "舊梯度資訊權重降至一半所需的步數為：$t_{1/2} = \\frac{\\ln 0.5}{\\ln \\gamma}$。取 $\\gamma = 0.9$ 時，$t_{1/2} \\approx 6.58$ 步；取 $\\gamma = 0.99$ 時，$t_{1/2} \\approx 68.97$ 步。超參數 $\\gamma$ 直接決定了模型對歷史地形的記憶長度。",
+    "en": "The number of steps it takes for the weight of old gradient information to drop by half is $t_{1/2} = \\frac{\\ln 0.5}{\\ln \\gamma}$. With $\\gamma = 0.9$, $t_{1/2} \\approx 6.58$ steps; with $\\gamma = 0.99$, $t_{1/2} \\approx 68.97$ steps. The hyperparameter $\\gamma$ directly sets how long the model remembers past terrain.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4cdac8012c28": {
+    "zh": "2. 非平穩環境王者",
+    "en": "2. King of non-stationary environments",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5a4e74d94359": {
+    "zh": "在迴圈神經網路（RNN / LSTM）或強化學習中，資料分佈與損失曲面隨時間強烈變化。RMSProp 能迅速忘卻先前分佈的舊統計，專注適應當前區域，避免被過往噪聲絆倒。",
+    "en": "In recurrent neural networks (RNN / LSTM) or reinforcement learning, the data distribution and the loss surface change strongly over time. RMSProp can quickly forget the old statistics of an earlier distribution and focus on adapting to the current region, so it is not tripped up by past noise.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9b27733a2fba": {
+    "zh": "3. 坐標自適應預條件",
+    "en": "3. Per-coordinate adaptive preconditioning",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5dae30d4ee61": {
+    "zh": "逐維度除以 $\\sqrt{v_i + \\varepsilon}$，等價於以對角矩陣近似 Hessian 的曲率尺度：在坡度陡峭的維度壓低步長防止震盪發散，在平緩平原上放膽邁大步加速前行。",
+    "en": "Dividing each dimension by $\\sqrt{v_i + \\varepsilon}$ amounts to approximating the Hessian's curvature scale with a diagonal matrix: in dimensions with steep slopes it shrinks the step to prevent oscillation and divergence, and on gentle plains it boldly takes big strides to speed ahead.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "49a3aa652498": {
+    "zh": "4. 傳奇起源：課堂投影片",
+    "en": "4. A legendary origin: lecture slides",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fe6ea6f6aea1": {
+    "zh": "RMSProp 未曾在傳統頂級學術會議上正式發表論文，而是 Geoffrey Hinton 教授於 2012 年在 Coursera 課程《Neural Networks for Machine Learning》Lecture 6e 中提出，隨後風靡全球深度學習界。",
+    "en": "RMSProp was never formally published as a paper at a traditional top academic conference. Instead, Professor Geoffrey Hinton proposed it in 2012 in Lecture 6e of his Coursera course \"Neural Networks for Machine Learning\", and it then swept the deep learning world.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3724b9803281": {
+    "zh": "05 / 雙矩合體 · Adam: Adaptive Moment Estimation",
+    "en": "05 / Two Moments Combined: Adam (Adaptive Moment Estimation)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cee5ff056ca2": {
+    "zh": "Adam 雙矩合體：式 (42) 一階動量方向 + 式 (43) 二階 RMSProp 尺度\n    <span class=\"en\">Adam: Harmonizing First-Moment Momentum Direction with Second-Moment RMSProp Scaling</span>\n  ",
+    "en": "Adam combines two moments: the first-order momentum direction of Eq. (42) + the second-order RMSProp scale of Eq. (43)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2180c0d3a128": {
+    "zh": "Adam 雙矩遞推式：一階矩 $\\boldsymbol{m}$（式 (42)）與二階矩 $v$（式 (43)）",
+    "en": "Adam's two moment recursions: the first moment $\\boldsymbol{m}$ (Eq. (42)) and the second moment $v$ (Eq. (43))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "65c707bc658d": {
+    "zh": "Adam（Adaptive Moment Estimation）[25] 是目前深度學習中最廣泛使用的優化器。它同時維護梯度的一階矩（動量）與二階矩（RMSProp 風格的方差估計）：",
+    "en": "Adam (Adaptive Moment Estimation) [25] is currently the most widely used optimizer in deep learning. It maintains both the first moment of the gradient (momentum) and the second moment (an RMSProp-style variance estimate):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ff757edc0b35": {
+    "zh": "其中 $\\gamma_{1}, \\gamma_{2} \\in [0,1]$（文獻通常記為 $\\beta_1, \\beta_2$，經典預設值為 $\\beta_1 = 0.9, \\beta_2 = 0.999$）。",
+    "en": "where $\\gamma_{1}, \\gamma_{2} \\in [0,1]$ (usually written $\\beta_1, \\beta_2$ in the literature, with classic defaults $\\beta_1 = 0.9, \\beta_2 = 0.999$).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1c90f3e1057b": {
+    "zh": "一階動量掌方向，二階 RMSProp 量尺度：兩強聯手的物理直覺",
+    "en": "First-order momentum sets the direction, second-order RMSProp measures the scale: the physical intuition behind joining two strengths",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "15735affe93f": {
+    "zh": "在物理學與統計學中：",
+    "en": "In physics and statistics:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f356e745172f": {
+    "zh": "<strong>一階動量矩 $\\boldsymbol{m}$（梯度的均值期望）：</strong>模擬質點慣性，沿著運動方向持續積累速度。在狹窄峽谷中，相鄰步的垂直劇烈震盪會相互抵消，而朝向谷底的前進動量則疊加放大！",
+    "en": "<strong>The first moment $\\boldsymbol{m}$ (the expected mean of the gradient):</strong> it mimics the inertia of a particle, steadily building up velocity along the direction of motion. In a narrow ravine, the violent oscillations across the ravine from one step to the next cancel each other out, while the forward momentum toward the valley floor adds up and grows!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cc8e7a0d6dbf": {
+    "zh": "<strong>二階方差矩 $v$（未中心化二階矩）：</strong>度量梯度在各坐標軸向的波動方差與陡峭程度。震盪強烈的維度 $v$ 大，更新時除以 $\\sqrt{v}$ 被強制縮減；平緩安靜的維度 $v$ 小，步幅獲得自然補償放大。",
+    "en": "<strong>The second moment $v$ (uncentered second moment):</strong> it measures the variance of the gradient's fluctuations and the steepness along each coordinate axis. In strongly oscillating dimensions $v$ is large, so dividing by $\\sqrt{v}$ in the update forces the step down; in gentle, quiet dimensions $v$ is small, and the stride is naturally compensated and enlarged.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "95e375e7b82b": {
+    "zh": "動量（Momentum）解決了「前進方向東倒西歪」的難題，RMSProp 解決了「各維度尺度天差地別」的困擾。兩者合二為一，奠定了 Adam 無可撼動的統治地位！",
+    "en": "Momentum solves the problem of \"a forward direction that lurches from side to side\", and RMSProp solves the trouble of \"dimensions whose scales differ wildly\". Merging the two into one established Adam's unshakable dominance!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "32d638ecb588": {
+    "zh": "06 / 關鍵校準 · Bias Correction Mechanism",
+    "en": "06 / Key Calibration: Bias Correction Mechanism",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4e74be7549f0": {
+    "zh": "式 (44)–(45) 偏置修正：初期零值低估拉回與 $1/(1-\\gamma^k)$ 幾何修正機制\n    <span class=\"en\">Equations (44)–(45) Bias Correction: Rescuing Zero-Initialized Underestimation via $1/(1-\\gamma^k)$</span>\n  ",
+    "en": "Eqs. (44)–(45), bias correction: pulling back the early underestimate caused by zero initialization, and the $1/(1-\\gamma^k)$ geometric correction",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "78d7df27efa0": {
+    "zh": "一個容易被忽視但至關重要的細節：矩估計偏置修正（式 (44)–(45)）",
+    "en": "An easily overlooked but crucial detail: bias correction of the moment estimates (Eqs. (44)–(45))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "928580a3d8e0": {
+    "zh": "$\\boldsymbol{m}$ 和 $v$ 在訓練開始時初始化為零向量（$\\boldsymbol{m}^{(0)}=\\boldsymbol{0}, v^{(0)}=0$）。在早期迭代中，由於歷史權重大部分落在「虛無的零」上面，矩估計會<strong>系統性地偏向 0（嚴重被低估）</strong>！Adam 用偏置修正補償：",
+    "en": "$\\boldsymbol{m}$ and $v$ are initialized to zero at the start of training ($\\boldsymbol{m}^{(0)}=\\boldsymbol{0}, v^{(0)}=0$). In the early iterations, because most of the historical weight falls on \"empty zeros\", the moment estimates are <strong>systematically biased toward 0 (severely underestimated)</strong>! Adam compensates with bias correction:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6270d73f3240": {
+    "zh": "當 $k$ 很小時，$1-\\gamma_1^k \\ll 1$，修正因子 $\\frac{1}{1-\\gamma_1^k} \\gg 1$ 把被壓低的矩估計「拉回來」；隨 $k$ 增大，$\\gamma_1^k \\to 0$，修正因子趨近 1，影響自然消失。",
+    "en": "When $k$ is small, $1-\\gamma_1^k \\ll 1$, and the correction factor $\\frac{1}{1-\\gamma_1^k} \\gg 1$ \"pulls back\" the suppressed moment estimate; as $k$ grows, $\\gamma_1^k \\to 0$, the correction factor approaches 1, and its effect fades away naturally.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "86b93838be99": {
+    "zh": "具體數值算例：未修正 vs 修正後",
+    "en": "A concrete numerical example: uncorrected vs. corrected",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c1067a8a2dc4": {
+    "zh": "設 $\\gamma_1 = 0.9$，$k=1$，當前步梯度 $g=4$：<br>\n      • 未修正：$m = 0.9 \\times 0 + 0.1 \\times 4 = 0.4$（遭初始 0 嚴重稀釋 10 倍！）<br>\n      • 修正後：$\\widehat{m} = \\frac{0.4}{1 - 0.9^1} = \\frac{0.4}{0.1} = 4.0$（完美無偏拉回真實梯度！）",
+    "en": "Let $\\gamma_1 = 0.9$, $k=1$, and the current gradient $g=4$:<br>\n      • Uncorrected: $m = 0.9 \\times 0 + 0.1 \\times 4 = 0.4$ (diluted 10-fold by the initial 0!)<br>\n      • Corrected: $\\widehat{m} = \\frac{0.4}{1 - 0.9^1} = \\frac{0.4}{0.1} = 4.0$ (pulled back perfectly, without bias, to the true gradient!)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7f36b837d928": {
+    "zh": "二階矩 $\\gamma_2=0.999$ 的千倍懸殊",
+    "en": "The thousand-fold gap in the second moment with $\\gamma_2=0.999$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7c05773386f6": {
+    "zh": "由於 $\\gamma_2 = 0.999$，在第 1 步時 $1 - \\gamma_2 = 0.001$！若無修正，$v^{(1)} = 0.001 g^2$，未修正矩被壓低整整 1000 倍！修正因子 $\\frac{1}{1-0.999^1} = 1000$ 將其瞬時校準回 $g^2$。",
+    "en": "Since $\\gamma_2 = 0.999$, at step 1 we have $1 - \\gamma_2 = 0.001$! Without correction, $v^{(1)} = 0.001 g^2$: the uncorrected moment is suppressed by a full factor of 1000! The correction factor $\\frac{1}{1-0.999^1} = 1000$ calibrates it back to $g^2$ instantly.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "03774ab49d63": {
+    "zh": "若缺少修正：步長開頭幾步幾乎停擺",
+    "en": "Without correction: the first few steps nearly stall",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "40eeb1e85d6f": {
+    "zh": "如果沒有偏置修正，未修正的 $m$ 縮小 10 倍，而 $\\sqrt{v}$ 縮小約 $\\sqrt{1000} \\approx 31.6$ 倍。兩者相除導致步長被嚴重扭曲；且當 $v$ 極小時容易受數值穩定項 $\\varepsilon$ 支配，導致開頭幾步動彈不得。",
+    "en": "Without bias correction, the uncorrected $m$ is 10 times too small, while $\\sqrt{v}$ is about $\\sqrt{1000} \\approx 31.6$ times too small. Dividing one by the other badly distorts the step size; and when $v$ is tiny it is easily dominated by the numerical-stability term $\\varepsilon$, so the first few steps can barely move.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d0945f9b7aaa": {
+    "zh": "隨時間自然淡出",
+    "en": "It fades out naturally over time",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "486c7fc468df": {
+    "zh": "當 $k = 50$ 時，$0.9^{50} \\approx 0.00515$，$1 - \\gamma_1^{50} \\approx 0.9948$，一階修正因子已衰減至 1.005；當 $k = 3000$ 時，二階修正因子亦降至 1.05。修正機制在初期保駕護航，在後期功成身退。",
+    "en": "At $k = 50$, $0.9^{50} \\approx 0.00515$ and $1 - \\gamma_1^{50} \\approx 0.9948$, so the first-moment correction factor has already decayed to 1.005; at $k = 3000$, the second-moment correction factor has also dropped to 1.05. The correction mechanism escorts training through the early phase and bows out once its job is done.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3a9a5bddd81d": {
+    "zh": "07 / 嚴密推導 · Derivation of Unbiasedness",
+    "en": "07 / Rigorous Derivation: Derivation of Unbiasedness",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d1015a56ed15": {
+    "zh": "偏置修正數學推導：幾何級數展開與期望無偏性證明\n    <span class=\"en\">Rigorous Derivation: Geometric Series Expansion and Proof of Unbiased Moment Estimation</span>\n  ",
+    "en": "Mathematical derivation of bias correction: geometric series expansion and proof of unbiasedness in expectation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7b91b421bab4": {
+    "zh": "期望無偏性證明（Proof of Unbiased Expectation）",
+    "en": "Proof of unbiased expectation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d0f5b44fc63c": {
+    "zh": "考察第 $k$ 步一階動量 $\\boldsymbol{m}^{(k)}$ 的展開式（初始化 $\\boldsymbol{m}^{(0)} = \\boldsymbol{0}$）：",
+    "en": "Consider the expansion of the first moment $\\boldsymbol{m}^{(k)}$ at step $k$ (initialized with $\\boldsymbol{m}^{(0)} = \\boldsymbol{0}$):",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c1eecba75bdc": {
+    "zh": "兩側取數學期望 $\\mathbb{E}[\\cdot]$。假設在當前局部平穩區間內，真實梯度期望保持穩定，即 $\\mathbb{E}[\\boldsymbol{g}_i] \\approx \\mathbb{E}[\\boldsymbol{g}_k]$：",
+    "en": "Take the expectation $\\mathbb{E}[\\cdot]$ of both sides. Assume that within the current locally stationary interval the expected true gradient stays stable, i.e. $\\mathbb{E}[\\boldsymbol{g}_i] \\approx \\mathbb{E}[\\boldsymbol{g}_k]$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "30a422bcd6cf": {
+    "zh": "利用等比數列（幾何級數）有限項求和公式：$\\sum_{i=1}^k \\gamma_1^{k-i} = 1 + \\gamma_1 + \\gamma_1^2 + \\dots + \\gamma_1^{k-1} = \\frac{1-\\gamma_1^k}{1-\\gamma_1}$，代入可得：",
+    "en": "Using the formula for the finite sum of a geometric series, $\\sum_{i=1}^k \\gamma_1^{k-i} = 1 + \\gamma_1 + \\gamma_1^2 + \\dots + \\gamma_1^{k-1} = \\frac{1-\\gamma_1^k}{1-\\gamma_1}$, and substituting, we get:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "037437ead629": {
+    "zh": "<strong>結論：</strong>未修正的估計值期望比真實梯度期望多乘了一個因子 $(1-\\gamma_1^k)$！因此定義 $\\widehat{\\boldsymbol{m}}^{(k)} := \\frac{\\boldsymbol{m}^{(k)}}{1-\\gamma_1^k}$，即可嚴格滿足：",
+    "en": "<strong>Conclusion:</strong> the expectation of the uncorrected estimate equals the expected true gradient multiplied by an extra factor $(1-\\gamma_1^k)$! So by defining $\\widehat{\\boldsymbol{m}}^{(k)} := \\frac{\\boldsymbol{m}^{(k)}}{1-\\gamma_1^k}$, we satisfy exactly:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "57b835363bb2": {
+    "zh": "同理，二階矩亦滿足 $\\mathbb{E}\\left[\\widehat{v}^{(k)}\\right] = \\mathbb{E}\\left[\\|\\boldsymbol{g}_k\\|_2^2\\right]$。數學結構優雅嚴密，無懈可擊！",
+    "en": "Likewise, the second moment satisfies $\\mathbb{E}\\left[\\widehat{v}^{(k)}\\right] = \\mathbb{E}\\left[\\|\\boldsymbol{g}_k\\|_2^2\\right]$. The mathematical structure is elegant, rigorous and airtight!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "06145f5184ec": {
+    "zh": "08 / 演算法總成 · Complete Adam Algorithm",
+    "en": "08 / Algorithm Assembly: Complete Adam Algorithm",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4a61e332df11": {
+    "zh": "式 (46) 最終參數更新式與超參數黃金預設值\n    <span class=\"en\">Equation (46) Final Parameter Update &amp; The Golden Hyperparameter Defaults</span>\n  ",
+    "en": "Eq. (46): the final parameter update and the golden default hyperparameters",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "98ee6bf86a17": {
+    "zh": "Adam 最終參數更新式（式 (46)）",
+    "en": "Adam's final parameter update (Eq. (46))",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f2b100a5e6fd": {
+    "zh": "<strong>本質解構：</strong>這等價於<strong>帶動量的 SGD + 自適應坐標縮放</strong>：$\\widehat{\\boldsymbol{m}}$ 提供方向（含動量平滑），$\\sqrt{\\widehat{v}}$ 提供逐維度的步幅調整。大多數深度學習框架（PyTorch、TensorFlow 等）都將 SGD（mini-batch 版）與 Adam 列為標準選項。",
+    "en": "<strong>What it really is:</strong> this is equivalent to <strong>SGD with momentum + adaptive per-coordinate scaling</strong>: $\\widehat{\\boldsymbol{m}}$ provides the direction (with momentum smoothing), and $\\sqrt{\\widehat{v}}$ provides a per-dimension step-size adjustment. Most deep learning frameworks (PyTorch, TensorFlow, etc.) list SGD (the mini-batch version) and Adam as standard options.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ee01edc3018b": {
+    "zh": "$\\beta_1 = 0.9$ (一階動量衰減率)",
+    "en": "$\\beta_1 = 0.9$ (first-moment decay rate)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "25e7f66afeb3": {
+    "zh": "有效記憶時間窗約 10 步。賦予模型合適的運動慣性，既能衝過平坦微小起伏與局部鞍點，又不會因慣性過大而衝出最優吸引盆地。",
+    "en": "An effective memory window of about 10 steps. It gives the model just the right inertia: enough to push past small flat bumps and local saddle points, but not so much that the inertia carries it out of the optimal basin of attraction.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a4b33bc1994e": {
+    "zh": "$\\beta_2 = 0.999$ (二階方差衰減率)",
+    "en": "$\\beta_2 = 0.999$ (second-moment decay rate)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fc97b5a66d14": {
+    "zh": "有效記憶時間窗約 1000 步。二階矩度量梯度能量，需更長期的統計平均才能壓制 mini-batch 隨機抽樣帶來的方差波動。",
+    "en": "An effective memory window of about 1000 steps. The second moment measures the gradient's energy, and it needs a longer-term statistical average to suppress the variance fluctuations caused by random mini-batch sampling.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "03a722740be1": {
+    "zh": "$\\varepsilon = 10^{-8}$ (數值穩定微小常數)",
+    "en": "$\\varepsilon = 10^{-8}$ (tiny constant for numerical stability)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0d852d51e725": {
+    "zh": "防止梯度接近零或訓練初期分母除以 0。在 32 位浮點數（float32）運算中，$10^{-8}$ 剛好接近單精度下界，兼具穩定性與靈敏度。",
+    "en": "It prevents division by 0 in the denominator when the gradient is near zero or early in training. In 32-bit floating-point (float32) arithmetic, $10^{-8}$ sits right near the lower bound of single precision, balancing stability and sensitivity.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d74373a3c004": {
+    "zh": "$\\eta = 10^{-3}$ ($0.001$, 預設學習率基準)",
+    "en": "$\\eta = 10^{-3}$ ($0.001$, the baseline default learning rate)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ed113bdca550": {
+    "zh": "在幾乎所有深度神經網路（CNN、Transformer、MLP）的原型驗證中，$0.001$ 都是最穩健的起點，堪稱現代 AI 領域的「宇宙常數」。",
+    "en": "In prototyping almost every deep neural network (CNN, Transformer, MLP), $0.001$ is the most robust starting point; it is practically the \"cosmological constant\" of modern AI.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bcc72a33d0a8": {
+    "zh": "09 / 演進圖譜 · Three-Column Evolution",
+    "en": "09 / Evolution Map: Three-Column Evolution",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "75e87e995a94": {
+    "zh": "三欄演進圖：AdaGrad 步長死亡 vs RMSProp 遺忘波浪 vs Adam 預設王者\n    <span class=\"en\">Three-Column Evolution: AdaGrad's Freezing vs RMSProp's Decay Wave vs Adam's King Supremacy</span>\n  ",
+    "en": "Three-column evolution: AdaGrad's step-size death vs. RMSProp's forgetting wave vs. Adam, the default king",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5cb833532995": {
+    "zh": "優化器演進歷程：從累積死局到雙矩合體與偏置校準",
+    "en": "Optimizer evolution: from the accumulation dead end to two moments and bias calibration",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "75cf9301cb98": {
+    "zh": "1. AdaGrad · 累積死局",
+    "en": "1. AdaGrad · accumulation dead end",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "28beed9cbee8": {
+    "zh": "G ← G + g² (無限累加)",
+    "en": "G ← G + g² (unbounded sum)",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "1f30d5e4b8fd": {
+    "zh": "G 暴漲 ↑",
+    "en": "G explodes ↑",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "712de23e2c22": {
+    "zh": "有效步長 η/√G → 0",
+    "en": "Effective step η/√G → 0",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "232f934d9705": {
+    "zh": "⚠ 步長過早死亡，訓練停滯",
+    "en": "⚠ Step size dies early, training stalls",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "96f2943241ec": {
+    "zh": "2. RMSProp · 遺忘波浪",
+    "en": "2. RMSProp · forgetting wave",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "08535505ebc5": {
+    "zh": "陡峭坡: v 升",
+    "en": "Steep slope: v rises",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "656a23cf96fa": {
+    "zh": "平緩處: v 降！",
+    "en": "Gentle area: v falls!",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "558dbe62a249": {
+    "zh": "指數加權可升可降",
+    "en": "Exponential weighting can rise or fall",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "0c6cf7849a5d": {
+    "zh": "舊梯度被忘掉，步長復甦",
+    "en": "Old gradients forgotten, step size revives",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "e0491b22af81": {
+    "zh": "✓ 有效記憶窗 ≈ 1/(1−γ) 步",
+    "en": "✓ Effective memory window ≈ 1/(1−γ) steps",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "ecf3cfaa03ec": {
+    "zh": "3. Adam · 預設王者 👑",
+    "en": "3. Adam · default king 👑",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "54a75e508d6d": {
+    "zh": "動量(方向) + RMSProp(尺度)",
+    "en": "Momentum (direction) + RMSProp (scale)",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "a73803d82cd2": {
+    "zh": "一階矩 m̂",
+    "en": "First moment m̂",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "9b049d6f40b9": {
+    "zh": "慣性前進方向",
+    "en": "Inertial forward direction",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "8fa13eb46a8f": {
+    "zh": "二階矩 √(v̂)",
+    "en": "Second moment √(v̂)",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "32238ce90e63": {
+    "zh": "坐標方差尺度",
+    "en": "Per-coordinate variance scale",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "11d97cc677c6": {
+    "zh": "兼備平滑慣性與坐標自適應",
+    "en": "Smooth inertia plus per-coordinate adaptivity",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "4a9cc839258b": {
+    "zh": "核心轉折：偏置修正機制（Bias Correction）— 為何必須除以 (1 − γᵏ)？",
+    "en": "Key turn: bias correction — why must we divide by (1 − γᵏ)?",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "342444802244": {
+    "zh": "步數 k",
+    "en": "Step k",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "6dd97f4fd81d": {
+    "zh": "矩",
+    "en": "Moment",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "186af9a7aac6": {
+    "zh": "真實期望 E[g]",
+    "en": "True expectation E[g]",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "122ec2ca0c8a": {
+    "zh": "未修正 m (初始為0被低估)",
+    "en": "Uncorrected m (starts at 0, underestimated)",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "878b051875c9": {
+    "zh": "修正後 m̂ (立即無偏拉回！)",
+    "en": "Corrected m̂ (pulled back unbiased at once!)",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "bc934f9be380": {
+    "zh": "● 痛點根源：",
+    "en": "● Root of the problem:",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "4341fe9c288c": {
+    "zh": "m, v 初始為 0，早期歷史權重缺位，估計值系統性偏低；",
+    "en": "m, v start at 0; early history weight is missing, so estimates run systematically low;",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "c0890f78f195": {
+    "zh": "例如 k=1 時 m = 0.1g，初值將真實梯度壓低整整 10 倍！",
+    "en": "e.g. at k=1, m = 0.1g: the initial value suppresses the true gradient a full 10×!",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "07131b1ad699": {
+    "zh": "● 修正本質：",
+    "en": "● What the correction does:",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "163e97b7e043": {
+    "zh": "除以 1 − γᵏ。當 k 很小時 1 − γᵏ ≪ 1，修正倍率將估計值拉回；",
+    "en": "Divide by 1 − γᵏ. For small k, 1 − γᵏ ≪ 1, and the correction factor pulls the estimate back;",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "8535ba3b2ec6": {
+    "zh": "隨步數 k 增大，γᵏ → 0，修正因子趨近 1，影響自然淡出。",
+    "en": "as step k grows, γᵏ → 0, the factor approaches 1, and its effect fades naturally.",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "d192b4b99af0": {
+    "zh": "● 實務關鍵：",
+    "en": "● Practical key:",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "eb3b43a9388f": {
+    "zh": "若不校準，前幾步因 v, m 被壓制導致步幅嚴重畸形；",
+    "en": "Without calibration, v and m are suppressed in the first steps, badly distorting the stride;",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "84db8ed38c4a": {
+    "zh": "偏置修正確保模型在關鍵起步期邁出正確步伐！",
+    "en": "bias correction makes sure the model takes the right steps in the critical starting phase!",
+    "kp": 10,
+    "ctx": "svg"
+  },
+  "dde1460acd1d": {
+    "zh": "圖 1：優化器三欄演進對比（AdaGrad 累積死局 → RMSProp 遺忘波浪 → Adam 雙矩合體）與偏置修正機制",
+    "en": "Figure 1: Three-column comparison of optimizer evolution (AdaGrad's accumulation dead end → RMSProp's forgetting wave → Adam's two combined moments) and the bias correction mechanism",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5953667f86a8": {
+    "zh": "優化器演進的核心邏輯與轉折",
+    "en": "The core logic and turning points of optimizer evolution",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5f8ef32e3866": {
+    "zh": "從古典梯度下降到現代預設 Adam，凝聚了深度學習學界十餘年的探索精髓：",
+    "en": "From classical gradient descent to Adam, today's default, lies the distilled essence of more than a decade of exploration by the deep learning community:",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9bec1009776e": {
+    "zh": "<strong>AdaGrad 的歷史功績與死穴：</strong>開創了「為每個維度單獨調步長」的先河，但單調累加平方讓分母成了無底洞，終致步長在訓練中盤早夭。",
+    "en": "<strong>AdaGrad's historical achievement and fatal flaw:</strong> it pioneered \"adjusting the step size separately for each dimension\", but monotonically summing squares turned the denominator into a bottomless pit, and the step size eventually died in the middle of training.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c55a0853be17": {
+    "zh": "<strong>RMSProp 的遺忘智慧：</strong>引入 EMA 指數移動平均，用幾何衰減賦予演算法「遺忘」舊梯度的能力。平緩時步長復甦，陡峭時步長收斂，解除了早夭魔咒。",
+    "en": "<strong>RMSProp's wisdom of forgetting:</strong> it introduced the exponential moving average (EMA), using geometric decay to give the algorithm the ability to \"forget\" old gradients. The step size revives on gentle ground and shrinks on steep ground, breaking the curse of premature death.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "839fb805237e": {
+    "zh": "<strong>Adam 的雙矩集大成：</strong>動量（一階矩）負責指引前進方向、穿透峽谷震盪；RMSProp（二階矩）負責平衡各維度尺度；偏置修正（除以 $1-\\gamma^k$）則解決了初值為零導致的起跑遲滯難題！",
+    "en": "<strong>Adam, the culmination of two moments:</strong> momentum (the first moment) points the way forward and cuts through the ravine's oscillations; RMSProp (the second moment) balances the scale of each dimension; and bias correction (dividing by $1-\\gamma^k$) solves the slow start caused by zero initial values!",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0f008489966e": {
+    "zh": "10 / 橫向矩陣 · Full Optimizer Comparison",
+    "en": "10 / Comparison Matrix: Full Optimizer Comparison",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "99de733cb809": {
+    "zh": "SGD vs Momentum vs AdaGrad vs RMSProp vs Adam 橫向全維度矩陣表\n    <span class=\"en\">Comprehensive Comparison: SGD, Momentum, AdaGrad, RMSProp, and Adam Across All Dimensions</span>\n  ",
+    "en": "SGD vs. Momentum vs. AdaGrad vs. RMSProp vs. Adam: a side-by-side comparison across all dimensions",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a0c14b7183a7": {
+    "zh": "優化器名稱",
+    "en": "Optimizer",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b1c5389dc2a2": {
+    "zh": "一階矩 (動量方向)",
+    "en": "First moment (momentum direction)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d16ac6be9bc9": {
+    "zh": "二階矩 (自適應尺度)",
+    "en": "Second moment (adaptive scale)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f78a622be2d9": {
+    "zh": "歷史遺忘機制",
+    "en": "Forgetting of history",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cd6074e8c3a0": {
+    "zh": "偏置修正",
+    "en": "Bias correction",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9dea6cf88f39": {
+    "zh": "核心更新式",
+    "en": "Core update rule",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "859e50f785c0": {
+    "zh": "適用場景與評析",
+    "en": "Use cases and assessment",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "be6249ccf6de": {
+    "zh": "<strong>標準 SGD</strong>",
+    "en": "<strong>Standard SGD</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bae754fa43d6": {
+    "zh": "無 (單純負梯度)",
+    "en": "No (plain negative gradient)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "44bb913aa4cd": {
+    "zh": "無 (全域單一步長 $\\eta$)",
+    "en": "No (a single global step size $\\eta$)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9ecc4ea4aa06": {
+    "zh": "無",
+    "en": "No",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "03e58c1b63e8": {
+    "zh": "凸最佳化基準；在病態峽谷中震盪劇烈，易卡在鞍點。",
+    "en": "Baseline for convex optimization; oscillates violently in ill-conditioned ravines and easily gets stuck at saddle points.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f27239f2b158": {
+    "zh": "有 ($\\beta \\approx 0.9$)",
+    "en": "Yes ($\\beta \\approx 0.9$)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "41b4d7ff9930": {
+    "zh": "有 (動量 EMA)",
+    "en": "Yes (momentum EMA)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bf1c54cabda4": {
+    "zh": "電腦視覺（ResNet 等）極致泛化時常選；方向平滑但無坐標縮放。",
+    "en": "Often chosen in computer vision (ResNet, etc.) for the best generalization; smooths the direction but has no per-coordinate scaling.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8b7cdf820edc": {
+    "zh": "有 (累加和 $G$)",
+    "en": "Yes (accumulated sum $G$)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0ec06fb3b201": {
+    "zh": "<strong>無 (只增不減！)</strong>",
+    "en": "<strong>No (it only grows!)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b8c02c6a80dc": {
+    "zh": "適合稀疏特徵（NLP 詞向量）；分母無限增大導致步長早夭。",
+    "en": "Suited to sparse features (NLP word embeddings); the denominator grows without bound, so the step size dies early.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4413326af000": {
+    "zh": "有 (指數平均 $v$)",
+    "en": "Yes (exponential average $v$)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "be7c06a7f3bd": {
+    "zh": "<strong>有 ($\\gamma \\approx 0.9$)</strong>",
+    "en": "<strong>Yes ($\\gamma \\approx 0.9$)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7f174b572b96": {
+    "zh": "迴圈神經網路 (RNN)、強化學習；能遺忘舊梯度，步長不早夭。",
+    "en": "Recurrent neural networks (RNN), reinforcement learning; can forget old gradients, so the step size does not die early.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "377392ae2797": {
+    "zh": "<strong>Adam (預設王者)</strong>",
+    "en": "<strong>Adam (the default king)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9b22498b9b9e": {
+    "zh": "<strong>有 ($\\beta_1 = 0.9$)</strong>",
+    "en": "<strong>Yes ($\\beta_1 = 0.9$)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f3c6edfa19a8": {
+    "zh": "<strong>有 ($\\beta_2 = 0.999$)</strong>",
+    "en": "<strong>Yes ($\\beta_2 = 0.999$)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8974cb5c5784": {
+    "zh": "<strong>有 (雙矩 EMA)</strong>",
+    "en": "<strong>Yes (EMA of both moments)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "dd8d6991ec66": {
+    "zh": "<strong>有 ($1-\\beta^k$)</strong>",
+    "en": "<strong>Yes ($1-\\beta^k$)</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "378bce98c8af": {
+    "zh": "<strong>現代深度學習通用首選 (Transformer / LLM / GNN)；調參最穩健！</strong>",
+    "en": "<strong>The general first choice in modern deep learning (Transformer / LLM / GNN); the most robust to tune!</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "312b4671701c": {
+    "zh": "11 / 智慧結晶 · Four Inviolable Laws",
+    "en": "11 / Distilled Wisdom: Four Inviolable Laws",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "860e620916be": {
+    "zh": "大師箴言：現代深度最佳化四大鐵律\n    <span class=\"en\">Master Maxims: The Four Inviolable Laws of Modern Deep Optimization</span>\n  ",
+    "en": "Master's maxims: the four iron laws of modern deep optimization",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "09fea01ac7d6": {
+    "zh": "一、指數遺忘律：累積過猶不及，EMA 賦予重生自由",
+    "en": "1. The law of exponential forgetting: too much accumulation is as bad as too little; EMA grants the freedom to be reborn",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "65896ab4901a": {
+    "zh": "無限累積歷史梯度的代價是步長早夭。唯有引入指數衰減（EMA），讓舊記憶幾何褪色，才能在曲折多變的損失景觀中保持生生不息的自適應調控力。",
+    "en": "The price of accumulating past gradients without limit is a step size that dies early. Only by introducing exponential decay (EMA), letting old memories fade geometrically, can the optimizer keep an ever-renewing power of adaptive control across a twisting, ever-changing loss landscape.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "788de5f04a1b": {
+    "zh": "二、雙矩互補律：一階掌方向、二階量尺度，各司其職",
+    "en": "2. The law of complementary moments: the first moment sets the direction, the second measures the scale, each doing its own job",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ffc16ca8aa51": {
+    "zh": "單純動量不知維度懸殊，單純 RMSProp 不識慣性方向。動量平滑削平峽谷之字形震盪，方差縮放抹平特徵尺度鴻溝，兩強協同方成大器。",
+    "en": "Momentum alone is blind to how much the dimensions differ; RMSProp alone knows nothing of inertial direction. Momentum smoothing flattens the ravine's zigzag oscillations, variance scaling closes the gaps between feature scales, and only together do the two achieve greatness.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7ed7beed2ca2": {
+    "zh": "三、偏置校準律：零初值必遭低估，$1/(1-\\gamma^k)$ 拉回早夭幼苗",
+    "en": "3. The law of bias calibration: zero initial values are always underestimated; $1/(1-\\gamma^k)$ rescues the young seedlings",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "05a6ff43cb39": {
+    "zh": "看似不起眼的幾何除數 $1-\\gamma^k$，承擔著消除零初值人為低估的關鍵重任。沒有偏置修正的保駕護航，優化器在前十步將陷入步幅嚴重畸形的泥潭。",
+    "en": "The seemingly modest geometric divisor $1-\\gamma^k$ carries the crucial task of removing the artificial underestimate caused by zero initial values. Without bias correction to escort it, the optimizer would sink into the mire of badly distorted strides during its first ten steps.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "833e7a5439d3": {
+    "zh": "四、預設首選律：遇事不決用 Adam，未知領域的自適應基石",
+    "en": "4. The law of the default choice: when in doubt, use Adam, the adaptive cornerstone for unknown territory",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5deac413bc30": {
+    "zh": "儘管在某些特定任務的極限泛化上 SGD+動量仍有精調優勢，但面對任何全新架構與未知任務，Adam 始終是收斂最穩、試錯成本最低的絕對首選！",
+    "en": "Although SGD + momentum still has a fine-tuning edge for peak generalization on certain specific tasks, when facing any brand-new architecture or unknown task, Adam is always the absolute first choice: the most stable convergence and the lowest cost of trial and error!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6ba820a71903": {
+    "zh": "12 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "12 / Hands-On Simulation: Interactive Simulation Lab",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f4e0e5895501": {
+    "zh": "互動探索實驗室：Adam 超參數調節器與狹長峽谷軌跡模擬\n    <span class=\"en\">Interactive Lab: Adam Hyperparameter Tuner &amp; Moment Trajectory on Ill-Conditioned Ravine</span>\n  ",
+    "en": "Interactive exploration lab: Adam hyperparameter tuner and trajectory simulation in a long, narrow ravine",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a967661c6453": {
+    "zh": "演算法預設：",
+    "en": "Algorithm preset:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "76320c5fb816": {
+    "zh": "Adam (預設王者 · 偏置修正 ON)",
+    "en": "Adam (default king · bias correction ON)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "48fbeb2f8efd": {
+    "zh": "Adam (未偏置修正 · 偏置修正 OFF)",
+    "en": "Adam (no bias correction · bias correction OFF)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "834439026499": {
+    "zh": "RMSProp 模式 (β1=0, β2=0.99)",
+    "en": "RMSProp mode (β1=0, β2=0.99)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5059a31c5561": {
+    "zh": "Momentum 模式 (β1=0.9, β2=0)",
+    "en": "Momentum mode (β1=0.9, β2=0)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d9ba1ff4cbbf": {
+    "zh": "β₁ (動量):",
+    "en": "β₁ (momentum):",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "26640b02d742": {
+    "zh": "β₂ (方差):",
+    "en": "β₂ (variance):",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4c1f2df5ae60": {
+    "zh": "學習率 η:",
+    "en": "Learning rate η:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "752a1f440fb4": {
+    "zh": "啟用偏置修正 (Bias Correction)",
+    "en": "Enable bias correction",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "508a4458b7ef": {
+    "zh": "單步執行",
+    "en": "Single step",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3a92428d3466": {
+    "zh": "快進 10 步",
+    "en": "Fast-forward 10 steps",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ac1276b51b9d": {
+    "zh": "重設起點",
+    "en": "Reset start point",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2646c6c68e22": {
+    "zh": "<strong>當前步數 k：</strong> 0<br><strong>座標 (x, y)：</strong> (-3.200, 2.200)<br><strong>損失值 f(x, y)：</strong> 74.1000<br><strong>梯度範數 ‖∇f‖：</strong> 44.854<br><strong>一階矩 m (raw)：</strong> (0.0000, 0.0000)<br><strong>修正後 m̂ (corrected)：</strong> (0.0000, 0.0000)<br><strong>二階矩 v (raw)：</strong> (0.0000, 0.0000)<br><strong>修正後 v̂ (corrected)：</strong> (0.0000, 0.0000)<br><strong>修正倍率 (1/(1−βᵏ))：</strong> 1階: 1.00x | 2階: 1.00x<br><strong>偏置修正開關：</strong> <span style=\"color:#16a34a;font-weight:bold;\">已開啟 (ON)</span><br><strong>狀態判定：</strong><br>",
+    "en": "<strong>Current step k:</strong> 0<br><strong>Position (x, y):</strong> (-3.200, 2.200)<br><strong>Loss f(x, y):</strong> 74.1000<br><strong>Gradient norm ‖∇f‖:</strong> 44.854<br><strong>First moment m (raw):</strong> (0.0000, 0.0000)<br><strong>Corrected m̂:</strong> (0.0000, 0.0000)<br><strong>Second moment v (raw):</strong> (0.0000, 0.0000)<br><strong>Corrected v̂:</strong> (0.0000, 0.0000)<br><strong>Correction factor (1/(1−βᵏ)):</strong> 1st: 1.00x | 2nd: 1.00x<br><strong>Bias correction switch:</strong> <span style=\"color:#16a34a;font-weight:bold;\">On (ON)</span><br><strong>Status:</strong><br>",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "58777af0d6bf": {
+    "zh": "🏃 沿著狹長峽谷高速推進中...",
+    "en": "🏃 Advancing quickly along the long, narrow ravine...",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c3decfd6139d": {
+    "zh": "13 / 檢測評量 · Checkpoint Quizzes",
+    "en": "13 / Assessment: Checkpoint Quizzes",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "c9b882507a74": {
+    "zh": "隨堂檢測：四題掌握 RMSProp 與 Adam 核心機制\n    <span class=\"en\">Checkpoint Quizzes: Mastering RMSProp, Adam Dual Moments, and Bias Correction</span>\n  ",
+    "en": "Checkpoint quiz: four questions to master the core mechanisms of RMSProp and Adam",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "abba0722126d": {
+    "zh": "題目 1：RMSProp 相對 AdaGrad 的關鍵改進是？",
+    "en": "Question 1: What is RMSProp's key improvement over AdaGrad?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "b1b4d17a0e78": {
+    "zh": "A. 引入 Hessian 資訊",
+    "en": "A. It introduces Hessian information",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e529d34afbf7": {
+    "zh": "B. 用指數移動平均取代梯度平方的累積和",
+    "en": "B. It replaces the accumulated sum of squared gradients with an exponential moving average",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1c80d89d25ea": {
+    "zh": "C. 取消學習率",
+    "en": "C. It removes the learning rate",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "0481b1befd67": {
+    "zh": "D. 改用全梯度",
+    "en": "D. It switches to the full gradient",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "71fac64a1234": {
+    "zh": "題目 2：Adam 同時維護哪兩種矩估計？",
+    "en": "Question 2: Which two moment estimates does Adam maintain at the same time?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "cd1afe47cf47": {
+    "zh": "A. 梯度的均值與方差（一階矩與二階矩）",
+    "en": "A. The mean and variance of the gradient (first and second moments)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "966eb9817f85": {
+    "zh": "B. 損失的均值與方差",
+    "en": "B. The mean and variance of the loss",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d30680f24879": {
+    "zh": "C. 權重的均值與方差",
+    "en": "C. The mean and variance of the weights",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "8f61bbcb73d7": {
+    "zh": "D. 啟用值的均值與方差",
+    "en": "D. The mean and variance of the activations",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "0c980bdb4519": {
+    "zh": "題目 3：Adam 偏置修正（式 (44)–(45)）的目的是？",
+    "en": "Question 3: What is the purpose of Adam's bias correction (Eqs. (44)–(45))?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "9a82a90c6d00": {
+    "zh": "A. 加速收斂到 sharp minima",
+    "en": "A. To speed up convergence to sharp minima",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "5bed173fd93c": {
+    "zh": "B. 補償早期迭代中 $m$、$v$ 初始為 0 造成的系統性偏差",
+    "en": "B. To compensate for the systematic bias in early iterations caused by $m$ and $v$ being initialized to 0",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "8e6cb715aa39": {
+    "zh": "C. 增大 batch size",
+    "en": "C. To increase the batch size",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "59695ba470e5": {
+    "zh": "D. 替代 L2 正則化",
+    "en": "D. To replace L2 regularization",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "458432ff3966": {
+    "zh": "題目 4：下列何者正確描述 Adam 在實務中的地位？",
+    "en": "Question 4: Which of the following correctly describes Adam's standing in practice?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "36bf13ede418": {
+    "zh": "A. 僅用於理論研究",
+    "en": "A. It is used only in theoretical research",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1fb6388d6fb4": {
+    "zh": "B. 現代深度學習中最廣泛使用的優化器之一",
+    "en": "B. It is one of the most widely used optimizers in modern deep learning",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "cdd471f27b0f": {
+    "zh": "C. 已被 SGD 完全取代",
+    "en": "C. It has been completely replaced by SGD",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "dd5be60fe0e1": {
+    "zh": "D. 只能用在凸最佳化",
+    "en": "D. It can only be used for convex optimization",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

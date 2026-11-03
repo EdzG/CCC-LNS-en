@@ -1,0 +1,1160 @@
+{
+  "_runtime": {
+    "exact": {
+      "當前參數位置 w：": "Current parameter position w:",
+      "當前訓練損失 L(w)：": "Current training loss L(w):",
+      "當前梯度 ∇L(w)：": "Current gradient ∇L(w):",
+      "網路寬度 m：": "Network width m:",
+      "樣本分離度 δ：": "Sample separation δ:",
+      "學習率 η：": "Learning rate η:",
+      "理論 GD 步數界 (式 58 估計)：": "Theoretical GD step bound (Eq. 58 estimate):",
+      "累計迭代步數：": "Cumulative iterations:",
+      "收斂狀態診斷：": "Convergence diagnosis:",
+      "🏆 成功收斂至全域極小！L(w) < 0.01（驗證 Prop 4 & 5 零損失可達）": "🏆 Converged to the global minimum! L(w) < 0.01 (confirms Prop 4 & 5: zero loss is reachable)",
+      "❌ 卡在 Spurious Local Minimum (假坑)！∇L ≈ 0 但損失極高，一階法受困": "❌ Stuck in a spurious local minimum (false pit)! ∇L ≈ 0 but the loss is very high; first-order methods are trapped",
+      "⚡ 鞍點負曲率區域（∇²L < 0）：加入微小擾動即能滑脫！": "⚡ Negative-curvature saddle region (∇²L < 0): a tiny perturbation is enough to slip away!",
+      "🏃 梯度下降最佳化進行中...": "🏃 Gradient descent optimization in progress...",
+      "w = -1.6 (全域)": "w = -1.6 (global)",
+      "w = +1.6 (全域)": "w = +1.6 (global)",
+      "✔ 假局部極小已消除，可順利收斂至 L=0": "✔ False local minima gone; converges smoothly to L=0",
+      "⚠️ 梯度受阻，隨機初始易陷於次優解": "⚠️ Gradient blocked; random init easily gets stuck",
+      "暫停 (Pause)": "Pause",
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "「無 spurious local minima」代表所有局部極小值皆達到全域最優解（All local minima are global minima），地景不存在次優假坑。": "\"No spurious local minima\" means that every local minimum attains the global optimum (all local minima are global minima): the landscape has no suboptimal false pits.",
+      "鞍點處的 Hessian 矩陣存在嚴格負曲率方向（Strict Negative Curvature），隨機初始化的一階梯度下降法能迅速沿負特徵值方向滑脫。": "At a saddle point the Hessian matrix has a direction of strict negative curvature, so first-order gradient descent with random initialization can quickly slip away along the negative-eigenvalue direction.",
+      "式 (58) 指出全批次 GD 達到損失 $\\lt\\epsilon$ 的步數為 $\\Theta(\\mathrm{poly}(n,l)\\log(\\epsilon^{-1})/\\delta^{2})$，呈現多項式複雜度與對數精度依賴。": "Eq. (58) states that the number of steps for full-batch GD to reach a loss $\\lt\\epsilon$ is $\\Theta(\\mathrm{poly}(n,l)\\log(\\epsilon^{-1})/\\delta^{2})$: polynomial complexity with a logarithmic dependence on the precision.",
+      "Fig. 7 的核心洞見為：在過參數化高維空間中，幾乎所有局部解都聚集在相同的全域能級上，等同於全域解。": "The core insight of Fig. 7: in an overparameterized high-dimensional space, almost all local solutions gather at the same global level, so they are equivalent to global solutions."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(\\d+) \\(過參數化區間\\)$",
+        "en": "$1 (overparameterized regime)"
+      },
+      {
+        "re": "^(\\d+) \\(低維欠參數區間\\)$",
+        "en": "$1 (low-dim. underparameterized regime)"
+      },
+      {
+        "re": "^T ~ (\\d+) 步$",
+        "en": "T ~ $1 steps"
+      },
+      {
+        "re": "^● 過參數化地景 \\(m=(\\d+)\\)：等高全域盆地$",
+        "en": "● Overparam. landscape (m=$1): equal-height global basins"
+      },
+      {
+        "re": "^● 欠參數/窄網路 \\(m=(\\d+)\\)：存在高假坑障礙$",
+        "en": "● Underparam./narrow net (m=$1): high false-pit barriers"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#sim-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "989092a32d0f": {
+    "zh": "KP15 · 索引",
+    "en": "KP15 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bedce815550a": {
+    "zh": "<a href=\"#overparam-puzzle\">核心謎題 · Overparameterization</a>",
+    "en": "<a href=\"#overparam-puzzle\">Core Puzzle: Overparameterization</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "264e063c214e": {
+    "zh": "<a href=\"#prop4-shallow\">淺層理論 · Proposition 4</a>",
+    "en": "<a href=\"#prop4-shallow\">Shallow Theory: Proposition 4</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7c9f5fa963b7": {
+    "zh": "<a href=\"#prop5-deep\">深層收斂 · Proposition 5</a>",
+    "en": "<a href=\"#prop5-deep\">Deep Convergence: Proposition 5</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bc811d8b5cdd": {
+    "zh": "<a href=\"#landscape-insight\">地景幾何 · Fig. 7 Insight</a>",
+    "en": "<a href=\"#landscape-insight\">Landscape Geometry: Fig. 7 Insight</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2759da5a2392": {
+    "zh": "<a href=\"#svg-landscape\">視覺對比 · Visual Comparison</a>",
+    "en": "<a href=\"#svg-landscape\">Visual Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f102aa2a196f": {
+    "zh": "<a href=\"#theory-vs-gen\">理論辨析 · Optimization vs Generalization</a>",
+    "en": "<a href=\"#theory-vs-gen\">Theory Clarified: Optimization vs Generalization</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f4752d34c7ee": {
+    "zh": "<a href=\"#comparison\">體系對比 · Comparative Matrix</a>",
+    "en": "<a href=\"#comparison\">Framework Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "795a43d30841": {
+    "zh": "<a href=\"#master-maxims\">四大鐵律 · Master Maxims</a>",
+    "en": "<a href=\"#master-maxims\">Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bec27f873cc3": {
+    "zh": "<a href=\"#lab\">模擬實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Simulation Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "60b136c51cc1": {
+    "zh": "過參數化網路的收斂保證：Prop 4、Prop 5 與 Fig. 7\n      <span class=\"hero-title-en\">Convergence Guarantees in Overparameterized Networks: Propositions 4, 5, and Landscape Geometry</span>\n    ",
+    "en": "Convergence Guarantees for Overparameterized Networks: Prop 4, Prop 5, and Fig. 7",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "a84ff8d2bac0": {
+    "zh": "\n      嚴重過參數化（參數遠多於訓練樣本）的網路為何在實務上能順利訓練？本單元剖析淺層二次網路的無假局部極小與鞍點負曲率逃逸（Proposition 4），深層 ReLU 網路在全批次 GD 與 SGD 下的多項式時間收斂保證（Proposition 5），並以 Fig. 7 揭示平坦等高全域盆地的幾何奧秘。\n    ",
+    "en": "Why can heavily overparameterized networks (far more parameters than training samples) be trained smoothly in practice? This unit dissects the absence of spurious local minima and the negative-curvature escape from saddle points in shallow quadratic networks (Proposition 4), the polynomial-time convergence guarantees for deep ReLU networks under full-batch GD and SGD (Proposition 5), and uses Fig. 7 to reveal the geometric secret of flat global basins all at the same height.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "354dd2446113": {
+    "zh": "\n      「參數比資料還多，理應嚴重過擬合與卡在假坑，為何梯度法總能完美收斂？」\n      <small>古典統計預言高維非凸地景充斥致命陷阱，現代深度學習卻揭示奇蹟：過參數化使所有局部極小皆為全域解！<br>\n        <span class=\"bilingual-en-inline\">Classical statistics warns of severe overfitting and local trap nightmares, yet modern deep learning reveals a miracle: overparameterization flattens the landscape so that all local minima become global!</span>\n      </small>\n    ",
+    "en": "\"There are more parameters than data, so the network should overfit badly and get stuck in false pits. Why does the gradient method always converge perfectly?\"\n      <small>Classical statistics predicted that high-dimensional non-convex landscapes are full of deadly traps, yet modern deep learning reveals a miracle: overparameterization makes every local minimum a global solution!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "30240e905857": {
+    "zh": "02 / 核心謎題 · The Overparameterization Puzzle",
+    "en": "02 / Core Puzzle: The Overparameterization Puzzle",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ade2ada2cffa": {
+    "zh": "過參數化之謎：參數多於樣本，為何未見過擬合且最佳化成功？\n    <span class=\"en\">The Overparameterization Puzzle: Why Having More Parameters Than Samples Succeeds</span>\n  ",
+    "en": "The overparameterization puzzle: with more parameters than samples, why is there no overfitting, and why does optimization succeed?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "57de7d789c8e": {
+    "zh": "古典統計的警示 vs 現代深度學習的實務突破",
+    "en": "The warning of classical statistics vs. the practical breakthrough of modern deep learning",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "72bba171161f": {
+    "zh": "\n      深度學習最令人驚訝的現象之一，就是<strong>嚴重過參數化（Overparameterized，可學參數量 $p \\gg n$ 遠多於訓練樣本數）</strong>的網路，往往不只完美記住訓練集，還能在未見過的測試集上展現出色的泛化能力。\n    ",
+    "en": "One of the most surprising phenomena in deep learning is that <strong>heavily overparameterized networks (the number of learnable parameters $p \\gg n$ far exceeds the number of training samples)</strong> often not only memorize the training set perfectly but also generalize remarkably well on unseen test sets.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "26931d239e91": {
+    "zh": "<strong>古典統計預期（Classical View）：</strong>根據傳統偏差-變異數權衡（Bias-Variance Tradeoff），模型自由度過大必然引發慘烈的過擬合（Overfitting）；且高維非凸目標函式理應充斥大量次優的局部假坑（Spurious Local Minima），梯度法幾乎註定停滯。",
+    "en": "<strong>Classical view:</strong> by the traditional bias-variance tradeoff, a model with too many degrees of freedom must overfit disastrously; and a high-dimensional non-convex objective should be riddled with suboptimal false pits (spurious local minima), so the gradient method is almost doomed to stall.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8c244f176e16": {
+    "zh": "<strong>深度學習實務（Modern Reality）：</strong>過參數化無論來自「寬度（每層神經元多）」、「深度（層數多）」或兩者兼備，在適當初始化與一階最佳化演算法（GD / SGD）下，<strong>訓練損失均能順利下降至全域或近全域極小值</strong>。",
+    "en": "<strong>Modern reality:</strong> whether overparameterization comes from \"width\" (many neurons per layer), \"depth\" (many layers), or both, with proper initialization and first-order optimization algorithms (GD / SGD), <strong>the training loss descends smoothly to a global or near-global minimum</strong>.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cbb7cbd3792f": {
+    "zh": "1. 寬度維度的過參數化",
+    "en": "1. Overparameterization in width",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e3723e4ae518": {
+    "zh": "每一層具備極多隱藏神經元（如神經切線核 NTK 區間）。高維度提供了充裕的擬合自由度，各神經元僅需微幅微調即可將輸出匹配真實標籤。",
+    "en": "Every layer has a huge number of hidden neurons (e.g. the neural tangent kernel, NTK, regime). High dimensionality provides ample fitting freedom, and each neuron needs only a tiny adjustment for the output to match the true labels.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "030f39ec78ca": {
+    "zh": "2. 深度維度的過參數化",
+    "en": "2. Overparameterization in depth",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "656dceba4a7b": {
+    "zh": "多層非線性變換具備強大表徵能力。層數的增加使得函式空間具備更優良的流形平滑性與豐富的鞍點逃逸通道。",
+    "en": "Multiple layers of nonlinear transformations have strong representational power. Adding layers gives the function space better manifold smoothness and abundant escape routes from saddle points.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "81c34ba2b0ec": {
+    "zh": "3. 最佳化成功不等同於泛化保證",
+    "en": "3. Successful optimization is not a generalization guarantee",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e3ee2597e1b4": {
+    "zh": "理論已嚴密證明過參數化網路的<strong>訓練損失可在多項式時間內降至零</strong>。本章聚焦「最佳化能否成功」，暫將「泛化之謎」作為獨立命題探討。",
+    "en": "Theory has rigorously proven that the <strong>training loss of overparameterized networks can be driven to zero in polynomial time</strong>. This chapter focuses on \"whether optimization can succeed\" and sets the \"generalization puzzle\" aside as a separate question.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e4ef546f7246": {
+    "zh": "03 / 淺層理論 · Proposition 4 (Shallow Networks)",
+    "en": "03 / Shallow Theory: Proposition 4 (Shallow Networks)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "06aa0f86ca41": {
+    "zh": "淺層網路收斂保證：Proposition 4 與三大核心性質\n    <span class=\"en\">Proposition 4: Shallow Networks with Quadratic Activation Guarantee Global Optimality</span>\n  ",
+    "en": "Convergence guarantees for shallow networks: Proposition 4 and its three core properties",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fa699cdf932d": {
+    "zh": "Proposition 4 的架構與數學設定（Du &amp; Lee, 2018 / Soltanolkotabi et al.）",
+    "en": "Architecture and mathematical setup of Proposition 4 (Du &amp; Lee, 2018 / Soltanolkotabi et al.)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "36dc53bf9718": {
+    "zh": "考慮單隱藏層神經網路架構：",
+    "en": "Consider a neural network with a single hidden layer:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4c60750d4664": {
+    "zh": "其中權重矩陣 $\\boldsymbol{W}\\in\\mathbb{R}^{k\\times d}$、固定輸出向量 $\\boldsymbol{v}\\in\\mathbb{R}^{k}$，訓練集包含 $n$ 筆樣本 $\\{(\\boldsymbol{x}_i, y_i)\\}_{i=1}^n$。最佳化目標為均方誤差（MSE）損失：",
+    "en": "where the weight matrix is $\\boldsymbol{W}\\in\\mathbb{R}^{k\\times d}$, the output vector $\\boldsymbol{v}\\in\\mathbb{R}^{k}$ is fixed, and the training set contains $n$ samples $\\{(\\boldsymbol{x}_i, y_i)\\}_{i=1}^n$. The optimization objective is the mean squared error (MSE) loss:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "be171dadfaaa": {
+    "zh": "<strong>定理前提條件（Premises）：</strong>",
+    "en": "<strong>Premises of the theorem:</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c8b285e5df96": {
+    "zh": "啟用函式為二次啟用：$\\sigma(z)=z^2$。",
+    "en": "The activation function is quadratic: $\\sigma(z)=z^2$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d6615810527c": {
+    "zh": "隱藏層寬度滿足過參數化門檻：$k\\geq 2d$。",
+    "en": "The hidden-layer width meets the overparameterization threshold: $k\\geq 2d$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6eb2e4703199": {
+    "zh": "輸出層權重 $\\boldsymbol{v}$ 中至少包含 $d$ 個正數與 $d$ 個負數（正負符號平衡）。",
+    "en": "The output-layer weights $\\boldsymbol{v}$ contain at least $d$ positive and $d$ negative entries (balanced signs).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "456f8dafa87f": {
+    "zh": "性質 1：無 Spurious Local Minima",
+    "en": "Property 1: no spurious local minima",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e7a15e35d540": {
+    "zh": "損失函式的地景中<strong>所有局部極小值都是全域極小值</strong>！曲面上完全不存在「梯度為零但損失劣於全域」的假解（Spurious Solution）。",
+    "en": "In the loss landscape, <strong>every local minimum is a global minimum</strong>! The surface has no false solutions (spurious solutions) at all, i.e. points where \"the gradient is zero but the loss is worse than the global one\".",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8b6dadb4d79c": {
+    "zh": "性質 2：鞍點具備嚴格負曲率方向",
+    "en": "Property 2: saddle points have a strict negative-curvature direction",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ef68c0f88785": {
+    "zh": "任一鞍點 $\\boldsymbol{W}_s$ 必存在逃逸方向 $\\boldsymbol{U}$，使得：\n        $$\\mathrm{vec}(\\boldsymbol{U})^{\\top}\\nabla^{2}\\mathcal{L}(\\boldsymbol{W}_s)\\,\\mathrm{vec}(\\boldsymbol{U})\\lt 0$$\n        Hessian 矩陣有嚴格負特徵值，隨機初始化的 GD 或擾動梯度法必能迅速逃離鞍點！\n      ",
+    "en": "Every saddle point $\\boldsymbol{W}_s$ has an escape direction $\\boldsymbol{U}$ such that:\n        $$\\mathrm{vec}(\\boldsymbol{U})^{\\top}\\nabla^{2}\\mathcal{L}(\\boldsymbol{W}_s)\\,\\mathrm{vec}(\\boldsymbol{U})\\lt 0$$\n        The Hessian matrix has a strictly negative eigenvalue, so randomly initialized GD or perturbed gradient methods are sure to escape the saddle point quickly!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d1833d4c21ae": {
+    "zh": "性質 3：零訓練損失保證可達",
+    "en": "Property 3: zero training loss is guaranteed to be reachable",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a3ed15d6bb7c": {
+    "zh": "當訓練樣本數滿足 $d\\leq n\\leq cd^2$（$c\\gt 0$ 為常數）時，全域最優解達到 $\\mathcal{L}(\\boldsymbol{W}^*)=0$。模型能完美無瑕地擬合所有訓練資料！",
+    "en": "When the number of training samples satisfies $d\\leq n\\leq cd^2$ ($c\\gt 0$ a constant), the global optimum reaches $\\mathcal{L}(\\boldsymbol{W}^*)=0$. The model can fit all the training data flawlessly!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8d76f40862d6": {
+    "zh": "04 / 深層理論 · Proposition 5 (Deep ReLU Networks)",
+    "en": "04 / Deep Theory: Proposition 5 (Deep ReLU Networks)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "014a00574088": {
+    "zh": "深層 ReLU 網路收斂界：全批次 GD (式 58) 與 Mini-batch SGD (式 59)\n    <span class=\"en\">Proposition 5: Polynomial Convergence Rates for Deep ReLU Networks</span>\n  ",
+    "en": "Convergence bounds for deep ReLU networks: full-batch GD (Eq. 58) and mini-batch SGD (Eq. 59)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bb743d80c75a": {
+    "zh": "Proposition 5 的架構與數學設定（Allen-Zhu, Li &amp; Song, 2019）",
+    "en": "Architecture and mathematical setup of Proposition 5 (Allen-Zhu, Li &amp; Song, 2019)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "65e8e93121ad": {
+    "zh": "考慮 $l$ 層全連線 ReLU 網路，採用均方誤差（MSE）損失：",
+    "en": "Consider an $l$-layer fully connected ReLU network with the mean squared error (MSE) loss:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5ef7b3eec30e": {
+    "zh": "<strong>資料正規化（Data Normalization）：</strong>所有輸入滿足 $\\|\\boldsymbol{x}_i\\|_2=1$，且最後一維固定填充為 $1/\\sqrt{2}$。",
+    "en": "<strong>Data normalization:</strong> every input satisfies $\\|\\boldsymbol{x}_i\\|_2=1$, and the last dimension is fixed to $1/\\sqrt{2}$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "73cb3e80d219": {
+    "zh": "<strong>樣本分離度（Sample Separation）：</strong>任意兩筆不同訓練樣本的歐氏間距不小於 $\\delta$，即 $\\min_{i\\neq j}\\|\\boldsymbol{x}_i-\\boldsymbol{x}_j\\|_2\\geq\\delta\\gt 0$。",
+    "en": "<strong>Sample separation:</strong> the Euclidean distance between any two distinct training samples is at least $\\delta$, i.e. $\\min_{i\\neq j}\\|\\boldsymbol{x}_i-\\boldsymbol{x}_j\\|_2\\geq\\delta\\gt 0$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6a5585c2b83a": {
+    "zh": "<strong>初始化：</strong>所有權重矩陣採高斯隨機初始化 $\\boldsymbol{W}^{(h)} \\sim \\mathcal{N}(0, \\frac{2}{m})$。",
+    "en": "<strong>Initialization:</strong> all weight matrices use random Gaussian initialization $\\boldsymbol{W}^{(h)} \\sim \\mathcal{N}(0, \\frac{2}{m})$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "76a515d5d84c": {
+    "zh": "<strong>1. 全批次梯度下降（Full-Batch GD）收斂保證：</strong>",
+    "en": "<strong>1. Convergence guarantee for full-batch gradient descent (full-batch GD):</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "10903c2f6a94": {
+    "zh": "若隱藏層寬度滿足 $m\\geq\\Omega(\\mathrm{poly}(n,l,\\delta^{-1})d)$，設定學習率 $\\eta=\\Theta\\!\\bigl(\\frac{d\\delta}{\\mathrm{poly}(n,l)m}\\bigr)$，則經過迭代步數：",
+    "en": "If the hidden-layer width satisfies $m\\geq\\Omega(\\mathrm{poly}(n,l,\\delta^{-1})d)$ and the learning rate is set to $\\eta=\\Theta\\!\\bigl(\\frac{d\\delta}{\\mathrm{poly}(n,l)m}\\bigr)$, then after this many iterations:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7c71b46cab49": {
+    "zh": "後，以極高機率 $1-e^{-\\Omega(\\log^2 m)}$ 使得訓練損失 $\\mathcal{L}(\\boldsymbol{W}_T) \\lt \\epsilon$。",
+    "en": "the training loss satisfies $\\mathcal{L}(\\boldsymbol{W}_T) \\lt \\epsilon$ with very high probability $1-e^{-\\Omega(\\log^2 m)}$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "788ca74512eb": {
+    "zh": "<strong>2. 隨機小批次梯度下降（Mini-batch SGD，Batch 大小 $b$）收斂保證：</strong>",
+    "en": "<strong>2. Convergence guarantee for stochastic mini-batch gradient descent (mini-batch SGD, batch size $b$):</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0d9318894826": {
+    "zh": "若寬度滿足 $m\\geq\\Omega\\!\\bigl(\\frac{\\mathrm{poly}(n,l,\\delta^{-1})d}{b}\\bigr)$，設定學習率 $\\eta=\\Theta\\!\\bigl(\\frac{bd\\delta}{\\mathrm{poly}(n,l)m\\log^2 m}\\bigr)$，則經過迭代步數：",
+    "en": "If the width satisfies $m\\geq\\Omega\\!\\bigl(\\frac{\\mathrm{poly}(n,l,\\delta^{-1})d}{b}\\bigr)$ and the learning rate is set to $\\eta=\\Theta\\!\\bigl(\\frac{bd\\delta}{\\mathrm{poly}(n,l)m\\log^2 m}\\bigr)$, then after this many iterations:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "09b2cac7cef2": {
+    "zh": "後，同樣以極高機率 $1-e^{-\\Omega(\\log^2 m)}$ 使得訓練損失 $\\mathcal{L}(\\boldsymbol{W}_T) \\lt \\epsilon$。",
+    "en": "the training loss likewise satisfies $\\mathcal{L}(\\boldsymbol{W}_T) \\lt \\epsilon$ with very high probability $1-e^{-\\Omega(\\log^2 m)}$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ccd0addfa808": {
+    "zh": "核心意義：多項式時間全域收斂",
+    "en": "Core meaning: polynomial-time global convergence",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b32957d3d51b": {
+    "zh": "儘管目標函式極度高度非凸，只要寬度足夠且樣本可分離，最佳化演算法<strong>並不需要指數級時間</strong>，而是在多項式步數內精確逼近全域最優解！",
+    "en": "Even though the objective is extremely non-convex, as long as the width is large enough and the samples are separable, the optimization algorithm <strong>does not need exponential time</strong>; it closes in on the global optimum precisely within a polynomial number of steps!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2d2396947a8e": {
+    "zh": "資料分離度 $\\delta$ 的關鍵角色",
+    "en": "The key role of the data separation $\\delta$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "22ed290f0390": {
+    "zh": "收斂步數反比於 $\\delta^2$。若存在兩筆不同標籤卻幾乎重疊的樣本（$\\delta \\to 0$），收斂時間將趨於無窮，突顯了資料分離幾何的重要性。",
+    "en": "The number of steps to converge is inversely proportional to $\\delta^2$. If two samples with different labels almost overlap ($\\delta \\to 0$), the convergence time goes to infinity, which highlights how much the geometry of data separation matters.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3cee74235fa0": {
+    "zh": "對數依賴精度 $\\log(\\epsilon^{-1})$",
+    "en": "Logarithmic dependence on the accuracy $\\log(\\epsilon^{-1})$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "79919f1bc052": {
+    "zh": "步數 $T$ 僅對精度 $\\epsilon$ 呈現對數依賴（$\\log(\\epsilon^{-1})$），這意味著在過參數化設定下，GD 展現出類似強凸最佳化的<strong>線性收斂速度（Linear Convergence）</strong>！",
+    "en": "The step count $T$ depends only logarithmically on the accuracy $\\epsilon$ ($\\log(\\epsilon^{-1})$), which means that in the overparameterized setting GD shows a <strong>linear convergence rate</strong>, like strongly convex optimization!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dfbcd33455dd": {
+    "zh": "05 / 地景幾何 · Fig. 7 Insight",
+    "en": "05 / Landscape Geometry: Fig. 7 Insight",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c05e69345869": {
+    "zh": "Fig. 7 的深刻寓意：從「崎嶇高低假坑」到「等高平坦全域盆地」\n    <span class=\"en\">Fig. 7 Philosophy: Why Overparameterization Eliminates Suboptimal Traps</span>\n  ",
+    "en": "The deep lesson of Fig. 7: from \"rugged false pits of uneven height\" to \"flat global basins all at the same height\"",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e7c3daee9b83": {
+    "zh": "為什麼高維過參數化能消除劣質局部極小？",
+    "en": "Why does high-dimensional overparameterization eliminate poor local minima?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fb07228b42f2": {
+    "zh": "\n      在低維欠參數模型中，參數自由度匱乏，參數空間被非凸的非線性邊界割裂成大量獨立的高低峽谷。初始化一旦落入劣質盆地，梯度便無法跨越山脊。<br>\n      然而，<strong>過參數化從根本上重塑了損失地景（Loss Landscape）</strong>：\n    ",
+    "en": "In low-dimensional underparameterized models, the parameters have few degrees of freedom, and the parameter space is cut by non-convex nonlinear boundaries into many isolated canyons of different heights. Once the initialization lands in a poor basin, the gradient cannot cross the ridge.<br>\n      However, <strong>overparameterization fundamentally reshapes the loss landscape</strong>:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "79b05846e87b": {
+    "zh": "<strong>所有局部極小值表現幾乎等同全域極小（Choromanska et al., 2015）：</strong>在高維過參數化下，幾乎所有臨界點（Critical Points）聚集於底層相同的能級！正如 Fig. 7 所示，不同盆地的底部皆坐落在同一水平線上。",
+    "en": "<strong>All local minima behave almost like the global minimum (Choromanska et al., 2015):</strong> under high-dimensional overparameterization, almost all critical points cluster at the same bottom level! As Fig. 7 shows, the bottoms of the different basins all sit on the same horizontal line.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a243b327318b": {
+    "zh": "<strong>鞍點逃逸維度隨維度暴增：</strong>在高維空間中，某方向向上彎曲（正曲率）並不妨礙另一方向向下彎曲（負曲率）。極值點被「困死」在假坑的機率隨維度呈指數級衰減。",
+    "en": "<strong>Saddle-point escape dimensions explode with dimensionality:</strong> in a high-dimensional space, curving upward in one direction (positive curvature) does not stop the surface from curving downward in another (negative curvature). The probability that a stationary point is \"trapped for good\" in a false pit decays exponentially with the dimension.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5df67b56ce3c": {
+    "zh": "<strong>隱式 RKHS 對映效應（Jacot et al., 2018）：</strong>深度神經網路在寬度趨於無窮時，實質上將資料對映到再生核希爾伯特空間（RKHS），非凸地景在參數軌跡周圍呈現驚人的凸性與光滑性。",
+    "en": "<strong>Implicit RKHS mapping effect (Jacot et al., 2018):</strong> as the width goes to infinity, a deep neural network in effect maps the data into a reproducing kernel Hilbert space (RKHS), and the non-convex landscape becomes strikingly convex and smooth around the parameter trajectory.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c7a1a389a06d": {
+    "zh": "06 / 視覺對比 · Visual Landscape Comparison",
+    "en": "06 / Visual Comparison: Visual Landscape Comparison",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3e514babacd0": {
+    "zh": "古典崎嶇曲面 vs 過參數化等高盆地\n    <span class=\"en\">Classical Landscape with Spurious Minima vs. Overparameterized Basins (Fig. 7)</span>\n  ",
+    "en": "Classical rugged surface vs. overparameterized equal-height basins",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b61b7ebcde46": {
+    "zh": "古典欠參數 / 淺層低維 (Underparameterized)",
+    "en": "Classical underparameterized / shallow low-dimensional",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "509f1fbb0053": {
+    "zh": "非凸地景充斥高低不一的假坑 (Spurious Minima)",
+    "en": "Non-convex landscape full of false pits (spurious minima) of uneven height",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "1bbf465da68e": {
+    "zh": "權重 w",
+    "en": "Weight w",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "9a2f3a09df7e": {
+    "zh": "損失 L(w)",
+    "en": "Loss L(w)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "b9ef7742222a": {
+    "zh": "假坑 1 (Spurious)",
+    "en": "False pit 1 (spurious)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "0b32ba2dcc0c": {
+    "zh": "⚠️ 初始化不對會卡住",
+    "en": "⚠️ Bad initialization gets stuck",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "4bc5871cac97": {
+    "zh": "假坑 2 (Spurious)",
+    "en": "False pit 2 (spurious)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "b375fa4cd513": {
+    "zh": "∇L=0 但損失依然高",
+    "en": "∇L=0 but the loss is still high",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "de696b5db894": {
+    "zh": "全域極小 (Global Min)",
+    "en": "Global minimum",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "0e95f96117b7": {
+    "zh": "過參數化網路地景 (Overparameterized / Fig. 7)",
+    "en": "Overparameterized network landscape (Fig. 7)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "441f8b3a2633": {
+    "zh": "多個等高盆地坐落在同一水平線上，幾乎所有解皆等同全域",
+    "en": "Several equal-height basins sit on the same horizontal line; almost every solution is as good as global",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "4f7e6844c6e3": {
+    "zh": "全域零損失線 L(w) = 0",
+    "en": "Global zero-loss line L(w) = 0",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "be075e92f746": {
+    "zh": "鞍點 (負曲率逃逸)",
+    "en": "Saddle point (negative-curvature escape)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "97b833b97932": {
+    "zh": "Prop 4 (淺層) / Prop 5 (深層)",
+    "en": "Prop 4 (shallow) / Prop 5 (deep)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "9ac82f840fd5": {
+    "zh": "綠點皆為全域級解 · 幾乎所有局部解夠好、等同全域解",
+    "en": "Green dots are all global-level solutions · almost every local solution is good enough, as good as global",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "eb71c206ed97": {
+    "zh": "💡 核心奧秘：參數多於資料 ($m \\gg n$) 創造大量多餘自由度，高維地景等高平滑，梯度法多項式時間成功！",
+    "en": "💡 Core secret: more parameters than data ($m \\gg n$) creates lots of extra degrees of freedom; the high-dimensional landscape is level and smooth, and the gradient method succeeds in polynomial time!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "d2964cbc6392": {
+    "zh": "⚠️ 關鍵轉折：本章理論保證的是「訓練損失 (Train Loss $\\to 0$)」，零訓練損失不自動保證「測試泛化 (Test Generalization)」！",
+    "en": "⚠️ Key turn: the theory in this chapter guarantees the \"training loss (Train Loss $\\to 0$)\"; zero training loss does not automatically guarantee \"test generalization\"!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "972633d7b7ed": {
+    "zh": "圖 7 原理示意：左側古典模型受制於假局部極小（橘點）；右側過參數化模型使所有局部極小均降至零損失水平線（綠點），鞍點具嚴格負曲率方向。",
+    "en": "Schematic of the Fig. 7 principle: on the left, the classical model is held back by spurious local minima (orange dots); on the right, the overparameterized model brings every local minimum down to the zero-loss line (green dots), and saddle points have strict negative-curvature directions.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e9fd555db380": {
+    "zh": "地景重塑的四大幾何轉變",
+    "en": "Four geometric shifts in the reshaped landscape",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9918ec20e16d": {
+    "zh": "① 假極小被徹底消除（No Spurious Minima）",
+    "en": "① False minima are eliminated completely (no spurious minima)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ea913e14afec": {
+    "zh": "在古典模型中，梯度法常陷於高損失假坑。而在 Prop 4（$k \\ge 2d$）與 Prop 5（$m \\ge \\Omega(\\text{poly})$）下，所有局部極小皆為全域最優。",
+    "en": "In classical models, the gradient method often gets stuck in high-loss false pits. Under Prop 4 ($k \\ge 2d$) and Prop 5 ($m \\ge \\Omega(\\text{poly})$), every local minimum is globally optimal.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0927a3515cc0": {
+    "zh": "② 鞍點具備嚴格負曲率（Negative Curvature）",
+    "en": "② Saddle points have strict negative curvature",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "760ad17ba647": {
+    "zh": "鞍點不是死衚衕！Hessian 矩陣必存在負特徵值 $\\nabla^2 \\mathcal{L} \\prec 0$，一階法在微小擾動下沿負曲率方向滑脫。",
+    "en": "A saddle point is not a dead end! The Hessian matrix must have a negative eigenvalue $\\nabla^2 \\mathcal{L} \\prec 0$, and a first-order method, given a tiny perturbation, slides off along the negative-curvature direction.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fbe6962c6c37": {
+    "zh": "③ 盆地等高共振（Equal-Depth Basins）",
+    "en": "③ Basins resonate at the same height (equal-depth basins)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b8db5d2dabfd": {
+    "zh": "呼應 Fig. 7 的洞見：不同隨機初始化找到的解，在訓練集上的損失表現完全一致，達到近乎零損失的完美擬合。",
+    "en": "This echoes the insight of Fig. 7: the solutions found from different random initializations perform exactly the same on the training set, reaching a perfect fit with near-zero loss.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5b69e1ad5434": {
+    "zh": "07 / 關鍵辨析 · Theory vs Generalization",
+    "en": "07 / Key Distinction: Theory vs Generalization",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "01c50665d3d3": {
+    "zh": "理論收斂保證 vs 測試泛化：零訓練損失不等於泛化良好\n    <span class=\"en\">Optimization Success vs. Generalization Mystery: Zero Train Loss Does Not Equal Test Performance</span>\n  ",
+    "en": "Theoretical convergence guarantees vs. test generalization: zero training loss does not mean good generalization",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0ab2b36f0f76": {
+    "zh": "⚠️ 重要觀念釐清：最佳化可行性 $\\neq$ 泛化保證",
+    "en": "⚠️ An important clarification: optimization feasibility $\\neq$ generalization guarantee",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "79743559e285": {
+    "zh": "\n      Proposition 4 的性質 3 與 Proposition 5 均給出了極強的<strong>訓練損失保證（$\\mathcal{L}_{\\mathrm{train}} \\lt \\epsilon$）</strong>。但在機器學習中，訓練表現與測試表現是截然不同的兩個命題：\n    ",
+    "en": "Property 3 of Proposition 4 and Proposition 5 both give very strong <strong>training-loss guarantees ($\\mathcal{L}_{\\mathrm{train}} \\lt \\epsilon$)</strong>. But in machine learning, training performance and test performance are two entirely different questions:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "da5b1f71f681": {
+    "zh": "<strong>最佳化理論回答「能不能練成」：</strong>非凸深度神經網路在梯度法下，是否會被局部極小或鞍點阻礙？答案是：只要足夠過參數化且樣本可分離，<strong>最佳化必然成功，多項式時間內達標</strong>。",
+    "en": "<strong>Optimization theory answers \"can it be trained?\":</strong> under the gradient method, are non-convex deep neural networks blocked by local minima or saddle points? The answer: as long as the network is overparameterized enough and the samples are separable, <strong>optimization is sure to succeed, reaching the target in polynomial time</strong>.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "38dfa4afc550": {
+    "zh": "<strong>泛化理論回答「練成之後好不好」：</strong>完美擬合所有訓練資料（甚至擬合了標籤雜訊），在未知測試集上是否會發生過擬合？答案取決於<strong>隱式正則化（Implicit Regularization）、平坦度（Flatness）、良性過擬合（Benign Overfitting）</strong>等更深層的機制。",
+    "en": "<strong>Generalization theory answers \"is it any good once trained?\":</strong> after perfectly fitting all the training data (even fitting the label noise), does it overfit on an unknown test set? The answer depends on deeper mechanisms such as <strong>implicit regularization, flatness, and benign overfitting</strong>.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9c5a18884998": {
+    "zh": "\n    因此，學習本章的 Prop 4、Prop 5 與 Fig. 7 時，務必銘記：<strong>過參數化理論主要解決了「非凸最佳化收斂」的理論死結，為現代神經網路的訓練成功提供了堅實的數學後盾，但並未直接回答泛化之謎</strong>。\n    <span class=\"bilingual-en\">Propositions 4 and 5 establish rigorous polynomial convergence guarantees on empirical training loss. However, achieving zero training loss does not automatically imply superior generalization on unseen data—this remains one of deep learning's most profound frontiers.</span>\n  ",
+    "en": "So when studying Prop 4, Prop 5 and Fig. 7 in this chapter, be sure to remember: <strong>overparameterization theory mainly breaks the theoretical deadlock of \"convergence in non-convex optimization\" and gives the success of modern neural network training a solid mathematical foundation, but it does not directly answer the generalization puzzle</strong>.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ee42cab89ab2": {
+    "zh": "08 / 體系對比 · Comparative Matrix",
+    "en": "08 / Framework Comparison: Comparative Matrix",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "21cb4aac45c1": {
+    "zh": "淺層 Prop 4 vs 深層 Prop 5 vs 古典非凸最佳化\n    <span class=\"en\">Comparative Matrix: Shallow Prop 4, Deep Prop 5, and Classical Non-Convex Optimization</span>\n  ",
+    "en": "Shallow Prop 4 vs deep Prop 5 vs classical non-convex optimization",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "61b34a147c85": {
+    "zh": "比較維度",
+    "en": "Dimension of comparison",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5abc077566aa": {
+    "zh": "古典低維非凸最佳化",
+    "en": "Classical low-dimensional non-convex optimization",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f48f1a2c1b27": {
+    "zh": "Proposition 4（淺層網路）",
+    "en": "Proposition 4 (shallow networks)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9e4f7805bb38": {
+    "zh": "Proposition 5（深層 ReLU 網路）",
+    "en": "Proposition 5 (deep ReLU networks)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e166f19845b1": {
+    "zh": "網路結構",
+    "en": "Network architecture",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9ee0c217a7e7": {
+    "zh": "任意低容量非凸模型",
+    "en": "Any low-capacity non-convex model",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "50d2d059982b": {
+    "zh": "1 隱藏層，$\\sigma(z)=z^2$ 二次啟用",
+    "en": "1 hidden layer, quadratic activation $\\sigma(z)=z^2$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7070ceaf7ac6": {
+    "zh": "$l$ 層全連線，ReLU 啟用",
+    "en": "$l$ fully connected layers, ReLU activation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1ccfa6802aec": {
+    "zh": "寬度門檻要求",
+    "en": "Width threshold",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c1bfb7c1ccfe": {
+    "zh": "參數少（欠參數 $p \\ll n$）",
+    "en": "Few parameters (underparameterized, $p \\ll n$)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "41b22b1617e0": {
+    "zh": "隱藏層寬度 $k \\geq 2d$",
+    "en": "Hidden-layer width $k \\geq 2d$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2855a2730d4e": {
+    "zh": "局部極小性質",
+    "en": "Nature of local minima",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6e94255b5166": {
+    "zh": "充斥高低不一的 Spurious Minima",
+    "en": "Full of spurious minima of uneven height",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b527397b5011": {
+    "zh": "<strong>無 Spurious Minima</strong>，全為全域極小",
+    "en": "<strong>No spurious minima</strong>; all are global minima",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e9d8908c9090": {
+    "zh": "高度光滑，最佳化路徑直通全域盆地",
+    "en": "Highly smooth; the optimization path leads straight to a global basin",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3f0914a3be56": {
+    "zh": "鞍點逃逸機制",
+    "en": "Saddle-point escape mechanism",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "91fdfba86eb5": {
+    "zh": "可能存在高階平坦死鞍點",
+    "en": "Higher-order flat dead saddle points may exist",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8a44c75012d1": {
+    "zh": "<strong>嚴格負曲率方向</strong> $\\nabla^2 \\mathcal{L} \\prec 0$",
+    "en": "<strong>Strict negative-curvature direction</strong> $\\nabla^2 \\mathcal{L} \\prec 0$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5f6e62ed743a": {
+    "zh": "神經切線核（NTK）機制保證平滑滑脫",
+    "en": "The neural tangent kernel (NTK) mechanism guarantees a smooth slide-off",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "60a07f2205b4": {
+    "zh": "收斂步數界 $T$",
+    "en": "Bound on the convergence steps $T$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9d3c3c5fd52e": {
+    "zh": "最差情況下呈指數級時間 $O(e^d)$",
+    "en": "Exponential time $O(e^d)$ in the worst case",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "70e6fbcac94b": {
+    "zh": "零損失可達（$d \\leq n \\leq cd^2$）",
+    "en": "Zero loss reachable ($d \\leq n \\leq cd^2$)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "47ea9444cb7a": {
+    "zh": "$\\Theta\\bigl(\\frac{\\mathrm{poly}(n,l)\\log(\\epsilon^{-1})}{\\delta^2}\\bigr)$（式 58）",
+    "en": "$\\Theta\\bigl(\\frac{\\mathrm{poly}(n,l)\\log(\\epsilon^{-1})}{\\delta^2}\\bigr)$ (Eq. 58)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "edc32fb860ee": {
+    "zh": "核心實務意義",
+    "en": "Core practical meaning",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "69c49892879a": {
+    "zh": "解釋了傳統最佳化的停滯困境",
+    "en": "Explains why traditional optimization stalls",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3fd338b1a452": {
+    "zh": "首次從幾何上證明過參數化消除假坑",
+    "en": "First geometric proof that overparameterization removes false pits",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "97545ba39132": {
+    "zh": "嚴格證明現代深度網路 GD/SGD 必收斂",
+    "en": "Rigorous proof that GD/SGD on modern deep networks must converge",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9a82565e502d": {
+    "zh": "09 / 核心鐵律 · Master Maxims",
+    "en": "09 / Core Iron Laws: Master Maxims",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "422a278eb5b4": {
+    "zh": "過參數化收斂保證的四大核心鐵律\n    <span class=\"en\">Four Master Maxims of Overparameterized Convergence</span>\n  ",
+    "en": "Four core iron laws of overparameterized convergence guarantees",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2b625724349a": {
+    "zh": "鐵律一：無假極小（No Spurious Minima）",
+    "en": "Iron law 1: no false minima (no spurious minima)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b5369c47baf7": {
+    "zh": "只要寬度跨越臨界閾值（如淺層 $k \\ge 2d$），高維度便徹底抹平了次優孤立陷阱，所有局部極小皆達全域最優水準。",
+    "en": "Once the width crosses the critical threshold (e.g. $k \\ge 2d$ for shallow networks), high dimensionality completely smooths away the suboptimal isolated traps, and every local minimum reaches the level of the global optimum.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "dcac26374e6f": {
+    "zh": "鐵律二：鞍點必具負曲率（Negative Curvature）",
+    "en": "Iron law 2: saddle points must have negative curvature",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bddbca9202b7": {
+    "zh": "所有非最優的駐點（Critical Points）皆非平坦死角，Hessian 矩陣必具嚴格負曲率逃逸方向，一階擾動法可順利滑脫。",
+    "en": "No non-optimal stationary point (critical point) is a flat dead end: the Hessian matrix must have a strict negative-curvature escape direction, and a first-order perturbed method slides off smoothly.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "73e4e6fca061": {
+    "zh": "鐵律三：深層多項式時間收斂（Polynomial Steps）",
+    "en": "Iron law 3: polynomial-time convergence for deep networks (polynomial steps)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3c5ef0a0ca7f": {
+    "zh": "在樣本可分離（$\\delta &gt; 0$）與充分過參數化下，深層 ReLU 網路的 GD 與 SGD 步數僅為 $\\mathrm{poly}(n,l)\\log(\\epsilon^{-1})/\\delta^2$。",
+    "en": "With separable samples ($\\delta &gt; 0$) and sufficient overparameterization, GD and SGD on deep ReLU networks need only $\\mathrm{poly}(n,l)\\log(\\epsilon^{-1})/\\delta^2$ steps.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f2a7cc6f4ddd": {
+    "zh": "鐵律四：訓練成功不等於泛化完成",
+    "en": "Iron law 4: successful training is not completed generalization",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fbb1274baf18": {
+    "zh": "收斂定理保證的是訓練損失歸零（$\\mathcal{L}_{\\text{train}} \\to 0$）；要獲得優異的測試泛化，仍需依賴正則化、平坦度與資料歸納偏置。",
+    "en": "The convergence theorems guarantee that the training loss goes to zero ($\\mathcal{L}_{\\text{train}} \\to 0$); good test generalization still depends on regularization, flatness, and the inductive bias of the data.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a87b5e80a45a": {
+    "zh": "10 / 互動實驗室 · Interactive Lab",
+    "en": "10 / Interactive Lab",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "02ec494e5b6a": {
+    "zh": "過參數化與收斂模擬器：觀察寬度 $m$ 對損失曲面與 GD 軌跡之影響\n    <span class=\"en\">Overparameterization &amp; Convergence Simulator: Visualizing Surface Smoothening and GD Dynamics</span>\n  ",
+    "en": "Overparameterization and convergence simulator: observe how the width $m$ affects the loss surface and the GD trajectory",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "867a1c3ddb24": {
+    "zh": "網路寬度 $m$：",
+    "en": "Network width $m$:",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4511ed682a58": {
+    "zh": "樣本分離度 $\\delta$：",
+    "en": "Sample separation $\\delta$:",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3896487bc205": {
+    "zh": "學習率 $\\eta$：",
+    "en": "Learning rate $\\eta$:",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "367444a43f0e": {
+    "zh": "窄網路 $m=2$ (卡假坑)",
+    "en": "Narrow network $m=2$ (stuck in a false pit)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "869445494983": {
+    "zh": "過參數化 $m=32$ (等高平滑)",
+    "en": "Overparameterized $m=32$ (level and smooth)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5fac648e3afb": {
+    "zh": "單步 GD (Step)",
+    "en": "Single GD step (Step)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e27f6be46e3c": {
+    "zh": "連續執行 (Auto)",
+    "en": "Run continuously (Auto)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ea16371376bb": {
+    "zh": "\n      🧪 <strong>實驗探究指南：</strong><br>\n      1. <strong>窄網路陷阱</strong>：點選「窄網路 $m=2$」，地景充斥高峭的假極小值（Spurious Minima）。點選單步或連續執行，觀察權重卡在 $\\mathcal{L} \\approx 1.8$ 的假坑中，無法達成零損失。<br>\n      2. <strong>過參數化平滑效應</strong>：點選「過參數化 $m=32$」，假坑障礙完全消失，地景轉變為多個坐落於 $\\mathcal{L}=0$ 水平線的等高全域盆地！GD 迅速滑落至 $\\mathcal{L} \\lt 10^{-4}$，完美驗證 Prop 4 與 Prop 5！\n    ",
+    "en": "🧪 <strong>Lab guide:</strong><br>\n      1. <strong>Narrow-network trap</strong>: click \"Narrow network $m=2$\"; the landscape is full of steep spurious minima. Click Step or Auto and watch the weights get stuck in the false pit at $\\mathcal{L} \\approx 1.8$, unable to reach zero loss.<br>\n      2. <strong>Smoothing effect of overparameterization</strong>: click \"Overparameterized $m=32$\"; the false-pit barriers disappear completely and the landscape turns into several equal-height global basins sitting on the $\\mathcal{L}=0$ line! GD quickly slides down to $\\mathcal{L} \\lt 10^{-4}$, a perfect confirmation of Prop 4 and Prop 5!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "387f167c3408": {
+    "zh": "11 / 實戰檢驗 · Concept Checkpoint",
+    "en": "11 / Hands-on Check: Concept Checkpoint",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-class checkpoint: instant feedback on concepts",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4cc667a7bb7c": {
+    "zh": "題目 1：Proposition 4 中「無 spurious local minima」的意思是？",
+    "en": "Question 1: In Proposition 4, what does \"no spurious local minima\" mean?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "89f3eeab06a4": {
+    "zh": "A. 沒有任何局部極小值",
+    "en": "A. There are no local minima at all",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "773e087ffd58": {
+    "zh": "B. 所有局部極小值都是全域極小值",
+    "en": "B. Every local minimum is a global minimum",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "682c347a5f2b": {
+    "zh": "C. 只有鞍點",
+    "en": "C. There are only saddle points",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7529cf82d1bf": {
+    "zh": "D. 損失恆為零",
+    "en": "D. The loss is always zero",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b30c112b71ab": {
+    "zh": "題目 2：Proposition 4 關於鞍點的結論（Item 2）對一階最佳化意味著什麼？",
+    "en": "Question 2: What does the conclusion of Proposition 4 about saddle points (Item 2) mean for first-order optimization?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ac44e5e9bb69": {
+    "zh": "A. 梯度法必卡在鞍點",
+    "en": "A. The gradient method must get stuck at saddle points",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1b9f7b0e52e6": {
+    "zh": "B. 鞍點有嚴格負曲率方向，隨機初始化下 GD 通常可逃離",
+    "en": "B. Saddle points have a strict negative-curvature direction, so with random initialization GD can usually escape",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "970821941f31": {
+    "zh": "C. 必須用二階法",
+    "en": "C. A second-order method must be used",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3bf3c2b927d4": {
+    "zh": "D. 鞍點即全域最優",
+    "en": "D. Saddle points are the global optimum",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "50bde2dcf49c": {
+    "zh": "題目 3：Proposition 5 中，全批次 GD 達損失 $\\lt \\epsilon$ 所需迭代數（式 58）的量級是？",
+    "en": "Question 3: In Proposition 5, what is the order of the number of iterations full-batch GD needs to reach loss $\\lt \\epsilon$ (Eq. 58)?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c90c9c20789d": {
+    "zh": "A. $O(1/\\epsilon)$ 指數",
+    "en": "A. $O(1/\\epsilon)$ exponential",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b1905945ab7f": {
+    "zh": "C. $O(n^2)$ 與寬度無關",
+    "en": "C. $O(n^2)$, independent of the width",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c5c81397e348": {
+    "zh": "D. 恆為 1 步",
+    "en": "D. Always 1 step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "49574bf10f8d": {
+    "zh": "題目 4：Fig. 7 想傳達的核心訊息是？",
+    "en": "Question 4: What is the core message Fig. 7 wants to convey?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "96ce05a05359": {
+    "zh": "A. 只有一個局部解",
+    "en": "A. There is only one local solution",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "72e1ad92f31f": {
+    "zh": "B. 幾乎所有局部解都夠好、等同全域解",
+    "en": "B. Almost every local solution is good enough, as good as a global one",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "55bceeb402f4": {
+    "zh": "C. 最佳化一定失敗",
+    "en": "C. Optimization always fails",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "41b23b8318ad": {
+    "zh": "D. 必須用 SAM",
+    "en": "D. SAM must be used",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6853ebe34165": {
+    "zh": "全單元總結：過參數化收斂理論的核心精髓",
+    "en": "Unit summary: the core essence of overparameterized convergence theory",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "159a51109456": {
+    "zh": "\n      1. <strong>淺層 Prop 4：</strong>在二次啟用與寬度 $k \\ge 2d$ 下，損失曲面無假極小值、鞍點具嚴格負曲率可逃逸、完美擬合零損失可達。<br>\n      2. <strong>深層 Prop 5：</strong>充分過參數化（寬度 $m \\ge \\Omega(\\text{poly})$）與樣本可分離（$\\delta &gt; 0$）使全批次 GD (式 58) 與 Mini-batch SGD (式 59) 能在多項式步數內以極高機率收斂至任意精度 $\\epsilon$。<br>\n      3. <strong>Fig. 7 幾何直覺：</strong>高維過參數化使所有局部極小值高度等高且等同全域解，消除了次優陷阱。<br>\n      4. <strong>關鍵界線：</strong>理論解答了「非凸最佳化為何能成功收斂」，但零訓練損失不代表自動泛化良好。\n    ",
+    "en": "1. <strong>Shallow Prop 4:</strong> with quadratic activation and width $k \\ge 2d$, the loss surface has no false minima, saddle points have strict negative curvature and can be escaped, and a perfect zero-loss fit is reachable.<br>\n      2. <strong>Deep Prop 5:</strong> sufficient overparameterization (width $m \\ge \\Omega(\\text{poly})$) and separable samples ($\\delta &gt; 0$) let full-batch GD (Eq. 58) and mini-batch SGD (Eq. 59) converge to any accuracy $\\epsilon$ within a polynomial number of steps with very high probability.<br>\n      3. <strong>Geometric intuition of Fig. 7:</strong> high-dimensional overparameterization puts all local minima at nearly the same height and makes them as good as global solutions, eliminating suboptimal traps.<br>\n      4. <strong>Key boundary:</strong> the theory answers \"why non-convex optimization can converge successfully\", but zero training loss does not mean good generalization automatically.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

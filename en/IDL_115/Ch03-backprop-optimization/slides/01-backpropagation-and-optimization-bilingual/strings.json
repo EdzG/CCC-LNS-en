@@ -1,0 +1,1270 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "百萬參數下 Hessian 矩陣規模高達百萬×百萬，儲存與 $O(d^3)$ 求逆均屬天方夜譚；且二次近似極易將參數引向尖銳過擬合深坑。": "With millions of parameters, the Hessian matrix is a million × million in size, so storing it and inverting it in $O(d^3)$ are both pure fantasy; moreover, the quadratic approximation very easily leads the parameters into sharp, overfitting pits.",
+      "隱藏層神經元透過鏈式法則遞推敏感度：$delta_i = sigma'(a_i) sum_j (delta_j w_{ji})$，下游責任倒灌是反向傳播的靈魂所在。": "Hidden-layer neurons compute their sensitivities recursively via the chain rule: $\\delta_i = \\sigma'(a_i) \\sum_j (\\delta_j w_{ji})$; this backward flow of downstream responsibility is the soul of backpropagation.",
+      "SAM 的目標函式為 $min_{\boldsymbol{w}} max_{|\boldsymbol{epsilon}| le": "The SAM objective is $\\min_{\\boldsymbol{w}} \\max_{\\|\\boldsymbol{\\epsilon}\\| \\le \\rho} L(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$; it seeks flat basins of uniformly low loss and has unrivaled test generalization.",
+      "ho} L(\boldsymbol{w}+\boldsymbol{epsilon})$，追求均勻低損失的平坦盆地，具有無與倫比的測試泛化能力。": ""
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "f67d94bea666": {
+    "zh": "CH03 · 索引",
+    "en": "CH03 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3d065dd66626": {
+    "zh": "<a href=\"#opening\">三引擎 · ML 3 Steps</a>",
+    "en": "<a href=\"#opening\">Three Engines · ML in 3 Steps</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d721f8f48fe8": {
+    "zh": "<a href=\"#first-vs-second\">致命抉擇 · 1st vs 2nd Order</a>",
+    "en": "<a href=\"#first-vs-second\">The Fateful Choice · 1st vs 2nd Order</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "461d136f6792": {
+    "zh": "<a href=\"#gd-foundations\">地基 · Gradient Descent</a>",
+    "en": "<a href=\"#gd-foundations\">Foundation · Gradient Descent</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "54e7b699ccc2": {
+    "zh": "<a href=\"#line-search\">步長求索 · Line Search</a>",
+    "en": "<a href=\"#line-search\">Finding the Step · Line Search</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7490f65d1a7f": {
+    "zh": "<a href=\"#momentum\">物理破局 · Momentum</a>",
+    "en": "<a href=\"#momentum\">Breakthrough from Physics · Momentum</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "59f98098d827": {
+    "zh": "<a href=\"#backprop-core\">心臟 · Backpropagation</a>",
+    "en": "<a href=\"#backprop-core\">The Heart · Backpropagation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bee4b8027b1b": {
+    "zh": "<a href=\"#sgd-approx\">現實 · Mini-Batch SGD</a>",
+    "en": "<a href=\"#sgd-approx\">Reality · Mini-Batch SGD</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3ad66c11eb90": {
+    "zh": "<a href=\"#adaptive-family\">自適應 · AdaGrad / Adam</a>",
+    "en": "<a href=\"#adaptive-family\">Adaptive · AdaGrad / Adam</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac2357650bb0": {
+    "zh": "<a href=\"#flat-sam\">前沿 · Flat Minima &amp; SAM</a>",
+    "en": "<a href=\"#flat-sam\">Frontier · Flat Minima &amp; SAM</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "236282e10a1a": {
+    "zh": "<a href=\"#overparam\">奇蹟 · Overparameterization</a>",
+    "en": "<a href=\"#overparam\">The Miracle · Overparameterization</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b87428719659": {
+    "zh": "<a href=\"#summary\">階梯全景 · Summary</a>",
+    "en": "<a href=\"#summary\">The Full Ladder · Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bec27f873cc3": {
+    "zh": "<a href=\"#lab\">模擬實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Simulation Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Thinking Questions · Checkpoint</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a656c0cc6a1d": {
+    "zh": "反向傳播與神經網路最佳化全景\n      <span class=\"hero-title-en\">Backpropagation &amp; Optimization in Deep Neural Networks</span>\n    ",
+    "en": "A Panorama of Backpropagation and Neural Network Optimization\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "98acb3758106": {
+    "zh": "\n      從一階梯度下降地基、反向傳播鏈式法則、動量慣性，到現代自適應最佳化器 Adam 與銳度感知最小化（SAM）之端到端全景解析\n      <span class=\"bilingual-en\" style=\"color: #cbd5e1; font-size: 19px;\">A rigorous journey from first-order foundations, recursive backpropagation, momentum dynamics, to modern adaptive optimizers and flatness regularization.</span>\n    ",
+    "en": "\n      An end-to-end panoramic analysis: from the first-order gradient descent foundation, the chain rule of backpropagation and momentum's inertia, to the modern adaptive optimizer Adam and sharpness-aware minimization (SAM)\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "eea8c7cf3cde": {
+    "zh": "01 / 核心痛點 · Core Dilemma",
+    "en": "01 / The Core Pain Point",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "75a3a1df93b5": {
+    "zh": "\n      百萬參數的黑盒子網路，<br>如何只靠「看腳下的坡度」摸出智慧？\n      <small>How does a million-parameter black box descend into intelligence using only local slope?</small>\n    ",
+    "en": "\n      With a black-box network of millions of parameters,<br>how can it feel its way to intelligence just by \"sensing the slope underfoot\"?\n      <small>How does a million-parameter black box descend into intelligence using only local slope?</small>\n    ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "ca59dbc57cf1": {
+    "zh": "\n      當模型擁有數百萬甚至數十億個參數時，高維空間的損失地形充滿坑洞、鞍點與狹長山谷。\n      二階牛頓法因計算爆炸而宣告死亡，傳統暴力搜尋完全失效；深度學習能夠崛起的關鍵，在於一階梯度的輕量更新與反向傳播的鏈式美學。\n      <span class=\"bilingual-en\">In non-convex high-dimensional landscapes littered with saddles and ravines, exact second-order solutions collapse. Deep learning thrives because first-order gradients combined with recursive backpropagation turn impossible searches into step-by-step miracles.</span>\n    ",
+    "en": "\n      When a model has millions or even billions of parameters, the loss landscape in high-dimensional space is full of pits, saddle points and ravines.\n      Second-order Newton's method is declared dead because its computation explodes, and traditional brute-force search fails completely; the key to the rise of deep learning lies in the lightweight updates of first-order gradients and the chain-rule elegance of backpropagation.\n    ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "29e611166a3e": {
+    "zh": "02 / 體系定位 · Executive Architecture",
+    "en": "02 / Placing It in the Big Picture",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "441ab8b656e8": {
+    "zh": "搜尋最佳假設：機器學習的第三顆心臟\n    <span class=\"en\">Optimization: The Third Engine of Machine Learning</span>\n  ",
+    "en": "Searching for the best hypothesis: the third heart of machine learning\n  ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6a6698326449": {
+    "zh": "💡 生活譬喻：濃霧中的下山者（Blind Hiker in Dense Fog）",
+    "en": "💡 Everyday analogy: a hiker descending in dense fog",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c510519dbb33": {
+    "zh": "\n      想像你被蒙上雙眼空降在一座崎嶇複雜的群山之中，你的任務是走到海拔最低的谷底（最小化損失）。\n      你看不見遠方的全貌（沒有解析解），手邊也沒有地圖；你唯一能做的，就是用腳底板感受當前腳下「哪個方向斜率最陡」，然後朝著最陡下坡的方向踏出一步。這就是<strong>梯度下降</strong>的本質。\n      <span class=\"bilingual-en\">Imagine being dropped onto an unknown rugged mountain range in heavy fog. You cannot see global terrain; you only feel the local slope beneath your feet. Taking a step downhill along the steepest negative slope is the essence of gradient descent.</span>\n    ",
+    "en": "\n      Imagine you are blindfolded and airdropped into a rugged, complicated mountain range, and your task is to walk to the lowest valley floor (minimizing the loss).\n      You cannot see the whole picture in the distance (there is no closed-form solution), and you have no map at hand; the only thing you can do is feel with the soles of your feet \"which direction is steepest\" right under you, then take one step in the steepest downhill direction. This is the essence of <strong>gradient descent</strong>.\n    ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6aebb1671d28": {
+    "zh": "1. 假設類別 (Hypothesis Class)",
+    "en": "1. Hypothesis class",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1127b7824127": {
+    "zh": "決定你的模型家族與表達能力（如多層感知機 MLP、CNN 或 Transformer）。它決定了這座山的結構與維度。",
+    "en": "Determines your model family and its expressive power (e.g. a multilayer perceptron (MLP), a CNN or a Transformer). It determines the structure and dimensionality of this mountain.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9ebd140d45f5": {
+    "zh": "2. 損失函式 (Loss Function)",
+    "en": "2. Loss function",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e6ca6d742d8f": {
+    "zh": "定義「猜錯多少要付多少代價」（如 MSE 均方誤差或交叉熵 Cross-Entropy）。它把模型的優劣轉化為高低海拔。",
+    "en": "Defines \"how much you pay for how wrong you guess\" (e.g. MSE, the mean squared error, or cross-entropy). It turns how good or bad the model is into high and low altitude.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "16d92ebc140c": {
+    "zh": "3. 搜尋最佳假設 (Optimization - The Core Engine)",
+    "en": "3. Searching for the best hypothesis (optimization, the core engine)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ef9f7e88580d": {
+    "zh": "調整參數 $\\boldsymbol{w}$，把損失壓到最低——<strong>這就是本章的主角</strong>。沒有強大的最佳化演算法，再強大的網路架構也只是無法訓練的死模型。",
+    "en": "Adjust the parameters $\\boldsymbol{w}$ to push the loss as low as possible: <strong>this is the protagonist of this chapter</strong>. Without a powerful optimization algorithm, even the most powerful network architecture is just a dead model that cannot be trained.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "efcc707fa02b": {
+    "zh": "03 / 演算法取捨 · First vs Second Order",
+    "en": "03 / Algorithmic Trade-offs · First vs Second Order",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e8b06a22248a": {
+    "zh": "致命抉擇：一階梯度下降 vs 二階牛頓死路\n    <span class=\"en\">The Fatal Dilemma: First-Order GD vs Second-Order Newton's Dead-End</span>\n  ",
+    "en": "The fateful choice: first-order gradient descent vs the second-order Newton dead end\n  ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dc0cab511a82": {
+    "zh": "❌ 二階牛頓法 (Newton's Method)",
+    "en": "❌ Second-order Newton's method",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1bd805ede78a": {
+    "zh": "<strong>算力爆炸</strong>：參數維度 $d=10^6$ 時，Hessian 矩陣包含 $10^{12}$ 個元素，求逆運算複雜度為 $O(d^3)$，現代 GPU 完全無法負荷。",
+    "en": "<strong>Exploding compute</strong>: with parameter dimension $d=10^6$, the Hessian matrix has $10^{12}$ entries and inverting it costs $O(d^3)$, far beyond what modern GPUs can handle.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6ea50247c5c2": {
+    "zh": "<strong>鞍點吸引子</strong>：在高維非凸曲面中，牛頓法極容易被負曲率方向吸引至鞍點（Saddle Points）。",
+    "en": "<strong>Saddle-point attractor</strong>: on high-dimensional non-convex surfaces, Newton's method is very easily drawn to saddle points along directions of negative curvature.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "64ae3231e1d9": {
+    "zh": "<strong>泛化災難</strong>：牛頓法收斂過快，常常直接「掉進極其尖銳的深孔（Sharp Minima）」，在測試集上表現崩潰。",
+    "en": "<strong>Generalization disaster</strong>: Newton's method converges too fast and often \"falls straight into an extremely sharp, deep hole (a sharp minimum)\", and its performance on the test set collapses.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2aaae7b24660": {
+    "zh": "✅ 一階梯度下降 (First-Order GD)",
+    "en": "✅ First-order gradient descent",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "af25546c2b06": {
+    "zh": "<strong>計算輕盈</strong>：每步僅需計算梯度向量 $\\nabla f$，複雜度僅為 $O(d)$，能完美發揮平行運算優勢。",
+    "en": "<strong>Light computation</strong>: each step only needs the gradient vector $\\nabla f$, at a cost of only $O(d)$, making full use of parallel computing.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "97c37b9b3750": {
+    "zh": "<strong>平坦收斂</strong>：一階方法（特別是隨機版 SGD）帶有自然的動態噪聲，能自然避開尖銳深坑，停留在「平坦寬廣的碗底（Flat Minima）」。",
+    "en": "<strong>Flat convergence</strong>: first-order methods (especially the stochastic version, SGD) carry natural dynamic noise, so they naturally avoid sharp, deep pits and settle at \"the bottom of a flat, wide bowl (a flat minimum)\".",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "98752b98064c": {
+    "zh": "<strong>泛化卓越</strong>：平坦極小值對輸入擾動具備高度魯棒性，測試誤差顯著更低。",
+    "en": "<strong>Excellent generalization</strong>: flat minima are highly robust to input perturbations, and their test error is significantly lower.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f4cd67c12090": {
+    "zh": "⚠️ 深度學習反直覺鐵律：Fast $\\neq$ Good（走得快不代表學得好）",
+    "en": "⚠️ A counterintuitive iron law of deep learning: Fast $\\neq$ Good (moving fast does not mean learning well)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "de04e59cf431": {
+    "zh": "\n      在傳統數值最佳化中，二階法的二次收斂速度（Quadratic Convergence）令人稱羨；但在深度學習中，<strong>過度追求純訓練集的快速下降往往會犧牲測試集的泛化能力</strong>。一階方法的「漫步與探索」，反而是尋找通用規律的神賜禮物！\n      <span class=\"bilingual-en\">Counter-intuitive insight: Fast convergence does not guarantee generalization. Newton plunges into brittle sharp spikes; gradient descent settles in resilient flat valleys.</span>\n    ",
+    "en": "\n      In traditional numerical optimization, the quadratic convergence of second-order methods is the envy of all; but in deep learning, <strong>pursuing a fast drop on the training set alone often sacrifices generalization on the test set</strong>. The \"wandering and exploring\" of first-order methods is, on the contrary, a godsend for finding general patterns!\n    ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4632080a0508": {
+    "zh": "04 / 數學基礎 · Gradient Descent &amp; Step Size",
+    "en": "04 / Mathematical Foundations · Gradient Descent &amp; Step Size",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2934ab423871": {
+    "zh": "梯度下降：更新規則與學習率陷阱\n    <span class=\"en\">Gradient Descent: Mechanics, Smoothness &amp; Learning Rate Dynamics</span>\n  ",
+    "en": "Gradient descent: the update rule and the learning rate trap\n  ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c302cca3b374": {
+    "zh": "凸曲面單調滑入 vs 非凸地形震盪收斂",
+    "en": "Convex: monotone slide in vs non-convex: oscillating convergence",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "b41c63ce6726": {
+    "zh": "凸地形 (Convex Bowl)",
+    "en": "Convex landscape (convex bowl)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "89f72211149c": {
+    "zh": "等高線向心 · 必定收斂至全域最優",
+    "en": "Contours point inward · always converges to the global optimum",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "2ea662737623": {
+    "zh": "w* (全域最低)",
+    "en": "w* (global minimum)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "84269ecf6d3e": {
+    "zh": "非凸地形 (Non-Convex Landscape)",
+    "en": "Non-convex landscape",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "2c356baeff61": {
+    "zh": "存在鞍點與多個區域性坑洞 · 鋸齒推進",
+    "en": "Saddle points and many local pits · zigzag progress",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c497184d2c26": {
+    "zh": "路徑可能震盪，但總損失依然持續下降",
+    "en": "The path may oscillate, but the total loss keeps falling",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c86faccec363": {
+    "zh": "圖 1：凸曲面的平滑單調下降 vs 深度神經網路非凸曲面的震盪入谷",
+    "en": "Figure 1: smooth monotone descent on a convex surface vs oscillating descent into a valley on the non-convex surface of a deep neural network",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e7237e2a86c7": {
+    "zh": "標準梯度下降更新律 (Standard GD Update Rule)",
+    "en": "Standard gradient descent update rule",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "03b9c4941ff8": {
+    "zh": "若目標函式為 $L$-smooth（梯度變化率有上限 $L$），理論保證的最優步長為 $\\eta^* = 1/L$。",
+    "en": "If the objective function is $L$-smooth (the rate of change of the gradient is bounded by $L$), the theoretically guaranteed optimal step size is $\\eta^* = 1/L$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "eb5993fd0fbb": {
+    "zh": "但在深度神經網路中，Lipschitz 常數 $L$ 是無法預先計算的，實務上必須以固定的超參數 $\\eta$（學習率）進行調節：",
+    "en": "But in deep neural networks the Lipschitz constant $L$ cannot be computed in advance, so in practice one must tune with a fixed hyperparameter $\\eta$ (the learning rate):",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2dd5c8b7469e": {
+    "zh": "<strong>$\\eta$ 過小</strong>：更新如蝸牛漫步，極易卡在鞍點或耗盡訓練時間。",
+    "en": "<strong>$\\eta$ too small</strong>: updates crawl at a snail's pace, very easily getting stuck at saddle points or running out of training time.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "24f6174d9cf6": {
+    "zh": "<strong>$\\eta$ 適中</strong>：沿著陡坡平順滑入低窪地帶。",
+    "en": "<strong>$\\eta$ just right</strong>: slides smoothly down the steep slope into the low-lying region.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d1c0504547ab": {
+    "zh": "<strong>$\\eta$ 過大</strong>：跨步過猛，在山谷兩側來回拍皮球（震盪），甚至數值爆炸發散（NaN）。",
+    "en": "<strong>$\\eta$ too large</strong>: the steps are too aggressive, bouncing back and forth between the two sides of the valley like a ball (oscillation), or even blowing up numerically and diverging (NaN).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "815fd302d2dd": {
+    "zh": "05 / 步長自適應 · Line Search &amp; Steepest Descent",
+    "en": "05 / Adaptive Step Size · Line Search &amp; Steepest Descent",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9236f9d4cb17": {
+    "zh": "步長求索：線搜尋「肯縮才是真智慧」\n    <span class=\"en\">Line Search: Backtracking &amp; The Philosophy of Step Reduction</span>\n  ",
+    "en": "Finding the step: line search, \"being willing to shrink is true wisdom\"\n  ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9451489c9127": {
+    "zh": "線搜尋核心法則：步子太大就對半砍 (Backtracking Line Search)",
+    "en": "The core rule of line search: if the step is too big, cut it in half (backtracking line search)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8612248afcd7": {
+    "zh": "既然不知道 $L$，線搜尋策略採取「每一步先大膽嘗試 $\\eta=1$，只要不滿足下降條件，就直接減半」：",
+    "en": "Since $L$ is unknown, the line search strategy is \"at each step, first boldly try $\\eta=1$, and as long as the decrease condition is not met, simply halve it\":",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "53d241e1e540": {
+    "zh": "$$ f\\left(\\boldsymbol{w}^{(k)} - \\eta \\nabla f\\left(\\boldsymbol{w}^{(k)}\\right)\\right) &lt; f\\left(\\boldsymbol{w}^{(k)}\\right) \\quad \\Longrightarrow \\quad \\text{若否則 } \\eta \\leftarrow \\frac{\\eta}{2} $$",
+    "en": "$$ f\\left(\\boldsymbol{w}^{(k)} - \\eta \\nabla f\\left(\\boldsymbol{w}^{(k)}\\right)\\right) &lt; f\\left(\\boldsymbol{w}^{(k)}\\right) \\quad \\Longrightarrow \\quad \\text{otherwise } \\eta \\leftarrow \\frac{\\eta}{2} $$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f2c438262153": {
+    "zh": "數學保證：只要 $\\eta &lt; 1/L$，目標函式值必然嚴格下降！",
+    "en": "Mathematical guarantee: as long as $\\eta &lt; 1/L$, the objective value is certain to decrease strictly!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8f76918ceed3": {
+    "zh": "最佳化方法 (Method)",
+    "en": "Optimization method",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6aebaca63944": {
+    "zh": "步長決定方式 (Step Policy)",
+    "en": "How the step size is chosen",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0d51955809c7": {
+    "zh": "計算成本 (Cost)",
+    "en": "Computational cost",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fcd1aa2e16a1": {
+    "zh": "深度學習適用性 (DL Feasibility)",
+    "en": "Suitability for deep learning",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "abc5a02edcd1": {
+    "zh": "<strong>固定學習率 GD</strong>",
+    "en": "<strong>Fixed-learning-rate GD</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "aad4dedbb71e": {
+    "zh": "人工指定常數 $\\eta$（如 0.001）",
+    "en": "A constant $\\eta$ set by hand (e.g. 0.001)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "17fa494aa577": {
+    "zh": "最低（$O(d)$ 每步 1 次評估）",
+    "en": "Lowest ($O(d)$, 1 evaluation per step)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8db524bb26af": {
+    "zh": "⭐⭐⭐⭐⭐（主流，透過 Scheduler 衰減）",
+    "en": "⭐⭐⭐⭐⭐ (mainstream, decayed with a scheduler)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2d5e29097001": {
+    "zh": "<strong>線搜尋 GD (Line Search)</strong>",
+    "en": "<strong>Line search GD</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a6cf103749e4": {
+    "zh": "從 $\\eta=1$ 開始，不降就對半砍",
+    "en": "Start from $\\eta=1$; if the loss does not drop, cut it in half",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8ebe0a3410d5": {
+    "zh": "中等（內層迴圈需多次 Forward 評估）",
+    "en": "Moderate (the inner loop needs several forward evaluations)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4d033d5b0ee3": {
+    "zh": "⭐⭐（小模型可用，大模型前向計算太昂貴）",
+    "en": "⭐⭐ (usable for small models; for large models the forward pass is too expensive)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d0f873d7f207": {
+    "zh": "<strong>最陡下降 (Steepest Descent)</strong>",
+    "en": "<strong>Steepest descent</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ec9a20376fb0": {
+    "zh": "每步精確解一維最佳化 $\\arg\\min_\\eta f(\\boldsymbol{w}-\\eta\\nabla f)$",
+    "en": "Solves a one-dimensional optimization exactly at every step: $\\arg\\min_\\eta f(\\boldsymbol{w}-\\eta\\nabla f)$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4a328cc6525d": {
+    "zh": "極高（需在射線上反覆迭代）",
+    "en": "Extremely high (requires repeated iterations along the ray)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4ac663fd80ab": {
+    "zh": "⭐（深度學習完全不採用）",
+    "en": "⭐ (not used at all in deep learning)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "50a986d1a3e7": {
+    "zh": "06 / 慣性動力學 · The Physics of Momentum",
+    "en": "06 / Inertial Dynamics · The Physics of Momentum",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2c2d0cb70d89": {
+    "zh": "物理破局：動量加速與山谷震盪相消\n    <span class=\"en\">Momentum: Inertial Dynamics in Pathological Ravines</span>\n  ",
+    "en": "A breakthrough from physics: momentum accelerates and cancels the oscillation in ravines\n  ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3e814209e425": {
+    "zh": "Rumelhart 動量更新公式（式 (8)）",
+    "en": "Rumelhart's momentum update (Eq. (8))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "689a3ea733b2": {
+    "zh": "其中 $\\alpha \\in [0, 1)$ 為<strong>動量係數</strong>（通常取 0.9）。更新方向不再單憑此時此刻的斜率，而是疊加了歷史運動的慣性！",
+    "en": "Here $\\alpha \\in [0, 1)$ is the <strong>momentum coefficient</strong> (usually 0.9). The update direction no longer relies only on the slope at this very moment; it adds the inertia of past motion!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "193f7ac13e16": {
+    "zh": "<strong>狹長山谷（Ravine）救星：</strong>",
+    "en": "<strong>The savior in a ravine:</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5232945afcda": {
+    "zh": "在縱向（目標方向），坡度平緩但方向一致，動量累積速度像滾雪球般加速推進。",
+    "en": "Along the length (toward the goal), the slope is gentle but its direction is consistent, so the accumulated momentum speeds up like a snowball rolling forward.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c0f4cc2f4d78": {
+    "zh": "在橫向（山壁兩側），梯度符號在相鄰步驟間劇烈翻轉，向量加法將兩側的無謂碰撞相互抵消！",
+    "en": "Across the valley (between the two walls), the sign of the gradient flips sharply between adjacent steps, and vector addition cancels out the pointless collisions with the two sides!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f32056665a22": {
+    "zh": "狹長山谷向量合成：橫向抵消，縱向倍增",
+    "en": "Vector sum in a ravine: sideways cancels, forward adds up",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "162a085bfdcb": {
+    "zh": "Min (谷底)",
+    "en": "Min (valley floor)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "cf000aa17f49": {
+    "zh": "無動量：狂撞山壁",
+    "en": "No momentum: crashing into the walls",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "6bb36ff025e5": {
+    "zh": "有動量：沿谷心平滑直衝",
+    "en": "With momentum: smooth dash along the valley center",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "8c65f1367059": {
+    "zh": "向量加法合成解析：",
+    "en": "Vector addition, analyzed:",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "97d69fd0865a": {
+    "zh": "當前梯度 (橫向偏大)",
+    "en": "Current gradient (mostly sideways)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "8880e8ca22c9": {
+    "zh": "歷史慣性 (縱向前進)",
+    "en": "Past inertia (forward along the valley)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "f65764a22db1": {
+    "zh": "合成步長 Δw (側向抵消、前進加速)",
+    "en": "Resulting step Δw (sideways cancels, forward speeds up)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "f595e7206950": {
+    "zh": "圖 2：動量慣性將狹長山谷的垂直橫向分量正負相消，累積沿谷前進動能",
+    "en": "Figure 2: momentum's inertia cancels the positive and negative cross-valley components in a ravine and builds up momentum along the valley",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8d8aa6e7161b": {
+    "zh": "07 / 演算法心臟 · Backpropagation &amp; Chain Rule",
+    "en": "07 / The Algorithm's Heart · Backpropagation &amp; Chain Rule",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a6d1c7485afc": {
+    "zh": "反向傳播：鏈式法則與敏感度 $\\delta$ 倒灌\n    <span class=\"en\">Backpropagation: Recursive Chain Rule &amp; Error Sensitivity Flow</span>\n  ",
+    "en": "Backpropagation: the chain rule and the sensitivity $\\delta$ flowing back\n  ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a29ecc3d863f": {
+    "zh": "💡 核心悖論：中間隱藏層看不見標籤，該如何學習？",
+    "en": "💡 The core paradox: the hidden layers in the middle cannot see the labels, so how can they learn?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "673b4769a8da": {
+    "zh": "\n      輸出層有明確的目標標籤 $t$，誤差一目瞭然；但中間隱藏層既看不見答案，也沒有專屬的評判標準。\n      反向傳播的偉大之處在於：<strong>它將最後一層的誤差責任，透過神經元間的連線權重，一層層往回「算帳」與「倒灌」</strong>！\n      <span class=\"bilingual-en\">Output neurons directly compare predictions against targets. Hidden neurons have no ground truth; backpropagation solves this by apportioning output blame backward through connection weights.</span>\n    ",
+    "en": "\n      The output layer has an explicit target label $t$, so its error is plain to see; but a hidden layer in the middle neither sees the answer nor has its own criterion for judging.\n      The greatness of backpropagation is this: <strong>it takes the responsibility for the last layer's error and, through the connection weights between neurons, \"settles the accounts\" and \"pours it back\" layer by layer</strong>!\n    ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "db9274ce7e14": {
+    "zh": "神經網路前向計算 (Forward) vs 誤差敏感度倒灌 (Backward)",
+    "en": "Forward computation vs backward flow of error sensitivity",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "39fb341e560c": {
+    "zh": "輸入層 (Input)",
+    "en": "Input layer",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "a6b8f56a3c36": {
+    "zh": "隱藏層 (Hidden Neuron i)",
+    "en": "Hidden layer (hidden neuron i)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "869ab937f5c7": {
+    "zh": "輸出層 (Output Neuron j)",
+    "en": "Output layer (output neuron j)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "56b7be471999": {
+    "zh": "輸入特徵",
+    "en": "Input features",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "7e67ea438d90": {
+    "zh": "無標籤 · 待倒灌",
+    "en": "No label · awaiting the backflow",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "07fa22812c5b": {
+    "zh": "對比目標 t",
+    "en": "Compare with target t",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "7332b2e13928": {
+    "zh": "Backward (δ_j 倒灌 ➔ δ_i)",
+    "en": "Backward (δ_j flows back ➔ δ_i)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "8cfdc8eaa2f0": {
+    "zh": "計算權重梯度 ∂e/∂w_iℓ",
+    "en": "Compute the weight gradient ∂e/∂w_iℓ",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "9985e703ebac": {
+    "zh": "定義敏感度變數：δ = ∂e / ∂a（損失對神經元加權和的敏感度）",
+    "en": "Define the sensitivity: δ = ∂e / ∂a (sensitivity of the loss to the neuron's weighted sum)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "0c07daffbbf3": {
+    "zh": "① 輸出層 δ_j = ∂e / ∂a_j（若為二次損失則為 (z_j - t) · σ'(a_j)）",
+    "en": "① Output layer δ_j = ∂e / ∂a_j (for a quadratic loss, (z_j - t) · σ'(a_j))",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "aa7c4bf1c34e": {
+    "zh": "② 隱藏層 δ_i = σ'(a_i) · Σ_j (δ_j · w_ji) ➔ 下游責任按權重加權回傳！",
+    "en": "② Hidden layer δ_i = σ'(a_i) · Σ_j (δ_j · w_ji) ➔ downstream responsibility is sent back weighted by the weights!",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "750243d4e5fc": {
+    "zh": "圖 3：反向傳播鏈式法則的敏感度倒灌閉環",
+    "en": "Figure 3: the closed loop of the sensitivity flowing back in the chain rule of backpropagation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c55e38d29f32": {
+    "zh": "權重更新雙軌方程式 (Weight Update Equations)",
+    "en": "The two weight update equations",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fbc0db764e54": {
+    "zh": "<strong>輸出層權重更新 (式 (18))：</strong>",
+    "en": "<strong>Output-layer weight update (Eq. (18)):</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9ee80250e820": {
+    "zh": "<strong>隱藏層權重更新 (式 (19))：</strong>",
+    "en": "<strong>Hidden-layer weight update (Eq. (19)):</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "71ffdff397de": {
+    "zh": "<strong>口訣拆解：</strong>「梯度等於<strong>下游傳回來的責任 $\\delta_i$</strong> 乘以<strong>上游進來的訊號 $z_\\ell$</strong>」。",
+    "en": "<strong>Breaking down the mnemonic:</strong> \"the gradient equals <strong>the responsibility $\\delta_i$ sent back from downstream</strong> times <strong>the signal $z_\\ell$ coming in from upstream</strong>\".",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3f0e256e24d4": {
+    "zh": "08 / 隨機近似 · Stochastic Gradient Descent",
+    "en": "08 / Stochastic Approximation · Stochastic Gradient Descent",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dd18c2e87570": {
+    "zh": "大資料現實：隨機梯度下降與 Mini-Batch 神賜噪聲\n    <span class=\"en\">Mini-Batch SGD: Computational Pragmatism &amp; Stochastic Regularization</span>\n  ",
+    "en": "The big-data reality: stochastic gradient descent and the godsent noise of mini-batches\n  ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "59e88dbdd49b": {
+    "zh": "全批次梯度下降 (Full-Batch GD)",
+    "en": "Full-batch gradient descent",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2fbe0f362b31": {
+    "zh": "Batch Size $B = N$ (全部資料)",
+    "en": "Batch size $B = N$ (all the data)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8822371235f4": {
+    "zh": "每走一步需掃描百萬筆樣本。梯度極度精確，但記憶體爆表、單步速度極慢，且容易陷入深窄的區域性極小值無法自拔。",
+    "en": "Every step requires scanning millions of samples. The gradient is extremely accurate, but memory blows up, each step is extremely slow, and it easily gets trapped in a deep, narrow local minimum it cannot escape.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "10f69dc3ef3b": {
+    "zh": "純隨機梯度下降 (Pure SGD)",
+    "en": "Pure stochastic gradient descent (pure SGD)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4ca4740efbb5": {
+    "zh": "Batch Size $B = 1$ (單一樣本)",
+    "en": "Batch size $B = 1$ (a single sample)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0fd4a6de27a3": {
+    "zh": "每看一筆資料就更新一次。計算極快，但梯度方差極大，路徑如同醉漢狂奔，難以穩定收斂到平穩區間。",
+    "en": "Updates once for every data point it sees. Computation is extremely fast, but the gradient variance is huge; the path is like a drunk running wild, and it has a hard time converging stably to a steady region.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ec2b4cb785af": {
+    "zh": "黃金折衷：Mini-Batch SGD (現代深度學習標準)",
+    "en": "The golden compromise: mini-batch SGD (the modern deep learning standard)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "948610622af8": {
+    "zh": "\n        將資料隨機洗牌（Shuffle）劃分為多個 Mini-Batch。既能透過矩陣平行乘法發揮 GPU 峰值算力，\n        又自帶適度的<strong>隨機梯度噪聲（Stochastic Noise）</strong>。\n        這層隨機震盪就像為最佳化過程施加了熱力學退火，幫助網路<strong>主動跳出尖銳鞍點與次優坑洞</strong>，最終沉澱在泛化能力最強的寬平盆地中！\n      ",
+    "en": "\n        Randomly shuffle the data and split it into multiple mini-batches. This both exploits the GPU's peak compute through parallel matrix multiplication\n        and comes with a moderate amount of <strong>stochastic gradient noise</strong>.\n        This layer of random jitter is like applying thermodynamic annealing to the optimization process, helping the network <strong>actively jump out of sharp saddle points and suboptimal pits</strong>, and finally settle in the wide, flat basin with the strongest generalization!\n      ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "88e9884423ed": {
+    "zh": "09 / 現代主力 · Adaptive Optimizers",
+    "en": "09 / Today's Workhorses · Adaptive Optimizers",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1708a770c23f": {
+    "zh": "自適應革命：從 AdaGrad、RMSProp 到 Adam\n    <span class=\"en\">The Adaptive Revolution: Coordinate-wise Learning Rate Adaptation</span>\n  ",
+    "en": "The adaptive revolution: from AdaGrad and RMSProp to Adam\n  ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2cf2f125fc25": {
+    "zh": "AdaGrad：逐維度累積平方梯度",
+    "en": "AdaGrad: accumulate squared gradients per dimension",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f698d31bb108": {
+    "zh": "\n        發現不同參數的稀疏度不同：頻繁出現的特徵梯度大，罕見特徵梯度小。\n        以歷史梯度平方和 $G_t = \\sum \\boldsymbol{g}_\\tau^2$ 縮放步長：$\\boldsymbol{w} \\leftarrow \\boldsymbol{w} - \\frac{\\eta}{\\sqrt{G_t + \\epsilon}} \\boldsymbol{g}_t$。\n        <strong>致命死穴</strong>：$G_t$ 單調遞增，導致有效學習率過早歸零衰亡，訓練後期提早凍結。\n      ",
+    "en": "\n        It observes that different parameters have different sparsity: frequent features have large gradients, rare features have small ones.\n        It scales the step size by the sum of past squared gradients $G_t = \\sum \\boldsymbol{g}_\\tau^2$: $\\boldsymbol{w} \\leftarrow \\boldsymbol{w} - \\frac{\\eta}{\\sqrt{G_t + \\epsilon}} \\boldsymbol{g}_t$.\n        <strong>Fatal weakness</strong>: $G_t$ increases monotonically, so the effective learning rate decays to zero too early and training freezes prematurely in its later stages.\n      ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4176f2cccf26": {
+    "zh": "RMSProp：引入指數移動平均 (EMA) 破局",
+    "en": "RMSProp: breaking through with an exponential moving average (EMA)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "46ac7a461b44": {
+    "zh": "\n        改用滑動視窗 EMA 追蹤二階矩：$v_t = \\beta v_{t-1} + (1-\\beta) \\boldsymbol{g}_t^2$。\n        「遺忘」過於久遠的歷史，只關注近期的曲率尺度，徹底解決了 AdaGrad 學習率過早歸零的頑疾。\n      ",
+    "en": "\n        It switches to a sliding-window EMA to track the second moment: $v_t = \\beta v_{t-1} + (1-\\beta) \\boldsymbol{g}_t^2$.\n        It \"forgets\" history that is too old and only pays attention to the recent curvature scale, completely curing AdaGrad's chronic problem of the learning rate dropping to zero too early.\n      ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5643a983b1ef": {
+    "zh": "Adam：現代深度學習的預設霸主 (Adaptive Moment Estimation)",
+    "en": "Adam: the default king of modern deep learning (adaptive moment estimation)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b15a687ead45": {
+    "zh": "\n        完美集大成者：<strong>一階動量（速度慣性）+ 二階動量（尺度自適應）+ 初期偏差校正（Bias Correction）</strong>：\n        $$ m_t = \\beta_1 m_{t-1} + (1-\\beta_1) \\boldsymbol{g}_t, \\quad v_t = \\beta_2 v_{t-1} + (1-\\beta_2) \\boldsymbol{g}_t^2 $$\n        校正初期向零偏差後更新：$\\boldsymbol{w} \\leftarrow \\boldsymbol{w} - \\frac{\\eta}{\\sqrt{\\hat{v}_t} + \\epsilon} \\hat{m}_t$。\n      ",
+    "en": "\n        The perfect synthesis: <strong>first-order momentum (velocity inertia) + second-order momentum (scale adaptation) + early bias correction</strong>:\n        $$ m_t = \\beta_1 m_{t-1} + (1-\\beta_1) \\boldsymbol{g}_t, \\quad v_t = \\beta_2 v_{t-1} + (1-\\beta_2) \\boldsymbol{g}_t^2 $$\n        After correcting the early bias toward zero, update: $\\boldsymbol{w} \\leftarrow \\boldsymbol{w} - \\frac{\\eta}{\\sqrt{\\hat{v}_t} + \\epsilon} \\hat{m}_t$.\n      ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ac7f85e585e7": {
+    "zh": "10 / 前沿泛化 · Sharpness-Aware Minimization",
+    "en": "10 / Generalization Frontier · Sharpness-Aware Minimization",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a66354aec08d": {
+    "zh": "平坦極小值與 SAM：為什麼「平」比「深」更能抵抗崩塌？\n    <span class=\"en\">Flat Minima &amp; SAM: Why Flatness Outperforms Pure Depth</span>\n  ",
+    "en": "Flat minima and SAM: why does \"flat\" resist collapse better than \"deep\"?\n  ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7fd791f9075a": {
+    "zh": "分佈偏移時：尖銳極小 (Sharp) 崩塌 vs 平坦極小 (Flat) 穩健",
+    "en": "Under distribution shift: sharp minimum collapses vs flat minimum holds",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "f74e807a81c5": {
+    "zh": "— 訓練集損失 (Train Loss)",
+    "en": "— Training loss",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "b3bc3b1173db": {
+    "zh": "-- 測試集損失 (Test Loss with Shift)",
+    "en": "-- Test loss (with shift)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "ef06098255fe": {
+    "zh": "尖銳極小 (Sharp)",
+    "en": "Sharp minimum",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "5c41cca39253": {
+    "zh": "測試損失暴衝！(High Error)",
+    "en": "Test loss shoots up! (high error)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "45d1f7720cec": {
+    "zh": "平坦極小 (Flat Basin)",
+    "en": "Flat minimum (flat basin)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "368b3d1076d5": {
+    "zh": "測試損失依然極低！(Robust)",
+    "en": "Test loss stays very low! (robust)",
+    "kp": 11,
+    "ctx": "svg"
+  },
+  "afd6995c4b76": {
+    "zh": "圖 4：測試集資料分佈偏移時，尖銳極小的損失呈幾何暴增，而平坦極小具備強健泛化力",
+    "en": "Figure 4: when the test data distribution shifts, the loss at a sharp minimum blows up geometrically, while a flat minimum generalizes robustly",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b7a246465900": {
+    "zh": "SAM 銳度感知最佳化核心目標 (Foret et al., 2020)",
+    "en": "The core objective of SAM, sharpness-aware optimization (Foret et al., 2020)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4e930b7b8640": {
+    "zh": "傳統最佳化只在乎自己腳下有多深；SAM 則在半徑 $\\rho$ 範圍內尋找「最惡毒的區域性擾動 $\\boldsymbol{\\epsilon}^*$」，逼迫參數走向哪怕周圍有擾動也不會升高的<strong>平坦盆地</strong>！",
+    "en": "Traditional optimization only cares how deep it is right under its feet; SAM instead searches within radius $\\rho$ for \"the most vicious local perturbation $\\boldsymbol{\\epsilon}^*$\", forcing the parameters toward a <strong>flat basin</strong> that does not rise even when its surroundings are perturbed!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2722bb1feed3": {
+    "zh": "<strong>兩步對抗更新邏輯：</strong>",
+    "en": "<strong>The two-step adversarial update logic:</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "726e9ebd176a": {
+    "zh": "在鄰域內順著梯度方向前進 $\\rho$，找出使損失最大的最壞點 $\\boldsymbol{w} + \\boldsymbol{\\epsilon}^*$。",
+    "en": "Within the neighborhood, move $\\rho$ along the gradient direction to find the worst point $\\boldsymbol{w} + \\boldsymbol{\\epsilon}^*$, where the loss is largest.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9055b4a1bc4f": {
+    "zh": "以該最壞點的梯度來更新原始參數 $\\boldsymbol{w}$。",
+    "en": "Update the original parameters $\\boldsymbol{w}$ with the gradient at that worst point.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "fd910be22b20": {
+    "zh": "11 / 理論奇蹟 · Overparameterization Theory",
+    "en": "11 / A Theoretical Miracle · Overparameterization Theory",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6ddb84af378b": {
+    "zh": "過參數化網路的收斂奇蹟：為什麼參數比資料多卻不卡死？\n    <span class=\"en\">Overparameterization Theory: How High Dimensions Convexify Non-Convexity</span>\n  ",
+    "en": "The convergence miracle of over-parameterized networks: why don't they get stuck with more parameters than data?\n  ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "52d2600c292a": {
+    "zh": "💡 現代深度學習理論核心悖論",
+    "en": "💡 The core paradox of modern deep learning theory",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "7f0f6e3755e9": {
+    "zh": "\n      傳統統計學警告我們：模型參數 $d$ 若遠大於樣本數 $N$（過參數化），模型必將嚴重過擬合，且高維非凸最佳化必卡在無窮無盡的壞區域性解。\n      然而實務上，寬神經網路（Wide Networks）卻能以簡單的 SGD 100% 擬合訓練集，且測試泛化表現出奇地好！\n      <span class=\"bilingual-en\">Classical statistics dictates that overparameterization yields disastrous overfitting and optimization paralysis. In modern deep networks, overparameterization actually convexifies optimization trajectories.</span>\n    ",
+    "en": "\n      Traditional statistics warns us: if the number of model parameters $d$ is far larger than the number of samples $N$ (over-parameterization), the model is bound to overfit badly, and high-dimensional non-convex optimization is bound to get stuck in endless bad local solutions.\n      In practice, however, wide networks can fit the training set 100% with plain SGD, and their test generalization is surprisingly good!\n    ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "45a9691ee539": {
+    "zh": "1. 神經正切核 (Neural Tangent Kernel, NTK)",
+    "en": "1. Neural tangent kernel (NTK)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c72a64ba5081": {
+    "zh": "當神經網路寬度趨於無窮大時，權重在訓練過程中的相對位移趨近於零（Lazy Training Regime），整個非凸動態退化為線性核回歸，保證線性收斂至全域最優解。",
+    "en": "As the width of a neural network goes to infinity, the relative displacement of the weights during training goes to zero (the lazy training regime), the whole non-convex dynamics degenerates into linear kernel regression, and linear convergence to the global optimum is guaranteed.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3754ffa17811": {
+    "zh": "2. 鞍點逃逸與零損失流形 (Zero-Loss Manifolds)",
+    "en": "2. Saddle-point escape and zero-loss manifolds",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a687f6f47ff2": {
+    "zh": "過參數化將單一離散的區域性最優點拓展為連續相連的「零損失超曲面流形」。高維空間賦予了無數條逃逸維度，嚴格鞍點幾乎不可能阻擋梯度流動。",
+    "en": "Over-parameterization expands isolated, discrete local optima into continuous, connected \"zero-loss hypersurface manifolds\". High-dimensional space provides countless escape dimensions, so strict saddle points can hardly block the gradient flow.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5c28dcd55e19": {
+    "zh": "12 / 體系總結 · The 5-Station Hierarchy",
+    "en": "12 / Summing Up · The 5-Station Hierarchy",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e183268b9c99": {
+    "zh": "五代最佳化階梯：深度學習最佳化進化全景\n    <span class=\"en\">The Five Generations of Deep Learning Optimization</span>\n  ",
+    "en": "The five-generation optimization ladder: a panorama of how deep learning optimization evolved\n  ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d0aeee746dd8": {
+    "zh": "🏆 全章最佳化知識架構階梯 (Optimization Evolution Hierarchy)",
+    "en": "🏆 The chapter's optimization knowledge ladder",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c0132741238c": {
+    "zh": "<strong>GD (1874) · 數學地基</strong>：沿負梯度 $-\\nabla f$ 邁步，確立一階最佳化對 $L$-smooth 的下降保證。",
+    "en": "<strong>GD (1874) · The mathematical foundation</strong>: step along the negative gradient $-\\nabla f$, establishing the descent guarantee of first-order optimization under $L$-smoothness.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "69657e7a8f4a": {
+    "zh": "<strong>Backprop (1986) · 引擎心臟</strong>：鏈式法則遞推反向傳遞 $\\delta$，徹底解鎖多層隱藏權重的可訓練性。",
+    "en": "<strong>Backprop (1986) · The heart of the engine</strong>: the chain rule recursively passes $\\delta$ backward, fully unlocking the trainability of the weights of multiple hidden layers.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "aeb4a6b012db": {
+    "zh": "<strong>Mini-Batch SGD (1951/現代) · 實用妥協</strong>：GPU 平行算力與隨機熱力學退火噪聲的完美平衡。",
+    "en": "<strong>Mini-batch SGD (1951/modern) · The practical compromise</strong>: the perfect balance between GPU parallel compute and stochastic, thermodynamic-annealing noise.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d2f9bd89ef02": {
+    "zh": "<strong>Adam (2014) · 自適應主力</strong>：一階動量 + 二階滑動方差，免除繁複的人工手調學習率痛苦。",
+    "en": "<strong>Adam (2014) · The adaptive workhorse</strong>: first-order momentum + a sliding second-order variance, sparing you the pain of tediously hand-tuning the learning rate.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6e7449594088": {
+    "zh": "<strong>SAM (2020) · 泛化前沿</strong>：跳脫純數值最小化思維，以 Min-Max 對抗擾動擁抱平坦寬廣的泛化盆地。",
+    "en": "<strong>SAM (2020) · The generalization frontier</strong>: breaking out of pure numerical minimization, it uses min-max adversarial perturbations to embrace wide, flat basins that generalize.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "636121f5bc13": {
+    "zh": "13 / 實戰模擬 · Interactive Optimization Lab",
+    "en": "13 / Hands-On Simulation · Interactive Optimization Lab",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "085356844965": {
+    "zh": "互動探索實驗室：2D 狹長山谷最佳化競速器\n    <span class=\"en\">Interactive Lab: Navigating the 2D Ravine with GD vs Momentum vs Adam</span>\n  ",
+    "en": "Interactive exploration lab: a 2D ravine optimization race\n  ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e9eaf6669fcc": {
+    "zh": "最佳化演算法：",
+    "en": "Optimization algorithm:",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "eda3ccd92522": {
+    "zh": "純梯度下降 (Pure GD)",
+    "en": "Pure GD",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "5ea951f292e3": {
+    "zh": "動量法 (Momentum, α=0.85)",
+    "en": "Momentum (α=0.85)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "358b7d0960b3": {
+    "zh": "Adam 自適應 (β1=0.9, β2=0.999)",
+    "en": "Adam, adaptive (β1=0.9, β2=0.999)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1717a6e99b79": {
+    "zh": "學習率 η：",
+    "en": "Learning rate η:",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4e4ab8b56c04": {
+    "zh": "動量 α：",
+    "en": "Momentum α:",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "dc5c0f6a6b83": {
+    "zh": "單步前進 (Step)",
+    "en": "Single step",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "faf227d04bbf": {
+    "zh": "跑 40 步 (Run 40)",
+    "en": "Run 40 steps",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "f148b96176c5": {
+    "zh": "<strong>測試地形：</strong> $f(x, y) = \\frac{1}{2}(x^2 + 25y^2)$",
+    "en": "<strong>Test landscape:</strong> $f(x, y) = \\frac{1}{2}(x^2 + 25y^2)$",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1591ae65ee22": {
+    "zh": "<strong>特性說明：</strong> $y$ 軸曲率是 $x$ 軸的 25 倍，為經典狹長山谷。",
+    "en": "<strong>What it shows:</strong> the curvature along the $y$ axis is 25 times that along the $x$ axis, a classic ravine.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "b8c716cde48b": {
+    "zh": "目前位置：<span class=\"badge-metric\" id=\"readout-pos\">(4.00, 0.80)</span>",
+    "en": "Current position: <span class=\"badge-metric\" id=\"readout-pos\">(4.00, 0.80)</span>",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "899b75a0ba55": {
+    "zh": "梯度向量：<span class=\"badge-metric\" id=\"readout-grad\">(4.00, 20.00)</span>",
+    "en": "Gradient vector: <span class=\"badge-metric\" id=\"readout-grad\">(4.00, 20.00)</span>",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d8d6b3a38bf1": {
+    "zh": "距最優點：<span class=\"badge-metric\" id=\"readout-dist\">4.079</span>",
+    "en": "Distance to optimum: <span class=\"badge-metric\" id=\"readout-dist\">4.079</span>",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "60d858068f02": {
+    "zh": "迭代步數：<span class=\"badge-metric\" id=\"readout-step\">0</span> 步",
+    "en": "Iterations: <span class=\"badge-metric\" id=\"readout-step\">0</span> steps",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "40ff4a81bc2f": {
+    "zh": "\n          💡 <strong>動手實測提示：</strong> 切換為「純 GD」，點選跑 40 步，會看到紅線在山壁劇烈反彈；切換為「動量法」，綠線迅速沿谷底滑向原點！\n        ",
+    "en": "\n          💡 <strong>Try it yourself:</strong> switch to \"Pure GD\" and click Run 40 steps, and you will see the red line bounce violently off the valley walls; switch to \"Momentum\", and the green line quickly slides along the valley floor to the origin!\n        ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "61a5f1328963": {
+    "zh": "14 / 檢驗成果 · Knowledge Checkpoint",
+    "en": "14 / Check Your Results · Knowledge Checkpoint",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-class checkpoint: instant feedback on concepts\n  ",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "6ed0033ce03a": {
+    "zh": "題目 1：為什麼二階牛頓法（Newton's Method）在現代深度學習中幾乎無法使用？",
+    "en": "Question 1: Why is second-order Newton's method almost unusable in modern deep learning?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "26819cc790f4": {
+    "zh": "A. 牛頓法只能用於一維函式，無法推廣至多維空間",
+    "en": "A. Newton's method only works for one-dimensional functions and cannot be generalized to multidimensional spaces",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "8e0595eedb49": {
+    "zh": "B. Hessian 矩陣大小為 $d \\times d$，求逆需 $O(d^3)$ 算力，且易收斂至泛化不良的尖銳極小",
+    "en": "B. The Hessian matrix is $d \\times d$, inverting it takes $O(d^3)$ compute, and it easily converges to sharp minima that generalize poorly",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "7a15106167a8": {
+    "zh": "C. 牛頓法的理論證明已被數學界證偽",
+    "en": "C. The theoretical proof of Newton's method has been refuted by mathematicians",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "53787ec8b6d5": {
+    "zh": "D. 牛頓法需要手動指定 batch size",
+    "en": "D. Newton's method requires the batch size to be specified by hand",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "a374e6c835da": {
+    "zh": "題目 2：反向傳播演算法中，中間隱藏層的神經元「看不到真實標籤」，它的權重梯度是如何決定的？",
+    "en": "Question 2: In the backpropagation algorithm, neurons in the hidden layers in the middle \"cannot see the true labels\". How are their weight gradients determined?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "7b6a561d6038": {
+    "zh": "A. 將隱藏層輸出與輸入特徵直接相減作為誤差",
+    "en": "A. Subtract the input features directly from the hidden layer's output and use that as the error",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "4e5857f5cfd8": {
+    "zh": "B. 隨機生成微小擾動進行蒙地卡羅估計",
+    "en": "B. Generate tiny random perturbations for a Monte Carlo estimate",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "841ed2111f97": {
+    "zh": "C. 透過鏈式法則，將下游所有神經元的敏感度 $\\delta_j$ 乘上連線權重 $w_{ji}$ 加權倒灌回來",
+    "en": "C. Through the chain rule, the sensitivities $\\delta_j$ of all downstream neurons are multiplied by the connection weights $w_{ji}$ and poured back as a weighted sum",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "f5b0a1dda2cd": {
+    "zh": "D. 隱藏層權重在訓練中保持固定，只有輸出層更新",
+    "en": "D. The hidden-layer weights stay fixed during training; only the output layer is updated",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "594a33f22943": {
+    "zh": "題目 3：銳度感知最小化（SAM, Sharpness-Aware Minimization）相較於傳統經驗風險最小化（ERM），最大的革新是什麼？",
+    "en": "Question 3: Compared with traditional empirical risk minimization (ERM), what is the biggest innovation of sharpness-aware minimization (SAM)?",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "0d6081fa1bac": {
+    "zh": "A. 透過 Min-Max 雙重博弈在鄰域內尋找最壞擾動，迫使模型收斂於對分佈偏移更魯棒的平坦極小值",
+    "en": "A. Through a min-max two-player game it searches the neighborhood for the worst perturbation, forcing the model to converge to flat minima that are more robust to distribution shift",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "aa02c61393af": {
+    "zh": "B. 完全捨棄了一階梯度，改用遺傳演算法",
+    "en": "B. It abandons first-order gradients completely and uses a genetic algorithm instead",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "f02f49f5dae0": {
+    "zh": "C. 將神經網路的所有啟用函式強制替換為線性函式",
+    "en": "C. It forces every activation function in the neural network to be replaced by a linear function",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "7b318d7d825d": {
+    "zh": "D. 保證訓練損失在每一步都嚴格為零",
+    "en": "D. It guarantees that the training loss is exactly zero at every step",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

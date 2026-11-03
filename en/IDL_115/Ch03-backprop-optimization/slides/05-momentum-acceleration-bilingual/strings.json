@@ -1,0 +1,1218 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "動量法由 Rumelhart 等人於 1986 年在經典反向傳播論文中提出，用以解決狹長山谷中的之字形震盪難題。": "Momentum was proposed by Rumelhart et al. in 1986 in the classic backpropagation paper, to solve the zigzag oscillation problem in long, narrow ravines.",
+      "$\\alpha \\in [0, 1)$ 是動量係數，決定上一動更新量 $(\\Delta \\boldsymbol{w})^{(k-1)}$ 保留多少，相當於質點的慣性質量記憶。": "$\\alpha \\in [0, 1)$ is the momentum coefficient; it decides how much of the previous update $(\\Delta \\boldsymbol{w})^{(k-1)}$ is kept, which amounts to the inertial mass memory of a particle.",
+      "在狹長山谷中，谷壁方向梯度正負交替被慣性對消，谷底方向梯度同號持續累加，有效步長放大為 $\\frac{\\eta}{1-\\alpha}$。": "In a long, narrow ravine, the gradients across the valley walls alternate in sign and are cancelled by the inertia, while the gradients along the valley floor have the same sign and keep accumulating, so the effective step size is amplified to $\\frac{\\eta}{1-\\alpha}$.",
+      "動量法在當前負梯度項 $-\\eta \\nabla f(\\boldsymbol{w}^{(k)})$ 之外，疊加了前一步更新向量的 $\\alpha$ 倍，形成物理慣性。": "On top of the current negative gradient term $-\\eta \\nabla f(\\boldsymbol{w}^{(k)})$, momentum adds $\\alpha$ times the previous update vector, which creates physical inertia.",
+      "迭代步數：": "Iterations:",
+      "起點座標：": "Start point:",
+      "當前純 GD 座標：": "Current vanilla GD position:",
+      "當前動量座標：": "Current momentum position:",
+      "純 GD 損失：": "Vanilla GD loss:",
+      "動量損失：": "Momentum loss:",
+      "純 GD 側向撞壁次數：": "Vanilla GD sideways wall hits:",
+      "理論穩態加速比 $\\frac{1}{1-\\alpha}$：": "Theoretical steady-state speedup $\\frac{1}{1-\\alpha}$:",
+      "理論穩態加速比": "Theoretical steady-state speedup",
+      "狀態判定：": "Status:",
+      "✅ 動量法已極速抵達谷底最優點！": "✅ Momentum has raced to the optimum at the valley floor!",
+      "x (平緩主軸)": "x (flat axis)",
+      "y (陡峭谷壁)": "y (steep wall)",
+      "最優點 (0,0)": "Optimum (0,0)",
+      "純 GD (無動量 α=0)": "Vanilla GD (α=0)",
+      "經典動量 (Momentum)": "Classical momentum"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(\\d+) 步$",
+        "en": "$1 steps"
+      },
+      {
+        "re": "^(\\d+) 次$",
+        "en": "$1 times"
+      },
+      {
+        "re": "^(.*)\\| 距谷底:$",
+        "en": "$1| distance to valley floor:"
+      },
+      {
+        "re": "^⚠️ 純 GD 劇烈反覆撞壁 \\(已震盪 (\\d+) 次\\)$",
+        "en": "⚠️ Vanilla GD keeps slamming into the walls (oscillated $1 times)"
+      },
+      {
+        "re": "^⚡ 動量加速中（有效步長放大 ([\\d.]+) 倍）$",
+        "en": "⚡ Momentum accelerating (effective step size amplified $1×)"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#kp5-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "2f1188305732": {
+    "zh": "KP05 · 索引",
+    "en": "KP05 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d14c3834d009": {
+    "zh": "<a href=\"#ravine-problem\">山谷困境 · Ravine Dilemma</a>",
+    "en": "<a href=\"#ravine-problem\">The Ravine Dilemma</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cea30f252a8d": {
+    "zh": "<a href=\"#curvature-anisotropy\">曲率異向性 · Anisotropy</a>",
+    "en": "<a href=\"#curvature-anisotropy\">Curvature Anisotropy</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6557f0ff66e6": {
+    "zh": "<a href=\"#momentum-formula\">動量公式 · Eq (8) Formula</a>",
+    "en": "<a href=\"#momentum-formula\">Momentum Formula</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "da08b794a26a": {
+    "zh": "<a href=\"#velocity-view\">質點速度視角 · Velocity View</a>",
+    "en": "<a href=\"#velocity-view\">Particle Velocity View</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "62c16d227ab0": {
+    "zh": "<a href=\"#physics-intuition\">推球下山 · Physics Intuition</a>",
+    "en": "<a href=\"#physics-intuition\">Pushing a Ball Downhill</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6fa157638299": {
+    "zh": "<a href=\"#ema-perspective\">EMA 與有效步長 · EMA &amp; Speedup</a>",
+    "en": "<a href=\"#ema-perspective\">EMA &amp; Effective Step Size</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2bf4521a4b34": {
+    "zh": "<a href=\"#vector-addition\">向量合成分解 · Vector Addition</a>",
+    "en": "<a href=\"#vector-addition\">Vector Composition &amp; Decomposition</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "54e0ebabab32": {
+    "zh": "<a href=\"#hyperparameter-alpha\">超參數 α 響應 · Factor Sensitivity</a>",
+    "en": "<a href=\"#hyperparameter-alpha\">Hyperparameter α Response</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c51b5e4e9b97": {
+    "zh": "<a href=\"#comparison\">對比總表 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Comparison Table</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3f669ea4c5c8": {
+    "zh": "<a href=\"#lab\">山谷滑行模擬器 · Ravine Lab</a>",
+    "en": "<a href=\"#lab\">Ravine Gliding Simulator</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Thinking Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "44a78f7de849": {
+    "zh": "動量加速與山谷震盪平滑\n      <span class=\"hero-title-en\">Momentum Acceleration &amp; Ravine Smoothing</span>\n    ",
+    "en": "Momentum Acceleration and Smoothing Ravine Oscillations",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "8e72e6d0c4b6": {
+    "zh": "\n      純梯度下降為何在狹長損失山谷中像醉漢撞壁？深入解析 Rumelhart 式 (8) 經典動量更新、物理重球慣性直覺、指數移動平均（EMA）視角與 $\\frac{\\eta}{1-\\alpha}$ 穩態有效步長放大機制。\n    ",
+    "en": "Why does vanilla gradient descent stagger like a drunk bumping into walls in a long, narrow loss ravine? An in-depth look at Rumelhart's classical momentum update, Eq. (8), the physical intuition of a heavy ball's inertia, the exponential moving average (EMA) view, and how the steady-state effective step size is amplified to $\\frac{\\eta}{1-\\alpha}$.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "76bcf34012ef": {
+    "zh": "\n      「為什麼多看『過去』，反而能跑得更快？」\n      <small>純梯度下降每步只看腳下坡度，在窄谷兩壁反覆彈跳；加一點慣性記憶，側向震盪互相抵消，前進分量乘風破浪！<br>\n        <span class=\"bilingual-en-inline\">Why does retaining past updates accelerate descent? Inertia cancels lateral bouncing and compounds forward progress down the ravine floor!</span>\n      </small>\n    ",
+    "en": "\"Why does looking more at the 'past' actually make you run faster?\" <small>Vanilla gradient descent looks only at the slope under its feet at each step and bounces back and forth between the two walls of a narrow valley; add a bit of inertial memory and the sideways oscillations cancel each other out, while the forward component surges ahead!<br></small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "9c37eaade396": {
+    "zh": "02 / 病態幾何 · The Ravine Dilemma",
+    "en": "02 / Ill-Conditioned Geometry",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8c2e9736ec96": {
+    "zh": "狹長山谷困境：純梯度下降的「短視之痛」\n    <span class=\"en\">The Ravine Dilemma: The Myopia of Vanilla Gradient Descent</span>\n  ",
+    "en": "The Long, Narrow Ravine Dilemma: The \"Shortsightedness\" of Vanilla Gradient Descent",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "bc26026e00da": {
+    "zh": "1. 橫向懸崖陡峭 (Steep Walls)",
+    "en": "1. Steep Sideways Cliffs",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9b37ae0a334a": {
+    "zh": "橫向梯度巨大，引發劇烈震盪",
+    "en": "Huge sideways gradients cause violent oscillation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a27299e0c49d": {
+    "zh": "在山谷橫切面上，坡度極度陡峭。純梯度下降由當前斜率主導，每一步都全力朝對側峭壁衝刺，造成慘烈的之字形（Zigzag）彈跳。",
+    "en": "Across the ravine, the slope is extremely steep. Vanilla gradient descent is driven by the current slope, so every step charges full force toward the opposite cliff wall, producing a disastrous zigzag bounce.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "53c41002015f": {
+    "zh": "2. 縱向谷底平緩 (Flat Riverbed)",
+    "en": "2. Flat Valley Floor Along the Ravine",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2464d2edf010": {
+    "zh": "軸向梯度微弱，步長寸步難行",
+    "en": "Weak gradient along the axis; every step barely moves",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "328d6faca4e2": {
+    "zh": "沿著通往最優解的谷底延伸方向，坡度極為平坦。由於橫向穩定性限制了學習率，導致縱向每步前進距離微乎其微。",
+    "en": "Along the valley floor, in the direction that leads to the optimum, the slope is extremely flat. Because sideways stability limits the learning rate, each step moves forward along the valley by only a tiny distance.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "64d9844762f0": {
+    "zh": "3. 步長調校死衚衕 (Step Size Dilemma)",
+    "en": "3. The Step-Size Dead End",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "bceb2c2c0271": {
+    "zh": "調大即發散，調小走不動",
+    "en": "Turn it up and it diverges; turn it down and it won't move",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "24760bc3e26e": {
+    "zh": "若將學習率 $\\eta$ 調大，橫向震盪會立即發散炸裂；若將 $\\eta$ 調小以維持穩定，沿山谷滾向谷底可能需要數萬次無謂迭代。",
+    "en": "If the learning rate $\\eta$ is turned up, the sideways oscillation immediately diverges and blows up; if $\\eta$ is turned down to stay stable, rolling along the ravine to the bottom may take tens of thousands of pointless iterations.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "60543d32c25c": {
+    "zh": "\n    在深層神經網路的複雜非凸地形中，損失曲面幾乎無處不是這種「狹長山谷（Ravine）」。\n    純梯度下降（Vanilla GD）每一步只相信<strong>當下這一瞬間</strong>的瞬時梯度，本質上是一個<strong>極度短視的局部決策者</strong>。\n    <span class=\"bilingual-en\">In high-dimensional loss landscapes, ravines are omnipresent. Vanilla gradient descent suffers from acute myopia, endlessly ricocheting between cliff walls while crawling sluggishly along the valley floor.</span>\n  ",
+    "en": "In the complex non-convex terrain of deep neural networks, the loss surface is made of such \"long, narrow ravines\" almost everywhere. Vanilla gradient descent (vanilla GD) trusts only the instantaneous gradient of <strong>this very moment</strong> at each step; in essence it is an <strong>extremely shortsighted local decision-maker</strong>.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2432cba7c0a1": {
+    "zh": "03 / 數學本質 · Curvature Anisotropy",
+    "en": "03 / The Mathematical Essence",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e2adf1ad4c35": {
+    "zh": "曲率異向性：Hessian 特徵值與病態條件數\n    <span class=\"en\">Curvature Anisotropy: Hessian Eigenvalues &amp; Ill-Conditioned Geometry</span>\n  ",
+    "en": "Curvature Anisotropy: Hessian Eigenvalues and the Ill-Conditioned Condition Number",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9416d5e165e4": {
+    "zh": "二次逼近與病態條件數（Condition Number $\\kappa$）",
+    "en": "Quadratic Approximation and Ill-Conditioning (Condition Number $\\kappa$)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e186d893997d": {
+    "zh": "考慮山谷局部二次型目標函式 $f(\\boldsymbol{w}) = \\frac{1}{2} \\boldsymbol{w}^\\top \\boldsymbol{H} \\boldsymbol{w}$，其中 $\\boldsymbol{H} = \\nabla^2 f$ 為 Hessian 矩陣：",
+    "en": "Consider a local quadratic objective function for the ravine, $f(\\boldsymbol{w}) = \\frac{1}{2} \\boldsymbol{w}^\\top \\boldsymbol{H} \\boldsymbol{w}$, where $\\boldsymbol{H} = \\nabla^2 f$ is the Hessian matrix:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b4084adf943a": {
+    "zh": "<strong>收斂速率定理：</strong>在純梯度下降下，即使選取最優固定學習率 $\\eta^* = \\frac{2}{\\lambda_{\\max} + \\lambda_{\\min}}$，誤差衰減率仍受限於：",
+    "en": "<strong>Convergence-rate theorem:</strong> under vanilla gradient descent, even with the optimal fixed learning rate $\\eta^* = \\frac{2}{\\lambda_{\\max} + \\lambda_{\\min}}$, the error decay rate is still limited by:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "607616c91e64": {
+    "zh": "當條件數 $\\kappa = 1000$ 時，$\\frac{\\kappa-1}{\\kappa+1} \\approx 0.998$，意味著歷經千次迭代，距離最優點的誤差幾乎紋風不動！",
+    "en": "When the condition number is $\\kappa = 1000$, $\\frac{\\kappa-1}{\\kappa+1} \\approx 0.998$, which means that even after a thousand iterations, the error relative to the optimum barely budges!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5cf9d9246a41": {
+    "zh": "\n    這揭示了最佳化困境的物理根源：<strong>單一學習率純純不足以應對不同方向上相差數百倍的幾何曲率！</strong>\n    我們亟需一種機制，能夠在不額外計算昂貴的二階 Hessian 逆矩陣的情況下，自動壓抑高曲率方向的震盪，並成倍放大低曲率方向的推進力。\n    <span class=\"bilingual-en\">The convergence bound degrades drastically when the condition number is large. Without computing the inverse Hessian, momentum elegantly bypasses this limitation through temporal accumulation.</span>\n  ",
+    "en": "This reveals the physical root of the optimization dilemma: <strong>a single learning rate is simply not enough to handle geometric curvatures that differ by hundreds of times across directions!</strong> We urgently need a mechanism that, without computing the expensive inverse of the second-order Hessian, automatically suppresses oscillation along high-curvature directions and multiplies the driving force along low-curvature directions.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d2e16c65b758": {
+    "zh": "04 / 核心機制 · Classical Momentum",
+    "en": "04 / Core Mechanism",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e9fbe2cf90f1": {
+    "zh": "核心更新：式 (8) 經典動量演算法\n    <span class=\"en\">Core Formulation: Equation (8) Classical Momentum by Rumelhart et al.</span>\n  ",
+    "en": "Core Update: Eq. (8), the Classical Momentum Algorithm",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d0c099cee76c": {
+    "zh": "Rumelhart 等人 (1986) 經典動量更新方程（式 (8)）",
+    "en": "The classical momentum update equation of Rumelhart et al. (1986) (Eq. (8))",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5291581b3e3b": {
+    "zh": "將純梯度下降的「只看當前斜率」，升級為「歷史更新方向之慣性 + 當前負梯度」：",
+    "en": "It upgrades vanilla gradient descent's \"look only at the current slope\" into \"inertia of the past update direction + the current negative gradient\":",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b85980200c0b": {
+    "zh": "隨後將更新量施加於模型參數上：",
+    "en": "The update is then applied to the model parameters:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "415c36948732": {
+    "zh": "動量係數 $\\alpha \\in [0, 1)$",
+    "en": "Momentum coefficient $\\alpha \\in [0, 1)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5226d79a099a": {
+    "zh": "慣性記憶權重 (Friction / Inertia Ratio)",
+    "en": "Inertial memory weight",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d336de26e865": {
+    "zh": "控制上一動保留多少。通常設為 0.9。若 $\\alpha = 0$，式 (8) 精確退化為標準純梯度下降。$\\alpha$ 越大，質點的「慣性質量」越重。",
+    "en": "Controls how much of the previous move is kept. Usually set to 0.9. If $\\alpha = 0$, Eq. (8) reduces exactly to standard vanilla gradient descent. The larger $\\alpha$, the heavier the particle's \"inertial mass.\"",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b36c097d78db": {
+    "zh": "當前驅動項 $-\\eta \\nabla f(\\boldsymbol{w}^{(k)})$",
+    "en": "Current driving term $-\\eta \\nabla f(\\boldsymbol{w}^{(k)})$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8ac8a641d01f": {
+    "zh": "瞬時重力推力 (Instantaneous Force)",
+    "en": "Instantaneous gravitational push",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fa14de7c330d": {
+    "zh": "由當前位置的斜率給予質點的瞬時衝量。即便此時梯度很小，只要與歷史方向一致，質點便能在前一速度基礎上繼續加速。",
+    "en": "The instantaneous impulse the slope at the current position gives the particle. Even if the gradient is small at this moment, as long as it agrees with the past direction, the particle keeps accelerating on top of its previous velocity.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3cd902d78974": {
+    "zh": "合成更新向量 $(\\Delta \\boldsymbol{w})^{(k)}$",
+    "en": "Combined update vector $(\\Delta \\boldsymbol{w})^{(k)}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c230f313af03": {
+    "zh": "淨前進向量 (Composite Displacement)",
+    "en": "Net forward vector",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ceef9735ff1e": {
+    "zh": "兩者進行向量加法合成。橫向交替的梯度分量被負反饋抵消，縱向恆定的梯度分量持續同向疊加，形成穩健的前進軌跡。",
+    "en": "The two are combined by vector addition. The sideways gradient components, which alternate, are cancelled by negative feedback, while the steady gradient component along the valley keeps adding up in the same direction, forming a stable forward trajectory.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aee023c14765": {
+    "zh": "05 / 運動學重構 · Velocity Kinematics",
+    "en": "05 / Kinematic Reformulation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bf2cee647edc": {
+    "zh": "質點速度視角：牛頓力學的離散化\n    <span class=\"en\">Kinematics Perspective: Discretization of Newtonian Particle Dynamics</span>\n  ",
+    "en": "The Particle-Velocity View: Discretizing Newtonian Mechanics",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cd1b27a154f6": {
+    "zh": "\n    在現代深度學習框架（如 PyTorch / TensorFlow）中，式 (8) 常以「速度向量 $\\boldsymbol{v}$」的形式等價重寫。這讓我們能以經典力學質點運動的宏偉視角理解最佳化：\n  ",
+    "en": "In modern deep learning frameworks (such as PyTorch / TensorFlow), Eq. (8) is often rewritten in the equivalent form of a \"velocity vector $\\boldsymbol{v}$.\" This lets us understand optimization from the grand perspective of particle motion in classical mechanics:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b2d4bb8b2a4f": {
+    "zh": "物理阻尼質點運動方程（Velocity Update Form）",
+    "en": "Equation of motion of a damped physical particle (velocity update form)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "77efbbb50c3b": {
+    "zh": "定義速度向量 $\\boldsymbol{v}^{(k)} = (\\Delta \\boldsymbol{w})^{(k)}$：",
+    "en": "Define the velocity vector $\\boldsymbol{v}^{(k)} = (\\Delta \\boldsymbol{w})^{(k)}$:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b4148c76377b": {
+    "zh": "<strong>連續時間極限（ODE）：</strong>當步長趨於無窮小 $\\Delta t \\to 0$ 時，此差分方程精確對應於具備阻尼係數 $\\gamma$ 的牛頓第二運動定律：",
+    "en": "<strong>Continuous-time limit (ODE):</strong> as the step size becomes infinitesimally small, $\\Delta t \\to 0$, this difference equation corresponds exactly to Newton's second law of motion with damping coefficient $\\gamma$:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9d00ad6f62ee": {
+    "zh": "\n    <strong>深刻對比：</strong>純梯度下降對應於 $m=0$（無質量質點於極度黏滯蜂蜜中運動，一沒有外力瞬間停滯）；而動量法賦予質點真實的質量 $m&gt;0$，讓它具備衝破平緩地帶與小坑洞的<strong>物理動能（Kinetic Energy）</strong>！\n    <span class=\"bilingual-en\">Vanilla GD is overdamped massless kinematics where motion ceases instantly when force vanishes. Momentum introduces inertial mass, converting potential energy into kinetic velocity.</span>\n  ",
+    "en": "<strong>A deep contrast:</strong> vanilla gradient descent corresponds to $m=0$ (a massless particle moving through extremely viscous honey, which stops instantly once there is no external force), while the momentum method gives the particle a real mass $m&gt;0$, giving it the <strong>physical kinetic energy</strong> to break through flat regions and small potholes!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7ce028224e7c": {
+    "zh": "06 / 直觀想像 · Physical Rolling Ball",
+    "en": "06 / Intuitive Picture",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dfb662a0c792": {
+    "zh": "直覺比喻：推一顆重鐵球滾下山谷\n    <span class=\"en\">Intuition: Rolling a Heavy Iron Ball Down the Mountain Ravine</span>\n  ",
+    "en": "Intuitive Analogy: Pushing a Heavy Iron Ball Down a Ravine",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4adfdeb49b5b": {
+    "zh": "無動量：輕若鴻毛的落葉 / 醉漢走路",
+    "en": "Without momentum: a feather-light fallen leaf / a drunk walking",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b5675a68bc9a": {
+    "zh": "\n        沒有慣性。每一微步都完全聽從腳底下的斜度。\n        在狹長山谷中，左邊坡度陡峭就往右跳，右邊坡度陡峭就往左跳。\n        每一步都在谷壁劇烈撞擊，能量全浪費在無謂的側向反彈上，下山極慢。\n      ",
+    "en": "No inertia. Every tiny step obeys only the slope underfoot. In a long, narrow ravine, if the left slope is steep it jumps right, and if the right slope is steep it jumps left. Every step slams hard into the valley wall, all the energy is wasted on pointless sideways rebounds, and it goes downhill extremely slowly.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a3405c07a65c": {
+    "zh": "有動量：帶著強大慣量的重鐵球",
+    "en": "With momentum: a heavy iron ball with great inertia",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c1282e9d0bb3": {
+    "zh": "\n        鐵球帶著數十公斤的慣性順著山谷主軸滾動。\n        當它撞向右側谷壁時，強大的向前動能會抵抗橫向偏折；\n        左側和右側的橫向推力在滾動過程中自然被<strong>時間平均（Time Averaged）</strong>，路徑筆直而流暢。\n      ",
+    "en": "The iron ball, carrying tens of kilograms of inertia, rolls along the main axis of the ravine. When it hits the right wall, its strong forward kinetic energy resists the sideways deflection; the sideways pushes from the left and the right are naturally <strong>time-averaged</strong> as it rolls, and the path is straight and smooth.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bc884f079d8c": {
+    "zh": "💡 一句話核心心法：動量 = 梯度下降 + 慣性",
+    "en": "💡 The core idea in one sentence: momentum = gradient descent + inertia",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9ae7ddfce72d": {
+    "zh": "\n      純梯度下降只「看腳下」，容易被局部陡坡誤導；動量法讓最佳化器「記得剛才往哪走」。\n      多看「過去」不是拖泥帶水，而是利用時間積分濾除高頻空間噪聲，讓行進更平穩、更迅猛！\n    ",
+    "en": "Vanilla gradient descent only \"looks underfoot\" and is easily misled by local steep slopes; the momentum method lets the optimizer \"remember which way it was just going.\" Looking more at the \"past\" is not dragging your feet: it uses integration over time to filter out high-frequency spatial noise, making progress steadier and faster!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0aab7675d3a4": {
+    "zh": "07 / 級數展開 · EMA &amp; Effective Step Size",
+    "en": "07 / Series Expansion",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d9f7aba47958": {
+    "zh": "指數移動平均（EMA）視角：有效步長 $\\frac{\\eta}{1-\\alpha}$ 放大\n    <span class=\"en\">Exponential Moving Average &amp; Steady-State Velocity Amplification</span>\n  ",
+    "en": "The Exponential Moving Average (EMA) View: The Effective Step Size Is Amplified to $\\frac{\\eta}{1-\\alpha}$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3a1d9a52b2be": {
+    "zh": "將式 (8) 遞迴展開為歷史梯度的幾何級數",
+    "en": "Unrolling Eq. (8) recursively into a geometric series of past gradients",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9df8f7db9d0d": {
+    "zh": "假設起始步 $(\\Delta \\boldsymbol{w})^{(0)} = \\boldsymbol{0}$，連續展開 $(\\Delta \\boldsymbol{w})^{(k)}$：",
+    "en": "Assuming the initial step is $(\\Delta \\boldsymbol{w})^{(0)} = \\boldsymbol{0}$, unroll $(\\Delta \\boldsymbol{w})^{(k)}$ repeatedly:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4d611f7087a7": {
+    "zh": "這表明更新向量正是<strong>歷史梯度的指數加權衰減和（Exponential Moving Average）</strong>！越久遠的梯度權重以 $\\alpha^i$ 指數衰減。",
+    "en": "This shows that the update vector is exactly an <strong>exponentially weighted, decaying sum of past gradients (an exponential moving average)</strong>! The older a gradient, the more its weight decays, exponentially as $\\alpha^i$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "393aa4af6e16": {
+    "zh": "穩態前進速度與有效學習率放大定理",
+    "en": "Theorem: steady-state forward velocity and effective learning-rate amplification",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8d2cef97fd85": {
+    "zh": "若在平坦山谷底部的延伸方向上，梯度保持大致恆定為 $\\boldsymbol{g}$，則當 $k \\to \\infty$ 時無窮幾何級數收斂：",
+    "en": "If, along the direction in which the flat valley floor extends, the gradient stays roughly constant at $\\boldsymbol{g}$, then as $k \\to \\infty$ the infinite geometric series converges:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f8cfdd1e9785": {
+    "zh": "<strong>驚人結論：</strong>動量在谷底方向將有效學習率<strong>放大了 $\\frac{1}{1-\\alpha}$ 倍</strong>！",
+    "en": "<strong>A striking conclusion:</strong> along the valley floor, momentum <strong>amplifies the effective learning rate by a factor of $\\frac{1}{1-\\alpha}$</strong>!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d243f7fa5fc3": {
+    "zh": "當 $\\alpha = 0.9$ 時",
+    "en": "When $\\alpha = 0.9$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "abd1f37fe710": {
+    "zh": "有效步長放大 10 倍！",
+    "en": "Effective step size amplified 10×!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1e5da46dc959": {
+    "zh": "$\\frac{1}{1 - 0.9} = 10$。相當於記憶視窗約為前 10 步的加權平均。在平坦谷底前進速度是純 GD 的 10 倍之多！",
+    "en": "$\\frac{1}{1 - 0.9} = 10$. This is equivalent to a weighted average over a memory window of roughly the last 10 steps. On a flat valley floor it moves forward a full 10 times faster than vanilla GD!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "307538602088": {
+    "zh": "當 $\\alpha = 0.99$ 時",
+    "en": "When $\\alpha = 0.99$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9abac09c2008": {
+    "zh": "有效步長放大 100 倍！",
+    "en": "Effective step size amplified 100×!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9fade087f1e3": {
+    "zh": "$\\frac{1}{1 - 0.99} = 100$。極具侵略性的慣性累積，能在平坦無垠的高原上風馳電掣，但轉彎與煞車半徑也會顯著拉長。",
+    "en": "$\\frac{1}{1 - 0.99} = 100$. Extremely aggressive accumulation of inertia: it can tear across a vast flat plateau, but its turning and braking radius also grows considerably.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d193a8f86d27": {
+    "zh": "側向震盪分量的命運",
+    "en": "The fate of the sideways oscillation component",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5444e4812052": {
+    "zh": "在谷壁垂直方向，梯度符號步步翻轉（$+g_\\perp, -g_\\perp, +g_\\perp \\dots$），級數和為 $\\frac{1}{1+\\alpha} \\approx 0.5$！側向不僅沒有放大，反而被大幅壓制！",
+    "en": "Perpendicular to the valley walls, the sign of the gradient flips at every step ($+g_\\perp, -g_\\perp, +g_\\perp \\dots$), and the series sums to $\\frac{1}{1+\\alpha} \\approx 0.5$! Sideways, it is not amplified at all; on the contrary, it is strongly suppressed!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "727d01569995": {
+    "zh": "08 / 幾何圖解 · Vector Composition",
+    "en": "08 / Geometric Illustration",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "57ae1dcaf7d1": {
+    "zh": "向量加法拆解：側向震盪抵消與前進分量累積\n    <span class=\"en\">Vector Addition: Orthogonal Cancellation &amp; Longitudinal Acceleration</span>\n  ",
+    "en": "Breaking Down the Vector Addition: Sideways Oscillations Cancel, the Forward Component Accumulates",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "586dc10cb30e": {
+    "zh": "動量幾何機制：狹長山谷中慣性抵消側向震盪、累積前進向量",
+    "en": "Momentum geometry: in a narrow ravine, inertia cancels sideways oscillation and accumulates forward motion",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "44f804c33029": {
+    "zh": "無動量 · 谷壁劇烈撞擊反彈",
+    "en": "No momentum · slams and bounces off the walls",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "1c03062536bf": {
+    "zh": "純 GD 每步只看當下梯度，步長受限於橫向曲率",
+    "en": "Vanilla GD sees only the current gradient; step size limited by sideways curvature",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "9ac2ccee70a3": {
+    "zh": "撞壁",
+    "en": "Hits wall",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "269b32a52c0e": {
+    "zh": "像醉漢在窄巷中撞牆 · 側向白耗力氣",
+    "en": "Like a drunk bumping into walls in an alley · effort wasted sideways",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "92af6901ac84": {
+    "zh": "有動量 · 沿谷底平滑加速",
+    "en": "With momentum · smooth acceleration along the valley floor",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "77ff49cd14ca": {
+    "zh": "歷史慣性提供低通濾波，向前速度持續累積",
+    "en": "Past inertia acts as a low-pass filter; forward velocity keeps building",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "b1864cc8011a": {
+    "zh": "側向震盪相互抵消 · 沿主軸持續加速",
+    "en": "Sideways oscillations cancel · keeps accelerating along the main axis",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "7e626ac167ee": {
+    "zh": "向量加法分解：當前斜坡梯度 + 歷史慣性向量 → 沿谷前進的合成步長",
+    "en": "Vector addition: current slope gradient + past inertia vector → combined step along the valley",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "1f0a19e00dbc": {
+    "zh": "當前位置 w^(k)",
+    "en": "Current position w^(k)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "8369ab0f92da": {
+    "zh": "當前 −η∇f",
+    "en": "Current −η∇f",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "8d69f4349839": {
+    "zh": "（側向大）",
+    "en": "(large sideways)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "89de2624ea65": {
+    "zh": "歷史 α(Δw)^(k-1)",
+    "en": "Past α(Δw)^(k-1)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "d18ed1788dc3": {
+    "zh": "（向前慣性）",
+    "en": "(forward inertia)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "ec1846b05dac": {
+    "zh": "合成步長 (Δw)^(k) · 幾近水平前進",
+    "en": "Combined step (Δw)^(k) · almost horizontal",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "fc025ac59062": {
+    "zh": "側向分量相消 · 縱向速度累積",
+    "en": "Sideways components cancel · forward velocity builds",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "24977ff1f07e": {
+    "zh": "反直覺的核心啟示",
+    "en": "The counterintuitive core insight",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "fd84746b965c": {
+    "zh": "多看「歷史」絕非拖泥帶水",
+    "en": "Looking at the \"past\" is not dragging your feet",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "57c2d2bd8315": {
+    "zh": "慣性是過濾抖動的最強濾波器",
+    "en": "Inertia is the best filter against jitter",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "813626a63da1": {
+    "zh": "圖 1：動量向量加法幾何原理與山谷等高線軌跡全景對比",
+    "en": "Figure 1: How momentum's vector addition works geometrically, and a full side-by-side view of trajectories on the ravine's contour lines",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d3d8747492fd": {
+    "zh": "幾何正交分解的奧義",
+    "en": "The secret of orthogonal geometric decomposition",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "91ec2d1bfbc1": {
+    "zh": "\n        將任意梯度向量正交分解為<strong>谷壁垂直分量 $\\boldsymbol{g}_\\perp$</strong> 與<strong>谷底平行分量 $\\boldsymbol{g}_\\parallel$</strong>：\n      ",
+    "en": "Decompose any gradient vector orthogonally into a <strong>component perpendicular to the valley walls, $\\boldsymbol{g}_\\perp$,</strong> and a <strong>component parallel to the valley floor, $\\boldsymbol{g}_\\parallel$</strong>:",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "49b9cfe55c4f": {
+    "zh": "<strong>側向正交分量 $\\boldsymbol{g}_\\perp$：</strong>符號在谷壁兩側來回翻轉。在向量合成時，藍色的歷史慣性剛好與紅色的當前衝量呈銳角/鈍角相抵消，淨位移趨於 0。",
+    "en": "<strong>Sideways orthogonal component $\\boldsymbol{g}_\\perp$:</strong> its sign flips back and forth between the two walls. In the vector sum, the blue past inertia and the red current impulse meet at an acute/obtuse angle and cancel, so the net displacement tends to 0.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c28bf51d7ef2": {
+    "zh": "<strong>前進平行分量 $\\boldsymbol{g}_\\parallel$：</strong>方向在谷底始終穩定朝向極小值。歷史速度與當前推力方向相同，合成後向量不斷拉長，乘風破浪。",
+    "en": "<strong>Forward parallel component $\\boldsymbol{g}_\\parallel$:</strong> on the valley floor its direction always points steadily toward the minimum. The past velocity and the current push point the same way, so the combined vector keeps getting longer and surges ahead.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ea6e545541cd": {
+    "zh": "\n        這便是動量法的神奇之處：<strong>無需顯式旋轉座標系或計算特徵向量，僅憑簡單的遞迴向量累加，便在物理上實現了自適應方向濾波！</strong>\n        <span class=\"bilingual-en\">By decomposing updates into orthogonal subspaces, momentum organically acts as an implicit directional filter without explicitly calculating coordinate transformations.</span>\n      ",
+    "en": "This is the magic of the momentum method: <strong>without explicitly rotating the coordinate system or computing eigenvectors, simple recursive vector accumulation alone physically achieves adaptive directional filtering!</strong>",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ef475ec43edf": {
+    "zh": "09 / 參數調優 · Factor Sensitivity",
+    "en": "09 / Parameter Tuning",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e89599c6241e": {
+    "zh": "超參數 $\\alpha$ 敏感度：慣性大小的物理光譜\n    <span class=\"en\">Momentum Factor $\\alpha$ Sensitivity: The Inertial Spectrum</span>\n  ",
+    "en": "Sensitivity to the Hyperparameter $\\alpha$: The Physical Spectrum of Inertia",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "95883b1787b1": {
+    "zh": "$\\alpha = 0.0$ (無動量)",
+    "en": "$\\alpha = 0.0$ (no momentum)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c285b774ee02": {
+    "zh": "過阻尼質點 · 劇烈震盪",
+    "en": "Overdamped particle · violent oscillation",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "32a18fdf7781": {
+    "zh": "退化為純 SGD。在狹長山谷或隨機噪聲中毫無抗震能力，極易受瞬間梯度干擾而迷失方向，收斂極其緩慢。",
+    "en": "Reduces to plain SGD. It has no resistance to oscillation in a narrow ravine or under random noise, is easily thrown off course by momentary gradient disturbances, and converges extremely slowly.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "92e2aa875e11": {
+    "zh": "$\\alpha = 0.5$ (輕度慣性)",
+    "en": "$\\alpha = 0.5$ (light inertia)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "858e25f241ed": {
+    "zh": "弱濾波 · 步長微幅放大 2 倍",
+    "en": "Weak filtering · step size amplified only 2×",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "867002b8e654": {
+    "zh": "有效步長僅放大 $\\frac{1}{1-0.5} = 2$ 倍。能稍微平滑震盪，但在重度病態條件下仍嫌慣性不足，難以徹底征服深谷。",
+    "en": "The effective step size is amplified only $\\frac{1}{1-0.5} = 2$ times. It smooths the oscillation slightly, but under severe ill-conditioning it still lacks inertia and struggles to fully conquer a deep ravine.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "86650389e318": {
+    "zh": "$\\alpha = 0.9$ (業界黃金標準)",
+    "en": "$\\alpha = 0.9$ (the industry gold standard)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "19fad3852d8e": {
+    "zh": "臨界阻尼平衡 · 放大 10 倍",
+    "en": "Critically damped balance · amplified 10×",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b6454b672e24": {
+    "zh": "PyTorch 與 TensorFlow 預設推薦值！在慣性加速與過衝控制之間達成絕佳平衡，兼具極速前進與靈敏轉向能力。",
+    "en": "The default recommended value in PyTorch and TensorFlow! It strikes an excellent balance between inertial acceleration and overshoot control, combining very fast progress with nimble turning.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a668ff553184": {
+    "zh": "$\\alpha = 0.99$ (重度慣性)",
+    "en": "$\\alpha = 0.99$ (heavy inertia)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "44eb803e2823": {
+    "zh": "欠阻尼質點 · 容易衝過頭 (Overshoot)",
+    "en": "Underdamped particle · prone to overshoot",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "20ba2a99ce31": {
+    "zh": "放大 100 倍。衝力極猛，但在急轉彎處因慣性過大會嚴重衝過谷底，甚至在谷底引發二次高頻振盪，煞不住車。",
+    "en": "Amplified 100×. The drive is extremely strong, but at sharp turns the excessive inertia makes it badly overshoot the valley floor, even setting off a second high-frequency oscillation at the bottom; it can't brake in time.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a3d889f23643": {
+    "zh": "10 / 橫向評比 · Comprehensive Matrix",
+    "en": "10 / Side-by-Side Evaluation",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "05d102f4ed66": {
+    "zh": "全維度對比：純梯度下降 vs 經典動量法\n    <span class=\"en\">Comprehensive Matrix: Vanilla SGD vs Momentum SGD</span>\n  ",
+    "en": "Full Comparison: Vanilla Gradient Descent vs Classical Momentum",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "829e79a09b6b": {
+    "zh": "維度 / 特徵",
+    "en": "Dimension / Feature",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "eac78943e993": {
+    "zh": "純梯度下降 (Vanilla GD / SGD)",
+    "en": "Vanilla gradient descent (vanilla GD / SGD)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bfad3d38e34f": {
+    "zh": "經典動量法 (Momentum, Rumelhart 1986)",
+    "en": "Classical momentum (Momentum, Rumelhart 1986)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0d93d3ebe132": {
+    "zh": "<strong>核心更新規則</strong>",
+    "en": "<strong>Core update rule</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5a2b520368a2": {
+    "zh": "<strong>記憶體額外開銷</strong>",
+    "en": "<strong>Extra memory overhead</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b401644274df": {
+    "zh": "<strong>0</strong>（僅保留當前權重與當前梯度）",
+    "en": "<strong>0</strong> (keeps only the current weights and the current gradient)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bdc57ac602c3": {
+    "zh": "<strong>$1 \\times$ 模型參數</strong>（需常駐快取速度向量 $\\boldsymbol{v}$）",
+    "en": "<strong>$1 \\times$ the model parameters</strong> (the velocity vector $\\boldsymbol{v}$ must be kept in memory)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8f03a0106846": {
+    "zh": "<strong>山谷曲面（Ravine）</strong>",
+    "en": "<strong>Ravine surface</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5907cc5b4087": {
+    "zh": "在峭壁兩側劇烈之字形撞擊，前進極慢",
+    "en": "Zigzags violently between the two cliff walls; progress is extremely slow",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "232b87abfc6d": {
+    "zh": "<strong>側向震盪相互抵消，沿谷底高速滑翔</strong>",
+    "en": "<strong>Sideways oscillations cancel; glides fast along the valley floor</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2088f6202bd7": {
+    "zh": "<strong>平緩高原（Plateau）</strong>",
+    "en": "<strong>Flat plateau</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "53d1f56a67d6": {
+    "zh": "梯度微弱時速度趨於 0，深陷停滯假死",
+    "en": "When the gradient is weak the velocity tends to 0 and it gets stuck, seemingly dead",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f6286afa5fb2": {
+    "zh": "<strong>憑藉歷史累積動能，直接衝過平緩帶</strong>",
+    "en": "<strong>Rushes straight through the flat region on accumulated kinetic energy</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7990d8100457": {
+    "zh": "<strong>有效學習率</strong>",
+    "en": "<strong>Effective learning rate</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b1550835bb84": {
+    "zh": "恆定為 $\\eta$",
+    "en": "Constant at $\\eta$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "79737886d07d": {
+    "zh": "在穩定方向動態放大至 <strong>$\\frac{\\eta}{1-\\alpha}$</strong>",
+    "en": "Dynamically amplified to <strong>$\\frac{\\eta}{1-\\alpha}$</strong> along stable directions",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6b720d4bc34d": {
+    "zh": "<strong>隨機噪聲抵抗力</strong>",
+    "en": "<strong>Robustness to random noise</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4fd20b459966": {
+    "zh": "差，易受 mini-batch 雜訊晃動牽引",
+    "en": "Poor; easily jerked around by mini-batch noise",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "27906f361687": {
+    "zh": "<strong>優，EMA 時間滑動視窗發揮低通濾波效果</strong>",
+    "en": "<strong>Good; the EMA's sliding time window acts as a low-pass filter</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8b5440ce863b": {
+    "zh": "<strong>後續衍生演算法</strong>",
+    "en": "<strong>Algorithms derived from it</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "598bb51eb242": {
+    "zh": "Nesterov 加速梯度 (NAG), RMSProp, Adam",
+    "en": "Nesterov accelerated gradient (NAG), RMSProp, Adam",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f61da385acba": {
+    "zh": "11 / 實戰智慧 · Master Laws",
+    "en": "11 / Practical Wisdom",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4ce77c7fb2ea": {
+    "zh": "大師四大鐵律：動量最佳化的工程實戰法則\n    <span class=\"en\">Master's Four Laws: Engineering Maxims for Momentum Optimization</span>\n  ",
+    "en": "The Master's Four Iron Laws: Practical Engineering Rules for Momentum Optimization",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "39990120b14d": {
+    "zh": "鐵律一：慣性非拖累，乃時間濾波器",
+    "en": "Law 1: Inertia is not a burden but a filter over time",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ab4369dc6dc8": {
+    "zh": "永遠不要把記憶歷史看作包袱。動量本質是在時間維度上對噪聲梯度進行<strong>低通濾波</strong>，將高頻抖動過濾為低頻穩態速度。",
+    "en": "Never treat remembering the past as baggage. In essence, momentum applies a <strong>low-pass filter</strong> to the noisy gradients along the time dimension, filtering high-frequency jitter into a low-frequency, steady velocity.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cba7d6b1a8e1": {
+    "zh": "鐵律二：調大 $\\alpha$，切記微調 $\\eta$",
+    "en": "Law 2: When you raise $\\alpha$, remember to adjust $\\eta$",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e580cca26632": {
+    "zh": "有效步長等於 $\\frac{\\eta}{1-\\alpha}$。當你把 $\\alpha$ 從 0.9 提至 0.99 時，前進推力暴增 10 倍！若不相應調小基礎學習率 $\\eta$，模型可能瞬間震盪發散。",
+    "en": "The effective step size equals $\\frac{\\eta}{1-\\alpha}$. When you raise $\\alpha$ from 0.9 to 0.99, the forward push jumps 10×! If you don't lower the base learning rate $\\eta$ accordingly, the model may start oscillating and diverge in an instant.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4ff589155a5d": {
+    "zh": "鐵律三：防範重球衝過頭（Overshoot）",
+    "en": "Law 3: Guard against the heavy ball overshooting",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "96640a30cd73": {
+    "zh": "動量雖能衝破鞍點與淺坑，但在接近高精度極小值時容易過衝。搭配<strong>學習率衰減（Cosine Annealing）</strong>能使重球在谷底優雅減速歸位。",
+    "en": "Although momentum can burst through saddle points and shallow pits, it tends to overshoot when approaching a high-precision minimum. Combining it with <strong>learning-rate decay (cosine annealing)</strong> lets the heavy ball slow down gracefully and settle at the bottom of the valley.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a6d2a7fc3163": {
+    "zh": "鐵律四：現代自適應最佳化器的基石",
+    "en": "Law 4: The cornerstone of modern adaptive optimizers",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8b64431831bf": {
+    "zh": "動量所開創的「指數移動平均累積一階矩」思想，直接孕育了現代霸主 Adam、AdamW 的一階動量估計 $m_t$。理解動量，就掌握了現代最佳化的半壁江山！",
+    "en": "The idea momentum pioneered, \"accumulating the first moment with an exponential moving average,\" directly gave rise to the first-moment estimate $m_t$ in today's dominant Adam and AdamW. Understand momentum and you have mastered half of modern optimization!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "caf63c99aa40": {
+    "zh": "12 / 動態模擬 · Interactive Lab",
+    "en": "12 / Dynamic Simulation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1e440e5a08c2": {
+    "zh": "互動實驗室：山谷地形粒子滑行與動量調節模擬器\n    <span class=\"en\">Interactive Lab: Ravine Landscape Particle Descent &amp; Momentum Simulator</span>\n  ",
+    "en": "Interactive Lab: A Simulator of Particles Gliding on Ravine Terrain, with Momentum Control",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6ed4c4f287d8": {
+    "zh": "\n    親自操控粒子在病態狹長山谷 $f(x,y) = \\frac{1}{2}(x^2 + 20y^2)$（即 $0.5x^2 + 10y^2$）中滑行！\n    其解析梯度為 $\\nabla f(x,y) = (x, 20y)$，橫向曲率高達縱向的 20 倍。\n    觀察紅線（純 GD）如何反覆撞壁，而綠線（有動量）如何貼地加速飛馳！\n    <span class=\"bilingual-en\">Simulate particle descent on the ravine surface $f(x,y) = 0.5x^2 + 10y^2$. Experience how vanilla GD suffers from severe cross-valley bounce while momentum dampens oscillations.</span>\n  ",
+    "en": "Steer a particle yourself as it glides through the ill-conditioned narrow ravine $f(x,y) = \\frac{1}{2}(x^2 + 20y^2)$ (that is, $0.5x^2 + 10y^2$)! Its analytic gradient is $\\nabla f(x,y) = (x, 20y)$, and the sideways curvature is as much as 20 times the curvature along the valley. Watch how the red line (vanilla GD) keeps hitting the walls, while the green line (with momentum) hugs the floor and speeds ahead!",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3896487bc205": {
+    "zh": "學習率 $\\eta$：",
+    "en": "Learning rate $\\eta$:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "25418dd1f2ef": {
+    "zh": "動量係數 $\\alpha$：",
+    "en": "Momentum coefficient $\\alpha$:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "77521ae91b91": {
+    "zh": "起點高度 $y_0$：",
+    "en": "Starting height $y_0$:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8ce74cb71fd3": {
+    "zh": "單步迭代",
+    "en": "Single step",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5fa250a5435a": {
+    "zh": "連續執行 40 步",
+    "en": "Run 40 steps",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a277d8a8dbb2": {
+    "zh": "重設初始狀態",
+    "en": "Reset to initial state",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f35431b26d74": {
+    "zh": "13 / 隨堂評測 · Checkpoint Quizzes",
+    "en": "13 / In-Class Assessment",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "acf9c2f9b6b9": {
+    "zh": "概念檢驗：動量加速深度理解\n    <span class=\"en\">Checkpoint Quizzes: Deep Understanding of Momentum Mechanics</span>\n  ",
+    "en": "Concept Check: A Deep Understanding of Momentum Acceleration",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "324a8c03f6b5": {
+    "zh": "題目 1：動量（Momentum）機制最早在神經網路最佳化中由誰明確提出？",
+    "en": "Question 1: Who first explicitly proposed the momentum mechanism for neural network optimization?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e26eb042bf04": {
+    "zh": "B. Rumelhart 等人 (1986)",
+    "en": "B. Rumelhart et al. (1986)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "c5c29306959c": {
+    "zh": "C. Robbins 與 Monro，1951",
+    "en": "C. Robbins and Monro, 1951",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "025bdc7df42b": {
+    "zh": "D. Kingma 與 Ba（Adam，2014）",
+    "en": "D. Kingma and Ba (Adam, 2014)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e6885b5d7f0d": {
+    "zh": "題目 2：經典動量更新式 (8) 中，動量係數 $\\alpha$ 的主要物理與數學角色是？",
+    "en": "Question 2: In the classical momentum update, Eq. (8), what is the main physical and mathematical role of the momentum coefficient $\\alpha$?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "1169c5ee3fc3": {
+    "zh": "A. 決定當前梯度的縮放倍率（即學習率）",
+    "en": "A. It sets the scaling factor of the current gradient (i.e., the learning rate)",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "20060e299175": {
+    "zh": "B. 慣性衰減係數，控制保留多少上一世代更新方向 $(\\Delta \\boldsymbol{w})^{(k-1)}$",
+    "en": "B. It is an inertial decay coefficient that controls how much of the previous iteration's update direction $(\\Delta \\boldsymbol{w})^{(k-1)}$ is kept",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "82c879e7fe90": {
+    "zh": "C. 目標函式的二階 Lipschitz 平滑常數",
+    "en": "C. The second-order Lipschitz smoothness constant of the objective function",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4a5923aa069b": {
+    "zh": "D. mini-batch 隨機抽樣的批次大小權重",
+    "en": "D. A batch-size weight for mini-batch random sampling",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "b7a9f1f144ed": {
+    "zh": "題目 3：當損失曲面呈狹長山谷（Ravine / Ill-conditioned）時，動量法能顯著加速收斂的核心幾何機制是？",
+    "en": "Question 3: When the loss surface is a long, narrow ravine (ravine / ill-conditioned), what is the core geometric mechanism by which momentum significantly speeds up convergence?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "3d1051b5bdfc": {
+    "zh": "A. 動量能徹底改變損失函式的凸性，把非凸函式變成強凸函式",
+    "en": "A. Momentum completely changes the convexity of the loss function, turning a non-convex function into a strongly convex one",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "574d72a74107": {
+    "zh": "B. 側向（垂直谷底）交替符號的震盪梯度被加權抵消，而沿山谷前進的同向梯度持續累積疊加",
+    "en": "B. The oscillating gradients with alternating signs sideways (perpendicular to the valley floor) are cancelled out in the weighted sum, while the same-direction gradients along the ravine keep accumulating",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "a2cdc9129323": {
+    "zh": "C. 動量法在每一步都計算並求逆了精確的 Hessian 矩陣",
+    "en": "C. Momentum computes and inverts the exact Hessian matrix at every step",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "d0984c0f10bb": {
+    "zh": "D. 動量法能完全略過所有梯度計算，直接躍遷至全域最小值",
+    "en": "D. Momentum can skip all gradient computations entirely and jump straight to the global minimum",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "91237ad6af11": {
+    "zh": "題目 4：經典動量式 (8) 與純梯度下降式 (4) 最關鍵的代數差異是什麼？",
+    "en": "Question 4: What is the most important algebraic difference between the classical momentum rule, Eq. (8), and vanilla gradient descent, Eq. (4)?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "02232b02c071": {
+    "zh": "A. 動量更新量中多了一項歷史累加項 $\\alpha (\\Delta \\boldsymbol{w})^{(k-1)}$",
+    "en": "A. The momentum update has an extra accumulated-history term $\\alpha (\\Delta \\boldsymbol{w})^{(k-1)}$",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "733e516f40cd": {
+    "zh": "B. 動量法完全捨棄了當前梯度項 $-\\eta \\nabla f$",
+    "en": "B. Momentum discards the current gradient term $-\\eta \\nabla f$ completely",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4430a9f82def": {
+    "zh": "C. 動量法僅使用歷史梯度的符號（Sign），不使用大小",
+    "en": "C. Momentum uses only the sign of past gradients, not their magnitude",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "fa8b934a4feb": {
+    "zh": "D. 兩者在數學結構上完全相同，僅名稱不同",
+    "en": "D. The two are mathematically identical in structure; only the names differ",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

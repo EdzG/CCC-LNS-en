@@ -1,0 +1,1157 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "數值差分需要對每個權重跑一次前向傳播，總代價為": "Numerical differencing needs one forward pass per weight, for a total cost of",
+      "。反向傳播運用鏈式法則在一次反向遍歷中求出所有梯度，時間為": ". Backpropagation uses the chain rule to obtain all the gradients in a single backward sweep, in time",
+      "數值差分需要對每個權重跑一次前向傳播，總代價為 $O(W^2)$。反向傳播運用鏈式法則在一次反向遍歷中求出所有梯度，時間為 $O(W)$。": "Numerical differencing needs one forward pass per weight, for a total cost of $O(W^2)$. Backpropagation uses the chain rule to obtain all the gradients in a single backward sweep, in time $O(W)$.",
+      "因為": "Because",
+      "，使權重偏導直接等於": ", the partial derivative with respect to the weight is directly equal to",
+      "。若定義在": ". If it were defined on",
+      "上，每次更新都得多拖一個": "instead, every update would have to drag along an extra",
+      "項。": "term.",
+      "因為 $\\partial a_i / \\partial w_{i\\ell} = z_\\ell$，使權重偏導直接等於 $\\delta_i \\times z_\\ell$。若定義在 $z_i$ 上，每次更新都得多拖一個 $\\sigma'(a_i)$ 項。": "Because $\\partial a_i / \\partial w_{i\\ell} = z_\\ell$, the partial derivative with respect to the weight is directly equal to $\\delta_i \\times z_\\ell$. If it were defined on $z_i$ instead, every update would have to drag along an extra $\\sigma'(a_i)$ term.",
+      "根據多變數全微分鏈式法則，神經元": "By the multivariable total-derivative chain rule, the output of neuron",
+      "的輸出影響到所有下游神經元": "affects all the downstream neurons",
+      "，因此": ", so",
+      "根據多變數全微分鏈式法則，神經元 $i$ 的輸出影響到所有下游神經元 $j$，因此 $\\delta_i = \\sigma'(a_i) \\sum_j (\\delta_j w_{ji})$。": "By the multivariable total-derivative chain rule, the output of neuron $i$ affects all the downstream neurons $j$, so $\\delta_i = \\sigma'(a_i) \\sum_j (\\delta_j w_{ji})$.",
+      "輸出層直接計算": "The output layer directly computes",
+      "；隱藏層「看不見標籤」，其誤差是靠下游節點的敏感度沿著突觸權重倒灌回傳而來的。": "; the hidden layer \"cannot see the labels\", and its error comes from the sensitivities of the downstream nodes flowing back along the synaptic weights.",
+      "輸出層直接計算 $\\delta_i = \\partial e / \\partial a_i$；隱藏層「看不見標籤」，其誤差是靠下游節點的敏感度沿著突觸權重倒灌回傳而來的。": "The output layer directly computes $\\delta_i = \\partial e / \\partial a_i$; the hidden layer \"cannot see the labels\", and its error comes from the sensitivities of the downstream nodes flowing back along the synaptic weights.",
+      "← 倒灌 δ_j · w_{ji}": "← backflow δ_j · w_{ji}",
+      "← 梯度更新": "← grad update",
+      "隱藏 z_i": "hidden z_i",
+      "出口 z_j": "out z_j",
+      "― 前向訊號流 (z)": "― forward flow (z)",
+      "- - 反向倒灌流 (δ)": "- - backward flow (δ)",
+      "【前向傳播 (Forward Pass)】": "[Forward pass]",
+      "【反向傳播 (Backward Pass)】": "[Backward pass]",
+      "【權重梯度 (Gradients)】": "[Weight gradients]",
+      "【連動狀態】": "[Linked state]",
+      "🎯 目標達成：預測值與目標完美重合 (e ≈ 0)！": "🎯 Target reached: the prediction matches the target perfectly (e ≈ 0)!",
+      "⚠️ 啟用飽和：σ′(a_i) ≈ 0，隱藏層敏感度被截斷！": "⚠️ Activation saturated: σ′(a_i) ≈ 0, so the hidden-layer sensitivity is cut off!",
+      "⚡ 反向傳播正常倒灌中": "⚡ Backpropagation flowing back normally"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^損失 e = ½\\(z_j − t\\)² = (.*)$",
+        "en": "loss e = ½(z_j − t)² = $1"
+      },
+      {
+        "re": "^1\\. 隱藏前加權：(.*)$",
+        "en": "1. Hidden pre-activation: $1"
+      },
+      {
+        "re": "^2\\. 隱藏啟用值：(.*)$",
+        "en": "2. Hidden activation: $1"
+      },
+      {
+        "re": "^3\\. 出口預測值：(.*)$",
+        "en": "3. Output prediction: $1"
+      },
+      {
+        "re": "^4\\. 均方總損失：(.*)$",
+        "en": "4. Total MSE loss: $1"
+      },
+      {
+        "re": "^1\\. 出口敏感度：(.*)$",
+        "en": "1. Output sensitivity: $1"
+      },
+      {
+        "re": "^2\\. 隱藏敏感度：(.*)$",
+        "en": "2. Hidden sensitivity: $1"
+      },
+      {
+        "re": "^• 出口梯度 (.*)$",
+        "en": "• Output gradient $1"
+      },
+      {
+        "re": "^• 隱藏梯度 (.*)$",
+        "en": "• Hidden gradient $1"
+      },
+      {
+        "re": "^\\(導數 σ′=(.*)\\)$",
+        "en": "(derivative σ′=$1)"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#kp6-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ],
+  "91325207dc1e": {
+    "zh": "KP06 · 索引",
+    "en": "KP06 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f3ce3846741c": {
+    "zh": "<a href=\"#backprop-motivation\">梯度黑盒挑戰 · Motivation</a>",
+    "en": "<a href=\"#backprop-motivation\">The Gradient Black-Box Challenge</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "aaf463bb12e5": {
+    "zh": "<a href=\"#forward-pass\">前向加權與啟用 · Forward Pass</a>",
+    "en": "<a href=\"#forward-pass\">Forward Weighting &amp; Activation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "133015a81483": {
+    "zh": "<a href=\"#delta-definition\">敏感度 δ 定義 · Delta Def</a>",
+    "en": "<a href=\"#delta-definition\">Defining the Sensitivity δ</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b8f098588c0d": {
+    "zh": "<a href=\"#hidden-delta\">隱藏層鏈式倒灌 · Hidden Delta</a>",
+    "en": "<a href=\"#hidden-delta\">Hidden-Layer Chain Backflow</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "77aa96347112": {
+    "zh": "<a href=\"#weight-updates\">權重更新律對比 · Updates</a>",
+    "en": "<a href=\"#weight-updates\">Comparing Weight Update Rules</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a057b5801fe6": {
+    "zh": "<a href=\"#algorithm2\">Algorithm 2 流程 · Algorithm</a>",
+    "en": "<a href=\"#algorithm2\">Algorithm 2 Procedure</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "45524a44a305": {
+    "zh": "<a href=\"#computational-graph\">計算圖訊號流 · Graph Flow</a>",
+    "en": "<a href=\"#computational-graph\">Computational Graph Signal Flow</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ab39d4406f36": {
+    "zh": "<a href=\"#comparison\">前向 vs 反向對比 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Forward vs Backward Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "88aa81b66f49": {
+    "zh": "<a href=\"#lab\">互動模擬器 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Simulator</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Thinking Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ec2795decc6a": {
+    "zh": "反向傳播：鏈式法則逐層算梯度\n      <span class=\"hero-title-en\">Backpropagation &amp; Chain Rule: Layer-by-Layer Gradient Computation</span>\n    ",
+    "en": "Backpropagation: Computing Gradients Layer by Layer with the Chain Rule",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d68e1f771008": {
+    "zh": "\n      隱藏層神經元深居黑盒內部、看不見真實標籤，如何得知自身對最終損失的問責？微積分鏈式法則如何化腐朽為神奇，將誤差敏感度 $\\delta_i$ 逐層倒灌，以 $O(W)$ 線性代價完成全網參數更新？\n    ",
+    "en": "Hidden-layer neurons live deep inside the black box and never see the true labels, so how do they learn how much they are to blame for the final loss? How does the calculus chain rule work its magic, pouring the error sensitivity $\\delta_i$ back layer by layer and updating every parameter in the network at a linear cost of $O(W)$?",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "d68b39022cce": {
+    "zh": "\n      「隱藏層神經元根本看不見標籤，它怎麼知道自己該往哪裡改？」\n      <small>中間層沒有標準答案可對，但誤差訊號能藉由鏈式法則從輸出層倒灌回來！<br>\n        <span class=\"bilingual-en-inline\">How can hidden neurons update without seeing ground truth? The error signal propagates backwards via the chain rule!</span>\n      </small>\n    ",
+    "en": "\"Hidden-layer neurons can't see the labels at all, so how do they know which way to change?\" <small>The middle layers have no correct answer to check against, but the error signal can flow back from the output layer through the chain rule!<br></small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "a9ff76ec5a17": {
+    "zh": "02 / 問題脈絡 · Motivation &amp; Credit Assignment",
+    "en": "02 / Problem Context",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "173b58d42855": {
+    "zh": "多層神經網路的梯度黑盒：中間層如何問責？\n    <span class=\"en\">The Gradient Black Box in Deep Networks: Credit Assignment to Hidden Layers</span>\n  ",
+    "en": "The Gradient Black Box of Multilayer Networks: How Are Middle Layers Held Accountable?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "01180ba441b2": {
+    "zh": "單層網路 vs 多層網路的鴻溝",
+    "en": "The gap between single-layer and multilayer networks",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "231c54e399bd": {
+    "zh": "在單層感知器或線性迴歸中，輸出直接與真實目標 $t$ 比較產生誤差 $e$，梯度求導一步到位。但多層前饋網路中，權重 $w_{i\\ell}$ 散落在各個隱藏層中，中間神經元只把輸出傳給下游，完全看不到最終的標籤與損失！",
+    "en": "In a single-layer perceptron or linear regression, the output is compared directly with the true target $t$ to produce the error $e$, and the gradient is obtained in one step. But in a multilayer feedforward network, the weights $w_{i\\ell}$ are scattered across the hidden layers, and the middle neurons only pass their outputs downstream, never seeing the final label or loss!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7a5c19a53b33": {
+    "zh": "數值微擾的災難：$O(W^2)$ 算力爆炸",
+    "en": "The disaster of numerical perturbation: an $O(W^2)$ compute explosion",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e9adc74600b5": {
+    "zh": "若對每個權重進行有限差分微擾 $\\frac{e(w+\\epsilon)-e(w)}{\\epsilon}$，每算一根權重就要重新做一次完整的前向傳播。網路有一百萬個參數時，更新一步需跑一百萬次前向預測，在工程上完全不可能實現！",
+    "en": "If every weight is perturbed with a finite difference $\\frac{e(w+\\epsilon)-e(w)}{\\epsilon}$, each weight requires a whole new forward pass. With a million parameters, a single update step would need a million forward predictions, which is completely impossible in practice!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0437c6dd98ad": {
+    "zh": "Rumelhart 等人的破局：反向傳播（Backpropagation）",
+    "en": "The breakthrough of Rumelhart et al.: backpropagation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "02d741690930": {
+    "zh": "\n      1986 年由 Rumelhart, Hinton &amp; Williams 系統化普及的<strong>反向傳播演算法</strong>，本質就是<strong>「分層系統裡的梯度下降 + 遞迴求導」</strong>。\n      運用微積分的<strong>鏈式法則（Chain Rule）</strong>，只需<strong>一次前向傳播（算啟用並保留快照）+ 一次反向倒灌（由後往前算梯度）</strong>，就能以 $O(W)$ 線性時間複雜度精確算出所有參數的解析梯度！\n    ",
+    "en": "The <strong>backpropagation algorithm</strong>, systematized and popularized in 1986 by Rumelhart, Hinton &amp; Williams, is in essence <strong>\"gradient descent in a layered system + recursive differentiation.\"</strong> Using the calculus <strong>chain rule</strong>, it needs only <strong>one forward pass (computing the activations and keeping a snapshot) + one backward pass (computing gradients from back to front)</strong> to compute the exact analytic gradients of all parameters in linear time complexity $O(W)$!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f7344b8dacad": {
+    "zh": "03 / 前向基礎 · Forward Propagation Mechanics",
+    "en": "03 / Forward Basics",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d31fd318c989": {
+    "zh": "單一神經元前向計算：加權總和 $a_i$ 與非線性啟用 $z_i$\n    <span class=\"en\">Neuron Forward Pass: Pre-Activation Weighted Sum $a_i$ and Activation Output $z_i$</span>\n  ",
+    "en": "The Forward Computation of a Single Neuron: Weighted Sum $a_i$ and Nonlinear Activation $z_i$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6ee5e6b40c0f": {
+    "zh": "圖 5：單一神經元 i 的內部運算與訊號流拆解",
+    "en": "Figure 5: Inside a single neuron i, its computation and signal flow",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "fd11fd8a1f9b": {
+    "zh": "加權和 a_i",
+    "en": "Weighted sum a_i",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c8de7840a823": {
+    "zh": "啟用輸出 z_i",
+    "en": "Activation output z_i",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b2f85bd48975": {
+    "zh": "下游輸入",
+    "en": "Downstream input",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "3da880489072": {
+    "zh": "\n          前向計算兩大步：式 (9) 啟用前加權和 a_i = ∑ w_{iℓ} z_ℓ ➔ 式 (10) 啟用後輸出 z_i = σ_i(a_i)\n        ",
+    "en": "Two forward steps: Eq. (9) pre-activation weighted sum a_i = ∑ w_{iℓ} z_ℓ ➔ Eq. (10) post-activation output z_i = σ_i(a_i)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "099473e40ef9": {
+    "zh": "前向計算兩大基石公式（式 (9)–(10)）",
+    "en": "The two cornerstone formulas of the forward computation (Eqs. (9)–(10))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5246f043f28c": {
+    "zh": "\n        <strong>符號嚴格定義：</strong><br>\n        • $z_\\ell$：前一層神經元 $\\ell$ 的輸出（若是第 1 隱藏層，則為輸入特徵 $x_\\ell$）。<br>\n        • $w_{i\\ell}$：前層神經元 $\\ell$ 連線到當前神經元 $i$ 的突觸權重。<br>\n        • $a_i$：<strong>啟用前加權輸入總和</strong>（Pre-activation net input）。<br>\n        • $\\sigma_i(\\cdot)$：可微的非線性啟用函式（Sigmoid, ReLU 等）。<br>\n        • $z_i$：神經元 $i$ <strong>啟用後的輸出</strong>，準備送往下一層下游神經元。\n      ",
+    "en": "<strong>Strict definitions of the symbols:</strong><br> • $z_\\ell$: the output of neuron $\\ell$ in the previous layer (for the first hidden layer, the input feature $x_\\ell$).<br> • $w_{i\\ell}$: the synaptic weight of the connection from neuron $\\ell$ in the previous layer to the current neuron $i$.<br> • $a_i$: the <strong>pre-activation weighted sum of inputs</strong> (pre-activation net input).<br> • $\\sigma_i(\\cdot)$: a differentiable nonlinear activation function (sigmoid, ReLU, etc.).<br> • $z_i$: the <strong>post-activation output</strong> of neuron $i$, ready to be sent to the downstream neurons in the next layer.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "84b675ae1a04": {
+    "zh": "04 / 核心概念 · Error Sensitivity Definition",
+    "en": "04 / Core Concept",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "da163ab8bc5b": {
+    "zh": "誤差敏感度 $\\delta_i$：鏈式法則的中樞紐帶\n    <span class=\"en\">Error Sensitivity $\\delta_i$: The Central Nexus of the Chain Rule</span>\n  ",
+    "en": "The Error Sensitivity $\\delta_i$: The Central Hub of the Chain Rule",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4457a3ac9c03": {
+    "zh": "鏈式法則展開與敏感度 $\\delta_i$ 定義（式 (11)–(12)）",
+    "en": "Expanding the chain rule and defining the sensitivity $\\delta_i$ (Eqs. (11)–(12))",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e6bcfd2fe793": {
+    "zh": "對任意突觸權重 $w_{i\\ell}$，根據單變數微積分鏈式法則，總損失 $e$ 對該權重的偏導可精確拆解為：",
+    "en": "For any synaptic weight $w_{i\\ell}$, by the single-variable chain rule of calculus, the partial derivative of the total loss $e$ with respect to that weight splits exactly into:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ec08fc594a17": {
+    "zh": "其中關鍵中間變數 $\\delta_i$ 定義為<strong>總損失對啟用前加權和的敏感度</strong>：",
+    "en": "where the key intermediate variable $\\delta_i$ is defined as <strong>the sensitivity of the total loss to the pre-activation weighted sum</strong>:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d22d0cefab54": {
+    "zh": "為什麼定義在 $a_i$ 而非 $z_i$？",
+    "en": "Why define it at $a_i$ rather than $z_i$?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dfb75a0830b2": {
+    "zh": "\n        由式 (9) $a_i = \\sum_\\ell w_{i\\ell} z_\\ell$，可立即求得：\n        $$\\frac{\\partial a_i}{\\partial w_{i\\ell}} = z_\\ell$$\n        這是一個極度乾淨、毫不拖泥帶水的常數！只要把 $\\frac{\\partial e}{\\partial a_i}$ 封裝成 $\\delta_i$，權重梯度就直接寫成乘積。\n      ",
+    "en": "From Eq. (9), $a_i = \\sum_\\ell w_{i\\ell} z_\\ell$, we get immediately: $$\\frac{\\partial a_i}{\\partial w_{i\\ell}} = z_\\ell$$ This is an extremely clean, no-nonsense constant! Just package $\\frac{\\partial e}{\\partial a_i}$ as $\\delta_i$, and the weight gradient is written directly as a product.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "acb9985d94ff": {
+    "zh": "通用權重梯度黃金定律",
+    "en": "The golden rule for weight gradients",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "be3c9fa05ac3": {
+    "zh": "\n        無論神經元處於輸出層還是第十層隱藏層：\n        $$\\text{權重梯度 } \\frac{\\partial e}{\\partial w_{i\\ell}} = \\delta_i \\times z_\\ell$$\n        <strong>「梯度 = 當前神經元的誤差敏感度 $\\delta_i \\times$ 流入該連線的前層啟用訊號 $z_\\ell$」</strong>！\n      ",
+    "en": "Whether the neuron is in the output layer or in the tenth hidden layer: $$\\text{weight gradient } \\frac{\\partial e}{\\partial w_{i\\ell}} = \\delta_i \\times z_\\ell$$ <strong>\"Gradient = the current neuron's error sensitivity $\\delta_i \\times$ the previous layer's activation signal $z_\\ell$ flowing into that connection\"</strong>!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fb61e8b98c31": {
+    "zh": "05 / 遞推核心 · Hidden Layer Delta Recursion",
+    "en": "05 / The Core Recursion",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "678f39e174a3": {
+    "zh": "隱藏層的敏感度遞推：全微分鏈式倒灌\n    <span class=\"en\">Hidden Layer Delta: Backpropagating Downstream Error via Multivariable Chain Rule</span>\n  ",
+    "en": "The Sensitivity Recursion in Hidden Layers: Flowing Back Through the Total-Differential Chain Rule",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7a6ca5254694": {
+    "zh": "\n        若神經元 $i$ 位於<strong>隱藏層</strong>（非輸出層），它不直接接觸標籤與損失 $e$。\n        但神經元 $i$ 的輸入 $a_i$ 改變時，會先影響 $z_i = \\sigma(a_i)$，再透過下游連線權重 $w_{ji}$ 同步影響所有下游神經元 $j$ 的輸入 $a_j$！\n      ",
+    "en": "If neuron $i$ is in a <strong>hidden layer</strong> (not the output layer), it has no direct contact with the label or the loss $e$. But when neuron $i$'s input $a_i$ changes, it first affects $z_i = \\sigma(a_i)$, and then, through the downstream connection weights $w_{ji}$, simultaneously affects the inputs $a_j$ of all downstream neurons $j$!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4bc76aed95c7": {
+    "zh": "下游局部導航關係（式 (14)）",
+    "en": "Local downstream relationship (Eq. (14))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2718f8dcce1d": {
+    "zh": "多元微積分全微分倒灌（式 (15)）",
+    "en": "Backflow via the multivariable total differential (Eq. (15))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2e8cf4b1b0d2": {
+    "zh": "隱藏層權重梯度完整解析式（式 (16)）",
+    "en": "Full analytic expression of the hidden-layer weight gradient (Eq. (16))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1fdef50b7c3d": {
+    "zh": "隱藏層敏感度 $\\delta_i$ 的倒灌機制：下游加權迴流",
+    "en": "How the hidden-layer sensitivity $\\delta_i$ flows back: weighted return from downstream",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "ad2b594300e3": {
+    "zh": "神經元 j₁",
+    "en": "Neuron j₁",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "6009a2ac557b": {
+    "zh": "神經元 j₂",
+    "en": "Neuron j₂",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "4f0d5028b75e": {
+    "zh": "神經元 i",
+    "en": "Neuron i",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "004cadd80b3b": {
+    "zh": "閘門：× σ′(a_i)",
+    "en": "Gate: × σ′(a_i)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "5c69b4e2d084": {
+    "zh": "前向 z_ℓ →",
+    "en": "Forward z_ℓ →",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "29a8abbf8141": {
+    "zh": "\n          問責總結：下游誤差責任沿著前向突觸倒灌 ∑ δ_j w_{ji}，經由自身局部啟用斜率 σ′(a_i) 濾波\n        ",
+    "en": "Blame summary: downstream error flows back along the forward synapses as ∑ δ_j w_{ji}, filtered by the local activation slope σ′(a_i)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "6a59c5f89a1a": {
+    "zh": "\n          若啟用函式飽和導致 σ′(a_i) ≈ 0，下游誤差再大也傳不進去（梯度消失現象）\n        ",
+    "en": "If the activation saturates so σ′(a_i) ≈ 0, no downstream error gets through, however large (vanishing gradients)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "cfe1aac8cda5": {
+    "zh": "圖解式 (15)：下游誤差加權倒灌與局部啟用閘門",
+    "en": "Eq. (15) illustrated: weighted backflow of downstream error and the local activation gate",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cb3859b98867": {
+    "zh": "06 / 規則對比 · Output vs Hidden Updates",
+    "en": "06 / Comparing the Rules",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fb1ea6aca28e": {
+    "zh": "權重更新律對比：輸出層 vs 隱藏層\n    <span class=\"en\">Weight Update Comparison: Output Layer Equation (18) vs Hidden Layer Equation (19)</span>\n  ",
+    "en": "Comparing the Weight Update Rules: Output Layer vs Hidden Layer",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5b449d1b50bf": {
+    "zh": "通用梯度下降權重更新律（式 (17)）",
+    "en": "General gradient-descent weight update rule (Eq. (17))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "472fca88dfdd": {
+    "zh": "輸出層權重更新（式 (18)）",
+    "en": "Output-layer weight update (Eq. (18))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cca14c268e54": {
+    "zh": "<strong>直面損失：</strong>神經元 $i$ 處於最後一層，輸出 $z_i$ 直接與真實標籤 $t_i$ 產生誤差 $e$。",
+    "en": "<strong>Faces the loss directly:</strong> neuron $i$ is in the last layer, and its output $z_i$ is compared directly with the true label $t_i$ to produce the error $e$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d3088945612d": {
+    "zh": "<strong>鏈式最短：</strong>$\\delta_i = \\frac{\\partial e}{\\partial a_i}$ 僅需一層求導，例如 MSE 損失下 $\\delta_i = (z_i - t_i) \\sigma'(a_i)$。",
+    "en": "<strong>Shortest chain:</strong> $\\delta_i = \\frac{\\partial e}{\\partial a_i}$ needs only one layer of differentiation; for example, with the MSE loss, $\\delta_i = (z_i - t_i) \\sigma'(a_i)$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "690427b367d6": {
+    "zh": "<strong>更新直截：</strong>更新量正比於前層輸入 $z_\\ell$ 與當前殘差敏感度 $\\delta_i$。",
+    "en": "<strong>Straightforward update:</strong> the update is proportional to the previous layer's input $z_\\ell$ and the current residual sensitivity $\\delta_i$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ba7d3deff92d": {
+    "zh": "隱藏層權重更新（式 (19)）",
+    "en": "Hidden-layer weight update (Eq. (19))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9257991650b2": {
+    "zh": "<strong>黑盒深處：</strong>神經元 $i$ 看不見標籤，不能直接對 loss 求導。",
+    "en": "<strong>Deep in the black box:</strong> neuron $i$ cannot see the label and cannot differentiate the loss directly.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f1ee5f679d45": {
+    "zh": "<strong>下游倒灌：</strong>必須先等待所有下游神經元 $j$ 計算出 $\\delta_j$，再透過突觸權重 $w_{ji}$ 逆向加權回傳 $\\sum_j \\delta_j w_{ji}$。",
+    "en": "<strong>Backflow from downstream:</strong> it must first wait for all downstream neurons $j$ to compute $\\delta_j$, then pass back the weighted sum $\\sum_j \\delta_j w_{ji}$ in reverse through the synaptic weights $w_{ji}$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "437d2d3317dc": {
+    "zh": "<strong>雙重調控：</strong>既受前層輸入 $z_\\ell$ 驅動，又受本節點啟用斜率 $\\sigma'(a_i)$ 嚴格閘門把關。",
+    "en": "<strong>Double control:</strong> it is driven by the previous layer's input $z_\\ell$ and also strictly gated by this node's activation slope $\\sigma'(a_i)$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8f58d520391b": {
+    "zh": "\n    <strong>本質差異一句話總結：</strong>\n    輸出層 $\\delta_i$ 可直接由損失函式匯出；隱藏層則必須多乘自身啟用函式的導數 $\\sigma'(a_i)$，並將下游所有 $\\delta_j$ 依突觸權重倒灌回流。\n    <span class=\"bilingual-en\">\n      The terminal layer calculates $\\delta_i$ directly from the loss function, while hidden layers recursively propagate $\\delta_j$ back through downstream weights $w_{ji}$ and scale by the local derivative $\\sigma'(a_i)$.\n    </span>\n  ",
+    "en": "<strong>The essential difference in one sentence:</strong> in the output layer, $\\delta_i$ can be derived directly from the loss function; a hidden layer must additionally multiply by the derivative of its own activation function, $\\sigma'(a_i)$, and pour back all the downstream $\\delta_j$ according to the synaptic weights.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1b5c80a68fcb": {
+    "zh": "07 / 演算法架構 · Algorithm 2 Blueprint",
+    "en": "07 / Algorithm Structure",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ab1984865a8c": {
+    "zh": "Algorithm 2 流程全貌：反向傳播六步迴圈\n    <span class=\"en\">Algorithm 2 Complete Blueprint: The 6-Step Loop of Backpropagation</span>\n  ",
+    "en": "The Full Picture of Algorithm 2: The Six-Step Backpropagation Loop",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d28d7915928e": {
+    "zh": "Step 1 &amp; Step 2：初始化與步長配置",
+    "en": "Step 1 &amp; Step 2: Initialization and step-size setup",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "10aa75539696": {
+    "zh": "\n        <strong>1. 初始化權重</strong> $\\boldsymbol{w}^{(0)}$（使用隨機小數打破對稱性，避免所有神經元學出相同特徵）。<br>\n        <strong>2. 設定每輪學習率</strong> $\\eta^{(k)}$（可配合學習率衰減排程或自適應最佳化器）。\n      ",
+    "en": "<strong>1. Initialize the weights</strong> $\\boldsymbol{w}^{(0)}$ (use small random numbers to break symmetry, so that all neurons don't learn the same feature).<br> <strong>2. Set the learning rate for each iteration</strong> $\\eta^{(k)}$ (this can be combined with a learning-rate decay schedule or an adaptive optimizer).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bba0439d0b3c": {
+    "zh": "Step 3：前向傳播（Forward Pass）",
+    "en": "Step 3: Forward pass",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "13ffe01c9bf9": {
+    "zh": "\n        由第一層至最後一層依序計算各神經元之加權輸入 $a_i$ 與啟用輸出 $z_i$（式 (9)–(10)）。在最後一層計算總體損失 $e$。<strong>關鍵：所有中間啟用值 $z_\\ell$ 必須完整快取至記憶體中！</strong>\n      ",
+    "en": "From the first layer to the last, compute each neuron's weighted input $a_i$ and activation output $z_i$ in turn (Eqs. (9)–(10)). At the last layer, compute the total loss $e$. <strong>Key point: all intermediate activations $z_\\ell$ must be fully cached in memory!</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cd5cc1ae3a11": {
+    "zh": "Step 4：反向倒灌（Backward Pass）",
+    "en": "Step 4: Backward pass",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "58578e7b05ce": {
+    "zh": "\n        <strong>由最後一層往回遞推：</strong><br>\n        • 若當前層為最後一層（輸出層）：直接根據損失計算 $\\delta_i$，套用式 (18) 更新權重。<br>\n        • 若當前層為隱藏層：根據下游已求得的 $\\delta_j$，套用式 (15) 倒灌計算 $\\delta_i$，套用式 (19) 更新權重。\n      ",
+    "en": "<strong>Recurse backward from the last layer:</strong><br> • If the current layer is the last layer (the output layer): compute $\\delta_i$ directly from the loss and update the weights with Eq. (18).<br> • If the current layer is a hidden layer: from the $\\delta_j$ already obtained downstream, compute $\\delta_i$ by backflow with Eq. (15), and update the weights with Eq. (19).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "da517de9fbcc": {
+    "zh": "Step 5 &amp; Step 6：收斂檢驗與迭代迴圈",
+    "en": "Step 5 &amp; Step 6: Convergence check and the iteration loop",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "aaf25cb88d30": {
+    "zh": "\n        <strong>5. 檢查收斂準則：</strong>檢驗梯度範數 $\\|\\nabla e\\| \\le \\epsilon$、相鄰輪損失變化或 Epoch 預算。<br>\n        <strong>6. 動態調整：</strong>若未收斂，調整學習率 $\\eta^{(k)}$ 進入下一輪迭代，直至收斂。\n      ",
+    "en": "<strong>5. Check the convergence criterion:</strong> check the gradient norm $\\|\\nabla e\\| \\le \\epsilon$, the change in loss between successive iterations, or the epoch budget.<br> <strong>6. Adjust dynamically:</strong> if not converged, adjust the learning rate $\\eta^{(k)}$ and go on to the next iteration, until convergence.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b400d09d4482": {
+    "zh": "口語口訣版四部曲",
+    "en": "The four steps as an easy-to-remember mnemonic",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5f5cd9de3d7e": {
+    "zh": "\n      <strong>① 前向算：</strong>從輸入層一路往右算 $a$ 與 $z$，算出總 loss；<br>\n      <strong>② 終點標：</strong>在輸出層比對標籤算輸出 $\\delta_{\\text{out}}$；<br>\n      <strong>③ 逆向灌：</strong>從輸出層一層層往回傳 $\\delta$，隱藏層加權加總再乘 $\\sigma'$；<br>\n      <strong>④ 梯步移：</strong>用 $\\Delta w = -\\eta \\cdot \\delta_i z_\\ell$ 更新每一根權重！\n    ",
+    "en": "<strong>① Compute forward:</strong> from the input layer, compute $a$ and $z$ all the way to the right, and get the total loss;<br> <strong>② Mark the finish:</strong> at the output layer, compare with the label to get the output $\\delta_{\\text{out}}$;<br> <strong>③ Pour back:</strong> pass $\\delta$ back from the output layer one layer at a time; hidden layers take the weighted sum and multiply by $\\sigma'$;<br> <strong>④ Take the gradient step:</strong> update every weight with $\\Delta w = -\\eta \\cdot \\delta_i z_\\ell$!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "475327f4d2fb": {
+    "zh": "08 / 視覺架構 · Computational Graph &amp; Signal Flow",
+    "en": "08 / Visual Structure",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a7d6ab50fd6d": {
+    "zh": "計算圖訊號流：前向藍流 vs 反向紅流\n    <span class=\"en\">Computational Graph: Blue Forward Signals vs Red Backward Gradients</span>\n  ",
+    "en": "Signal Flow in the Computational Graph: Blue Forward Flow vs Red Backward Flow",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b2afd4ba3bd0": {
+    "zh": "反向傳播訊號流：隱藏層看不見標籤，靠 δ 從輸出倒灌回來",
+    "en": "Backprop signal flow: hidden layers can't see the label; δ flows back from the output",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "edc714994934": {
+    "zh": "輸入層",
+    "en": "Input layer",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "aacdca598459": {
+    "zh": "隱藏層",
+    "en": "Hidden layer",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "8d8fbf6795e8": {
+    "zh": "輸出層",
+    "en": "Output layer",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "56b7be471999": {
+    "zh": "輸入特徵",
+    "en": "Input features",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "88b76bab4a44": {
+    "zh": "看得見資料 x",
+    "en": "Sees the data x",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "b3513a35ca18": {
+    "zh": "隱藏神經元",
+    "en": "Hidden neuron",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "11fdd80d5149": {
+    "zh": "看不見真實標籤",
+    "en": "Can't see the true label",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "d4358178a5e2": {
+    "zh": "中間層沒有答案可對",
+    "en": "No answer to check against",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "ec1f7bc0d42e": {
+    "zh": "輸出預測",
+    "en": "Output prediction",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "210a9e80e0b6": {
+    "zh": "直面損失 e 與目標 t",
+    "en": "Faces loss e and target t",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "54babc1d037e": {
+    "zh": "輸出層權重更新",
+    "en": "Output-layer weight update",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "29900d42ad41": {
+    "zh": "δ 可直接由損失算出",
+    "en": "δ comes straight from the loss",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "60589cf4f33e": {
+    "zh": "看得到 e，鏈式法則最短",
+    "en": "Sees e; shortest chain rule",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "f7e9ddd74d3a": {
+    "zh": "隱藏層權重更新",
+    "en": "Hidden-layer weight update",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "24126895a0e9": {
+    "zh": "多乘 σ′ 並加總下游 δ",
+    "en": "Extra × σ′, sum downstream δ",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "c2ebc1099b0e": {
+    "zh": "答案是倒灌進來的，不是直接看見的",
+    "en": "The answer flows back in; it isn't seen directly",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "3c150d079411": {
+    "zh": "反直覺：隱藏層沒看見標籤，卻能學會——學習訊號是從輸出用鏈式法則倒灌回來的。",
+    "en": "Counterintuitive: hidden layers never see the label yet still learn; the learning signal flows back from the output via the chain rule.",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "c1a1d22eec92": {
+    "zh": "反向傳播：前向藍、δ 迴流紅；隱藏層看不見標籤",
+    "en": "Backpropagation: forward in blue, δ flowing back in red; hidden layers can't see the label",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "02bccffa3fe4": {
+    "zh": "反直覺哲學：看不見答案，卻能被精準修正",
+    "en": "A counterintuitive philosophy: it can't see the answer, yet it can be corrected precisely",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "04a86e054d8b": {
+    "zh": "\n          學生常問：「中間層又沒看過貓或狗的照片標籤，它是怎麼學會抽取貓耳特徵的？」\n        ",
+    "en": "Students often ask: \"The middle layers never saw the cat or dog labels on the photos, so how do they learn to extract cat-ear features?\"",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1971132fbf3a": {
+    "zh": "\n          答案正是<strong>反向傳播的數學美感</strong>：\n          雖然隱藏層沒有標籤，但最後一層的預測誤差會被「逆轉的權重矩陣」層層向下投影。\n          <strong>每一根突觸權重，前向時貢獻了多少訊號，反向時就必須承擔多少問責！</strong>\n        ",
+    "en": "The answer is exactly <strong>the mathematical beauty of backpropagation</strong>: although the hidden layers have no labels, the last layer's prediction error is projected downward layer by layer through the \"reversed weight matrices.\" <strong>However much signal each synaptic weight contributed on the way forward, that much blame it must bear on the way back!</strong>",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3ce6678d2b2f": {
+    "zh": "\n        計算圖（Computational Graph）將複雜的多層網路分解為局部節點。每個節點只需掌握自己的局部雅可比（Local Jacobian）運算，即可無縫拼接出全域梯度。\n        <span class=\"bilingual-en\">\n          Computational graphs decouple deep networks into modular nodes. Each node only needs its local gradient to seamlessly assemble the global derivative chain.\n        </span>\n      ",
+    "en": "A computational graph breaks a complex multilayer network down into local nodes. Each node only needs to handle its own local Jacobian computation, and together they seamlessly assemble the global gradient.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a28488302320": {
+    "zh": "09 / 維度縱覽 · Forward vs Backward Comparison",
+    "en": "09 / Overview Across Dimensions",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f0063faa10fc": {
+    "zh": "前向傳播 vs 反向傳播：維度、方向與資源開銷對比\n    <span class=\"en\">Forward Pass vs Backward Pass: Dimension, Direction, and Resource Trade-offs</span>\n  ",
+    "en": "Forward Pass vs Backward Pass: Comparing Dimensions, Direction and Resource Costs",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "61b34a147c85": {
+    "zh": "比較維度",
+    "en": "Dimension compared",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2c24c6b1238e": {
+    "zh": "前向傳播 (Forward Pass)",
+    "en": "Forward pass",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0bf12c180180": {
+    "zh": "反向傳播 (Backward Pass)",
+    "en": "Backward pass",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "54975862d25d": {
+    "zh": "<strong>資訊傳播方向</strong>",
+    "en": "<strong>Direction of information flow</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4f03b035c749": {
+    "zh": "輸入層 $\\to$ 隱藏層 $\\to$ 輸出層（由左向右）",
+    "en": "Input layer $\\to$ hidden layers $\\to$ output layer (left to right)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fcb6d9382b49": {
+    "zh": "輸出層 $\\to$ 隱藏層 $\\to$ 輸入層（由右向左）",
+    "en": "Output layer $\\to$ hidden layers $\\to$ input layer (right to left)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fd79b7c1a594": {
+    "zh": "<strong>核心載流變數</strong>",
+    "en": "<strong>Core variable carried</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f7c03b4ecb1b": {
+    "zh": "神經元啟用輸出 $z_i = \\sigma(a_i) \\in \\mathbb{R}$",
+    "en": "Neuron activation output $z_i = \\sigma(a_i) \\in \\mathbb{R}$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d59419340ed4": {
+    "zh": "誤差敏感度 $\\delta_i = \\frac{\\partial e}{\\partial a_i} \\in \\mathbb{R}$",
+    "en": "Error sensitivity $\\delta_i = \\frac{\\partial e}{\\partial a_i} \\in \\mathbb{R}$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f6bba0f0ee80": {
+    "zh": "<strong>局部運算機制</strong>",
+    "en": "<strong>Local computation</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f08972ae2e2e": {
+    "zh": "輸入加權總和：$a_i = \\sum w_{i\\ell} z_\\ell$，過啟用 $\\sigma$",
+    "en": "Weighted sum of inputs: $a_i = \\sum w_{i\\ell} z_\\ell$, passed through the activation $\\sigma$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5c373cc6e643": {
+    "zh": "下游敏感度加權倒灌：$\\sum \\delta_j w_{ji}$，乘導數 $\\sigma'$",
+    "en": "Weighted backflow of downstream sensitivities: $\\sum \\delta_j w_{ji}$, multiplied by the derivative $\\sigma'$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8ba03a749f8e": {
+    "zh": "<strong>輸出目標產物</strong>",
+    "en": "<strong>Output produced</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c3f79a6544dd": {
+    "zh": "預測標籤 $\\hat{y}$ 與總損失純量 $e$",
+    "en": "Predicted label $\\hat{y}$ and the scalar total loss $e$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7c40ac385b75": {
+    "zh": "所有突觸權重梯度 $\\frac{\\partial e}{\\partial w_{i\\ell}} = \\delta_i z_\\ell$",
+    "en": "The gradients of all synaptic weights, $\\frac{\\partial e}{\\partial w_{i\\ell}} = \\delta_i z_\\ell$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3178466ca127": {
+    "zh": "<strong>時間複雜度</strong>",
+    "en": "<strong>Time complexity</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "efb48a581855": {
+    "zh": "$O(W)$（$W$ 為網路所有突觸權重總數）",
+    "en": "$O(W)$ ($W$ is the total number of synaptic weights in the network)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "dc18d112ddfb": {
+    "zh": "$O(W)$（與前向同階，高效對稱！）",
+    "en": "$O(W)$ (same order as the forward pass: efficient and symmetric!)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2efd1533c97f": {
+    "zh": "<strong>視訊記憶體 (VRAM) 開銷</strong>",
+    "en": "<strong>GPU memory (VRAM) cost</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d53c81c86f60": {
+    "zh": "瞬時運算，僅需維護層間暫存區",
+    "en": "Computed on the fly; only buffers between layers need to be kept",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8d22f0a0c632": {
+    "zh": "必須完整保留前向傳播的所有中間啟用快照 $z_\\ell$！",
+    "en": "Must keep a full snapshot of every intermediate activation $z_\\ell$ from the forward pass!",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b67c31f2b16f": {
+    "zh": "\n    這張對比表揭示了現代深度學習架構的關鍵約束：<strong>反向傳播的時間極省（與前向同為 $O(W)$），但記憶體極耗</strong>。\n    訓練大型語言模型（LLM）時所面臨的視訊記憶體瓶頸，本質正是源自於必須快取前向啟用 $z_\\ell$ 以便反向計算 $\\delta_i z_\\ell$！\n    <span class=\"bilingual-en\">\n      While backpropagation matches the forward pass in linear time complexity $O(W)$, its memory footprint requires caching all forward activations for gradient evaluation.\n    </span>\n  ",
+    "en": "This comparison table reveals a key constraint of modern deep learning architectures: <strong>backpropagation is extremely cheap in time (the same $O(W)$ as the forward pass) but extremely hungry for memory</strong>. The GPU memory bottleneck faced when training large language models (LLMs) fundamentally comes from having to cache the forward activations $z_\\ell$ in order to compute $\\delta_i z_\\ell$ on the backward pass!",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6cea2df2357f": {
+    "zh": "10 / 智慧結晶 · Master Laws of Backprop",
+    "en": "10 / Distilled Wisdom",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "92f2a2f77481": {
+    "zh": "大師箴言：反向傳播四大鐵律\n    <span class=\"en\">The Four Inviolable Laws of Backpropagation</span>\n  ",
+    "en": "The Master's Maxims: The Four Iron Laws of Backpropagation",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "63d2fcf332be": {
+    "zh": "一、倒灌問責律：權重多大，責任就有多大",
+    "en": "1. The law of backflowing blame: the bigger the weight, the bigger the responsibility",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "184f63014855": {
+    "zh": "中間層神經元無需直面標籤。下游誤差沿著突觸前向連線逆向折返，前向放大倍率越大的連線，反向承擔的問責份額就越高。",
+    "en": "Middle-layer neurons don't need to face the label directly. The downstream error travels back along the forward synaptic connections in reverse, and the larger a connection's amplification on the way forward, the larger the share of blame it takes on the way back.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e6a25e2d0f20": {
+    "zh": "二、線性對稱律：反向求導時間等同前向傳播",
+    "en": "2. The law of linear symmetry: computing derivatives backward takes as long as the forward pass",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a63261c39706": {
+    "zh": "反向傳播的時間複雜度嚴格等於前向傳播的常數倍。這種線形時間對稱性，粉碎了數值微擾的維度高牆，奠定了深度學習的基石。",
+    "en": "The time complexity of backpropagation is strictly a constant multiple of that of the forward pass. This linear-time symmetry smashed the dimensional wall of numerical perturbation and laid the foundation of deep learning.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "da88ebb561ea": {
+    "zh": "三、啟用閘門律：導數為零則反向訊號湮滅",
+    "en": "3. The law of the activation gate: zero derivative means the backward signal dies out",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c29dbaf03dea": {
+    "zh": "隱藏層 $\\delta_i$ 必乘 $\\sigma'(a_i)$。若啟用函式落入飽和區（如 Sigmoid 極值處 $\\sigma' \\to 0$），下游倒灌訊號將被徹底截斷，導致梯度消失！",
+    "en": "The hidden-layer $\\delta_i$ is always multiplied by $\\sigma'(a_i)$. If the activation function falls into its saturation region (e.g. at the extremes of the sigmoid, $\\sigma' \\to 0$), the backflowing downstream signal is cut off completely, causing vanishing gradients!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ff9f167dbd0e": {
+    "zh": "四、快取依存律：視訊記憶體本質上是在買前向記憶",
+    "en": "4. The law of cache dependence: GPU memory is essentially buying forward memory",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6732210d0d6b": {
+    "zh": "計算權重梯度必須用到前向輸入 $z_\\ell$。沒有前向啟用快照，反向傳播就無法求導。深度神經網路的視訊記憶體瓶頸本質是「記憶的代價」。",
+    "en": "Computing the weight gradients requires the forward input $z_\\ell$. Without the snapshot of the forward activations, backpropagation cannot compute the derivatives. The GPU memory bottleneck of deep neural networks is essentially \"the price of remembering.\"",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Hands-On Simulation",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b74c6acc1a1a": {
+    "zh": "互動探索實驗室：兩層神經網路前向啟用、反向 $\\delta$ 與權重梯度數值連動模擬器\n    <span class=\"en\">Interactive Lab: Two-Layer Network Forward Pass, Backward Delta &amp; Gradient Simulator</span>\n  ",
+    "en": "Interactive Exploration Lab: A Simulator Linking the Forward Activations, Backward $\\delta$ and Weight Gradients of a Two-Layer Neural Network",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5b54e851a651": {
+    "zh": "入口 z_ℓ：",
+    "en": "Input z_ℓ:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "6887fe397b4e": {
+    "zh": "隱藏 w_{iℓ}：",
+    "en": "Hidden w_{iℓ}:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5b225a8552c6": {
+    "zh": "出口 w_{ji}：",
+    "en": "Output w_{ji}:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e16b162382b8": {
+    "zh": "目標 t：",
+    "en": "Target t:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "95a9ee77195d": {
+    "zh": "預設基準 (Reset)",
+    "en": "Default baseline (Reset)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a25e642e89d5": {
+    "zh": "零誤差驗證 (t=1)",
+    "en": "Zero-error check (t=1)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "60e0b2d478e5": {
+    "zh": "實驗室設計架構與數值基準 (Mathematical Specifications)",
+    "en": "Lab design and numerical baseline (mathematical specifications)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2423ab487e7b": {
+    "zh": "\n        <strong>網路設定：</strong>單輸入 $z_\\ell$、單隱藏神經元 $i$（啟用函式採二次方 $\\sigma(a)=a^2$，故導數 $\\sigma'(a)=2a$）、單輸出神經元 $j$（線性啟用 $z_j=a_j$）。<br>\n        <strong>損失函式：</strong>均方誤差 $e = \\frac{1}{2}(z_j - t)^2$。<br>\n        <strong>出口敏感度：</strong>$\\delta_j = z_j - t$，出口權重梯度 $\\frac{\\partial e}{\\partial w_{ji}} = \\delta_j \\times z_i$。<br>\n        <strong>隱藏敏感度：</strong>$\\delta_i = \\delta_j \\cdot w_{ji} \\cdot \\sigma'(a_i) = \\delta_j \\cdot w_{ji} \\cdot (2a_i)$，隱藏權重梯度 $\\frac{\\partial e}{\\partial w_{i\\ell}} = \\delta_i \\times z_\\ell$。<br>\n        <strong>基準檢驗：</strong>預設值 $z_\\ell=1, w_{i\\ell}=1, w_{ji}=1, t=0$ 時，前向 $a_i=1, z_i=1, z_j=1, e=0.5$；反向 $\\delta_j=1, \\delta_i=2$；出口梯度 $=1.000$，隱藏梯度 $=2.000$！\n      ",
+    "en": "<strong>Network setup:</strong> a single input $z_\\ell$, a single hidden neuron $i$ (with a quadratic activation $\\sigma(a)=a^2$, so the derivative is $\\sigma'(a)=2a$), and a single output neuron $j$ (linear activation $z_j=a_j$).<br> <strong>Loss function:</strong> mean squared error $e = \\frac{1}{2}(z_j - t)^2$.<br> <strong>Output sensitivity:</strong> $\\delta_j = z_j - t$; the output weight gradient is $\\frac{\\partial e}{\\partial w_{ji}} = \\delta_j \\times z_i$.<br> <strong>Hidden sensitivity:</strong> $\\delta_i = \\delta_j \\cdot w_{ji} \\cdot \\sigma'(a_i) = \\delta_j \\cdot w_{ji} \\cdot (2a_i)$; the hidden weight gradient is $\\frac{\\partial e}{\\partial w_{i\\ell}} = \\delta_i \\times z_\\ell$.<br> <strong>Baseline check:</strong> with the defaults $z_\\ell=1, w_{i\\ell}=1, w_{ji}=1, t=0$, the forward pass gives $a_i=1, z_i=1, z_j=1, e=0.5$; the backward pass gives $\\delta_j=1, \\delta_i=2$; output gradient $=1.000$, hidden gradient $=2.000$!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9a63cee739af": {
+    "zh": "12 / 實戰檢驗 · Concept Checkpoint",
+    "en": "12 / Hands-On Check",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Feedback on the Concepts",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "208083b93fc9": {
+    "zh": "題目 1：在深層神經網路中，為什麼不能直接用數值微擾（如 $\\frac{e(w+\\epsilon)-e(w)}{\\epsilon}$）求導，而必須採用反向傳播？",
+    "en": "Question 1: In a deep neural network, why can't we differentiate directly by numerical perturbation (e.g. $\\frac{e(w+\\epsilon)-e(w)}{\\epsilon}$), and must use backpropagation instead?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b50fbda31999": {
+    "zh": "A. 數值微擾會破壞神經網路的非線性啟用能力",
+    "en": "A. Numerical perturbation destroys the network's nonlinear activation capability",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c09d6dd50b26": {
+    "zh": "B. 數值微擾每微擾一個權重需重新做一次完整前向傳播，複雜度高達 $O(W^2)$；反向傳播僅需一次前向 + 一次反向即可在 $O(W)$ 內求出所有梯度",
+    "en": "B. Numerical perturbation needs a whole new forward pass for each perturbed weight, for a complexity as high as $O(W^2)$; backpropagation needs only one forward + one backward pass to get all gradients in $O(W)$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1fde12569f86": {
+    "zh": "C. 數值微擾無法處理負數權重與零值偏置",
+    "en": "C. Numerical perturbation cannot handle negative weights and zero biases",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a5cc5eb34f2d": {
+    "zh": "D. 數值微擾會使學習率 $\\eta$ 強制衰減為零",
+    "en": "D. Numerical perturbation forces the learning rate $\\eta$ to decay to zero",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "07d53ef6bd58": {
+    "zh": "題目 2：反向傳播中，神經元 $i$ 的誤差敏感度為何定義為 $\\delta_i = \\frac{\\partial e}{\\partial a_i}$（對加權和求導），而非對啟用後輸出 $\\frac{\\partial e}{\\partial z_i}$ 求導？",
+    "en": "Question 2: In backpropagation, why is the error sensitivity of neuron $i$ defined as $\\delta_i = \\frac{\\partial e}{\\partial a_i}$ (the derivative with respect to the weighted sum) rather than as the derivative with respect to the post-activation output, $\\frac{\\partial e}{\\partial z_i}$?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "43c7cf560a57": {
+    "zh": "A. 因為 $\\frac{\\partial a_i}{\\partial w_{i\\ell}} = z_\\ell$，使權重梯度直接簡化為極為乾淨的乘積 $\\delta_i \\times z_\\ell$",
+    "en": "A. Because $\\frac{\\partial a_i}{\\partial w_{i\\ell}} = z_\\ell$, which makes the weight gradient simplify directly to the very clean product $\\delta_i \\times z_\\ell$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8c8ab0bb86ef": {
+    "zh": "B. 因為啟用後輸出 $z_i$ 的導數在數學上恆為零",
+    "en": "B. Because the derivative of the post-activation output $z_i$ is always zero mathematically",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "198ce8ed3b2b": {
+    "zh": "C. 為了避免計算海森矩陣（Hessian Matrix）的特徵值",
+    "en": "C. To avoid computing the eigenvalues of the Hessian matrix",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bbb139e82105": {
+    "zh": "D. 純屬歷史筆誤，在計算複雜度上兩者沒有任何差異",
+    "en": "D. It is purely a historical slip of the pen; there is no difference at all in computational complexity",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "965b76fe3509": {
+    "zh": "題目 3：若神經元 $i$ 處於隱藏層，其誤差敏感度 $\\delta_i$ 如何從下游神經元集合 $\\{j\\}$ 計算得出？",
+    "en": "Question 3: If neuron $i$ is in a hidden layer, how is its error sensitivity $\\delta_i$ computed from the set of downstream neurons $\\{j\\}$?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "aeaa609242a4": {
+    "zh": "A. $\\delta_i = \\sum_j \\delta_j$ 直接將下游敏感度相加",
+    "en": "A. $\\delta_i = \\sum_j \\delta_j$: just add up the downstream sensitivities",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8705253d3df9": {
+    "zh": "B. $\\delta_i = \\sigma'(a_i) \\sum_j (\\delta_j w_{ji})$，即下游敏感度經突觸加權回傳總和，再乘上本節點局部啟用函式導數",
+    "en": "B. $\\delta_i = \\sigma'(a_i) \\sum_j (\\delta_j w_{ji})$, i.e., the sum of the downstream sensitivities passed back through the synaptic weights, multiplied by the derivative of this node's local activation function",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a94383399730": {
+    "zh": "題目 4：比較輸出層權重更新式 (18) 與隱藏層權重更新式 (19)，本質上的最關鍵差別為何？",
+    "en": "Question 4: Comparing the output-layer weight update, Eq. (18), with the hidden-layer weight update, Eq. (19), what is the most essential difference?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d506646e4a07": {
+    "zh": "A. 輸出層不使用學習率 $\\eta$，只有隱藏層才需要設定步長",
+    "en": "A. The output layer does not use the learning rate $\\eta$; only hidden layers need a step size",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bb1f0369b8d9": {
+    "zh": "B. 隱藏層權重更新方向與梯度符號相同，輸出層相反",
+    "en": "B. Hidden-layer weights are updated in the same direction as the sign of the gradient, while the output layer's are updated in the opposite direction",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e8980bb2f129": {
+    "zh": "C. 輸出層直面真實標籤與損失函式，敏感度一步可得；隱藏層因「看不見標籤」，必須依賴下游誤差經由權重矩陣倒灌，並受局部啟用導數 $\\sigma'(a_i)$ 濾波",
+    "en": "C. The output layer faces the true label and the loss function directly, so its sensitivity is obtained in one step; a hidden layer, which \"can't see the label,\" must rely on downstream error flowing back through the weight matrix, filtered by the local activation derivative $\\sigma'(a_i)$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c58986c9ca12": {
+    "zh": "D. 輸出層權重更新完全不需要輸入啟用值 $z_\\ell$",
+    "en": "D. The output-layer weight update does not need the input activations $z_\\ell$ at all",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  }
+}

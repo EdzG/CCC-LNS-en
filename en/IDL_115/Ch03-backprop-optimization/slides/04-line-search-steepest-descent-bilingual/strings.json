@@ -1,0 +1,1154 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "式 (5) 檢查沿 $-\\eta\\nabla f$ 方向更新後，目標函式是否確實下降。": "Eq. (5) checks whether the objective function really decreases after updating along the direction $-\\eta\\nabla f$.",
+      "不滿足式 (5) 時將 $\\eta$ 減半（$\\eta \\leftarrow \\eta/2$），重複直到找到使 loss 下降的步長。": "When Eq. (5) is not satisfied, $\\eta$ is halved ($\\eta \\leftarrow \\eta/2$), repeating until a step size that lowers the loss is found.",
+      "最陡下降沿 $-\\nabla f$ 方向，但每步解 $\\arg\\min_\\eta f(\\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)}))$ 找最優步長。": "Steepest descent moves along the direction $-\\nabla f$, but at every step it solves $\\arg\\min_\\eta f(\\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)}))$ to find the optimal step size.",
+      "Armijo 規則（backtracking line search）是比簡單減半更精確的線搜索充分下降條件，Wolfe 條件也是同類進階策略。": "The Armijo rule (backtracking line search) is a more precise sufficient-decrease condition for line search than simple halving; the Wolfe conditions are an advanced strategy of the same kind.",
+      "谷底 (0, 0)": "Valley (0, 0)",
+      "✅ 成功收斂抵達谷底 (|∇f| < 0.05)": "✅ Converged to the valley floor (|∇f| < 0.05)",
+      "🏃 迭代進行中...": "🏃 Iterating...",
+      "當前模式：": "Current mode:",
+      "最陡下降 (Exact 1D)": "steepest descent (exact 1D)",
+      "減半線搜索 (Backtracking)": "step-halving line search (backtracking)",
+      "固定學習率 GD": "fixed learning rate GD",
+      "座標 (x, y)：": "Coordinates (x, y):",
+      "損失值 f(x, y)：": "Loss f(x, y):",
+      "梯度範數 ‖∇f‖：": "Gradient norm ‖∇f‖:",
+      "本步採納步長 η：": "Step size η accepted this step:",
+      "相鄰步梯度內積：": "Inner product of adjacent gradients:",
+      "相鄰步夾角 θ：": "Angle θ between adjacent steps:",
+      "N/A (初始步)": "N/A (initial step)",
+      "累計步數：": "Total steps:",
+      "狀態判定：": "Status:"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^(\\S+) \\(對半砍 (\\d+) 次\\)$",
+        "en": "$1 (halved $2 times)"
+      },
+      {
+        "re": "^(.+) \\(正交！\\)$",
+        "en": "$1 (orthogonal!)"
+      },
+      {
+        "re": "^⚡ 觸發減半：內層收縮 (\\d+) 次後下降$",
+        "en": "⚡ Halving triggered: decreased after $1 inner shrinks"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "1e07618c2ea3": {
+    "zh": "KP04 · 索引",
+    "en": "KP04 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "35896bc8764a": {
+    "zh": "<a href=\"#linesearch-intro\">線搜索核心 · Line Search Intro</a>",
+    "en": "<a href=\"#linesearch-intro\">The Core of Line Search</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "46dcc5a0e8f4": {
+    "zh": "<a href=\"#algorithm1\">演算法一 · Algorithm 1</a>",
+    "en": "<a href=\"#algorithm1\">Algorithm 1</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e775ff9bc52d": {
+    "zh": "<a href=\"#step-halving\">步長減半 · Step-Halving &amp; 1D</a>",
+    "en": "<a href=\"#step-halving\">Step Halving</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "276156d92276": {
+    "zh": "<a href=\"#armijo-wolfe\">進階準則 · Armijo &amp; Wolfe</a>",
+    "en": "<a href=\"#armijo-wolfe\">Advanced Conditions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a050b8ff7561": {
+    "zh": "<a href=\"#steepest-descent\">最陡下降 · Steepest Descent</a>",
+    "en": "<a href=\"#steepest-descent\">Steepest Descent</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "27c45bcf005f": {
+    "zh": "<a href=\"#exact-vs-backtracking\">精確 vs 回溯 · Exact vs Backtracking</a>",
+    "en": "<a href=\"#exact-vs-backtracking\">Exact vs Backtracking</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "49f4b7817fdc": {
+    "zh": "<a href=\"#orthogonality\">正交鋸齒 · Orthogonal Zig-Zag</a>",
+    "en": "<a href=\"#orthogonality\">Orthogonal Zig-Zag</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3457ac2e60af": {
+    "zh": "<a href=\"#comparison\">三大策略對比 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Comparing the Three Strategies</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Think-About-It Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3aec31d7adba": {
+    "zh": "線搜索與最陡下降：步子太大就對半砍\n      <span class=\"hero-title-en\">Line Search &amp; Steepest Descent: Backtracking, Exact 1D Minimization, and Orthogonal Zig-Zagging</span>\n    ",
+    "en": "Line Search and Steepest Descent: If the Step Is Too Big, Cut It in Half",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "cb06be26eb85": {
+    "zh": "\n      理想步長 $1/L$ 常常未知。線搜索（Line Search）每步動態試探、不滿足就步長減半；最陡下降（Steepest Descent）則解一維最佳化、沿負梯度走得最遠。透視 Armijo-Wolfe 充分下降準則、相鄰步垂直定理與深度學習實務步長哲學。\n    ",
+    "en": "The ideal step size $1/L$ is often unknown. Line search probes dynamically at every step and halves the step size if the condition is not met; steepest descent instead solves a one-dimensional optimization and goes as far as possible along the negative gradient. We look closely at the Armijo-Wolfe sufficient decrease conditions, the theorem that adjacent steps are perpendicular, and the step-size philosophy of deep learning practice.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / The Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "3fab36c6089f": {
+    "zh": "\n      「步子邁太大容易扯到，走太小又天荒地老——步長到底怎麼選？」\n      <small>理想步長 $1/L$ 宛如天書未知，線搜索說「不服就對半砍」，最陡下降說「沿著這條線算到底」！<br>\n        <span class=\"bilingual-en-inline\">Overshooting diverges, while tiny creeping takes forever—how should step sizes be chosen dynamically in high-dimensional optimization?</span>\n      </small>\n    ",
+    "en": "\"Take too big a stride and you pull a muscle; take too small a one and it takes forever. So how do you choose the step size?\"\n      <small>The ideal step size $1/L$ is as unknowable as a book from heaven. Line search says \"if it doesn't work, cut it in half\"; steepest descent says \"compute all the way along this line\"!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "dcebe03d7c21": {
+    "zh": "02 / 理想與現實 · Ideal vs Reality",
+    "en": "02 / Ideal vs Reality",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9fee6314adcc": {
+    "zh": "線搜索核心思想：擺脫未知 Lipschitz 常數的束縛\n    <span class=\"en\">Core Concept of Line Search: Liberating Descent from Unknown Lipschitz Constants</span>\n  ",
+    "en": "The Core Idea of Line Search: Breaking Free of the Unknown Lipschitz Constant",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2a4f0babeebb": {
+    "zh": "理想步長 $1/L$ 的困境與線搜索目標（式 (5)）",
+    "en": "The dilemma of the ideal step size $1/L$ and the goal of line search (Eq. (5))",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5ceaa000da5c": {
+    "zh": "在光滑凸最佳化中，理論保證單調下降的步長是 $\\eta \\le 1/L$，但實務中 Lipschitz 常數 $L$ 通常未知且計算代價高達 $\\mathcal{O}(d^3)$。<strong>線搜索（Line Search）</strong>的做法是：每一步<strong>動態調整</strong>步長 $\\eta$，直到找到能讓目標損失下降的合適步長：",
+    "en": "In smooth convex optimization, the step size that theoretically guarantees monotonic decrease is $\\eta \\le 1/L$, but in practice the Lipschitz constant $L$ is usually unknown, and computing it costs as much as $\\mathcal{O}(d^3)$. The approach of <strong>line search</strong> is: at every step, <strong>dynamically adjust</strong> the step size $\\eta$ until a suitable step size is found that makes the objective loss decrease:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4a6746423a74": {
+    "zh": "<strong>核心哲學：</strong>不在出發前算計未知的全域常數，而是在每一步的前進射線上動態試探；一旦發現更新後 loss 上升，立刻縮小步長！",
+    "en": "<strong>Core philosophy:</strong> rather than calculating an unknown global constant before setting off, probe dynamically along the forward ray at each step; as soon as the loss is found to rise after the update, shrink the step size immediately!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "023c190716b0": {
+    "zh": "\n    線搜索是古典數值最佳化中最重要的安全煞車機制。它將高維複雜參數空間的尋優問題，在當前梯度射線上簡化為「沿著單一維度尋找合適步長」的子任務。\n    <span class=\"bilingual-en\">The ideal step size 1/L relies on the Lipschitz constant, which is practically intractable to compute in deep learning. Line search solves this by dynamically adapting step size along the negative gradient ray until descent is achieved.</span>\n  ",
+    "en": "Line search is the most important safety brake in classical numerical optimization. It reduces the search for an optimum in a complex high-dimensional parameter space to a subtask along the current gradient ray: \"find a suitable step size along a single dimension.\"",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "92b665fd2e8e": {
+    "zh": "03 / 演算法架構 · Algorithm Framework",
+    "en": "03 / Algorithm Structure",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0d5d559d33d6": {
+    "zh": "演算法 1：帶減半線搜索的梯度下降法\n    <span class=\"en\">Algorithm 1: Gradient Descent with Step-Halving Line Search</span>\n  ",
+    "en": "Algorithm 1: Gradient Descent with Step-Halving Line Search",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a1828acd9813": {
+    "zh": "雙層迴圈架構：外層梯度下降，內層調步長",
+    "en": "A two-level loop structure: gradient descent in the outer loop, step-size tuning in the inner loop",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1de584aa8b92": {
+    "zh": "線搜索的執行流程清晰直覺，每個梯度下降迭代裡，皆包裹了一個步長縮放的內層回饋迴圈：",
+    "en": "The execution flow of line search is clear and intuitive: each gradient descent iteration wraps an inner feedback loop that scales the step size:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ee4a187a326c": {
+    "zh": "<strong>初始大膽試探：</strong>每輪迭代從初始步長 $\\eta = 1$ 開始。",
+    "en": "<strong>Bold initial probe:</strong> each iteration starts from the initial step size $\\eta = 1$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "327d94556c2f": {
+    "zh": "<strong>線搜索條件檢驗（式 (5)）：</strong>檢查更新後 loss 是否確實下降：$f(\\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)})) &lt; f(\\boldsymbol{w}^{(k)})$。",
+    "en": "<strong>Check the line search condition (Eq. (5)):</strong> check whether the loss actually decreases after the update: $f(\\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)})) &lt; f(\\boldsymbol{w}^{(k)})$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8050ea4fddce": {
+    "zh": "<strong>步長幾何減半：</strong>若不滿足，<strong>步長減半</strong>：$\\eta \\leftarrow \\eta/2$，回到步驟 2 重新檢驗。",
+    "en": "<strong>Halve the step size geometrically:</strong> if it is not satisfied, <strong>halve the step size</strong>: $\\eta \\leftarrow \\eta/2$, and go back to step 2 to check again.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1aa381371e2b": {
+    "zh": "<strong>確認拍板更新：</strong>重複直到式 (5) 成立，立即用此 $\\eta$ 拍板更新權重：$\\boldsymbol{w}^{(k+1)} := \\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)})$。",
+    "en": "<strong>Confirm and commit the update:</strong> repeat until Eq. (5) holds, then immediately commit the weight update with this $\\eta$: $\\boldsymbol{w}^{(k+1)} := \\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)})$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f0b550c6ce92": {
+    "zh": "1. 為什麼從 $\\eta=1$ 開始？",
+    "en": "1. Why start from $\\eta=1$?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "729c0a77d6b0": {
+    "zh": "標準牛頓法與無量綱二次模型的最優步長恰好為 1。以 1 為上限能給予模型最大膽的大步跨越機會，避免人為將步長限制得過於保守。",
+    "en": "For the standard Newton's method and a dimensionless quadratic model, the optimal step size is exactly 1. Using 1 as the upper bound gives the model the chance to take its boldest stride and avoids artificially restricting the step size too conservatively.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "27edbf49e669": {
+    "zh": "2. 為什麼減半一定能成功？",
+    "en": "2. Why is halving guaranteed to succeed?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ce09a8ed21ba": {
+    "zh": "根據下降引理，當 $\\eta &lt; 1/L$ 時目標函式必下降。由於 $\\eta/2^m \\to 0$，幾何級數遞減保證在有限次減半內必跌入安全下降區間。",
+    "en": "By the descent lemma, the objective function must decrease when $\\eta &lt; 1/L$. Since $\\eta/2^m \\to 0$, the geometric decrease guarantees that after finitely many halvings the step falls into the safe descent range.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6edc77e28167": {
+    "zh": "3. 內層迴圈的代價是什麼？",
+    "en": "3. What does the inner loop cost?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "82539ad3a5a5": {
+    "zh": "每一次減半試探都需要重新計算一次目標函式值 $f(\\boldsymbol{w} - \\eta \\nabla f)$，意味著外層一次梯度計算背後可能伴隨多次前向傳播。",
+    "en": "Every halving probe requires recomputing the objective function value $f(\\boldsymbol{w} - \\eta \\nabla f)$, which means a single gradient computation in the outer loop may be accompanied by several forward passes.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2bca6df2bd78": {
+    "zh": "4. 深度學習為何少用？",
+    "en": "4. Why is it rarely used in deep learning?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "62df416b2bee": {
+    "zh": "小批次（Mini-batch）資料帶有隨機噪聲，在當前批次精確線搜索不代表全集下降；且動態條件分支大幅降低 GPU 平行運算效率。",
+    "en": "Mini-batch data carries random noise, so an exact line search on the current batch does not mean the loss decreases on the full dataset; moreover, the dynamic conditional branching greatly reduces the efficiency of GPU parallel computation.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c1f56471778f": {
+    "zh": "04 / 圖解分析 · Visualizing Step-Halving",
+    "en": "04 / Illustrated Analysis",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b6017e9810e0": {
+    "zh": "步長減半視覺化：1D 損失切片與「肯縮」的哲學\n    <span class=\"en\">Visualizing Step-Halving: 1D Loss Slice along the Gradient Ray</span>\n  ",
+    "en": "Visualizing Step Halving: a 1D Loss Slice and the Philosophy of \"Willing to Shrink\"",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4a645712ee9b": {
+    "zh": "線搜索：從 η=1 試走，不下降就減半——敢走不如肯縮",
+    "en": "Line search: try η=1; if loss doesn't drop, halve it. Better willing to shrink than daring to stride",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3662f5ad5ae6": {
+    "zh": "1D 切片：試探步長 vs 更新後損失",
+    "en": "1D slice: trial step size vs loss after update",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "6f756f74fa05": {
+    "zh": "當前損失 f(w)",
+    "en": "Current loss f(w)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8fe8b8995971": {
+    "zh": "reject (拒絕)",
+    "en": "reject",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c9934ef1a067": {
+    "zh": "still high (仍高)",
+    "en": "still high",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5af602ce6fce": {
+    "zh": "accept (接受)",
+    "en": "accept",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "ca3f827c2088": {
+    "zh": "內層迴圈：不下降就減半",
+    "en": "Inner loop: halve if no decrease",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "55f189173c2f": {
+    "zh": "每步從 η = 1 開始",
+    "en": "Each step starts from η = 1",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "31939e2cd166": {
+    "zh": "線搜索條件 (式 5)",
+    "en": "Line search condition (Eq. 5)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8bf5c10ad937": {
+    "zh": "否",
+    "en": "No",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "ee5e892dd26c": {
+    "zh": "減半再試",
+    "en": "Halve and retry",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "844ff5842ac0": {
+    "zh": "回饋",
+    "en": "Feedback",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "30160a21b92a": {
+    "zh": "是",
+    "en": "Yes",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "85ea83838c61": {
+    "zh": "更新 w",
+    "en": "Update w",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "539516618805": {
+    "zh": "每個 GD 迭代裡，還包一個調步長迴圈",
+    "en": "Each GD iteration wraps a step-size loop",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "92a6fbb3960e": {
+    "zh": "反直覺：最大步 η=1 常常被拒絕；縮到 η=1/4 反而保證下降",
+    "en": "Counterintuitive: the largest step η=1 is often rejected; shrinking to η=1/4 guarantees a decrease",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "f52752bc3822": {
+    "zh": "因為只要 η < 1/L，損失就一定降——「敢走」不如「肯縮」。最陡下降則每步精算最遠，代價更高。",
+    "en": "Because whenever η < 1/L the loss must drop, \"willing to shrink\" beats \"daring to stride\". Steepest descent computes the farthest step each time, at a higher cost.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "d5cc248dcd15": {
+    "zh": "深度學習資料量大，寧可固定或自適應學習率，也不常做完整線搜索。",
+    "en": "With large data in deep learning, fixed or adaptive learning rates are preferred; full line search is rare.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8fef127906c8": {
+    "zh": "圖 1：線搜索 1D 切片試探、減半迴圈與反直覺橫幅",
+    "en": "Figure 1: Line search probing on a 1D slice, the halving loop, and the counterintuitive banner",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7342d2aca841": {
+    "zh": "「敢走」不如「肯縮」的深層智慧",
+    "en": "The deeper wisdom of \"willing to shrink\" over \"daring to stride\"",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0bbaf744098c": {
+    "zh": "很多初學者以為步長越大、模型前進越快。但從圖 1 左側的一維損失切片可見：",
+    "en": "Many beginners think that the larger the step size, the faster the model moves forward. But the one-dimensional loss slice on the left of Figure 1 shows:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2694ee585770": {
+    "zh": "<strong>衝出有效半徑：</strong>當 $\\eta=1$ 時，更新點直接越過了曲率能維持單調性的區域，目標函式值反而大幅暴漲（紅點被拒絕）。",
+    "en": "<strong>Overshooting the effective radius:</strong> when $\\eta=1$, the update point jumps right past the region where the curvature can keep the function monotonic, and the objective function value instead shoots up sharply (the red dot is rejected).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "53d1a9deee0d": {
+    "zh": "<strong>漸進逼近安全區：</strong>步長對半砍至 $\\eta=1/2$ 時，損失仍然高於出發點；直到 $\\eta=1/4$ 終於沉降至水平虛線以下，成功被採納。",
+    "en": "<strong>Gradually approaching the safe zone:</strong> when the step size is cut in half to $\\eta=1/2$, the loss is still higher than at the starting point; only at $\\eta=1/4$ does it finally sink below the horizontal dashed line and get accepted.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8f287f494a18": {
+    "zh": "<strong>保證收斂的物理本質：</strong>在極小鄰域內，曲面必近似為線性或二次碗狀。只要步長縮小到小於 $1/L$，一階項主導下降，更新必能取得正向進展。",
+    "en": "<strong>The physical essence of guaranteed convergence:</strong> in a very small neighborhood, the surface must be approximately linear or a quadratic bowl. As soon as the step size shrinks below $1/L$, the first-order term dominates the decrease and the update is guaranteed to make positive progress.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8cd80f0697b4": {
+    "zh": "05 / 數值最佳化進階 · Advanced Line Search",
+    "en": "05 / Advanced Numerical Optimization",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "36555020af03": {
+    "zh": "進階線搜索條件：Armijo 充分下降與 Wolfe 曲率條件\n    <span class=\"en\">Advanced Conditions: Armijo Sufficient Decrease and Wolfe Curvature Controls</span>\n  ",
+    "en": "Advanced Line Search Conditions: Armijo Sufficient Decrease and the Wolfe Curvature Condition",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3ff8e02f0fd1": {
+    "zh": "\n    簡單的「不滿足式 (5) 就減半」是最基礎的 Backtracking 策略。但在嚴格的數值分析中，單純要求 $f(\\boldsymbol{w}_{new}) &lt; f(\\boldsymbol{w}_{curr})$ 存在一個嚴重漏洞：<strong>如果每步下降量只有 $10^{-16}$，數列可能在遠離極小值的地方「假死」停滯！</strong>\n    <span class=\"bilingual-en\">Naive decrease f(w_new) &lt; f(w) might allow minuscule progress that fails to converge to a stationary point. Professional optimization employs Armijo and Wolfe conditions.</span>\n  ",
+    "en": "The simple \"halve if Eq. (5) is not satisfied\" is the most basic backtracking strategy. But in rigorous numerical analysis, merely requiring $f(\\boldsymbol{w}_{new}) &lt; f(\\boldsymbol{w}_{curr})$ has a serious loophole: <strong>if each step decreases by only $10^{-16}$, the sequence may \"play dead\" and stall far away from the minimum!</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d114baccfc46": {
+    "zh": "1. Armijo 規則（充分下降條件）",
+    "en": "1. The Armijo rule (sufficient decrease condition)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "68c4de69bdd0": {
+    "zh": "要求更新後的損失下降量，必須大於一個與步長和梯度長度成比例的下界：",
+    "en": "It requires that the decrease in loss after the update be greater than a lower bound proportional to the step size and the length of the gradient:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8d8ec26c0237": {
+    "zh": "其中常數 $c_1 \\in (0, 1)$（實務常取 $c_1 = 10^{-4}$）。幾何上相當於要求函式值落在斜率為 $c_1$ 倍切線的虛線下方，防止步長過大。",
+    "en": "where the constant $c_1 \\in (0, 1)$ (in practice often $c_1 = 10^{-4}$). Geometrically, this amounts to requiring the function value to lie below the dashed line whose slope is $c_1$ times that of the tangent line, which prevents the step size from being too large.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "74e8af91bd4f": {
+    "zh": "2. Wolfe 曲率條件（防止步長過小）",
+    "en": "2. The Wolfe curvature condition (prevents the step size from being too small)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "26b2c347f9a6": {
+    "zh": "Armijo 只能防止「步長太大」，但無法防止「步長縮得太小而原地踏步」。Wolfe 額外要求更新點的切線斜率：",
+    "en": "Armijo can only prevent \"the step size being too large\"; it cannot prevent \"the step size shrinking so small that you mark time in place.\" Wolfe additionally places a requirement on the slope of the tangent at the updated point:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "984105767083": {
+    "zh": "其中 $c_2 \\in (c_1, 1)$（常取 $c_2 = 0.9$）。強制要求新點處的坡度必須明顯減緩，確保步長已經跨越了足夠遠的距離。",
+    "en": "where $c_2 \\in (c_1, 1)$ (often $c_2 = 0.9$). It forces the slope at the new point to have flattened noticeably, ensuring the step has covered a sufficiently long distance.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2559458ba6aa": {
+    "zh": "06 / 極致追求 · Steepest Descent",
+    "en": "06 / The Ultimate Pursuit",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9c365f5bdb67": {
+    "zh": "最陡下降法：每步解一維最佳化，沿梯度方向走最遠\n    <span class=\"en\">Steepest Descent: Exact Line Search by Solving 1D Minimization at Each Step</span>\n  ",
+    "en": "Steepest Descent: Solve a 1D Optimization at Every Step and Go as Far as Possible Along the Gradient Direction",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c2868e03cafb": {
+    "zh": "最陡下降的精確一維最優步長（式 (7)）",
+    "en": "The exact one-dimensional optimal step size of steepest descent (Eq. (7))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7a52cd945abf": {
+    "zh": "<strong>最陡下降（Steepest Descent）</strong>與標準梯度下降的前進方向完全相同（皆為負梯度方向 $-\\nabla f$），但步長策略達到了極致——不是猜測固定 $\\eta$，也不是減半試探，而是<strong>每一步在該條射線上解一個精確的一維最佳化問題</strong>：",
+    "en": "<strong>Steepest descent</strong> moves in exactly the same direction as standard gradient descent (both use the negative gradient direction $-\\nabla f$), but its step-size strategy goes to the extreme: it neither guesses a fixed $\\eta$ nor probes by halving, but instead <strong>solves an exact one-dimensional optimization problem along that ray at every step</strong>:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3d76f771f9c0": {
+    "zh": "找到能讓該射線上 $f$ 降到最低的最優步長 $\\eta^{(k)}$ 後，執行更新：$\\boldsymbol{w}^{(k+1)} := \\boldsymbol{w}^{(k)}-\\eta^{(k)}\\nabla f\\left(\\boldsymbol{w}^{(k)}\\right)$。",
+    "en": "After finding the optimal step size $\\eta^{(k)}$ that brings $f$ lowest along that ray, perform the update: $\\boldsymbol{w}^{(k+1)} := \\boldsymbol{w}^{(k)}-\\eta^{(k)}\\nabla f\\left(\\boldsymbol{w}^{(k)}\\right)$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2bb33ea28a4e": {
+    "zh": "\n    對於二次型目標函式 $f(\\boldsymbol{w}) = \\frac{1}{2}\\boldsymbol{w}^T \\boldsymbol{A} \\boldsymbol{w} - \\boldsymbol{b}^T \\boldsymbol{w}$，令當前殘差梯度為 $\\boldsymbol{g}_k = \\boldsymbol{A}\\boldsymbol{w}^{(k)} - \\boldsymbol{b}$，最優步長可直接解析求出：\n    $$\\eta^{(k)} = \\frac{\\boldsymbol{g}_k^T \\boldsymbol{g}_k}{\\boldsymbol{g}_k^T \\boldsymbol{A} \\boldsymbol{g}_k}$$\n    最陡下降是貪婪思想的登峰造極之作：在給定方向上，絕不浪費任何一絲潛在的降幅！\n    <span class=\"bilingual-en\">Steepest descent extracts the maximum possible reduction along the search ray by solving an exact 1D optimization problem at every iteration.</span>\n  ",
+    "en": "For the quadratic objective function $f(\\boldsymbol{w}) = \\frac{1}{2}\\boldsymbol{w}^T \\boldsymbol{A} \\boldsymbol{w} - \\boldsymbol{b}^T \\boldsymbol{w}$, let the current residual gradient be $\\boldsymbol{g}_k = \\boldsymbol{A}\\boldsymbol{w}^{(k)} - \\boldsymbol{b}$; the optimal step size can then be solved analytically:\n    $$\\eta^{(k)} = \\frac{\\boldsymbol{g}_k^T \\boldsymbol{g}_k}{\\boldsymbol{g}_k^T \\boldsymbol{A} \\boldsymbol{g}_k}$$\n    Steepest descent is the pinnacle of greedy thinking: along the given direction, it never wastes a single bit of potential decrease!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3c15062cdacb": {
+    "zh": "07 / 權衡取捨 · Trade-off Analysis",
+    "en": "07 / Weighing the Trade-offs",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5a9df546b822": {
+    "zh": "精確線搜索 vs 回溯線搜索：算力與步長精度的天平\n    <span class=\"en\">Exact Line Search vs Backtracking: The Balance Between Precision and Computation</span>\n  ",
+    "en": "Exact Line Search vs Backtracking Line Search: Balancing Compute Against Step-Size Precision",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5ff5c9334a2a": {
+    "zh": "精確線搜索 (Exact Line Search)",
+    "en": "Exact line search",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d710ace0af91": {
+    "zh": "<strong>求解手段：</strong>二次函式靠公式直接解析求解；非二次函式需藉助黃金分割或牛頓插值反覆逼近極小值。",
+    "en": "<strong>How it is solved:</strong> for a quadratic function, solve analytically with a formula; for a non-quadratic function, repeatedly approach the minimum with golden-section search or Newton interpolation.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d2582a85a8a9": {
+    "zh": "<strong>優勢：</strong>在該射線上榨乾所有下降潛力，單步損失下降幅度達到理論最大值。",
+    "en": "<strong>Advantage:</strong> it squeezes out all the potential decrease along that ray, so the single-step loss decrease reaches its theoretical maximum.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "154cf8431be5": {
+    "zh": "<strong>劣勢：</strong>單步計算成本極其高昂。在多層神經網路中求解一維精確極小幾乎不可行。",
+    "en": "<strong>Disadvantage:</strong> the computational cost of a single step is extremely high. In a multilayer neural network, solving for the exact one-dimensional minimum is practically infeasible.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "aaf30cd554a1": {
+    "zh": "回溯線搜索 (Backtracking Line Search)",
+    "en": "Backtracking line search",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7fc38cead886": {
+    "zh": "<strong>求解手段：</strong>從 $\\eta=1$ 開始，以固定比例幾何收縮（如減半 $\\eta \\leftarrow \\eta/2$ 或乘以 $\\beta = 0.5$）。",
+    "en": "<strong>How it is solved:</strong> start from $\\eta=1$ and shrink geometrically by a fixed ratio (e.g., halving $\\eta \\leftarrow \\eta/2$ or multiplying by $\\beta = 0.5$).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "808ddcfd5b89": {
+    "zh": "<strong>優勢：</strong>演算法極為穩健，不求極致最優，只要滿足「充分下降」即刻終止並更新，計算量小得多。",
+    "en": "<strong>Advantage:</strong> the algorithm is extremely robust; it does not seek the absolute optimum, but stops and updates as soon as \"sufficient decrease\" is satisfied, so it needs far less computation.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6f15408d3703": {
+    "zh": "<strong>劣勢：</strong>依賴常數選擇；在隨機噪聲較大的場景下，幾何試探依然需要多次額外前向傳播。",
+    "en": "<strong>Disadvantage:</strong> it depends on the choice of constants; when the random noise is large, the geometric probing still needs several extra forward passes.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f10d431528b8": {
+    "zh": "08 / 關鍵幾何定理 · The Orthogonality Trap",
+    "en": "08 / A Key Geometric Theorem",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e1e0abbd65b9": {
+    "zh": "正交鋸齒走勢解析：最陡下降的相鄰步垂直定理與峽谷陷阱\n    <span class=\"en\">The Orthogonality of Consecutive Steps: Mathematical Proof &amp; Ill-Conditioned Ravines</span>\n  ",
+    "en": "Analyzing the Orthogonal Zig-Zag: the Perpendicular-Adjacent-Steps Theorem of Steepest Descent and the Ravine Trap",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "185f54c24f58": {
+    "zh": "最陡下降致命盲區：相鄰步梯度必垂直 (90° 正交鋸齒震盪)",
+    "en": "Fatal blind spot of steepest descent: adjacent-step gradients are always perpendicular (90° orthogonal zig-zag oscillation)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "0f5dbe208605": {
+    "zh": "極小點 (0, 0)",
+    "en": "Minimum (0, 0)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "e740559260f0": {
+    "zh": "90° 正交！",
+    "en": "90° orthogonal!",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "616110b94ee5": {
+    "zh": "切於等高線",
+    "en": "Tangent to contour",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "aa7fd04df9fa": {
+    "zh": "數學證明：令 φ(η) = f(wₖ − η∇fₖ)，極小處必滿足 dφ/dη = 0 ⟹ −∇f(wₖ₊₁)ᵀ ∇f(wₖ) = 0",
+    "en": "Proof: let φ(η) = f(wₖ − η∇fₖ); at the minimum dφ/dη = 0 ⟹ −∇f(wₖ₊₁)ᵀ ∇f(wₖ) = 0",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "269069f1b369": {
+    "zh": "幾何結論：每步必切於等高線！在狹長病態峽谷（Ill-Conditioned Ravine）中引發劇烈直角之字形（Zig-zagging）震盪！",
+    "en": "Geometric conclusion: every step ends tangent to a contour! In a narrow ill-conditioned ravine this causes violent right-angle zig-zagging!",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "51a6f256b9fd": {
+    "zh": "圖 2：最陡下降法在狹長二次病態曲面上的 90° 正交鋸齒走勢",
+    "en": "Figure 2: The 90° orthogonal zig-zag of steepest descent on a narrow, ill-conditioned quadratic surface",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "babf5408d491": {
+    "zh": "相鄰步正交定理（Orthogonality Theorem）",
+    "en": "The orthogonality theorem for adjacent steps",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d6a7c20b5f87": {
+    "zh": "在最陡下降法中，定義沿負梯度射線的一維函式 $\\phi(\\eta) = f(\\boldsymbol{w}^{(k)} - \\eta \\nabla f(\\boldsymbol{w}^{(k)}))$。既然 $\\eta^{(k)}$ 是一維極小點，根據費馬引理，其對 $\\eta$ 的導數必為零：",
+    "en": "In steepest descent, define the one-dimensional function along the negative gradient ray $\\phi(\\eta) = f(\\boldsymbol{w}^{(k)} - \\eta \\nabla f(\\boldsymbol{w}^{(k)}))$. Since $\\eta^{(k)}$ is the one-dimensional minimizer, by Fermat's lemma its derivative with respect to $\\eta$ must be zero:",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "91f50157ecb1": {
+    "zh": "<strong>致命後果：</strong>連續兩步的前進方向必嚴格垂直！前一步走到等高線的切點，下一步只能往垂直方向折返，在狹窄峽谷壁之間瘋狂彈跳，前進進度奇慢無比！",
+    "en": "<strong>Fatal consequence:</strong> the directions of two consecutive steps must be strictly perpendicular! The previous step goes to a point of tangency with a contour, and the next step can only turn back in the perpendicular direction, bouncing wildly between the walls of a narrow ravine, so progress is incredibly slow!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c6c9ea575e44": {
+    "zh": "09 / 總體對比 · Comprehensive Matrix",
+    "en": "09 / Overall Comparison",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6623c0d9e898": {
+    "zh": "三大步長策略全方位對比總表\n    <span class=\"en\">Comprehensive Comparison: Fixed Learning Rate, Line Search, and Steepest Descent</span>\n  ",
+    "en": "A Full Comparison Table of the Three Step-Size Strategies",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "09a47badf506": {
+    "zh": "維度 / 特性",
+    "en": "Dimension / property",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b049bf4d0d0f": {
+    "zh": "固定學習率 GD (Fixed LR)",
+    "en": "Fixed learning rate GD",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a20ece8222c2": {
+    "zh": "減半回溯線搜索 (Backtracking)",
+    "en": "Halving backtracking line search",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4689865d4d91": {
+    "zh": "最陡下降法 (Steepest Descent)",
+    "en": "Steepest descent",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "30adf16ef791": {
+    "zh": "<strong>步長決定方式</strong>",
+    "en": "<strong>How the step size is set</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2309943a0117": {
+    "zh": "人工超參數 $\\eta$ 保持不變",
+    "en": "A hand-picked hyperparameter $\\eta$ kept constant",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4a258be88603": {
+    "zh": "從 $\\eta=1$ 開始，不滿足則減半",
+    "en": "Start from $\\eta=1$, halve if not satisfied",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f4b6679083c3": {
+    "zh": "每步解一維最佳化求 $\\arg\\min_\\eta f$",
+    "en": "Solve a 1D optimization at each step for $\\arg\\min_\\eta f$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4d6d9e7bf12c": {
+    "zh": "<strong>單步理論降幅</strong>",
+    "en": "<strong>Theoretical decrease per step</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a8f3979b1410": {
+    "zh": "取決於 $\\eta$，太大發散、太小龜速",
+    "en": "Depends on $\\eta$: too large diverges, too small crawls",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "835f847ee901": {
+    "zh": "保證充分下降（Armijo 下界）",
+    "en": "Guaranteed sufficient decrease (Armijo lower bound)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bae4258c640c": {
+    "zh": "沿負梯度方向達到理論最大值",
+    "en": "Reaches the theoretical maximum along the negative gradient direction",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fd85fb724746": {
+    "zh": "<strong>計算時間開銷</strong>",
+    "en": "<strong>Computational time cost</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cec5f58be43b": {
+    "zh": "最低（每輪僅 1 次梯度計算）",
+    "en": "Lowest (only 1 gradient computation per iteration)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "623b7cf4289f": {
+    "zh": "中等（內層迴圈額外 Forward Pass）",
+    "en": "Medium (extra forward passes in the inner loop)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "218a185be575": {
+    "zh": "最高（需反覆數值迭代求 1D 極小）",
+    "en": "Highest (needs repeated numerical iterations to find the 1D minimum)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d3f971608c54": {
+    "zh": "<strong>病態曲面表現</strong>",
+    "en": "<strong>Behavior on ill-conditioned surfaces</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bd2f8fb0c7e6": {
+    "zh": "震盪劇烈，需手動精細退火",
+    "en": "Violent oscillation; needs careful manual annealing",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "291bf4a6aae6": {
+    "zh": "步長縮小以求安全，緩慢前進",
+    "en": "Shrinks the step size for safety and advances slowly",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ae9a8a021240": {
+    "zh": "相鄰步 90° 正交，陷入之字形鋸齒",
+    "en": "Adjacent steps are 90° orthogonal; stuck in zig-zagging",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "97cb5ca131bc": {
+    "zh": "<strong>深度學習適用性</strong>",
+    "en": "<strong>Suitability for deep learning</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "286ce4075abb": {
+    "zh": "★★★★★（搭配動量與排程）",
+    "en": "★★★★★ (with momentum and scheduling)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d2e111e4da03": {
+    "zh": "★☆☆☆☆（隨機噪聲與 GPU 分支瓶頸）",
+    "en": "★☆☆☆☆ (random noise and GPU branching bottleneck)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9d5b0b3941fa": {
+    "zh": "☆☆☆☆☆（高維非二次函式不可行）",
+    "en": "☆☆☆☆☆ (infeasible for high-dimensional non-quadratic functions)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d04c35ac7145": {
+    "zh": "<strong>實務代表演算法</strong>",
+    "en": "<strong>Representative algorithms in practice</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "95782357faaa": {
+    "zh": "傳統凸最佳化、L-BFGS、內點法",
+    "en": "Traditional convex optimization, L-BFGS, interior-point methods",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "49a68992d54d": {
+    "zh": "共軛梯度法的啟蒙理論、非線性規劃",
+    "en": "The theory that inspired the conjugate gradient method; nonlinear programming",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "85c811fdd363": {
+    "zh": "10 / 智慧結晶 · Inviolable Laws",
+    "en": "10 / Distilled Wisdom",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7555f60a03d0": {
+    "zh": "大師箴言：步長決策四大鐵律\n    <span class=\"en\">The Four Inviolable Laws of Step Size Selection</span>\n  ",
+    "en": "The Master's Maxims: the Four Iron Laws of Step-Size Decisions",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9cddad9575be": {
+    "zh": "一、敢走肯縮律：最大步敢試，對半砍肯退",
+    "en": "I. The dare-to-stride, willing-to-shrink law: dare to try the biggest step, be willing to retreat by halving",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ffec3c9d9fef": {
+    "zh": "從 $\\eta=1$ 大膽出發才能捕捉全速前進的紅利；但一旦越過等高嶺，毫不猶豫幾何減半才是數值穩健的第一道生命線。",
+    "en": "Only by setting off boldly from $\\eta=1$ can you reap the bonus of moving at full speed; but once you overshoot the contour ridge, halving geometrically without hesitation is the first lifeline of numerical robustness.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8738769d85eb": {
+    "zh": "二、充分下降律：微小下降不可信，Armijo 守門檻",
+    "en": "II. The sufficient-decrease law: a tiny decrease can't be trusted; Armijo guards the threshold",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "070d4ef97cce": {
+    "zh": "目標函式值微降 $10^{-15}$ 往往是平緩荒漠的假死陷阱。唯有跨過斜率比例門檻的實質下降，才配作為迭代有效的依據。",
+    "en": "A tiny decrease of $10^{-15}$ in the objective function value is often the play-dead trap of a flat desert. Only a substantial decrease that clears the slope-proportional threshold deserves to count as a valid iteration.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "52d6a9e5c0eb": {
+    "zh": "三、正交成囚律：每步貪婪最優，反被正交囚禁",
+    "en": "III. The imprisoned-by-orthogonality law: greedily optimal at every step, yet imprisoned by orthogonality",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4c3243e4ea9f": {
+    "zh": "最陡下降每步做到極致，卻在峽谷中步步九十度碰撞。過度算計單步的最大收益，往往在全域走勢中付出最沉重的震盪代價。",
+    "en": "Steepest descent does its utmost at every step, yet in a ravine every step collides at ninety degrees. Calculating too hard for the maximum gain of a single step often costs the heaviest price in oscillation on the global path.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "54a9f9204c6b": {
+    "zh": "四、算力權衡律：高維隨機大資料，動量自適應勝精算",
+    "en": "IV. The compute trade-off law: with high-dimensional, stochastic big data, momentum and adaptivity beat exact calculation",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2ffb4c515601": {
+    "zh": "深度學習捨棄昂貴的線搜索內層迴圈，以 Mini-batch 吞吐量換取探索多樣性，並以動量（Momentum）撫平病態曲面的直角鋸齒！",
+    "en": "Deep learning gives up the expensive inner loop of line search, trades mini-batch throughput for diversity of exploration, and uses momentum to smooth out the right-angle zig-zags of ill-conditioned surfaces!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Hands-On Simulation",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5c43f7b7789b": {
+    "zh": "互動探索實驗室：2D 峽谷等高線上線搜索減半與最陡下降軌跡對比\n    <span class=\"en\">Interactive Lab: Trajectory Comparison between Backtracking Line Search &amp; Steepest Descent</span>\n  ",
+    "en": "Interactive Exploration Lab: Comparing the Trajectories of Step-Halving Line Search and Steepest Descent on the Contours of a 2D Ravine",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "455a925106f0": {
+    "zh": "最佳化模式：",
+    "en": "Optimization mode:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4bbdb23a304d": {
+    "zh": "最陡下降法 (Steepest Descent · 90° 正交)",
+    "en": "Steepest descent (90° orthogonal)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3b9eb0858504": {
+    "zh": "步長減半線搜索 (Step-Halving Line Search)",
+    "en": "Step-halving line search",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "322196b410fc": {
+    "zh": "固定步長 GD (Fixed Step Size)",
+    "en": "Fixed step size GD",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fc37c8325fc6": {
+    "zh": "狹窄度 κ (病態比)：",
+    "en": "Narrowness κ (ill-conditioning ratio):",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "44c66a33cbd8": {
+    "zh": "初始/固定步長 η：",
+    "en": "Initial/fixed step size η:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e65d7ddd3e75": {
+    "zh": "單步探索 (Step)",
+    "en": "Step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "55d3a95af7ee": {
+    "zh": "連續 10 步 (Run 10)",
+    "en": "Run 10",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4b6afab1a9e8": {
+    "zh": "<strong>當前模式：</strong> 最陡下降 (Exact 1D)<br><strong>座標 (x, y)：</strong> (-3.200, 2.400)<br><strong>損失值 f(x, y)：</strong> 43.8400<br><strong>梯度範數 ‖∇f‖：</strong> 25.712<br><strong>本步採納步長 η：</strong> 0.2100<br><strong>相鄰步梯度內積：</strong> N/A<br><strong>相鄰步夾角 θ：</strong> N/A (初始步)<br><strong>累計步數：</strong> 0<br><strong>狀態判定：</strong><br>",
+    "en": "<strong>Current mode:</strong> steepest descent (exact 1D)<br><strong>Coordinates (x, y):</strong> (-3.200, 2.400)<br><strong>Loss f(x, y):</strong> 43.8400<br><strong>Gradient norm ‖∇f‖:</strong> 25.712<br><strong>Step size η accepted this step:</strong> 0.2100<br><strong>Inner product of adjacent gradients:</strong> N/A<br><strong>Angle θ between adjacent steps:</strong> N/A (initial step)<br><strong>Total steps:</strong> 0<br><strong>Status:</strong><br>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "eeb838c47e05": {
+    "zh": "📐 90° 嚴格正交走勢 (相鄰梯度內積 ≈ 0)",
+    "en": "📐 Strictly 90° orthogonal path (inner product of adjacent gradients ≈ 0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "35f8bb36c366": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. <strong>90° 正交鋸齒體驗</strong>：選擇「最陡下降法」，點選「連續 10 步」，觀察紅線在橢圓等高線間精確呈現 90 度折返，相鄰步梯度內積嚴格為 0，印證正交定理！<br>\n      2. <strong>步長減半體驗</strong>：切換至「步長減半線搜索」，觀察當試探步長邁得過大時，系統如何即時減半，避免發散並穩健逼近谷底！\n    ",
+    "en": "🧪 <strong>Hands-on challenge:</strong><br> 1. <strong>Experience the 90° orthogonal zig-zag</strong>: choose \"steepest descent\", click \"Run 10\", and watch the red line turn back at exactly 90 degrees between the elliptical contours; the inner product of adjacent-step gradients is exactly 0, confirming the orthogonality theorem!<br> 2. <strong>Experience step halving</strong>: switch to \"step-halving line search\" and watch how, when the trial step is too large, the system halves it immediately, avoiding divergence and approaching the valley floor steadily!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9a63cee739af": {
+    "zh": "12 / 實戰檢驗 · Concept Checkpoint",
+    "en": "12 / Hands-On Check",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Feedback on Concepts",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "84a1c76bccbd": {
+    "zh": "題目 1：線搜索式 (5) 的條件 $f(\\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)}))\\lt f(\\boldsymbol{w}^{(k)})$ 要求什麼？",
+    "en": "Question 1: What does the condition $f(\\boldsymbol{w}^{(k)}-\\eta\\nabla f(\\boldsymbol{w}^{(k)}))\\lt f(\\boldsymbol{w}^{(k)})$ of line search Eq. (5) require?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "20abdf2c6198": {
+    "zh": "A. loss 必須上升",
+    "en": "A. The loss must increase",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d1106c873461": {
+    "zh": "B. 沿梯度反方向更新後 loss 必須下降",
+    "en": "B. After updating in the direction opposite to the gradient, the loss must decrease",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5aba037a4b50": {
+    "zh": "C. 梯度範數為零",
+    "en": "C. The gradient norm is zero",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "77b3551f34c4": {
+    "zh": "D. $\\eta$ 必須等於 $L$",
+    "en": "D. $\\eta$ must equal $L$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f219d5f8a4d6": {
+    "zh": "題目 2：線搜索中步長不滿足條件時，採取的策略是？",
+    "en": "Question 2: In line search, what strategy is used when the step size does not satisfy the condition?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5ffc102a5e06": {
+    "zh": "A. 步長加倍 $\\eta\\leftarrow 2\\eta$",
+    "en": "A. Double the step size $\\eta\\leftarrow 2\\eta$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3b05c9117738": {
+    "zh": "B. 步長減半 $\\eta\\leftarrow\\eta/2$",
+    "en": "B. Halve the step size $\\eta\\leftarrow\\eta/2$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "428ca90625a9": {
+    "zh": "C. 停止最佳化",
+    "en": "C. Stop the optimization",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8750362019d9": {
+    "zh": "D. 反轉梯度方向",
+    "en": "D. Reverse the gradient direction",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bf9445477f66": {
+    "zh": "題目 3：最陡下降（式 (7)）與固定學習率梯度下降的主要差異是？",
+    "en": "Question 3: What is the main difference between steepest descent (Eq. (7)) and gradient descent with a fixed learning rate?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "317bfe48476a": {
+    "zh": "A. 更新方向不同",
+    "en": "A. The update direction is different",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7a4c91c9e42c": {
+    "zh": "B. 每步用一維最佳化解出使 $f$ 最小的 $\\eta^{(k)}$",
+    "en": "B. At each step it solves a one-dimensional optimization for the $\\eta^{(k)}$ that minimizes $f$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "30537e92299d": {
+    "zh": "C. 不使用梯度",
+    "en": "C. It does not use the gradient",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "eafa8ec79001": {
+    "zh": "D. 只用二階方法",
+    "en": "D. It only uses second-order methods",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "457e0f59f753": {
+    "zh": "題目 4：Armijo 規則屬於哪類方法？",
+    "en": "Question 4: What kind of method is the Armijo rule?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bf1b155de14f": {
+    "zh": "A. 反向傳播",
+    "en": "A. Backpropagation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0c66ca8b510d": {
+    "zh": "B. 進階線搜索策略（充分下降條件）",
+    "en": "B. An advanced line search strategy (sufficient decrease condition)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8c15348d06e1": {
+    "zh": "C. 啟用函式",
+    "en": "C. An activation function",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b506f5cff85d": {
+    "zh": "D. 資料增強",
+    "en": "D. Data augmentation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

@@ -1,0 +1,1259 @@
+{
+  "_runtime": {
+    "exact": {
+      "最優點 w*=4.0": "Optimum w*=4.0",
+      "― 全目標曲線 f(w)": "― full objective f(w)",
+      "-- 單樣本曲線 f_i": "-- per-sample f_i",
+      "● 當前參數位置 w": "● current param. w",
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "【全域性狀態 (Global Objective)】": "[Global objective]",
+      "• 參數位置 w =": "• Parameter position w =",
+      "| 目標損失 f(w) =": "| objective loss f(w) =",
+      "• 全梯度 ∇f(w) = w − 4.0 =": "• Full gradient ∇f(w) = w − 4.0 =",
+      "【當前抽樣樣本】": "[Current sample]",
+      "尚未抽樣（按單步 SGD 抽樣更新）": "None drawn yet (press \"One SGD step\" to sample and update)",
+      "【期望無偏性檢驗 (Unbiased Check)】": "[Unbiasedness check]",
+      "【連動狀態】": "[Linked state]",
+      "🎯 逼近最優收斂點 w* = 4.000 (Loss ≈ 2.500)！": "🎯 Approaching the optimal convergence point w* = 4.000 (Loss ≈ 2.500)!",
+      "⚡ 基準重設完成：w = 0.000 (此時全梯度 -∇f(0) = 4.0)": "⚡ Reset done: w = 0.000 (full gradient here: -∇f(0) = 4.0)",
+      "🎲 單步 SGD 隨機偏斜前進中": "🎲 Single-step SGD advancing with random deviation",
+      "$\\eta^{(k)} = 1/k$ 是滿足古典 Robbins-Monro 條件（$\\sum \\eta = \\infty$ 且 $\\sum \\eta^2 < \\infty$）的教科書級標準衰減排程，兼顧初期探索與後期方差消弭。": "$\\eta^{(k)} = 1/k$ is the textbook standard decay schedule that satisfies the classical Robbins–Monro conditions ($\\sum \\eta = \\infty$ and $\\sum \\eta^2 < \\infty$), balancing early exploration with eliminating the variance later on.",
+      "Full-batch 梯度需對資料集中全部 $n$ 筆資料逐一計算反向傳播並求和平均，每走一步的計算代價為 $O(n)$。資料集達百萬級時將造成極大計算瓶頸。": "The full-batch gradient requires computing backpropagation for all $n$ examples in the dataset one by one and averaging them, so each step costs $O(n)$. When the dataset reaches millions of examples, this becomes a huge computational bottleneck.",
+      "傳統梯度下降每步計算全體梯度的精確平均 $\\nabla f(\\boldsymbol{w})$，而 SGD 式 (22) 每步僅隨機抽取單一筆資料，以單樣本梯度 $\\nabla f_i$ 作為無偏估計，計算成本由 $O(n)$ 驟降為 $O(1)$。": "Traditional gradient descent computes the exact average of the full gradient $\\nabla f(\\boldsymbol{w})$ at every step, while SGD, Eq. (22), randomly draws a single example at each step and uses the single-sample gradient $\\nabla f_i$ as an unbiased estimate, cutting the cost from $O(n)$ to $O(1)$.",
+      "式 (20) 將經驗風險定義為全部 $n$ 個樣本個別損失 $f_i(\\boldsymbol{w})$ 的算術平均值 $\\frac{1}{n} \\sum_{i=1}^n f_i(\\boldsymbol{w})$。": "Eq. (20) defines the empirical risk as the arithmetic mean $\\frac{1}{n} \\sum_{i=1}^n f_i(\\boldsymbol{w})$ of the individual losses $f_i(\\boldsymbol{w})$ of all $n$ examples."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^樣本 #(\\d+) \\(c_(\\d+) = (-?\\d+(?:\\.\\d+)?)\\)$",
+        "en": "Sample #$1 (c_$2 = $3)"
+      },
+      {
+        "re": "^• 單樣本梯度 ∇f_i\\(w\\) = w − c_i = (.*)$",
+        "en": "• Single-sample gradient ∇f_i(w) = w − c_i = $1"
+      },
+      {
+        "re": "^• 瞬時隨機雜訊 ξ_i = ∇f_i − ∇f = (.*)$",
+        "en": "• Instantaneous random noise ξ_i = ∇f_i − ∇f = $1"
+      },
+      {
+        "re": "^\\(嚴格等於全梯度 (-?\\d+(?:\\.\\d+)?)\\)$",
+        "en": "(exactly equal to the full gradient $1)"
+      },
+      {
+        "re": "^🔷 全梯度一步到位：w 步進量 = η · 4\\.0 = (-?\\d+(?:\\.\\d+)?)$",
+        "en": "🔷 Full gradient in one step: w step = η · 4.0 = $1"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#kp7-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ],
+  "e690e2b6c298": {
+    "zh": "KP07 · 索引",
+    "en": "KP07 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "860e6d5040a0": {
+    "zh": "<a href=\"#full-batch-bottleneck\">全資料梯度瓶頸 · Full-Batch</a>",
+    "en": "<a href=\"#full-batch-bottleneck\">The full-data gradient bottleneck</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a18d134b0f42": {
+    "zh": "<a href=\"#sgd-formulation\">SGD 核心公式 · Formulation</a>",
+    "en": "<a href=\"#sgd-formulation\">The core SGD formula</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bb8160c04f02": {
+    "zh": "<a href=\"#unbiased-expectation\">期望無偏性保證 · Expectation</a>",
+    "en": "<a href=\"#unbiased-expectation\">Guaranteed unbiasedness in expectation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "daa227e36bb7": {
+    "zh": "<a href=\"#sampling-noise\">單步偏斜與前進幾何 · Sampling Noise</a>",
+    "en": "<a href=\"#sampling-noise\">Single-step deviation and the geometry of progress</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "68ad1b970f1a": {
+    "zh": "<a href=\"#learning-rate-schedules\">學習率衰減排程 · LR Schedules</a>",
+    "en": "<a href=\"#learning-rate-schedules\">Learning-rate decay schedules</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9db1cdbda4bb": {
+    "zh": "<a href=\"#robbins-monro\">理論收斂準則 · Robbins-Monro</a>",
+    "en": "<a href=\"#robbins-monro\">Theoretical convergence criteria</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b703039a8ea9": {
+    "zh": "<a href=\"#minibatch-bridge\">小批次演進階梯 · Mini-Batch</a>",
+    "en": "<a href=\"#minibatch-bridge\">The step up to mini-batches</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8358310236d1": {
+    "zh": "<a href=\"#comparison\">全梯度 vs SGD 對比 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Full gradient vs SGD</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The master's four iron laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "88aa81b66f49": {
+    "zh": "<a href=\"#lab\">互動模擬器 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive simulator</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Questions to think about</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c6f6a0a3cdbe": {
+    "zh": "隨機梯度下降：單樣本近似與無偏估計\n      <span class=\"hero-title-en\">Stochastic Gradient Descent: Single-Sample Approximation &amp; Unbiased Estimation</span>\n    ",
+    "en": "Stochastic Gradient Descent: Single-Sample Approximation and Unbiased Estimation",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "626e24f8d1d1": {
+    "zh": "\n      反向傳播能高效算梯度，但每步都要對全部 $n$ 筆資料求平均（Full-Batch），資料量大時算力完全吃不消。隨機梯度下降（SGD）每次只隨機抽一筆 $i$，用單樣本梯度近似全體梯度——計算廉價、具備擴充套件性，是深度學習最佳化法的基石鼻祖！\n    ",
+    "en": "Backpropagation computes gradients efficiently, but every step still has to average over all $n$ data points (full batch), and when the data is large the compute simply can't keep up. Stochastic gradient descent (SGD) randomly draws just one sample $i$ each time and uses that single-sample gradient to approximate the gradient over all the data: cheap to compute and scalable, it is the founding cornerstone of optimization in deep learning!",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "609544387d8d": {
+    "zh": "\n      「用有雜訊的單一筆資料梯度更新，為什麼走得更快、模型更好？」\n      <small>全資料梯度精確但昂貴，單樣本梯度粗糙但極其廉價！「貴的正確不如便宜的大概對」，隨機噪聲更是逃出鞍點與局部極小的神賜跳板！<br>\n        <span class=\"bilingual-en-inline\">Why does updating with a noisy single-sample gradient make training vastly faster and often generalize better? Cheap noisy approximations beat expensive perfection!</span>\n      </small>\n    ",
+    "en": "\"Why does updating with the noisy gradient of a single data point go faster and give a better model?\" <small>The full-data gradient is exact but expensive; the single-sample gradient is rough but extremely cheap! \"Expensive and exactly right loses to cheap and roughly right,\" and the random noise is even a god-given springboard for escaping saddle points and local minima!<br> </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "18f3180f68ff": {
+    "zh": "02 / 規模挑戰 · Computational Bottleneck",
+    "en": "02 / The Challenge of Scale",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "33582dafd02f": {
+    "zh": "全資料梯度的困局：$O(n)$ 巨量求和的算力鴻溝\n    <span class=\"en\">Full-Batch Gradient Bottleneck: The $O(n)$ Cumulative Summation Wall</span>\n  ",
+    "en": "The full-data gradient dilemma: the compute chasm of a massive $O(n)$ sum",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a43998f8e8cd": {
+    "zh": "全體損失平均：式 (20) 最佳化目標",
+    "en": "The average loss over all samples: the optimization objective of Eq. (20)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "244d6c96845f": {
+    "zh": "給定 $n$ 筆訓練樣本 $\\{\\boldsymbol{x}_i\\}$ 與真實標籤 $\\{l_i\\}$，機器學習的目標是最小化所有樣本損失的算術平均值：",
+    "en": "Given $n$ training samples $\\{\\boldsymbol{x}_i\\}$ and their true labels $\\{l_i\\}$, the goal of machine learning is to minimize the arithmetic mean of all the sample losses:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e8cf5f2013d2": {
+    "zh": "其中 $f_i(\\boldsymbol{w})$ 代表單一筆資料 $i$ 產生的損失。每個樣本都有自己的誤差曲面。",
+    "en": "where $f_i(\\boldsymbol{w})$ is the loss produced by a single data point $i$. Every sample has its own error surface.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5024f613452e": {
+    "zh": "全梯度求和：式 (21) 的 $O(n)$ 瓶頸",
+    "en": "Summing the full gradient: the $O(n)$ bottleneck of Eq. (21)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "61534f304dbc": {
+    "zh": "根據微積分線性性質，全體目標函式的精確梯度是各樣本梯度的總和平均：",
+    "en": "By the linearity of differentiation, the exact gradient of the overall objective function is the average of the per-sample gradients:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8dc256a58ec7": {
+    "zh": "<strong>致命代價：</strong>每更新一步參數，必須對全體 $n$ 筆資料執行一次完整前向與反向傳播。當 $n$ 達百萬（ImageNet）或數兆（LLM Pre-training）時，一步耗時數小時，訓練直接陷入癱瘓！",
+    "en": "<strong>The fatal cost:</strong> every single parameter update requires one complete forward and backward pass over all $n$ data points. When $n$ reaches the millions (ImageNet) or the trillions (LLM pre-training), one step takes hours, and training grinds to a complete halt!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8650f0e76a28": {
+    "zh": "規模化破局思維：從「全域性精準」走向「瞬時抽樣」",
+    "en": "A way through at scale: from \"globally exact\" to \"instant sampling\"",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "30a580b315a4": {
+    "zh": "\n      傳統數值最佳化（如精確最陡下降法或牛頓法）追求每一步都沿著嚴格精準的負梯度方向前進。\n      但在巨量資料時代，<strong>「計算一次精確全梯度的時間，足夠讓單樣本更新走上百萬步」</strong>！\n      若每一步只抽樣少數甚至單一樣本，即使方向稍有偏差，但累積的位移依然能以極高速度衝向最優谷底。\n    ",
+    "en": "Traditional numerical optimization (such as exact steepest descent or Newton's method) insists that every step move strictly along the exact negative gradient direction. But in the era of massive data, <strong>\"the time it takes to compute one exact full gradient is enough for single-sample updates to take a million steps\"</strong>! If each step samples only a few samples, or even a single one, then even though the direction is a little off, the accumulated displacement still rushes toward the bottom of the optimal valley at very high speed.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cac3f744ca9f": {
+    "zh": "03 / 核心機制 · SGD Formulation",
+    "en": "03 / Core Mechanism",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0acd26115acb": {
+    "zh": "隨機梯度下降：式 (22) 單樣本近似更新律\n    <span class=\"en\">Stochastic Gradient Descent: Single-Sample Approximation Rule</span>\n  ",
+    "en": "Stochastic gradient descent: the single-sample approximate update rule of Eq. (22)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "54a07fc28999": {
+    "zh": "圖 1：Full-Batch 全資料求和 vs SGD 單樣本瞬時更新機制對比",
+    "en": "Fig. 1: Full-batch summation over all data vs SGD's instant single-sample update",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "10bec2011541": {
+    "zh": "Full-Batch 梯度下降 (每步 O(n))",
+    "en": "Full-batch gradient descent (O(n) per step)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9f57ec0a4b51": {
+    "zh": "樣本 1: ∇f₁(w) 前向 + 反向",
+    "en": "Sample 1: ∇f₁(w) forward + backward",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8ae1b3ec10d0": {
+    "zh": "樣本 2: ∇f₂(w) 前向 + 反向",
+    "en": "Sample 2: ∇f₂(w) forward + backward",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "72c485bf137d": {
+    "zh": "⋮  (累積掃描 n 筆資料)  ⋮",
+    "en": "⋮  (sweep through all n data points)  ⋮",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "949ed4773717": {
+    "zh": "樣本 n: ∇f_n(w) 前向 + 反向",
+    "en": "Sample n: ∇f_n(w) forward + backward",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "795c7122bcd3": {
+    "zh": "求和平均: ∇f(w) = (1/n) ∑ ∇f_i",
+    "en": "Average: ∇f(w) = (1/n) ∑ ∇f_i",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "26837aed8779": {
+    "zh": "更新 1 步代價極高：O(n) 算力開銷",
+    "en": "One update is very costly: O(n) compute",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d3170a04705d": {
+    "zh": "SGD 隨機梯度下降 (每步 O(1))",
+    "en": "SGD, stochastic gradient descent (O(1) per step)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a2c05a7fa531": {
+    "zh": "🎲 均勻隨機抽樣：i ~ U{1, ..., n}",
+    "en": "🎲 Uniform random sampling: i ~ U{1, ..., n}",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7363e200d4d0": {
+    "zh": "每步僅抽單一筆資料索引 i",
+    "en": "Each step draws just one data index i",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "49a43e12a304": {
+    "zh": "只算該筆：∇f_i(w)",
+    "en": "Compute only that one: ∇f_i(w)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "4ef07cfe568c": {
+    "zh": "瞬時更新式 (22)",
+    "en": "Instant update, Eq. (22)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c76971b4dec8": {
+    "zh": "每步僅需 O(1)！計算成本與 n 完全解耦",
+    "en": "Only O(1) per step! Cost fully decoupled from n",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "f063ee5098ad": {
+    "zh": "\n          歷史脈絡：Robbins & Monro (1951) 隨機逼近理論 ➔ LeCun / Bottou (約 1998) 確立為深度學習預設最佳化基石\n        ",
+    "en": "History: Robbins & Monro (1951) stochastic approximation theory ➔ LeCun / Bottou (c. 1998) made it the default optimizer of deep learning",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a4d7790b8107": {
+    "zh": "單樣本 SGD 更新律（式 (22)）",
+    "en": "Single-sample SGD update rule (Eq. (22))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6734e72398fc": {
+    "zh": "\n        <strong>核心概念拆解：</strong><br>\n        • <strong>抽樣索引 $i$：</strong> 在第 $k$ 步迭代中，自全體集合 $\\{1, \\dots, n\\}$ 獨立且均勻隨機抽取一個樣本。<br>\n        • <strong>單樣本梯度 $\\nabla f_i(\\boldsymbol{w}^{(k)})$：</strong> 僅針對第 $i$ 筆資料執行一次前向與反向求導，完全不碰其餘 $n-1$ 筆！<br>\n        • <strong>學習率 $\\eta^{(k)}$：</strong> 隨迭代步數 $k$ 自適應變動的步長排程。<br>\n        • <strong>複雜度飛躍：</strong> 每步計算代價由 $O(n)$ 驟降為 $O(1)$，實現對資料集規模的無限擴充套件性。\n      ",
+    "en": "<strong>The core concepts, broken down:</strong><br> • <strong>Sampled index $i$:</strong> at iteration $k$, one sample is drawn independently and uniformly at random from the full set $\\{1, \\dots, n\\}$.<br> • <strong>Single-sample gradient $\\nabla f_i(\\boldsymbol{w}^{(k)})$:</strong> one forward pass and one backward differentiation on data point $i$ only, without touching the other $n-1$ at all!<br> • <strong>Learning rate $\\eta^{(k)}$:</strong> a step-size schedule that changes adaptively with the iteration count $k$.<br> • <strong>A leap in complexity:</strong> the cost per step drops from $O(n)$ to $O(1)$, giving unlimited scalability in the size of the dataset.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9e815f77793e": {
+    "zh": "04 / 數學基石 · Unbiased Expectation",
+    "en": "04 / Mathematical Foundation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0d3f4e78a301": {
+    "zh": "數學護航：單樣本梯度的期望無偏性保證\n    <span class=\"en\">Mathematical Guarantee: The Unbiased Expectation $\\mathbb{E}[\\nabla f_i(\\boldsymbol{w})] = \\nabla f(\\boldsymbol{w})$</span>\n  ",
+    "en": "Mathematical safeguard: the single-sample gradient is unbiased in expectation, $\\mathbb{E}[\\nabla f_i(\\boldsymbol{w})] = \\nabla f(\\boldsymbol{w})$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "11d25ac61d42": {
+    "zh": "條件期望推導：統計無偏性",
+    "en": "Deriving the conditional expectation: statistical unbiasedness",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4e2548f19dc4": {
+    "zh": "令抽樣索引 $i$ 遵循均勻離散分佈 $P(i = j) = \\frac{1}{n}$。對單樣本梯度取關於抽樣分佈的期望值：",
+    "en": "Let the sampled index $i$ follow the discrete uniform distribution $P(i = j) = \\frac{1}{n}$. Take the expectation of the single-sample gradient with respect to the sampling distribution:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b9df8233f0e8": {
+    "zh": "<strong>深刻內涵：</strong> 單樣本梯度雖然每步都帶有隨機偏斜，但其<strong>期望方向嚴格等於真實全梯度</strong>！統計學上這稱為「無偏估計量（Unbiased Estimator）」。",
+    "en": "<strong>The deeper meaning:</strong> although the single-sample gradient carries a random deviation at every step, its <strong>expected direction is exactly equal to the true full gradient</strong>! In statistics this is called an \"unbiased estimator\".",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2c90f2996f67": {
+    "zh": "雜訊正交分解：漂移項與擴散項",
+    "en": "Orthogonal decomposition of the noise: the drift term and the diffusion term",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c2fb34f09ce6": {
+    "zh": "我們可以將單步梯度嚴格分解為「真梯度 + 零均值擾動」：",
+    "en": "We can decompose the single-step gradient exactly into \"true gradient + zero-mean perturbation\":",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "927440625a98": {
+    "zh": "\n        $$\\nabla f_i(\\boldsymbol{w}) = \\nabla f(\\boldsymbol{w}) + \\boldsymbol{\\xi}_i(\\boldsymbol{w}), \\quad \\text{其中 } \\mathbb{E}[\\boldsymbol{\\xi}_i(\\boldsymbol{w})] = \\mathbf{0}$$\n      ",
+    "en": "$$\\nabla f_i(\\boldsymbol{w}) = \\nabla f(\\boldsymbol{w}) + \\boldsymbol{\\xi}_i(\\boldsymbol{w}), \\quad \\text{where } \\mathbb{E}[\\boldsymbol{\\xi}_i(\\boldsymbol{w})] = \\mathbf{0}$$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "53ec86e7ffaf": {
+    "zh": "• <strong>漂移項（Drift）：</strong> 真實負梯度驅使參數朝著總體最優點穩定推進。<br>\n      • <strong>擴散項（Diffusion）：</strong> 隨機雜訊 $\\boldsymbol{\\xi}_i$ 在周圍引發布朗運動般的隨機遊走，賦予演算法跳脫尖銳局部極小與鞍點的關鍵能力！",
+    "en": "• <strong>Drift term:</strong> the true negative gradient drives the parameters steadily toward the overall optimum.<br> • <strong>Diffusion term:</strong> the random noise $\\boldsymbol{\\xi}_i$ sets off a Brownian-motion-like random walk around it, which gives the algorithm the key ability to escape sharp local minima and saddle points!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f19dfb9eb5ea": {
+    "zh": "為什麼「無偏性」是 SGD 的定海神針？",
+    "en": "Why is \"unbiasedness\" the anchor that keeps SGD steady?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2b786587e415": {
+    "zh": "\n      如果抽樣是有偏的（例如某類樣本被不成比例地多抽，且未做加權校正），期望方向就會偏離真實全梯度，演算法可能收斂到錯誤的偽極小點。\n      唯有在均勻隨機抽樣保證下，大數法則與鞅差序列（Martingale Difference Sequence）理論才能生效，確保參數即使走得曲折，最終仍會邁向正確的終點！\n    ",
+    "en": "If the sampling is biased (for example, some kind of sample is drawn disproportionately often with no weighting correction), the expected direction drifts away from the true full gradient, and the algorithm may converge to a wrong, spurious minimum. Only under the guarantee of uniform random sampling do the law of large numbers and the theory of martingale difference sequences take effect, ensuring that even if the parameters take a winding path, they still end up heading to the right destination!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "72adc87852a9": {
+    "zh": "05 / 幾何視覺 · Vector Decomposition &amp; SVG",
+    "en": "05 / The Geometric Picture",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "deac9694879e": {
+    "zh": "單步偏斜 vs 統計前進：向量合成與隨機擾動幾何\n    <span class=\"en\">Single-Step Deviation vs Statistical Progress: Vector Summation Geometry</span>\n  ",
+    "en": "Single-step deviation vs statistical progress: the geometry of vector summation and random perturbation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "01d56b868b4e": {
+    "zh": "圖 2：資料抽樣、全梯度合成與單樣本 SGD 偏斜更新幾何解析",
+    "en": "Fig. 2: Data sampling, full-gradient summation, and the geometry of a deviating single-sample SGD update",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "73f7c0b5532c": {
+    "zh": "左：資料集與抽樣點",
+    "en": "Left: dataset and sampled point",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "283704fc626e": {
+    "zh": "抽中單一紅點 i",
+    "en": "One red point i drawn",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "854ab330b46f": {
+    "zh": "每步僅抽 1 筆 i ~ U{1..n}",
+    "en": "Only 1 drawn per step: i ~ U{1..n}",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e4324423ecbc": {
+    "zh": "中：全梯度合成 (O(n))",
+    "en": "Middle: full-gradient sum (O(n))",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d335c4524766": {
+    "zh": "全梯度 ∇f(w)",
+    "en": "Full gradient ∇f(w)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "956770bc022e": {
+    "zh": "n 支小箭頭平均粗藍箭頭",
+    "en": "n small arrows average to the thick blue arrow",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "365c6c710f58": {
+    "zh": "右：單樣本 SGD 偏斜 (O(1))",
+    "en": "Right: single-sample SGD deviation (O(1))",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "3570ae31a972": {
+    "zh": "全梯度真方向",
+    "en": "True full-gradient direction",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "0b15c25a00b8": {
+    "zh": "偏斜紅箭頭 ∇f_i",
+    "en": "Deviating red arrow ∇f_i",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d4eb40104f79": {
+    "zh": "單步雜訊角",
+    "en": "Single-step noise angle",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c6c4b5c11844": {
+    "zh": "方向偏斜但期望正確",
+    "en": "Direction off, but right in expectation",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "dd2a071c7733": {
+    "zh": "E[∇f_i] = ∇f 統計護航",
+    "en": "E[∇f_i] = ∇f: statistical safeguard",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "89da668037d6": {
+    "zh": "④ 底部衰減步長排程 η = 1/k",
+    "en": "④ Bottom: decaying step-size schedule η = 1/k",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d0d79deb81f5": {
+    "zh": "迭代 k",
+    "en": "iteration k",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "1e86a35e3720": {
+    "zh": "步長 η",
+    "en": "step size η",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "4496f0b3ba4f": {
+    "zh": "η(k) = 1/k (大步探索 ➔ 細密收斂)",
+    "en": "η(k) = 1/k (big exploratory steps ➔ fine convergence)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "2463f720282a": {
+    "zh": "💡 反直覺因果：貴的正確不如便宜的大概對！",
+    "en": "💡 Counterintuitive: cheap and roughly right beats expensive and exact!",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "781db018fc93": {
+    "zh": "\n              全資料梯度每步掃描 n 筆太昂貴；SGD 每步僅抽 1 筆，雖有偏斜雜訊，\n            ",
+    "en": "The full-data gradient scans all n points every step, too expensive; SGD draws just 1 per step, and despite the deviating noise,",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "9909a92037f0": {
+    "zh": "\n              但故意用「錯一點」的方向，訓練速度反超百倍，且雜訊能助模型跳出尖銳鞍點！\n            ",
+    "en": "deliberately using a slightly \"wrong\" direction makes training a hundred times faster, and the noise helps the model escape sharp saddle points!",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "a0d9529f7d37": {
+    "zh": "單步偏斜與統計收斂因果解析",
+    "en": "Cause and effect: single-step deviation and statistical convergence",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "18d1224995e2": {
+    "zh": "\n          <strong>為什麼單步會偏？</strong><br>\n          每個樣本 $f_i$ 都有其局部的幾何坡度。單一筆樣本只反映了資料空間的一個微小切片，因此單步向量 $\\nabla f_i(\\boldsymbol{w})$ 必然與總體梯度 $\\nabla f(\\boldsymbol{w})$ 產生夾角（單步偏斜雜訊）。\n        ",
+    "en": "<strong>Why does a single step deviate?</strong><br> Every sample $f_i$ has its own local geometric slope. A single sample reflects only a tiny slice of the data space, so the single-step vector $\\nabla f_i(\\boldsymbol{w})$ inevitably makes an angle with the overall gradient $\\nabla f(\\boldsymbol{w})$ (single-step deviation noise).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c22d87bfcfa8": {
+    "zh": "\n          <strong>為什麼整體仍向前進？</strong><br>\n          只要抽樣是隨機均勻的，根據向量合成定則，數十次或數百次隨機更新的淨位移，其橫向雜訊分量會彼此正負抵消，而沿著負梯度方向的前進分量會同向疊加！\n        ",
+    "en": "<strong>Why does it still move forward overall?</strong><br> As long as the sampling is uniformly random, then by the rule of vector addition, in the net displacement of dozens or hundreds of random updates the sideways noise components cancel each other out, while the forward components along the negative gradient add up in the same direction!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4bd10ce4c50d": {
+    "zh": "\n          <strong>反直覺的泛化優勢（Generalization Benefit）：</strong><br>\n          精確全梯度往往會精準掉入狹窄且陡峭的「尖銳極小值（Sharp Minima）」中，導致過擬合。SGD 的隨機雜訊如同「天然的正則化振動器」，能輕易震出銳利坑洞，最終墜入寬闊平坦的「平坦極小值（Flat Minima）」，在未見測試集上表現更佳！\n        ",
+    "en": "<strong>The counterintuitive generalization benefit:</strong><br> The exact full gradient often drops precisely into narrow, steep \"sharp minima\", leading to overfitting. SGD's random noise acts like a \"natural regularizing shaker\": it easily shakes the parameters out of sharp pits so that they finally settle into wide, flat \"flat minima\", which perform better on the unseen test set!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "343bb9dc4f06": {
+    "zh": "06 / 步長調控 · Learning Rate Schedules",
+    "en": "06 / Controlling the Step Size",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b3e05395f07b": {
+    "zh": "自適應學習率排程：固定 vs $1/k$ vs $1/\\sqrt{k}$\n    <span class=\"en\">Learning Rate Schedules: Fixed Step Size vs $1/k$ vs $1/\\sqrt{k}$ Annealing</span>\n  ",
+    "en": "Adaptive learning-rate schedules: fixed vs $1/k$ vs $1/\\sqrt{k}$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c8940aca75ce": {
+    "zh": "\n    在全資料梯度下降中，若學習率滿足 $\\eta &lt; 2/L$（$L$-光滑條件），採用固定步長就能嚴格收斂到極值點 $\\nabla f(\\boldsymbol{w}^*) = \\mathbf{0}$。\n    然而，在單樣本 SGD 中，即使到達極值點，<strong>單樣本梯度 $\\nabla f_i(\\boldsymbol{w}^*)$ 通常並不為零</strong>！\n    若步長不隨時間衰減，隨機雜訊將永遠推擠參數在最優點周圍跳動。\n  ",
+    "en": "In full-data gradient descent, if the learning rate satisfies $\\eta &lt; 2/L$ (the $L$-smoothness condition), a fixed step size converges exactly to the extremum $\\nabla f(\\boldsymbol{w}^*) = \\mathbf{0}$. In single-sample SGD, however, even once it reaches the extremum, <strong>the single-sample gradient $\\nabla f_i(\\boldsymbol{w}^*)$ is usually not zero</strong>! If the step size does not decay over time, the random noise will keep pushing the parameters to jump around the optimum forever.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "efca8272abf6": {
+    "zh": "1. 固定步長：$\\eta^{(k)} = \\eta$",
+    "en": "1. Fixed step size: $\\eta^{(k)} = \\eta$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1a7e0e03f26a": {
+    "zh": "• <strong>機制：</strong> 實作最為簡單直接，整段訓練全程維持固定步長。<br>\n      • <strong>行為特徵：</strong> 早期能極快抵達最優點附近的吸引盆（Attraction Basin）。<br>\n      • <strong>收斂瓶頸：</strong> 無法精確收斂至極小點，最終會停留在半徑為 $\\mathcal{O}(\\eta)$ 的<strong>隨機擾動球（Noise Ball / Limit Cycle）</strong>內持續震盪。<br>\n      • <strong>折衷策略：</strong> 實務中常透過手動階梯式衰減（Step Decay）來壓低震盪半徑。",
+    "en": "• <strong>Mechanism:</strong> the simplest and most direct to implement; the step size stays fixed throughout training.<br> • <strong>Behavior:</strong> early on it reaches the attraction basin near the optimum very quickly.<br> • <strong>Convergence bottleneck:</strong> it cannot converge exactly to the minimum; in the end it keeps oscillating inside a <strong>noise ball (limit cycle)</strong> of radius $\\mathcal{O}(\\eta)$.<br> • <strong>Compromise:</strong> in practice, a manual step decay is often used to shrink the oscillation radius.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "899b182d8f24": {
+    "zh": "2. 反比衰減：$\\eta^{(k)} = \\eta_0 / k$",
+    "en": "2. Inverse decay: $\\eta^{(k)} = \\eta_0 / k$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cecd339d735b": {
+    "zh": "• <strong>機制：</strong> 步長與迭代次數 $k$ 成反比，隨步數增長快速遞減。<br>\n      • <strong>行為特徵：</strong> 早期大步跨越探索，後期步長迅速收縮以消弭抽樣雜訊。<br>\n      • <strong>理論重要性：</strong> 嚴格滿足 Robbins-Monro 隨機逼近條件，是古典隨機分析的標準研究原型。<br>\n      • <strong>實務痛點：</strong> 衰減速度過快，若初始常數未精心調校，容易在複雜非凸地貌中過早凍結（Premature freezing）。",
+    "en": "• <strong>Mechanism:</strong> the step size is inversely proportional to the iteration count $k$ and drops quickly as the steps go on.<br> • <strong>Behavior:</strong> big exploratory strides early on; later the step size shrinks rapidly to wipe out the sampling noise.<br> • <strong>Theoretical importance:</strong> it strictly satisfies the Robbins-Monro stochastic approximation conditions and is the standard prototype studied in classical stochastic analysis.<br> • <strong>Practical pain point:</strong> it decays too fast; if the initial constant is not carefully tuned, it easily freezes prematurely in a complex non-convex landscape.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "efb4072553bb": {
+    "zh": "3. 根號反比衰減：$\\eta^{(k)} = \\eta_0 / \\sqrt{k}$",
+    "en": "3. Inverse square-root decay: $\\eta^{(k)} = \\eta_0 / \\sqrt{k}$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0e9544ddf95c": {
+    "zh": "• <strong>機制：</strong> 衰減速率顯著慢於 $1/k$，維持較長週期的活躍探索動能。<br>\n      • <strong>理論保證：</strong> 在非平滑凸最佳化（Non-smooth Convex）理論中，此排程達到最佳的無約束收斂界限 $\\mathcal{O}(1/\\sqrt{K})$。<br>\n      • <strong>實務評價：</strong> 兼具長程探索力與後期穩定性，在深度神經網路訓練排程中被極為廣泛地借鑒與應用。",
+    "en": "• <strong>Mechanism:</strong> it decays markedly more slowly than $1/k$, keeping up active exploratory momentum for a longer period.<br> • <strong>Theoretical guarantee:</strong> in the theory of non-smooth convex optimization, this schedule attains the optimal unconstrained convergence bound $\\mathcal{O}(1/\\sqrt{K})$.<br> • <strong>Practical verdict:</strong> it combines long-range exploration with late-stage stability, and it is very widely borrowed and applied in training schedules for deep neural networks.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c6740771f191": {
+    "zh": "排程選擇的本質：探索（Exploration）與開採（Exploitation）的平衡儀",
+    "en": "The essence of choosing a schedule: a balance between exploration and exploitation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f0e61fe76e66": {
+    "zh": "\n      早期離最優點遙遠時，梯度訊號強大，大步長 $\\eta$ 能實現「高價效比的空間探索」；\n      後期逼近谷底時，雜訊方差超越了真實梯度訊號，唯有透過步長衰減才能抑制方差「進行精細開採」。\n    ",
+    "en": "Early on, far from the optimum, the gradient signal is strong, and a large step size $\\eta$ gives \"cost-effective exploration of the space\"; later, close to the bottom of the valley, the noise variance exceeds the true gradient signal, and only step-size decay can suppress the variance to allow \"fine-grained exploitation\".",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ed670a33cc15": {
+    "zh": "07 / 理論收斂 · Robbins-Monro Conditions",
+    "en": "07 / Theoretical Convergence",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "92fb96cd24bc": {
+    "zh": "收斂條件：Robbins-Monro 準則的深層哲理\n    <span class=\"en\">Classical Stochastic Approximation: The Depth of Robbins-Monro Conditions</span>\n  ",
+    "en": "Convergence conditions: the deeper philosophy of the Robbins-Monro criteria",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "886b5888dd34": {
+    "zh": "條件一：能量無限（發散性保證）",
+    "en": "Condition 1: unlimited energy (divergence guarantee)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f33ea0a4efd0": {
+    "zh": "<strong>物理直覺：</strong> 步長的累積總和必須發散到無限大。這保證了無論初始參數 $\\boldsymbol{w}^{(0)}$ 距離全域性最優點多麼遙遠，演算法總有足夠的「累積行進能力」抵達目的地，不會因為步長萎縮過早而半路凍結癱瘓。",
+    "en": "<strong>Physical intuition:</strong> the cumulative sum of the step sizes must diverge to infinity. This guarantees that no matter how far the initial parameters $\\boldsymbol{w}^{(0)}$ are from the global optimum, the algorithm always has enough \"cumulative travel capacity\" to reach its destination, instead of freezing halfway because the step size shrank too early.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dedaee573e0b": {
+    "zh": "條件二：方差有限（平方可和保證）",
+    "en": "Condition 2: finite variance (square-summability guarantee)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cd49c49ee0c2": {
+    "zh": "<strong>物理直覺：</strong> 步長的平方和必須收斂為有限值。由於每步隨機雜訊引入的方差與 $(\\eta^{(k)})^2$ 成正比，此條件確保了隨機遊走的總方差能量有限，從而在極限處徹底消弭跳動，實現<strong>幾乎必然收斂（Almost Sure Convergence）</strong>！",
+    "en": "<strong>Physical intuition:</strong> the sum of the squared step sizes must converge to a finite value. Since the variance injected by the random noise at each step is proportional to $(\\eta^{(k)})^2$, this condition ensures that the total variance energy of the random walk is finite, so the jumping dies out completely in the limit, giving <strong>almost sure convergence</strong>!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fbcef39eb728": {
+    "zh": "調和級數的數學巧合：為什麼 $\\eta^{(k)} = 1/k$ 是教科書典範？",
+    "en": "A mathematical coincidence of the harmonic series: why is $\\eta^{(k)} = 1/k$ the textbook example?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f3642d1b1cbf": {
+    "zh": "\n      古典微積分中著名的調和級數恰好滿足這兩個看似互相矛盾的條件：<br>\n      • 發散性：$\\sum_{k=1}^\\infty \\frac{1}{k} = 1 + \\frac{1}{2} + \\frac{1}{3} + \\dots = \\infty$（保證能量無限！能走任意遠）<br>\n      • 平方可和性：$\\sum_{k=1}^\\infty \\frac{1}{k^2} = 1 + \\frac{1}{4} + \\frac{1}{9} + \\dots = \\frac{\\pi^2}{6} &lt; \\infty$（巴塞爾問題，保證方差有限！最終能靜止）<br>\n      相反地，$1/\\sqrt{k}$ 的平方和 $\\sum \\frac{1}{k} = \\infty$，雖然在有限步內表現優異，但若不人為截斷或微調，理論上平方和發散，無法滿足古典 Robbins-Monro 的無條件漸近收斂。\n    ",
+    "en": "The famous harmonic series of classical calculus happens to satisfy both of these seemingly contradictory conditions:<br> • Divergence: $\\sum_{k=1}^\\infty \\frac{1}{k} = 1 + \\frac{1}{2} + \\frac{1}{3} + \\dots = \\infty$ (unlimited energy guaranteed! it can travel arbitrarily far)<br> • Square-summability: $\\sum_{k=1}^\\infty \\frac{1}{k^2} = 1 + \\frac{1}{4} + \\frac{1}{9} + \\dots = \\frac{\\pi^2}{6} &lt; \\infty$ (the Basel problem; finite variance guaranteed! it eventually comes to rest)<br> By contrast, for $1/\\sqrt{k}$ the sum of squares is $\\sum \\frac{1}{k} = \\infty$; although it performs very well over a finite number of steps, unless it is artificially truncated or fine-tuned, its sum of squares diverges in theory, and it cannot satisfy the unconditional asymptotic convergence of the classical Robbins-Monro conditions.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d2687460dbbc": {
+    "zh": "08 / 實務演進 · Bridge to Mini-batch",
+    "en": "08 / How Practice Evolved",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3d6a77fd2571": {
+    "zh": "從單樣本到小批次：速度、穩定與現代硬體架構的折衷\n    <span class=\"en\">From Single-Sample to Mini-Batch: Balancing Variance and GPU Vectorization</span>\n  ",
+    "en": "From single samples to mini-batches: a trade-off between speed, stability and modern hardware architectures",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2d65d05f1250": {
+    "zh": "圖 3：最佳化光譜——單樣本 SGD 到 Mini-Batch 的演進階梯",
+    "en": "Fig. 3: The optimization spectrum: the ladder from single-sample SGD to mini-batch",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "b53cd6038fcc": {
+    "zh": "單樣本 SGD",
+    "en": "Single-sample SGD",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "2ec32c206104": {
+    "zh": "每步 O(1) 極致便宜",
+    "en": "O(1) per step, extremely cheap",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "975ca9e91e47": {
+    "zh": "雜訊大、GPU 吃不飽",
+    "en": "Noisy, GPU underfed",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "cdefc3f68b1b": {
+    "zh": "黃金平衡點",
+    "en": "Golden balance point",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "4fb6a18dcb23": {
+    "zh": "方差降至 1/B",
+    "en": "Variance drops to 1/B",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "df569f1280b7": {
+    "zh": "完美吃滿 GPU 矩陣核心",
+    "en": "Fully saturates GPU matrix cores",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "e95622200ac5": {
+    "zh": "零隨機雜訊",
+    "en": "Zero random noise",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "ea6fa8875067": {
+    "zh": "每步 O(n) 太貴、易過擬合",
+    "en": "O(n) per step: too costly, overfits easily",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "323ff9943caf": {
+    "zh": "深度學習實務常說的「SGD」——其實是 Mini-Batch SGD（§4.1 / KP08）",
+    "en": "The \"SGD\" of everyday deep learning is really mini-batch SGD (§4.1 / KP08)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "49fe308283ab": {
+    "zh": "\n            • 嚴格單樣本 ($B=1$)：理論優雅，但現代硬體（GPU/TPU）執行單純純量操作會嚴重浪費平行計算能力。\n          ",
+    "en": "• Strict single-sample ($B=1$): theoretically elegant, but on modern hardware (GPU/TPU) running pure scalar operations badly wastes parallel compute.",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "4546546a219b": {
+    "zh": "\n            • 小批次 ($B=32\\sim 256$)：用一小批平均梯度平衡「向量化吞吐」與「隨機探索」，方差縮小 B 倍，下一節 KP08 將深入解析！\n          ",
+    "en": "• Mini-batch ($B=32\\sim 256$): the average gradient of a small batch balances \"vectorized throughput\" against \"random exploration\" and cuts the variance by a factor of B; the next section, KP08, analyzes it in depth!",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "deb515a93b80": {
+    "zh": "小批次梯度方差縮小律",
+    "en": "The mini-batch gradient variance reduction law",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fabd8626fd1f": {
+    "zh": "\n        <strong>實務工程洞察：</strong><br>\n        1. <strong>單樣本 SGD 的極限：</strong> 每步只抓一筆資料算梯度，計算極快，但在 GPU 核心啟動（Kernel Launch Overhead）與記憶體頻寬面前，無法發揮 SIMD 矩陣加速器的威力。<br>\n        2. <strong>現代架構折衷：</strong> 透過引入批次大小 $B$，在單步時間幾乎不增加的前提下（因 GPU 平行計算批次資料），使梯度估計的方差顯著縮小 $B$ 倍！<br>\n        3. <strong>過渡意義：</strong> 本節 KP07 建立的單樣本原理（無偏性、雜訊幾何、步長衰減）是理解後續所有批次演算法與自適應動量最佳化器（Adam, RMSprop）的不可或缺核心！\n      ",
+    "en": "<strong>Practical engineering insights:</strong><br> 1. <strong>The limits of single-sample SGD:</strong> each step grabs only one data point to compute the gradient, which is extremely fast, but faced with GPU kernel launch overhead and memory bandwidth, it cannot unleash the power of SIMD matrix accelerators.<br> 2. <strong>The compromise of modern architectures:</strong> introducing a batch size $B$ cuts the variance of the gradient estimate markedly, by a factor of $B$, while barely increasing the time per step (because the GPU computes the batch data in parallel)!<br> 3. <strong>Transitional significance:</strong> the single-sample principles established in this section, KP07 (unbiasedness, noise geometry, step-size decay), are the indispensable core for understanding all the batch algorithms and adaptive momentum optimizers (Adam, RMSprop) that follow!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f8ff35b86b6c": {
+    "zh": "09 / 維度縱覽 · Full-Batch vs SGD Comparison",
+    "en": "09 / The Dimensions at a Glance",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6bc7ce2142ed": {
+    "zh": "全資料梯度 vs 單樣本 SGD：七大核心維度全景對比\n    <span class=\"en\">Full-Batch Gradient Descent vs Single-Sample SGD: 7-Dimensional Matrix</span>\n  ",
+    "en": "Full-data gradient vs single-sample SGD: a panoramic comparison along seven core dimensions",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "61b34a147c85": {
+    "zh": "比較維度",
+    "en": "Dimension",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5cf1a0e9195f": {
+    "zh": "全資料梯度下降 (Full-Batch GD)",
+    "en": "Full-batch gradient descent (full-batch GD)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3e7fbc19fdb1": {
+    "zh": "隨機梯度下降 (Single-Sample SGD)",
+    "en": "Stochastic gradient descent (single-sample SGD)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "59926da96d02": {
+    "zh": "<strong>1. 每步抽樣規模 ($B$)</strong>",
+    "en": "<strong>1. Samples drawn per step ($B$)</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "988adb75a731": {
+    "zh": "完整資料集全部 $n$ 筆資料",
+    "en": "All $n$ data points of the complete dataset",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a7fde97bed94": {
+    "zh": "隨機抽取單一筆資料 ($B = 1$)",
+    "en": "A single randomly drawn data point ($B = 1$)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e43922c5f351": {
+    "zh": "<strong>2. 每步時間複雜度</strong>",
+    "en": "<strong>2. Time complexity per step</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a520bddddf70": {
+    "zh": "$O(n)$：隨資料集規模線性膨脹，巨量資料下停擺",
+    "en": "$O(n)$: grows linearly with dataset size; stalls on massive data",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c7f61bfe891a": {
+    "zh": "$O(1)$：與資料總量 $n$ 徹底解耦，極致擴充套件",
+    "en": "$O(1)$: fully decoupled from the total data size $n$; scales to the extreme",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ca604cfb5db0": {
+    "zh": "<strong>3. 單步梯度方向精準度</strong>",
+    "en": "<strong>3. Accuracy of the single-step gradient direction</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e5808f832da6": {
+    "zh": "嚴格無雜訊的真梯度 $\\nabla f(\\boldsymbol{w})$",
+    "en": "The strictly noise-free true gradient $\\nabla f(\\boldsymbol{w})$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1240baf82b1b": {
+    "zh": "帶有隨機偏斜雜訊的單樣本估計 $\\nabla f_i(\\boldsymbol{w})$",
+    "en": "A single-sample estimate $\\nabla f_i(\\boldsymbol{w})$ with random deviation noise",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0643aba353ba": {
+    "zh": "<strong>4. 統計期望特性</strong>",
+    "en": "<strong>4. Statistical expectation property</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5be30f367c9b": {
+    "zh": "確定性量值，無隨機性",
+    "en": "A deterministic quantity, no randomness",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5d8a818f5264": {
+    "zh": "無偏保證：$\\mathbb{E}[\\nabla f_i(\\boldsymbol{w})] = \\nabla f(\\boldsymbol{w})$",
+    "en": "Unbiasedness guarantee: $\\mathbb{E}[\\nabla f_i(\\boldsymbol{w})] = \\nabla f(\\boldsymbol{w})$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f875590cb5c7": {
+    "zh": "<strong>5. 參數收斂路徑軌跡</strong>",
+    "en": "<strong>5. Trajectory of parameter convergence</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0ed181603da4": {
+    "zh": "平滑、確定性的直線或優雅曲線",
+    "en": "A smooth, deterministic straight line or graceful curve",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b5b37a337e2a": {
+    "zh": "鋸齒狀隨機遊走前進（漂移項 + 擴散項）",
+    "en": "A zigzag random-walk advance (drift term + diffusion term)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b36029bae1d1": {
+    "zh": "<strong>6. 鞍點與局部極小逃逸</strong>",
+    "en": "<strong>6. Escaping saddle points and local minima</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d845e0b3f238": {
+    "zh": "極易困在尖銳極小值或鞍點平原",
+    "en": "Very easily stuck in sharp minima or on saddle-point plateaus",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3aee5d560b98": {
+    "zh": "隨機擾動賦予逃逸跳板，傾向收斂至平坦平原",
+    "en": "Random perturbations give it a springboard to escape; tends to converge to flat plains",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "28b7fd8c51f3": {
+    "zh": "<strong>7. 步長配置與收斂行為</strong>",
+    "en": "<strong>7. Step-size setting and convergence behavior</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cb96e734f6be": {
+    "zh": "固定步長 $\\eta &lt; 2/L$ 即可收斂到精確極小值",
+    "en": "A fixed step size $\\eta &lt; 2/L$ is enough to converge to the exact minimum",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "64c5f4df7e55": {
+    "zh": "固定步長停留在 $\\mathcal{O}(\\eta)$ 極限環；需衰減步長以精準收斂",
+    "en": "A fixed step size stays in an $\\mathcal{O}(\\eta)$ limit cycle; a decaying step size is needed for exact convergence",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "67849ead914b": {
+    "zh": "\n    這份對比矩陣清晰展示了從傳統數值最佳化走向現代深度學習的哲學翻轉：<strong>「以統計雜訊換取計算時間，以隨機波動換取泛化能力」</strong>。\n    <span class=\"bilingual-en\">\n      The shift from Full-Batch GD to SGD represents a paradigm inversion: trading deterministic precision for extreme computational scalability, and using stochastic noise to escape sharp local minima.\n    </span>\n  ",
+    "en": "This comparison matrix clearly shows the philosophical reversal in going from traditional numerical optimization to modern deep learning: <strong>\"trade statistical noise for computation time, and random fluctuation for generalization ability\"</strong>.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "04a0d421f14e": {
+    "zh": "10 / 智慧結晶 · Master Laws of SGD",
+    "en": "10 / Distilled Wisdom",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cda8ee19f49a": {
+    "zh": "大師箴言：隨機梯度下降四大鐵律\n    <span class=\"en\">The Four Inviolable Laws of Stochastic Gradient Descent</span>\n  ",
+    "en": "The master's maxims: the four iron laws of stochastic gradient descent",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "31b6d61028f3": {
+    "zh": "一、貴正不如廉概律：便宜粗糙勝過昂貴完美",
+    "en": "Law 1, cheap beats exact: cheap and rough wins over expensive and perfect",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "dca6f62d417c": {
+    "zh": "花費巨大代價算一步精準全梯度，不如用相同算力走上萬步「大致對」的隨機步。在遠離最優點的早期階段，高頻率的粗糙更新推進速度呈指數級勝出。",
+    "en": "Rather than pay an enormous price to compute one step of the exact full gradient, use the same compute to take tens of thousands of \"roughly right\" random steps. In the early phase, far from the optimum, frequent rough updates win by an exponential margin in speed of progress.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6435e8944826": {
+    "zh": "二、無偏統計護航律：抽樣均勻則方向不迷航",
+    "en": "Law 2, the unbiased statistical escort: with uniform sampling, the direction never gets lost",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ac174a71aed9": {
+    "zh": "雖然單步隨機向量會偏斜，但只要抽樣獨立均勻，期望方向嚴格指向真實全梯度。大數法則與鞅論確保了長程路徑在統計上不會迷航。",
+    "en": "Although the random vector of a single step deviates, as long as the sampling is independent and uniform, the expected direction points exactly at the true full gradient. The law of large numbers and martingale theory ensure that the long-run path does not get lost, statistically speaking.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b8a836810e2e": {
+    "zh": "三、步長退火收斂律：衰減退火方能消弭遊走",
+    "en": "Law 3, annealed convergence: only an annealed, decaying step size ends the wandering",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "958641f7995e": {
+    "zh": "在最優點處，單樣本梯度永不為零。固定步長必然在最優點周圍 $\\mathcal{O}(\\eta)$ 鄰域震盪徘徊；唯有遵從 Robbins-Monro 條件逐漸降低步長，才能鎖定全域性極小。",
+    "en": "At the optimum, the single-sample gradient is never zero. A fixed step size is bound to oscillate and wander in an $\\mathcal{O}(\\eta)$ neighborhood of the optimum; only by lowering the step size gradually, following the Robbins-Monro conditions, can it lock onto the global minimum.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "929b26edf08d": {
+    "zh": "四、噪聲泛化雙刃律：隨機擾動是正則化神賜",
+    "en": "Law 4, the double edge of noise and generalization: random perturbation is a god-given regularizer",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4d32f91532ea": {
+    "zh": "單樣本的梯度雜訊不是瑕疵，而是神賜的隱式正則化！它像一把晃動的篩子，震出泛化差的尖銳坑洞，將模型沉澱到泛化能力卓越的平坦谷底。",
+    "en": "The gradient noise of single samples is not a flaw but a god-given implicit regularization! Like a shaking sieve, it shakes out the sharp pits that generalize poorly and lets the model settle onto flat valley floors with excellent generalization ability.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Hands-On Simulation",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c97774b6ff61": {
+    "zh": "互動探索實驗室：4 樣本二次函式單步 SGD vs 全梯度動態模擬器\n    <span class=\"en\">Interactive Lab: 4-Sample Quadratic SGD vs Full-Batch Gradient Simulator</span>\n  ",
+    "en": "Interactive exploration lab: a dynamic simulator of single-step SGD vs the full gradient on a 4-sample quadratic function",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0c35322187e7": {
+    "zh": "參數 w：",
+    "en": "Parameter w:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1273a45682a0": {
+    "zh": "步長 η：",
+    "en": "Step size η:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "39907a6e71e7": {
+    "zh": "樣本抽樣：",
+    "en": "Sample selection:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "36407149b533": {
+    "zh": "樣本 1 (c₁ = 1.0)",
+    "en": "Sample 1 (c₁ = 1.0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "402928aa530b": {
+    "zh": "樣本 2 (c₂ = 3.0)",
+    "en": "Sample 2 (c₂ = 3.0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "464016577295": {
+    "zh": "樣本 3 (c₃ = 5.0)",
+    "en": "Sample 3 (c₃ = 5.0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9e64b8f4f7bd": {
+    "zh": "樣本 4 (c₄ = 7.0)",
+    "en": "Sample 4 (c₄ = 7.0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "37f94715e765": {
+    "zh": "🎲 隨機抽樣 (Random)",
+    "en": "🎲 Random draw",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "15e506b31b75": {
+    "zh": "單步 SGD (Step SGD)",
+    "en": "One SGD step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0cab836d8bfd": {
+    "zh": "單步全梯度 (Step Full Batch)",
+    "en": "One full-gradient step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9e175f1e5762": {
+    "zh": "基準重設 (Reset w=0)",
+    "en": "Reset (w=0)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e6588a0a00a7": {
+    "zh": "隨機 10 步 (Run 10)",
+    "en": "10 random steps",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "60e0b2d478e5": {
+    "zh": "實驗室設計架構與數值基準 (Mathematical Specifications)",
+    "en": "Lab design and numerical baseline (mathematical specifications)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1c13fc2061be": {
+    "zh": "\n        <strong>4 樣本二次目標函式：</strong> $f(w) = \\frac{1}{4} \\sum_{i=1}^4 f_i(w) = \\frac{1}{4} \\sum_{i=1}^4 \\frac{1}{2}(w - c_i)^2$，中心點分別為 $c = [1.0, 3.0, 5.0, 7.0]$。<br>\n        <strong>全域性平均與最優點：</strong> 中心平均 $\\bar{c} = \\frac{1+3+5+7}{4} = 4.0$。總目標函式為 $f(w) = \\frac{1}{2}(w - 4)^2 + 2.5$，全域性最優點嚴格位於 $w^* = 4.000$。<br>\n        <strong>單樣本梯度 vs 全梯度：</strong> 單樣本梯度 $\\nabla f_i(w) = w - c_i$；全梯度 $\\nabla f(w) = \\frac{1}{4} \\sum (w - c_i) = w - 4.0$。<br>\n        <strong>無偏期望檢驗：</strong> 4 筆樣本梯度之平均嚴格等於全梯度：$\\frac{1}{4}\\sum_{i=1}^4 (w - c_i) = w - 4 = \\nabla f(w)$。<br>\n        <strong>黃金基準檢驗：</strong> 重設後 $w = 0.000$，全梯度為 $\\nabla f(0) = -4.0$。全梯度一步更新後新位置為：<br>\n        $$ w^{(1)} = w^{(0)} - \\eta \\nabla f(0) = 0 - \\eta (-4.0) = \\eta \\cdot 4.0 $$\n        當預設步長 $\\eta = 0.250$ 時，全梯度一步恰好到達 $w = 0.25 \\times 4.0 = 1.000$！\n      ",
+    "en": "<strong>4-sample quadratic objective:</strong> $f(w) = \\frac{1}{4} \\sum_{i=1}^4 f_i(w) = \\frac{1}{4} \\sum_{i=1}^4 \\frac{1}{2}(w - c_i)^2$, with centers $c = [1.0, 3.0, 5.0, 7.0]$.<br> <strong>Global average and optimum:</strong> the mean of the centers is $\\bar{c} = \\frac{1+3+5+7}{4} = 4.0$. The overall objective is $f(w) = \\frac{1}{2}(w - 4)^2 + 2.5$, and the global optimum lies exactly at $w^* = 4.000$.<br> <strong>Single-sample gradient vs full gradient:</strong> the single-sample gradient is $\\nabla f_i(w) = w - c_i$; the full gradient is $\\nabla f(w) = \\frac{1}{4} \\sum (w - c_i) = w - 4.0$.<br> <strong>Unbiased expectation check:</strong> the average of the 4 sample gradients equals the full gradient exactly: $\\frac{1}{4}\\sum_{i=1}^4 (w - c_i) = w - 4 = \\nabla f(w)$.<br> <strong>Golden baseline check:</strong> after a reset, $w = 0.000$ and the full gradient is $\\nabla f(0) = -4.0$. After one full-gradient update, the new position is:<br> $$ w^{(1)} = w^{(0)} - \\eta \\nabla f(0) = 0 - \\eta (-4.0) = \\eta \\cdot 4.0 $$ With the default step size $\\eta = 0.250$, one full-gradient step lands exactly on $w = 0.25 \\times 4.0 = 1.000$!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9a63cee739af": {
+    "zh": "12 / 實戰檢驗 · Concept Checkpoint",
+    "en": "12 / Put It to the Test",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-class checkpoint: instant feedback on the concepts",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "caaa871ab29a": {
+    "zh": "題目 1：在機器學習經驗風險最小化式 (20) 中，總目標損失函式 $f(\\boldsymbol{w})$ 是如何精確定義的？",
+    "en": "Question 1: In the empirical risk minimization of Eq. (20) in machine learning, how exactly is the overall objective loss function $f(\\boldsymbol{w})$ defined?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "652ae3be76d6": {
+    "zh": "A. 單一樣本的 loss 值",
+    "en": "A. The loss value of a single sample",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c4c585ae1dbd": {
+    "zh": "B. 全部 $n$ 個樣本損失 $f_i(\\boldsymbol{w})$ 的算術平均值",
+    "en": "B. The arithmetic mean of the losses $f_i(\\boldsymbol{w})$ of all $n$ samples",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fa6dca2476c8": {
+    "zh": "C. 全部 $n$ 個樣本 loss 中的最大值（Max-margin）",
+    "en": "C. The maximum of the losses of all $n$ samples (max-margin)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "40983cb1d6b5": {
+    "zh": "D. 完全不包含資料項的純權重正則化項",
+    "en": "D. A pure weight regularization term containing no data term at all",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1ed2cda35214": {
+    "zh": "題目 2：SGD 隨機梯度下降更新式 (22) 與傳統 Full-batch 全資料梯度更新的最本質關鍵差異是？",
+    "en": "Question 2: What is the most essential difference between the SGD update of Eq. (22) and the traditional full-batch gradient update over all the data?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6e0618b03e7d": {
+    "zh": "A. SGD 每步僅隨機抽取單一樣本，用單樣本梯度 $\\nabla f_i$ 近似取代全體平均梯度 $\\nabla f$",
+    "en": "A. At each step SGD randomly draws just one sample and uses the single-sample gradient $\\nabla f_i$ to approximate, in place of, the average gradient over all the data $\\nabla f$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "733a133adbea": {
+    "zh": "B. SGD 完全不需要計算任何梯度，屬於無導數最佳化演算法",
+    "en": "B. SGD needs no gradient at all; it is a derivative-free optimization algorithm",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "061af38c79b8": {
+    "zh": "C. SGD 在單步前進的幾何距離上一定比全梯度收斂更快且毫無振盪",
+    "en": "C. In geometric distance covered per step, SGD always converges faster than the full gradient, with no oscillation at all",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4186dcd91db3": {
+    "zh": "D. SGD 每步更新之前必須先掃描完整個資料集以計算變異數",
+    "en": "D. Before every update, SGD must first scan the whole dataset to compute the variance",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "eff07ed86944": {
+    "zh": "題目 3：下列何者是教材與經典理論中明確提及且滿足 Robbins-Monro 條件的自適應學習率衰減排程（Schedule）？",
+    "en": "Question 3: Which of the following is an adaptive learning-rate decay schedule that is explicitly mentioned in the textbook and classical theory and satisfies the Robbins-Monro conditions?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "bbf7f21c8d1c": {
+    "zh": "A. 反比衰減排程：$\\eta^{(k)} = 1/k$",
+    "en": "A. Inverse decay schedule: $\\eta^{(k)} = 1/k$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f3204bca3c40": {
+    "zh": "B. 二次爆炸排程：$\\eta^{(k)} = k^2$",
+    "en": "B. Quadratic explosion schedule: $\\eta^{(k)} = k^2$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "cd34ea9cf658": {
+    "zh": "C. 對數增長排程：$\\eta^{(k)} = \\log k$",
+    "en": "C. Logarithmic growth schedule: $\\eta^{(k)} = \\log k$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e3b93dcca3d2": {
+    "zh": "D. 實務上只有固定步長 $\\eta$，沒有任何其他排程",
+    "en": "D. In practice there is only the fixed step size $\\eta$, with no other schedule",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9abc9441fd6c": {
+    "zh": "題目 4：式 (21) 的 Full-batch 全資料梯度計算成本，隨著訓練資料總筆數 $n$ 的增加將如何急劇變化？",
+    "en": "Question 4: How does the cost of computing the full-batch gradient of Eq. (21) change, sharply, as the total number of training data points $n$ grows?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f1950bb1995a": {
+    "zh": "A. 每更新一步必須對全部 $n$ 筆資料執行前向反向傳播並求和，時間複雜度為 $O(n)$",
+    "en": "A. Every update requires a forward and backward pass over all $n$ data points plus a sum, so the time complexity is $O(n)$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4ec42c219a9b": {
+    "zh": "B. 計算成本與資料集規模 $n$ 完全無關，始終保持 $O(1)$ 常數時間",
+    "en": "B. The cost has nothing to do with the dataset size $n$ and always stays at constant time $O(1)$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ab6a2648e63b": {
+    "zh": "C. 每步無論資料量多大，都只需要計算一筆樣本的導數即可",
+    "en": "C. No matter how much data there is, each step only needs the derivative of one sample",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "cba107ee8c66": {
+    "zh": "D. 只需計算模型輸出層權重的導數，中間隱藏層成本為零",
+    "en": "D. Only the derivatives of the output-layer weights are needed; the hidden layers cost nothing",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  }
+}

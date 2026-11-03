@@ -1,0 +1,1175 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "命題 2 式 (31) 保證全梯度下降誤差上界為": "Eq. (31) of Proposition 2 guarantees that the error upper bound of full gradient descent is",
+      "，當": ", and as",
+      "時上界嚴格趨近於 0，能精確收斂到最優解": "the bound strictly tends to 0, so it converges exactly to the optimum",
+      "命題 2 式 (31) 保證全梯度下降誤差上界為 $\\mathcal{O}(1/t)$，當 $t \\to \\infty$ 時上界嚴格趨近於 0，能精確收斂到最優解 $f^*$。": "Eq. (31) of Proposition 2 guarantees that the error upper bound of full gradient descent is $\\mathcal{O}(1/t)$, and as $t \\to \\infty$ the bound strictly tends to 0, so it converges exactly to the optimum $f^*$.",
+      "命題 3 式 (34) 與 (36) 揭示固定步長下誤差包含": "Eqs. (34) and (36) of Proposition 3 reveal that with a fixed step size the error contains an",
+      "常數項，當": "constant term; as",
+      "後誤差下限即為": "the error floor becomes",
+      "，永遠在最優點鄰域內震盪停滯。": ", so it oscillates and stagnates in a neighborhood of the optimum forever.",
+      "命題 3 式 (34) 與 (36) 揭示固定步長下誤差包含 $\\mathcal{O}(\\eta)$ 常數項，當 $t \\to \\infty$ 後誤差下限即為 $\\mathcal{O}(\\eta)$，永遠在最優點鄰域內震盪停滯。": "Eqs. (34) and (36) of Proposition 3 reveal that with a fixed step size the error contains an $\\mathcal{O}(\\eta)$ constant term; as $t \\to \\infty$ the error floor becomes $\\mathcal{O}(\\eta)$, so it oscillates and stagnates in a neighborhood of the optimum forever.",
+      "採用遞減步長（如": "Using a diminishing step size (such as",
+      "或": "or",
+      "，滿足 Robbins-Monro 條件）能隨迭代壓縮停滯帶，長期誤差才能趨近 0。": ", satisfying the Robbins-Monro conditions) compresses the stagnation band as the iterations go on; only then can the long-run error approach 0.",
+      "採用遞減步長（如 $\\eta^{(\\tau)}=1/\\tau$ 或 $1/\\sqrt{\\tau}$，滿足 Robbins-Monro 條件）能隨迭代壓縮停滯帶，長期誤差才能趨近 0。": "Using a diminishing step size (such as $\\eta^{(\\tau)}=1/\\tau$ or $1/\\sqrt{\\tau}$, satisfying the Robbins-Monro conditions) compresses the stagnation band as the iterations go on; only then can the long-run error approach 0.",
+      "全梯度每步計算需遍歷全體": "Each full-gradient step must sweep all",
+      "筆樣本（": "samples (",
+      "），而 SGD 每步僅計算一個或一小批樣本（": "), whereas each SGD step computes only one sample or a small batch (",
+      "），計算成本極低，大幅加速迭代頻率。": "), so the computational cost is very low and the iteration rate is greatly increased.",
+      "全梯度每步計算需遍歷全體 $n$ 筆樣本（$\\mathcal{O}(n)$），而 SGD 每步僅計算一個或一小批樣本（$\\mathcal{O}(B)$），計算成本極低，大幅加速迭代頻率。": "Each full-gradient step must sweep all $n$ samples ($\\mathcal{O}(n)$), whereas each SGD step computes only one sample or a small batch ($\\mathcal{O}(B)$), so the computational cost is very low and the iteration rate is greatly increased.",
+      "迭代次數 t": "Iteration t",
+      "y = 0 精確最優 f*": "y = 0 exact optimum f*",
+      "停滯帶 O(η)": "Stagnation band O(η)",
+      "壓縮中停滯帶 O(η_t) ↓": "Shrinking band O(η_t) ↓",
+      "當前最佳化模式：": "Current optimization mode:",
+      "當前迭代步數 t：": "Current iteration t:",
+      "當前有效步長 η_t：": "Current effective step size η_t:",
+      "參數值 w_t：": "Parameter value w_t:",
+      "理論停滯帶界限 O(η_t)：": "Theoretical stagnation-band bound O(η_t):",
+      "累計計算樣本數：": "Cumulative samples computed:",
+      "收斂動態判定：": "Convergence dynamics verdict:",
+      "固定步長 SGD (Fixed Step Size)": "Fixed-step SGD (Fixed Step Size)",
+      "衰減步長 SGD (η_0 / √t)": "Diminishing-step SGD (η_0 / √t)",
+      "衰減步長 SGD (η_0 / t)": "Diminishing-step SGD (η_0 / t)",
+      "全梯度下降 (Full GD)": "Full gradient descent (full GD)",
+      "✅ 全梯度精確收斂：誤差已貼齊 y=0 (O(1/t))": "✅ Full gradient converges exactly: the error has reached y=0 (O(1/t))",
+      "🏃 全梯度單調平滑下降中 (O(1/t) 單調貼零)": "🏃 Full gradient descending smoothly and monotonically (O(1/t), monotonically toward zero)",
+      "🔒 陷入 O(η) 停滯帶：在殘差帶內永無止境震盪，無法歸零": "🔒 Stuck in the O(η) stagnation band: oscillating endlessly inside the residual band, unable to reach zero",
+      "📉 早期高速陡降階段 (尚未觸及噪聲停滯帶)": "📉 Early steep-descent phase (noise stagnation band not reached yet)",
+      "🎯 壓扁帶子生效：步長衰減壓縮噪聲，逼近零度": "🎯 Band flattening takes effect: the decaying step size compresses the noise, approaching zero",
+      "⚡ 步長衰減中：帶子持續被壓扁，強迫隨機軌跡下潛": "⚡ Step size decaying: the band keeps getting flattened, forcing the random trajectory down"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^(\\d+) \\(全量\\)$",
+        "en": "$1 (full dataset)"
+      },
+      {
+        "re": "^(\\d+) \\(極輕量\\)$",
+        "en": "$1 (very lightweight)"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "7043b03ede1d": {
+    "zh": "KP09 · 索引",
+    "en": "KP09 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "819bf65200bc": {
+    "zh": "<a href=\"#q1\">核心提問 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a7f76b424904": {
+    "zh": "<a href=\"#why-convergence-analysis\">核心動機 · Why Analyze</a>",
+    "en": "<a href=\"#why-convergence-analysis\">Core Motivation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "00e9d33237ba": {
+    "zh": "<a href=\"#proposition2-full-gradient\">命題 2 全梯度 · Proposition 2</a>",
+    "en": "<a href=\"#proposition2-full-gradient\">Proposition 2: Full Gradient</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d4bd13c716fc": {
+    "zh": "<a href=\"#proposition3-sgd-limits\">命題 3 隨機上界 · Proposition 3</a>",
+    "en": "<a href=\"#proposition3-sgd-limits\">Proposition 3: Stochastic Bound</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "41be6e8d11e9": {
+    "zh": "<a href=\"#stagnation-phenomenon\">停滯現象解析 · Stagnation</a>",
+    "en": "<a href=\"#stagnation-phenomenon\">The Stagnation Phenomenon</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9d26b300840f": {
+    "zh": "<a href=\"#stagnation-visual\">停滯帶圖解 · Visual Band</a>",
+    "en": "<a href=\"#stagnation-visual\">The Stagnation Band, Illustrated</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1ab08cae012d": {
+    "zh": "<a href=\"#flattening-the-band\">壓扁帶子 · Step Decay</a>",
+    "en": "<a href=\"#flattening-the-band\">Flattening the Band</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b8ad1a4cb3e4": {
+    "zh": "<a href=\"#cost-accuracy-tradeoff\">精度 vs 算力 · Cost Tradeoff</a>",
+    "en": "<a href=\"#cost-accuracy-tradeoff\">Accuracy vs Compute</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3058fffb766b": {
+    "zh": "<a href=\"#stopping-and-monitoring\">收斂檢查困境 · Monitoring</a>",
+    "en": "<a href=\"#stopping-and-monitoring\">The Convergence-Check Dilemma</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ff7642861e07": {
+    "zh": "<a href=\"#comparison\">全方位矩陣 · Comparison</a>",
+    "en": "<a href=\"#comparison\">All-Round Matrix</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d30923403310": {
+    "zh": "<a href=\"#quiz\">隨堂評測 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">In-Class Assessment</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4bebc1d35cea": {
+    "zh": "SGD 收斂分析：全梯度 vs 隨機梯度\n      <span class=\"hero-title-en\">SGD Convergence Analysis: Full Gradient Monotonic $\\mathcal{O}(1/t)$ vs Fixed SGD Stagnation Band $\\mathcal{O}(\\eta)$</span>\n    ",
+    "en": "SGD Convergence Analysis: Full Gradient vs Stochastic Gradient",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "067d431af467": {
+    "zh": "\n      全梯度下降以 $\\mathcal{O}(1/t)$ 漸進到達精確最小值，固定步長 SGD 卻在最優點附近一個 $\\mathcal{O}(\\eta)$ 鄰域內永遠停滯漫步。透視命題 2 與命題 3、壓扁噪聲帶的遞減步長（$1/t$ 與 $1/\\sqrt{t}$），以及深度學習欣然接受殘差的精度 vs 算力大取捨。\n    ",
+    "en": "Full gradient descent approaches the exact minimum asymptotically at $\\mathcal{O}(1/t)$, while fixed-step SGD stagnates forever, wandering in an $\\mathcal{O}(\\eta)$ neighborhood around the optimum. A close look at Propositions 2 and 3, at the diminishing step sizes ($1/t$ and $1/\\sqrt{t}$) that flatten the noise band, and at the great accuracy-vs-compute tradeoff in which deep learning happily accepts the residual.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "01e774d687a9": {
+    "zh": "\n      「SGD 每次都在前進，為何永遠到不了最優解？」\n      <small>全梯度下降保證 $\\mathcal{O}(1/t) \\to 0$ 精確登頂，固定步長 SGD 卻受困於 $\\mathcal{O}(\\eta)$ 停滯帶無法自拔——深度學習為何欣然擁抱這份「不精確」？<br>\n        <span class=\"bilingual-en-inline\">SGD keeps taking active steps, yet never reaches the exact optimum—why does fixed-rate SGD stagnate in an O(η) band, and why does deep learning willingly embrace it?</span>\n      </small>\n    ",
+    "en": "“SGD moves forward at every step, so why does it never reach the optimum?” <small>Full gradient descent is guaranteed to reach the summit exactly, $\\mathcal{O}(1/t) \\to 0$, while fixed-step SGD is stuck in an $\\mathcal{O}(\\eta)$ stagnation band it can never escape. Why does deep learning happily embrace this “imprecision”?<br></small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "49bb264dccd1": {
+    "zh": "02 / 核心動機 · Why Convergence Analysis",
+    "en": "02 / Core Motivation · Why Convergence Analysis",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "05717150cea9": {
+    "zh": "為什麼要分析收斂率：精度 vs 算力的底層邏輯\n    <span class=\"en\">Why Convergence Analysis: The Foundational Tradeoff Between Numerical Accuracy and Computational Budget</span>\n  ",
+    "en": "Why Analyze Convergence Rates: The Underlying Logic of Accuracy vs Compute",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0f49fc07bdec": {
+    "zh": "實務狂奔之後的理性拷問：它們到底收斂多快？",
+    "en": "A rational interrogation after the practical sprint: how fast do they actually converge?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "11a2db06e1d4": {
+    "zh": "前面我們介紹了 SGD 與 Mini-batch SGD 在實務中的巨大工程威力，但一個本質上的理論問題尚未回答：<strong>它們到底能收斂得多快？跟傳統的全梯度下降（Full Gradient Descent）在本質上有何不同？</strong>",
+    "en": "Earlier we introduced the enormous engineering power of SGD and mini-batch SGD in practice, but one fundamental theoretical question remains unanswered: <strong>how fast can they actually converge? And how do they differ in essence from traditional full gradient descent?</strong>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2308709d99c2": {
+    "zh": "本節藉由統計最佳化領域的<strong>命題 2（全梯度收斂性）</strong>與<strong>命題 3（隨機梯度收斂性）</strong>，將兩者的誤差上界並排比較，嚴格揭示固定學習率下 SGD 的「<strong>停滯現象（Stagnation Phenomenon）</strong>」，並為深度學習的學習率排程與工程折衷提供堅實的理論基石。",
+    "en": "Using <strong>Proposition 2 (convergence of the full gradient)</strong> and <strong>Proposition 3 (convergence of the stochastic gradient)</strong> from statistical optimization, this section compares the error upper bounds of the two side by side, rigorously reveals the “<strong>stagnation phenomenon</strong>” of SGD under a fixed learning rate, and provides a solid theoretical foundation for learning-rate scheduling and engineering tradeoffs in deep learning.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "feb035eca8dd": {
+    "zh": "1. 迭代次數的可預測性",
+    "en": "1. Predictability of the iteration count",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9dcaee01157e": {
+    "zh": "若要讓損失差距 $f(\\boldsymbol{w}) - f^* \\le \\epsilon$，全梯度下降需要多少步？SGD 又需要多少步？收斂率直接決定了訓練時間的理論下界。",
+    "en": "To make the loss gap $f(\\boldsymbol{w}) - f^* \\le \\epsilon$, how many steps does full gradient descent need? And how many does SGD need? The convergence rate directly determines the theoretical lower bound on training time.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "429aa976a3fc": {
+    "zh": "2. 漸進極限的本質分歧",
+    "en": "2. A fundamental split in the asymptotic limit",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e48f0da0c1f7": {
+    "zh": "當迭代次數 $t \\to \\infty$ 時，全梯度下降能到達精確的最優解 $f^*$；而固定步長的 SGD 卻存在一個「無法抹除」的長存誤差下限。",
+    "en": "As the number of iterations $t \\to \\infty$, full gradient descent can reach the exact optimum $f^*$, whereas fixed-step SGD has a persistent error floor that “cannot be erased”.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5b686dc436f3": {
+    "zh": "3. 隨機噪聲的雙刃代價",
+    "en": "3. The double-edged cost of random noise",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1b7ffaff1865": {
+    "zh": "單樣本或小批次梯度雖然期望值無偏，但其梯度的非零方差（Variance）會像永不熄滅的隨機擾動，持續在極值點附近引發抖動。",
+    "en": "Although single-sample or mini-batch gradients are unbiased in expectation, the nonzero variance of these gradients acts like a random perturbation that never dies out, continually causing jitter near the extremum.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "018cb9862011": {
+    "zh": "4. 算力與精度的世紀天平",
+    "en": "4. The century-old balance of compute and accuracy",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5e934c154d9e": {
+    "zh": "在海量資料時代，深度學習為何寧願忍受 SGD 的理論停滯殘差，也不願採用精確無比的全梯度下降？答案全在每次迭代的計算代價之中。",
+    "en": "In the era of massive data, why does deep learning prefer to put up with SGD's theoretical stagnation residual rather than use the supremely exact full gradient descent? The answer lies entirely in the computational cost of each iteration.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6f742a599f63": {
+    "zh": "03 / 經典基準 · Proposition 2 Full GD",
+    "en": "03 / The Classic Baseline · Proposition 2: Full GD",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "574c521ef064": {
+    "zh": "命題 2：全梯度下降 $\\mathcal{O}(1/t)$ 漸進到達 0 之確切保證\n    <span class=\"en\">Proposition 2: Exact Convergence of Full Gradient Descent with Asymptotic Zero Residual</span>\n  ",
+    "en": "Proposition 2: The Exact Guarantee That Full Gradient Descent Approaches 0 at $\\mathcal{O}(1/t)$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3ecf61d01134": {
+    "zh": "命題 2：光滑凸函式下全梯度下降的收斂上界（式 (31)）",
+    "en": "Proposition 2: Convergence upper bound of full gradient descent for smooth convex functions (Eq. (31))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "04fdf81d49c1": {
+    "zh": "考慮凸且可微的目標函式 $f(\\cdot)$，假設其梯度滿足 $L$-Lipschitz 連續（即 $L$-smooth：$\\|\\nabla f(\\boldsymbol{x}) - \\nabla f(\\boldsymbol{y})\\|_2 \\leq L \\|\\boldsymbol{x} - \\boldsymbol{y}\\|_2$）。設 $f^*$ 為全域最小值、$\\boldsymbol{w}^*$ 為對應的最優參數點。從初始點 $\\boldsymbol{w}^{(0)}$ 出發，採用適當步長 $\\eta \\leq 1/L$ 經 $t$ 次全梯度迭代後（式 (31)）：",
+    "en": "Consider a convex, differentiable objective function $f(\\cdot)$ whose gradient is assumed to be $L$-Lipschitz continuous (i.e., $L$-smooth: $\\|\\nabla f(\\boldsymbol{x}) - \\nabla f(\\boldsymbol{y})\\|_2 \\leq L \\|\\boldsymbol{x} - \\boldsymbol{y}\\|_2$). Let $f^*$ be the global minimum and $\\boldsymbol{w}^*$ the corresponding optimal parameter point. Starting from the initial point $\\boldsymbol{w}^{(0)}$ and using a suitable step size $\\eta \\leq 1/L$, after $t$ full-gradient iterations (Eq. (31)):",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4fef3a285e9d": {
+    "zh": "<strong>核心重點：</strong>當迭代次數 $t \\rightarrow \\infty$ 時，分母 $t+1 \\to \\infty$，使得誤差上界嚴格趨近於 0——<strong>全梯度下降能精確收斂到最優解！</strong>",
+    "en": "<strong>Key point:</strong> as the number of iterations $t \\rightarrow \\infty$, the denominator $t+1 \\to \\infty$, so the error upper bound goes strictly to 0. <strong>Full gradient descent converges exactly to the optimum!</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "62dd389553b8": {
+    "zh": "\n    式 (31) 確立了傳統凸最佳化的黃金準則。全梯度下降在每一步都計算了全體資料集 $n$ 個樣本的合力方向，方向完全確定且無任何隨機性。伴隨著步數累積，損失差距以 $\\mathcal{O}(1/t)$ 的速率單調遞減，直到精確抵達理論零誤差。\n    <span class=\"bilingual-en\">Under L-smoothness and convexity, full gradient descent evaluates the true gradient across all n training samples. This deterministic direction guarantees monotonic decay with an O(1/t) bound that asymptotically vanishes to zero as t approaches infinity.</span>\n  ",
+    "en": "Eq. (31) establishes the golden rule of traditional convex optimization. At every step, full gradient descent computes the combined direction over all $n$ samples of the dataset; the direction is completely determined, with no randomness at all. As steps accumulate, the loss gap decreases monotonically at a rate of $\\mathcal{O}(1/t)$ until it reaches exactly the theoretical zero error.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ff6df3e895f6": {
+    "zh": "04 / 隨機約束 · Proposition 3 SGD Bounds",
+    "en": "04 / Stochastic Constraints · Proposition 3: SGD Bounds",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "814bb90eca48": {
+    "zh": "命題 3：SGD 隨機梯度的收斂率（取決於步長）\n    <span class=\"en\">Proposition 3: Convergence Rate of Stochastic Gradient Descent Depends on Step-Size Schedule</span>\n  ",
+    "en": "Proposition 3: The Convergence Rate of SGD (Depends on the Step Size)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4f4a0f7a7dd6": {
+    "zh": "命題 3：隨機梯度有界方差下的誤差上界分解",
+    "en": "Proposition 3: Decomposition of the error upper bound for stochastic gradients with bounded variance",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9bce2a8dfc1b": {
+    "zh": "設目標函式可拆解為 $n$ 筆樣本損失之和：$f(\\boldsymbol{w})=\\sum_{i=1}^{n} f_{i}(\\boldsymbol{w})$ 且有下界。假設各樣本函式 $f_i$ 皆可微、梯度為 $L$-smooth，且對某常數 $\\beta &gt; 0$，隨機梯度的二階矩條件有界：",
+    "en": "Suppose the objective function can be decomposed into the sum of $n$ per-sample losses, $f(\\boldsymbol{w})=\\sum_{i=1}^{n} f_{i}(\\boldsymbol{w})$, and is bounded below. Assume each per-sample function $f_i$ is differentiable with an $L$-smooth gradient, and that for some constant $\\beta &gt; 0$ the second-moment condition on the stochastic gradient is bounded:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "38f309f385e5": {
+    "zh": "SGD 的收斂行為完全取決於步長序列 $\\eta^{(\\tau)}$ 的選擇。若各 $f_i$ 額外滿足 $\\mu$-強凸（$\\mu$-strongly convex），在固定步長 $\\eta^{(\\tau)} = \\eta$ 下，其收斂上界可表述為（式 (34) 與式 (36)）：",
+    "en": "The convergence behavior of SGD depends entirely on the choice of the step-size sequence $\\eta^{(\\tau)}$. If each $f_i$ is additionally $\\mu$-strongly convex, then with a fixed step size $\\eta^{(\\tau)} = \\eta$, its convergence upper bound can be written as (Eqs. (34) and (36)):",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ac066f0eeeda": {
+    "zh": "第一項：瞬態衰減項 $\\mathcal{O}(1/t)$",
+    "en": "First term: the transient decay term $\\mathcal{O}(1/t)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6e15c5f53868": {
+    "zh": "與全梯度下降相似，代表初始階段模型從遙遠的出發點向最優區域前進的速度。隨著 $t$ 增大，這部分誤差會逐漸消散。",
+    "en": "Similar to full gradient descent, it represents how fast the model moves from a distant starting point toward the optimal region in the initial phase. As $t$ grows, this part of the error gradually dissipates.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8abc4896032f": {
+    "zh": "第二項：長存常數項 $\\mathcal{O}(\\eta)$",
+    "en": "Second term: the persistent constant term $\\mathcal{O}(\\eta)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d91d797ca8ae": {
+    "zh": "關鍵的分歧點！此項與迭代次數 $t$ 完全無關，大小僅由學習率 $\\eta$ 與梯度方差 $\\beta^2$ 決定。只要步長固定，這筆誤差永遠不會消失！",
+    "en": "The key point of divergence! This term is completely independent of the number of iterations $t$; its size is determined only by the learning rate $\\eta$ and the gradient variance $\\beta^2$. As long as the step size is fixed, this error never disappears!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a22d0b29abb0": {
+    "zh": "05 / 核心洞察 · The Stagnation Phenomenon",
+    "en": "05 / Core Insight · The Stagnation Phenomenon",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7914ac6aab0b": {
+    "zh": "固定步長下的停滯現象：極限 $t \\to \\infty$ 的 $\\mathcal{O}(\\eta)$ 震盪鄰域\n    <span class=\"en\">The Stagnation Phenomenon: Asymptotic Limits under Fixed Step Sizes and the Persistent O(η) Neighborhood</span>\n  ",
+    "en": "The Stagnation Phenomenon under a Fixed Step Size: The $\\mathcal{O}(\\eta)$ Oscillation Neighborhood in the Limit $t \\to \\infty$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d642048a027b": {
+    "zh": "極限對比：精確歸零 vs 永遠停滯",
+    "en": "Limits compared: exactly zero vs stagnating forever",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e9d17b038936": {
+    "zh": "將 $t \\to \\infty$ 的極限同時施加於命題 2 與命題 3，便能清楚看見兩種最佳化正規化的分水嶺：",
+    "en": "Applying the limit $t \\to \\infty$ to both Proposition 2 and Proposition 3 clearly shows the watershed between the two optimization paradigms:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f1d6f4d4b329": {
+    "zh": "\n      <strong>固定步長 SGD 的漸進極限（式 (34) &amp; (36)）：</strong><br>\n      $$ \\lim _{t \\rightarrow \\infty} \\mathbb{E}\\left[f\\left(\\boldsymbol{w}^{(t+1)}\\right)-f^{*}\\right] \\leq \\lim _{t \\rightarrow \\infty} \\mathcal{O}\\left(\\frac{1}{t}+\\eta\\right)=\\mathcal{O}(\\eta) $$\n      <strong>全梯度下降的漸進極限（式 (31)）：</strong><br>\n      $$ \\lim _{t \\rightarrow \\infty} f\\left(\\boldsymbol{w}^{(t+1)}\\right)-f^{*} \\leq \\lim _{t \\rightarrow \\infty} \\mathcal{O}\\left(\\frac{1}{t}\\right)=0 $$\n    ",
+    "en": "<strong>Asymptotic limit of fixed-step SGD (Eqs. (34) &amp; (36)):</strong><br>\n      $$ \\lim _{t \\rightarrow \\infty} \\mathbb{E}\\left[f\\left(\\boldsymbol{w}^{(t+1)}\\right)-f^{*}\\right] \\leq \\lim _{t \\rightarrow \\infty} \\mathcal{O}\\left(\\frac{1}{t}+\\eta\\right)=\\mathcal{O}(\\eta) $$\n      <strong>Asymptotic limit of full gradient descent (Eq. (31)):</strong><br>\n      $$ \\lim _{t \\rightarrow \\infty} f\\left(\\boldsymbol{w}^{(t+1)}\\right)-f^{*} \\leq \\lim _{t \\rightarrow \\infty} \\mathcal{O}\\left(\\frac{1}{t}\\right)=0 $$",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "04380c3c136e": {
+    "zh": "也就是說：<strong>固定步長 SGD 永遠無法精確到達最優解！</strong> 它會在最優點附近一個大小為 $\\mathcal{O}(\\eta)$ 的鄰域內<strong>停滯（stagnate）</strong>並終身來回震盪。步長 $\\eta$ 越大，停滯帶越厚；步長越小，停滯帶越薄，但前期收斂越慢。",
+    "en": "In other words: <strong>fixed-step SGD can never reach the optimum exactly!</strong> It will <strong>stagnate</strong> in a neighborhood of size $\\mathcal{O}(\\eta)$ around the optimum and oscillate back and forth there for the rest of its life. The larger the step size $\\eta$, the thicker the stagnation band; the smaller the step size, the thinner the band, but the slower the early convergence.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e72c973aab5f": {
+    "zh": "\n    為什麼會發生停滯？因為每一步只抽樣一個（或一小批）資料，計算出的隨機梯度 $\\nabla f_i(\\boldsymbol{w})$ 雖然在期望值上等於真實梯度 $\\nabla f(\\boldsymbol{w})$，但當參數逼近最優點 $\\boldsymbol{w}^*$ 時，真實梯度 $\\|\\nabla f(\\boldsymbol{w})\\| \\to 0$，而單樣本梯度範數卻因為個體差異依然保持在 $\\beta^2$ 水平。固定步長 $\\eta$ 無法消除這份隨機噪聲，直接將其放大成參數空間中的布朗運動，形成永不消逝的停滯震盪帶。\n    <span class=\"bilingual-en\">Why stagnation happens: Near the optimal point, the true gradient vanishes to zero, but the stochastic gradient retains non-zero variance beta squared. With a fixed step size eta, this persistent noise propels the parameter into a permanent random walk inside an O(eta) neighborhood.</span>\n  ",
+    "en": "Why does stagnation happen? Because each step samples only one data point (or a small batch), the computed stochastic gradient $\\nabla f_i(\\boldsymbol{w})$ equals the true gradient $\\nabla f(\\boldsymbol{w})$ in expectation, but as the parameters approach the optimum $\\boldsymbol{w}^*$, the true gradient $\\|\\nabla f(\\boldsymbol{w})\\| \\to 0$, while the single-sample gradient norm stays at the $\\beta^2$ level because of individual differences between samples. A fixed step size $\\eta$ cannot eliminate this random noise; it amplifies it directly into a Brownian motion in parameter space, forming a stagnation oscillation band that never goes away.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "37bdd121b8e1": {
+    "zh": "06 / 視覺透視 · Visualizing Stagnation Band",
+    "en": "06 / Visual Insight · Visualizing the Stagnation Band",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4c198c6d1a2f": {
+    "zh": "停滯帶圖解：全梯度 vs 隨機梯度軌跡與極限對比\n    <span class=\"en\">Visualizing the Stagnation Band: Full Gradient Monotonic Descent vs Fixed-Step SGD Trapping</span>\n  ",
+    "en": "The Stagnation Band, Illustrated: Full-Gradient vs Stochastic-Gradient Trajectories and Their Limits",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7b29b9a1c09d": {
+    "zh": "全梯度 vs 隨機梯度：固定步長停滯帶 O(η) 與漸進極限",
+    "en": "Full vs stochastic gradient: fixed-step stagnation band O(η) and asymptotic limits",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "cbcda7a607e8": {
+    "zh": "迭代次數 Iteration t",
+    "en": "Iteration t",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "72eca90a9053": {
+    "zh": "誤差差距 Loss-Gap f(w) − f*",
+    "en": "Loss gap f(w) − f*",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "b32ee294f9a4": {
+    "zh": "y = 0 精確最小 (Exact Minimum f*)",
+    "en": "y = 0 exact minimum f*",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "61984ac78a80": {
+    "zh": "停滯帶 O(η)",
+    "en": "Stagnation band O(η)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "f0fde1470316": {
+    "zh": "(厚度取決於步長 η)",
+    "en": "(thickness set by step size η)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "ffc5cda224ed": {
+    "zh": "全梯度 GD: 誤差 O(1/t)",
+    "en": "Full GD: error O(1/t)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "0ab0d16b4314": {
+    "zh": "t → ∞ 精確收斂至 0",
+    "en": "t → ∞: converges exactly to 0",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "fb9d9531a3d4": {
+    "zh": "一進帶子就出不去！",
+    "en": "Once in the band, no way out!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "d2b0e6ef5642": {
+    "zh": "殘差下限 = O(η) 永無止境震盪",
+    "en": "Residual floor = O(η), endless oscillation",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "a0011c0255a0": {
+    "zh": "\n          💡 關鍵破局：遞減步長（η_t = 1/t 或 1/√t）會隨迭代將帶子「壓扁」，長期誤差才能漸進趨近 0！\n        ",
+    "en": "💡 The breakthrough: a diminishing step size (η_t = 1/t or 1/√t) “flattens” the band over the iterations, so the long-run error can approach 0!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "1920ac5f08a5": {
+    "zh": "圖 3.9：全梯度單調收斂 vs 固定步長 SGD 停滯帶 O(η) 幾何軌跡對比",
+    "en": "Figure 3.9: Geometric trajectories compared: full gradient's monotonic convergence vs fixed-step SGD's stagnation band O(η)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5fbbb84cea3d": {
+    "zh": "反直覺因果鏈：為什麼看似一直在動，卻到不了最優？",
+    "en": "A counterintuitive causal chain: why does it seem to keep moving yet never reach the optimum?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ec7300697171": {
+    "zh": "\n        直覺上，只要最佳化器持續沿著負梯度方向邁步，且步長固定不變，總該能摸到最優谷底。然而，<strong>隨機性徹底顛覆了這個直覺</strong>：\n      ",
+    "en": "Intuitively, as long as the optimizer keeps stepping along the negative gradient with a fixed step size, it should eventually touch the bottom of the optimal valley. However, <strong>randomness completely overturns this intuition</strong>:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2753f9b8a553": {
+    "zh": "<strong>每步抽樣的侷限：</strong>每次僅計算一個小批次，隨機梯度包含非零噪聲項 $\\boldsymbol{\\xi}_t$。",
+    "en": "<strong>The limitation of per-step sampling:</strong> each step computes only one small batch, so the stochastic gradient contains a nonzero noise term $\\boldsymbol{\\xi}_t$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "235ed4b9d4b9": {
+    "zh": "<strong>噪聲無法平均：</strong>固定步長 $\\eta$ 使隨機跳躍步幅維持在 $\\mathcal{O}(\\eta)$，即便已經身處谷底，也會被隨機噪聲一腳踹出！",
+    "en": "<strong>The noise cannot be averaged out:</strong> a fixed step size $\\eta$ keeps the random jumps at a stride of $\\mathcal{O}(\\eta)$, so even when it is already at the bottom of the valley, the random noise kicks it right out!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f54219d77689": {
+    "zh": "<strong>厚度由步長決定：</strong>停滯帶厚度完全正比於 $\\eta$。步長越大，在帶子內震盪的幅度越劇烈。",
+    "en": "<strong>The thickness is set by the step size:</strong> the thickness of the stagnation band is directly proportional to $\\eta$. The larger the step size, the more violent the oscillation inside the band.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8003cf6c9ec8": {
+    "zh": "<strong>破局唯一解：</strong>若想讓極限誤差真正抵達 0，必須在訓練後期將步長主動衰減，把帶子「壓扁」！",
+    "en": "<strong>The only way out:</strong> if you want the limiting error to truly reach 0, you must actively decay the step size late in training and “flatten” the band!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0998681ee559": {
+    "zh": "07 / 破局之道 · Flattening the Band",
+    "en": "07 / The Way Out · Flattening the Band",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c77df1141e5e": {
+    "zh": "壓扁帶子：遞減步長 $\\eta_t = 1/t$ 或 $1/\\sqrt{t}$ 如何壓縮噪聲帶換取收斂\n    <span class=\"en\">Flattening the Band: How Diminishing Step Sizes Compress Stochastic Noise for True Convergence</span>\n  ",
+    "en": "Flattening the Band: How Diminishing Step Sizes $\\eta_t = 1/t$ or $1/\\sqrt{t}$ Compress the Noise Band in Exchange for Convergence",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2bed14b52390": {
+    "zh": "將停滯帶壓扁為「收縮漏斗」的數學機制",
+    "en": "The mathematical mechanism that flattens the stagnation band into a “shrinking funnel”",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c694f5d28ced": {
+    "zh": "既然停滯帶的厚度是 $\\mathcal{O}(\\eta)$，那麼讓長期殘差趨近於 0 的直接思路，就是<strong>讓步長隨迭代次數 $t$ 動態衰減</strong>！經典文獻給出了兩組標準的衰減步長排程策略：",
+    "en": "Since the thickness of the stagnation band is $\\mathcal{O}(\\eta)$, the direct way to make the long-run residual approach 0 is to <strong>make the step size decay dynamically with the number of iterations $t$</strong>! The classic literature gives two standard decaying step-size schedules:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c1681e5753f2": {
+    "zh": "策略 A：$\\eta^{(\\tau)} = \\frac{\\eta_0}{\\tau}$（強衰減）",
+    "en": "Strategy A: $\\eta^{(\\tau)} = \\frac{\\eta_0}{\\tau}$ (strong decay)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "819747e58244": {
+    "zh": "\n          在強凸（Strongly Convex）目標函式下，步長以 $1/\\tau$ 遞減能讓 SGD 的 $1/t$ 項主導整體收斂，壓平噪聲帶，達成 $\\mathcal{O}(1/t)$ 的漸進收斂率，長期誤差精確趨近 0。\n        ",
+    "en": "For strongly convex objective functions, a step size decreasing as $1/\\tau$ lets SGD's $1/t$ term dominate the overall convergence, flattens the noise band, and achieves an asymptotic convergence rate of $\\mathcal{O}(1/t)$, with the long-run error going exactly to 0.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d6c694b8c213": {
+    "zh": "策略 B：$\\eta^{(\\tau)} = \\frac{\\eta_0}{\\sqrt{\\tau}}$（平緩衰減）",
+    "en": "Strategy B: $\\eta^{(\\tau)} = \\frac{\\eta_0}{\\sqrt{\\tau}}$ (gentle decay)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cf0f1ef91c87": {
+    "zh": "\n          在一般凸（Convex）且 Lipschitz 連續目標函式下，$1/\\sqrt{\\tau}$ 步長是最穩健的理論選擇，保證收斂率為 $\\mathcal{O}(1/\\sqrt{t})$，既不會過早凍結參數，又能將殘差帶壓縮至零。\n        ",
+    "en": "For general convex, Lipschitz-continuous objective functions, the $1/\\sqrt{\\tau}$ step size is the most robust theoretical choice; it guarantees a convergence rate of $\\mathcal{O}(1/\\sqrt{t})$, neither freezing the parameters too early nor failing to compress the residual band to zero.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bf9fddb2b273": {
+    "zh": "Robbins-Monro 隨機逼近兩大黃金條件（1951）",
+    "en": "The two golden conditions of Robbins-Monro stochastic approximation (1951)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "70b52eba22e6": {
+    "zh": "古典隨機逼近理論證明，遞減步長必須同時滿足「<strong>發散條件</strong>」與「<strong>平方收斂條件</strong>」：",
+    "en": "Classical stochastic approximation theory proves that a diminishing step size must satisfy both a “<strong>divergence condition</strong>” and a “<strong>square-summability condition</strong>”:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2babc96ee805": {
+    "zh": "$$ \\sum_{\\tau=1}^{\\infty} \\eta^{(\\tau)} = \\infty \\quad \\text{且} \\quad \\sum_{\\tau=1}^{\\infty} \\left(\\eta^{(\\tau)}\\right)^2 &lt; \\infty $$",
+    "en": "$$ \\sum_{\\tau=1}^{\\infty} \\eta^{(\\tau)} = \\infty \\quad \\text{and} \\quad \\sum_{\\tau=1}^{\\infty} \\left(\\eta^{(\\tau)}\\right)^2 &lt; \\infty $$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "870d2487713b": {
+    "zh": "\n      <strong>條件 1（$\\sum \\eta = \\infty$）：</strong>步長總和必須發散，確保模型有足夠的「續航力」從任何遙遠的初始點出發走完全程抵達最優點。<br>\n      <strong>條件 2（$\\sum \\eta^2 &lt; \\infty$）：</strong>步長平方和必須收斂，確保累積的隨機噪聲方差最終能被徹底消解，不會在無窮時間裡引發能量爆炸。\n    ",
+    "en": "<strong>Condition 1 ($\\sum \\eta = \\infty$):</strong> the sum of the step sizes must diverge, so the model has enough “range” to travel all the way from any distant initial point to the optimum.<br>\n      <strong>Condition 2 ($\\sum \\eta^2 &lt; \\infty$):</strong> the sum of the squared step sizes must converge, so the accumulated variance of the random noise is eventually dissolved completely and does not cause an energy explosion over infinite time.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "256b906548bb": {
+    "zh": "08 / 工程權衡 · Cost vs Accuracy Tradeoff",
+    "en": "08 / Engineering Tradeoffs · Cost vs Accuracy Tradeoff",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c463e101dc76": {
+    "zh": "精度與計算成本天平：深度學習為何欣然接受 $\\mathcal{O}(\\eta)$\n    <span class=\"en\">The Cost-Accuracy Tradeoff: Why Deep Learning Gladly Embraces the O(η) Optimization Residual</span>\n  ",
+    "en": "The Balance of Accuracy and Computational Cost: Why Deep Learning Happily Accepts $\\mathcal{O}(\\eta)$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f6095e9f464b": {
+    "zh": "1. 每步計算量：$\\mathcal{O}(n)$ vs $\\mathcal{O}(B)$",
+    "en": "1. Computation per step: $\\mathcal{O}(n)$ vs $\\mathcal{O}(B)$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "192e84fd57c6": {
+    "zh": "全梯度每走一步需遍歷全集 $n$ 筆樣本，耗費 $\\mathcal{O}(n \\cdot d)$ 次浮點運算；當 $n=10^7$ 時，一步需數小時。而 SGD/Mini-batch 每步僅耗費 $\\mathcal{O}(B \\cdot d)$（$B=128$），在全梯度走 1 步的時間裡，SGD 已經更新了 10 萬步！",
+    "en": "Each step of the full gradient must sweep all $n$ samples, costing $\\mathcal{O}(n \\cdot d)$ floating-point operations; when $n=10^7$, one step takes hours. SGD/mini-batch costs only $\\mathcal{O}(B \\cdot d)$ per step ($B=128$): in the time full gradient descent takes 1 step, SGD has already made 100,000 updates!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7a6cfb04ac43": {
+    "zh": "2. 泛化誤差 vs 最佳化誤差",
+    "en": "2. Generalization error vs optimization error",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "af04d0e59ed4": {
+    "zh": "機器學習的目標是測試集泛化能力，而非訓練集數值精確度。統計學習理論指出，有限樣本的泛化誤差下限約為 $\\mathcal{O}(1/\\sqrt{n}) \\approx 10^{-3}$，花費龐大算力把訓練損失從 $10^{-3}$ 最佳化到 $10^{-9}$ 完全是毫無意義的過擬合。",
+    "en": "The goal of machine learning is generalization on the test set, not numerical accuracy on the training set. Statistical learning theory indicates that the lower bound of the generalization error for a finite sample is about $\\mathcal{O}(1/\\sqrt{n}) \\approx 10^{-3}$; spending enormous compute to optimize the training loss from $10^{-3}$ down to $10^{-9}$ is completely meaningless overfitting.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "74f414dfb4c3": {
+    "zh": "3. 隨機噪聲的隱式正則化",
+    "en": "3. The implicit regularization of random noise",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2fe1bba178cd": {
+    "zh": "在非凸深度神經網路中，固定步長的 $\\mathcal{O}(\\eta)$ 抖動並非純粹的負面缺陷！它扮演了隨機退火（Simulated Annealing）角色，幫助參數跳出高泛化誤差的尖銳局部極小（Sharp Minima），墜入具備強泛化魯棒性的平坦谷底（Flat Minima）。",
+    "en": "In non-convex deep neural networks, the $\\mathcal{O}(\\eta)$ jitter of a fixed step size is not purely a negative defect! It plays the role of simulated annealing, helping the parameters jump out of sharp local minima with high generalization error and fall into flat minima with strong, robust generalization.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "46cdad75680c": {
+    "zh": "4. 兩階段工程實踐策略",
+    "en": "4. A two-phase engineering strategy",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5490f46c4acb": {
+    "zh": "現代訓練（如 Cosine Decay、Warmup-Decay）採用混合智慧：前期用較大的固定步長 $\\eta$ 快速下潛，享受高速逼近的好處；後期在收斂瓶頸處執行步長退火（LR Decay），將停滯帶順勢壓扁，達成高精度與高效率的完美統一。",
+    "en": "Modern training (e.g., cosine decay, warmup-decay) uses a hybrid wisdom: early on, a larger fixed step size $\\eta$ dives down fast, enjoying the benefit of a rapid approach; later, at the convergence bottleneck, learning-rate annealing (LR decay) is applied to flatten the stagnation band along the way, achieving a perfect union of high accuracy and high efficiency.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e3acc9333e85": {
+    "zh": "09 / 實務挑戰 · Convergence Diagnostics",
+    "en": "09 / Practical Challenges · Convergence Diagnostics",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d5cd9875e608": {
+    "zh": "收斂檢查困境：單樣本梯度監控與實務策略\n    <span class=\"en\">The Stopping Dilemma: Single-Sample Gradient Monitoring &amp; Practical Stopping Criteria</span>\n  ",
+    "en": "The Convergence-Check Dilemma: Single-Sample Gradient Monitoring and Practical Strategies",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4e06faf056f2": {
+    "zh": "SGD 收斂判定難題：全梯度哪裡找？",
+    "en": "The SGD convergence-test problem: where do you get the full gradient?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "07076b7a921f": {
+    "zh": "在古典數值最佳化中，全梯度下降擁有非常優雅的停止條件：檢驗全梯度範數是否小於容許閾值：$\\|\\nabla f(\\boldsymbol{w}^{(t)})\\|_2 \\le \\epsilon$。一旦滿足，即可宣佈演算法精確收斂。然而在 SGD 中：",
+    "en": "In classical numerical optimization, full gradient descent has a very elegant stopping condition: check whether the full-gradient norm is below a tolerance threshold: $\\|\\nabla f(\\boldsymbol{w}^{(t)})\\|_2 \\le \\epsilon$. Once this holds, the algorithm can be declared exactly converged. In SGD, however:",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6aaec29b3281": {
+    "zh": "<strong>全梯度無法取得：</strong>如果每一步都要遍歷全部 $n$ 筆樣本計算 $\\|\\nabla f(\\boldsymbol{w})\\|$ 來檢查是否收斂，就徹底抵消了 SGD 單步輕量的核心優勢！",
+    "en": "<strong>The full gradient is unavailable:</strong> if every step had to sweep all $n$ samples to compute $\\|\\nabla f(\\boldsymbol{w})\\|$ to check convergence, that would completely cancel SGD's core advantage of lightweight steps!",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "978ad122d3e1": {
+    "zh": "<strong>單樣本梯度不可靠：</strong>單一樣本或批次的梯度 $\\|\\nabla f_i(\\boldsymbol{w})\\|$ 受隨機噪聲影響劇烈，即便模型早已身處最優點，單樣本梯度範數也不可能為零。",
+    "en": "<strong>Single-sample gradients are unreliable:</strong> the gradient of a single sample or batch, $\\|\\nabla f_i(\\boldsymbol{w})\\|$, is heavily affected by random noise; even when the model is already at the optimum, the single-sample gradient norm cannot be zero.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "447d561220ff": {
+    "zh": "<strong>實務替代策略：</strong>實務中改為監控<strong>驗證集損失（Validation Loss）平臺期</strong>、對梯度或權重計算<strong>指數移動平均（EMA）</strong>，或搭配學習率排程按固定 Epoch 拍板訓練。",
+    "en": "<strong>Practical alternatives:</strong> in practice one instead monitors the <strong>plateau of the validation loss</strong>, computes an <strong>exponential moving average (EMA)</strong> of the gradients or weights, or ends training after a fixed number of epochs together with a learning-rate schedule.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "793ddb71be84": {
+    "zh": "10 / 全面對比 · Comparison Matrix",
+    "en": "10 / Full Comparison · Comparison Matrix",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c014dfa3c1ec": {
+    "zh": "全梯度 vs 固定 SGD vs 衰減 SGD 全方位對比矩陣\n    <span class=\"en\">Comprehensive Comparison Matrix: Full GD vs Fixed-Step SGD vs Diminishing-Step SGD</span>\n  ",
+    "en": "All-Round Comparison Matrix: Full Gradient vs Fixed SGD vs Decaying SGD",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "09a47badf506": {
+    "zh": "維度 / 特性",
+    "en": "Dimension / property",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "342bd53d4110": {
+    "zh": "全梯度下降 (Full GD)",
+    "en": "Full gradient descent (full GD)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2498a3b74037": {
+    "zh": "固定步長 SGD (Fixed η)",
+    "en": "Fixed-step SGD (fixed η)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "64842319ebeb": {
+    "zh": "遞減步長 SGD (Decaying η)",
+    "en": "Diminishing-step SGD (decaying η)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ef9c89a8563f": {
+    "zh": "<strong>每步計算代價</strong>",
+    "en": "<strong>Cost per step</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "90ca0b21740f": {
+    "zh": "$\\mathcal{O}(n \\cdot d)$（極高，需掃描全資料集）",
+    "en": "$\\mathcal{O}(n \\cdot d)$ (very high; must scan the whole dataset)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9012b52cec3b": {
+    "zh": "$\\mathcal{O}(B \\cdot d)$（極低，僅需單樣本/小批次）",
+    "en": "$\\mathcal{O}(B \\cdot d)$ (very low; a single sample/mini-batch only)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "74086b26ce69": {
+    "zh": "$\\mathcal{O}(B \\cdot d)$（極低，計算量同固定 SGD）",
+    "en": "$\\mathcal{O}(B \\cdot d)$ (very low; same computation as fixed SGD)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "879bc3ac2877": {
+    "zh": "<strong>理論誤差上界</strong>",
+    "en": "<strong>Theoretical error upper bound</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2f207616e1cb": {
+    "zh": "$\\mathcal{O}(1/t)$（式 (31)）",
+    "en": "$\\mathcal{O}(1/t)$ (Eq. (31))",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "13d977ab5fa7": {
+    "zh": "$\\mathcal{O}(1/t + \\eta)$（式 (34), (36)）",
+    "en": "$\\mathcal{O}(1/t + \\eta)$ (Eqs. (34), (36))",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6fae7e0b2273": {
+    "zh": "$\\mathcal{O}(1/\\sqrt{t})$ 或 $\\mathcal{O}(1/t)$（Robbins-Monro）",
+    "en": "$\\mathcal{O}(1/\\sqrt{t})$ or $\\mathcal{O}(1/t)$ (Robbins-Monro)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a8814fb2143e": {
+    "zh": "<strong>極限殘差 $t \\to \\infty$</strong>",
+    "en": "<strong>Limiting residual as $t \\to \\infty$</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "af4328c77144": {
+    "zh": "$\\lim_{t\\to\\infty} \\text{Error} = 0$（精確最優）",
+    "en": "$\\lim_{t\\to\\infty} \\text{Error} = 0$ (exact optimum)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "725e88a15c87": {
+    "zh": "$\\lim_{t\\to\\infty} \\text{Error} = \\mathcal{O}(\\eta)$（停滯震盪）",
+    "en": "$\\lim_{t\\to\\infty} \\text{Error} = \\mathcal{O}(\\eta)$ (stagnating oscillation)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "46fdc7c3808f": {
+    "zh": "$\\lim_{t\\to\\infty} \\text{Error} = 0$（壓扁帶子，漸進至 0）",
+    "en": "$\\lim_{t\\to\\infty} \\text{Error} = 0$ (band flattened, approaches 0)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c409425b0844": {
+    "zh": "<strong>收斂軌跡型態</strong>",
+    "en": "<strong>Shape of the convergence trajectory</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3cace24d0f9d": {
+    "zh": "確定性平滑單調下降",
+    "en": "Deterministic, smooth, monotonic descent",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2c801c28883b": {
+    "zh": "初期驟降，後期在 $\\mathcal{O}(\\eta)$ 帶內隨機漫步",
+    "en": "Steep early drop, then a random walk inside the $\\mathcal{O}(\\eta)$ band",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "8587d13abb92": {
+    "zh": "動態收窄的漏斗型軌跡，緩慢收斂至點",
+    "en": "A dynamically narrowing funnel-shaped trajectory, slowly converging to a point",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d89ed5578ddf": {
+    "zh": "<strong>收斂判別方法</strong>",
+    "en": "<strong>Convergence test</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6057da243665": {
+    "zh": "檢驗全梯度 $\\|\\nabla f(\\boldsymbol{w})\\| \\le \\epsilon$",
+    "en": "Check the full gradient $\\|\\nabla f(\\boldsymbol{w})\\| \\le \\epsilon$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cee6fe6ce6a6": {
+    "zh": "無法用全梯度，依賴驗證集平臺或 EMA",
+    "en": "Full gradient unusable; relies on a validation plateau or EMA",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "c3b18eae1986": {
+    "zh": "依賴學習率退火排程（Cosine/Step）",
+    "en": "Relies on a learning-rate annealing schedule (cosine/step)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "97cb5ca131bc": {
+    "zh": "<strong>深度學習適用性</strong>",
+    "en": "<strong>Suitability for deep learning</strong>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9961dc9d4e55": {
+    "zh": "極低（巨量資料下無法承受遍歷代價）",
+    "en": "Very low (the cost of a full pass is unaffordable on massive data)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5a0983f85943": {
+    "zh": "極高（實務主流，前期高速推進）",
+    "en": "Very high (the mainstream in practice; fast progress early on)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "bbc1081f1955": {
+    "zh": "最高（現代 LLM/視覺模型訓練標配）",
+    "en": "Highest (standard for training modern LLMs/vision models)",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3ca6b37bd8a2": {
+    "zh": "11 / 大師哲學 · Master Maxims",
+    "en": "11 / The Master's Philosophy · Master Maxims",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9660cf534bbb": {
+    "zh": "大師四大鐵律：隨機最佳化的極限與工程智慧\n    <span class=\"en\">The Four Master Laws of Stochastic Optimization: Limits, Noise, and Practical Wisdom</span>\n  ",
+    "en": "The Master's Four Iron Laws: The Limits and Engineering Wisdom of Stochastic Optimization",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "70b4d5d587a2": {
+    "zh": "一、極限零度律 (Zero-Limit Law)",
+    "en": "I. The Zero-Limit Law",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "566930dc258f": {
+    "zh": "全梯度下降擁有確定性的神聖保證：只要函式平滑且凸，步長小於 $1/L$，時間趨近無窮時誤差必然嚴格歸零。這是數值微積分的最高理想。",
+    "en": "Full gradient descent has a sacred deterministic guarantee: as long as the function is smooth and convex and the step size is below $1/L$, the error must go strictly to zero as time goes to infinity. This is the highest ideal of numerical calculus.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a4230b8b44e1": {
+    "zh": "二、殘差帶囚律 (Residual Band Captivity)",
+    "en": "II. The Law of Residual-Band Captivity",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b03f32ba5bc5": {
+    "zh": "固定步長 SGD 終其一生無法突破隨機方差的桎梏。一旦落入 $\\mathcal{O}(\\eta)$ 停滯帶，任何多餘的迭代都不過是在噪聲囚籠中的布朗漫步。",
+    "en": "Fixed-step SGD can never, in its whole life, break the shackles of stochastic variance. Once it falls into the $\\mathcal{O}(\\eta)$ stagnation band, every extra iteration is nothing more than a Brownian stroll inside a cage of noise.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b2c811d0dc9e": {
+    "zh": "三、衰減收縮律 (Decay Compression Law)",
+    "en": "III. The Law of Decay Compression",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fa57dbf9cdaf": {
+    "zh": "步長是停滯帶的唯一閥門。依循 Robbins-Monro 條件實施步長退火，即是在時空中施展壓縮魔法，將噪聲走廊壓成一條直指最優點的細線。",
+    "en": "The step size is the only valve of the stagnation band. Annealing the step size according to the Robbins-Monro conditions is casting a compression spell across time, squeezing the noise corridor into a thin line that points straight at the optimum.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "70634b980073": {
+    "zh": "四、代價平衡律 (Cost-Accuracy Balance)",
+    "en": "IV. The Law of Cost-Accuracy Balance",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c3d38f66db66": {
+    "zh": "深度學習的核心哲學是「在有限的算力預算內換取最廣泛的泛化能力」。欣然接受 $\\mathcal{O}(\\eta)$ 的微小殘差，換來十萬倍的更新頻率，是機器學習最偉大的工程妥協。",
+    "en": "The core philosophy of deep learning is “to buy the broadest generalization ability within a finite compute budget.” Happily accepting a tiny $\\mathcal{O}(\\eta)$ residual in exchange for a hundred-thousand-fold update frequency is the greatest engineering compromise in machine learning.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cc930446e9f7": {
+    "zh": "12 / 互動實驗 · Loss-Gap Simulation Lab",
+    "en": "12 / Interactive Experiment · Loss-Gap Simulation Lab",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c00561b19bad": {
+    "zh": "互動實驗室：Loss-Gap 座標系動態模擬器\n    <span class=\"en\">Interactive Lab: Loss-Gap Trajectory Simulator with O(η) Stagnation Band Dynamics</span>\n  ",
+    "en": "Interactive Lab: A Dynamic Simulator in Loss-Gap Coordinates",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ccd8d05a870c": {
+    "zh": "最佳化策略：",
+    "en": "Optimization strategy:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d0951ec2d036": {
+    "zh": "固定步長 SGD (Fixed η · 困於 O(η) 停滯帶)",
+    "en": "Fixed-step SGD (fixed η · stuck in the O(η) stagnation band)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ff6901c70ce7": {
+    "zh": "衰減步長 SGD (η_t = η₀ / √t · 壓扁帶子)",
+    "en": "Diminishing-step SGD (η_t = η₀ / √t · flattens the band)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "dd4f81252d09": {
+    "zh": "衰減步長 SGD (η_t = η₀ / t · 快速收縮)",
+    "en": "Diminishing-step SGD (η_t = η₀ / t · fast shrinking)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1b662bae8bf6": {
+    "zh": "全梯度下降 (Full GD · 無噪聲精確收斂)",
+    "en": "Full gradient descent (full GD · noise-free exact convergence)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6f2f7bd28937": {
+    "zh": "基準步長 η₀：",
+    "en": "Base step size η₀:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "73f9d6abd2ce": {
+    "zh": "隨機噪聲 σ：",
+    "en": "Random noise σ:",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e65d7ddd3e75": {
+    "zh": "單步探索 (Step)",
+    "en": "Single step (Step)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3898f0697891": {
+    "zh": "連續 20 步 (Run 20)",
+    "en": "20 steps in a row (Run 20)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4fa893bc4b53": {
+    "zh": "<strong>當前最佳化模式：</strong> 固定步長 SGD (Fixed Step Size)<br><strong>當前迭代步數 t：</strong> 0<br><strong>當前有效步長 η_t：</strong> 0.2000<br><strong>參數值 w_t：</strong> 1.4000<br><strong>Loss-Gap f(w) − f*：</strong> 0.98000<br><strong>理論停滯帶界限 O(η_t)：</strong> 0.0420<br><strong>累計計算樣本數：</strong> 0 (極輕量)<br><strong>收斂動態判定：</strong><br>",
+    "en": "<strong>Current optimization mode:</strong> Fixed-step SGD (Fixed Step Size)<br><strong>Current iteration t:</strong> 0<br><strong>Current effective step size η_t:</strong> 0.2000<br><strong>Parameter value w_t:</strong> 1.4000<br><strong>Loss-Gap f(w) − f*:</strong> 0.98000<br><strong>Theoretical stagnation-band bound O(η_t):</strong> 0.0420<br><strong>Cumulative samples computed:</strong> 0 (very lightweight)<br><strong>Convergence dynamics verdict:</strong><br>",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "aa5049d100a0": {
+    "zh": "📉 早期高速陡降階段 (尚未觸及噪聲停滯帶)",
+    "en": "📉 Early steep-descent phase (noise stagnation band not reached yet)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0293909f2a87": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. <strong>困於停滯帶</strong>：選擇「固定步長 SGD」，點選「連續 20 步」數次（走滿 60-80 步）。觀察軌跡跌入紅色 $\\mathcal{O}(\\eta)$ 停滯帶後，即便持續迭代數百步，誤差依然在帶內震盪無法歸零！<br>\n      2. <strong>壓扁帶子破局</strong>：切換至「衰減步長 SGD (η₀ / √t)」，觀察紅色帶子如何隨迭代次數演進而逐漸「壓扁收縮」，強迫隨機軌跡穿透雜訊阻隔，穩步貼近綠色零點線！<br>\n      3. <strong>全梯度對照</strong>：選擇「全梯度下降」，觀察藍線平滑單調下降貼零，印證命題 2 的漸進零誤差定理！\n    ",
+    "en": "🧪 <strong>The hands-on challenge:</strong><br>\n      1. <strong>Stuck in the stagnation band</strong>: choose “Fixed-step SGD” and click “20 steps in a row” several times (60-80 steps in all). Watch the trajectory fall into the red $\\mathcal{O}(\\eta)$ stagnation band: even if you keep iterating for hundreds of steps, the error keeps oscillating inside the band and never reaches zero!<br>\n      2. <strong>Flatten the band and break out</strong>: switch to “Diminishing-step SGD (η₀ / √t)” and watch how the red band gradually “flattens and shrinks” as the iterations go on, forcing the random trajectory through the noise barrier and steadily closer to the green zero line!<br>\n      3. <strong>Full-gradient comparison</strong>: choose “Full gradient descent” and watch the blue line descend smoothly and monotonically to zero, confirming the asymptotic zero-error theorem of Proposition 2!",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5d85b8b90a46": {
+    "zh": "13 / 實戰檢驗 · Concept Checkpoint",
+    "en": "13 / Hands-On Test · Concept Checkpoint",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Feedback on Concepts",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ea87423b1978": {
+    "zh": "題目 1：全梯度下降（命題 2）在 $t \\rightarrow \\infty$ 時的收斂行為是？",
+    "en": "Question 1: What is the convergence behavior of full gradient descent (Proposition 2) as $t \\rightarrow \\infty$?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ec8274f35637": {
+    "zh": "A. 停滯在 $\\mathcal{O}(\\eta)$ 鄰域",
+    "en": "A. It stagnates in an $\\mathcal{O}(\\eta)$ neighborhood",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "b285ce67187a": {
+    "zh": "B. 精確收斂到 $f^{*}$，誤差趨近 0",
+    "en": "B. It converges exactly to $f^{*}$, with the error approaching 0",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "df2af8e96018": {
+    "zh": "C. 發散",
+    "en": "C. It diverges",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ad52f553f48d": {
+    "zh": "D. 收斂率為 $\\mathcal{O}(\\log t)$",
+    "en": "D. Its convergence rate is $\\mathcal{O}(\\log t)$",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "de4e64566a17": {
+    "zh": "題目 2：SGD 使用固定步長 $\\eta^{(\\tau)}=\\eta$ 時，長期行為是？",
+    "en": "Question 2: When SGD uses a fixed step size $\\eta^{(\\tau)}=\\eta$, what is its long-run behavior?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "2af467b48fb7": {
+    "zh": "A. 精確到達 $f^{*}$",
+    "en": "A. It reaches $f^{*}$ exactly",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "4753ed19d065": {
+    "zh": "B. 在最優點附近 $\\mathcal{O}(\\eta)$ 鄰域內停滯",
+    "en": "B. It stagnates in an $\\mathcal{O}(\\eta)$ neighborhood around the optimum",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "6a95feeadb68": {
+    "zh": "C. 步長自動歸零",
+    "en": "C. The step size automatically goes to zero",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "7b802f3c926d": {
+    "zh": "D. 比全梯度更快收斂",
+    "en": "D. It converges faster than the full gradient",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "bc70f6223777": {
+    "zh": "題目 3：下列哪組步長策略能讓 SGD 的 $1/t$ 項主導、使長期誤差趨近 0？",
+    "en": "Question 3: Which step-size strategy lets SGD's $1/t$ term dominate and makes the long-run error approach 0?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "85fe895fbc86": {
+    "zh": "A. 固定 $\\eta^{(\\tau)}=\\eta$",
+    "en": "A. Fixed $\\eta^{(\\tau)}=\\eta$",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "bf99cbd28326": {
+    "zh": "B. $\\eta^{(\\tau)}=1/\\tau$ 或 $1/\\sqrt{\\tau}$",
+    "en": "B. $\\eta^{(\\tau)}=1/\\tau$ or $1/\\sqrt{\\tau}$",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "0606368cada4": {
+    "zh": "D. 不更新步長",
+    "en": "D. Never update the step size",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "be2da8384c3b": {
+    "zh": "題目 4：SGD 相對全梯度下降的主要優勢是？",
+    "en": "Question 4: What is SGD's main advantage over full gradient descent?",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "e9bf101a5be6": {
+    "zh": "A. 更高的收斂精度",
+    "en": "A. Higher convergence accuracy",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "7c37b7031dcf": {
+    "zh": "B. 每次迭代的計算成本更低",
+    "en": "B. Lower computational cost per iteration",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "3a8e00e7afd0": {
+    "zh": "C. 不需要選學習率",
+    "en": "C. No need to choose a learning rate",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "54a17f0fa180": {
+    "zh": "D. 保證找到全域性最優",
+    "en": "D. It is guaranteed to find the global optimum",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

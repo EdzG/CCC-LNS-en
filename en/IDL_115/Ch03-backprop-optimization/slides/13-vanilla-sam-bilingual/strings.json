@@ -1,0 +1,1135 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "式 (49) 的內層最大化正是尋找在 $\\boldsymbol{w}$ 的 $\\rho$-球鄰域內使損失達到最高的最壞擾動 $\\boldsymbol{\\epsilon}^*$。": "The inner maximization in Eq. (49) is exactly the search, within the $\\rho$-ball neighborhood of $\\boldsymbol{w}$, for the worst perturbation $\\boldsymbol{\\epsilon}^*$ that drives the loss highest.",
+      "式 (50) 的銳度項定義為鄰域內損失的最大漲幅 $\\max_{\\|\\boldsymbol{\\epsilon}\\|_p\\le\\rho}(\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})-\\mathcal{L}(\\boldsymbol{w}))$。": "The sharpness term in Eq. (50) is defined as the largest increase of the loss within the neighborhood, $\\max_{\\|\\boldsymbol{\\epsilon}\\|_p\\le\\rho}(\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})-\\mathcal{L}(\\boldsymbol{w}))$.",
+      "在歐氏範數 $p=2$ 下，對偶問題解為沿梯度方向單位化後乘以半徑 $\\rho$，即 $\\rho\\frac{\\nabla\\mathcal{L}}{\\|\\nabla\\mathcal{L}\\|_2}$。": "Under the Euclidean norm $p=2$, the solution of the dual problem is the gradient direction normalized to unit length and multiplied by the radius $\\rho$, i.e. $\\rho\\frac{\\nabla\\mathcal{L}}{\\|\\nabla\\mathcal{L}\\|_2}$.",
+      "式 (53) 的梯度在最慘擾動點 $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$ 處計算，再以此梯度更新原始點 $\\boldsymbol{w}$。": "The gradient in Eq. (53) is computed at the worst perturbed point $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$, and this gradient then updates the original point $\\boldsymbol{w}$.",
+      "極小點 (0, 0)": "Minimum (0, 0)",
+      "● ① Ascent: 擾動到最慘點 (+ε*)": "● ① Ascent: perturb to the worst point (+ε*)",
+      "● ② Descent: 在最慘點求梯度更新原點": "● ② Descent: gradient at the worst point updates w",
+      "--- 半徑 ρ 鄰域約束圓": "--- radius-ρ neighborhood circle",
+      "當前位置 w：": "Current position w:",
+      "鄰域半徑 ρ：": "Neighborhood radius ρ:",
+      "出發點梯度 ∇L(w)：": "Gradient at the starting point ∇L(w):",
+      "梯度歐氏長度 ‖∇L‖₂：": "Euclidean length of the gradient ‖∇L‖₂:",
+      "最壞擾動 ε*(w)：": "Worst perturbation ε*(w):",
+      "最壞擾動長度 ‖ε*‖₂：": "Length of the worst perturbation ‖ε*‖₂:",
+      "(驗證長度 = ρ)": "(check: length = ρ)",
+      "累計 SAM 更新步數：": "Total SAM update steps:",
+      "狀態判定：": "Status:",
+      "🏃 正在計算中...": "🏃 Computing...",
+      "式 (49) 的內層最大化正是尋找在": "The inner maximization in Eq. (49) searches exactly, around",
+      "的": "and within its",
+      "-球鄰域內使損失達到最高的最壞擾動": "-ball neighborhood, for the worst perturbation that drives the loss highest,",
+      "式 (50) 的銳度項定義為鄰域內損失的最大漲幅": "The sharpness term in Eq. (50) is defined as the largest increase of the loss within the neighborhood,",
+      "在歐氏範數": "For the Euclidean norm",
+      "下，對偶問題解為沿梯度方向單位化後乘以半徑": "the solution of the dual problem is the gradient direction normalized to unit length and multiplied by the radius",
+      "，即": ", i.e.",
+      "式 (53) 的梯度在最慘擾動點": "The gradient in Eq. (53) is computed at the worst perturbed point",
+      "處計算，再以此梯度更新原始點": "and this gradient then updates the original point"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^⚡ 驗證透過：‖ε\\*‖ = ([-\\d.]+) 嚴格等於半徑 ρ \\(長度保持不變\\)$",
+        "en": "⚡ Check passed: ‖ε*‖ = $1 exactly equals the radius ρ (length preserved)"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "dae30ed158ba": {
+    "zh": "KP13 · 索引",
+    "en": "KP13 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "06815b7fd7d2": {
+    "zh": "<a href=\"#sam-motivation\">平坦與泛化 · Motivation</a>",
+    "en": "<a href=\"#sam-motivation\">Flatness and Generalization</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2c83bb9f06b1": {
+    "zh": "<a href=\"#minmax-formulation\">雙層目標 · Min-Max Objective</a>",
+    "en": "<a href=\"#minmax-formulation\">Bi-Level Objective</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f809ac635c91": {
+    "zh": "<a href=\"#sharpness-decomposition\">銳度分解 · Sharpness Term</a>",
+    "en": "<a href=\"#sharpness-decomposition\">Sharpness Decomposition</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "de1b7a87d6a3": {
+    "zh": "<a href=\"#worst-case-epsilon\">最壞擾動 · Worst-Case Epsilon*</a>",
+    "en": "<a href=\"#worst-case-epsilon\">Worst-Case Perturbation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e85d519fbe96": {
+    "zh": "<a href=\"#sam-gradient-twostep\">兩階段更新 · Two-Step Gradient</a>",
+    "en": "<a href=\"#sam-gradient-twostep\">Two-Step Update</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a7fc2a3b0159": {
+    "zh": "<a href=\"#computational-cost\">算力代價 · Computational Cost</a>",
+    "en": "<a href=\"#computational-cost\">Computational Cost</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "70af39b8b07a": {
+    "zh": "<a href=\"#svg-landscape\">地景俯視 · Landscape View</a>",
+    "en": "<a href=\"#svg-landscape\">Landscape, Top View</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "795a43d30841": {
+    "zh": "<a href=\"#master-maxims\">四大鐵律 · Master Maxims</a>",
+    "en": "<a href=\"#master-maxims\">Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bec27f873cc3": {
+    "zh": "<a href=\"#lab\">模擬實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Simulation Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a459119b6bea": {
+    "zh": "Vanilla SAM：min-max 目標、銳度與最壞擾動解\n      <span class=\"hero-title-en\">Sharpness-Aware Minimization: Min-Max Formulation, Sharpness Decomposition, and Closed-Form Epsilon*</span>\n    ",
+    "en": "Vanilla SAM: The Min-Max Objective, Sharpness, and the Worst-Case Perturbation Solution\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "3d4a9bc4843e": {
+    "zh": "\n      反向傳播能找到極小值，但尖銳極小值泛化脆弱。SAM 突破傳統經驗風險最小化，改寫為 min-max 雙層對抗最佳化：在半徑 $\\rho$ 鄰域球內探尋最慘擾動 $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$，迫使權重遷移至平坦盆地，實現卓越的測試泛化。\n    ",
+    "en": "Backpropagation can find minima, but sharp minima generalize poorly. SAM breaks away from traditional empirical risk minimization and recasts it as a bi-level adversarial min-max optimization: inside the neighborhood ball of radius $\\rho$ it searches for the worst perturbation $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$, forcing the weights to migrate into a flat basin and achieving excellent test generalization.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "fd1bb2d393e7": {
+    "zh": "\n      「為什麼要故意把訓練損失變差？先找最慘鄰居，才能換來最平坦的解！」\n      <small>傳統 SGD 只顧眼前腳下，SAM 卻說：若周圍 $\\rho$ 步內有人摔落懸崖，這裡就絕非安全港！<br>\n        <span class=\"bilingual-en-inline\">Why intentionally worsen training loss? By seeking the worst-case neighbor within the $\\rho$-ball, SAM forces optimization away from fragile sharp chasms into robust flat minima!</span>\n      </small>\n    ",
+    "en": "\"Why deliberately make the training loss worse? Only by finding the worst neighbor first can you get the flattest solution!\"\n      <small>Traditional SGD only looks at the ground right under its feet, but SAM says: if someone within $\\rho$ steps around you falls off a cliff, this is definitely not a safe harbor!<br>\n        \n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "4c7372be715b": {
+    "zh": "02 / 動機背景 · Motivation &amp; Generalization",
+    "en": "02 / Motivation &amp; Generalization",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "103bc29cfc4a": {
+    "zh": "為什麼需要 SAM：平坦極小值可能泛化更好\n    <span class=\"en\">Why SAM Matters: The Hypothesis That Flat Minima Generalize Better</span>\n  ",
+    "en": "Why SAM Is Needed: Flat Minima May Generalize Better\n  ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0857e7d12bff": {
+    "zh": "極小值並不平等：平坦度決定測試穩定性",
+    "en": "Minima Are Not Equal: Flatness Determines Test Stability",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ac12870a9610": {
+    "zh": "\n      傳統反向傳播演算法雖然能有效收斂到經驗損失的局部極小值，但不同極小值的泛化能力存在天壤之別。大量實證研究顯示：<strong>較平坦（flat / smooth）的極小值往往比尖銳（sharp）的極小值在未知測試集上表現更佳</strong>。\n    ",
+    "en": "Although the traditional backpropagation algorithm converges effectively to local minima of the empirical loss, different minima differ enormously in their generalization ability. A large body of empirical studies shows: <strong>flatter (flat / smooth) minima tend to perform better on unseen test sets than sharp minima</strong>.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3f3fc543db32": {
+    "zh": "<strong>平坦極小值（Flat Minima）：</strong>在解的周邊鄰域內，目標損失函式幾乎保持不變。即使測試資料分佈微調引發損失地形偏移，測試誤差依然低廉。",
+    "en": "<strong>Flat minima:</strong> in the neighborhood around the solution, the objective loss function stays almost unchanged. Even if a slight shift in the test data distribution moves the loss landscape, the test error stays low.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b133719924d5": {
+    "zh": "<strong>尖銳極小值（Sharp Minima）：</strong>損失僅在單點極小，其鄰域坡度急劇上升。一旦測試分佈發生微小漂移（Distribution Shift），測試損失將發生災難性暴漲。",
+    "en": "<strong>Sharp minima:</strong> the loss is minimal only at a single point, and the slope rises steeply in its neighborhood. As soon as the test distribution drifts slightly (distribution shift), the test loss blows up catastrophically.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "21c5ee20e656": {
+    "zh": "\n    這個假說在深度學習理論界雖然仍有諸多深刻討論，但已經成功催生了<strong>銳度感知最小化（Sharpness-Aware Minimization，簡稱 SAM）</strong>。SAM 的核心精神不是被動等待運氣，而是在訓練目標中<strong>顯式懲罰鄰域的最大損失漲幅</strong>！\n    <span class=\"bilingual-en\">While standard backprop finds local minima of empirical loss, flat minima consistently yield superior test generalization over sharp ones under distribution shifts. SAM operationalizes this insight into a principled objective.</span>\n  ",
+    "en": "Although this hypothesis is still the subject of much deep debate in deep-learning theory, it has already given rise to <strong>sharpness-aware minimization (SAM)</strong>. The core spirit of SAM is not to wait passively for luck, but to <strong>explicitly penalize the largest loss increase in the neighborhood</strong> in the training objective!\n    ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7d184d206ad0": {
+    "zh": "03 / 數學形式 · Min-Max Formulation",
+    "en": "03 / Min-Max Formulation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ac196bcf6c17": {
+    "zh": "min-max 雙層目標：式 (47)–(49) 與 $\\rho$ 鄰域約束\n    <span class=\"en\">Bi-Level Min-Max Objective: Equations (47)–(49) and Neighborhood Ball Constraint</span>\n  ",
+    "en": "The Bi-Level Min-Max Objective: Eqs. (47)–(49) and the $\\rho$-Neighborhood Constraint\n  ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "435b570387e0": {
+    "zh": "SAM 的數學最佳化問題定義（式 (47)–(49)）",
+    "en": "Definition of SAM's Optimization Problem (Eqs. (47)–(49))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6d029999ba54": {
+    "zh": "SAM 將標準的單層損失最小化改寫為同時最小化損失、又主動打壓局部尖銳度的 <strong>min-max 雙層最佳化問題</strong>：",
+    "en": "SAM rewrites standard single-level loss minimization as a <strong>bi-level min-max optimization problem</strong> that minimizes the loss while actively suppressing local sharpness:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "43c556c48794": {
+    "zh": "<strong>帶正則化形式：</strong>",
+    "en": "<strong>Regularized form:</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8f7b68f54a5c": {
+    "zh": "<strong>純 min-max 緊湊形式（省略 L2 權重衰減時）：</strong>",
+    "en": "<strong>Pure compact min-max form (when the L2 weight decay is omitted):</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5f7a010c1023": {
+    "zh": "<strong>符號定義與物理直覺：</strong>",
+    "en": "<strong>Notation and physical intuition:</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d9a982aa6676": {
+    "zh": "$\\boldsymbol{w} \\in \\mathbb{R}^d$：神經網路的全部可學習權重。",
+    "en": "$\\boldsymbol{w} \\in \\mathbb{R}^d$: all the learnable weights of the neural network.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "383613feb746": {
+    "zh": "$\\mathcal{L}(\\cdot)$：訓練集上的經驗損失函式（Empirical Loss）。",
+    "en": "$\\mathcal{L}(\\cdot)$: the empirical loss function on the training set.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5f9a95e91542": {
+    "zh": "$\\rho \\ge 0$：<strong>鄰域半徑超參數</strong>，定義探索擾動的安全球空間。",
+    "en": "$\\rho \\ge 0$: the <strong>neighborhood-radius hyperparameter</strong>, which defines the safe ball within which perturbations are explored.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3a4bc88bb7c7": {
+    "zh": "$p \\in [1, \\infty]$：擾動範數階數，實務與理論上<strong>強烈推薦 $p=2$（歐氏範數）</strong>。",
+    "en": "$p \\in [1, \\infty]$: the order of the perturbation norm; in practice and in theory, <strong>$p=2$ (the Euclidean norm) is strongly recommended</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ac316f050be7": {
+    "zh": "1. 內層最大化 (Inner Maximize)",
+    "en": "1. Inner Maximize",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "692632702a3b": {
+    "zh": "給定當前權重 $\\boldsymbol{w}$，在半徑為 $\\rho$ 的封閉球體 $\\{\\boldsymbol{\\epsilon} : \\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho\\}$ 內，搜尋能讓損失激增到最高的最壞擾動 $\\boldsymbol{\\epsilon}^*$。",
+    "en": "Given the current weights $\\boldsymbol{w}$, search the closed ball of radius $\\rho$, $\\{\\boldsymbol{\\epsilon} : \\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho\\}$, for the worst perturbation $\\boldsymbol{\\epsilon}^*$, the one that drives the loss up the most.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "db0b0b17aa5f": {
+    "zh": "2. 外層最小化 (Outer Minimize)",
+    "en": "2. Outer Minimize",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "52ec5db00c46": {
+    "zh": "調整權重 $\\boldsymbol{w}$，目標是最小化那個「最慘鄰居」處的損失值。迫使權重遠離任何一側存在懸崖峭壁的危險地帶。",
+    "en": "Adjust the weights $\\boldsymbol{w}$ with the goal of minimizing the loss at that \"worst neighbor\". This forces the weights away from any danger zone that has a cliff on either side.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3b7c0ccdbefe": {
+    "zh": "3. 幾何直覺：強迫整個鄰域平坦",
+    "en": "3. Geometric Intuition: Force the Whole Neighborhood to Be Flat",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a259e8fd6d12": {
+    "zh": "若某個極小點極其尖銳，其周圍 $\\rho$ 步內的鄰居損失必大幅飆高，從而被外層最佳化無情拋棄；只有整片平坦的寬谷才能存活。",
+    "en": "If a minimum is extremely sharp, the loss of its neighbors within $\\rho$ steps must shoot up, so the outer optimization ruthlessly discards it; only a wide, entirely flat valley survives.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a1f963d5bbf9": {
+    "zh": "4. 超參數 $\\rho$ 的權衡哲學",
+    "en": "4. The Trade-Off Philosophy of the Hyperparameter $\\rho$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5c1f143410fb": {
+    "zh": "$\\rho \\to 0$ 時 SAM 退化為常規 SGD；$\\rho$ 過大則可能越過多個盆地、抹平有效特徵結構。實務常設 $\\rho \\in [0.01, 0.1]$。",
+    "en": "As $\\rho \\to 0$, SAM degenerates into ordinary SGD; if $\\rho$ is too large, it may step across several basins and smooth away useful feature structure. In practice $\\rho \\in [0.01, 0.1]$ is common.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8494d02c1e9b": {
+    "zh": "04 / 結構分解 · Sharpness Decomposition",
+    "en": "04 / Sharpness Decomposition",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9faf9d6647ba": {
+    "zh": "分解：經驗損失 + sharpness 銳度項 — 式 (50)\n    <span class=\"en\">Decomposing SAM Loss: Empirical Risk Plus Neighborhood Sharpness Penalty (Eq. 50)</span>\n  ",
+    "en": "Decomposition: Empirical Loss + Sharpness Term (Eq. (50))\n  ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6dc0ca2c5380": {
+    "zh": "式 (50) 核心分解式",
+    "en": "Eq. (50): The Core Decomposition",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c435cd4df71e": {
+    "zh": "式 (48) 定義的 SAM 目標函式，可精確重寫為經驗損失與銳度項之和：",
+    "en": "The SAM objective function defined in Eq. (48) can be rewritten exactly as the sum of the empirical loss and a sharpness term:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f7565d196a73": {
+    "zh": "$$ \\mathcal{L}_{\\mathrm{SAM}}(\\boldsymbol{w})=\\underbrace{\\mathcal{L}(\\boldsymbol{w})}_{\\text{經驗損失}}+\\underbrace{\\operatorname{maximize}_{\\boldsymbol{\\epsilon}:\\|\\boldsymbol{\\epsilon}\\|_{p} \\leq \\rho}\\bigl(\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})-\\mathcal{L}(\\boldsymbol{w})\\bigr)}_{\\text{sharpness（銳度）}} \\tag{50} $$",
+    "en": "$$ \\mathcal{L}_{\\mathrm{SAM}}(\\boldsymbol{w})=\\underbrace{\\mathcal{L}(\\boldsymbol{w})}_{\\text{empirical loss}}+\\underbrace{\\operatorname{maximize}_{\\boldsymbol{\\epsilon}:\\|\\boldsymbol{\\epsilon}\\|_{p} \\leq \\rho}\\bigl(\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})-\\mathcal{L}(\\boldsymbol{w})\\bigr)}_{\\text{sharpness}} \\tag{50} $$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "df4cbf490cd6": {
+    "zh": "兩項的物理分工與協同",
+    "en": "The Physical Division of Labor and Cooperation of the Two Terms",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1f5c86b22d32": {
+    "zh": "<strong>第一項：常規經驗損失 $\\mathcal{L}(\\boldsymbol{w})$</strong><br>\n        負責保證模型在訓練資料上的擬合精度，確保預測準確度與特徵抽取能力。\n      ",
+    "en": "<strong>First term: the ordinary empirical loss $\\mathcal{L}(\\boldsymbol{w})$</strong><br>\n        Responsible for the model's fit to the training data, ensuring prediction accuracy and feature-extraction ability.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "75e09b9411dc": {
+    "zh": "<strong>第二項：鄰域最大漲幅 $\\operatorname{maximize}_{\\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho}\\bigl(\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})-\\mathcal{L}(\\boldsymbol{w})\\bigr)$（Sharpness 銳度）</strong><br>\n        直接量測<strong>「在以 $\\boldsymbol{w}$ 為中心的 $\\rho$-鄰域球內，損失最多能上漲多少」</strong>。銳度越大，代表地形越尖峭；銳度越小，代表局部幾何越接近扁平桌狀。\n      ",
+    "en": "<strong>Second term: the largest increase in the neighborhood $\\operatorname{maximize}_{\\|\\boldsymbol{\\epsilon}\\|_p \\le \\rho}\\bigl(\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})-\\mathcal{L}(\\boldsymbol{w})\\bigr)$ (sharpness)</strong><br>\n        Directly measures <strong>\"how much the loss can rise at most within the $\\rho$-neighborhood ball centered at $\\boldsymbol{w}$\"</strong>. The larger the sharpness, the steeper the landscape; the smaller the sharpness, the closer the local geometry is to a flat tabletop.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "777fe8b9ddb7": {
+    "zh": "\n      由此可見，SAM 本質上是一種<strong>以幾何平坦度為正則化項（Sharpness Regularization）</strong>的現代最佳化正規化，直接將泛化界（PAC-Bayes 泛化誤差界）中的平坦度先驗融入損失目標中。\n    ",
+    "en": "So SAM is essentially a modern optimization regularization <strong>that uses geometric flatness as the regularization term (sharpness regularization)</strong>, building the flatness prior from generalization bounds (the PAC-Bayes generalization error bound) directly into the loss objective.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ddf2a53620b8": {
+    "zh": "05 / 閉式推導 · Deriving Epsilon*",
+    "en": "05 / Closed-Form Derivation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "85cd2f5caac5": {
+    "zh": "內層最大化推導：一階泰勒展開與最壞擾動 $\\boldsymbol{\\epsilon}^*$ 閉式解\n    <span class=\"en\">Solving the Inner Maximization: First-Order Taylor &amp; Closed-Form Epsilon* (Eqs. 51–52)</span>\n  ",
+    "en": "Deriving the Inner Maximization: First-Order Taylor Expansion and the Closed-Form Worst Perturbation $\\boldsymbol{\\epsilon}^*$\n  ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "77fb4c16bfe6": {
+    "zh": "\n    內層問題看似複雜，因為神經網路的損失函式非凸且高度非線性。但只要擾動半徑 $\\rho$ 足夠微小，即可在 $\\boldsymbol{w}$ 處進行<strong>一階泰勒展開（First-Order Taylor Expansion）</strong>：\n    <span class=\"bilingual-en\">By linearizing loss in a small neighborhood via first-order Taylor approximation, the inner maximization reduces to a classical dual norm optimization.</span>\n  ",
+    "en": "The inner problem looks complicated, because a neural network's loss function is non-convex and highly nonlinear. But as long as the perturbation radius $\\rho$ is small enough, we can take a <strong>first-order Taylor expansion</strong> at $\\boldsymbol{w}$:\n    ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "264cd55ec6c2": {
+    "zh": "推導步驟：一階近似化為對偶範數問題",
+    "en": "Derivation: The First-Order Approximation Becomes a Dual-Norm Problem",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7cc74268abb3": {
+    "zh": "代入內層最大化問題，常數項 $\\mathcal{L}(\\boldsymbol{w})$ 與 $\\boldsymbol{\\epsilon}$ 無關可忽略，問題轉化為：",
+    "en": "Substituting into the inner maximization, the constant term $\\mathcal{L}(\\boldsymbol{w})$ does not depend on $\\boldsymbol{\\epsilon}$ and can be dropped, so the problem becomes:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "021a7bcf25ee": {
+    "zh": "這是泛函分析與凸最佳化中的古典<strong>對偶範數（Dual Norm）極值問題</strong>（Hölder 不等式等號成立條件）。其一般解析解為式 (51)：",
+    "en": "This is the classical <strong>dual-norm extremum problem</strong> of functional analysis and convex optimization (the equality condition of Hölder's inequality). Its general analytic solution is Eq. (51):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "aedf582d934e": {
+    "zh": "其中 $q$ 滿足對偶指數關係：$\\frac{1}{p} + \\frac{1}{q} = 1$。運算子 $|\\cdot|$ 與 $\\operatorname{sign}(\\cdot)$ 為逐元素運算。",
+    "en": "where $q$ satisfies the dual-exponent relation $\\frac{1}{p} + \\frac{1}{q} = 1$. The operators $|\\cdot|$ and $\\operatorname{sign}(\\cdot)$ act element-wise.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5937e86bd659": {
+    "zh": "黃金特例：$p=2$（歐氏範數）時的極簡閉式解（式 (52)）",
+    "en": "The Golden Special Case: The Minimal Closed Form for $p=2$ (the Euclidean Norm) (Eq. (52))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e0767f4f8475": {
+    "zh": "當 $p=2$ 時，其對偶指數 $q=2$，式 (51) 大幅化簡為令人驚嘆的優雅向量公式：",
+    "en": "When $p=2$, its dual exponent is $q=2$, and Eq. (51) simplifies dramatically into a strikingly elegant vector formula:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2bde19d6bbe1": {
+    "zh": "<strong>直觀物理意涵：</strong>",
+    "en": "<strong>Intuitive physical meaning:</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "80b9c7c8834a": {
+    "zh": "$\\frac{\\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w})}{\\|\\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w})\\|_{2}}$：當前點梯度的<strong>單位方向向量</strong>（代表局部上升速度最陡峭的方向）。",
+    "en": "$\\frac{\\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w})}{\\|\\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w})\\|_{2}}$: the <strong>unit direction vector</strong> of the gradient at the current point (the direction of steepest local ascent).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1e6b2c841e40": {
+    "zh": "$\\rho$：擾動步長半徑。",
+    "en": "$\\rho$: the radius (step length) of the perturbation.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6c855e3bb923": {
+    "zh": "<strong>結論：最壞擾動 $\\boldsymbol{\\epsilon}^*$ 就是沿當前梯度方向，前進長度嚴格等於 $\\rho$ 的對抗向量！</strong>",
+    "en": "<strong>Conclusion: the worst perturbation $\\boldsymbol{\\epsilon}^*$ is simply an adversarial vector along the current gradient direction, with length exactly $\\rho$!</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "aa8971f3ef12": {
+    "zh": "06 / 演算法實作 · Two-Step Execution",
+    "en": "06 / Two-Step Execution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "552307d33718": {
+    "zh": "SAM 梯度：式 (53) 近似與 Ascent / Descent 兩階段實作\n    <span class=\"en\">SAM Gradient: Equation (53) Approximation &amp; The Two-Step Ascent/Descent Algorithm</span>\n  ",
+    "en": "The SAM Gradient: The Eq. (53) Approximation and the Two-Step Ascent / Descent Implementation\n  ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ad39a96b2733": {
+    "zh": "外層梯度推導與忽略項近似（式 (53)）",
+    "en": "Deriving the Outer Gradient and Approximating Away a Term (Eq. (53))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "aee475d8b23e": {
+    "zh": "將最壞擾動閉式解 $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$ 代回外層最佳化目標式 (49)，並對 $\\boldsymbol{w}$ 應用多元複合函式微分鏈式法則：",
+    "en": "Substitute the closed-form worst perturbation $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$ back into the outer optimization objective, Eq. (49), and apply the multivariable chain rule for composite functions with respect to $\\boldsymbol{w}$:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3264268d398d": {
+    "zh": "式中 $\\frac{d\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})}{d\\boldsymbol{w}}$ 包含複雜的 Hessian 矩陣二階微分項 $\\nabla^2 \\mathcal{L}(\\boldsymbol{w})$。為了計算效率，SAM <strong>果斷忽略次要二階項</strong>，得到實用的近似梯度式 (53)：",
+    "en": "Here $\\frac{d\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})}{d\\boldsymbol{w}}$ contains the complicated second-order Hessian term $\\nabla^2 \\mathcal{L}(\\boldsymbol{w})$. For computational efficiency, SAM <strong>decisively drops the minor second-order term</strong>, giving the practical approximate gradient of Eq. (53):",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bf182542e26e": {
+    "zh": "計算基底梯度",
+    "en": "Compute the Base Gradient",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8af4be28fa41": {
+    "zh": "在當前權重 $\\boldsymbol{w}^{(t)}$ 處執行前向傳播與反向傳播，計算經驗損失的一階梯度 $\\boldsymbol{g}_1 = \\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w}^{(t)})$。",
+    "en": "Run a forward pass and backpropagation at the current weights $\\boldsymbol{w}^{(t)}$ to compute the first-order gradient of the empirical loss, $\\boldsymbol{g}_1 = \\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w}^{(t)})$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e9360602e101": {
+    "zh": "第一階段：Ascent 尋找最慘鄰居",
+    "en": "Stage 1: Ascent to Find the Worst Neighbor",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a7198b2afbb3": {
+    "zh": "利用式 (52) 計算最壞擾動 $\\boldsymbol{\\epsilon}^* = \\rho \\frac{\\boldsymbol{g}_1}{\\|\\boldsymbol{g}_1\\|_2}$，前進至擾動點 $\\boldsymbol{w}_{\\mathrm{adv}} = \\boldsymbol{w}^{(t)} + \\boldsymbol{\\epsilon}^*$。",
+    "en": "Use Eq. (52) to compute the worst perturbation $\\boldsymbol{\\epsilon}^* = \\rho \\frac{\\boldsymbol{g}_1}{\\|\\boldsymbol{g}_1\\|_2}$ and move to the perturbed point $\\boldsymbol{w}_{\\mathrm{adv}} = \\boldsymbol{w}^{(t)} + \\boldsymbol{\\epsilon}^*$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d474144298b8": {
+    "zh": "第二階段：Descent 在最慘點更新原權重",
+    "en": "Stage 2: Descent, Updating the Original Weights from the Worst Point",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2a65c806ebd4": {
+    "zh": "在最慘鄰居處重新前傳並反傳求梯度 $\\boldsymbol{g}_2 = \\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w}_{\\mathrm{adv}})$，以此梯度反向更新出發點權重：$\\boldsymbol{w}^{(t+1)} = \\boldsymbol{w}^{(t)} - \\eta \\boldsymbol{g}_2$。",
+    "en": "At the worst neighbor, run the forward and backward passes again to get the gradient $\\boldsymbol{g}_2 = \\nabla_{\\boldsymbol{w}}\\mathcal{L}(\\boldsymbol{w}_{\\mathrm{adv}})$, and use this gradient to update the starting-point weights in the opposite direction: $\\boldsymbol{w}^{(t+1)} = \\boldsymbol{w}^{(t)} - \\eta \\boldsymbol{g}_2$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "619e6f2326e1": {
+    "zh": "07 / 實務代價 · Computational Overhead",
+    "en": "07 / Computational Overhead",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8fba265e372f": {
+    "zh": "算力代價：每步約 $2\\times$ 反向傳播計算量之實務權衡\n    <span class=\"en\">The Computational Price: ~2× Backprop Overhead for Superior Generalization</span>\n  ",
+    "en": "The Computational Price: The Practical Trade-Off of About $2\\times$ the Backpropagation Cost per Step\n  ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f019baca55e1": {
+    "zh": "傳統 SGD / Adam 運算開銷",
+    "en": "Computational Cost of Traditional SGD / Adam",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "84fcaab14d45": {
+    "zh": "<strong>前向傳播（Forward Pass）：</strong>每步 1 次。",
+    "en": "<strong>Forward pass:</strong> 1 per step.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fcf9c41455fc": {
+    "zh": "<strong>反向傳播（Backward Pass）：</strong>每步 1 次（計算 $\\nabla\\mathcal{L}(\\boldsymbol{w})$）。",
+    "en": "<strong>Backward pass:</strong> 1 per step (computing $\\nabla\\mathcal{L}(\\boldsymbol{w})$).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8e51f707663a": {
+    "zh": "<strong>記憶體暫存：</strong>常規啟用值快取。",
+    "en": "<strong>Memory cache:</strong> the usual cached activations.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3b69fead3e33": {
+    "zh": "<strong>訓練時間基準：</strong>$1.0\\times$ 基準耗時。",
+    "en": "<strong>Training-time baseline:</strong> $1.0\\times$ baseline time.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "774fe75dc8a6": {
+    "zh": "Vanilla SAM 運算開銷",
+    "en": "Computational Cost of Vanilla SAM",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "814d84590864": {
+    "zh": "<strong>前向傳播（Forward Pass）：</strong>每步 2 次（出發點 $\\boldsymbol{w}$ + 最慘點 $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*$）。",
+    "en": "<strong>Forward pass:</strong> 2 per step (the starting point $\\boldsymbol{w}$ + the worst point $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*$).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7b568b4e9540": {
+    "zh": "<strong>反向傳播（Backward Pass）：</strong>每步 2 次（算擾動方向 + 算更新梯度）。",
+    "en": "<strong>Backward pass:</strong> 2 per step (one for the perturbation direction + one for the update gradient).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c22c28178f0d": {
+    "zh": "<strong>時間代價：</strong>牆上時間（Wall-clock time）約增加 <strong>$1.9\\times \\sim 2.0\\times$</strong>。",
+    "en": "<strong>Time cost:</strong> wall-clock time increases by roughly <strong>$1.9\\times \\sim 2.0\\times$</strong>.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "443ea14af9b1": {
+    "zh": "<strong>回報：</strong>在 ImageNet、CIFAR、ViT、NLP 等任務上穩定提升 1%~3% 準確率！",
+    "en": "<strong>Payoff:</strong> a consistent 1%–3% accuracy gain on ImageNet, CIFAR, ViT, NLP and other tasks!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "054de47fe4b2": {
+    "zh": "實務權衡與後續加速演算法演進",
+    "en": "Practical Trade-Offs and the Later Evolution of Faster Algorithms",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d6f56919e546": {
+    "zh": "\n      每步兩次反向傳播是 Vanilla SAM 最顯著的工程痛點。文獻後續提出了多種高效改進方案：\n    ",
+    "en": "Two backward passes per step is Vanilla SAM's most obvious engineering pain point. The literature has since proposed several efficient improvements:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f1c051ab3337": {
+    "zh": "<strong>LookSAM：</strong>每隔 $k$ 步才做一次昂貴的 SAM 擾動，其餘步沿用歷史擾動方向投影，大幅逼近 $1\\times$ SGD 速度。",
+    "en": "<strong>LookSAM:</strong> does the expensive SAM perturbation only once every $k$ steps, and in the other steps reuses a projection of the earlier perturbation direction, coming close to $1\\times$ SGD speed.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "65e8ff71a0a0": {
+    "zh": "<strong>ESAM（Efficient SAM）：</strong>結合資料取樣修剪（Data Dropping）與權重隨機取樣擾動，在維持泛化增益的同時節省 50% 以上浮點運算。",
+    "en": "<strong>ESAM (Efficient SAM):</strong> combines data pruning (data dropping) with perturbing a random sample of the weights, saving more than 50% of the floating-point operations while keeping the generalization gain.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "82d52884abff": {
+    "zh": "<strong>GSAM / ASAM：</strong>針對參數尺度自適應調整 $\\rho$（Adaptive SAM），並改善幾何梯度正交性。",
+    "en": "<strong>GSAM / ASAM:</strong> adapt $\\rho$ to the parameter scale (Adaptive SAM) and improve the orthogonality of the geometric gradients.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "38f666f5f17a": {
+    "zh": "08 / 幾何圖解 · Loss Landscape Geometry",
+    "en": "08 / Loss Landscape Geometry",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4520afd8c6e5": {
+    "zh": "損失地景俯檢視：最慘鄰居探索與平坦谷底遷移\n    <span class=\"en\">Loss Landscape Bird's Eye View: Adversarial Neighbor Search &amp; Flat Basin Migration</span>\n  ",
+    "en": "Loss Landscape from Above: Searching for the Worst Neighbor and Migrating to the Flat Valley Floor\n  ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d56baf350eed": {
+    "zh": "\n          SAM 機制俯視：在 ρ-球內 Ascent 找最慘點，再 Descent 移向平坦盆地\n        ",
+    "en": "SAM from above: Ascent to the worst point in the ρ-ball, then Descent toward the flat basin",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "1f3cfa7c8bd6": {
+    "zh": "左側：尖銳峽谷（等高線密，泛化差）",
+    "en": "Left: sharp gorge (dense contours, poor generalization)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "8dd44b07bb82": {
+    "zh": "右側：平坦盆地（等高線稀疏，泛化優）",
+    "en": "Right: flat basin (sparse contours, good generalization)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "ea66f6e5dd2f": {
+    "zh": "鄰域半徑 ρ 球",
+    "en": "Neighborhood ball of radius ρ",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "677940009160": {
+    "zh": "最慘鄰居 w + ε*",
+    "en": "Worst neighbor w + ε*",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "9c5233c6527b": {
+    "zh": "② Descent (在最慘點求梯度更新)",
+    "en": "② Descent (update with the gradient at the worst point)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "b11afcbec3df": {
+    "zh": "新解 w (平坦)",
+    "en": "New solution w (flat)",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "3e901af6c077": {
+    "zh": "\n            反直覺核心：訓練損失會先被抬高（Ascent 故意找最慘鄰居）！\n          ",
+    "en": "The counterintuitive core: the training loss is pushed up first (Ascent deliberately seeks the worst neighbor)!",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "27a04a458d88": {
+    "zh": "\n            若鄰域裡有人損失極高，解就太尖必須被重罰。以每步約 2× 反向傳播為代價，成功換取平坦谷底與高泛化力。\n          ",
+    "en": "If some neighbor's loss is very high, the solution is too sharp and must be heavily penalized. At the cost of about 2× backprop per step, it wins a flat valley floor and strong generalization.",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "c2776ebb344b": {
+    "zh": "圖 1：SAM 損失地景俯檢視——最慘鄰居探索與平坦谷底遷移機制",
+    "en": "Figure 1: SAM's loss landscape from above: searching for the worst neighbor and migrating to the flat valley floor",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "004b9b8f4d12": {
+    "zh": "SAM 不是單純多走幾步，而是幾何懲罰",
+    "en": "SAM Is Not Just Taking a Few Extra Steps; It Is a Geometric Penalty",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "27b57accfba3": {
+    "zh": "很多初學者誤以為 SAM 只是普通的學習率微調或多走半步。從圖中可直觀洞悉 SAM 的精妙幾何邏輯：",
+    "en": "Many beginners mistakenly think SAM is just an ordinary learning-rate tweak or an extra half step. The figure gives a direct view of SAM's clever geometric logic:",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5fb2a2ad4421": {
+    "zh": "<strong>左側尖銳陷阱：</strong>等高線密集，常規 SGD 極易在此停駐。但只要在 $\\rho$-球內向最陡方向探尋，損失立刻爆炸，迫使更新向量強力將參數推離！",
+    "en": "<strong>The sharp trap on the left:</strong> the contours are dense, and ordinary SGD easily comes to rest here. But as soon as you probe the steepest direction within the $\\rho$-ball, the loss explodes, forcing the update vector to push the parameters firmly away!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b7a41a0d2d21": {
+    "zh": "<strong>右側平坦盆地：</strong>等高線寬鬆疏朗，無論在 $\\rho$-球內如何擾動，損失增幅始終微乎其微，SAM 的銳度懲罰降為最低，安全駐留在最耐擾動的寬谷。",
+    "en": "<strong>The flat basin on the right:</strong> the contours are wide and sparse; however you perturb within the $\\rho$-ball, the loss increase stays tiny, so SAM's sharpness penalty drops to its minimum and it settles safely in the wide valley that best tolerates perturbations.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1f26d021449c": {
+    "zh": "09 / 總體對照 · Comparison Matrix",
+    "en": "09 / Comparison Matrix",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2c0f9aeb5c8d": {
+    "zh": "標準 SGD vs SAM 全方位特徵對照表\n    <span class=\"en\">Comprehensive Comparison: Standard Empirical SGD vs Sharpness-Aware Minimization</span>\n  ",
+    "en": "Standard SGD vs SAM: A Full Feature Comparison\n  ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "829e79a09b6b": {
+    "zh": "維度 / 特徵",
+    "en": "Dimension / Feature",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "38d13500be44": {
+    "zh": "標準 SGD / Adam (ERM)",
+    "en": "Standard SGD / Adam (ERM)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "48503d148a9a": {
+    "zh": "Vanilla SAM (銳度感知最小化)",
+    "en": "Vanilla SAM (sharpness-aware minimization)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "784810444993": {
+    "zh": "<strong>最佳化核心目標</strong>",
+    "en": "<strong>Core optimization objective</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "af6e2bf7fc3b": {
+    "zh": "僅最小化當前點經驗損失 $\\min \\mathcal{L}(\\boldsymbol{w})$",
+    "en": "Only minimizes the empirical loss at the current point, $\\min \\mathcal{L}(\\boldsymbol{w})$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "13aec37b8408": {
+    "zh": "min-max 雙層目標：損失值 + 局部銳度 $\\min_{\\boldsymbol{w}}\\max_{\\boldsymbol{\\epsilon}} \\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$",
+    "en": "Bi-level min-max objective: loss value + local sharpness, $\\min_{\\boldsymbol{w}}\\max_{\\boldsymbol{\\epsilon}} \\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c1769501f2d8": {
+    "zh": "<strong>每步反向傳播</strong>",
+    "en": "<strong>Backpropagation per step</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b1fad0d0594b": {
+    "zh": "$1\\times$（一次 Backward Pass）",
+    "en": "$1\\times$ (one backward pass)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "797261ac5e2e": {
+    "zh": "$2\\times$（Ascent 求方向 + Descent 求更新梯度）",
+    "en": "$2\\times$ (Ascent for the direction + Descent for the update gradient)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "53ae2f25a763": {
+    "zh": "<strong>鄰域感知能力</strong>",
+    "en": "<strong>Neighborhood awareness</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "62e3054697b8": {
+    "zh": "無（僅看單點一階導數，對周圍陡峭度盲目）",
+    "en": "None (looks only at the first derivative at a single point; blind to the steepness around it)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b82ccf38429c": {
+    "zh": "高（主動掃描半徑 $\\rho$ 鄰域內的最慘情況）",
+    "en": "High (actively scans for the worst case within the radius-$\\rho$ neighborhood)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "76dae9238e51": {
+    "zh": "<strong>解的幾何特性</strong>",
+    "en": "<strong>Geometry of the solution</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2586520c587b": {
+    "zh": "可能陷入極為尖銳的局部極小值（Sharp Minima）",
+    "en": "May get stuck in extremely sharp local minima (sharp minima)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "81be15b79e02": {
+    "zh": "主動避開尖銳峽谷，收斂至平坦寬廣的盆地（Flat Minima）",
+    "en": "Actively avoids sharp gorges and converges to wide, flat basins (flat minima)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8825c5b28429": {
+    "zh": "<strong>測試集泛化表現</strong>",
+    "en": "<strong>Test-set generalization</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "11c21a73d1e1": {
+    "zh": "容易在過參數化網路中過擬合，對分佈漂移脆弱",
+    "en": "Prone to overfitting in over-parameterized networks; fragile under distribution shift",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "adfae50c054b": {
+    "zh": "測試誤差顯著降低，對噪聲標籤與分佈偏移魯棒性強",
+    "en": "Markedly lower test error; strongly robust to noisy labels and distribution shift",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0a54fb75b09d": {
+    "zh": "<strong>超參數依賴</strong>",
+    "en": "<strong>Hyperparameters</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "852b6c5ba525": {
+    "zh": "學習率 $\\eta$、動量 $\\beta$、權重衰減 $\\lambda$",
+    "en": "Learning rate $\\eta$, momentum $\\beta$, weight decay $\\lambda$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ac0b39a315f9": {
+    "zh": "額外引入擾動半徑 $\\rho$（通常設 0.05 左右）",
+    "en": "Adds the perturbation radius $\\rho$ (usually set around 0.05)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8d6db5f7a092": {
+    "zh": "<strong>訓練時間成本</strong>",
+    "en": "<strong>Training-time cost</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f30de97b7a61": {
+    "zh": "基準耗時（$1.0\\times$）",
+    "en": "Baseline time ($1.0\\times$)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "fc33ab199197": {
+    "zh": "約 $2.0\\times$ 耗時（算力換取泛化增益）",
+    "en": "About $2.0\\times$ the time (compute traded for a generalization gain)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "41ae66c5db55": {
+    "zh": "10 / 智慧結晶 · Master Maxims",
+    "en": "10 / Master Maxims",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "e8ec498cffdd": {
+    "zh": "大師四大鐵律：SAM 最佳化哲學\n    <span class=\"en\">The Four Inviolable Laws of Sharpness-Aware Minimization</span>\n  ",
+    "en": "The Master's Four Iron Laws: The Philosophy of SAM Optimization\n  ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5fb7fef4b5c0": {
+    "zh": "一、雙層極小極大律：不求單點極小，只求鄰域平坦",
+    "en": "1. The Law of the Bi-Level Min-Max: Seek Not a Single-Point Minimum, but a Flat Neighborhood",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f9875a6d8c1b": {
+    "zh": "單點極小如同懸崖鋼絲，隨風即墜。將目標提升為 $\\min_{\\boldsymbol{w}}\\max_{\\|\\boldsymbol{\\epsilon}\\|\\le\\rho}\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$，寧可犧牲微不足道的訓練損失數值，也要換取整片鄰域的平坦寬容。",
+    "en": "A single-point minimum is like a tightrope over a cliff: one gust of wind and you fall. Raise the objective to $\\min_{\\boldsymbol{w}}\\max_{\\|\\boldsymbol{\\epsilon}\\|\\le\\rho}\\mathcal{L}(\\boldsymbol{w}+\\boldsymbol{\\epsilon})$: better to give up a negligible amount of training loss in exchange for a flat, forgiving neighborhood all around.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7a91e2d3dbf3": {
+    "zh": "二、最慘鄰居對偶律：一階對偶閉式解，梯度長度化為半徑 $\\rho$",
+    "en": "2. The Law of the Worst-Neighbor Dual: A First-Order Dual Closed Form, the Gradient's Length Becomes the Radius $\\rho$",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "9385ecb147ef": {
+    "zh": "在 $p=2$ 範數約束下，最壞擾動無須多步迭代，藉由一階泰勒展開直接解析求解：$\\boldsymbol{\\epsilon}^* = \\rho \\frac{\\nabla\\mathcal{L}}{\\|\\nabla\\mathcal{L}\\|_2}$，精確推向最陡峭的懸崖邊界。",
+    "en": "Under the $p=2$ norm constraint, the worst perturbation needs no multi-step iteration; a first-order Taylor expansion solves it analytically and directly: $\\boldsymbol{\\epsilon}^* = \\rho \\frac{\\nabla\\mathcal{L}}{\\|\\nabla\\mathcal{L}\\|_2}$, pushing precisely to the edge of the steepest cliff.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "beb1c85ba009": {
+    "zh": "三、兩步反傳代價律：兩次梯度兩重天，時間換空間與泛化",
+    "en": "3. The Law of the Two-Backprop Cost: Two Gradients, Two Different Worlds; Time Traded for Space and Generalization",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "84636b327eb1": {
+    "zh": "第一次反傳只為問路（找最慘點），第二次反傳方才邁步（求新梯度）。天下沒有免費的午餐，以兩倍反傳算力為代價，換取過參數化模型的頂級泛化防禦。",
+    "en": "The first backward pass only asks for directions (finding the worst point); only the second backward pass takes the step (computing the new gradient). There is no free lunch: at the cost of twice the backprop compute, you get top-tier generalization protection for over-parameterized models.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "92603b07ccfa": {
+    "zh": "四、平坦泛化平衡律：$\\rho$ 拿捏是關鍵，過大失真過小退化",
+    "en": "4. The Law of Flatness-Generalization Balance: Getting $\\rho$ Right Is the Key; Too Large Distorts, Too Small Degenerates",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "efae317cf315": {
+    "zh": "$\\rho \\to 0$ 則退化為普通盲目 SGD；$\\rho$ 太大則跨出有效鄰域，導致一階近似失效與特徵模糊。精準微調 $\\rho$ 是駕馭 SAM 威力不可違背的黃金平衡。",
+    "en": "With $\\rho \\to 0$ it degenerates into ordinary, blind SGD; with $\\rho$ too large it steps outside the useful neighborhood, so the first-order approximation breaks down and features blur. Precisely tuning $\\rho$ is the golden balance you must respect to harness SAM's power.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Interactive Simulation Lab",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c1cee2e8a9dc": {
+    "zh": "互動探索實驗室：2D 擾動模擬器與最壞擾動 $\\boldsymbol{\\epsilon}^*$ 幾何動態驗證\n    <span class=\"en\">Interactive Lab: 2D Perturbation Simulator, Epsilon* Norm Invariance &amp; Ascent/Descent Trajectories</span>\n  ",
+    "en": "Interactive Lab: A 2D Perturbation Simulator and a Geometric, Dynamic Check of the Worst Perturbation $\\boldsymbol{\\epsilon}^*$\n  ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "57d0bcd2e464": {
+    "zh": "擾動半徑 $\\rho$：",
+    "en": "Perturbation radius $\\rho$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fbcffc2ff5d5": {
+    "zh": "梯度分量 $g_1$：",
+    "en": "Gradient component $g_1$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2f0a9e543001": {
+    "zh": "梯度分量 $g_2$：",
+    "en": "Gradient component $g_2$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3896487bc205": {
+    "zh": "學習率 $\\eta$：",
+    "en": "Learning rate $\\eta$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e54def1ece88": {
+    "zh": "設為 (5, 12)",
+    "en": "Set to (5, 12)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3511c26a1ac4": {
+    "zh": "單步更新 (Step)",
+    "en": "Single-step update (Step)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1f9bb8255ee8": {
+    "zh": "<strong>當前位置 w：</strong> (-0.600, 0.500)<br><strong>鄰域半徑 ρ：</strong> 0.200<br><strong>出發點梯度 ∇L(w)：</strong> (5.0, 12.0)<br><strong>梯度歐氏長度 ‖∇L‖₂：</strong> 13.000<br><strong>最壞擾動 ε*(w)：</strong> (0.077, 0.185)<br><strong>最壞擾動長度 ‖ε*‖₂：</strong> <span style=\"color:#15803d;font-weight:bold;\">0.200</span> (驗證長度 = ρ)<br><strong>累計 SAM 更新步數：</strong> 0<br><strong>狀態判定：</strong><br>",
+    "en": "<strong>Current position w:</strong> (-0.600, 0.500)<br><strong>Neighborhood radius ρ:</strong> 0.200<br><strong>Gradient at the starting point ∇L(w):</strong> (5.0, 12.0)<br><strong>Euclidean length of the gradient ‖∇L‖₂:</strong> 13.000<br><strong>Worst perturbation ε*(w):</strong> (0.077, 0.185)<br><strong>Length of the worst perturbation ‖ε*‖₂:</strong> <span style=\"color:#15803d;font-weight:bold;\">0.200</span> (check: length = ρ)<br><strong>Total SAM update steps:</strong> 0<br><strong>Status:</strong><br>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2542c6707ad9": {
+    "zh": "⚡ 驗證透過：‖ε*‖ = 0.200 嚴格等於半徑 ρ (長度保持不變)",
+    "en": "⚡ Check passed: ‖ε*‖ = 0.200 exactly equals the radius ρ (length unchanged)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e8e17d616807": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. <strong>式 (52) 長度不變性驗證</strong>：點選「設為 (5, 12)」，此時梯度長度為 $\\sqrt{5^2+12^2}=13$。觀察最壞擾動 $\\boldsymbol{\\epsilon}^*$ 的數值，驗證其範數 $\\|\\boldsymbol{\\epsilon}^*\\|_2$ <strong>嚴格等於半徑 $\\rho=0.200$</strong>！<br>\n      2. <strong>Ascent ➡ Descent 雙階段連動</strong>：紅向量為 ① Ascent（將當前點 $w$ 推向最慘點 $w+\\boldsymbol{\\epsilon}^*$），藍向量為 ② Descent（在最慘點計算新梯度更新回原權重）！\n    ",
+    "en": "🧪 <strong>Hands-on challenge:</strong><br>\n      1. <strong>Check the length invariance of Eq. (52)</strong>: click \"Set to (5, 12)\"; the gradient length is now $\\sqrt{5^2+12^2}=13$. Look at the values of the worst perturbation $\\boldsymbol{\\epsilon}^*$ and verify that its norm $\\|\\boldsymbol{\\epsilon}^*\\|_2$ <strong>exactly equals the radius $\\rho=0.200$</strong>!<br>\n      2. <strong>The linked Ascent ➡ Descent stages</strong>: the red vector is ① Ascent (pushing the current point $w$ to the worst point $w+\\boldsymbol{\\epsilon}^*$), and the blue vector is ② Descent (computing a new gradient at the worst point to update the original weights)!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9a63cee739af": {
+    "zh": "12 / 實戰檢驗 · Concept Checkpoint",
+    "en": "12 / Concept Checkpoint",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Feedback on Concepts\n  ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fac53977ecff": {
+    "zh": "題目 1：SAM 的 min-max 目標式 (49) 中，內層 maximize 在做什麼？",
+    "en": "Question 1: In SAM's min-max objective, Eq. (49), what does the inner maximize do?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "189a7caadc94": {
+    "zh": "A. 在 $\\boldsymbol{w}$ 的 $\\rho$-鄰域內找使損失最大的擾動 $\\boldsymbol{\\epsilon}$",
+    "en": "A. Finds the perturbation $\\boldsymbol{\\epsilon}$ in the $\\rho$-neighborhood of $\\boldsymbol{w}$ that maximizes the loss",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "332350e55cad": {
+    "zh": "B. 最小化 L2 正則化權重懲罰項",
+    "en": "B. Minimizes the L2-regularization weight penalty term",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "2d1caa5b66ed": {
+    "zh": "C. 對 mini-batch 隨機樣本取平均梯度",
+    "en": "C. Averages the gradient over random mini-batch samples",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b5edecc9bd00": {
+    "zh": "D. 固定擾動 $\\boldsymbol{\\epsilon}=\\boldsymbol{0}$ 進行常規更新",
+    "en": "D. Fixes the perturbation at $\\boldsymbol{\\epsilon}=\\boldsymbol{0}$ and does an ordinary update",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b0b78b81fde7": {
+    "zh": "題目 2：式 (50) 中 sharpness（銳度）項的精確數學定義是？",
+    "en": "Question 2: What is the exact mathematical definition of the sharpness term in Eq. (50)?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "33e36b9073d2": {
+    "zh": "A. 經驗損失 $\\mathcal{L}(\\boldsymbol{w})$ 本身",
+    "en": "A. The empirical loss $\\mathcal{L}(\\boldsymbol{w})$ itself",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d0835f608a9b": {
+    "zh": "C. 權重二次範數 $\\|\\boldsymbol{w}\\|_2^2$",
+    "en": "C. The squared norm of the weights, $\\|\\boldsymbol{w}\\|_2^2$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "af34e391988c": {
+    "zh": "D. 當前點梯度的歐氏範數 $\\|\\nabla\\mathcal{L}(\\boldsymbol{w})\\|_2$",
+    "en": "D. The Euclidean norm of the gradient at the current point, $\\|\\nabla\\mathcal{L}(\\boldsymbol{w})\\|_2$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "62cba584a2e8": {
+    "zh": "題目 3：當 $p=2$ 時，最優擾動 $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$（式 (52)）的閉式解為？",
+    "en": "Question 3: When $p=2$, what is the closed-form solution for the optimal perturbation $\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$ (Eq. (52))?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "086963584b58": {
+    "zh": "C. 零向量 $\\boldsymbol{0}$",
+    "en": "C. The zero vector $\\boldsymbol{0}$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f9ffa567ede1": {
+    "zh": "題目 4：Vanilla SAM 每步更新權重時，式 (53) 的梯度應在何處計算？",
+    "en": "Question 4: When Vanilla SAM updates the weights at each step, where should the gradient of Eq. (53) be computed?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "39540a819f4a": {
+    "zh": "A. 只在原始出發點 $\\boldsymbol{w}$ 處計算",
+    "en": "A. Only at the original starting point $\\boldsymbol{w}$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6f5b5b309eea": {
+    "zh": "B. 在擾動點 $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$ 處計算",
+    "en": "B. At the perturbed point $\\boldsymbol{w}+\\boldsymbol{\\epsilon}^*(\\boldsymbol{w})$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6b48feb61c49": {
+    "zh": "C. 在反向擾動點 $\\boldsymbol{w}-\\boldsymbol{\\epsilon}^*$ 處計算",
+    "en": "C. At the reverse-perturbed point $\\boldsymbol{w}-\\boldsymbol{\\epsilon}^*$",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7ef56e9a219a": {
+    "zh": "D. 在隨機初始化的權重點計算",
+    "en": "D. At a randomly initialized weight point",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

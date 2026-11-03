@@ -1,0 +1,1046 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "局部極值處切平面水平、無一階下坡方向，故一階條件要求梯度向量 $\\nabla f(\\boldsymbol{w}^*) = \\boldsymbol{0}$。": "At a local extremum the tangent plane is horizontal and there is no first-order downhill direction, so the first-order condition requires the gradient vector $\\nabla f(\\boldsymbol{w}^*) = \\boldsymbol{0}$.",
+      "鞍點處各維度偏導亦全為零，僅憑一階範數會誤以為抵達谷底，實則懸掛於高能鞍嶺。": "At a saddle point the partial derivatives in every dimension are also all zero, so relying on the first-order norm alone makes you think you have reached the valley floor, when you are actually hanging on a high-energy saddle ridge.",
+      "損失差值小僅代表局部地勢平坦，若在高原（Plateau）提早停表將使模型痛失抵達更深谷底的機會。": "A small loss change only means the local terrain is flat; stopping early on a plateau robs the model of the chance to reach a deeper valley floor.",
+      "工程上以 Max Epochs 控制算力預算，並以驗證集 U 型反彈配合 Patience 觸發早停，守護泛化能力。": "In practice, Max Epochs controls the compute budget, and the U-shaped rebound of the validation set together with Patience triggers early stopping, protecting generalization.",
+      "鞍點 w=0 (f=0)": "Saddle w=0 (f=0)",
+      "谷底 w=-1": "Valley w=-1",
+      "谷底 w=+1": "Valley w=+1",
+      "✅ 恭喜：成功抵達真正的全域谷底！": "✅ Congratulations: you reached the true global valley floor!",
+      "✅ 梯度達標 (|∇f| ≤ ε)": "✅ Gradient threshold met (|∇f| ≤ ε)",
+      "⚡ 最佳化前進中...": "⚡ Optimization in progress...",
+      "當前參數位置 w：": "Current parameter position w:",
+      "當前損失 f(w)：": "Current loss f(w):",
+      "梯度斜率 ∇f(w)：": "Gradient (slope) ∇f(w):",
+      "相鄰步 Loss 差值：": "Loss change between adjacent steps:",
+      "梯度門檻 ε 判定：": "Gradient threshold ε check:",
+      "未達標": "Not met",
+      "累計步數：": "Total steps:",
+      "狀態判定：": "Status:"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^(\\S+) \\(範數: (\\S+)\\)$",
+        "en": "$1 (norm: $2)"
+      },
+      {
+        "re": "^達標 \\(≤ (\\S+)\\)$",
+        "en": "Met (≤ $1)"
+      },
+      {
+        "re": "^🛑 警報：誤判收斂！停在鞍點 \\(w=(\\S+)\\)$",
+        "en": "🛑 Alert: false convergence! Stopped at a saddle point (w=$1)"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#kp3-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "bdd969d7548e": {
+    "zh": "KP03 · 索引",
+    "en": "KP03 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c46b51d2ed95": {
+    "zh": "<a href=\"#optimality\">一階最優性 · First-Order</a>",
+    "en": "<a href=\"#optimality\">First-Order Optimality</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "08decd9832d3": {
+    "zh": "<a href=\"#four-criteria\">四大準則 · Four Criteria</a>",
+    "en": "<a href=\"#four-criteria\">The Four Criteria</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3ee5398f7bd8": {
+    "zh": "<a href=\"#criteria-details\">準則深度拆解 · In-Depth</a>",
+    "en": "<a href=\"#criteria-details\">The Criteria in Depth</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3b709bb515f8": {
+    "zh": "<a href=\"#saddle-trap\">鞍點陷阱 · Saddle Trap</a>",
+    "en": "<a href=\"#saddle-trap\">The Saddle Trap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f6ca0a32e27a": {
+    "zh": "<a href=\"#plateau-dilemma\">高原困境 · Plateau Dilemma</a>",
+    "en": "<a href=\"#plateau-dilemma\">The Plateau Dilemma</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b7f14470904b": {
+    "zh": "<a href=\"#early-stopping\">早停法機制 · Early Stopping</a>",
+    "en": "<a href=\"#early-stopping\">How Early Stopping Works</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e5bc50efcd15": {
+    "zh": "<a href=\"#dl-budget\">實務預算停表 · DL Realities</a>",
+    "en": "<a href=\"#dl-budget\">Stopping on a Budget in Practice</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c51b5e4e9b97": {
+    "zh": "<a href=\"#comparison\">對比總表 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Comparison Table</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ccecf9fa47da": {
+    "zh": "<a href=\"#lab\">逃逸模擬器 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Escape Simulator</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Think-About-It Questions</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c1e9ddcdc1b1": {
+    "zh": "收斂準則：什麼時候該停\n      <span class=\"hero-title-en\">Convergence Criteria: When to Stop Iteration</span>\n    ",
+    "en": "Convergence Criteria: When Should You Stop",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "589cbf02baff": {
+    "zh": "\n      矇眼下山時，坡度多平才算抵達谷底？從梯度範數 $\\|\\nabla f\\| \\le \\epsilon$、損失差值 $|f_{k+1}-f_k| \\le \\epsilon$ 到馬鞍曲面的致命誤判，剖析深度學習 Early Stopping 停表哲學。\n    ",
+    "en": "Walking downhill blindfolded, how flat does the slope have to be before you count as having reached the valley floor? From the gradient norm $\\|\\nabla f\\| \\le \\epsilon$ and the loss difference $|f_{k+1}-f_k| \\le \\epsilon$ to the fatal misjudgment on a saddle surface, we dissect the stopping philosophy of early stopping in deep learning.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / The Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "e1421c33cb74": {
+    "zh": "\n      「坡度等於零，真的代表已經到站了嗎？」\n      <small>梯度為零是數學最優的必要條件，但在高維非凸世界，它可能只是一座騙人的馬鞍！<br>\n        <span class=\"bilingual-en-inline\">Does a zero gradient truly signify arrival? In non-convex terrain, it might merely be a deceptive saddle!</span>\n      </small>\n    ",
+    "en": "\"If the slope is zero, does that really mean we've arrived?\"\n      <small>A zero gradient is a necessary condition for mathematical optimality, but in the high-dimensional non-convex world it may just be a deceptive saddle!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "4c5b55d602e5": {
+    "zh": "02 / 理論基石 · Mathematical Stationarity",
+    "en": "02 / Theoretical Foundation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "207477b77230": {
+    "zh": "一階最優性條件：費馬引理的高維幾何\n    <span class=\"en\">First-Order Optimality Condition: Fermat's Theorem in High Dimensions</span>\n  ",
+    "en": "The First-Order Optimality Condition: the High-Dimensional Geometry of Fermat's Lemma",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7ca7a17642f1": {
+    "zh": "連續可微函式的駐點（Stationary Point）條件（式 (1)）",
+    "en": "The stationary point condition for a continuously differentiable function (Eq. (1))",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8b7f12c9a7a6": {
+    "zh": "對於無約束可微目標函式 $f(\\cdot)$，若 $\\boldsymbol{w}^*$ 是一局部極小點（Local Minimum），則其在該點的梯度向量必恆為零：",
+    "en": "For an unconstrained differentiable objective function $f(\\cdot)$, if $\\boldsymbol{w}^*$ is a local minimum, then its gradient vector at that point must be zero:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c3e55e9f39c9": {
+    "zh": "<strong>幾何本質：</strong>在該點切平面完全水平，沿著任何方向的一階方向導數皆為零，即「已無任何直觀的下坡方向」。",
+    "en": "<strong>Geometric essence:</strong> at this point the tangent plane is perfectly horizontal and the first-order directional derivative along every direction is zero, i.e., \"there is no longer any obvious downhill direction.\"",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "24288b8c0fd6": {
+    "zh": "\n    這項優雅的數學性質啟發了最經典的數值最佳化想法：<strong>只要梯度範數縮小到接近零，我們就宣佈收斂並停下程式！</strong>\n    但在實務上，這個直覺面臨著深刻的考驗。\n    <span class=\"bilingual-en\">Fermat's stationary condition states that local extrema must have vanishing gradients. This foundational result motivates using gradient norm thresholds for stopping numerical descent.</span>\n  ",
+    "en": "This elegant mathematical property inspired the most classic idea in numerical optimization: <strong>as soon as the gradient norm shrinks close to zero, we declare convergence and stop the program!</strong> In practice, however, this intuition faces a serious test.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "84c79d0d6787": {
+    "zh": "03 / 機制總覽 · The Four Stopping Criteria",
+    "en": "03 / Overview of the Mechanisms",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f71822d7b905": {
+    "zh": "四大收斂準則：最佳化演算法的四種煞車盤\n    <span class=\"en\">The Four Classical Stopping Criteria: Engineering Braking Mechanisms</span>\n  ",
+    "en": "The Four Convergence Criteria: the Four Brakes of an Optimization Algorithm",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bbb84be80c03": {
+    "zh": "1. 梯度範數門檻 (Gradient Norm)",
+    "en": "1. Gradient norm threshold",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "60b806dbbbc4": {
+    "zh": "<strong>白話意涵：</strong>「坡度已經夠平了」。直接依循一階最優性條件。若梯度長度小於設定極小門檻 $\\epsilon &gt; 0$，判定抵達谷底。",
+    "en": "<strong>In plain words:</strong> \"the slope is flat enough.\" This follows the first-order optimality condition directly. If the length of the gradient is below a tiny preset threshold $\\epsilon &gt; 0$, we judge that the valley floor has been reached.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4ea06abc4258": {
+    "zh": "2. 損失函式差值 (Cost Progress)",
+    "en": "2. Loss function difference (cost progress)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b75d0d807ea3": {
+    "zh": "<strong>白話意涵：</strong>「再迭代也降不動了」。監控連續兩代目標函式值的絕對改善量，當收益微乎其微時停表。",
+    "en": "<strong>In plain words:</strong> \"more iterations won't push it any lower.\" Monitor the absolute improvement of the objective function value between two consecutive iterations, and stop when the gain becomes negligible.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5b4c6f24b548": {
+    "zh": "3. 梯度向量變化量 (Gradient Variation)",
+    "en": "3. Change in the gradient vector (gradient variation)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2bfa5273b62b": {
+    "zh": "<strong>白話意涵：</strong>「前進方向穩定了」。相鄰兩步的梯度向量幾乎重合，意味著曲面局部曲率趨於平緩恆定。",
+    "en": "<strong>In plain words:</strong> \"the direction of travel has stabilized.\" The gradient vectors of two adjacent steps nearly coincide, meaning the local curvature of the surface is becoming gentle and constant.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d224c56bee10": {
+    "zh": "4. 最大迭代預算 (Budget Timeout)",
+    "en": "4. Maximum iteration budget (budget timeout)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b39085a4d161": {
+    "zh": "$k \\ge K_{\\max}$ 或 Epoch 數跑滿",
+    "en": "$k \\ge K_{\\max}$ or the number of epochs is used up",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1782e1c42924": {
+    "zh": "<strong>白話意涵：</strong>「時間到，收工」。實務與深度學習最常用：算力有上限，不論數學是否完美收斂，達到指定輪數即終止。",
+    "en": "<strong>In plain words:</strong> \"time's up, pack it in.\" The most common choice in practice and in deep learning: compute is limited, so whether or not the math has converged perfectly, training ends once the specified number of rounds is reached.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3746d151b05b": {
+    "zh": "04 / 圖解分析 · Visualizing Stopping Meters",
+    "en": "04 / Illustrated Analysis",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "75e40c8c26b5": {
+    "zh": "停錶儀錶板：從儀表指標到馬鞍曲面\n    <span class=\"en\">Dashboard of Stopping Meters: Precision vs Practical Vulnerability</span>\n  ",
+    "en": "The Stopping Dashboard: from Gauge Readings to the Saddle Surface",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3ac7b9003fa4": {
+    "zh": "最佳化何時該停？四種收斂準則儀表盤與馬鞍非凸陷阱",
+    "en": "When should optimization stop? A dashboard of four convergence criteria and the non-convex saddle trap",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8acaf915f70b": {
+    "zh": "(1) 梯度範數",
+    "en": "(1) Gradient norm",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "584d2d1e74a5": {
+    "zh": "≈0 (平)",
+    "en": "≈0 (flat)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e50475aeb092": {
+    "zh": "陡峭",
+    "en": "Steep",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "cda61ced33aa": {
+    "zh": "⚠ 鞍點梯度也是 0！",
+    "en": "⚠ The gradient at a saddle is 0 too!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "a60898685185": {
+    "zh": "(2) Loss 磨平",
+    "en": "(2) Loss flattening",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8e628efac9a7": {
+    "zh": "降幅停滯即停",
+    "en": "Stop when the decrease stalls",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c56bd7e5d054": {
+    "zh": "(3) 梯度變化",
+    "en": "(3) Gradient change",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "298738e45fd6": {
+    "zh": "前後步向量幾何重合",
+    "en": "Consecutive step vectors coincide",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e7c4ec86f881": {
+    "zh": "(4) 預算沙漏",
+    "en": "(4) Budget hourglass",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "0489982ddec6": {
+    "zh": "Max Epochs 跑滿",
+    "en": "Max epochs used up",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3771cf9ce1ec": {
+    "zh": "深度學習實務主力",
+    "en": "The workhorse of DL practice",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "91b64096319f": {
+    "zh": "非凸致命陷阱：鞍點處 ∇f = 0，儀表 (1) 會誤判為「大功告成」！",
+    "en": "Fatal non-convex trap: ∇f = 0 at a saddle point, so gauge (1) wrongly reports \"mission accomplished\"!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "6882fb758109": {
+    "zh": "鞍點 (Saddle)",
+    "en": "Saddle",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "a7cb8c3d125e": {
+    "zh": "真正谷底 Min A",
+    "en": "True valley floor Min A",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "2eb6d8dd4f0b": {
+    "zh": "需藉動量逃逸 →",
+    "en": "Escape needs momentum →",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "9200e741ba4c": {
+    "zh": "直覺的反叛：在鞍點上各方向皆平，一階準則會立刻煞車，使模型永久受困於次優高位！",
+    "en": "Intuition rebels: at a saddle every direction is flat, so first-order criteria brake at once and trap the model forever at a suboptimal height!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e150cdee517b": {
+    "zh": "圖 1：四大收斂停錶儀表盤與馬鞍面欺騙陷阱",
+    "en": "Figure 1: A dashboard of the four convergence stopping meters and the deceptive trap of the saddle surface",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "12044b9e2f44": {
+    "zh": "為何單一準則無法包打天下？",
+    "en": "Why can't a single criterion handle everything?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d5edaee85f8c": {
+    "zh": "在古典凸分析中，只要目標函式是嚴格凸的，梯度歸零便等價於找到了唯一的宇宙最低點。",
+    "en": "In classical convex analysis, as long as the objective function is strictly convex, a vanishing gradient is equivalent to having found the unique lowest point in the universe.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bf227d5d40ab": {
+    "zh": "但在深度神經網路百萬參數空間中：",
+    "en": "But in the million-parameter space of a deep neural network:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cc6a42fb4447": {
+    "zh": "<strong>計算代價過高</strong>：算一次完整訓練集的 $\\|\\nabla f\\|_2$ 耗時巨大。",
+    "en": "<strong>Computational cost is too high</strong>: computing $\\|\\nabla f\\|_2$ once over the full training set takes an enormous amount of time.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "44e368e6b62b": {
+    "zh": "<strong>噪聲干擾</strong>：隨機梯度下降（SGD）使梯度帶有高斯隨機噪聲，梯度長度永遠不可能真正等於零！",
+    "en": "<strong>Noise interference</strong>: stochastic gradient descent (SGD) gives the gradient Gaussian random noise, so the length of the gradient can never truly equal zero!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8a35dcb5e333": {
+    "zh": "05 / 地形陷阱 · The Saddle Point Dilemma",
+    "en": "05 / Terrain Trap",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "233ada835130": {
+    "zh": "非凸深淵：馬鞍面上的虛假收斂\n    <span class=\"en\">The Saddle Dilemma: False Convergence on Zero-Gradient Ridges</span>\n  ",
+    "en": "The Non-Convex Abyss: False Convergence on a Saddle Surface",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4feb324d9fc9": {
+    "zh": "⚠️ 準則一的致命誤判：鞍點（Saddle Point）",
+    "en": "⚠️ The fatal misjudgment of criterion 1: saddle points",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d9f63a22cbbd": {
+    "zh": "\n      在多維函式中，鞍點是指在某些方向上是局部極小值、而在另一些方向上卻是局部極大值的點。\n      最關鍵的是：<strong>在鞍點正中心，所有方向的一階偏導數全數為零：</strong>\n    ",
+    "en": "In a multidimensional function, a saddle point is a point that is a local minimum along some directions but a local maximum along others. Most crucially: <strong>at the exact center of a saddle point, the first-order partial derivatives in all directions are all zero:</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "710e83a3ac20": {
+    "zh": "如果演算法僅設定了「梯度範數 $\\le \\epsilon$」就宣佈收斂，程式將會誤以為已經找到了極佳模型，實際上卻卡在高聳的馬鞍山脊上！",
+    "en": "If the algorithm declares convergence based only on \"gradient norm $\\le \\epsilon$\", the program will believe it has found an excellent model while it is actually stuck on a lofty saddle ridge!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "bcb7198fefe6": {
+    "zh": "06 / 地形陷阱 · The Plateau Illusion",
+    "en": "06 / Terrain Trap",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "612758830f37": {
+    "zh": "損失平原困境：差值微小不等於到達終點\n    <span class=\"en\">The Plateau Illusion: Vanishing Cost Progress Does Not Imply Optimality</span>\n  ",
+    "en": "The Loss Plateau Dilemma: a Tiny Difference Does Not Mean You Have Reached the End",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "79a6cb173157": {
+    "zh": "高原上的假死現象 (Plateau Stagnation)",
+    "en": "Playing dead on a plateau (plateau stagnation)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "56ebd6f0784e": {
+    "zh": "神經網路在飽和啟用區（如 Sigmoid / Tanh 兩端）或廣袤高原區，曲面極度平緩。連續數十步損失下降微乎其微（如 $0.00001$）。若過早以準則二停表，模型將直接死在半路，完全沒能抵達後方的急陡下坡道。",
+    "en": "In the saturated regions of an activation function (such as both ends of Sigmoid / Tanh) or on vast plateaus, a neural network's surface is extremely flat. For dozens of consecutive steps the loss decreases only negligibly (e.g., $0.00001$). If you stop too early with criterion 2, the model simply dies halfway and never reaches the steep downhill slope that lies beyond.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a3e6a51cd7d4": {
+    "zh": "組合式雙保險 (Composite Rule)",
+    "en": "A combined double safeguard (composite rule)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5602331f4250": {
+    "zh": "工業界最佳化器（如 SciPy、L-BFGS）通常強制要求：<strong>同時滿足</strong>梯度範數足夠小 <strong>且</strong> 損失變化量連續 $N$ 步小於門檻，或是步伐移動量 $\\|\\boldsymbol{w}^{(k+1)} - \\boldsymbol{w}^{(k)}\\| \\le \\epsilon_w$，避免單一指標遭平原欺騙。",
+    "en": "Industrial optimizers (such as SciPy, L-BFGS) usually insist on <strong>satisfying at the same time</strong> a sufficiently small gradient norm <strong>and</strong> a loss change below the threshold for $N$ consecutive steps, or a step displacement $\\|\\boldsymbol{w}^{(k+1)} - \\boldsymbol{w}^{(k)}\\| \\le \\epsilon_w$, so that no single indicator can be fooled by a plateau.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "db2066d5b454": {
+    "zh": "07 / 泛化防線 · Early Stopping Dynamics",
+    "en": "07 / The Generalization Defense",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8fd02b757dd2": {
+    "zh": "早停法（Early Stopping）：深度學習的泛化守護神\n    <span class=\"en\">Early Stopping: Guarding Generalization Against Overfitting</span>\n  ",
+    "en": "Early Stopping: the Guardian Angel of Generalization in Deep Learning",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b7da59b10b82": {
+    "zh": "為什麼訓練集「收斂」反而是壞事？",
+    "en": "Why is \"convergence\" on the training set actually a bad thing?",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fddb921e49b9": {
+    "zh": "在深度神經網路中，若無限制地讓訓練損失一路逼近零，模型將把訓練集特有的噪聲全部硬背下來，導致<strong>過擬合（Overfitting）</strong>！",
+    "en": "In a deep neural network, if the training loss is allowed to approach zero without limit, the model will memorize all the noise specific to the training set, leading to <strong>overfitting</strong>!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5cb7d0df28a9": {
+    "zh": "因此，深度學習最重要的煞車準則不是看訓練集，而是看<strong>獨立驗證集（Validation Loss）</strong>：",
+    "en": "Therefore, the most important braking criterion in deep learning does not look at the training set but at the <strong>separate validation set (validation loss)</strong>:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "add5bd29190e": {
+    "zh": "<strong>階段一：雙降期</strong> — 訓練 Loss 與驗證 Loss 同步平穩下降。",
+    "en": "<strong>Phase 1: both decreasing</strong> — the training loss and the validation loss decrease steadily together.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f3995570dd45": {
+    "zh": "<strong>階段二：分水嶺（Sweet Spot）</strong> — 驗證集 Loss 探底，此時模型泛化能力最強。",
+    "en": "<strong>Phase 2: the watershed (sweet spot)</strong> — the validation loss bottoms out; at this moment the model generalizes best.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2ca32d3e8df5": {
+    "zh": "<strong>階段三：過擬合期</strong> — 訓練 Loss 繼續下探，但驗證 Loss 逆勢反彈上升！",
+    "en": "<strong>Phase 3: overfitting</strong> — the training loss keeps going down, but the validation loss turns against the trend and rebounds upward!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "02ee43fa5dc9": {
+    "zh": "💡 容忍度機制（Patience）",
+    "en": "💡 The tolerance mechanism (patience)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2f2a15801e11": {
+    "zh": "\n          由於隨機 Mini-batch 的波動，驗證 Loss 可能會有短暫反彈。實務上設定 <strong>Patience（容忍輪數，例如 5 或 10）</strong>：\n          只有當驗證集連續 $P$ 個 Epochs 都沒有創下新低時，才正式宣佈停表，並<strong>回滾（Rollback）</strong>至歷史最佳 Checkpoint！\n        ",
+    "en": "Because of the fluctuations of random mini-batches, the validation loss may rebound briefly. In practice we set a <strong>patience (number of tolerated epochs, e.g., 5 or 10)</strong>: only when the validation set has failed to reach a new low for $P$ consecutive epochs do we officially stop, and <strong>roll back</strong> to the best checkpoint in the history!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c74ac6a26bb3": {
+    "zh": "早停法機制：驗證集 U 型曲線與 Patience 容忍度視窗",
+    "en": "Early stopping: the U-shaped validation curve and the patience window",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "f26063eb8aeb": {
+    "zh": "Epochs (輪數)",
+    "en": "Epochs",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "b621d9727dfa": {
+    "zh": "最佳檢查點 (Best)",
+    "en": "Best checkpoint",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "4b8e379659fd": {
+    "zh": "過擬合警戒區 (Overfitting)",
+    "en": "Overfitting warning zone",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "ba20764952f5": {
+    "zh": "Patience 容忍視窗",
+    "en": "Patience window",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "c4c1615c0602": {
+    "zh": "停表！(Trigger Stop)",
+    "en": "Stop! (trigger stop)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "14d8d8fed66d": {
+    "zh": "訓練 Loss 持續下降不代表好模型 · 驗證 Loss 反彈時應果斷停表回溯",
+    "en": "A falling training loss does not mean a good model · when the validation loss rebounds, stop decisively and roll back",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "5a36b3eb460b": {
+    "zh": "圖 2：深度學習 Early Stopping 經典機制與最佳權重回溯",
+    "en": "Figure 2: The classic early stopping mechanism in deep learning and rolling back to the best weights",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d2994baed673": {
+    "zh": "08 / 工程實務 · Computational Budget Rule",
+    "en": "08 / Engineering Practice",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5efd231b4ef4": {
+    "zh": "實務預算停表：時間到就收工的工程哲學\n    <span class=\"en\">The Computational Budget Rule: Practical Epoch-Based Termination</span>\n  ",
+    "en": "Stopping on a Budget in Practice: the Engineering Philosophy of \"Time's Up, Pack It In\"",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fe6367676b15": {
+    "zh": "硬性預算限制（Max Iterations / Epochs）",
+    "en": "Hard budget limits (max iterations / epochs)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c730fd8a892a": {
+    "zh": "現代大模型訓練算力高昂，通常直接預設訓練輪數（如 100 Epochs 或 500k Steps）。不管數學上是否抵達駐點，時限或預算耗盡便直接儲存權重。搭配學習率衰減（Cosine Annealing），模型在最後階段自然趨於穩定收斂。",
+    "en": "Training modern large models is expensive in compute, so the number of training rounds is usually preset directly (e.g., 100 epochs or 500k steps). Whether or not a stationary point has been reached mathematically, the weights are simply saved when the time limit or budget runs out. Combined with learning rate decay (cosine annealing), the model naturally settles into stable convergence in the final phase.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "45c861171cd2": {
+    "zh": "非嚴格收斂亦可用（Sub-optimal is Adequate）",
+    "en": "Non-strict convergence is usable too (suboptimal is adequate)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7c485fc1a85f": {
+    "zh": "與傳統工程嚴格追求 6 位數精度不同，深度學習高度依賴特徵抽取。即便目標函式尚未收斂到 $\\nabla f = 0$，只要當前權重在下游任務上表現優異，此模型已具備極高的實用價值。",
+    "en": "Unlike traditional engineering, which strictly pursues 6 digits of precision, deep learning relies heavily on feature extraction. Even if the objective function has not yet converged to $\\nabla f = 0$, as long as the current weights perform well on the downstream task, the model already has very high practical value.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "779e4190845a": {
+    "zh": "09 / 維度歸納 · Comparative Analysis",
+    "en": "09 / Summing Up Across Dimensions",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f85e7ca2c522": {
+    "zh": "收斂準則全維度決策對比表\n    <span class=\"en\">Comprehensive Decision Matrix for Stopping Criteria</span>\n  ",
+    "en": "A Full Decision Comparison Table of Convergence Criteria",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b37bad393415": {
+    "zh": "準則型別 (Criteria)",
+    "en": "Criterion type",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "490f454d4fbc": {
+    "zh": "數學判準 (Formula)",
+    "en": "Mathematical test",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a5b31a1be078": {
+    "zh": "直觀意義 (Intuition)",
+    "en": "Intuitive meaning",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bd37e4795b39": {
+    "zh": "主要風險與漏洞 (Vulnerabilities)",
+    "en": "Main risks and loopholes",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ce034995e28f": {
+    "zh": "深度學習實務定位",
+    "en": "Role in deep learning practice",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2d6e57c63ebd": {
+    "zh": "<strong>梯度範數準則</strong>",
+    "en": "<strong>Gradient norm criterion</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "366e618617e6": {
+    "zh": "坡度夠平，無下切方向",
+    "en": "The slope is flat enough; no downhill direction",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d253648809f4": {
+    "zh": "非凸鞍點處梯度為零；SGD 噪聲下難以趨零",
+    "en": "Gradient is zero at non-convex saddle points; hard to reach zero under SGD noise",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "429228ca9e7c": {
+    "zh": "理論分析常用，神經網路實務極少單獨使用",
+    "en": "Common in theoretical analysis; rarely used alone in neural network practice",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "949d31b55002": {
+    "zh": "<strong>損失差值準則</strong>",
+    "en": "<strong>Loss difference criterion</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "662b7abab9fc": {
+    "zh": "收益遞減，loss 降不動了",
+    "en": "Diminishing returns; the loss won't go any lower",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ab04fe241842": {
+    "zh": "平緩高原期會發生假死停表，未能走出沙漠",
+    "en": "On a flat plateau it can \"play dead\" and stop, never making it out of the desert",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4aa63d562517": {
+    "zh": "適合搭配 Patience 構成驗證集早停防線",
+    "en": "Well suited to pairing with patience to form an early stopping defense on the validation set",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f44157455c9e": {
+    "zh": "<strong>梯度變化準則</strong>",
+    "en": "<strong>Gradient change criterion</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "26113a8a6469": {
+    "zh": "方向與曲率趨於恆定",
+    "en": "Direction and curvature become constant",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b234735956f0": {
+    "zh": "無法反映距離真正極小點的高低位置",
+    "en": "Cannot tell how high or low you are relative to the true minimum",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "64fd621548bb": {
+    "zh": "輔助指標，極少單獨作為主要煞車",
+    "en": "An auxiliary indicator, rarely used alone as the main brake",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "142eacb6b157": {
+    "zh": "<strong>最大迭代預算</strong>",
+    "en": "<strong>Maximum iteration budget</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "02578df751c5": {
+    "zh": "$k \\ge K_{\\max}$ (Epoch 跑滿)",
+    "en": "$k \\ge K_{\\max}$ (epochs used up)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "61802d4ef462": {
+    "zh": "算力預算耗盡，時間到收工",
+    "en": "Compute budget exhausted; time's up, pack it in",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "410e5395d3f8": {
+    "zh": "若步長不當可能尚未收斂，或早已過擬合",
+    "en": "With a poor step size it may not have converged yet, or may have overfit long ago",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e4c1642991fb": {
+    "zh": "<strong>工業界預設最主力</strong>，配合驗證集早停",
+    "en": "<strong>The industry's default workhorse</strong>, paired with early stopping on a validation set",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "85c811fdd363": {
+    "zh": "10 / 智慧結晶 · Inviolable Laws",
+    "en": "10 / Distilled Wisdom",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "17f1aa12fdcb": {
+    "zh": "大師箴言：數值收斂四大鐵律\n    <span class=\"en\">The Four Inviolable Laws of Convergence</span>\n  ",
+    "en": "The Master's Maxims: the Four Iron Laws of Numerical Convergence",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7fc662693b48": {
+    "zh": "一、零度非底律：零梯度不代表是谷底",
+    "en": "I. The zero-is-not-the-bottom law: a zero gradient does not mean the valley floor",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "1d07655d6690": {
+    "zh": "在高維非凸世界中，切勿看見梯度為零便輕信到達終點。小心腳下的馬鞍，必要時藉由噪聲與動量踢上一腳！",
+    "en": "In the high-dimensional non-convex world, never trust that you have arrived just because the gradient is zero. Watch out for the saddle under your feet, and when necessary give it a kick with noise and momentum!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ff523f40565e": {
+    "zh": "二、平坦非終律：損失微變可能是平原假死",
+    "en": "II. The flat-is-not-the-end law: a tiny change in loss may be playing dead on a plateau",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a6403f709314": {
+    "zh": "目標函式連續數代停止下降，可能只是步入了廣袤沙漠。給演算法一點耐心與動量，翻過高原便是萬丈深谷。",
+    "en": "When the objective function stops decreasing for several consecutive iterations, you may simply have wandered into a vast desert. Give the algorithm some patience and momentum: over the plateau lies a bottomless valley.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3d45f18091e9": {
+    "zh": "三、泛化至上律：驗證集反彈應果斷拔插頭",
+    "en": "III. The generalization-first law: when the validation set rebounds, pull the plug decisively",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "38174015dbf5": {
+    "zh": "訓練損失逼近零是虛榮，驗證損失探底才是真理。一旦驗證 Loss 開始上翹，立即觸發 Early Stopping 回溯最佳狀態。",
+    "en": "A training loss approaching zero is vanity; the validation loss bottoming out is the truth. As soon as the validation loss starts to turn upward, immediately trigger early stopping and roll back to the best state.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f6f5f4a841ff": {
+    "zh": "四、預算硬停律：算力有界是最好的工程約束",
+    "en": "IV. The hard-budget-stop law: limited compute is the best engineering constraint",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "302470f7395f": {
+    "zh": "永遠預設最大迭代上限。搭配學習率退火策略，在有限時間內產出足夠好且具實用價值的權重解。",
+    "en": "Always preset a maximum iteration limit. Combined with a learning rate annealing strategy, produce a good-enough weight solution with practical value within limited time.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Hands-On Simulation",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fd58e2c4283f": {
+    "zh": "互動探索實驗室：非凸四次曲線 $f(w) = \\frac{1}{4}w^4 - \\frac{1}{2}w^2$ 鞍點停表與逃逸\n    <span class=\"en\">Interactive Lab: Saddle Point False Stopping &amp; Valley Escape Simulation</span>\n  ",
+    "en": "Interactive Exploration Lab: False Stopping at the Saddle Point and Escape on the Non-Convex Quartic $f(w) = \\frac{1}{4}w^4 - \\frac{1}{2}w^2$",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "396680208283": {
+    "zh": "起點 w₀：",
+    "en": "Start w₀:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1717a6e99b79": {
+    "zh": "學習率 η：",
+    "en": "Learning rate η:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "bbaca0caad6c": {
+    "zh": "梯度門檻 ε：",
+    "en": "Gradient threshold ε:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "943fa4ede897": {
+    "zh": "走一步 (Step)",
+    "en": "Step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4037c1fddf92": {
+    "zh": "跑 20 步 (Run 20)",
+    "en": "Run 20",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2b6ae358ed4b": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. <strong>鞍點誤判體驗</strong>：將起點設為極為接近鞍點的 <code>w₀ = 0.02</code>，將梯度門檻設為 <code>ε = 0.03</code>。點選「走一步」，此時 $|f'(w)| &lt; ε$，儀表將立刻亮起紅燈宣佈「收斂停表」！但此處為局部最大鞍點（$f=0$），根本不是谷底（$w=\\pm 1, f=-0.25$）！<br>\n      2. <strong>成功逃逸體驗</strong>：將起點設為 <code>w₀ = 0.30</code> 或增加學習率 $\\eta$，連續點選「跑 20 步」，觀察紅點如何順利跨越平緩區，穩健滑入全域真正的雙谷底之一！\n    ",
+    "en": "🧪 <strong>Hands-on challenge:</strong><br> 1. <strong>Experience the saddle misjudgment</strong>: set the start extremely close to the saddle point at <code>w₀ = 0.02</code> and set the gradient threshold to <code>ε = 0.03</code>. Click \"Step\": now $|f'(w)| &lt; ε$, and the gauge immediately lights up red and declares \"converged, stop\"! But this is a local-maximum saddle point ($f=0$), not the valley floor at all ($w=\\pm 1, f=-0.25$)!<br> 2. <strong>Experience a successful escape</strong>: set the start to <code>w₀ = 0.30</code> or increase the learning rate $\\eta$, click \"Run 20\" repeatedly, and watch the red dot cross the flat region smoothly and slide steadily into one of the two true global valley floors!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9a63cee739af": {
+    "zh": "12 / 實戰檢驗 · Concept Checkpoint",
+    "en": "12 / Hands-On Check",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Feedback on Concepts",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "450d83a7622c": {
+    "zh": "題目 1：在數值最佳化中，以「梯度範數 $\\|\\nabla f(\\boldsymbol{w})\\|_2 \\le \\epsilon$」作為收斂準則的理論依據是？",
+    "en": "Question 1: In numerical optimization, what is the theoretical basis for using \"gradient norm $\\|\\nabla f(\\boldsymbol{w})\\|_2 \\le \\epsilon$\" as a convergence criterion?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e6443a7ffb8c": {
+    "zh": "A. 凸函式在無窮遠處的漸近線斜率必為零",
+    "en": "A. The slope of a convex function's asymptote at infinity must be zero",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "df9eb8e7683f": {
+    "zh": "B. 一階最優性條件（Fermat 引理）：局部極小點處的梯度向量必為零",
+    "en": "B. The first-order optimality condition (Fermat's lemma): the gradient vector at a local minimum must be zero",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6cd9f1d4c07a": {
+    "zh": "C. 學習率隨迭代次數衰減的數學極限",
+    "en": "C. The mathematical limit of the learning rate decaying with the number of iterations",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "1cd650ebf49e": {
+    "zh": "D. 為了節省反向傳播的矩陣乘法運算量",
+    "en": "D. To save the matrix multiplications of backpropagation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "98e13921c97c": {
+    "zh": "題目 2：在非凸（Non-Convex）深度神經網路中，僅憑「梯度範數小於門檻」停表，最致命的缺陷是什麼？",
+    "en": "Question 2: In a non-convex deep neural network, what is the most fatal flaw of stopping based only on \"the gradient norm is below a threshold\"?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "cd3f0a91e9e8": {
+    "zh": "A. 演算法一定會陷入無限死迴圈無法終止",
+    "en": "A. The algorithm will certainly fall into an infinite loop and never terminate",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "92df74b6b2fb": {
+    "zh": "B. 可能誤將高聳的「鞍點（Saddle Point）」判斷為收斂完成而過早退出",
+    "en": "B. It may mistake a lofty \"saddle point\" for completed convergence and exit too early",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "16ca59123871": {
+    "zh": "C. 必然會造成神經網路權重數值溢位爆炸（NaN）",
+    "en": "C. It inevitably makes the neural network's weight values overflow and explode (NaN)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "139f46bc3a33": {
+    "zh": "D. 會使目標函式值在下一迭代瞬間變為負無窮大",
+    "en": "D. It makes the objective function value become negative infinity instantly at the next iteration",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d161094a24cf": {
+    "zh": "題目 3：準則 $|f(\\boldsymbol{w}^{(k+1)}) - f(\\boldsymbol{w}^{(k)})| \\le \\epsilon$ 檢查的是什麼？在實務上有何盲點？",
+    "en": "Question 3: What does the criterion $|f(\\boldsymbol{w}^{(k+1)}) - f(\\boldsymbol{w}^{(k)})| \\le \\epsilon$ check? What is its blind spot in practice?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ee8b86930582": {
+    "zh": "A. 檢查相鄰步的損失變化量；盲點是在平緩高原（Plateau）上會誤因降幅暫時微小而「假死停表」",
+    "en": "A. It checks the change in loss between adjacent steps; the blind spot is that on a flat plateau it may wrongly \"play dead and stop\" because the decrease is temporarily tiny",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7eb5a396abf9": {
+    "zh": "B. 檢查神經網路層數；盲點是隻適用於單層感知器",
+    "en": "B. It checks the number of layers of the neural network; the blind spot is that it only applies to the single-layer perceptron",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "da11f3d5a272": {
+    "zh": "C. 檢查驗證集的準確率；盲點是會導致過擬合",
+    "en": "C. It checks the accuracy on the validation set; the blind spot is that it leads to overfitting",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "51727a15d01e": {
+    "zh": "D. 檢查梯度更新方向是否正交；盲點是計算代價過高",
+    "en": "D. It checks whether the gradient update directions are orthogonal; the blind spot is that the computational cost is too high",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "20fe808c683d": {
+    "zh": "題目 4：現代深度學習訓練中最常用且穩健的停表組合策略是？",
+    "en": "Question 4: What is the most commonly used and robust combined stopping strategy in modern deep learning training?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5059af0596b2": {
+    "zh": "A. 嚴格等到訓練集梯度精確等於零才停表",
+    "en": "A. Strictly wait until the training-set gradient equals exactly zero before stopping",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3c2313086fd4": {
+    "zh": "B. 完全不設時限，跑到硬碟空間滿為止",
+    "en": "B. Set no time limit at all and run until the hard disk is full",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c420bc94a9a0": {
+    "zh": "C. 設定最大訓練輪數（Epochs）作為硬上限，並搭配驗證集損失（Validation Loss）的 Early Stopping 與 Patience 機制",
+    "en": "C. Set a maximum number of training epochs as a hard limit, combined with early stopping on the validation loss and a patience mechanism",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "626613594e9c": {
+    "zh": "D. 只要訓練損失小於 0.1 便立即切斷電源",
+    "en": "D. Cut the power as soon as the training loss drops below 0.1",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

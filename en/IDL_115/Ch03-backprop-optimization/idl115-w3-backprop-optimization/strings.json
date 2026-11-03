@@ -1,0 +1,1659 @@
+{
+  "_runtime": {
+    "exact": {
+      "答案已顯示": "Answer shown"
+    },
+    "patterns": []
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "ee61ef0ebc89": {
+    "zh": "\n        Backpropagation &amp; Optimization | 反向傳播與最佳化\n    ",
+    "en": "Backpropagation &amp; Optimization",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "e52425e74396": {
+    "zh": "\n        Chapter 03 · Weeks 3–4 · KP01–16 Condensed | 第三章．第 3–4 週．KP01–16 精簡整合版\n    ",
+    "en": "Chapter 3 · Weeks 3–4 · KP01–16 condensed edition",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "c067177425b2": {
+    "zh": "\n        IDL115 · CSIE3544AB · National Dong Hwa University, Dept. of Computer Science &amp; Engineering | 國立東華大學資訊工程學系 · 115 學年度第 1 學期\n    ",
+    "en": "National Dong Hwa University, Department of Computer Science and Information Engineering · Academic Year 115, Semester 1",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "07c656c1dfb7": {
+    "zh": "🎭 From Slope to Certainty | 從坡度到把握",
+    "en": "🎭 From Slope to Confidence",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "6feadc119faa": {
+    "zh": "<strong>Instructor:</strong> \"Imagine being dropped blindfolded onto a rugged mountain range. You can't see the terrain and you have no map — the only thing you can do is feel which direction is steepest under your own feet, and take one step downhill. That feeling is the entire idea behind training a deep network.\"\n            <br><em style=\"color: rgba(255,255,255,0.85); font-size: var(--text-sm);\">「想像你被蒙眼空降在一片崎嶇山脈上：看不見全貌、手上也沒地圖，你唯一能做的就是用腳感受此刻哪個方向最陡，然後往下坡踏一步。這就是訓練深度網路的全部概念。」</em>",
+    "en": "<strong>Instructor:</strong> \"Imagine you've been airdropped, blindfolded, onto a rugged mountain range: you can't see the whole picture and you have no map, so the only thing you can do is feel with your feet which direction is steepest right now, and take one step downhill. That is the whole idea of training a deep network.\"",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "89aa9d1f51d8": {
+    "zh": "<strong>Student:</strong> \"But a network has millions of parameters. Isn't there a smarter way than just feeling the slope, like actually computing the curvature?\"\n            <br><em style=\"color: var(--color-text); font-size: var(--text-sm);\">「可是網路有上百萬個參數，難道不能算曲率之類更聰明的方法，而只是感覺坡度而已？」</em>",
+    "en": "<strong>Student:</strong> \"But a network has millions of parameters. Can't we use something smarter, like computing the curvature, instead of just feeling the slope?\"",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "bd48a8dfb727": {
+    "zh": "<strong>Instructor:</strong> \"Curvature is real information — but at a million parameters, storing and inverting that curvature matrix is computationally impossible. This chapter is the story of how <span class=\"highlight--primary\">local slope</span>, computed cheaply by backpropagation, becomes a training algorithm you can actually run — and how far you can trust the result once it converges.\"\n            <br><em style=\"color: rgba(255,255,255,0.85); font-size: var(--text-sm);\">「曲率確實是有用的資訊——但參數上百萬時，儲存並反轉曲率矩陣在運算上是不可能的。這一章要講的，就是反向傳播算出來的<span class=\"highlight--primary\">局部坡度</span>如何變成一個真正跑得動的訓練演算法，以及收斂之後這個結果到底能相信到什麼程度。」</em>",
+    "en": "<strong>Instructor:</strong> \"Curvature really is useful information — but with millions of parameters, storing and inverting the curvature matrix is computationally impossible. What this chapter is about is how the <span class=\"highlight--primary\">local slope</span> computed by backpropagation becomes a training algorithm that actually runs, and, once it has converged, how far that result can really be trusted.\"",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "d8b5f5da2f44": {
+    "zh": "First-order optimization only ever knows the local slope, moves one step at a time, and has no view of other basins in the loss surface. | 一階最佳化永遠只知道局部坡度、一次只走一步，也看不到損失曲面上其他的山谷。",
+    "en": "First-order optimization only ever knows the local slope, only takes one step at a time, and cannot see the other valleys on the loss surface.",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "c493b025d9ce": {
+    "zh": "🗺️ One Chapter, Six Questions | 一章六個問題",
+    "en": "🗺️ One Chapter, Six Questions",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e8056094f1fe": {
+    "zh": "One chapter, six questions | 一章六個問題",
+    "en": "One chapter, six questions",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "787f911b271e": {
+    "zh": "損失定義",
+    "en": "Define loss",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "b744f556117b": {
+    "zh": "反向傳播",
+    "en": "Backpropagation",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "ab120808f00b": {
+    "zh": "梯度估計",
+    "en": "Estimate gradient",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "ed884f093769": {
+    "zh": "選更新方式",
+    "en": "Choose update rule",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "8844a5c62354": {
+    "zh": "看最慘鄰居",
+    "en": "Check worst neighbor",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "c234d1a5edff": {
+    "zh": "驗證泛化",
+    "en": "Verify generalization",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "0b2d7a42b784": {
+    "zh": "A low training loss is a result of this chain—not a complete explanation of generalization. | 低訓練損失是這條鏈的結果，不是泛化的完整解釋。",
+    "en": "A low training loss is a result of this chain, not a complete explanation of generalization.",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "7241bafd5dcb": {
+    "zh": "Two-Week Route | 兩週路線",
+    "en": "Two-Week Route",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "40c807b8f8dd": {
+    "zh": "Week 3 · KP1–6 | 第 3 週",
+    "en": "Week 3 · KP1–6",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3a677ece90da": {
+    "zh": "Objective, gradient, stopping, line search, momentum, and backpropagation. | 目標、梯度、停止準則、線搜索、動量與反向傳播。",
+    "en": "Objective, gradient, stopping criteria, line search, momentum, and backpropagation.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3ede401e1c20": {
+    "zh": "Week 4 · KP7–11 | 第 4 週上半",
+    "en": "Week 4, first half · KP7–11",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d5518a402d6c": {
+    "zh": "Stochastic estimates, mini-batches, convergence behavior, AdaGrad, RMSProp, Adam. | 隨機估計、小批次、收斂行為、AdaGrad、RMSProp 與 Adam。",
+    "en": "Stochastic estimates, mini-batches, convergence behavior, AdaGrad, RMSProp, and Adam.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1e5272bd75d6": {
+    "zh": "Week 4 · KP12–16 | 第 4 週下半",
+    "en": "Week 4, second half · KP12–16",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4e63e3c575ac": {
+    "zh": "Sharpness, the SAM family, convergence guarantees, and the generalization boundary. | 尖銳度、SAM 家族、收斂保證與泛化邊界。",
+    "en": "Sharpness, the SAM family, convergence guarantees, and the limits of generalization.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6086c56ebbc8": {
+    "zh": "Pacing principle: derive the update rule before comparing optimizers; compare controls before claiming a winner. | 節奏原則：先推導更新式，再比較最佳化器；先做受控比較，再宣稱誰更好。",
+    "en": "Pacing principle: derive the update rule first, then compare optimizers; run a controlled comparison first, then claim which one is better.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5131de203bf2": {
+    "zh": "KP01 · Optimization Is Parameter Search | 最佳化即參數搜尋",
+    "en": "KP01 · Optimization Is Parameter Search",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c08f35c236d0": {
+    "zh": "Hypothesis | 假設類別",
+    "en": "Hypothesis Class",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ead908decb9f": {
+    "zh": "What functions can the model express? | 模型能表達哪些函數？",
+    "en": "Which functions can the model express?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "22e497a428e2": {
+    "zh": "Loss | 損失",
+    "en": "Loss",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ba14be302f03": {
+    "zh": "How costly is a prediction error? | 預測錯誤有多昂貴？",
+    "en": "How costly is a prediction error?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3c80c210239a": {
+    "zh": "Optimizer | 最佳化器",
+    "en": "Optimizer",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1bd0af944694": {
+    "zh": "Which parameter move should happen next? | 下一步參數該怎麼移動？",
+    "en": "How should the parameters move next?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e830cd11cc38": {
+    "zh": "The loss ranks parameter choices; it does not itself say how to move. That is the optimizer's job — the actual training engine of the whole pipeline. | 損失替參數選擇排名，但它本身不告訴你該怎麼走；決定怎麼走是最佳化器的工作，也是整條訓練流程真正的引擎。",
+    "en": "The loss ranks parameter choices, but it does not itself tell you which way to go; deciding which way to go is the optimizer's job, and the optimizer is the real engine of the whole training pipeline.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "31ca34fd8d3c": {
+    "zh": "KP01 · One Update Step, Made Concrete | 一次更新步驟的具象化",
+    "en": "KP01 · One Update Step, Made Concrete",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c22a749f2c9c": {
+    "zh": "Training is a repeatable search loop | 訓練是可重複的搜尋迴圈",
+    "en": "Training is a repeatable search loop",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "a9f83b889eb7": {
+    "zh": "Parameter space and loss contours | 參數空間與損失等高線",
+    "en": "Parameter space and loss contours",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "b4ca22acf580": {
+    "zh": "lower loss | 較低損失",
+    "en": "lower loss",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "252418e4b9c2": {
+    "zh": "current θₜ | 目前參數",
+    "en": "current parameters θₜ",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "4890454316d8": {
+    "zh": "Each parameter vector receives one loss value. | 每個參數向量都對應一個損失值。",
+    "en": "Every parameter vector maps to one loss value.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "b02ffa65123c": {
+    "zh": "One update step | 一次更新步驟",
+    "en": "One update step",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "18effed4075e": {
+    "zh": "1 · Model + data → prediction | 模型＋資料 → 預測",
+    "en": "1 · Model + data → prediction",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "ede460af561b": {
+    "zh": "2 · Score loss L(θₜ) | 計算損失 L(θₜ)",
+    "en": "2 · Compute loss L(θₜ)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "a62dc9a62e49": {
+    "zh": "3 · Differentiate ∇L(θₜ) | 求梯度 ∇L(θₜ)",
+    "en": "3 · Compute gradient ∇L(θₜ)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "591e3622d6b7": {
+    "zh": "4 · Optimizer chooses θₜ₊₁ | 最佳化器選擇 θₜ₊₁",
+    "en": "4 · Optimizer chooses θₜ₊₁",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "506d94a92cd1": {
+    "zh": "Repeat until the chosen stopping criterion. | 重複直到符合選定停止準則。",
+    "en": "Repeat until the chosen stopping criterion is met.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "75d3e0dfcad5": {
+    "zh": "Each parameter vector maps to one loss value; one update step is model+data→prediction→loss→gradient→new parameter. | 每個參數向量都對應一個損失值；一次更新步驟即模型＋資料→預測→損失→梯度→新參數。",
+    "en": "Every parameter vector maps to one loss value; one update step is model + data → prediction → loss → gradient → new parameters.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "914c82f7ee3d": {
+    "zh": "KP01 · Why First Order? | 為何用一階方法？",
+    "en": "KP01 · Why First-Order Methods?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "252f27df798d": {
+    "zh": "❌ Newton's Method | 牛頓法",
+    "en": "❌ Newton's Method",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c4ae2b03762b": {
+    "zh": "<span class=\"icon-list-icon\">💥</span><span>At $d=10^6$ parameters, the Hessian has $10^{12}$ entries; inversion costs $O(d^3)$ — no GPU can afford it. | 參數 $d=10^6$ 時 Hessian 有 $10^{12}$ 個元素，求逆複雜度 $O(d^3)$，現代 GPU 完全無法負荷。</span>",
+    "en": "<span class=\"icon-list-icon\">💥</span><span>With $d=10^6$ parameters, the Hessian has $10^{12}$ entries and inverting it costs $O(d^3)$; modern GPUs cannot handle that at all.</span>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "333869773609": {
+    "zh": "<span class=\"icon-list-icon\">🪤</span><span>In high-dimensional non-convex surfaces, Newton's method is easily attracted to saddle points. | 高維非凸曲面中，牛頓法容易被鞍點吸引。</span>",
+    "en": "<span class=\"icon-list-icon\">🪤</span><span>On high-dimensional non-convex surfaces, Newton's method is easily attracted to saddle points.</span>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "792a507b20df": {
+    "zh": "✅ First-Order Compromise | 一階折衷",
+    "en": "✅ The First-Order Compromise",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d1c748b62b08": {
+    "zh": "<span class=\"icon-list-icon\">⚡</span><span>Backpropagation gives one gradient vector efficiently — no Hessian required. | 反向傳播能有效算出一個梯度向量，不需要 Hessian。</span>",
+    "en": "<span class=\"icon-list-icon\">⚡</span><span>Backpropagation computes one gradient vector efficiently, with no Hessian needed.</span>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f736179a77cb": {
+    "zh": "<span class=\"icon-list-icon\">📐</span><span>The rest of this chapter is entirely about how to use that one signal well. | 本章後續全部都在問：如何善用這一個訊號？</span>",
+    "en": "<span class=\"icon-list-icon\">📐</span><span>The rest of this chapter asks one question throughout: how do we make good use of this one signal?</span>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3015a92a8899": {
+    "zh": "KP01 · More Curvature, More Cost | 曲率更多，代價更高",
+    "en": "KP01 · More Curvature, Higher Cost",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "da9082766de2": {
+    "zh": "More curvature, more cost | 曲率更多，代價更高",
+    "en": "More curvature, higher cost",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "553aab3edc06": {
+    "zh": "Second order | 二階：Newton idea",
+    "en": "Second order: Newton idea",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "8e425b064906": {
+    "zh": "First order | 一階：gradient descent",
+    "en": "First order: gradient descent",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "b997394c81a6": {
+    "zh": "Use curvature H | 使用曲率 H",
+    "en": "Use curvature H",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "c4f6d32c9a15": {
+    "zh": "形成／儲存 n × n Hessian",
+    "en": "Form/store the n × n Hessian",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "a7ad03e68a83": {
+    "zh": "解線性系統以重塑步伐",
+    "en": "Solve a linear system to reshape the step",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "50930a27f9b8": {
+    "zh": "richer local step | 較豐富的局部步伐",
+    "en": "richer local step",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "e03c23b2b1a6": {
+    "zh": "Use the gradient ∇L | 使用梯度 ∇L",
+    "en": "Use the gradient ∇L",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "66c2a6efd156": {
+    "zh": "反向傳播計算一個梯度向量",
+    "en": "Backprop computes one gradient vector",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "640a0d1a3a8b": {
+    "zh": "用學習率與最佳化器控制更新",
+    "en": "Learning rate and optimizer control the update",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "ed4622a9b33c": {
+    "zh": "no full H in each update | 每次更新不需完整 H",
+    "en": "no full H needed per update",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "915249ee647c": {
+    "zh": "one vector | 一個向量",
+    "en": "one vector",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "ce4cdcd500cc": {
+    "zh": "Second order forms and inverts an n×n Hessian for a richer local step; first order only needs backprop's one gradient vector. | 二階需形成並反轉 n×n 的 Hessian 才能得到較豐富的局部步伐；一階只需要反向傳播算出的一個梯度向量。",
+    "en": "Second order must form and invert an n×n Hessian to get a richer local step; first order only needs the one gradient vector computed by backpropagation.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4d674d13c3b0": {
+    "zh": "KP01 · Visual Intuition | 視覺直覺",
+    "en": "KP01 · Visual Intuition",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9ba4518f8461": {
+    "zh": "Left: local curvature can reshape the proposal. Right: a negative gradient gives a direct downhill direction. | 左：局部曲率可重塑提案；右：負梯度提供直接下坡方向。",
+    "en": "Left: local curvature can reshape the proposal. Right: the negative gradient gives a direct downhill direction.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d4c6b44f5f35": {
+    "zh": "KP02 · Gradient Descent: Learning Rate &amp; Update Rule | 梯度下降：學習率與更新規則",
+    "en": "KP02 · Gradient Descent: Learning Rate &amp; Update Rule",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9851ebaf8ab1": {
+    "zh": "For a differentiable loss, a tiny move $\\Delta w$ changes the loss by approximately $\\nabla f(w)^\\top\\Delta w$. Choosing $\\Delta w=-\\eta\\nabla f(w)$ makes that first-order change negative. | 對可微損失，微小移動 $\\Delta w$ 造成的損失變化約為 $\\nabla f(w)^\\top\\Delta w$；取 $\\Delta w=-\\eta\\nabla f(w)$ 便能使這個一階變化為負。",
+    "en": "For a differentiable loss, the change in loss caused by a tiny move $\\Delta w$ is approximately $\\nabla f(w)^\\top\\Delta w$; taking $\\Delta w=-\\eta\\nabla f(w)$ makes this first-order change negative.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5c834651b6c5": {
+    "zh": "Setup | 設定",
+    "en": "Setup",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "bfb6435b4b18": {
+    "zh": "Start | 起點",
+    "en": "Start",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "87a3684b0dfb": {
+    "zh": "Step | 一步",
+    "en": "Step",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6d2794e777ee": {
+    "zh": "Check | 檢查",
+    "en": "Check",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5b77c7e1f54a": {
+    "zh": "$w^*=0.4$; a positive slope correctly moved $w$ left. | 正斜率使參數正確地往左移動。",
+    "en": "$w^*=0.4$; the positive slope correctly moved the parameter $w$ to the left.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0d805aef48ad": {
+    "zh": "KP02 · The Update Deliberately Opposes the Gradient | 更新刻意與梯度相反",
+    "en": "KP02 · The Update Deliberately Opposes the Gradient",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "798a957dd3f2": {
+    "zh": "At the same current parameter, the update step is deliberately opposite the gradient direction. | 在同一個目前參數點，更新方向刻意與梯度方向相反。",
+    "en": "At the same current parameter point, the update direction is deliberately opposite to the gradient direction.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5d751789b63b": {
+    "zh": "KP02 · Exact Loss Geometry | 精確損失幾何",
+    "en": "KP02 · Exact Loss Geometry",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9507f423d404": {
+    "zh": "All points, losses, and arrows are computed exactly from the quadratic loss $5w^2-4w+1$ at starting parameter $w_0=2$. | 所有點、損失與箭頭皆由二次損失 $5w^2-4w+1$、起始參數 2 精確計算而得。",
+    "en": "All points, losses, and arrows are computed exactly from the quadratic loss $5w^2-4w+1$ with starting parameter $w_0=2$.",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8b24b0cdbb0c": {
+    "zh": "KP02 · Learning Rate: A Trust Budget | 學習率：對局部近似的信任預算",
+    "en": "KP02 · Learning Rate: A Trust Budget for the Local Approximation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6fe975be392e": {
+    "zh": "Too Small | 太小",
+    "en": "Too Small",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "871379031fe2": {
+    "zh": "Safe but slow; many steps consume time. | 安全但緩慢，需要很多步。",
+    "en": "Safe but slow; it takes many steps.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "cb53e742f6a7": {
+    "zh": "Useful | 合適",
+    "en": "Just Right",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "32f0dbf9bf3f": {
+    "zh": "Loss descends while local slope information remains reliable. | 損失下降，且局部斜率資訊仍然可信。",
+    "en": "The loss decreases, and the local slope information is still reliable.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ddc66fe0946e": {
+    "zh": "Too Large | 太大",
+    "en": "Too Large",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f7e8d7c145ff": {
+    "zh": "Overshoot or instability reveals that the local linearization was trusted too far. | 越過谷底或不穩定，代表對局部線性近似信任過頭。",
+    "en": "Overshooting the valley floor or becoming unstable means the local linear approximation was trusted too far.",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "fac02e9f10b6": {
+    "zh": "KP02 · The Same Rule Can Converge, Land, or Diverge | 同一規則可收斂、精確抵達或發散",
+    "en": "KP02 · The Same Rule Can Converge, Land Exactly, or Diverge",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "11a5d3584177": {
+    "zh": "All curves use repeated updates on the same quadratic loss; η controls the error multiplier 1−10η. | 曲線皆由同一二次損失反覆更新而得；η 控制誤差倍率 1−10η。",
+    "en": "All curves come from repeated updates on the same quadratic loss; η controls the error multiplier 1−10η.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "2102857edb98": {
+    "zh": "KP03 · Convergence Criteria: When to Stop | 收斂準則：什麼時候該停",
+    "en": "KP03 · Convergence Criteria: When to Stop",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "983c2a3bba69": {
+    "zh": "<span class=\"icon-list-icon\">📉</span><span><strong>Gradient norm | 梯度範數：</strong> $\\|\\nabla f(w)\\|\\le\\varepsilon$</span>",
+    "en": "<span class=\"icon-list-icon\">📉</span><span><strong>Gradient norm:</strong> $\\|\\nabla f(w)\\|\\le\\varepsilon$</span>",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "b24c9ba57ee9": {
+    "zh": "<span class=\"icon-list-icon\">📊</span><span><strong>Loss change | 損失變化：</strong> $|f_{t+1}-f_t|$ small enough | 足夠小</span>",
+    "en": "<span class=\"icon-list-icon\">📊</span><span><strong>Loss change:</strong> $|f_{t+1}-f_t|$ small enough</span>",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "14492c0c88f9": {
+    "zh": "<span class=\"icon-list-icon\">📏</span><span><strong>Parameter change | 參數變化：</strong> $\\|w_{t+1}-w_t\\|$ small enough | 足夠小</span>",
+    "en": "<span class=\"icon-list-icon\">📏</span><span><strong>Parameter change:</strong> $\\|w_{t+1}-w_t\\|$ small enough</span>",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "50ecd52a7b89": {
+    "zh": "<span class=\"icon-list-icon\">🧪</span><span><strong>Validation / budget | 驗證或預算：</strong> stop before wasted compute or overfitting. | 在浪費算力或過擬合之前停止。</span>",
+    "en": "<span class=\"icon-list-icon\">🧪</span><span><strong>Validation or budget:</strong> stop before compute is wasted or the model overfits.</span>",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "a0200fb2b16e": {
+    "zh": "Non-convex caution: $\\nabla f=0$ may be a saddle point, not a useful minimum. | 非凸提醒：梯度為零也可能是鞍點，而非有用的極小值。",
+    "en": "Non-convex caution: $\\nabla f=0$ may also be a saddle point rather than a useful minimum.",
+    "kp": 15,
+    "ctx": "page"
+  },
+  "2e9403938ac3": {
+    "zh": "KP04 · Line Search &amp; Steepest Descent | 線搜索與最陡下降",
+    "en": "KP04 · Line Search &amp; Steepest Descent",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "2a58e09132ef": {
+    "zh": "Backtracking | 回溯",
+    "en": "Backtracking",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "46484b65c5fa": {
+    "zh": "Try a candidate $\\eta$; repeatedly shrink it until sufficient decrease holds. | 嘗試候選步長；未達充分下降就持續縮小。",
+    "en": "Try a candidate step size $\\eta$; as long as sufficient decrease is not achieved, keep shrinking it.",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "c361f7d50b0b": {
+    "zh": "Why It Matters | 為何重要",
+    "en": "Why It Matters",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "1f59b0648b17": {
+    "zh": "It replaces a guessed global scale with observable local evidence. | 以可觀察的局部證據取代猜測的全域尺度。",
+    "en": "It replaces a guessed global scale with observable local evidence.",
+    "kp": 16,
+    "ctx": "page"
+  },
+  "4272f4eab3b5": {
+    "zh": "KP04 · Backtracking by Numbers | 回溯的數值檢驗",
+    "en": "KP04 · Checking Backtracking with Numbers",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "5d9f84141a83": {
+    "zh": "Accept/reject labels come from actually evaluating the stated loss — not a decorative path. | 接受／拒絕標示來自實際計算損失，不是裝飾性路徑。",
+    "en": "The accept/reject labels come from actually computing the loss; this is not a decorative path.",
+    "kp": 17,
+    "ctx": "page"
+  },
+  "1a4524600723": {
+    "zh": "KP05 · Momentum: Keep Agreement, Cancel Disagreement | 動量：累積一致、抵銷分歧",
+    "en": "KP05 · Momentum: Accumulate Agreement, Cancel Disagreement",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "48358c019af8": {
+    "zh": "Why It Helps | 為何有用",
+    "en": "Why It Helps",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "6b1c416e016d": {
+    "zh": "Repeated downhill components add up; alternating cross-valley components cancel. | 重複的下坡分量會累加；跨谷正負交替的分量會抵銷。",
+    "en": "Repeated downhill components add up; cross-valley components that alternate in sign cancel out.",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "e524f42ecb0b": {
+    "zh": "What It Cannot Do | 它不能做什麼",
+    "en": "What It Cannot Do",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "0be827626dd2": {
+    "zh": "Momentum does not make an unsafe learning rate safe. | 動量不會把不安全的學習率變安全。",
+    "en": "Momentum does not turn an unsafe learning rate into a safe one.",
+    "kp": 18,
+    "ctx": "page"
+  },
+  "2a2b43e51ed4": {
+    "zh": "KP06 · Backpropagation: Responsibility Travels Backward | 反向傳播：責任向後傳",
+    "en": "KP06 · Backpropagation: Responsibility Passes Backward",
+    "kp": 19,
+    "ctx": "page"
+  },
+  "f2029daf8b29": {
+    "zh": "The loss only sees an output. A hidden parameter affects that output through every downstream operation; the chain rule turns that dependency into a product of local factors. | 損失只看到輸出；隱藏參數透過每一個下游運算影響輸出，鏈式法則把這個依賴關係拆成一連串局部因子的乘積。",
+    "en": "The loss only sees the output; a hidden parameter affects the output through every downstream operation, and the chain rule breaks this dependency into a product of local factors.",
+    "kp": 19,
+    "ctx": "page"
+  },
+  "db8dad7b68ce": {
+    "zh": "KP06 · Forward Stores What Backward Needs | 前向保存反向需要的量",
+    "en": "KP06 · The Forward Pass Stores What the Backward Pass Needs",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "de38642ca99d": {
+    "zh": "Forward computes values; backward assigns responsibility | 前向算數值，反向分責任",
+    "en": "Forward computes values; backward assigns responsibility",
+    "kp": 20,
+    "ctx": "svg"
+  },
+  "b8f7009a7bb8": {
+    "zh": "輸入",
+    "en": "Input",
+    "kp": 20,
+    "ctx": "svg"
+  },
+  "b43ea404bf6c": {
+    "zh": "加權和",
+    "en": "Weighted sum",
+    "kp": 20,
+    "ctx": "svg"
+  },
+  "236fe7b7d353": {
+    "zh": "活化",
+    "en": "Activation",
+    "kp": 20,
+    "ctx": "svg"
+  },
+  "71ea54bb60a0": {
+    "zh": "損失",
+    "en": "Loss",
+    "kp": 20,
+    "ctx": "svg"
+  },
+  "22960c31c70c": {
+    "zh": "Blue arrows compute values forward; red dashed arrows propagate sensitivities backward. | 藍色箭頭前向計算數值；紅色虛線箭頭反向傳遞敏感度。",
+    "en": "Blue arrows compute values forward; red dashed arrows pass sensitivities backward.",
+    "kp": 20,
+    "ctx": "page"
+  },
+  "9c678d9f8ec2": {
+    "zh": "KP06 · Chain Rule, Read Right to Left | 鏈式法則：由右往左讀",
+    "en": "KP06 · Chain Rule: Read from Right to Left",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "a9bee360b757": {
+    "zh": "Change $w_1$ → changes $a$ → changes $z$ → changes $\\hat y$ → changes the loss. One downstream effect becomes a product of local effects. | 改變 $w_1$ 依序改變 $a,z,\\hat y$ 與損失；一個下游影響拆成一連串局部影響的乘積。",
+    "en": "Changing $w_1$ changes $a,z,\\hat y$ and the loss in turn; one downstream effect is broken into a product of local effects.",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "553536935394": {
+    "zh": "δ answers one question: if this pre-activation moves, how does the loss move? Downstream weights say how strongly this unit influences later units; the activation derivative gates whether that influence can pass onward. | δ 只回答一個問題：這個 pre-activation 改變時，損失如何改變？下游權重說明此單元對後續單元的影響強度；活化函數的導數則決定這個影響能否被傳遞下去。",
+    "en": "δ answers only one question: when this pre-activation changes, how does the loss change? The downstream weights say how strongly this unit influences later units; the derivative of the activation function decides whether that influence can be passed on.",
+    "kp": 21,
+    "ctx": "page"
+  },
+  "ac43c851e830": {
+    "zh": "KP06 · Hand Computation Before Trusting a Library | 在信任函式庫前先手算一次",
+    "en": "KP06 · Compute by Hand Once Before Trusting a Library",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "7d40930ecfac": {
+    "zh": "Forward | 前向",
+    "en": "Forward",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "f053584850e2": {
+    "zh": "Backward | 反向",
+    "en": "Backward",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "bb899b83fa23": {
+    "zh": "Gradients | 梯度",
+    "en": "Gradients",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "35289824eab6": {
+    "zh": "Every factor has a causal role; none is a memorization ornament. | 每個因子都有因果角色，沒有一個只是死背裝飾。",
+    "en": "Every factor has a causal role; none of them is just decoration to memorize.",
+    "kp": 22,
+    "ctx": "page"
+  },
+  "b490ecd0afb8": {
+    "zh": "KP06 · Hand-Computed Credit, by the Numbers | 手算歸因的具體數字",
+    "en": "KP06 · Hand-Computed Credit Assignment in Concrete Numbers",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "e30076421e93": {
+    "zh": "Every arrow carries the exact number computed in the previous step — nothing here is symbolic shorthand. | 每一個箭頭都對應前一步驟算出的確切數字，這裡沒有任何符號化的簡寫。",
+    "en": "Every arrow corresponds to the exact number computed in the previous step; there is no symbolic shorthand here.",
+    "kp": 23,
+    "ctx": "page"
+  },
+  "2d50fb14c42d": {
+    "zh": "KP06 · Gradient Check: Two Nearby Losses Audit One Derivative | 梯度檢查：兩個附近的損失稽核一個導數",
+    "en": "KP06 · Gradient Check: Two Nearby Losses Audit One Derivative",
+    "kp": 24,
+    "ctx": "page"
+  },
+  "492914087b52": {
+    "zh": "Why Central Difference | 為何用中心差分",
+    "en": "Why Central Differences",
+    "kp": 24,
+    "ctx": "page"
+  },
+  "e3f5484f13e7": {
+    "zh": "The first-order approximation error cancels between the two sides. | 兩側相減會抵銷一階近似誤差。",
+    "en": "Subtracting the two sides cancels the first-order approximation error.",
+    "kp": 24,
+    "ctx": "page"
+  },
+  "bc41224713de": {
+    "zh": "Why Not Infinitely Small | 為何不能無限小",
+    "en": "Why It Cannot Be Infinitely Small",
+    "kp": 24,
+    "ctx": "page"
+  },
+  "1ef663b52e46": {
+    "zh": "Floating-point round-off eventually dominates. | 浮點數捨入誤差最終會主導結果。",
+    "en": "Floating-point round-off error eventually dominates the result.",
+    "kp": 24,
+    "ctx": "page"
+  },
+  "e5ca2c554d8e": {
+    "zh": "Week 3 · Verification Lab | 第 3 週驗證實作",
+    "en": "Week 3 · Verification Lab",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "dbcd2ff9a42d": {
+    "zh": "Autograd is an independent witness — not a replacement for reasoning. | Autograd 是獨立證人，不取代理解。",
+    "en": "Autograd is an independent witness; it does not replace understanding.",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "66e1683a6b5b": {
+    "zh": "Specify | 確立規格",
+    "en": "Specify",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "1630a7dc7a06": {
+    "zh": "Fix the tiny network, loss, values, and expected tensors. | 固定小型網路、損失、數值與預期張量。",
+    "en": "Fix the small network, loss, values, and expected tensors.",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "4cb7f96b829a": {
+    "zh": "Implement | 實作",
+    "en": "Implement",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "04ecd2716db0": {
+    "zh": "Ask an agent to write a small PyTorch comparison harness. | 請 AI agent 撰寫小型 PyTorch 比較框架。",
+    "en": "Ask an AI agent to write a small PyTorch comparison harness.",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "645f0e66e603": {
+    "zh": "Verify | 驗證",
+    "en": "Verify",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "8ee53dd4e446": {
+    "zh": "Compare manual gradients, autograd, and finite differences. | 比較手算梯度、autograd 與有限差分結果。",
+    "en": "Compare the hand-computed gradients, autograd, and finite-difference results.",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "9506991c0c75": {
+    "zh": "Human responsibility: review the diff, rerun the tests, and be able to explain any mismatch. | 人類的責任：檢視差異、重新跑測試，並能解釋任何不一致之處。",
+    "en": "The human's responsibility: review the diff, rerun the tests, and be able to explain any mismatch.",
+    "kp": 25,
+    "ctx": "page"
+  },
+  "1cbdfe0b8d7a": {
+    "zh": "✅ Checkpoint · KP01–06 | 檢核點",
+    "en": "✅ Checkpoint · KP01–06",
+    "kp": 26,
+    "ctx": "page"
+  },
+  "ca93ecc39e19": {
+    "zh": "Retrieval | 提取練習",
+    "en": "Retrieval Practice",
+    "kp": 26,
+    "ctx": "page"
+  },
+  "91f609d31c78": {
+    "zh": "What computes $\\nabla_\\theta L$? What decides whether to use a batch, history, or an adaptive scale? | 誰計算梯度 $\\nabla_\\theta L$？誰決定是否使用批次、歷史或自適應尺度？",
+    "en": "What computes the gradient $\\nabla_\\theta L$? What decides whether to use a batch, history, or an adaptive scale?",
+    "kp": 26,
+    "ctx": "page"
+  },
+  "36dc084d144f": {
+    "zh": "<span>查看答案 | Show answer</span><span class=\"quiz-toggle__icon\">▼</span>",
+    "en": "<span>Show answer</span><span class=\"quiz-toggle__icon\">▼</span>",
+    "kp": 26,
+    "ctx": "page"
+  },
+  "1b296154d8e9": {
+    "zh": "✅ Answer | 答案：",
+    "en": "✅ Answer:",
+    "kp": 26,
+    "ctx": "page"
+  },
+  "94e6cdd248c3": {
+    "zh": "Backpropagation computes the gradient through the computational graph; the optimizer decides how that gradient is estimated and turned into an update. | 反向傳播透過計算圖求出梯度；最佳化器則決定如何估計並把梯度轉成一次更新。",
+    "en": "Backpropagation computes the gradient through the computational graph; the optimizer decides how to estimate the gradient and turn it into one update.",
+    "kp": 26,
+    "ctx": "page"
+  },
+  "c79e86dfc1f0": {
+    "zh": "🎭 Week 4 · The Gradient Stays, the Update Rule Changes | 梯度不變，更新規則改變",
+    "en": "🎭 Week 4 · The Gradient Stays the Same, the Update Rule Changes",
+    "kp": 27,
+    "ctx": "page"
+  },
+  "e9661a064ddf": {
+    "zh": "<strong>Instructor:</strong> \"Backpropagation already handed us one gradient. From here on, every optimizer in this chapter takes that exact same signal and simply asks: what should I remember about it, and how should that memory reshape the step?\"\n            <br><em style=\"color: rgba(255,255,255,0.85); font-size: var(--text-sm);\">「反向傳播已經給了我們一個梯度。從這裡開始，本章的每一個最佳化器拿到的都是同一個訊號，差別只在於：該記住這個訊號的哪些歷史，而這段記憶又該如何重塑這一步的移動。」</em>",
+    "en": "<strong>Instructor:</strong> \"Backpropagation has already given us one gradient. From here on, every optimizer in this chapter receives the same signal; the only difference is which parts of this signal's history to remember, and how that memory should reshape this step's move.\"",
+    "kp": 27,
+    "ctx": "page"
+  },
+  "db65988560da": {
+    "zh": "Same current gradient, three different memories, three different steps — this is the entire design space this chapter explores. | 同一個目前梯度，三種不同的記憶，三種不同的步長——這就是本章要探索的整個設計空間。",
+    "en": "The same current gradient, three different memories, three different steps — that is the whole design space this chapter explores.",
+    "kp": 27,
+    "ctx": "page"
+  },
+  "a60624138f49": {
+    "zh": "Same Current Gradient, Three Update Rules | 同一個當前梯度，三種更新規則",
+    "en": "The Same Current Gradient, Three Update Rules",
+    "kp": 28,
+    "ctx": "page"
+  },
+  "bd9c8a0b2352": {
+    "zh": "Same current gradient, three update rules | 同一個當前梯度，三種更新規則",
+    "en": "Same current gradient, three update rules",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "1a4cdc9f8e18": {
+    "zh": "current gradient | 當前梯度",
+    "en": "current gradient",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "b40615bf88a9": {
+    "zh": "SGD | 只用現在",
+    "en": "SGD: present only",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "d753f129300f": {
+    "zh": "Momentum | 加入方向記憶",
+    "en": "Momentum: adds direction memory",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "7d8a38229458": {
+    "zh": "Adam | 加入方向與尺度記憶",
+    "en": "Adam: adds direction + scale memory",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "e0f23cab3c6d": {
+    "zh": "stored state | 儲存狀態：none | 無",
+    "en": "stored state: none",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "edea9c80cab0": {
+    "zh": "update | 更新：w ← w − ηgₜ",
+    "en": "update: w ← w − ηgₜ",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "f6b205b1cada": {
+    "zh": "stored state | 儲存狀態：vₜ₋₁",
+    "en": "stored state: vₜ₋₁",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "7fff2c3496f6": {
+    "zh": "stored state | 儲存狀態：mₜ₋₁ and vₜ₋₁",
+    "en": "stored state: mₜ₋₁ and vₜ₋₁",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "174e3a61e03c": {
+    "zh": "direction | 方向：mₜ smooths gₜ",
+    "en": "direction: mₜ smooths gₜ",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "cd63625dc62c": {
+    "zh": "scale | 尺度：vₜ tracks gₜ²",
+    "en": "scale: vₜ tracks gₜ²",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "58b46a510ed1": {
+    "zh": "update | 更新：w ← w − η m̂ₜ / (√v̂ₜ + ε)",
+    "en": "update: w ← w − η m̂ₜ / (√v̂ₜ + ε)",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "35de5d0d70e3": {
+    "zh": "Every coordinate uses the same chosen step scale. | 每個座標使用同一選定步長。",
+    "en": "Every coordinate uses the same chosen step size.",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "e7118661d88e": {
+    "zh": "Repeated directions add; oscillating directions cancel. | 一致方向累加；來回方向抵銷。",
+    "en": "Consistent directions add up; back-and-forth directions cancel.",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "206cb2c05302": {
+    "zh": "Each coordinate receives a direction estimate and an adaptive denominator. | 每個座標同時取得方向估計與自適應分母。",
+    "en": "Each coordinate gets both a direction estimate and an adaptive denominator.",
+    "kp": 28,
+    "ctx": "svg"
+  },
+  "f035a4a130ef": {
+    "zh": "SGD uses only the present gradient; Momentum adds direction memory; Adam adds both direction and scale memory. | SGD 只用當前梯度；動量加入方向記憶；Adam 同時加入方向與尺度記憶。",
+    "en": "SGD uses only the current gradient; momentum adds direction memory; Adam adds both direction and scale memory.",
+    "kp": 28,
+    "ctx": "page"
+  },
+  "fb1df40fa676": {
+    "zh": "KP07 · Stochastic Gradient Descent | 隨機梯度下降",
+    "en": "KP07 · Stochastic Gradient Descent",
+    "kp": 29,
+    "ctx": "page"
+  },
+  "5bc157485fd7": {
+    "zh": "Uniform sampling gives $\\mathbb{E}[\\nabla f_{i_t}(w_t)]=\\nabla F(w_t)$ — the estimate is unbiased. | 均勻抽樣時，單筆梯度的期望值等於完整梯度，估計是無偏的。",
+    "en": "With uniform sampling, the expected value of a single-example gradient equals the full gradient, $\\mathbb{E}[\\nabla f_{i_t}(w_t)]=\\nabla F(w_t)$, so the estimate is unbiased.",
+    "kp": 29,
+    "ctx": "page"
+  },
+  "4df20cd85899": {
+    "zh": "Unbiased does not mean every single step descends. | 無偏不代表每一步都真的下降。",
+    "en": "Unbiased does not mean every step actually goes downhill.",
+    "kp": 29,
+    "ctx": "page"
+  },
+  "4abd8c199253": {
+    "zh": "KP07–08 · Smaller Batches Trade Exactness for Frequency | 小批次以精確度換取更新頻率",
+    "en": "KP07–08 · Smaller Batches Trade Precision for Update Frequency",
+    "kp": 30,
+    "ctx": "page"
+  },
+  "aea771a29743": {
+    "zh": "All three paths optimize the same mean objective; only the gradient estimate changes. | 三條路徑最佳化的是同一個平均目標，差別只在梯度估計方式。",
+    "en": "All three paths optimize the same mean objective; the only difference is how the gradient is estimated.",
+    "kp": 30,
+    "ctx": "page"
+  },
+  "17e1c65a8a91": {
+    "zh": "KP08 · Mini-Batch &amp; Epoch | 小批次與 Epoch",
+    "en": "KP08 · Mini-Batch &amp; Epoch",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "76cf7effeba0": {
+    "zh": "Batch Size | 批次大小",
+    "en": "Batch Size",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "71ed39568589": {
+    "zh": "Controls noise, memory, and updates per epoch. | 控制雜訊、記憶體用量與每 epoch 的更新次數。",
+    "en": "Controls noise, memory use, and the number of updates per epoch.",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "15c4bf8686e0": {
+    "zh": "Shuffle | 洗牌",
+    "en": "Shuffling",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "1cacc2be2f99": {
+    "zh": "Prevents a fixed sample order from becoming a hidden condition. | 避免固定的樣本順序變成隱藏條件。",
+    "en": "Keeps a fixed sample order from becoming a hidden condition.",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "ea9c660930af": {
+    "zh": "Epoch | 訓練週期",
+    "en": "Epoch",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "2a5d4998a121": {
+    "zh": "Not a universal compute unit — also compare steps and examples seen. | 並非通用的算力單位，也應比較步數與看過的樣本量。",
+    "en": "Not a universal unit of compute; you should also compare the number of steps and the number of examples seen.",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "8b74bc198345": {
+    "zh": "Batch Arithmetic | 批次手算",
+    "en": "Batch Arithmetic by Hand",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "69140f01e61b": {
+    "zh": "At one $w$, four per-example gradients are $3,1,-1,-3$. What are the average gradients for batches $\\{1,2\\}$ and $\\{3,4\\}$? | 四筆樣本在同一個 $w$ 的梯度為 $3,1,-1,-3$，兩個批次 $\\{1,2\\}$ 與 $\\{3,4\\}$ 的平均梯度分別是多少？",
+    "en": "At the same $w$, the gradients of four examples are $3,1,-1,-3$. What are the average gradients of the two batches $\\{1,2\\}$ and $\\{3,4\\}$?",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "271b7471b633": {
+    "zh": "$g_{\\{1,2\\}}=2$, $g_{\\{3,4\\}}=-2$, while the full average is $0$ — a mini-batch estimate can point away from the full gradient. | 前批平均為 2，後批平均為 −2，而完整平均為 0——小批次估計的方向可能與完整梯度不同。",
+    "en": "$g_{\\{1,2\\}}=2$, $g_{\\{3,4\\}}=-2$, while the full average is $0$ — a mini-batch estimate can point in a different direction from the full gradient.",
+    "kp": 31,
+    "ctx": "page"
+  },
+  "c289f713cd41": {
+    "zh": "KP09 · SGD Convergence: Noise Changes What “Arrive” Means | SGD 收斂：雜訊改變「抵達」的意義",
+    "en": "KP09 · SGD Convergence: Noise Changes What “Arriving” Means",
+    "kp": 32,
+    "ctx": "page"
+  },
+  "bb0092fc41c4": {
+    "zh": "Full Gradient | 完整梯度",
+    "en": "Full Gradient",
+    "kp": 32,
+    "ctx": "page"
+  },
+  "5cf6e18c604f": {
+    "zh": "Under convex, smooth assumptions, the objective residual can shrink at rate $O(1/t)$. | 凸且平滑的假設下，目標殘差可以 $O(1/t)$ 的速率縮小。",
+    "en": "Under convex and smooth assumptions, the objective residual can shrink at a rate of $O(1/t)$.",
+    "kp": 32,
+    "ctx": "page"
+  },
+  "59c2520a339f": {
+    "zh": "Fixed-Step SGD | 固定步長 SGD",
+    "en": "Fixed-Step-Size SGD",
+    "kp": 32,
+    "ctx": "page"
+  },
+  "f4ea28a20a02": {
+    "zh": "Noise can leave the iterate in an $O(\\eta)$ neighborhood rather than exactly at a minimizer. | 雜訊會使迭代停留在約 $O(\\eta)$ 的鄰域內，而非精確抵達最小值。",
+    "en": "Noise keeps the iterates within roughly an $O(\\eta)$ neighborhood instead of reaching the minimizer exactly.",
+    "kp": 32,
+    "ctx": "page"
+  },
+  "ccb1dc26723f": {
+    "zh": "Diminish noise without stopping progress — the classic Robbins–Monro step-size conditions. | 逐漸降低雜訊但不停止前進——經典的 Robbins–Monro 步長條件。",
+    "en": "Gradually reduce the noise without stopping progress — the classic Robbins–Monro step-size conditions.",
+    "kp": 32,
+    "ctx": "page"
+  },
+  "6ce5de5f5160": {
+    "zh": "KP10 · AdaGrad: Per-Coordinate Adaptive Steps | AdaGrad：逐維度自適應步長",
+    "en": "KP10 · AdaGrad: Per-Coordinate Adaptive Step Sizes",
+    "kp": 33,
+    "ctx": "page"
+  },
+  "6ed46718a192": {
+    "zh": "Frequent large gradients accumulate and receive smaller effective steps; rare coordinates keep relatively larger steps. | 經常出現的大梯度會累積並得到較小的有效步長；稀少座標則相對保留較大的步長。",
+    "en": "Frequent large gradients accumulate and get smaller effective step sizes; rare coordinates keep relatively larger step sizes.",
+    "kp": 33,
+    "ctx": "page"
+  },
+  "9ad41de29f54": {
+    "zh": "KP10–11 · AdaGrad Never Forgets; RMSProp Deliberately Does | AdaGrad 不遺忘；RMSProp 刻意遺忘",
+    "en": "KP10–11 · AdaGrad Never Forgets; RMSProp Forgets on Purpose",
+    "kp": 34,
+    "ctx": "page"
+  },
+  "0ad2638f715f": {
+    "zh": "Both curves are computed from the exact same gradient history — only the accumulation rule differs. | 兩條曲線皆採用相同的梯度歷史，差別只在累積規則。",
+    "en": "Both curves use the same gradient history; the only difference is the accumulation rule.",
+    "kp": 34,
+    "ctx": "page"
+  },
+  "dd9478dba131": {
+    "zh": "KP11 · Adam: Direction Memory + Scale Memory | Adam：方向記憶＋尺度記憶",
+    "en": "KP11 · Adam: Direction Memory + Scale Memory",
+    "kp": 35,
+    "ctx": "page"
+  },
+  "f1a445ca0807": {
+    "zh": "$m_t$ — Smoothed Direction | 平滑方向",
+    "en": "$m_t$ — Smoothed Direction",
+    "kp": 35,
+    "ctx": "page"
+  },
+  "f9fd0bfc9973": {
+    "zh": "An exponential moving average of the gradient itself. | 梯度本身的指數移動平均。",
+    "en": "An exponential moving average of the gradient itself.",
+    "kp": 35,
+    "ctx": "page"
+  },
+  "f1750437357c": {
+    "zh": "$v_t$ — Recent Squared Scale | 近期平方尺度",
+    "en": "$v_t$ — Recent Squared Scale",
+    "kp": 35,
+    "ctx": "page"
+  },
+  "e2729b846170": {
+    "zh": "Tracks how large recent gradients have been, coordinate-wise. | 逐座標追蹤近期梯度的大小。",
+    "en": "Tracks the size of recent gradients, coordinate by coordinate.",
+    "kp": 35,
+    "ctx": "page"
+  },
+  "d4f79c703fa6": {
+    "zh": "Bias correction ($\\hat m_t,\\hat v_t$) fixes the early under-estimate caused by zero initialization. | 偏差修正（$\\hat m_t,\\hat v_t$）修正零初始化造成的早期低估。",
+    "en": "Bias correction ($\\hat m_t,\\hat v_t$) corrects the early underestimate caused by zero initialization.",
+    "kp": 35,
+    "ctx": "page"
+  },
+  "00acfd08dd97": {
+    "zh": "Optimizer Comparison Is an Experiment, Not a Leaderboard | 最佳化器比較是實驗，不是排行榜",
+    "en": "Comparing Optimizers Is an Experiment, Not a Leaderboard",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "babc7cc84269": {
+    "zh": "Stored state | 儲存狀態",
+    "en": "Stored state",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "b986542746e1": {
+    "zh": "none | 無",
+    "en": "none",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "ef6ae8b4a4d3": {
+    "zh": "Uses | 使用",
+    "en": "Uses",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "d81b1399e752": {
+    "zh": "direction history | 方向歷史",
+    "en": "direction history",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "d8da06a81eaf": {
+    "zh": "direction + scale | 方向＋尺度",
+    "en": "direction + scale",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "f0cf2da88c34": {
+    "zh": "<span class=\"icon-list-icon\">🔬</span><span><strong>Protocol | 實驗協定：</strong> fix data, model, seeds, schedule, and compute budget. | 固定資料、模型、種子、排程與算力預算。</span>",
+    "en": "<span class=\"icon-list-icon\">🔬</span><span><strong>Experimental protocol:</strong> fix the data, model, seeds, schedule, and compute budget.</span>",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "bd598bdcbc45": {
+    "zh": "<span class=\"icon-list-icon\">📋</span><span><strong>Log | 記錄：</strong> training loss, validation metric, wall time, and variance across seeds. | 訓練損失、驗證指標、實際時間與跨種子變異。</span>",
+    "en": "<span class=\"icon-list-icon\">📋</span><span><strong>Record:</strong> training loss, validation metrics, wall-clock time, and variance across seeds.</span>",
+    "kp": 36,
+    "ctx": "page"
+  },
+  "3c74959d0f9b": {
+    "zh": "KP12 · Flat Minima &amp; the Motivation for SAM | 平坦極小值與 SAM 的動機",
+    "en": "KP12 · Flat Minima &amp; the Motivation for SAM",
+    "kp": 37,
+    "ctx": "page"
+  },
+  "5da84d97e3ec": {
+    "zh": "Do not only ask how low the loss is here — ask how bad it becomes nearby. Flatness is a local diagnostic and motivation, not a parameterization-free proof of generalization. | 不只要問這裡的損失有多低，也要問附近的損失會變得多糟。平坦性是一種局部診斷與動機，不是與參數化無關的泛化證明。",
+    "en": "Don't only ask how low the loss is here; also ask how bad the loss gets nearby. Flatness is a local diagnostic and a motivation, not a parameterization-independent proof of generalization.",
+    "kp": 37,
+    "ctx": "page"
+  },
+  "c79936776b82": {
+    "zh": "KP12 · Sharp and Flat Pay Different Penalties at the Same Radius | 同樣半徑下尖銳與平坦的代價不同",
+    "en": "KP12 · At the Same Radius, Sharp and Flat Pay Different Costs",
+    "kp": 38,
+    "ctx": "page"
+  },
+  "3530de2e0d33": {
+    "zh": "The curves and neighborhood penalties are calculated exactly from the plotted quadratics. | 曲線與鄰域代價皆由圖中的二次函數精確計算而得。",
+    "en": "The curves and neighborhood costs are all computed exactly from the quadratic functions in the figure.",
+    "kp": 38,
+    "ctx": "page"
+  },
+  "fbe87049321d": {
+    "zh": "KP13 · Vanilla SAM: Probe the Worst Direction First | 基本 SAM：先探測最壞方向",
+    "en": "KP13 · Vanilla SAM: Probe the Worst Direction First",
+    "kp": 39,
+    "ctx": "page"
+  },
+  "cf3748200fb3": {
+    "zh": "First-order reason: the inner loss rises fastest along the gradient direction, so that direction is spent as the perturbation. | 一階理由：內層損失沿梯度方向上升最快，因此把這個方向當作擾動來使用。",
+    "en": "First-order reason: the inner loss rises fastest along the gradient direction, so this direction is used as the perturbation.",
+    "kp": 39,
+    "ctx": "page"
+  },
+  "cd7b088f368b": {
+    "zh": "KP13 · SAM Spends the Radius Along the Gradient | SAM 沿梯度方向使用半徑",
+    "en": "KP13 · SAM Spends the Radius Along the Gradient Direction",
+    "kp": 40,
+    "ctx": "page"
+  },
+  "7cd0edefb0ea": {
+    "zh": "The green arrow is the calculated perturbation inside the blue radius. | 綠色箭頭是藍色半徑範圍內計算出的擾動。",
+    "en": "The green arrow is the computed perturbation within the blue radius.",
+    "kp": 40,
+    "ctx": "page"
+  },
+  "ebef3efafeb4": {
+    "zh": "KP14 · Efficient &amp; Adaptive SAM | 高效與自適應 SAM",
+    "en": "KP14 · Efficient &amp; Adaptive SAM",
+    "kp": 41,
+    "ctx": "page"
+  },
+  "e02dc1b0f0df": {
+    "zh": "Perturb a stochastic subset of weights. | 擾動隨機子集的權重。",
+    "en": "Perturb a random subset of the weights.",
+    "kp": 41,
+    "ctx": "page"
+  },
+  "7b55f58710b6": {
+    "zh": "Spend compute on sharpness-sensitive examples. | 把計算資源花在對尖銳度敏感的樣本上。",
+    "en": "Spend compute on the examples that are sensitive to sharpness.",
+    "kp": 41,
+    "ctx": "page"
+  },
+  "a5d4c63a94a1": {
+    "zh": "Use a scale-aware neighborhood. | 使用考慮參數尺度的鄰域。",
+    "en": "Use a neighborhood that takes parameter scale into account.",
+    "kp": 41,
+    "ctx": "page"
+  },
+  "4a3352d3eec6": {
+    "zh": "Ask which part actually changed: compute budget, sample selection, or neighborhood geometry. | 要問清楚改變的到底是計算預算、樣本選擇，還是鄰域幾何。",
+    "en": "Be clear about what actually changed: the compute budget, the sample selection, or the neighborhood geometry.",
+    "kp": 41,
+    "ctx": "page"
+  },
+  "73cd80f2b893": {
+    "zh": "KP15 · Convergence Guarantees Are Conditional, Not a Slogan | 收斂保證是有條件的敘述，不是口號",
+    "en": "KP15 · Convergence Guarantees Are Conditional Statements, Not Slogans",
+    "kp": 42,
+    "ctx": "page"
+  },
+  "ce2e4b9a9b5d": {
+    "zh": "Typical Assumptions | 典型假設",
+    "en": "Typical Assumptions",
+    "kp": 42,
+    "ctx": "page"
+  },
+  "876980076996": {
+    "zh": "Width, initialization, data separation, smoothness, and step-size choices are all explicitly specified. | 明定寬度、初始化方式、資料分離性、平滑性與步長選擇。",
+    "en": "Width, initialization, data separation, smoothness, and step-size choice are all explicitly specified.",
+    "kp": 42,
+    "ctx": "page"
+  },
+  "89cb89a4838d": {
+    "zh": "Typical Conclusion | 典型結論",
+    "en": "Typical Conclusion",
+    "kp": 42,
+    "ctx": "page"
+  },
+  "72eb89629bc2": {
+    "zh": "Training loss can become small within a stated computation budget. | 訓練損失可以在指定的計算量內變小。",
+    "en": "The training loss can become small within a specified amount of computation.",
+    "kp": 42,
+    "ctx": "page"
+  },
+  "e9d3c49a5fec": {
+    "zh": "KP16 · Optimization Does Not Finish the Generalization Story | 最佳化理論沒有結束泛化的故事",
+    "en": "KP16 · Optimization Theory Does Not End the Generalization Story",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "bd5f615498e0": {
+    "zh": "Optimization | 最佳化",
+    "en": "Optimization",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "a4296fb5f329": {
+    "zh": "Can we lower the training objective? | 能否降低訓練目標？",
+    "en": "Can we lower the training objective?",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "04f91c381198": {
+    "zh": "Generalization | 泛化",
+    "en": "Generalization",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "7c30234edadd": {
+    "zh": "Does performance transfer to unseen data? | 表現能否遷移到未見過的資料？",
+    "en": "Does performance carry over to unseen data?",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "8d7b3e0249aa": {
+    "zh": "Evaluation | 評估",
+    "en": "Evaluation",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "b03c2fc5b126": {
+    "zh": "Which validation, robustness, and cost evidence exists? | 有哪些驗證、穩健性與成本方面的證據？",
+    "en": "What evidence is there on validation, robustness, and cost?",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "7574c19afb40": {
+    "zh": "The same training loss can coexist with very different test-time behavior. | 相同的訓練損失可以對應到截然不同的測試表現。",
+    "en": "The same training loss can go with very different test performance.",
+    "kp": 43,
+    "ctx": "page"
+  },
+  "8b2dc2b070fd": {
+    "zh": "KP16 · A Training Result Is One Checkpoint, Not the Final Verdict | 訓練結果是一個檢查點，不是最終判決",
+    "en": "KP16 · A Training Result Is a Checkpoint, Not the Final Verdict",
+    "kp": 44,
+    "ctx": "page"
+  },
+  "58d9e92d7827": {
+    "zh": "Different evidence answers different questions | 不同證據回答不同問題",
+    "en": "Different evidence answers different questions",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "17e6d5904532": {
+    "zh": "Train | 訓練集",
+    "en": "Training set",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "77b3fb5c36ce": {
+    "zh": "Validation | 驗證集",
+    "en": "Validation set",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "a448abb27224": {
+    "zh": "Test | 測試集",
+    "en": "Test set",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "2f7d22850842": {
+    "zh": "擬合參數",
+    "en": "Fit parameters",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "d240d79ec732": {
+    "zh": "回答：訓練目標是否降低",
+    "en": "Answers: did the training objective go down?",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "55da882ebcbf": {
+    "zh": "選擇超參數與模型",
+    "en": "Choose hyperparameters and model",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "dfd19e915f04": {
+    "zh": "回答：受控比較下的表現",
+    "en": "Answers: performance in a controlled comparison",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "3eab12848dd0": {
+    "zh": "最後的未碰觸評估",
+    "en": "Final untouched evaluation",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "897a0dad5917": {
+    "zh": "回答：保留資料上的表現",
+    "en": "Answers: performance on held-out data",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "abfe62197f37": {
+    "zh": "Low training loss is not a direct test-performance claim | 低訓練損失不能直接宣稱測試表現",
+    "en": "Low training loss is not direct evidence of test performance",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "cc8b3ac60be4": {
+    "zh": "Validation and held-out evidence are separate checkpoints. | 驗證與保留測試證據是不同的檢查點。",
+    "en": "Validation and held-out test evidence are separate checkpoints.",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "d2e1832c53c6": {
+    "zh": "do not skip | 不可跳過",
+    "en": "do not skip",
+    "kp": 44,
+    "ctx": "svg"
+  },
+  "33fe3f8ab8ce": {
+    "zh": "Train, validation, and test each answer a different question — a low training loss is a result of the chain, not proof that it generalizes. | 訓練、驗證與測試各自回答不同問題；低訓練損失是這條鏈的結果，不是泛化的證明。",
+    "en": "Training, validation, and test each answer a different question; a low training loss is a result of this chain, not proof of generalization.",
+    "kp": 44,
+    "ctx": "page"
+  },
+  "dd2511fbdd3f": {
+    "zh": "✅ Chapter Retrieval | 全章提取",
+    "en": "✅ Chapter Retrieval Practice",
+    "kp": 45,
+    "ctx": "page"
+  },
+  "7ca919d2ce12": {
+    "zh": "Match Method to Job | 配對方法與工作",
+    "en": "Match Methods to Jobs",
+    "kp": 45,
+    "ctx": "page"
+  },
+  "6a640099ca25": {
+    "zh": "Match each question to its tool: “Who receives credit?”, “How can I estimate cheaply?”, “How do I damp zigzag?”, “How do I penalize a bad neighbor?”, “What still needs test evidence?” | 把五個問題配對到對應的工具。",
+    "en": "Match the five questions to their corresponding tools: “Who receives credit?”, “How can I estimate cheaply?”, “How do I damp zigzag?”, “How do I penalize a bad neighbor?”, “What still needs test evidence?”",
+    "kp": 45,
+    "ctx": "page"
+  },
+  "448479f843de": {
+    "zh": "Backpropagation; SGD / mini-batch; Momentum / Adam; SAM; validation and generalization analysis. | 依序是：反向傳播；SGD／小批次；動量／Adam；SAM；驗證與泛化分析。",
+    "en": "In order: backpropagation; SGD/mini-batch; momentum/Adam; SAM; validation and generalization analysis.",
+    "kp": 45,
+    "ctx": "page"
+  },
+  "22b6fc7198ca": {
+    "zh": "Chapter 03 · Closing | 本章收束",
+    "en": "Chapter 03 · Closing",
+    "kp": 46,
+    "ctx": "page"
+  },
+  "1e07509482a9": {
+    "zh": "Compute correctly. Move deliberately. Claim carefully. | 正確計算。審慎移動。謹慎主張。",
+    "en": "Compute correctly. Move deliberately. Claim carefully.",
+    "kp": 46,
+    "ctx": "page"
+  },
+  "2b2e45af193c": {
+    "zh": "Source basis: sixteen SlidePro Ch03 decks, KP01–16. This condensed deck reorganizes their material into one cross-week teaching sequence, built with the same skill and component system as Chapter 01. | 來源基礎：16 份 SlidePro Ch03 投影片（KP01–16）。本檔以與第一章相同的技能與元件系統，將其內容重新整理為一份跨週教學序列。",
+    "en": "Source basis: 16 SlidePro Ch03 decks (KP01–16). Using the same skill and component system as Chapter 1, this file reorganizes their content into one teaching sequence that spans both weeks.",
+    "kp": 46,
+    "ctx": "page"
+  },
+  "ea730c5e1cde": {
+    "zh": "回到頂部",
+    "en": "Back to top",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "9c0e55c3217e": {
+    "zh": "切換主題",
+    "en": "Toggle theme",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "760db4fb7f4b": {
+    "zh": "A six-stage optimization learning map | 六階最佳化學習地圖",
+    "en": "Six-stage optimization learning map",
+    "kp": 3,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "214578b0924a": {
+    "zh": "Optimization landscape with parameter point gradient and update loop | 含參數點、梯度與更新迴圈的最佳化地形",
+    "en": "Optimization landscape with parameter point, gradient, and update loop",
+    "kp": 6,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "e68aacc1a813": {
+    "zh": "Concrete comparison of second-order Newton and first-order gradient updates | 二階牛頓與一階梯度更新的具體比較",
+    "en": "Concrete comparison of second-order Newton and first-order gradient updates",
+    "kp": 8,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "5e808f5f58a1": {
+    "zh": "Curved second-order proposal and direct first-order downhill path on matching loss landscapes | 相同損失地形上的彎曲二階提案與直接一階下降路徑",
+    "en": "Curved second-order proposal and direct first-order descent path on the same loss landscape",
+    "kp": 9,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "af5812d10083": {
+    "zh": "Gradient and negative-gradient update on a labeled loss landscape | 有標籤的損失地形上之梯度與負梯度更新",
+    "en": "Gradient and negative-gradient update on a labeled loss landscape",
+    "kp": 11,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "050913b04c4a": {
+    "zh": "Exact one-step gradient-descent outcomes for three learning rates | 三個學習率的精確單步梯度下降結果",
+    "en": "Exact single-step gradient descent results for three learning rates",
+    "kp": 12,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "cfebe96af9db": {
+    "zh": "Exact repeated gradient-descent updates for small, useful, and too-large learning rates | 小、合適與過大學習率的精確重複梯度下降更新",
+    "en": "Exact repeated gradient descent updates for small, suitable, and too-large learning rates",
+    "kp": 14,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "eaea9367fd76": {
+    "zh": "Backtracking proposals on a quadratic loss | 二次損失上的回溯候選步長",
+    "en": "Backtracking candidate step sizes on a quadratic loss",
+    "kp": 17,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "f3a1b4fbe3aa": {
+    "zh": "Computational graph with forward and backward paths | 含前向與反向路徑的計算圖",
+    "en": "Computational graph with forward and backward paths",
+    "kp": 20,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "a9260eabed35": {
+    "zh": "Numeric visualization of forward activations and backward credit assignment through the tiny two-weight network | 迷你雙權重網路的前向活化值與反向歸因數值視覺化",
+    "en": "Numeric visualization of forward activations and backward credit assignment in a tiny two-weight network",
+    "kp": 23,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "764052bd735a": {
+    "zh": "Concrete comparison of SGD Momentum and Adam update rules | SGD、動量與 Adam 更新規則的具體比較",
+    "en": "Concrete comparison of the SGD, momentum, and Adam update rules",
+    "kp": 28,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "9fed19b888b9": {
+    "zh": "Full batch mini batch and SGD trajectories | 全批次、小批次與 SGD 軌跡",
+    "en": "Full-batch, mini-batch, and SGD trajectories",
+    "kp": 30,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "9ac6cb38876c": {
+    "zh": "Effective scales for AdaGrad and RMSProp | AdaGrad 與 RMSProp 有效步長",
+    "en": "Effective step sizes of AdaGrad and RMSProp",
+    "kp": 34,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "6f5dc96eb011": {
+    "zh": "Sharp and flat quadratic loss profiles | 尖銳與平坦二次損失剖面",
+    "en": "Sharp and flat quadratic loss profiles",
+    "kp": 38,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "0d6731c4f182": {
+    "zh": "SAM perturbation geometry for gradient three four | 梯度三四的 SAM 擾動幾何",
+    "en": "SAM perturbation geometry for gradient (3, 4)",
+    "kp": 40,
+    "ctx": "attr",
+    "attr": "alt"
+  },
+  "c7acb64aef15": {
+    "zh": "Concrete evidence flow from training validation and test data | 訓練、驗證與測試資料的具體證據流程",
+    "en": "Concrete evidence flow from training, validation, and test data",
+    "kp": 44,
+    "ctx": "attr",
+    "attr": "aria-label"
+  }
+}

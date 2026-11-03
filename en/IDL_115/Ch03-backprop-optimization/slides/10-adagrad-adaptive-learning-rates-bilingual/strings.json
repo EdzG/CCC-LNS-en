@@ -1,0 +1,1206 @@
+{
+  "_runtime": {
+    "exact": {
+      "w1 (平緩軸，曲率 1)": "w1 (flat, curv. 1)",
+      "w2 (陡峭軸，曲率 25)": "w2 (steep, curv. 25)",
+      "最優谷底 (0, 0)": "Optimum (0, 0)",
+      "當前演算法：": "Current algorithm:",
+      "AdaGrad (逐維度自適應)": "AdaGrad (per-dimension adaptive)",
+      "標準 GD (固定全域學習率)": "Standard GD (fixed global learning rate)",
+      "參數座標 (w1, w2)：": "Parameter coordinates (w1, w2):",
+      "損失函數值 f(w1, w2)：": "Loss function value f(w1, w2):",
+      "當前梯度分量 (∇1, ∇2)：": "Current gradient components (∇1, ∇2):",
+      "累積平方和 G_11：": "Accumulated sum of squares G_11:",
+      "累積平方和 G_22：": "Accumulated sum of squares G_22:",
+      "有效步長 η1^eff：": "Effective step size η1^eff:",
+      "有效步長 η2^eff：": "Effective step size η2^eff:",
+      "步長異向等化比率：": "Anisotropic step equalization ratio:",
+      "累計迭代步數：": "Cumulative iterations:",
+      "狀態判定：": "Status:",
+      "✅ 成功收斂抵達谷底 (|∇f| < 0.05)": "✅ Converged to the valley floor (|∇f| < 0.05)",
+      "💥 梯度發散爆炸：縱軸震盪失控！": "💥 Gradient divergence: the vertical axis oscillates out of control!",
+      "⚠️ 步長衰減：累積 G_22 龐大，有效學習率趨近 0": "⚠️ Step-size decay: accumulated G_22 is huge, the effective learning rate approaches 0",
+      "⚡ 異向等化生效：縱軸劇烈減速，橫軸平穩推進": "⚡ Anisotropic equalization at work: the vertical axis slows sharply, the horizontal axis advances steadily",
+      "🏃 固定學習率 GD 迭代進行中...": "🏃 Fixed-learning-rate GD iterating...",
+      "載入數值監控中...": "Loading numeric monitor...",
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "式 (38) 明確定義對角元素 $\\boldsymbol{G}(j,j) := \\sqrt{\\varepsilon + \\sum_{\\tau=0}^k (\\nabla_j f_{i_\\tau})^2}$，即過去歷史梯度平方之和再開根號。": "Eq. (38) explicitly defines the diagonal element $\\boldsymbol{G}(j,j) := \\sqrt{\\varepsilon + \\sum_{\\tau=0}^k (\\nabla_j f_{i_\\tau})^2}$, i.e., the square root of the sum of past squared gradients.",
+      "梯度長期偏大的維度，分母累積平方和不斷暴增，有效學習率 $\\eta / \\sqrt{G_{jj}}$ 被大幅壓制（衰減），防止在陡壁間震盪發散。": "In a dimension whose gradients stay large over time, the accumulated sum of squares in the denominator keeps exploding, so the effective learning rate $\\eta / \\sqrt{G_{jj}}$ is strongly suppressed (decays), which prevents oscillating and diverging between the steep walls.",
+      "$\\varepsilon \\ge 0$ 為微小的平滑常數（通常取 $10^{-8}$），確保分母絕不為零，提供數值計算穩定性。": "$\\varepsilon \\ge 0$ is a tiny smoothing constant (usually $10^{-8}$) that ensures the denominator is never zero, providing numerical stability.",
+      "AdaGrad 的累積和只增不減，使得晚期分母極大，有效學習率趨近於 0，造成模型過早凍結、停止學習。": "AdaGrad's accumulated sum only grows, never shrinks, so late in training the denominator is huge and the effective learning rate approaches 0, causing the model to freeze prematurely and stop learning."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(-?[\\d.]+) 倍（橫軸/縱軸）$",
+        "en": "$1× (horizontal/vertical)"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "ea59e089f1a8": {
+    "zh": "KP10 · 索引",
+    "en": "KP10 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "819bf65200bc": {
+    "zh": "<a href=\"#q1\">核心提問 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0e27a019d99b": {
+    "zh": "<a href=\"#motivation-coordinate\">全域學習率困局 · Coordinate Dilemma</a>",
+    "en": "<a href=\"#motivation-coordinate\">The Global-Learning-Rate Dilemma</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e41e6a1e7ed9": {
+    "zh": "<a href=\"#diagonal-scaling\">對角矩陣更新 · Diagonal Scaling (37)–(39)</a>",
+    "en": "<a href=\"#diagonal-scaling\">Diagonal-Matrix Update (37)–(39)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0c5149864c13": {
+    "zh": "<a href=\"#core-mechanism\">累積平方衰減 · Core Mechanism</a>",
+    "en": "<a href=\"#core-mechanism\">Accumulated-Square Decay</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ee187431fa8a": {
+    "zh": "<a href=\"#sparse-benefits\">稀疏特徵紅利 · Sparse Feature Affinity</a>",
+    "en": "<a href=\"#sparse-benefits\">The Sparse-Feature Bonus</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "31e48bb2c36b": {
+    "zh": "<a href=\"#step-size-death\">步長死亡隱憂 · Step Size Freezing</a>",
+    "en": "<a href=\"#step-size-death\">The Dying Step Size</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e7d99372aa69": {
+    "zh": "<a href=\"#svg-breakdown\">活躍 vs 冷門圖解 · Visual Breakdown</a>",
+    "en": "<a href=\"#svg-breakdown\">Active vs Rare, Illustrated</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cbc6519a4bcb": {
+    "zh": "<a href=\"#algorithm-flow\">演算法流程 · Algorithm Flow</a>",
+    "en": "<a href=\"#algorithm-flow\">Algorithm Flow</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1a5b6bf11efd": {
+    "zh": "<a href=\"#comparison\">三大演算法對比 · Comparison Matrix</a>",
+    "en": "<a href=\"#comparison\">Three Algorithms Compared</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01a67db69aa8": {
+    "zh": "<a href=\"#master-maxims\">大師四大鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Four Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3e60b361f0d1": {
+    "zh": "<a href=\"#lab\">2D 異向實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">2D Anisotropic Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "91b41625c58f": {
+    "zh": "<a href=\"#quiz\">隨堂評測 · Checkpoints</a>",
+    "en": "<a href=\"#quiz\">In-Class Assessment</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "45aaa844cffc": {
+    "zh": "<a href=\"#summary\">總結與展望 · Key Takeaways</a>",
+    "en": "<a href=\"#summary\">Summary and Outlook</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "092fd402c8fe": {
+    "zh": "AdaGrad：逐維度自適應學習率\n      <span class=\"hero-title-en\">AdaGrad: Per-Coordinate Adaptive Learning Rates &amp; Cumulative Second-Moment Scaling</span>\n    ",
+    "en": "AdaGrad: Per-Coordinate Adaptive Learning Rates",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d6bd55ac2e92": {
+    "zh": "\n      單一全域學習率無法兼顧十億個梯度迥異的參數維度。AdaGrad (Duchi et al., 2011) 透過對角矩陣 $\\boldsymbol{G}$ 累積歷史梯度平方和，為每個座標量身打造自適應步長——強力壓制活躍維度、充分放大罕見稀疏特徵，並揭示分母單調累進導致「步長死亡趨零」的歷史必然。\n    ",
+    "en": "A single global learning rate cannot serve a billion parameter dimensions with wildly different gradients. AdaGrad (Duchi et al., 2011) accumulates the sum of squared past gradients in a diagonal matrix $\\boldsymbol{G}$ to tailor an adaptive step size to every coordinate: it firmly suppresses active dimensions, fully amplifies rare sparse features, and reveals the historical inevitability that its monotonically growing denominator makes the “step size die out toward zero”.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "5a9aa6a56cc1": {
+    "zh": "\n      「一個全域學習率，憑什麼管得了十億個維度？」\n      <small>陡峭維度步幅過大險象環生，平緩維度原地踏步如同凍結——AdaGrad 如何用歷史平方和為每個參數訂製專屬前進步伐？<br>\n        <span class=\"bilingual-en-inline\">One global learning rate can never govern billions of coordinates—how does AdaGrad balance rapid overshooting against creeping stagnation?</span>\n      </small>\n    ",
+    "en": "“What right does one global learning rate have to govern a billion dimensions?” <small>In steep dimensions, steps that are too large court danger; in flat dimensions, the parameters mark time as if frozen. How does AdaGrad use the sum of past squares to tailor its own stride to every parameter?<br></small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "05bca9774aef": {
+    "zh": "02 / 動機與瓶頸 · The Coordinate Dilemma",
+    "en": "02 / Motivation and Bottleneck · The Coordinate Dilemma",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3539c3eedb15": {
+    "zh": "動機：一個學習率管不了所有維度\n    <span class=\"en\">Motivation: One Global Learning Rate Cannot Manage All Coordinates</span>\n  ",
+    "en": "Motivation: One Learning Rate Cannot Handle Every Dimension",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "875fbc11b89a": {
+    "zh": "高維參數空間的極度各向異性（Anisotropy）",
+    "en": "The extreme anisotropy of high-dimensional parameter spaces",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3fd5935fab3a": {
+    "zh": "在深度學習實務中，超參數學習率通常手動設定後再隨訓練時間表調整。但不同參數維度的梯度大小往往差異巨大——某些維度梯度長期很大，某些維度則長期很小。若堅持使用同一個全域學習率 $\\eta$，最佳化過程將陷入兩難困局：",
+    "en": "In deep-learning practice, the learning-rate hyperparameter is usually set by hand and then adjusted along a training schedule. But the gradient magnitudes of different parameter dimensions often differ enormously: some dimensions have large gradients for long stretches, others have small ones for long stretches. If we insist on a single global learning rate $\\eta$, optimization falls into a dilemma:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "050d21e07878": {
+    "zh": "<strong>大梯度維度暴衝（Overshooting）：</strong>步幅過大，在陡峭狹谷的兩壁間劇烈來回震盪，甚至發散出數值下溢/溢位。",
+    "en": "<strong>Large-gradient dimensions overshoot:</strong> the steps are too large, bouncing violently back and forth between the walls of a steep, narrow valley, or even diverging into numerical underflow/overflow.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "52ccaf9116ad": {
+    "zh": "<strong>小梯度維度凍結（Freezing）：</strong>步幅微乎其微，在平緩盆地中幾萬步更新仍幾乎原地不動，耗盡計算資源。",
+    "en": "<strong>Small-gradient dimensions freeze:</strong> the steps are minuscule; even after tens of thousands of updates in a flat basin they have barely moved, exhausting the compute budget.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "afbe8b7815e4": {
+    "zh": "<strong>AdaGrad（Adaptive Gradient）</strong>[Duchi et al., 2011] 的解法極其直覺：<strong>不再強求一個全域數值，而是為每個維度各自維護專屬的自適應學習率！</strong>",
+    "en": "The solution of <strong>AdaGrad (Adaptive Gradient)</strong> [Duchi et al., 2011] is extremely intuitive: <strong>stop forcing one global value, and instead maintain a dedicated adaptive learning rate for each dimension!</strong>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "377283cd8c94": {
+    "zh": "頻繁出現的密集特徵",
+    "en": "Frequently occurring dense features",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a991cdd84972": {
+    "zh": "如 NLP 中的高頻詞（\"the\"、\"is\"）、影像中的常見背景。每次前向傳播都產生龐大梯度，極易主導全域更新並引發震盪。",
+    "en": "Such as high-frequency words in NLP (“the”, “is”) or common backgrounds in images. Every forward pass produces large gradients, which can easily dominate the global update and cause oscillation.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0e9f5e18cc7e": {
+    "zh": "罕見出現的稀疏特徵",
+    "en": "Rarely occurring sparse features",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "08a67b7af8e2": {
+    "zh": "如專業術語、罕見疾病病名、千億維度 Embedding。幾千個 batch 才出現一次，若學習率與全域相同，永遠無法充分收斂。",
+    "en": "Such as technical terms, names of rare diseases, or embeddings with hundreds of billions of dimensions. They appear only once every few thousand batches; with the same learning rate as everything else, they can never converge properly.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "68dad11fa00b": {
+    "zh": "逐座標對角縮放解法",
+    "en": "The per-coordinate diagonal scaling solution",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "82003cea65fd": {
+    "zh": "根據每個參數過往累積的梯度歷史量級，給予反比縮放：動得勤的給小步（踩煞車），罕見動的給大步（猛催油門）。",
+    "en": "Scale each parameter inversely to the magnitude of its accumulated gradient history: parameters that move often get small steps (hit the brakes), parameters that rarely move get large steps (floor the gas).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "569d8a8e8432": {
+    "zh": "\n    這項關鍵突破打破了數十年來「所有維度齊步走」的傳統框架，揭開了深度學習自適應最佳化器（Adaptive Optimizers）黃金時代的序幕。\n    <span class=\"bilingual-en\">In deep networks, gradients across dimensions vary by orders of magnitude. A single global learning rate either destabilizes steep directions or starves flat ones. AdaGrad resolves this tension by allocating individual step sizes to each coordinate.</span>\n  ",
+    "en": "This key breakthrough broke the decades-old traditional framework in which “all dimensions march in lockstep”, and raised the curtain on the golden age of adaptive optimizers in deep learning.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "002b6f60ba5d": {
+    "zh": "03 / 更新規則 · Update Rules (37)–(39)",
+    "en": "03 / Update Rules · Update Rules (37)–(39)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ca9f8857b9e2": {
+    "zh": "更新規則：對角矩陣 $\\boldsymbol{G}$ 與逐維度標量更新\n    <span class=\"en\">Mathematical Formulation: Diagonal Matrix $\\boldsymbol{G}$ and Equations (37)–(39)</span>\n  ",
+    "en": "Update Rules: The Diagonal Matrix $\\boldsymbol{G}$ and the Per-Dimension Scalar Update",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2177d440ebd6": {
+    "zh": "矩陣形式更新（式 (37)）",
+    "en": "Matrix-form update (Eq. (37))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "44af604e7075": {
+    "zh": "AdaGrad 的參數更新寫成緊湊的矩陣形式：",
+    "en": "The AdaGrad parameter update is written in a compact matrix form:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "133c09865aa0": {
+    "zh": "其中 $\\boldsymbol{G}$ 是一個 $(d \\times d)$ 的<strong>對角矩陣（Diagonal Matrix）</strong>，其第 $(j, j)$ 個對角元素定義為（式 (38)）：",
+    "en": "where $\\boldsymbol{G}$ is a $(d \\times d)$ <strong>diagonal matrix</strong> whose $(j, j)$-th diagonal entry is defined as (Eq. (38)):",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e8d4ce5304a6": {
+    "zh": "各符號嚴謹定義：",
+    "en": "Rigorous definitions of the symbols:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "239710dfa096": {
+    "zh": "$\\varepsilon \\ge 0$：微小平滑常數（通常取 $10^{-8}$ 或 $10^{-7}$），<strong>確保分母不為零，提供數值計算穩定性</strong>。",
+    "en": "$\\varepsilon \\ge 0$: a small smoothing constant (usually $10^{-8}$ or $10^{-7}$) that <strong>ensures the denominator is not zero, providing numerical stability</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0ed351e7c12a": {
+    "zh": "$i_{\\tau}$：第 $\\tau$ 次迭代抽樣得到的訓練樣本或 mini-batch 索引。",
+    "en": "$i_{\\tau}$: the index of the training sample or mini-batch sampled at iteration $\\tau$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "74d99c2ae959": {
+    "zh": "$\\nabla_{j} f_{i_{\\tau}}(\\boldsymbol{w}^{(\\tau)})$：第 $\\tau$ 步在抽取樣本上計算得到之梯度的第 $j$ 個維度分量。",
+    "en": "$\\nabla_{j} f_{i_{\\tau}}(\\boldsymbol{w}^{(\\tau)})$: the $j$-th component of the gradient computed on the sampled data at step $\\tau$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "38122170b0e7": {
+    "zh": "逐維度的簡化標量形式（式 (39)）",
+    "en": "Simplified per-dimension scalar form (Eq. (39))",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "36feb5dfaf40": {
+    "zh": "因為 $\\boldsymbol{G}$ 嚴格為對角矩陣，其逆矩陣 $\\boldsymbol{G}^{-1}$ 的對角元素恰為倒數 $1/\\boldsymbol{G}(j,j)$。代入後可直接解耦為每個參數維度的獨立標量更新（式 (39)）：",
+    "en": "Because $\\boldsymbol{G}$ is strictly diagonal, the diagonal entries of its inverse $\\boldsymbol{G}^{-1}$ are exactly the reciprocals $1/\\boldsymbol{G}(j,j)$. Substituting this decouples the update directly into an independent scalar update for each parameter dimension (Eq. (39)):",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e5bfcb58fad7": {
+    "zh": "<strong>二階曲率近似哲學：</strong>標準牛頓法需要計算並求逆完整的 Hessian 矩陣 $\\boldsymbol{H} \\in \\mathbb{R}^{d \\times d}$，時間代價高達 $\\mathcal{O}(d^3)$ 且記憶體開銷 $\\mathcal{O}(d^2)$。AdaGrad 用歷史一階梯度平方和的對角陣近似二階曲率，更新時間僅需 $\\mathcal{O}(d)$，空間只需額外儲存一個長度為 $d$ 的累加向量！",
+    "en": "<strong>The philosophy of approximating second-order curvature:</strong> the standard Newton method must compute and invert the full Hessian matrix $\\boldsymbol{H} \\in \\mathbb{R}^{d \\times d}$, at a time cost as high as $\\mathcal{O}(d^3)$ and a memory cost of $\\mathcal{O}(d^2)$. AdaGrad approximates second-order curvature with a diagonal matrix of the sums of past squared first-order gradients; an update takes only $\\mathcal{O}(d)$ time, and the only extra storage is one accumulator vector of length $d$!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8c09c0982227": {
+    "zh": "\n    式 (39) 直觀地展現了 AdaGrad 的靈魂：每個參數 $w_j$ 的步長被其自身過往累積的梯度總能量所除。\n    <span class=\"bilingual-en\">By restricting G to a diagonal matrix containing historical squared gradient sums, AdaGrad replaces intractable O(d^3) Hessian inversions with simple O(d) element-wise operations.</span>\n  ",
+    "en": "Eq. (39) shows the soul of AdaGrad intuitively: the step size of each parameter $w_j$ is divided by the total gradient energy that parameter has accumulated in the past.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "84f04d8a34a4": {
+    "zh": "04 / 核心機制 · Core Mechanism",
+    "en": "04 / Core Mechanism",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4f612a0eae5f": {
+    "zh": "核心機制：累積梯度平方 $\\to$ 逐維自動調節\n    <span class=\"en\">Core Mechanism: Cumulative Gradient Squares &amp; Coordinate-Wise Balancing</span>\n  ",
+    "en": "Core Mechanism: Accumulated Squared Gradients $\\to$ Automatic Per-Dimension Adjustment",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7a18ac741a72": {
+    "zh": "1. 梯度長期偏大的「活躍維度」",
+    "en": "1. “Active dimensions” with persistently large gradients",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8bb36acc49b2": {
+    "zh": "若參數維度 $j$ 長期遭受劇烈梯度更新，歷史平方和 $\\sum (\\nabla_j)^2$ 迅速膨脹。分母開根號後持續變大，使得<strong>有效學習率 $\\frac{\\eta}{\\sqrt{G_{jj}}}$ 大幅被「壓制」</strong>，主動煞車平抑跨谷震盪。",
+    "en": "If parameter dimension $j$ keeps receiving violent gradient updates, its sum of past squares $\\sum (\\nabla_j)^2$ swells rapidly. After the square root, the denominator keeps growing, so the <strong>effective learning rate $\\frac{\\eta}{\\sqrt{G_{jj}}}$ is heavily “suppressed”</strong>, actively braking to calm the oscillation across the valley.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e7ef31eb32ef": {
+    "zh": "2. 梯度長期偏小的「冷門維度」",
+    "en": "2. “Rare dimensions” with persistently small gradients",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e534207f94bc": {
+    "zh": "若參數維度 $j$ 出現次數極少或處於平坦高原，歷史累積和維持在極小值。分母幾乎只剩下 $\\sqrt{\\varepsilon}$，其<strong>有效學習率相對被「放大」維持高位</strong>，確保微弱訊號也能穩健大步推進。",
+    "en": "If parameter dimension $j$ appears very rarely or sits on a flat plateau, its accumulated history stays tiny. The denominator is left with almost only $\\sqrt{\\varepsilon}$, so its <strong>effective learning rate is relatively “amplified” and stays high</strong>, ensuring even faint signals can advance steadily in large strides.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2b67bd2c8984": {
+    "zh": "3. 異向幾何等化（Isotropic Rescaling）",
+    "en": "3. Anisotropic geometry equalized (isotropic rescaling)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a465024ec98a": {
+    "zh": "在狹長橢圓山谷中，陡峭方向被削弱、平緩方向被保護。AdaGrad 將扭曲病態的各向異性橢圓等高線，在動態步幅上<strong>等效拉伸為近似正圓</strong>，實現近乎沿徑向直奔谷底的最優姿態！",
+    "en": "In a long, narrow elliptical valley, the steep direction is damped and the flat direction is protected. In terms of its dynamic strides, AdaGrad takes the distorted, ill-conditioned anisotropic elliptical contours and <strong>effectively stretches them into near-circles</strong>, achieving the optimal posture of heading almost radially straight to the bottom of the valley!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0dcbd6f79af7": {
+    "zh": "\n    這項自動平衡機制，使得工程師不再需要針對不同層、不同特徵維度逐一手工調配學習率。\n    <span class=\"bilingual-en\">AdaGrad dynamically dampens overactive parameters while preserving aggressive strides for dormant ones, effectively isotropicizing the ill-conditioned loss landscape without explicit curvature computation.</span>\n  ",
+    "en": "This automatic balancing mechanism means engineers no longer need to hand-tune the learning rate one by one for different layers and different feature dimensions.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a1c95d71dd60": {
+    "zh": "05 / 稀疏特徵紅利 · Sparse Feature Affinity",
+    "en": "05 / The Sparse-Feature Bonus · Sparse Feature Affinity",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "800fd1111238": {
+    "zh": "稀疏特徵之黃金友好性：罕見詞也能充分學習\n    <span class=\"en\">Affinity for Sparse Features: Empowering Rare Signals in High-Dimensional Data</span>\n  ",
+    "en": "Golden Friendliness to Sparse Features: Even Rare Words Get Learned Properly",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fbe9d6b15ed1": {
+    "zh": "為什麼 AdaGrad 是 NLP 與推薦系統的救星？",
+    "en": "Why is AdaGrad the savior of NLP and recommender systems?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "583aeff6d5c9": {
+    "zh": "在大型自然語言處理模型、點選率（CTR）預估與推薦系統中，輸入特徵往往呈現極度稀疏（Zipf 定律分佈）：",
+    "en": "In large natural-language-processing models, click-through rate (CTR) prediction and recommender systems, the input features are often extremely sparse (following a Zipf's-law distribution):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e1a6085f37f7": {
+    "zh": "<strong>常見停用詞（如 \"the\", \"a\"）：</strong>在每個訓練 batch 都頻繁出現，累計了數十萬次梯度。若用固定步長 SGD，若步長適合罕見詞，常見詞必定震盪發散。",
+    "en": "<strong>Common stop words (e.g., “the”, “a”):</strong> they appear frequently in every training batch and accumulate hundreds of thousands of gradients. With fixed-step SGD, if the step size suits the rare words, the common words are bound to oscillate and diverge.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7306b120f0aa": {
+    "zh": "<strong>專有名詞與罕見特徵（如 \"AdaGrad\"、罕見基因/商品）：</strong>可能整個訓練集只出現十餘次。在 SGD 下，它們的更新步數屈指可數，權重幾乎處於未初始化的混沌狀態。",
+    "en": "<strong>Proper nouns and rare features (e.g., “AdaGrad”, rare genes/products):</strong> they may appear only a dozen or so times in the whole training set. Under SGD they get only a handful of update steps, and their weights stay in a chaotic, practically uninitialized state.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "20d1f7446759": {
+    "zh": "<strong>AdaGrad 的神來之筆：</strong>當罕見詞偶爾出現時，其累積器 $\\boldsymbol{G}(j,j) \\approx 0$，分母極小，獲得<strong>全額、充沛的有效學習率</strong>！每一次出現都能狠狠前進一大步，迅速建立精確語義表示。",
+    "en": "<strong>AdaGrad's stroke of genius:</strong> when a rare word occasionally appears, its accumulator $\\boldsymbol{G}(j,j) \\approx 0$, the denominator is tiny, and it receives <strong>a full, ample effective learning rate</strong>! Every appearance lets it take a big step forward, quickly building an accurate semantic representation.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fc38e4c59f54": {
+    "zh": "\n    這也是為什麼在深度學習早期，Google 的大規模分散式系統（如 DistBelief）以及著名的詞向量模型（如 GloVe）無一例外將 AdaGrad 選為預設最佳化器。\n    <span class=\"bilingual-en\">In models with Zipfian sparse inputs like NLP embeddings and recommendation tables, rare features only receive gradient signals occasionally. AdaGrad assigns them maximum effective learning rates while automatically curbing high-frequency words.</span>\n  ",
+    "en": "This is also why, in the early days of deep learning, Google's large-scale distributed system (DistBelief) and the well-known word-vector model GloVe all chose AdaGrad as their default optimizer, without exception.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "79d264679a76": {
+    "zh": "06 / 致命隱憂 · Step Size Freezing",
+    "en": "06 / A Fatal Weakness · Step Size Freezing",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "689156ea08d1": {
+    "zh": "致命隱憂：分母只增不減與後期有效步長死亡\n    <span class=\"en\">Critical Vulnerability: Monotonically Growing Denominators &amp; Premature Freezing</span>\n  ",
+    "en": "A Fatal Weakness: A Denominator That Only Grows, and the Death of the Effective Step Size Late in Training",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3b02e5a2dc66": {
+    "zh": "單調累進的倒數詛咒（Monotonic Accumulation Curse）",
+    "en": "The reciprocal curse of monotonic accumulation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8e5a6657ccff": {
+    "zh": "AdaGrad 的分母核心項是歷史梯度平方和：",
+    "en": "The core term of AdaGrad's denominator is the sum of past squared gradients:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "672158d9f562": {
+    "zh": "由於每一項 $(\\nabla_j)^2 \\ge 0$，這是一個<strong>嚴格單調不減序列（$S_j^{(k+1)} \\ge S_j^{(k)}$）</strong>！這帶來了無法逆轉的結構性缺陷：",
+    "en": "Since every term $(\\nabla_j)^2 \\ge 0$, this is a <strong>strictly monotonically non-decreasing sequence ($S_j^{(k+1)} \\ge S_j^{(k)}$)</strong>! This brings an irreversible structural flaw:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9e54fdede09d": {
+    "zh": "<strong>分母無限膨脹：</strong>隨著訓練迭代步數 $k \\to \\infty$，分母 $\\sqrt{\\varepsilon + S_j^{(k)}} \\to \\infty$。",
+    "en": "<strong>The denominator swells without bound:</strong> as the number of training iterations $k \\to \\infty$, the denominator $\\sqrt{\\varepsilon + S_j^{(k)}} \\to \\infty$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e77b2e32a10a": {
+    "zh": "<strong>有效學習率死亡趨零：</strong>每個維度的有效步長必然滿足：\n        $$ \\eta_j^{\\text{eff}} = \\frac{\\eta^{(k)}}{\\sqrt{\\varepsilon + S_j^{(k)}}} \\xrightarrow[k \\to \\infty]{} 0 $$\n      ",
+    "en": "<strong>The effective learning rate dies out toward zero:</strong> the effective step size of every dimension necessarily satisfies:\n        $$ \\eta_j^{\\text{eff}} = \\frac{\\eta^{(k)}}{\\sqrt{\\varepsilon + S_j^{(k)}}} \\xrightarrow[k \\to \\infty]{} 0 $$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ed73b84f4a7a": {
+    "zh": "<strong>過早停止學習（Premature Freezing）：</strong>在深層神經網路中，訓練需要數十萬步。通常在模型還沒抵達全域最優或鞍點逃脫前，AdaGrad 的有效步長就已經縮小到 $10^{-6}$ 以下，模型徹底「凍結」，再也無法學進任何新知識！",
+    "en": "<strong>Premature freezing (learning stops too early):</strong> deep neural networks need hundreds of thousands of training steps. Typically, before the model has reached the global optimum or escaped a saddle point, AdaGrad's effective step size has already shrunk below $10^{-6}$; the model is completely “frozen” and can never learn anything new again!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a6ea74a17546": {
+    "zh": "<strong>無法適應晚期地形變化：</strong>最初幾千步的早期梯度雜訊被永久銘刻在分母中，無法隨時間遺忘。即使後期進入了全新的平坦盆地，步長也永遠不可能回彈。",
+    "en": "<strong>It cannot adapt to late changes in the terrain:</strong> the gradient noise of the first few thousand steps is permanently engraved in the denominator and can never be forgotten. Even if training later enters a brand-new flat basin, the step size can never bounce back.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3e167257bff2": {
+    "zh": "\n    這個致命缺點正是後續 RMSProp、AdaDelta 與 Adam 誕生的根本原因——它們用「指數移動平均（EMA）」取代了 AdaGrad 的「無腦純累加」！\n    <span class=\"bilingual-en\">Because squared gradients are strictly non-negative, the denominator monotonically increases throughout training. As steps accumulate, the effective step size decays asymptotically to zero, often freezing optimization prematurely before locating optimal minima.</span>\n  ",
+    "en": "This fatal flaw is the root reason RMSProp, AdaDelta and Adam were later born: they replace AdaGrad's “mindless pure accumulation” with an “exponential moving average (EMA)”!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2d691f78b64f": {
+    "zh": "07 / 圖解分析 · Visual Breakdown",
+    "en": "07 / Illustrated Analysis · Visual Breakdown",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3f456af12774": {
+    "zh": "視覺圖解：活躍維度壓制 vs 冷門維度維持\n    <span class=\"en\">Visual Breakdown: Active Coordinate Suppression vs Sparse Coordinate Empowerment</span>\n  ",
+    "en": "Illustrated: Suppressing Active Dimensions vs Sustaining Rare Ones",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c5ed9dc76a65": {
+    "zh": "AdaGrad 自適應機制：活躍維度懲罰降步 vs 冷門維度保護步長",
+    "en": "AdaGrad adaptivity: active dims penalized with smaller steps vs rare dims keep their step size",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "0e97dd2a61ac": {
+    "zh": "活躍維度（頻繁大梯度更新）",
+    "en": "Active dimension (frequent large-gradient updates)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "956ba5c58567": {
+    "zh": "瞬時梯度 |∇| 柱狀圖（高大陡峭）",
+    "en": "Instantaneous gradient |∇| bars (tall and steep)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "873d3318390c": {
+    "zh": "連續遭遇巨大梯度",
+    "en": "Hit by huge gradients again and again",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "9cb2dbcb098a": {
+    "zh": "分母累積器 Σ(∇²)（階梯狀只增不減）",
+    "en": "Denominator accumulator Σ(∇²) (staircase, only grows)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "a7409a583198": {
+    "zh": "只增不減！分母急劇飆升",
+    "en": "Only grows! Denominator soars",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "1ec41dc3a4de": {
+    "zh": "有效步長 η / √G（急速縮水趨零）",
+    "en": "Effective step η / √G (shrinks fast toward zero)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "b35c9e2c3e3e": {
+    "zh": "受罰降步：後期步幅幾近死亡",
+    "en": "Penalized: late steps nearly dead",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "888f8ca025a9": {
+    "zh": "冷門維度（稀疏罕見特徵）",
+    "en": "Rare dimension (sparse, rare features)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "27da65a219af": {
+    "zh": "瞬時梯度 |∇| 柱狀圖（矮短稀少）",
+    "en": "Instantaneous gradient |∇| bars (short and sparse)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "65dd2561e2a8": {
+    "zh": "大部分迭代未被啟用",
+    "en": "Not activated in most iterations",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "ed4a41a6eee0": {
+    "zh": "分母累積器 Σ(∇²)（近乎水平平緩）",
+    "en": "Denominator accumulator Σ(∇²) (nearly flat)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "aefaa5c41e46": {
+    "zh": "累積微弱，分母保持極小",
+    "en": "Weak accumulation, denominator stays tiny",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "29bdd80f1ffe": {
+    "zh": "有效步長 η / √G（長久維持高昂活力）",
+    "en": "Effective step η / √G (stays lively for long)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "af095494dc45": {
+    "zh": "放大步長：稀疏訊號充分學習",
+    "en": "Amplified step: sparse signals learned fully",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "090ef8983728": {
+    "zh": "常更新參數被懲罰；稀疏特徵拿大步；晚期所有維度步長都太小、過早停止學習！",
+    "en": "Frequently updated params are penalized; sparse features get big steps; late on, every dimension's step is too small and learning stops too early!",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "371e47bfab1d": {
+    "zh": "圖 3.10：AdaGrad 逐維度累積調節機制：活躍維度（紅） vs 冷門維度（綠）之步長動態命運",
+    "en": "Figure 3.10: AdaGrad's per-dimension accumulated adjustment: the step-size fate of active dimensions (red) vs rare dimensions (green)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ced270f1b2a9": {
+    "zh": "視覺對比核心 takeaways",
+    "en": "Key takeaways from the visual comparison",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ca4f54a9b5f9": {
+    "zh": "左側紅欄直觀呈現了頻繁遭遇梯度的參數維度：每一次更新都在累積器中刻下不可磨滅的平方和，導致有效學習率急劇跌落。",
+    "en": "The red column on the left shows the parameter dimensions that frequently meet gradients: every update carves an indelible square into the accumulator, so the effective learning rate plunges sharply.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a6e588dd71e0": {
+    "zh": "右側綠欄則展現了稀疏特徵的特權：由於梯度極少出現，分母近乎為常數 $\\sqrt{\\varepsilon}$，即使到了訓練中後期，依然能邁出大步。",
+    "en": "The green column on the right shows the privilege of sparse features: since gradients rarely appear, the denominator is nearly the constant $\\sqrt{\\varepsilon}$, so even in the middle and late stages of training they can still take big steps.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9f91a307c164": {
+    "zh": "08 / 演算法實作 · Algorithm Implementation",
+    "en": "08 / Algorithm Implementation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8e5cfcf6b371": {
+    "zh": "AdaGrad 演算法完整流程與工程實作\n    <span class=\"en\">AdaGrad Algorithm Procedure and PyTorch-Style Implementation Nuances</span>\n  ",
+    "en": "The Complete AdaGrad Algorithm and Its Engineering Implementation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bb90e9e1666a": {
+    "zh": "AdaGrad 迭代偽程式碼步驟",
+    "en": "AdaGrad iteration pseudocode steps",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "db489b122e0f": {
+    "zh": "<strong>初始化狀態：</strong>設定全域基礎學習率 $\\eta &gt; 0$、平滑常數 $\\varepsilon = 10^{-8}$；初始化累積平方梯度向量 $\\boldsymbol{s}^{(0)} = \\mathbf{0} \\in \\mathbb{R}^d$。",
+    "en": "<strong>Initialize the state:</strong> set the global base learning rate $\\eta &gt; 0$ and the smoothing constant $\\varepsilon = 10^{-8}$; initialize the accumulated squared-gradient vector $\\boldsymbol{s}^{(0)} = \\mathbf{0} \\in \\mathbb{R}^d$.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "abddb33495f1": {
+    "zh": "<strong>取樣取樣 Mini-batch：</strong>抽取批次資料計算當前隨機梯度 $\\boldsymbol{g}^{(k)} = \\nabla f_{i_k}(\\boldsymbol{w}^{(k)})$。",
+    "en": "<strong>Sample a mini-batch:</strong> draw a batch of data and compute the current stochastic gradient $\\boldsymbol{g}^{(k)} = \\nabla f_{i_k}(\\boldsymbol{w}^{(k)})$.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d3a6810b96ba": {
+    "zh": "<strong>累積梯度平方和（逐元素）：</strong>\n        $$ \\boldsymbol{s}^{(k+1)} = \\boldsymbol{s}^{(k)} + \\boldsymbol{g}^{(k)} \\odot \\boldsymbol{g}^{(k)} $$\n      ",
+    "en": "<strong>Accumulate the sum of squared gradients (element-wise):</strong>\n        $$ \\boldsymbol{s}^{(k+1)} = \\boldsymbol{s}^{(k)} + \\boldsymbol{g}^{(k)} \\odot \\boldsymbol{g}^{(k)} $$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "38a4c59fa930": {
+    "zh": "<strong>計算逐維有效學習率並更新參數：</strong>\n        $$ \\boldsymbol{w}^{(k+1)} = \\boldsymbol{w}^{(k)} - \\frac{\\eta}{\\sqrt{\\boldsymbol{s}^{(k+1)} + \\varepsilon}} \\odot \\boldsymbol{g}^{(k)} $$\n      ",
+    "en": "<strong>Compute the per-dimension effective learning rate and update the parameters:</strong>\n        $$ \\boldsymbol{w}^{(k+1)} = \\boldsymbol{w}^{(k)} - \\frac{\\eta}{\\sqrt{\\boldsymbol{s}^{(k+1)} + \\varepsilon}} \\odot \\boldsymbol{g}^{(k)} $$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4813cbe72419": {
+    "zh": "<strong>終止條件檢驗：</strong>重複步驟 2 至 4，直到達到預定迭代上限或驗證集指標停滯。",
+    "en": "<strong>Check the stopping condition:</strong> repeat steps 2 to 4 until the preset iteration limit is reached or the validation metric stalls.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "877797b82024": {
+    "zh": "工程實作：平滑常數 $\\varepsilon$ 的放置",
+    "en": "Engineering implementation: where to put the smoothing constant $\\varepsilon$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "cdfc0b7396e5": {
+    "zh": "文獻式 (38) 常寫為 $\\sqrt{\\varepsilon + \\sum g^2}$，而 PyTorch 官方實作則常計算 $\\frac{\\eta}{\\sqrt{s} + \\varepsilon}$。兩者在 $\\varepsilon \\to 0$ 時行為一致，皆保證分母數值穩定不發生除零錯誤。",
+    "en": "The literature's Eq. (38) is often written as $\\sqrt{\\varepsilon + \\sum g^2}$, while PyTorch's official implementation typically computes $\\frac{\\eta}{\\sqrt{s} + \\varepsilon}$. The two behave identically as $\\varepsilon \\to 0$, and both keep the denominator numerically stable, with no division-by-zero errors.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86274f9ee320": {
+    "zh": "記憶體與算力開銷",
+    "en": "Memory and compute overhead",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9124f0fee81b": {
+    "zh": "僅需為每個模型參數額外保留一個 float32 的累積器狀態（空間複雜度嚴格 $\\mathcal{O}(d)$），且所有更新皆為逐元素向量化操作，極度契合現代 GPU / TPU 張量核心架構。",
+    "en": "Each model parameter needs only one extra float32 accumulator state (space complexity strictly $\\mathcal{O}(d)$), and all updates are element-wise vectorized operations, a perfect fit for the tensor-core architectures of modern GPUs/TPUs.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "34bd02958329": {
+    "zh": "09 / 全景矩陣 · Comparison Matrix",
+    "en": "09 / Panoramic Matrix · Comparison Matrix",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "65149eb3bc9a": {
+    "zh": "全梯度下降 vs 隨機梯度下降 vs AdaGrad 全方位對比\n    <span class=\"en\">Panoramic Comparison: Full GD vs SGD vs AdaGrad</span>\n  ",
+    "en": "Full Gradient Descent vs Stochastic Gradient Descent vs AdaGrad: An All-Round Comparison",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "61b34a147c85": {
+    "zh": "比較維度",
+    "en": "Dimension compared",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f24601d53bd9": {
+    "zh": "固定步長 GD",
+    "en": "Fixed-step GD",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "dd0d4c119cb5": {
+    "zh": "隨機梯度下降 (SGD)",
+    "en": "Stochastic gradient descent (SGD)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "839498eb89f7": {
+    "zh": "AdaGrad (自適應梯度)",
+    "en": "AdaGrad (adaptive gradient)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d40ecf376b60": {
+    "zh": "<strong>學習率分配</strong>",
+    "en": "<strong>Learning-rate allocation</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8b6b0cf8f3fe": {
+    "zh": "所有維度共用單一常數 $\\eta$",
+    "en": "All dimensions share a single constant $\\eta$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "979d7b32dca0": {
+    "zh": "<strong>每個座標獨立自適應 $\\eta / \\sqrt{G_{jj}}$</strong>",
+    "en": "<strong>Each coordinate adapts independently: $\\eta / \\sqrt{G_{jj}}$</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "257228fcf957": {
+    "zh": "<strong>二階曲率感知</strong>",
+    "en": "<strong>Second-order curvature awareness</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d6f3a2262cec": {
+    "zh": "完全無感知（一階盲目前進）",
+    "en": "None at all (first-order, moving blindly)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3ef8cff420f6": {
+    "zh": "完全無感知（受隨機雜訊干擾）",
+    "en": "None at all (disturbed by random noise)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "62a054c84f95": {
+    "zh": "<strong>對角梯度平方和近似曲率</strong>",
+    "en": "<strong>Approximates curvature with the diagonal sum of squared gradients</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d334b4660825": {
+    "zh": "<strong>病態狹谷表現</strong>",
+    "en": "<strong>Behavior in an ill-conditioned ravine</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6814835d6caa": {
+    "zh": "在陡峭維度劇烈振盪、進展極慢",
+    "en": "Oscillates violently in the steep dimension; progress is very slow",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "635844b65d2a": {
+    "zh": "沿法向劇烈震盪，漫步徘徊",
+    "en": "Oscillates violently along the normal direction, wandering about",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "93dc2a2e323b": {
+    "zh": "<strong>迅速壓制陡峭方向，拉平正圓等化</strong>",
+    "en": "<strong>Quickly suppresses the steep direction, equalizing toward a circle</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d90ab71a5067": {
+    "zh": "<strong>稀疏特徵能力</strong>",
+    "en": "<strong>Handling of sparse features</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cd2603ac75be": {
+    "zh": "完全失效（全量資料無法展現稀疏）",
+    "en": "Fails completely (the full dataset cannot reveal sparsity)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a5a223153554": {
+    "zh": "罕見特徵幾乎得不到有效更新",
+    "en": "Rare features get almost no effective updates",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6993814ebe80": {
+    "zh": "<strong>黃金友好：罕見特徵自動獲得大步長</strong>",
+    "en": "<strong>Golden friendliness: rare features automatically get large step sizes</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "79abb02162ce": {
+    "zh": "<strong>額外狀態空間</strong>",
+    "en": "<strong>Extra state memory</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1fc031a17d14": {
+    "zh": "$0$（無額外狀態向量）",
+    "en": "$0$ (no extra state vector)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7aaf8c4c0f01": {
+    "zh": "$\\mathcal{O}(d)$（需維護累積平方和向量 $\\boldsymbol{s}$）",
+    "en": "$\\mathcal{O}(d)$ (must maintain the accumulated-squares vector $\\boldsymbol{s}$)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "7124e6641045": {
+    "zh": "<strong>致命阿基里斯腱</strong>",
+    "en": "<strong>Fatal Achilles' heel</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b9198b12b507": {
+    "zh": "每步需遍歷全資料集，無法擴充套件",
+    "en": "Each step must sweep the whole dataset; it cannot scale",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0f6330cc9782": {
+    "zh": "$\\mathcal{O}(\\eta)$ 噪聲停滯帶無法精確收斂",
+    "en": "The $\\mathcal{O}(\\eta)$ noise stagnation band prevents exact convergence",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c75697af102d": {
+    "zh": "<strong>分母累積只增不減，後期步長死亡凍結</strong>",
+    "en": "<strong>The accumulated denominator only grows, so late in training the step size dies and freezes</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c9c4db070a6b": {
+    "zh": "10 / 核心鐵律 · Master Laws of AdaGrad",
+    "en": "10 / Core Iron Laws · Master Laws of AdaGrad",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "84968981542c": {
+    "zh": "大師四大鐵律：駕馭 AdaGrad 的底層心法\n    <span class=\"en\">The Four Master Laws of AdaGrad</span>\n  ",
+    "en": "The Master's Four Iron Laws: The Inner Method for Mastering AdaGrad",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "258e87083032": {
+    "zh": "1. 異向平衡律",
+    "en": "1. The law of anisotropic balance",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "d76314a64d34": {
+    "zh": "陡坡重煞，緩坡快跑。AdaGrad 透過對角曲率反比縮放，將狹長病態的橢圓等高線在動態步幅上等化為近乎正圓，讓前進方向直指最優解。",
+    "en": "Brake hard on steep slopes, run fast on gentle ones. By scaling inversely to the diagonal curvature, AdaGrad equalizes the long, narrow, ill-conditioned elliptical contours into near-circles in terms of its dynamic strides, so the direction of travel points straight at the optimum.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "eeca6c90f910": {
+    "zh": "2. 稀疏偏好律",
+    "en": "2. The law of sparse preference",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "016986e5d759": {
+    "zh": "打破頻率霸權，稀疏特徵天生拿大步。在龐大的 embedding 表與長尾詞彙中，AdaGrad 賦予罕見訊號充足的更新動能，是稀疏資料的天然盟友。",
+    "en": "It breaks the tyranny of frequency: sparse features naturally get big steps. In huge embedding tables and long-tail vocabularies, AdaGrad gives rare signals ample update momentum; it is the natural ally of sparse data.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "78c9ecc79273": {
+    "zh": "3. 分母累進律",
+    "en": "3. The law of the accumulating denominator",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "588c462e4934": {
+    "zh": "平方之和只增不減，分母永不回頭。任何非零梯度都在消耗該維度的步長額度，隱含著有效學習率單調遞減至零的宿命詛咒。",
+    "en": "The sum of squares only grows, never shrinks; the denominator never turns back. Every nonzero gradient spends part of that dimension's step-size budget, carrying the fated curse of an effective learning rate that decreases monotonically to zero.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "4ae59da23bb4": {
+    "zh": "4. 遺忘缺失律",
+    "en": "4. The law of missing forgetfulness",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "cef075b8cc14": {
+    "zh": "早期噪聲永留分母，缺乏時間衰減因子。無法適應晚期地形變化的遺憾，成為最佳化器演進史上催生 RMSProp 指數滑動平均的歷史必然。",
+    "en": "Early noise stays in the denominator forever, with no time-decay factor. The regret of being unable to adapt to late changes in the terrain made the birth of RMSProp's exponential moving average a historical inevitability in the evolution of optimizers.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6ed5ccfbc1f7": {
+    "zh": "11 / 互動實驗 · Interactive Lab",
+    "en": "11 / Interactive Experiment · Interactive Lab",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "387a7ad17a6a": {
+    "zh": "互動實驗室：2D 橢圓異向曲面 $f(w_1, w_2) = 0.5(w_1^2 + 25 w_2^2)$\n    <span class=\"en\">Interactive Lab: Optimizing Anisotropic Ravine via AdaGrad vs Standard GD</span>\n  ",
+    "en": "Interactive Lab: The 2D Anisotropic Elliptical Surface $f(w_1, w_2) = 0.5(w_1^2 + 25 w_2^2)$",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c8334edb1993": {
+    "zh": "\n    觀察病態條件數高達 25 的狹長山谷：橫軸 $w_1$ 平緩（二階導數 1），縱軸 $w_2$ 極度陡峭（二階導數 25）。\n    對比固定學習率 GD 的劇烈震盪/發散，親眼見證 AdaGrad 如何藉由累積平方和瞬間鎖定縱軸、平穩導引橫軸向原點進發！\n  ",
+    "en": "Observe a long, narrow valley with an ill-conditioned condition number as high as 25: the horizontal axis $w_1$ is gentle (second derivative 1), the vertical axis $w_2$ extremely steep (second derivative 25). Compare the violent oscillation/divergence of GD with a fixed learning rate, and see with your own eyes how AdaGrad, through its accumulated sums of squares, instantly locks down the vertical axis and steadily guides the horizontal axis toward the origin!",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e9eaf6669fcc": {
+    "zh": "最佳化演算法：",
+    "en": "Optimization algorithm:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "58d405d7d0ce": {
+    "zh": "AdaGrad (逐維自適應)",
+    "en": "AdaGrad (per-dimension adaptive)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "fa19721eec3c": {
+    "zh": "標準 GD (固定全域學習率)",
+    "en": "Standard GD (fixed global learning rate)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "cf5359a131d5": {
+    "zh": "基礎學習率 $\\eta$：",
+    "en": "Base learning rate $\\eta$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "5482d932b7ca": {
+    "zh": "平滑常數 $\\varepsilon$：",
+    "en": "Smoothing constant $\\varepsilon$:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "79bc261b5980": {
+    "zh": "單步迭代 (Step)",
+    "en": "Single iteration (Step)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "55d3a95af7ee": {
+    "zh": "連續 10 步 (Run 10)",
+    "en": "10 steps in a row (Run 10)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "967577ed85c4": {
+    "zh": "重設起點 (Reset)",
+    "en": "Reset the start (Reset)",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8fed443c2879": {
+    "zh": "<strong>當前演算法：</strong> AdaGrad (逐維度自適應)<br><strong>參數座標 (w1, w2)：</strong> (-3.500, 2.400)<br><strong>損失函數值 f(w1, w2)：</strong> 78.1250<br><strong>當前梯度分量 (∇1, ∇2)：</strong> (-3.500, 60.000)<br><strong>累積平方和 G_11：</strong> 0.00<br><strong>累積平方和 G_22：</strong> 0.00<br><strong>有效步長 η1^eff：</strong> 0.2100<br><strong>有效步長 η2^eff：</strong> 0.2100<br><strong>步長異向等化比率：</strong> 1.00 倍（橫軸/縱軸）<br><strong>累計迭代步數：</strong> 0<br><strong>狀態判定：</strong><br>",
+    "en": "<strong>Current algorithm:</strong> AdaGrad (per-dimension adaptive)<br><strong>Parameter coordinates (w1, w2):</strong> (-3.500, 2.400)<br><strong>Loss function value f(w1, w2):</strong> 78.1250<br><strong>Current gradient components (∇1, ∇2):</strong> (-3.500, 60.000)<br><strong>Accumulated sum of squares G_11:</strong> 0.00<br><strong>Accumulated sum of squares G_22:</strong> 0.00<br><strong>Effective step size η1^eff:</strong> 0.2100<br><strong>Effective step size η2^eff:</strong> 0.2100<br><strong>Anisotropic step equalization ratio:</strong> 1.00× (horizontal/vertical)<br><strong>Cumulative iterations:</strong> 0<br><strong>Status:</strong><br>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "3ebdf5c9083e": {
+    "zh": "⚡ 異向等化生效：縱軸劇烈減速，橫軸平穩推進",
+    "en": "⚡ Anisotropic equalization in effect: the vertical axis slows sharply, the horizontal axis advances steadily",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "c757c4473e82": {
+    "zh": "12 / 實力檢驗 · Checkpoint Quizzes",
+    "en": "12 / Test Your Skills · Checkpoint Quizzes",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e27f3acd63e2": {
+    "zh": "隨堂檢驗：檢驗你對 AdaGrad 機制的洞察\n    <span class=\"en\">Checkpoint Quizzes: Assessing Your Mastery of Coordinate-Wise Adaptation</span>\n  ",
+    "en": "In-Class Check: Test Your Insight into the AdaGrad Mechanism",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ef9f9b36d3b1": {
+    "zh": "Q1. AdaGrad 中對角元素 $\\boldsymbol{G}(j,j)$ 的嚴格定義包含什麼？",
+    "en": "Q1. What does the rigorous definition of the diagonal entry $\\boldsymbol{G}(j,j)$ in AdaGrad contain?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "90ea69001f71": {
+    "zh": "A. 歷史梯度的絕對值之和",
+    "en": "A. The sum of the absolute values of past gradients",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5ccfb977a96b": {
+    "zh": "B. 歷史梯度平方的累積和再開根號",
+    "en": "B. The accumulated sum of squared past gradients, then a square root",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "05c6eceacdb2": {
+    "zh": "C. 歷史梯度的指數加權移動平均 (EMA)",
+    "en": "C. An exponentially weighted moving average (EMA) of past gradients",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "93fb437d9df1": {
+    "zh": "D. 目標函數的 Hessian 矩陣對角元素",
+    "en": "D. The diagonal entries of the objective function's Hessian matrix",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "6d2e17f78c4d": {
+    "zh": "Q2. AdaGrad 對「梯度長期偏大」的活躍維度會採取什麼核心動作？",
+    "en": "Q2. What core action does AdaGrad take on active dimensions whose gradients are persistently large?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "51e62ba0ca49": {
+    "zh": "A. 放大其有效學習率以加速衝過",
+    "en": "A. Amplify their effective learning rate to rush through faster",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "f08a01b9c6c4": {
+    "zh": "B. 壓制（衰減）其有效學習率以平抑震盪",
+    "en": "B. Suppress (decay) their effective learning rate to calm the oscillation",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ab7ec5427a46": {
+    "zh": "C. 徹底凍結該維度不再更新",
+    "en": "C. Freeze that dimension completely so it is no longer updated",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "50f4f2dc80e4": {
+    "zh": "D. 重置該維度歷史梯度為零",
+    "en": "D. Reset that dimension's gradient history to zero",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "b99b74aacec8": {
+    "zh": "Q3. 式 (39) 中平滑常數 $\\varepsilon$ 的主要數學作用是？",
+    "en": "Q3. What is the main mathematical role of the smoothing constant $\\varepsilon$ in Eq. (39)?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e45c2e19745b": {
+    "zh": "A. 控制動量項的衰減係數",
+    "en": "A. Controlling the decay coefficient of the momentum term",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9233b34bafa4": {
+    "zh": "B. 確保分母不為零，提供數值計算穩定性",
+    "en": "B. Ensuring the denominator is not zero, providing numerical stability",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "127c11f1a7df": {
+    "zh": "C. 設定隨機梯度的 mini-batch 大小",
+    "en": "C. Setting the mini-batch size of the stochastic gradient",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "cd0191872f3e": {
+    "zh": "D. 決定初始偏差修正係數",
+    "en": "D. Determining the initial bias-correction coefficient",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "c15c81084136": {
+    "zh": "Q4. AdaGrad 在深度神經網路長期訓練中的最主要致命隱憂是？",
+    "en": "Q4. What is AdaGrad's single most fatal weakness in long training runs of deep neural networks?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "3263efba95af": {
+    "zh": "A. 有效學習率單調遞增引發爆炸",
+    "en": "A. The effective learning rate increases monotonically and explodes",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "55ac9eba2475": {
+    "zh": "B. 累積和只增不減，有效學習率趨近 0 導致過早停止學習",
+    "en": "B. The accumulated sum only grows, so the effective learning rate approaches 0 and learning stops too early",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0df9d1ade488": {
+    "zh": "C. 完全無法處理高維稀疏特徵",
+    "en": "C. It cannot handle high-dimensional sparse features at all",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "305e34a39a5e": {
+    "zh": "D. 每步迭代需要計算高階 Hessian 矩陣",
+    "en": "D. Every iteration requires computing a high-order Hessian matrix",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "9ba2e52a2fd6": {
+    "zh": "13 / 承先啟後 · Key Takeaways &amp; Next Step",
+    "en": "13 / Bridging Past and Future · Key Takeaways &amp; Next Step",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "a2ce84023f59": {
+    "zh": "總結與展望：自適應最佳化器的進化階梯\n    <span class=\"en\">Summary: AdaGrad's Legacy &amp; The Road to RMSProp</span>\n  ",
+    "en": "Summary and Outlook: The Evolutionary Ladder of Adaptive Optimizers",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "ccfea48299d7": {
+    "zh": "AdaGrad 的歷史功績與啟示",
+    "en": "AdaGrad's historical achievements and lessons",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "411d951c5352": {
+    "zh": "AdaGrad 第一次向全世界證明：神經網路的各個參數不必齊步走，利用一階梯度的歷史二階矩對角累積，能夠以極低算力代價換取優異的各向異性適應力與稀疏特徵支援。",
+    "en": "AdaGrad proved to the whole world for the first time that the parameters of a neural network need not march in lockstep: by accumulating a diagonal of the historical second moments of first-order gradients, it buys excellent anisotropic adaptivity and support for sparse features at a very low compute cost.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "947ba568251f": {
+    "zh": "<strong>創舉：</strong>逐維度標量自適應，對稀疏特徵天然友好。",
+    "en": "<strong>The innovation:</strong> per-dimension scalar adaptivity, naturally friendly to sparse features.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "c49985db98f4": {
+    "zh": "<strong>遺憾：</strong>分母純累加導致步長單調衰亡，訓練後期寸步難行。",
+    "en": "<strong>The regret:</strong> the purely accumulating denominator makes the step size decay monotonically to death, so late in training it can barely move.",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "a86a6d1fa35a": {
+    "zh": "<strong>下節預告（KP11 RMSProp）：</strong>Geoff Hinton 如何在 Coursera 課堂中隨性提出一個神級點子——將累加和換成「指數移動平均（EMA）」，讓過往梯度帶有記憶半衰期，徹底解放自適應最佳化器的無限活力！",
+    "en": "<strong>Next up (KP11 RMSProp):</strong> how Geoff Hinton casually proposed a god-tier idea in his Coursera class: replace the accumulated sum with an “exponential moving average (EMA)”, giving past gradients a memory half-life and completely unleashing the boundless vitality of adaptive optimizers!",
+    "kp": 14,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

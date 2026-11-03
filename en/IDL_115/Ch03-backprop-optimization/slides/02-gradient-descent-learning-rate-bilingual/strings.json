@@ -1,0 +1,929 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "學習率 $\\eta > 0$（Learning Rate）代表每次沿著負梯度方向推進的尺度常數。": "The learning rate $\\eta > 0$ is the scale constant for how far each step advances along the negative gradient direction.",
+      "根據下降引理（Descent Lemma），當步長小於等於 $1/L$ 時，目標函式每步嚴格單調下降。": "By the descent lemma, when the step size is at most $1/L$, the objective function decreases strictly monotonically at every step.",
+      "凸最佳化下不存在劣質區域性極小點，序列單調遞減並收斂到全域最優解 $\\boldsymbol{w}^*$。": "In convex optimization there are no poor local minima; the sequence decreases monotonically and converges to the global optimum $\\boldsymbol{w}^*$.",
+      "非凸高維空間充滿鞍點與峽長過道，微觀鋸齒震盪是常態，只要宏觀趨勢向下即屬良性最佳化。": "Non-convex high-dimensional spaces are full of saddle points and long narrow ravines; small-scale zig-zag oscillation is normal, and as long as the overall trend is downward, the optimization is healthy.",
+      "w (參數)": "w (param)",
+      "當前位置：": "Current position:",
+      "梯度斜率：": "Gradient (slope):",
+      "當前損失：": "Current loss:",
+      "下一步預測：": "Next-step prediction:",
+      "累計步數：": "Total steps:",
+      "步": "steps"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "50cd675d2201": {
+    "zh": "KP02 · 索引",
+    "en": "KP02 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6a68d7fef0bd": {
+    "zh": "<a href=\"#opening\">矇眼下山 · Blind Hiker</a>",
+    "en": "<a href=\"#opening\">Blindfolded Descent · Blind Hiker</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2b859e8bc773": {
+    "zh": "<a href=\"#history\">百年溯源 · Math History</a>",
+    "en": "<a href=\"#history\">A Century of Origins · Math History</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6ebe9d89540c": {
+    "zh": "<a href=\"#formulation\">問題設定 · Formulation</a>",
+    "en": "<a href=\"#formulation\">Problem Setup · Formulation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6f883e72cb13": {
+    "zh": "<a href=\"#lipschitz-smoothness\">理想步長 · L-Smoothness</a>",
+    "en": "<a href=\"#lipschitz-smoothness\">The Ideal Step · L-Smoothness</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b84b587a5b44": {
+    "zh": "<a href=\"#learning-rate-reality\">現實妥協 · Learning Rate</a>",
+    "en": "<a href=\"#learning-rate-reality\">Compromise with Reality · Learning Rate</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f348dc48b2a3": {
+    "zh": "<a href=\"#convex-bowl\">凸曲面滑行 · Convex Bowl</a>",
+    "en": "<a href=\"#convex-bowl\">Sliding on a Convex Surface · Convex Bowl</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9308d0fdbec7": {
+    "zh": "<a href=\"#nonconvex-landscape\">非凸波浪 · Non-Convex</a>",
+    "en": "<a href=\"#nonconvex-landscape\">Non-Convex Waves · Non-Convex</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "44f56ca0a900": {
+    "zh": "<a href=\"#comparison\">深度對比 · Comparison</a>",
+    "en": "<a href=\"#comparison\">In-Depth Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a07483d7a8a8": {
+    "zh": "<a href=\"#master-maxims\">大師三鐵律 · Master Laws</a>",
+    "en": "<a href=\"#master-maxims\">The Master's Three Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3b486c0e7b0a": {
+    "zh": "<a href=\"#lab\">拍皮球模擬器 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Ball-Bouncing Simulator · Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cb7d009b6344": {
+    "zh": "<a href=\"#quiz\">思考題 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Thinking Questions · Checkpoint</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e869100a4f90": {
+    "zh": "梯度下降：學習率與更新規則\n      <span class=\"hero-title-en\">Gradient Descent: Learning Rate &amp; Update Rules</span>\n    ",
+    "en": "Gradient descent: learning rate and update rules\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "544c59f31890": {
+    "zh": "\n      沿最陡上坡的反方向邁步 — 從 Lipschitz 理想步長 $1/L$ 到固定學習率 $\\eta$，解析凸曲面全域收斂與非凸波浪「震盪 $\\neq$ 失敗」的幾何真相\n      <span class=\"bilingual-en\" style=\"color: #cbd5e1; font-size: 19px;\">Step along the negative gradient: From Lipschitz optimal step size $1/L$ to practical learning rates, demystifying global convex minima and non-convex oscillatory descent.</span>\n    ",
+    "en": "\n      Step in the direction opposite to the steepest ascent: from the Lipschitz ideal step size $1/L$ to a fixed learning rate $\\eta$, an analysis of the geometric truth of global convergence on convex surfaces and of \"oscillation $\\neq$ failure\" on non-convex waves\n    ",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "eea8c7cf3cde": {
+    "zh": "01 / 核心痛點 · Core Dilemma",
+    "en": "01 / The Core Pain Point",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "12a876473e8f": {
+    "zh": "\n      既然下坡方向一清二楚，<br>為什麼跨太大步反而會爬上更高的山？\n      <small>If the downhill slope is clear, why does an overly ambitious leap land you higher?</small>\n    ",
+    "en": "\n      Since the downhill direction is perfectly clear,<br>why does taking too big a step land you on an even higher mountain?\n      <small>If the downhill slope is clear, why does an overly ambitious leap land you higher?</small>\n    ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "62d19f819265": {
+    "zh": "\n      梯度只告訴你<strong>此時此刻、極限微小的一瞬間</strong>哪裡是下坡。\n      一旦你跨出有限長度的步伐，山勢的曲率就會瞬間改變。若步伐超越了地形的承受極限，最陡的下坡將瞬間轉化為更險峻的峭壁！\n      <span class=\"bilingual-en\">The negative gradient provides purely local, instantaneous directional guidance. Once you take a discrete finite step, landscape curvature changes; excessive step sizes turn descent trajectories into violent ascents.</span>\n    ",
+    "en": "\n      The gradient only tells you where downhill is <strong>right here, right now, in an infinitesimally small instant</strong>.\n      Once you take a step of finite length, the curvature of the terrain changes instantly. If your stride exceeds what the terrain can tolerate, the steepest downhill slope instantly turns into an even more treacherous cliff!\n    ",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "9e556adff66a": {
+    "zh": "02 / 直覺開場 · Intuitive Metaphor",
+    "en": "02 / Intuitive Opening · Intuitive Metaphor",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8a46b1ad1163": {
+    "zh": "矇眼下山者的步長哲學\n    <span class=\"en\">The Blind Hiker's Step Philosophy: Direction vs Step Size</span>\n  ",
+    "en": "The blindfolded hiker's philosophy of step size\n  ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "89581ee3c794": {
+    "zh": "💡 想像你在大霧瀰漫、看不見遠方的山頂",
+    "en": "💡 Imagine you are in thick fog and cannot see the peaks in the distance",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ec330ffa85ad": {
+    "zh": "\n      你被蒙上雙眼，腳下踩著深淺不一的泥土。你用手杖與雙腳感受周遭地勢，探測出當前坡度最陡的下切方向（負梯度 $-\\nabla f$）。\n      這時你面臨一個生死抉擇：<strong>這一步該踩多大？</strong>\n    ",
+    "en": "\n      You are blindfolded, with mud of uneven depth under your feet. You feel the surrounding terrain with a walking stick and both feet, and detect the direction where the slope currently cuts down most steeply (the negative gradient $-\\nabla f$).\n      Now you face a life-or-death choice: <strong>how big should this step be?</strong>\n    ",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4d29031ca8aa": {
+    "zh": "<strong>步伐如螞蟻（步長過小）</strong>：你永遠摔不死，但可能走了一整天還在山頂徘徊，天黑也到不了谷底。",
+    "en": "<strong>Ant-sized steps (step size too small)</strong>: you will never fall to your death, but you may walk all day and still be wandering near the summit, not reaching the valley floor by nightfall.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "746972adda0e": {
+    "zh": "<strong>縱身大躍進（步長過大）</strong>：你想一步登天直接跳到底部，結果直接踩空跳進對面更高的山壁上，在兩山之間來回撞擊！",
+    "en": "<strong>A huge leap (step size too large)</strong>: you want to jump straight to the bottom in one go, but you miss your footing and land on an even higher slope on the opposite side, smashing back and forth between the two mountains!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "faa12a5d954c": {
+    "zh": "<strong>剛好踩在曲率半徑內（適中步長）</strong>：步步為營，每一步都穩穩落在更低的海拔上。",
+    "en": "<strong>Landing just within the radius of curvature (moderate step size)</strong>: advancing steadily, every step lands firmly at a lower altitude.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1d1947be8c5a": {
+    "zh": "03 / 數學源流 · Historical Foundations",
+    "en": "03 / Mathematical Origins · Historical Foundations",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "00aef2ba58cb": {
+    "zh": "百年數學奠基：從 Cauchy 到現代深度學習\n    <span class=\"en\">From Cauchy's Intuition (1874) to Deep Learning Optimization</span>\n  ",
+    "en": "A century of mathematical foundations: from Cauchy to modern deep learning\n  ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dc1f6f8798b7": {
+    "zh": "柯西提出梯度下降法 (Cauchy's Principle)",
+    "en": "Cauchy proposes gradient descent",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8dd85cd54314": {
+    "zh": "\n        法國數學家柯西在研究天體軌道攝動數值解時，首次提出沿著負梯度方向進行迭代近似的思想。\n        這是人類歷史上第一次把複雜連續極值問題轉化為一階線性逼近的演算法。\n      ",
+    "en": "\n        While studying numerical solutions for perturbations of celestial orbits, the French mathematician Cauchy first proposed the idea of iterative approximation along the negative gradient direction.\n        This was the first time in human history that a complicated continuous extremum problem was turned into an algorithm of first-order linear approximation.\n      ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "66ac17951c58": {
+    "zh": "阿達馬精煉變分與微分幾何 (Hadamard's Refinement)",
+    "en": "Hadamard refines it with variational methods and differential geometry",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c20dee940fb2": {
+    "zh": "\n        將梯度下降推廣至高維曲面與泛函分析中，確立了正交等高線與最速下坡線（Steepest Descent Trajectory）的幾何性質。\n      ",
+    "en": "\n        Extended gradient descent to high-dimensional surfaces and functional analysis, establishing the geometric properties of orthogonal contour lines and the steepest descent trajectory.\n      ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "74acfdc139cd": {
+    "zh": "柯里給出嚴格收斂性證明 (Curry's Convergence)",
+    "en": "Curry gives a rigorous convergence proof",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1af2d6d60866": {
+    "zh": "\n        在二戰計算力萌芽期，柯里首次為一般非線性最最佳化問題給出了嚴格的收斂性分析，奠定了現代最佳化理論的數學基石。\n      ",
+    "en": "\n        In the WWII era, when computing power was just emerging, Curry gave the first rigorous convergence analysis for general nonlinear optimization problems, laying the mathematical cornerstone of modern optimization theory.\n      ",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ee082fd54cc2": {
+    "zh": "04 / 數學框架 · Unconstrained Optimization",
+    "en": "04 / Mathematical Framework · Unconstrained Optimization",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2efe14aad4fe": {
+    "zh": "數學問題設定：可微函式的數值迭代\n    <span class=\"en\">Formulating the Unconstrained Minimization Framework</span>\n  ",
+    "en": "The mathematical problem setup: numerical iteration on a differentiable function\n  ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9b5bc6f5d395": {
+    "zh": "問題設定與通用迭代格式（式 (1) ~ (2)）",
+    "en": "Problem setup and the general iteration scheme (Eqs. (1)–(2))",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6a35fc316192": {
+    "zh": "給定一可微連續損失函式 $f(\\cdot)$，目標是尋求最優參數向量 $\\boldsymbol{w}^*$ 滿足：",
+    "en": "Given a differentiable, continuous loss function $f(\\cdot)$, the goal is to find the optimal parameter vector $\\boldsymbol{w}^*$ satisfying:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f022f1771b15": {
+    "zh": "從隨機挑選的初始權重 $\\boldsymbol{w}^{(0)}$ 出發，數值最佳化透過逐代疊加更新向量 $\\boldsymbol{\\Delta}\\boldsymbol{w}$：",
+    "en": "Starting from randomly chosen initial weights $\\boldsymbol{w}^{(0)}$, numerical optimization adds an update vector $\\boldsymbol{\\Delta}\\boldsymbol{w}$ generation after generation:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "859c25301715": {
+    "zh": "直到滿足收斂準則（如梯度接近零、損失變化量小於 $\\epsilon$ 或達到預設最大步數）。",
+    "en": "until a convergence criterion is met (e.g. the gradient is close to zero, the change in the loss is less than $\\epsilon$, or a preset maximum number of steps is reached).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ce30fc56352b": {
+    "zh": "\n    核心任務因此轉化為：<strong>如何在每一步 $k$，找出最優的位移向量 $\\boldsymbol{\\Delta}\\boldsymbol{w}$？</strong>\n    在眾多選擇中，一階泰勒展開告訴我們，最能區域性加速下降的方向就是負梯度方向 $-\\nabla f(\\boldsymbol{w}^{(k)})$。\n    <span class=\"bilingual-en\">The core question reduces to determining the update vector $\\boldsymbol{\\Delta}\\boldsymbol{w}$. First-order Taylor approximation rigorously identifies the negative gradient as the local direction of steepest descent.</span>\n  ",
+    "en": "\n    The core task therefore becomes: <strong>at each step $k$, how do we find the optimal displacement vector $\\boldsymbol{\\Delta}\\boldsymbol{w}$?</strong>\n    Among the many choices, the first-order Taylor expansion tells us that the direction that locally speeds up the descent the most is the negative gradient direction $-\\nabla f(\\boldsymbol{w}^{(k)})$.\n  ",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "68a0701924ea": {
+    "zh": "05 / 理論保證 · Lipschitz Smoothness",
+    "en": "05 / Theoretical Guarantee · Lipschitz Smoothness",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6190d11506c4": {
+    "zh": "理想國的步長：$L$-Smoothness 與 $1/L$ 必降保證\n    <span class=\"en\">Lipschitz Smoothness &amp; The Provable Step Size $1/L$</span>\n  ",
+    "en": "The step size in an ideal world: $L$-smoothness and the guaranteed descent of $1/L$\n  ",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "87d1ec6fc614": {
+    "zh": "Lipschitz 梯度連續性假設 (Lipschitz Continuity of Gradients)",
+    "en": "The assumption of Lipschitz continuity of the gradient",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0296c46e3ac3": {
+    "zh": "若函式 $f$ 的梯度變化速度具有上限，即存在常數 $L &gt; 0$（Lipschitz 常數），對任意 $\\boldsymbol{w}_1, \\boldsymbol{w}_2$ 滿足：",
+    "en": "If the speed at which the gradient of $f$ changes has an upper bound, i.e. there exists a constant $L &gt; 0$ (the Lipschitz constant) such that for any $\\boldsymbol{w}_1, \\boldsymbol{w}_2$:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a5cd39b2e330": {
+    "zh": "這意味著曲面的「彎曲劇烈程度」被常數 $L$ 給卡死了，不會出現無限陡峭的斷崖！",
+    "en": "This means the \"sharpness of the bending\" of the surface is capped by the constant $L$, and no infinitely steep cliffs can appear!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "20b07c9c50de": {
+    "zh": "理想步長更新律（式 (3)）",
+    "en": "The ideal step update rule (Eq. (3))",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8d256445b9c2": {
+    "zh": "在 $L$-smooth 條件下，根據 Descent Lemma（下降引理），理論最佳步長為 $\\frac{1}{L}$：",
+    "en": "Under the $L$-smooth condition, by the descent lemma, the theoretically optimal step size is $\\frac{1}{L}$:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2bfd9a14f233": {
+    "zh": "<strong>數學保證：</strong>只要步長取 $\\frac{1}{L}$，目標函式值每一步<strong>必然嚴格單調下降</strong>，絕無可能越走越高！",
+    "en": "<strong>Mathematical guarantee:</strong> as long as the step size is $\\frac{1}{L}$, the objective value <strong>must decrease strictly and monotonically</strong> at every step; there is no way it climbs higher and higher!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f197cac98b1f": {
+    "zh": "06 / 現實困境 · The Tri-Fate of Learning Rates",
+    "en": "06 / The Dilemma of Reality · The Three Fates of Learning Rates",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "44368b75548c": {
+    "zh": "現實妥協：固定學習率 $\\eta$ 的三種命運\n    <span class=\"en\">The Reality of $\\eta$: Three Fates in Deep Learning Training</span>\n  ",
+    "en": "Compromising with reality: the three fates of a fixed learning rate $\\eta$\n  ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "72d7aec57582": {
+    "zh": "實務更新規則（式 (4)）",
+    "en": "The practical update rule (Eq. (4))",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c791de434e09": {
+    "zh": "在實際深度神經網路中，Lipschitz 常數 $L$ 隨著百萬參數動態劇烈變化，既算不出來、也無法預估。實務上改以固定正數 $\\eta &gt; 0$（學習率 Learning Rate）作為替代：",
+    "en": "In real deep neural networks, the Lipschitz constant $L$ changes drastically and dynamically across millions of parameters; it can be neither computed nor estimated. In practice a fixed positive number $\\eta &gt; 0$ (the learning rate) is used instead:",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dc98af63eb0a": {
+    "zh": "（若目標為最大化問題，符號改為 $+\\eta$，即為<strong>梯度上升法 Gradient Ascent</strong>）。",
+    "en": "(If the objective is a maximization problem, the sign becomes $+\\eta$, which is <strong>gradient ascent</strong>.)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d3f682a43f32": {
+    "zh": "命運一：$\\eta$ 過小（Too Small）",
+    "en": "Fate 1: $\\eta$ too small",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "868fce1abd5d": {
+    "zh": "更新量極度微弱。即使面對平坦高原或鞍點，梯度微小加上步長極小，訓練將直接陷入凍結，跑了數百個 epoch 仍停留在起點附近。",
+    "en": "The updates are extremely weak. On a flat plateau or at a saddle point, a tiny gradient combined with a tiny step size makes training freeze outright; after hundreds of epochs it is still near the starting point.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4b1f9be195cd": {
+    "zh": "命運二：$\\eta$ 適中（Just Right）",
+    "en": "Fate 2: $\\eta$ just right",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2ea867795f50": {
+    "zh": "步伐完美適應曲面曲率。在陡峭處邁出適當步伐，在平緩處穩定滑進谷底，訓練曲線呈現平滑下降並順利收斂。",
+    "en": "The steps adapt perfectly to the curvature of the surface. It takes appropriate steps where it is steep and slides steadily into the valley where it is gentle; the training curve falls smoothly and converges without trouble.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "eb4426e345be": {
+    "zh": "命運三：$\\eta$ 過大（Too Large）— 拍皮球與發散爆炸",
+    "en": "Fate 3: $\\eta$ too large: bouncing like a ball and blowing up",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e470791e4aa2": {
+    "zh": "\n        跨步過度，更新後直接越過真正的谷底，落到對面更高的地方！\n        接下來一迭代又從更高的地方往回衝，在山谷兩側來回大幅反彈（如本講義 Demo 實測：在二次曲線 $f(w)=w^2$ 下，$\\eta=1$ 且 $|w|=4$ 時會在 $+4$ 與 $-4$ 之間永久<strong>「拍皮球」</strong>！若 $\\eta &gt; 1$ 則直接數值爆炸飛出螢幕）。\n      ",
+    "en": "\n        The step overshoots: after the update it jumps right over the true valley floor and lands somewhere higher on the opposite side!\n        On the next iteration it rushes back from that even higher spot, bouncing back and forth by large amounts between the two sides of the valley (as tested in this handout's demo: for the quadratic $f(w)=w^2$, with $\\eta=1$ and $|w|=4$ it <strong>\"bounces like a ball\"</strong> forever between $+4$ and $-4$! If $\\eta &gt; 1$, it blows up numerically and flies right off the screen).\n      ",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8b562cbdac19": {
+    "zh": "07 / 幾何解析 · Convex Bowl Dynamics",
+    "en": "07 / Geometric Analysis · Convex Bowl Dynamics",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "69eaa49db8a7": {
+    "zh": "幾何對決（上）：凸曲面的單調向心滑行\n    <span class=\"en\">Convex Geometry: Monotonic Inward Descent to Global Minimum</span>\n  ",
+    "en": "Geometric showdown (part 1): the monotone inward slide on a convex surface\n  ",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dac2d1720c21": {
+    "zh": "凸曲面等高線：梯度上坡 vs 更新下坡永遠完全相反",
+    "en": "Convex contours: gradient (uphill) and update (downhill) always opposite",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "84c483df7ad8": {
+    "zh": "w* (全域最低點)",
+    "en": "w* (global minimum)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "6f0efd14b83f": {
+    "zh": "∇f (最陡上坡)",
+    "en": "∇f (steepest uphill)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "7b9e110f05b1": {
+    "zh": "−η∇f (更新方向)",
+    "en": "−η∇f (update direction)",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "3b8d9f78b033": {
+    "zh": "等高線越往中心海拔越低 · 兩箭頭永遠方向相反 · 軌跡單調向中心滑落",
+    "en": "Lower toward the center · arrows always opposite · path slides monotonically inward",
+    "kp": 8,
+    "ctx": "svg"
+  },
+  "afb8f3fdc69f": {
+    "zh": "圖 1：凸曲面上梯度 $\\nabla f$ 與更新 $-\\eta \\nabla f$ 嚴格反向，路徑單調向心",
+    "en": "Figure 1: on a convex surface the gradient $\\nabla f$ and the update $-\\eta \\nabla f$ point in strictly opposite directions, and the path moves monotonically toward the center",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4729363cb1bf": {
+    "zh": "凸最佳化的完美數學保證 (Convex Guarantees)",
+    "en": "The perfect mathematical guarantees of convex optimization",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8cdc0da873f7": {
+    "zh": "若目標函式 $f(\\cdot)$ 為凸函式（Convex Function）：",
+    "en": "If the objective function $f(\\cdot)$ is a convex function:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "927c8737b9f5": {
+    "zh": "\n        <strong>凸性的兩大安心特質：</strong>\n        ",
+    "en": "\n        <strong>Two reassuring properties of convexity:</strong>\n        \n",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "688fa29dba06": {
+    "zh": "<strong>不存在任何虛假陷阱</strong>：任何區域性極小點（Local Minima）必然等價於全域最優解（Global Minimum）。",
+    "en": "<strong>No false traps at all</strong>: any local minimum is necessarily equivalent to the global minimum.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2c329ea81dfe": {
+    "zh": "<strong>損失嚴格不增</strong>：每踏一步，海拔就絕對不會比上一代更高。",
+    "en": "<strong>The loss strictly never increases</strong>: with every step, the altitude is never higher than in the previous generation.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c5c1cdcee5a8": {
+    "zh": "08 / 幾何解析 · Non-Convex Realities",
+    "en": "08 / Geometric Analysis · Non-Convex Realities",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1d635c8ec0d6": {
+    "zh": "幾何對決（下）：非凸波浪中的鞍點與震盪入谷\n    <span class=\"en\">Non-Convex Waves: Saddle Points &amp; The \"Oscillation != Failure\" Truth</span>\n  ",
+    "en": "Geometric showdown (part 2): saddle points and oscillating into the valley on non-convex waves\n  ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "605123f3506c": {
+    "zh": "非凸地形的核心現實 (Non-Convex Realities)",
+    "en": "The core realities of non-convex landscapes",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "82acf1c4dabb": {
+    "zh": "\n          在多層神經網路中，權重置換對稱性、ReLU 分段線性與非線性啟用，使得損失曲面絕非凸碗，而是充滿：\n        ",
+    "en": "\n          In multilayer neural networks, weight permutation symmetry, the piecewise linearity of ReLU and nonlinear activations make the loss surface anything but a convex bowl; it is full of:\n        ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "98720a4a0c2b": {
+    "zh": "<strong>無數區域性坑洞 (Local Minima)</strong>：隨機初始化會引導模型走向不同的區域性坑。",
+    "en": "<strong>Countless local pits (local minima)</strong>: random initialization leads the model into different local pits.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "79f17528e3e7": {
+    "zh": "<strong>廣袤鞍點 (Saddle Points)</strong>：某些維度坡度向下，某些維度向上，梯度為零卻非極小點。",
+    "en": "<strong>Vast saddle points</strong>: the slope goes down in some dimensions and up in others; the gradient is zero, yet it is not a minimum.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "085641fbb6b4": {
+    "zh": "💡 深度學習大師金句：反直覺「震盪 $\\neq$ 失敗」",
+    "en": "💡 A deep learning master's golden saying: counterintuitively, \"oscillation $\\neq$ failure\"",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5c5649eba6d8": {
+    "zh": "\n          如右圖所示，路徑在非凸波浪中可能前後震盪、忽左忽右（Zigzag）。但只要學習率適當，<strong>整體損失曲線依然強烈傾向下降</strong>！\n          因此，訓練過程中有微小的震盪並非失敗，而是高維複雜空間前進的必然常態。\n        ",
+    "en": "\n          As the figure on the right shows, the path through non-convex waves may oscillate back and forth, zigzagging left and right. But as long as the learning rate is appropriate, <strong>the overall loss curve still strongly tends to go down</strong>!\n          So small oscillations during training are not a failure; they are the inevitable norm of moving forward in a complex high-dimensional space.\n        ",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d91a7e38df3c": {
+    "zh": "非凸波浪地形：路經鞍點、鋸齒前進、停於區域性坑",
+    "en": "Non-convex waves: past a saddle, zigzag, stop in a local pit",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "d64b89cd7f6b": {
+    "zh": "鋸齒路線繞過鞍點與橫坡 · 最終穩穩降入優良的區域性極小值",
+    "en": "Zigzag path around saddles and side slopes · settles into a good local minimum",
+    "kp": 9,
+    "ctx": "svg"
+  },
+  "70e12ad894cd": {
+    "zh": "圖 2：非凸地形上的鋸齒漫步：穿過波浪與鞍點，依然朝著深處前進",
+    "en": "Figure 2: a zigzag walk on a non-convex landscape: through the waves and saddle points, still heading deeper",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "779e4190845a": {
+    "zh": "09 / 維度歸納 · Comparative Analysis",
+    "en": "09 / Dimension-by-Dimension Summary · Comparative Analysis",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e956b3fbbf7e": {
+    "zh": "凸 vs 非凸最佳化：極限保證與實務啟示\n    <span class=\"en\">Deep Comparison: Theoretical Bounds vs Empirical Realities</span>\n  ",
+    "en": "Convex vs non-convex optimization: theoretical guarantees and practical lessons\n  ",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "0eab4f385ed1": {
+    "zh": "比較維度 (Dimension)",
+    "en": "Aspect compared",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9c18cbf60239": {
+    "zh": "凸最佳化 (Convex Optimization)",
+    "en": "Convex optimization",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c2f0f1edaa4e": {
+    "zh": "非凸深度學習 (Non-Convex Deep Learning)",
+    "en": "Non-convex deep learning",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2115c021553f": {
+    "zh": "<strong>極值收斂性質</strong>",
+    "en": "<strong>Convergence to an extremum</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b90ca506bf62": {
+    "zh": "保證收斂至全域最優解 $\\boldsymbol{w}^*$",
+    "en": "Guaranteed to converge to the global optimum $\\boldsymbol{w}^*$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a3730ebe4316": {
+    "zh": "僅保證收斂至區域性最優解或駐點",
+    "en": "Only guaranteed to converge to a local optimum or a stationary point",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "159c1484c7de": {
+    "zh": "<strong>損失函式序列</strong>",
+    "en": "<strong>Sequence of loss values</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "378a6af9bab6": {
+    "zh": "嚴格單調遞減：$f^{(k+1)} \\le f^{(k)}$",
+    "en": "Strictly monotonically decreasing: $f^{(k+1)} \\le f^{(k)}$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b66903f85d73": {
+    "zh": "可能經歷劇烈鋸齒震盪，但巨觀趨勢向下",
+    "en": "May go through violent zigzag oscillations, but the macroscopic trend is downward",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "51a21c33d452": {
+    "zh": "<strong>初始點依賴度</strong>",
+    "en": "<strong>Dependence on the starting point</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8aa1e69721e2": {
+    "zh": "與初始點 $\\boldsymbol{w}^{(0)}$ 完全無關",
+    "en": "Completely independent of the starting point $\\boldsymbol{w}^{(0)}$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "491d6fb4399f": {
+    "zh": "高度敏感（需採用 Xavier / He 初始化等技巧）",
+    "en": "Highly sensitive (needs tricks such as Xavier / He initialization)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "f864ee3abc09": {
+    "zh": "<strong>高維空間致命陷阱</strong>",
+    "en": "<strong>Fatal traps in high-dimensional space</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "62a0058d4b18": {
+    "zh": "無陷阱（單一光滑碗底）",
+    "en": "No traps (a single smooth bowl bottom)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4020121eb0d9": {
+    "zh": "高維鞍點繁多、峽長山谷、區域性平原",
+    "en": "Many high-dimensional saddle points, ravines, local plateaus",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "16cfaa9785f3": {
+    "zh": "<strong>進階演算法需求</strong>",
+    "en": "<strong>Need for advanced algorithms</strong>",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b53db06b8a63": {
+    "zh": "基本梯度下降已綽綽有餘",
+    "en": "Basic gradient descent is more than enough",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e195bc6d0fac": {
+    "zh": "需依賴動量 Momentum、自適應 Adam、SAM 等技巧",
+    "en": "Relies on techniques such as momentum, adaptive Adam and SAM",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "85c811fdd363": {
+    "zh": "10 / 智慧結晶 · Inviolable Laws",
+    "en": "10 / Distilled Wisdom · Inviolable Laws",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "ad9fff81bad2": {
+    "zh": "大師箴言：梯度下降三大鐵律\n    <span class=\"en\">The Three Inviolable Laws of Gradient Descent</span>\n  ",
+    "en": "A master's maxims: the three iron laws of gradient descent\n  ",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "225024427fd1": {
+    "zh": "一、方向律：梯度垂直於等高線",
+    "en": "I. The law of direction: the gradient is perpendicular to the contour lines",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "dbc995f4739d": {
+    "zh": "梯度 $\\nabla f$ 永遠垂直於曲面的切線等高線，指向地勢最陡的攀升方向。負梯度 $-\\nabla f$ 是當前區域性最具價效比的下切路徑。",
+    "en": "The gradient $\\nabla f$ is always perpendicular to the surface's tangent contour lines and points in the direction of steepest ascent. The negative gradient $-\\nabla f$ is the most cost-effective way down locally at the current point.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "b450527dc8f8": {
+    "zh": "二、步長律：步長受制於曲率極限",
+    "en": "II. The law of step size: the step is limited by the curvature bound",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "3f3b5ccfd173": {
+    "zh": "步伐跨度永遠不可超越曲面的彎曲極限 $\\frac{1}{L}$。跨過頭不僅無法抄近路，反將墜入振盪深淵。",
+    "en": "The stride must never exceed the surface's bending limit $\\frac{1}{L}$. Overshooting not only fails to give you a shortcut; it plunges you into an abyss of oscillation.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "830ae43ed0fa": {
+    "zh": "三、非凸律：震盪前進即是勝利",
+    "en": "III. The non-convex law: advancing while oscillating is victory",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "f19a1b2ba381": {
+    "zh": "高維非凸空間沒有一馬平川的直線。只要巨觀 loss 持續探底，左右震盪只是尋找通用平坦盆地的必要摸索。",
+    "en": "A high-dimensional non-convex space has no straight, flat road. As long as the macroscopic loss keeps going down, oscillating left and right is just the necessary groping around in search of a general, flat basin.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "14db0a1e5e57": {
+    "zh": "四、實務律：好起點是成功的一半",
+    "en": "IV. The practical law: a good start is half the battle",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "5d3eb86a1fcd": {
+    "zh": "在非凸地形中，起點決定了你掉進哪座盆地。精緻的權重初始化（如 He Normal）能讓你一開始就站在開闊的高原上。",
+    "en": "On a non-convex landscape, the starting point determines which basin you fall into. Careful weight initialization (e.g. He Normal) lets you stand on an open plateau from the very beginning.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "2315a8e0c873": {
+    "zh": "11 / 實戰模擬 · Interactive Simulation Lab",
+    "en": "11 / Hands-On Simulation · Interactive Simulation Lab",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2b02a057199d": {
+    "zh": "互動探索實驗室：二次函式 $f(w)=w^2$ 拍皮球模擬器\n    <span class=\"en\">Interactive Lab: Step Dynamics &amp; The $\\eta=1.0$ Oscillation Bounce</span>\n  ",
+    "en": "Interactive exploration lab: a ball-bouncing simulator for the quadratic $f(w)=w^2$\n  ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1717a6e99b79": {
+    "zh": "學習率 η：",
+    "en": "Learning rate η:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "396680208283": {
+    "zh": "起點 w₀：",
+    "en": "Starting point w₀:",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "943fa4ede897": {
+    "zh": "走一步 (Step)",
+    "en": "Take a step",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4f0a3948d274": {
+    "zh": "重設 (Reset)",
+    "en": "Reset",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "50a3dc4439e2": {
+    "zh": "當前位置：<span class=\"badge-metric\">w = 4.000</span>",
+    "en": "Current position: <span class=\"badge-metric\">w = 4.000</span>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "338a9d989c95": {
+    "zh": "梯度斜率：<span class=\"badge-metric\">∇f = 2w = 8.000</span>",
+    "en": "Gradient (slope): <span class=\"badge-metric\">∇f = 2w = 8.000</span>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "e5369aa89d2c": {
+    "zh": "當前損失：<span class=\"badge-metric\">f(w) = w² = 16.000</span>",
+    "en": "Current loss: <span class=\"badge-metric\">f(w) = w² = 16.000</span>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "d8e520cd2d56": {
+    "zh": "下一步預測：<span class=\"badge-metric\">4.000 − 0.100×8.000 = 3.200</span>",
+    "en": "Next-step prediction: <span class=\"badge-metric\">4.000 − 0.100×8.000 = 3.200</span>",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "89f5c23bd98c": {
+    "zh": "累計步數：<span class=\"badge-metric\">0</span> 步",
+    "en": "Total steps: <span class=\"badge-metric\">0</span> steps",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ef516a25b0f1": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. 保持起點 $w_0 = 4.0$，將學習率 $\\eta$ 拉到 <strong>0.10</strong>，連續點選「走一步」，觀察紅點如何一步步滑入谷底 $w=0$。<br>\n      2. 將學習率 $\\eta$ 拉到 <strong>1.00</strong>，點選「走一步」，觀察算式 $w - 1.0 \\times (2w) = -w$，紅點將在 $+4$ 與 $-4$ 之間像<strong>拍皮球</strong>一樣永久震盪！<br>\n      3. 若將 $\\eta$ 拉至 <strong>1.10</strong>，步伐將徹底發散，紅點數值將迅速爆炸飛離視窗！\n    ",
+    "en": "\n      🧪 <strong>The big hands-on challenge:</strong><br>\n      1. Keep the starting point at $w_0 = 4.0$, drag the learning rate $\\eta$ to <strong>0.10</strong>, click \"Take a step\" repeatedly, and watch how the red dot slides step by step into the valley floor $w=0$.<br>\n      2. Drag the learning rate $\\eta$ to <strong>1.00</strong>, click \"Take a step\", and look at the formula $w - 1.0 \\times (2w) = -w$: the red dot will oscillate forever between $+4$ and $-4$ like a <strong>bouncing ball</strong>!<br>\n      3. If you drag $\\eta$ to <strong>1.10</strong>, the steps will diverge completely, and the red dot's value will quickly blow up and fly out of the window!\n    ",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "9a63cee739af": {
+    "zh": "12 / 實戰檢驗 · Concept Checkpoint",
+    "en": "12 / Hands-On Check · Concept Checkpoint",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-class checkpoint: instant feedback on concepts\n  ",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5ce841003fd0": {
+    "zh": "題目 1：梯度下降公式 $\\boldsymbol{w}^{(k+1)} := \\boldsymbol{w}^{(k)} - \\eta \\nabla f(\\boldsymbol{w}^{(k)})$ 中，$\\eta$ 的物理意義是什麼？",
+    "en": "Question 1: In the gradient descent formula $\\boldsymbol{w}^{(k+1)} := \\boldsymbol{w}^{(k)} - \\eta \\nabla f(\\boldsymbol{w}^{(k)})$, what is the physical meaning of $\\eta$?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "8a5d0209d76e": {
+    "zh": "A. 損失函式的曲率上限（Lipschitz 常數）",
+    "en": "A. The upper bound on the curvature of the loss function (the Lipschitz constant)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "4ce99ac6c8cf": {
+    "zh": "B. 控制沿負梯度方向邁出多遠的「學習率（步長）」",
+    "en": "B. The \"learning rate (step size)\" that controls how far to step along the negative gradient direction",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e7cf41aebd13": {
+    "zh": "C. 網路層數的加權權重",
+    "en": "C. A weighting factor for the number of network layers",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e201853742b4": {
+    "zh": "D. 訓練集資料批次大小（Batch Size）",
+    "en": "D. The training data batch size",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "7ec4b02b9a47": {
+    "zh": "題目 2：若目標函式 $f(\\cdot)$ 的梯度滿足 $L$-smoothness 條件，理論保證每步必然下降的理想步長為？",
+    "en": "Question 2: If the gradient of the objective function $f(\\cdot)$ satisfies the $L$-smoothness condition, what is the ideal step size that theoretically guarantees a decrease at every step?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "ca8482a933a9": {
+    "zh": "題目 3：對於嚴格凸函式（Convex Function），標準梯度下降法具備何種收斂保證？",
+    "en": "Question 3: For a strictly convex function, what convergence guarantee does standard gradient descent have?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "5b9e7be5578c": {
+    "zh": "A. 只能收斂到區域性極小值，且目標值可能上下震盪",
+    "en": "A. It can only converge to a local minimum, and the objective value may oscillate up and down",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "235999afeae0": {
+    "zh": "B. 迭代序列必然收斂至全域唯一最優解 $\\boldsymbol{w}^*$，且目標函式值單調不增",
+    "en": "B. The iterates are bound to converge to the unique global optimum $\\boldsymbol{w}^*$, and the objective value is monotonically non-increasing",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "744a65c5c828": {
+    "zh": "C. 必然被吸引至鞍點無法前進",
+    "en": "C. It is inevitably drawn to a saddle point and cannot move on",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "e6c0df88e9a1": {
+    "zh": "D. 與初始點無關，必然發散至無窮遠",
+    "en": "D. Regardless of the starting point, it is bound to diverge to infinity",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "20a0558e7424": {
+    "zh": "題目 4：在深度學習複雜非凸（Non-Convex）地形中，觀察到訓練損失在相鄰迭代間左右震盪，該如何理解？",
+    "en": "Question 4: On the complex non-convex landscape of deep learning, if you observe the training loss oscillating back and forth between adjacent iterations, how should you interpret it?",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "17dc38568b94": {
+    "zh": "A. 代表最佳化徹底失敗，必須立刻中斷程式",
+    "en": "A. It means the optimization has failed completely, and the program must be stopped immediately",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "0f99a41d1432": {
+    "zh": "B. 證明網路已經收斂到了全域最優解",
+    "en": "B. It proves the network has already converged to the global optimum",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "a1ce5c723197": {
+    "zh": "C. 這是高維非凸地形的正常現象；只要學習率適中，總體損失依然傾向穩步下降（震盪 $\\neq$ 失敗）",
+    "en": "C. This is normal on high-dimensional non-convex landscapes; as long as the learning rate is moderate, the overall loss still tends to go down steadily (oscillation $\\neq$ failure)",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "d30809369ccd": {
+    "zh": "D. 說明梯度的數學符號被算錯了",
+    "en": "D. It shows the mathematical sign of the gradient was computed wrong",
+    "kp": 13,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

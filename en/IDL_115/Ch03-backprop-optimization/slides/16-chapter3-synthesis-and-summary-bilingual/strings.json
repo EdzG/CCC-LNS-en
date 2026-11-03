@@ -1,0 +1,1275 @@
+{
+  "_runtime": {
+    "exact": {
+      "累計最佳化步數：": "Total optimization steps:",
+      "設定學習率 η：": "Learning rate η:",
+      "GD (梯度下降)：": "GD (gradient descent):",
+      "Momentum (動量法)：": "Momentum:",
+      "Adam (自適應矩)：": "Adam (adaptive moments):",
+      "SAM (銳度感知)：": "SAM (sharpness-aware):",
+      "· 收斂狀態：": "· Convergence status:",
+      "⚠️ 陷入左側尖銳陷阱 (Sharp Basin)": "⚠️ Trapped in the left sharp basin",
+      "🌟 成功收斂至右側平坦寬谷 (Flat Basin)": "🌟 Converged to the right flat basin",
+      "🏃 穿越非凸鞍點區域中...": "🏃 Crossing the non-convex saddle region...",
+      "行為洞察對比：": "Behavior comparison:",
+      "順應最近的梯度下坡，直接掉入左側尖銳深坑，泛化脆弱。": "follows the nearest downhill gradient and falls straight into the deep, sharp pit on the left; generalization is fragile.",
+      "逐維度自適應步長，迅速抵達局部極小。": "adapts the step size per dimension and quickly reaches a local minimum.",
+      "探測 ρ 鄰域微擾時感受到左側懸崖的劇烈損失漲幅（sharpness），主動轉向右側平坦寬谷！": "when probing perturbations in the ρ-neighborhood it feels the steep loss rise (sharpness) of the cliff on the left, and actively turns toward the flat, wide valley on the right!",
+      "尖銳陷阱 (-1.25, 0)": "Sharp trap (-1.25, 0)",
+      "平坦寬谷 (+1.25, 0)": "Flat valley (+1.25, 0)",
+      "起點 Start": "Start",
+      "● GD: 藍線 (易墜入左側尖銳陷阱)": "● GD: blue (prone to the left sharp trap)",
+      "● Momentum: 橘線 (慣性衝入深陷阱)": "● Momentum: orange (inertia → deep trap)",
+      "● Adam: 品紅線 (自適應各維度步長)": "● Adam: magenta (adaptive per-dim. step)",
+      "● SAM: 綠線 (銳度懲罰避險，轉入寬谷)": "● SAM: green (shuns sharpness → wide valley)",
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "§7.3 提及文獻 [17, 38] 針對含殘差跳躍連線的 ResNet 進行收斂分析，證明收斂理論已跨越玩具模型，成功延伸至現代複雜深層架構。": "§7.3 mentions that the works [17, 38] analyzed the convergence of ResNets with residual skip connections, showing that convergence theory has gone beyond toy models and successfully extends to modern, complex deep architectures.",
+      "Adam（§5.3）巧妙融合了動量（梯度一階矩的指數移動平均，維持運動慣性）與 RMSProp（梯度二階矩的指數移動平均，逐維調整步長），並引入偏差修正。": "Adam (§5.3) cleverly fuses momentum (an exponential moving average of the gradient's first moment, which keeps inertia) with RMSProp (an exponential moving average of the gradient's second moment, which adjusts the step size per dimension), and adds bias correction.",
+      "§7.3 明確指出文獻中對二次啟用（Du & Lee [15]）、ReLU（Allen-Zhu et al. [7], Zou et al. [46]）以及 Leaky ReLU（Brutzkus et al. [5]）皆已建立過參數化下的收斂保證。": "§7.3 states explicitly that the literature has established convergence guarantees under overparameterization for quadratic activations (Du & Lee [15]), ReLU (Allen-Zhu et al. [7], Zou et al. [46]) and Leaky ReLU (Brutzkus et al. [5]).",
+      "過參數化收斂理論（Proposition 4 & 5）證明瞭梯度法能將經驗訓練損失降至任意小（解釋了非凸可最佳化），但為何能泛化至未知測試集依然是當代深度學習理論最關鍵的開放問題（最佳化理論成立 ≠ 泛化問題已解決）。": "The convergence theory of overparameterization (Propositions 4 & 5) proves that gradient methods can drive the empirical training loss arbitrarily low (explaining why non-convex problems can be optimized), but why the result generalizes to unseen test sets is still the most important open question in modern deep learning theory (optimization theory holding ≠ the generalization problem being solved)."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(\\d+) 步$",
+        "en": "$1 steps"
+      },
+      {
+        "re": "^· 座標位置：(.+)$",
+        "en": "· Position: $1"
+      },
+      {
+        "re": "^· 當前損失 L：(.+)$",
+        "en": "· Current loss L: $1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#lab-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "870a1f88b4b6": {
+    "zh": "KP16 · 索引",
+    "en": "KP16 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "342e44370695": {
+    "zh": "<a href=\"#theories\">收斂理論光譜 · Frontier Theories</a>",
+    "en": "<a href=\"#theories\">Spectrum of Convergence Theories</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2648d9284989": {
+    "zh": "<a href=\"#toolchain\">六階工具鏈 · Unified Toolchain</a>",
+    "en": "<a href=\"#toolchain\">Six-Stage Toolchain</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f9839028273e": {
+    "zh": "<a href=\"#toolchain-diagram\">架構全景 · Architecture Diagram</a>",
+    "en": "<a href=\"#toolchain-diagram\">Architecture Overview</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a1a7fc7fdc24": {
+    "zh": "<a href=\"#resolved-vs-open\">已回答與仍開放 · Resolved vs Open</a>",
+    "en": "<a href=\"#resolved-vs-open\">Resolved vs Still Open</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2b34a406a845": {
+    "zh": "<a href=\"#takeaways\">三大鐵律 · Three Takeaways</a>",
+    "en": "<a href=\"#takeaways\">Three Iron Laws</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c12251356783": {
+    "zh": "<a href=\"#lab\">最佳化器大對決 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Optimizer Showdown</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "994fda2a5494": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint Quiz</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2732d453dd65": {
+    "zh": "§7.3–8 其他收斂理論與全章大一統總結\n      <span class=\"hero-title-en\">Frontier Convergence Theories, Chapter 3 Grand Synthesis, and the Generalization Mystery</span>\n    ",
+    "en": "§7.3–8 Other Convergence Theories and the Grand Unified Chapter Summary",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "d5fb36983e40": {
+    "zh": "\n      本章以最佳化為主軸，串起深度學習訓練從基礎梯度下降、鏈式反向傳播、隨機取樣規模化，到自適應步長、銳度感知平坦解、以及過參數化全域收斂保證的完整演進脈絡。本講全面回顧前沿收斂文獻，並深刻剖析「已回答」與「仍開放」的最佳化與泛化邊界。\n    ",
+    "en": "This chapter takes optimization as its main thread and links up the full evolution of deep-learning training: from basic gradient descent and chain-rule backpropagation, through scaling up with stochastic sampling, to adaptive step sizes, sharpness-aware flat solutions, and global convergence guarantees under overparameterization. This lecture reviews the frontier convergence literature in full and dissects in depth the boundary between what is \"resolved\" and what is \"still open\" in optimization and generalization.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "8fa6af02e5bb": {
+    "zh": "01 / 全章靈魂發問 · Core Synthesis Question",
+    "en": "01 / The Chapter's Soul Question: Core Synthesis Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "b1a15a1ede4e": {
+    "zh": "\n      「最佳化理論成立 $\\ne$ 泛化問題已解決！我們能證明非凸神經網路練得動，但它為何能精準預測未知世界？」\n      <small>全章工具鏈把訓練損失降到零；但模型究竟是學會了普遍規律，還是隻是把整個世界記了下來？<br>\n        <span class=\"bilingual-en-inline\">Optimization theory guarantees empirical loss vanishes under over-parameterization, but why deep models generalize to unseen test distributions remains the greatest unsolved mystery of deep learning!</span>\n      </small>\n    ",
+    "en": "\"Optimization theory holding $\\ne$ the generalization problem being solved! We can prove that non-convex neural networks can be trained, but why can they predict the unknown world accurately?\"\n      <small>The chapter's toolchain drives the training loss to zero; but has the model really learned general rules, or has it just memorized the whole world?<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "62759ed691ad": {
+    "zh": "02 / 理論前沿 · Frontier Convergence Guarantees",
+    "en": "02 / Theoretical Frontier: Frontier Convergence Guarantees",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f1bac1b24523": {
+    "zh": "§7.3 其他收斂保證工作：冰山一角之外的豐富光譜\n    <span class=\"en\">Beyond the Tip of the Iceberg: The Broad Spectrum of Modern Neural Convergence Theories</span>\n  ",
+    "en": "§7.3 Other work on convergence guarantees: a rich spectrum beyond the tip of the iceberg",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ac5930d242e9": {
+    "zh": "Proposition 4 與 5 只是冰山一角",
+    "en": "Propositions 4 and 5 are only the tip of the iceberg",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "289fee47b584": {
+    "zh": "\n      在 §7.1–7.2 中，我們探討了過參數化淺層網路（Proposition 4）與深層殘差網路（Proposition 5）的損失地景性質：在充裕的神經元寬度下，損失曲面不存在偽局部極小值（no spurious local minima），且嚴格鞍點（Strict Saddle）可被擾動梯度法有效逃離。然而，這僅僅是現代深度學習最佳化理論的冰山一角！\n    ",
+    "en": "In §7.1–7.2 we explored the loss-landscape properties of overparameterized shallow networks (Proposition 4) and deep residual networks (Proposition 5): with ample neuron width, the loss surface has no spurious local minima, and strict saddles can be escaped efficiently by perturbed gradient methods. Yet this is only the tip of the iceberg of modern deep-learning optimization theory!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9dd412c7c994": {
+    "zh": "1. 啟用函式面向 (Activations)",
+    "en": "1. Activation functions",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f958a22324af": {
+    "zh": "<strong>二次啟用 [15] (Quadratic)：</strong>Du &amp; Lee (2018) 研究二次啟用函式 $a^\\top \\sigma(W x)$。其代數結構允許精確張量展開，與 Prop 4 呼應，給出過參數化二層網路梯度下降的全域性線性收斂證明。",
+    "en": "<strong>Quadratic activation [15]:</strong> Du &amp; Lee (2018) study the quadratic activation function $a^\\top \\sigma(W x)$. Its algebraic structure allows an exact tensor expansion; echoing Prop 4, it gives a proof of global linear convergence of gradient descent for overparameterized two-layer networks.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f6725b37c297": {
+    "zh": "<strong>ReLU 啟用 [7, 39, 46]：</strong>Allen-Zhu et al.、Zou et al. 等人在實務最常用的分段線性 ReLU 函式上建立了多篇<strong>可證明收斂性（provable convergence）</strong>定理，證明在過參數化多層網路中一階法能以多項式時間降至全域最優。",
+    "en": "<strong>ReLU activation [7, 39, 46]:</strong> Allen-Zhu et al., Zou et al. and others established several <strong>provable convergence</strong> theorems for the piecewise-linear ReLU function, the most common one in practice, proving that in overparameterized multilayer networks first-order methods can reach the global optimum in polynomial time.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c817a49ba010": {
+    "zh": "<strong>Leaky ReLU [5]：</strong>Brutzkus et al. (2017) 證明線上性可分資料（Linearly Separable Data）上，SGD 能夠保證學習並全域收斂，避免了常規 ReLU 的神經元壞死（Dying ReLU）停滯。",
+    "en": "<strong>Leaky ReLU [5]:</strong> Brutzkus et al. (2017) proved that on linearly separable data, SGD is guaranteed to learn and converge globally, avoiding the stalling caused by dead neurons (dying ReLU) with ordinary ReLU.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a5d949f83004": {
+    "zh": "2. 網路架構面向 (Architectures)",
+    "en": "2. Network architectures",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "40362103fd7f": {
+    "zh": "<strong>ResNet 殘差連線 [17, 38]：</strong>Du et al. (2019) 與 Li &amp; Liang (2018) 分析了跳躍連線（Residual Skip Connections）下的過參數化收斂性。殘差架構使得梯度在跨越數百層時不衰減，理論證明超深 ResNet 仍保持極佳的一階收斂速率。",
+    "en": "<strong>ResNet residual connections [17, 38]:</strong> Du et al. (2019) and Li &amp; Liang (2018) analyzed overparameterized convergence with residual skip connections. The residual architecture keeps gradients from decaying across hundreds of layers, and theory proves that very deep ResNets still keep an excellent first-order convergence rate.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ccede1512899": {
+    "zh": "<strong>結構化資料流 [30]：</strong>Ge et al. 打破了古典統計學習中的獨立同分布（i.i.d.）強假設，證明在序列資料、圖結構以及馬可夫依賴資料流下，隨機梯度下降（SGD）依然具備漸進收斂性。",
+    "en": "<strong>Structured data streams [30]:</strong> Ge et al. broke the strong independent and identically distributed (i.i.d.) assumption of classical statistical learning, proving that stochastic gradient descent (SGD) still converges asymptotically on sequential data, graph structures, and Markov-dependent data streams.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f3c6717815b8": {
+    "zh": "3. 幾何與泛化面向 (Geometry &amp; Bounds)",
+    "en": "3. Geometry and bounds",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2b23c737fd67": {
+    "zh": "<strong>臨界點幾何刻畫 [33, 47]：</strong>Kawaguchi (2016)、Sun et al. 解析損失曲面上梯度為零或變號點的代數形式與分佈，證明在特定條件下「所有局部極小值皆為全域性極小值」，為幾何景觀打下定海神針。",
+    "en": "<strong>Geometric characterization of critical points [33, 47]:</strong> Kawaguchi (2016) and Sun et al. analyzed the algebraic form and distribution of the points on the loss surface where the gradient is zero or changes sign, proving that under certain conditions \"every local minimum is a global minimum\", which anchors the geometric landscape firmly.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "72a90152d435": {
+    "zh": "<strong>二元分類曲面 [31]：</strong>Soudry et al. (2018) 針對分類任務中交叉熵損失的隱式偏置（Implicit Bias）展開研究，證明無正則化的梯度下降會自發收斂至最大間距（Max-margin）解。",
+    "en": "<strong>Binary classification surfaces [31]:</strong> Soudry et al. (2018) studied the implicit bias of the cross-entropy loss in classification tasks, proving that unregularized gradient descent converges on its own to the max-margin solution.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4bdd2caee9a1": {
+    "zh": "<strong>代數幾何工具 [32]：</strong>Trager et al. 利用代數幾何分析深線性網路（Deep Linear Networks）的代數多流形結構，從代數簇（Algebraic Varieties）視角洞察臨界點退化。",
+    "en": "<strong>Algebraic geometry tools [32]:</strong> Trager et al. use algebraic geometry to analyze the algebraic multi-manifold structure of deep linear networks, gaining insight into the degeneracy of critical points from the viewpoint of algebraic varieties.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d0222ea4e328": {
+    "zh": "<strong>GD 誤差界 [6]：</strong>Arora et al. (2019) 在神經正切核（NTK）寬網路正規化下，嚴格推匯出寬網路梯度下降訓練軌跡的泛化誤差上界。",
+    "en": "<strong>GD error bounds [6]:</strong> Arora et al. (2019), in the neural tangent kernel (NTK) regime of wide networks, rigorously derived an upper bound on the generalization error of the training trajectory of gradient descent on wide networks.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "93e79f2bbcea": {
+    "zh": "§7.3 理論文獻的核心啟示",
+    "en": "Core lessons of the §7.3 literature",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "eaf5a87b703b": {
+    "zh": "\n      這些跨越不同啟用函式、網路架構與資料分佈的突破性研究共同向學界證明：<strong>在適當的過參數化、隨機初始化與資料假設下，一階隨機最佳化在神經網路上的成功絕非「盲目碰運氣」，而是擁有一步步確立、愈來愈完整的數學理論支撐</strong>。儘管理論假設（例如超寬度條件、高斯初始化）與當前百億參數大型語言模型的大規模訓練實務仍存差距，但理論的地基已經扎得無比深厚。\n    ",
+    "en": "Together, these breakthrough studies spanning different activation functions, network architectures and data distributions have shown the field that: <strong>under suitable overparameterization, random initialization and data assumptions, the success of first-order stochastic optimization on neural networks is by no means \"blind luck\"; it is backed by a mathematical theory that has been established step by step and is ever more complete</strong>. Although there is still a gap between the theoretical assumptions (e.g. extreme-width conditions, Gaussian initialization) and the practice of large-scale training of today's large language models with tens of billions of parameters, the theoretical foundation has been laid very deep.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "03c53318b2e4": {
+    "zh": "03 / 工具鏈大一統 · Chapter 3 Grand Toolchain",
+    "en": "03 / Grand Unified Toolchain: Chapter 3 Grand Toolchain",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "64e9180bf9f3": {
+    "zh": "§8 全章結論：從反向傳播到平坦極小值再到收斂理論\n    <span class=\"en\">Chapter 3 Grand Synthesis: From Backprop to Flat Minima and Convergence Guarantees</span>\n  ",
+    "en": "§8 Chapter conclusion: from backpropagation to flat minima to convergence theory",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "36872a63d365": {
+    "zh": "\n    回顧整個第三章，我們始終以<strong>「最佳化（Optimization）」</strong>為靈魂主軸，一步一腳印串起了深度學習訓練的完整工具鏈。全章不是六個孤立無援的數值技巧，而是<strong>在同一個一階梯度骨架上持續加裝、層層進化的精密工程與理論巨廈</strong>：\n    <span class=\"bilingual-en\">The entire chapter is unified by optimization: not as six disconnected heuristics, but as an integrated, evolutionary toolchain erected upon a single first-order backbone.</span>\n  ",
+    "en": "Looking back over all of Chapter 3, we have kept <strong>optimization</strong> as the soul and main thread, linking up the complete toolchain of deep-learning training one step at a time. The chapter is not six isolated numerical tricks but <strong>a precision engineering and theoretical edifice, continually extended and evolving layer by layer on the same first-order gradient skeleton</strong>:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d4cecffdf1c1": {
+    "zh": "階段 1：數值基礎 — 梯度下降與反向傳播（§2, §3）",
+    "en": "Stage 1: numerical foundations — gradient descent and backpropagation (§2, §3)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "272074187708": {
+    "zh": "<strong>解決「算得出梯度」的根本問題：</strong>",
+    "en": "<strong>Solving the fundamental problem of \"being able to compute the gradient\":</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4b0904787b1b": {
+    "zh": "<strong>梯度下降（§2）：</strong>連續空間數值最佳化的基石。從最陡下降方向出發，引入學習率 $\\eta$、精確線搜尋（Line Search）、非精確 Armijo/Wolfe 準則，再到動量法（Polyak / Nesterov, §2.4）消除病態曲率震盪。",
+    "en": "<strong>Gradient descent (§2):</strong> the cornerstone of numerical optimization in continuous space. Starting from the steepest-descent direction, it introduces the learning rate $\\eta$, exact line search, the inexact Armijo/Wolfe conditions, and then momentum methods (Polyak / Nesterov, §2.4) to remove oscillations caused by ill-conditioned curvature.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dbf347ec60a9": {
+    "zh": "<strong>反向傳播（§3）：</strong>將多元複合函式的微積分鏈式法則（Chain Rule）演算法化與動態規劃化。讓任意層數的多層網路能夠在一次反向傳播中，以與前向傳播同階的計算量求出所有權重的精確梯度——這是訓練深度模型的 <em>indispensable</em>（不可或缺）核心。",
+    "en": "<strong>Backpropagation (§3):</strong> turns the calculus chain rule for multivariate composite functions into an algorithm, in dynamic-programming form. It lets a multilayer network of any depth obtain the exact gradients of all weights in one backward pass, at a computational cost of the same order as the forward pass — this is the <em>indispensable</em> core of training deep models.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1a222e57cf9b": {
+    "zh": "階段 2：規模化演進 — SGD 與 mini-batch（§4）",
+    "en": "Stage 2: scaling up — SGD and mini-batches (§4)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "718462b1bc0a": {
+    "zh": "<strong>解決「算得起梯度」的算力瓶頸：</strong>",
+    "en": "<strong>Solving the compute bottleneck of \"being able to afford the gradient\":</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a0d16a30d7a6": {
+    "zh": "<strong>SGD（§4）：</strong>全量梯度需要遍歷全部 $N$ 筆訓練樣本，每步成本高達 $O(N)$。SGD 採用單樣本無偏估計 $\\mathbb{E}[\\nabla\\ell_i] = \\nabla\\mathcal{L}$，將每步複雜度急降至 $O(1)$。",
+    "en": "<strong>SGD (§4):</strong> the full gradient has to go through all $N$ training samples, so each step costs as much as $O(N)$. SGD uses an unbiased single-sample estimate $\\mathbb{E}[\\nabla\\ell_i] = \\nabla\\mathcal{L}$, which cuts the per-step complexity sharply to $O(1)$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4ae77d9bf47f": {
+    "zh": "<strong>mini-batch SGD（§4.1）：</strong>在硬體 GPU 矩陣並行效率與梯度方差噪聲之間取得完美折衷，並正式確立了現代訓練的 batch 與 epoch 觀念。",
+    "en": "<strong>Mini-batch SGD (§4.1):</strong> strikes the perfect compromise between the parallel matrix efficiency of GPU hardware and gradient-variance noise, and formally established the batch and epoch concepts of modern training.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e459704c7011": {
+    "zh": "<strong>收斂性分析（§4.2）：</strong>對比了全梯度 GD 的 $O(1/t)$ 線性/次線性收斂，與 SGD 在固定步長下因取樣噪聲導致的 $O(\\eta)$ 鄰域極限震盪停滯。",
+    "en": "<strong>Convergence analysis (§4.2):</strong> compared the $O(1/t)$ linear/sublinear convergence of full-gradient GD with SGD's oscillating stall in an $O(\\eta)$ neighborhood caused by sampling noise under a fixed step size.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e2e0622594ba": {
+    "zh": "階段 3：維度自適應 — 自適應學習率家族（§5）",
+    "en": "Stage 3: per-dimension adaptation — the adaptive learning-rate family (§5)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6f788d2f03de": {
+    "zh": "<strong>解決「走得穩各維度」的各向異性難題：</strong>",
+    "en": "<strong>Solving the anisotropy problem of \"stepping steadily in every dimension\":</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "228f1d096323": {
+    "zh": "<strong>AdaGrad（§5.1）：</strong>累積歷史梯度的平方和，對更新頻繁的活躍維度主動縮減步長，對稀疏特徵給予更大步長。",
+    "en": "<strong>AdaGrad (§5.1):</strong> accumulates the sum of squares of past gradients, actively shrinking the step size for active dimensions that are updated often and giving larger steps to sparse features.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "482b19c7afc8": {
+    "zh": "<strong>RMSProp（§5.2）：</strong>改用指數移動平均（EMA）追蹤二階矩，徹底克服了 AdaGrad 學習率過快衰減至零的「學習死鎖」。",
+    "en": "<strong>RMSProp (§5.2):</strong> tracks the second moment with an exponential moving average (EMA) instead, fully overcoming AdaGrad's \"learning deadlock\" where the learning rate decays to zero too fast.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9f4ca5322a4e": {
+    "zh": "<strong>Adam（§5.3）：</strong>集大成者！巧妙結合一階動量（指數平均維持慣性）與 RMSProp 二階矩（逐維度尺度自適應），並補上初始階段的偏差修正（Bias Correction），成為當代神經網路最通用的預設最佳化器。",
+    "en": "<strong>Adam (§5.3):</strong> the grand synthesis! It cleverly combines first-order momentum (an exponential average that keeps inertia) with RMSProp's second moment (per-dimension scale adaptation), adds bias correction for the early phase, and has become the most widely used default optimizer for today's neural networks.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5afebab19925": {
+    "zh": "階段 4：泛化導向 — 平坦極小值與 SAM 家族（§6）",
+    "en": "Stage 4: generalization-oriented — flat minima and the SAM family (§6)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fe9becf517af": {
+    "zh": "<strong>從單純降低經驗損失，躍升至追求幾何平坦度：</strong>",
+    "en": "<strong>Leaping from simply lowering the empirical loss to pursuing geometric flatness:</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7d9c1ffcb061": {
+    "zh": "<strong>平坦極小值假說（§6）：</strong>實證顯示平坦盆地（Flat Minima）比尖銳深坑（Sharp Minima）更具對抗分佈漂移的魯棒性與測試泛化能力。",
+    "en": "<strong>The flat-minima hypothesis (§6):</strong> empirical evidence shows that flat basins (flat minima) are more robust to distribution shift and generalize better at test time than sharp deep pits (sharp minima).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "13ccf7e84e1d": {
+    "zh": "<strong>Vanilla SAM（§6.1）：</strong>重構目標為 min-max 雙層對抗遊戲，式 (50) 顯式懲罰半徑 $\\rho$ 鄰域球內的最壞損失漲幅（sharpness），以閉式擾動解 $\\boldsymbol{\\epsilon}^*$ 驅使權重遷徙至寬谷。",
+    "en": "<strong>Vanilla SAM (§6.1):</strong> recasts the objective as a two-level adversarial min-max game; Eq. (50) explicitly penalizes the worst-case loss increase (sharpness) within a ball of radius $\\rho$, and the closed-form perturbation $\\boldsymbol{\\epsilon}^*$ drives the weights to migrate into wide valleys.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dbe7418b3f06": {
+    "zh": "<strong>ESAM / ASAM（§6.2–6.3）：</strong>ESAM 用 SWP 稀疏取樣減半算力；ASAM 引進參數尺度不變性，使平坦度評估不再受權重重縮放欺騙。",
+    "en": "<strong>ESAM / ASAM (§6.2–6.3):</strong> ESAM uses SWP sparse sampling to halve the compute; ASAM introduces invariance to parameter scale, so the flatness measure can no longer be fooled by weight rescaling.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a733f95b5c3a": {
+    "zh": "階段 5 &amp; 6：理論終局 — 過參數化收斂保證與廣義理論（§7, §7.3）",
+    "en": "Stages 5 &amp; 6: the theoretical endgame — overparameterized convergence guarantees and general theory (§7, §7.3)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "889ec937eb91": {
+    "zh": "<strong>解答「高度非凸曲面為何能被梯度法順利訓練」的世紀謎團：</strong>",
+    "en": "<strong>Answering the puzzle of the century, \"why can highly non-convex surfaces be trained smoothly by gradient methods?\":</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7eb6838b14c7": {
+    "zh": "<strong>過參數化神經地景（Proposition 4 &amp; 5, §7.1–7.2）：</strong>在淺層與深層殘差網路中，當寬度 $m$ 充分大於樣本數時，損失函式的 Hessian 矩陣退化方向為梯度下降開啟了逃逸通道。地景上<strong>不存在偽局部極小值（no spurious local minima）</strong>，所有鞍點均為嚴格鞍點（Strict Saddles），一階梯度下降保證能以多項式時間將經驗訓練損失降至任意小 $\\epsilon$！",
+    "en": "<strong>Overparameterized neural landscapes (Proposition 4 &amp; 5, §7.1–7.2):</strong> in shallow and deep residual networks, when the width $m$ is sufficiently larger than the number of samples, the degenerate directions of the loss function's Hessian open escape routes for gradient descent. The landscape <strong>has no spurious local minima</strong>, all saddle points are strict saddles, and first-order gradient descent is guaranteed to drive the empirical training loss to an arbitrarily small $\\epsilon$ in polynomial time!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "563db07a2028": {
+    "zh": "<strong>廣義理論延伸（§7.3）：</strong>理論由理想化多項式啟用進一步拓展至 ReLU、Leaky ReLU、ResNet 超深殘差網路、結構化馬可夫資料流、臨界點幾何分析以及 NTK 誤差界。",
+    "en": "<strong>Extensions of the general theory (§7.3):</strong> the theory extends further from idealized polynomial activations to ReLU, Leaky ReLU, very deep ResNet residual networks, structured Markov data streams, geometric analysis of critical points, and NTK error bounds.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ff7b5d0d4d90": {
+    "zh": "演進階段",
+    "en": "Stage",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9b37984d7732": {
+    "zh": "代表演算法 / 理論",
+    "en": "Representative algorithm / theory",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "98f1b9dd5770": {
+    "zh": "核心突破機制",
+    "en": "Core breakthrough mechanism",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8aeb73147fe8": {
+    "zh": "一階最佳化角色定位",
+    "en": "Role in first-order optimization",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d5586412f332": {
+    "zh": "理論 / 實務瓶頸",
+    "en": "Theoretical / practical bottleneck",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "eb9ddd1c85dc": {
+    "zh": "<strong>1. 數值基石</strong>",
+    "en": "<strong>1. Numerical cornerstone</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6b9850fbabf7": {
+    "zh": "鏈式法則系統化矩陣化",
+    "en": "Systematic, matrix-form chain rule",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8e21212d96a9": {
+    "zh": "<strong>求得出梯度：</strong>使任意深層網路參數可計算",
+    "en": "<strong>Gradients can be computed:</strong> the parameters of any deep network become computable",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8ad863c9b0cf": {
+    "zh": "全量計算 $O(N)$ 成本昂貴，無法 scale",
+    "en": "Full computation costs $O(N)$; too expensive to scale",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4a23a63f442d": {
+    "zh": "<strong>2. 規模化擴充套件</strong>",
+    "en": "<strong>2. Scaling up</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3306fc86f038": {
+    "zh": "隨機取樣無偏估計 $\\mathbb{E}[\\nabla\\ell_i]$",
+    "en": "Unbiased estimate by random sampling $\\mathbb{E}[\\nabla\\ell_i]$",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "50109ac3229e": {
+    "zh": "<strong>算得起梯度：</strong>單步成本 $O(1)$，硬體並行",
+    "en": "<strong>Gradients become affordable:</strong> $O(1)$ cost per step, hardware parallelism",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e9d8d2ad0605": {
+    "zh": "取樣方差導致固定步長下 $O(\\eta)$ 停滯",
+    "en": "Sampling variance causes an $O(\\eta)$ stall under a fixed step size",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3b8583e4ccab": {
+    "zh": "<strong>3. 自適應步長</strong>",
+    "en": "<strong>3. Adaptive step sizes</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fbda621bfbbd": {
+    "zh": "一階動量 + 二階矩 EMA 逐維調整",
+    "en": "First-order momentum + second-moment EMA, adjusted per dimension",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8af0b6930885": {
+    "zh": "<strong>走得穩各維度：</strong>抹平極端病態曲率各向異性",
+    "en": "<strong>Steady steps in every dimension:</strong> smooths out the anisotropy of extremely ill-conditioned curvature",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c6cc6c0b51d1": {
+    "zh": "自適應可能偏向記憶，泛化有時略遜 SGD",
+    "en": "Adaptivity may lean toward memorization; generalization is sometimes slightly worse than SGD",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "cdc87d06be8e": {
+    "zh": "<strong>4. 泛化導向</strong>",
+    "en": "<strong>4. Generalization-oriented</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "828279966d57": {
+    "zh": "$\\rho$-球內 min-max 對抗懲罰 sharpness",
+    "en": "Adversarial min-max penalty on sharpness within the $\\rho$-ball",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4cd92ee75cef": {
+    "zh": "<strong>偏向平坦解：</strong>主動打壓尖銳度，追求寬谷",
+    "en": "<strong>Biased toward flat solutions:</strong> actively suppresses sharpness and seeks wide valleys",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "698c634b997a": {
+    "zh": "需要兩次前向/反向傳播，計算成本加倍",
+    "en": "Needs two forward/backward passes, doubling the compute cost",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "19dff42e0505": {
+    "zh": "<strong>5. 理論定音</strong>",
+    "en": "<strong>5. Theory settles it</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8da23acc5b57": {
+    "zh": "過參數化收斂定理 (Prop 4, 5, §7)",
+    "en": "Overparameterized convergence theorems (Prop 4, 5, §7)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6e91b54ab18a": {
+    "zh": "無偽局部極小值、鞍點逃逸分析",
+    "en": "No spurious local minima; saddle-point escape analysis",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7676fb2e04dd": {
+    "zh": "<strong>非凸何以能練：</strong>證明寬網路損失必收斂至 0",
+    "en": "<strong>Why non-convex can be trained:</strong> proves that the loss of wide networks must converge to 0",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "24543276c698": {
+    "zh": "保證訓練損失為 0 $\\ne$ 泛化良好",
+    "en": "Guaranteeing zero training loss $\\ne$ good generalization",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7cbf151e12d1": {
+    "zh": "<strong>6. 現代前沿</strong>",
+    "en": "<strong>6. Modern frontier</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d206b434d7b5": {
+    "zh": "ReLU, ResNet, NTK 界 (§7.3)",
+    "en": "ReLU, ResNet, NTK bounds (§7.3)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "601990bb957e": {
+    "zh": "跳躍連線抹平地景、幾何臨界點刻畫",
+    "en": "Skip connections smooth the landscape; geometric characterization of critical points",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4570e407603c": {
+    "zh": "<strong>全架構收斂：</strong>由玩具模型拓展至當代骨幹網路",
+    "en": "<strong>Convergence for all architectures:</strong> extended from toy models to today's backbone networks",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2455f45fbc72": {
+    "zh": "理論寬度要求遠超工程實務真實寬度",
+    "en": "Theoretical width requirements far exceed the real widths used in engineering practice",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "45a07d8e78ee": {
+    "zh": "04 / 核心架構視覺化 · Visual Architecture",
+    "en": "04 / Core Architecture Visualization: Visual Architecture",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cf40d148dea4": {
+    "zh": "全章大一統圖解：六階工具鏈與已回答 vs 仍開放邊界\n    <span class=\"en\">Unified Architecture: 6-Stage Toolchain and Resolved vs Open Frontier</span>\n  ",
+    "en": "The chapter's grand unified diagram: the six-stage toolchain and the resolved vs still-open boundary",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bbeb1649cd44": {
+    "zh": "IDL115 CHAPTER 3 : 深度學習一階最佳化演進工具鏈 (UNIFIED FIRST-ORDER OPTIMIZATION TOOLCHAIN)",
+    "en": "IDL115 CHAPTER 3: THE EVOLVING TOOLCHAIN OF FIRST-ORDER OPTIMIZATION IN DEEP LEARNING",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1b48e11a77a7": {
+    "zh": "梯度下降 (GD)",
+    "en": "Gradient descent (GD)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3661f7acc175": {
+    "zh": "連續最佳化 / 學習率 η",
+    "en": "Continuous optimization / learning rate η",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "552980ad410b": {
+    "zh": "最陡下降 / Polyak 動量",
+    "en": "Steepest descent / Polyak momentum",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "485f61143825": {
+    "zh": "反向傳播 (Backprop)",
+    "en": "Backpropagation (Backprop)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "797dd1cba1e2": {
+    "zh": "多元鏈式法則系統化",
+    "en": "Systematic multivariate chain rule",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "98a8aef5e1a8": {
+    "zh": "多層精確梯度算得出來",
+    "en": "Exact multilayer gradients become computable",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "74e18582cb2e": {
+    "zh": "單樣本近似 / 降低成本",
+    "en": "Single-sample approximation / lower cost",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "05e4d0ccfcd1": {
+    "zh": "大資料規模化算得起",
+    "en": "Affordable at big-data scale",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "a72f653d2f0f": {
+    "zh": "自適應 Adam",
+    "en": "Adaptive Adam",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "365de8a06b56": {
+    "zh": "動量 + RMSProp 二階矩",
+    "en": "Momentum + RMSProp second moment",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3a1a2d6d55d2": {
+    "zh": "逐維度自適應步長",
+    "en": "Per-dimension adaptive step size",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1b1acf05f247": {
+    "zh": "銳度感知 SAM",
+    "en": "Sharpness-aware SAM",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e547d7f7b964": {
+    "zh": "min-max 懲罰鄰域銳度",
+    "en": "min-max penalty on neighborhood sharpness",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "847fbbaba374": {
+    "zh": "主動導向平坦極小值",
+    "en": "Actively steers toward flat minima",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "0948e6eae6ad": {
+    "zh": "收斂理論 (Theory)",
+    "en": "Convergence theory (Theory)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4f802e03eca7": {
+    "zh": "過參數化保證",
+    "en": "Overparameterization guarantee",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "517fbed27b0b": {
+    "zh": "無偽局部極小/逃逸",
+    "en": "No spurious local minima / escape",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4ca24d02be3a": {
+    "zh": "✔ 已回答 (RESOLVED IN OPTIMIZATION)",
+    "en": "✔ RESOLVED IN OPTIMIZATION",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "b41523fa8628": {
+    "zh": "最佳化工程與訓練收斂",
+    "en": "Optimization engineering and training convergence",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "42ffde297c7e": {
+    "zh": "反向傳播能精確計算任意多層網路梯度",
+    "en": "Backpropagation computes exact gradients for networks of any depth",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3cdc9bc00c79": {
+    "zh": "多元複合鏈式法則矩陣化與動態規劃，徹底解決多層計算複雜度問題。",
+    "en": "A matrix-form, dynamic-programming multivariate chain rule fully solves the computational complexity of many layers.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "72e691ad1e57": {
+    "zh": "使得深度神經網路在工程上完全「求得出精確導數」，開啟現代深度學習。",
+    "en": "Makes exact derivatives fully \"computable\" for deep neural networks in engineering, opening modern deep learning.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "22dacc2f6463": {
+    "zh": "SGD 與 Adam 突破算力瓶頸，能訓練超大規模模型",
+    "en": "SGD and Adam break the compute bottleneck, so very large models can be trained",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5c68831ccdcc": {
+    "zh": "單樣本/小批次取樣打破記憶體瓶頸；動量與二階矩自適應消弭病態曲率震盪。",
+    "en": "Single-sample/mini-batch sampling breaks the memory bottleneck; momentum and adaptive second moments damp oscillations from ill-conditioned curvature.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3cc3da3e8af7": {
+    "zh": "使得數千億參數的大型語言模型（LLM）能穩定訓練至收斂。",
+    "en": "Lets large language models (LLMs) with hundreds of billions of parameters train stably to convergence.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c44046da1db6": {
+    "zh": "過參數化條件下，經驗訓練損失保證收斂至任意小",
+    "en": "Under overparameterization, the empirical training loss is guaranteed to converge to any small value",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "2699d4a3b2d7": {
+    "zh": "淺層與深層殘差網路在寬度充裕時無偽局部極小值，嚴格鞍點必能逃逸。",
+    "en": "Shallow and deep residual networks with ample width have no spurious local minima, and strict saddles can always be escaped.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "fedb0e1bc9e4": {
+    "zh": "數學上完備解答了「高度非凸但為何梯度法能把訓練損失練到 0」之問。",
+    "en": "Mathematically settles \"highly non-convex, yet why can gradient methods drive the training loss to 0?\"",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "d60c075ee3eb": {
+    "zh": "❓ 仍開放 (STILL OPEN IN GENERALIZATION)",
+    "en": "❓ STILL OPEN IN GENERALIZATION",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "014ad09601ff": {
+    "zh": "泛化本質與理論實務落差",
+    "en": "The nature of generalization and the theory-practice gap",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1ea3cbf38259": {
+    "zh": "龐大模型容量為何沒有單純「記住」訓練集？",
+    "en": "Why doesn't huge model capacity simply \"memorize\" the training set?",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "358ec946e131": {
+    "zh": "參數量遠超樣本數，理應能記住隨機標籤（Zhang et al. 2017），為何卻學會了規律？",
+    "en": "With far more parameters than samples, a model should be able to memorize random labels (Zhang et al. 2017), so why does it learn rules instead?",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8866798378dd": {
+    "zh": "一階演算法的隱式正則化（Implicit Bias）機制仍未完全水落石出。",
+    "en": "The implicit regularization (implicit bias) mechanism of first-order algorithms is still not fully understood.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "0567ec74df03": {
+    "zh": "平坦極小值是否真本質驅動測試泛化？",
+    "en": "Do flat minima really drive test generalization at a fundamental level?",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "badb0df07d77": {
+    "zh": "雖然 SAM 實證泛化極強，但非線性重參數化（Dinh et al.）可任意改變曲率。",
+    "en": "Although SAM generalizes very well empirically, nonlinear reparameterization (Dinh et al.) can change the curvature arbitrarily.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "cb349c9c8a46": {
+    "zh": "平坦度是否是泛化的充分或必要條件，學界依然存在深刻交鋒與論辯。",
+    "en": "Whether flatness is a sufficient or necessary condition for generalization is still hotly debated.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "7f5928ac1ab8": {
+    "zh": "理論嚴格假設與大規模工程架構仍存顯著鴻溝",
+    "en": "A significant gap remains between strict theoretical assumptions and large-scale engineered architectures",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "2f80a32f69b5": {
+    "zh": "NTK 與過參數化理論通常需要神經元寬度 $m \\ge \\Omega(N^4)$，遠超實務寬度。",
+    "en": "NTK and overparameterization theory usually require neuron width $m \\ge \\Omega(N^4)$, far beyond practical widths.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "0db78ad2df27": {
+    "zh": "且理論大多聚焦於線性化特徵（Lazy Training），無法完全解釋表徵學習（Feature Learning）。",
+    "en": "And the theory mostly focuses on linearized features (lazy training), so it cannot fully explain feature learning.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5f00dcecd565": {
+    "zh": "⚡ 終極心智結論：最佳化理論成立 ≠ 泛化問題已解決",
+    "en": "⚡ Ultimate takeaway: optimization theory holding ≠ generalization solved",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "961214656624": {
+    "zh": "\n          全章六段工具鏈讓我們在工程與數學上徹底掌握「如何把非凸目標練得動、降到零」；但模型為何「測得準、能推廣」，則是機器學習最迷人的深層聖杯！\n        ",
+    "en": "The chapter's six-stage toolchain gives us full engineering and mathematical command of \"how to train a non-convex objective and drive it to zero\"; but why a model \"tests accurately and generalizes\" is the most fascinating deep holy grail of machine learning!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1720caca9e36": {
+    "zh": "\n    圖 1：Chapter 3 全景架構總圖 — 上方為六段演進工具鏈，下方為「已回答」與「仍開放」的對照雙面板，底部強調最佳化與泛化的本質差異。\n  ",
+    "en": "Figure 1: Overview of the Chapter 3 architecture — on top, the six-stage evolving toolchain; below, the side-by-side \"resolved\" and \"still open\" panels; at the bottom, the essential difference between optimization and generalization.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "455f29f935bd": {
+    "zh": "05 / 深度論述 · Resolved vs Open Frontiers",
+    "en": "05 / In-Depth Discussion: Resolved vs Open Frontiers",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7c79430c3186": {
+    "zh": "邊界剖析：為什麼「最佳化理論成立 $\\ne$ 泛化問題已解決」？\n    <span class=\"en\">Delineating the Frontier: Why Convergence Theory Does Not Solve Generalization</span>\n  ",
+    "en": "Dissecting the boundary: why \"optimization theory holding $\\ne$ the generalization problem being solved\"?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b53c1be8dcd3": {
+    "zh": "已回答：工程與一階最佳化的輝煌勝利",
+    "en": "Resolved: the brilliant victory of engineering and first-order optimization",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ed1a3250cc07": {
+    "zh": "\n        在過去十幾年中，深度學習社群最令人驚異的突破，在於把一個在經典最佳化理論看來「極度病態、無窮維、高度非凸、到處都是鞍點」的災難地景，成功轉化為可以工程化量產的科學系統：\n      ",
+    "en": "Over the past decade or so, the most astonishing breakthrough of the deep-learning community has been to turn a landscape that classical optimization theory sees as a disaster — \"extremely ill-conditioned, infinite-dimensional, highly non-convex, saddle points everywhere\" — into a scientific system that can be engineered and mass-produced:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c877fe7622ac": {
+    "zh": "<strong>計算可行性（Computational Tractability）：</strong>鏈式反向傳播使得計算成本與前向傳播嚴格同階，讓反覆求導成為現實。",
+    "en": "<strong>Computational tractability:</strong> chain-rule backpropagation makes the computational cost strictly the same order as the forward pass, making repeated differentiation a reality.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8e69c0d8dd0d": {
+    "zh": "<strong>規模化擴充套件性（Stochastic Scalability）：</strong>SGD、mini-batch 與自適應 Adam 克服了記憶體容量與病態曲率的雙重圍剿。",
+    "en": "<strong>Stochastic scalability:</strong> SGD, mini-batches and adaptive Adam overcame the double siege of memory capacity and ill-conditioned curvature.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "337ab4e92845": {
+    "zh": "<strong>過參數化地景良性化（Benign Non-Convex Landscape）：</strong>Proposition 4 與 5 以及豐富文獻證明，只要模型容量跨過過參數化臨界閾值，損失曲面上的壞極小值（Spurious Minima）將被奇蹟般抹平，梯度下降能確保經驗訓練損失達到零。",
+    "en": "<strong>A benign non-convex landscape under overparameterization:</strong> Propositions 4 and 5 and a rich body of literature prove that once model capacity crosses the overparameterization threshold, the bad minima (spurious minima) on the loss surface are miraculously smoothed away, and gradient descent can ensure the empirical training loss reaches zero.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c537a949af68": {
+    "zh": "仍開放：泛化本質與未解謎題",
+    "en": "Still open: the nature of generalization and unsolved puzzles",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "62c668d27f88": {
+    "zh": "\n        然而，最佳化理論的成功只保證了<strong>「經驗損失 $\\mathcal{L}_{\\text{train}}(w) \\to 0$」</strong>，它並未在數學上自動保證<strong>「測試期望損失 $\\mathbb{E}_{(x, y)\\sim\\mathcal{D}}[\\ell(f(x; w), y)]$ 依然低廉」</strong>：\n      ",
+    "en": "However, the success of optimization theory only guarantees <strong>\"empirical loss $\\mathcal{L}_{\\text{train}}(w) \\to 0$\"</strong>; it does not automatically guarantee mathematically that <strong>\"the expected test loss $\\mathbb{E}_{(x, y)\\sim\\mathcal{D}}[\\ell(f(x; w), y)]$ stays low\"</strong>:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1ebd232f568f": {
+    "zh": "<strong>過擬合記憶悖論（The Memorization Paradox）：</strong>Zhang et al. (2017) 經典實驗證明深層網路具備把完全隨機標籤（Random Labels）背到 100% 正確的暴力擬合能力。那麼，在真實資料上，一階最佳化器憑什麼「選擇」了具有泛化力的解，而非死記硬背？",
+    "en": "<strong>The memorization paradox:</strong> the classic experiment of Zhang et al. (2017) showed that deep networks have the brute-force fitting capacity to learn completely random labels to 100% accuracy. Then on real data, on what basis does a first-order optimizer \"choose\" a solution that generalizes rather than rote memorization?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ace6674f268c": {
+    "zh": "<strong>平坦度度量爭議（Flatness Under Reparameterization）：</strong>Dinh et al. (2017) 指出，透過對神經元權重進行尺度縮放（例如 ReLU 的正齊次性 $\\alpha w \\cdot \\frac{1}{\\alpha} x$），可以在完全不改變網路函式行為的前提下，任意捏造 Hessian 特徵值的大小。這意味著單純的歐氏平坦度度量可能被非線性重參數化欺騙。",
+    "en": "<strong>The flatness-measure controversy (flatness under reparameterization):</strong> Dinh et al. (2017) pointed out that by rescaling neuron weights (e.g. with the positive homogeneity of ReLU, $\\alpha w \\cdot \\frac{1}{\\alpha} x$), the size of the Hessian eigenvalues can be made up arbitrarily without changing the function the network computes at all. This means that a purely Euclidean flatness measure can be fooled by nonlinear reparameterization.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "208a68c6a1e1": {
+    "zh": "<strong>理論與大規模實務的維度落差：</strong>現有過參數化理論依賴的「神經正切核（NTK）」正規化要求權重幾乎不離開初始化鄰域（Lazy Training），但當代大模型展現出極強的特徵重構與湧現能力（Feature Learning），這超越了現有 NTK 的覆蓋範圍。",
+    "en": "<strong>The dimensional gap between theory and large-scale practice:</strong> the \"neural tangent kernel (NTK)\" regime that current overparameterization theory relies on requires the weights to barely leave the neighborhood of their initialization (lazy training), but today's large models show very strong feature restructuring and emergent abilities (feature learning), which go beyond what current NTK theory covers.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9b94e979507d": {
+    "zh": "警惕盲目樂觀：千萬不要混淆「練得動」與「測得好」",
+    "en": "Beware of blind optimism: never confuse \"can be trained\" with \"tests well\"",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "93a7d92896fb": {
+    "zh": "\n      在實務工程中，許多初學者常將「訓練損失下降順暢」錯當成「模型已經完全掌握規律」。全章總結告訴我們：<strong>梯度法能把訓練損失降到任意小，是過參數化幾何結構賦予我們的最佳化紅利；但模型能否在未知測試資料上泛化優異，取決於模型架構的歸納偏置（Inductive Bias）、資料幾何分佈、以及正則化機制（如 SAM 的平坦化、權重衰減、Dropout 等）的協同作用</strong>。最佳化是手段，泛化才是終極目的！\n    ",
+    "en": "In engineering practice, many beginners mistake \"the training loss is going down smoothly\" for \"the model has fully mastered the rules\". The chapter summary tells us: <strong>that gradient methods can drive the training loss arbitrarily low is an optimization dividend granted by the geometric structure of overparameterization; but whether the model generalizes well on unknown test data depends on the joint action of the model architecture's inductive bias, the geometric distribution of the data, and regularization mechanisms (such as SAM's flattening, weight decay, Dropout, etc.)</strong>. Optimization is the means; generalization is the ultimate goal!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "dccf924ccbf0": {
+    "zh": "06 / 核心心智模型 · Three Golden Takeaways",
+    "en": "06 / Core Mental Model: Three Golden Takeaways",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3b67b0e0b6fd": {
+    "zh": "帶走的三句話：全章精華的心智模型\n    <span class=\"en\">Three Takeaway Messages: Your Permanent Mental Model for Chapter 3</span>\n  ",
+    "en": "Three sentences to take away: a mental model of the chapter's essence",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b6769f803f1c": {
+    "zh": "TAKEAWAY 01 · 骨架基石",
+    "en": "TAKEAWAY 01 · The skeleton",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1de5aac158a2": {
+    "zh": "高維非凸的梯度下降：反傳播讓這件事算得起來",
+    "en": "Gradient descent in high-dimensional non-convex space: backprop makes it computable",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "333c910071a0": {
+    "zh": "\n        訓練現代深度神經網路，本質上就是<strong>在高維非凸曲面上做（隨機）梯度下降</strong>。反向傳播演算法把鏈式法則系統化，讓龐大網路的數十億梯度能在一次反向掃描中全部精確求出——反傳播是讓整個深度學習得以「算得起來」的工程奇蹟與生命線。\n      ",
+    "en": "Training a modern deep neural network is, at its core, <strong>doing (stochastic) gradient descent on a high-dimensional non-convex surface</strong>. The backpropagation algorithm systematizes the chain rule, so the billions of gradients of a huge network can all be computed exactly in one backward sweep — backprop is the engineering miracle and lifeline that makes all of deep learning \"computable\".",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "86a2e2fca423": {
+    "zh": "TAKEAWAY 02 · 演進改裝",
+    "en": "TAKEAWAY 02 · Evolutionary upgrades",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1d74f0c2fa3d": {
+    "zh": "同一骨架上的改良：Adam 調步長，SAM 偏平坦解",
+    "en": "Improvements on the same skeleton: Adam tunes the step size, SAM favors flat solutions",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3b58aece2686": {
+    "zh": "\n        全章演算法不是碎片，而是同一骨架上的元件加裝：SGD 用噪聲取樣換取算力規模；<strong>Adam 結合動量與二階矩，負責為每個維度動態調節合適的學習步長</strong>；<strong>SAM 則進一步改寫最佳化目標，透過對抗微擾主動打壓銳度、偏向平坦解</strong>。演算法的演進，是從「求更快收斂」邁向「求更好泛化」。\n      ",
+    "en": "The chapter's algorithms are not fragments but components added onto the same skeleton: SGD trades noisy sampling for computational scale; <strong>Adam combines momentum with the second moment and is responsible for dynamically setting a suitable step size for each dimension</strong>; <strong>SAM goes further and rewrites the optimization objective, using adversarial perturbations to actively suppress sharpness and favor flat solutions</strong>. The evolution of the algorithms moves from \"seeking faster convergence\" to \"seeking better generalization\".",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "11a5d996f399": {
+    "zh": "TAKEAWAY 03 · 理論邊界",
+    "en": "TAKEAWAY 03 · The theoretical boundary",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "970cac94fe32": {
+    "zh": "過參數化保證最佳化成功，為何能泛化仍須追問",
+    "en": "Overparameterization guarantees successful optimization; why it generalizes is still an open question",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b2df02b014c8": {
+    "zh": "\n        過參數化收斂理論（Proposition 4、5 等）給出了極具震撼力的數學定音：在寬度充裕時，非凸神經網路沒有偽局部極小值，梯度法必能把訓練損失降至零。<strong>理論告訴我們最佳化通常成功；但模型為何在海量容量下仍能泛化到未知世界，則是下一章之後仍須持續追問的核心問題！</strong>\n      ",
+    "en": "Overparameterized convergence theory (Propositions 4, 5, etc.) delivers a striking mathematical verdict: with ample width, non-convex neural networks have no spurious local minima, and gradient methods are sure to drive the training loss to zero. <strong>Theory tells us that optimization usually succeeds; but why a model with massive capacity still generalizes to the unknown world is the core question we must keep pursuing from the next chapter on!</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3417330f9b15": {
+    "zh": "07 / 互動模擬實驗室 · Interactive Arena",
+    "en": "07 / Interactive Simulation Lab: Interactive Arena",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "05d4d2e3643a": {
+    "zh": "Chapter 3 最佳化器大對決：非凸損失地景上的軌跡與收斂模擬\n    <span class=\"en\">Optimizer Arena: Trajectory &amp; Basin Convergence Duel on Non-Convex Landscape</span>\n  ",
+    "en": "Chapter 3 optimizer showdown: simulating trajectories and convergence on a non-convex loss landscape",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "191ce80beadb": {
+    "zh": "\n    本實驗室在同一個包含<strong>「尖銳局部陷阱（Sharp Basin）」</strong>與<strong>「平坦全域性寬谷（Flat Basin）」</strong>的經典非凸地景上，動態模擬並對比本章所學的四大最佳化器：<strong>GD（梯度下降）、Momentum（動量法）、Adam（自適應矩估計）與 SAM（銳度感知最小化）</strong>。觀察它們如何受步長、動量、二階矩與鄰域銳度微擾的驅動，走向完全不同的命運！\n    <span class=\"bilingual-en\">Compare the trajectories of GD, Momentum, Adam, and SAM on a non-convex landscape featuring a sharp local trap and a wide flat basin. See how SAM senses sharpness to steer into the robust flat basin!</span>\n  ",
+    "en": "On a single classic non-convex landscape containing a <strong>\"sharp local trap (sharp basin)\"</strong> and a <strong>\"flat, wide global valley (flat basin)\"</strong>, this lab dynamically simulates and compares the four optimizers learned in this chapter: <strong>GD (gradient descent), Momentum (momentum method), Adam (adaptive moment estimation) and SAM (sharpness-aware minimization)</strong>. Watch how, driven by step size, momentum, second moments and neighborhood-sharpness perturbations, they head toward completely different fates!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bf6a36eccd7e": {
+    "zh": "競技模式：",
+    "en": "Competition mode:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a9d5892ea661": {
+    "zh": "四者同場競技 · All 4 in Parallel",
+    "en": "All four compete together",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9583f4fbfc15": {
+    "zh": "GD (傳統梯度下降)",
+    "en": "GD (classic gradient descent)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c3ff8e45e398": {
+    "zh": "Momentum (動量法)",
+    "en": "Momentum (momentum method)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "11308d2dc815": {
+    "zh": "Adam (自適應矩估計)",
+    "en": "Adam (adaptive moment estimation)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "45beca74c710": {
+    "zh": "SAM (銳度感知最小化)",
+    "en": "SAM (sharpness-aware minimization)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3896487bc205": {
+    "zh": "學習率 $\\eta$：",
+    "en": "Learning rate $\\eta$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0ca0f2d1e871": {
+    "zh": "單步前進 (Step +1)",
+    "en": "Single step (Step +1)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3898f0697891": {
+    "zh": "連續 20 步 (Run 20)",
+    "en": "20 steps in a row (Run 20)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ad27b2cdc74d": {
+    "zh": "重置起點 (Reset)",
+    "en": "Reset start point (Reset)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d89bdc885fc3": {
+    "zh": "08 / 觀念驗收 · Concept Checkpoint",
+    "en": "08 / Concept Check: Concept Checkpoint",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "93f14be702f9": {
+    "zh": "全章大一統檢核測驗\n    <span class=\"en\">Chapter 3 Capstone Concept Checkpoint</span>\n  ",
+    "en": "Grand unified chapter checkpoint quiz",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4a0fb24894f6": {
+    "zh": "請檢核你對 §7.3 其他收斂理論與 §8 全章結論之核心理解。點選選項即刻獲得解析：",
+    "en": "Check your core understanding of §7.3 (other convergence theories) and §8 (chapter conclusion). Click an option to get the explanation immediately:",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "be9209faa9c0": {
+    "zh": "題目 1：§7.3 中，下列哪一組啟用函式「都有」收斂保證相關文獻？",
+    "en": "Question 1: In §7.3, which set of activation functions \"all\" have related literature on convergence guarantees?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "eb4c8e61eb60": {
+    "zh": "A. 二次、ReLU、Leaky ReLU",
+    "en": "A. Quadratic, ReLU, Leaky ReLU",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ff7050846aaf": {
+    "zh": "B. 只有 sigmoid",
+    "en": "B. Only sigmoid",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c934fcc48191": {
+    "zh": "C. 只有 tanh",
+    "en": "C. Only tanh",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "057228bf22b0": {
+    "zh": "D. 線性啟用",
+    "en": "D. Linear activation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2fca6c938c4c": {
+    "zh": "題目 2：§7.3 提到 ResNet 的收斂分析，代表什麼意義？",
+    "en": "Question 2: What does the ResNet convergence analysis mentioned in §7.3 signify?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c7feb5f04dbf": {
+    "zh": "A. 只有全連線網路可以被理論分析",
+    "en": "A. Only fully connected networks can be analyzed theoretically",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "375b7045938e": {
+    "zh": "B. 收斂理論已延伸到更複雜架構如殘差網路",
+    "en": "B. Convergence theory has been extended to more complex architectures such as residual networks",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5d166db2a9d4": {
+    "zh": "C. ResNet 無法使用一階梯度法訓練",
+    "en": "C. ResNets cannot be trained with first-order gradient methods",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4a23970f4c57": {
+    "zh": "D. 殘差網路的收斂性與過參數化完全無關",
+    "en": "D. The convergence of residual networks has nothing to do with overparameterization",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0e00658c481b": {
+    "zh": "題目 3：§8 全章結論中，Adam 最佳化器結合了哪兩種關鍵想法？",
+    "en": "Question 3: In the §8 chapter conclusion, which two key ideas does the Adam optimizer combine?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d8df149e2e7c": {
+    "zh": "A. 精確線搜尋（Line Search）與 SAM 銳度感知",
+    "en": "A. Exact line search and SAM's sharpness awareness",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1a600bda485c": {
+    "zh": "B. 動量（一階矩）與 RMSProp（二階矩的指數移動平均）",
+    "en": "B. Momentum (first moment) and RMSProp (exponential moving average of the second moment)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8db321a74de0": {
+    "zh": "C. 只有 AdaGrad 的歷史平方累積",
+    "en": "C. Only AdaGrad's accumulation of past squares",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8009b0c5bc3a": {
+    "zh": "D. 牛頓法（Newton-Raphson）與隨機動量",
+    "en": "D. Newton's method (Newton-Raphson) and stochastic momentum",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1ddf2d959398": {
+    "zh": "題目 4：本章理論（§7）與實務泛化之間的關係，下列何者描述最貼切？",
+    "en": "Question 4: Which statement best describes the relationship between this chapter's theory (§7) and generalization in practice?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4e2d5869b234": {
+    "zh": "A. 理論已經完全解釋了為何現代大模型在實務中泛化極佳",
+    "en": "A. The theory fully explains why modern large models generalize so well in practice",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "81de534a4562": {
+    "zh": "B. 理論主要保證訓練損失可降至零，但泛化問題仍是開放謎題",
+    "en": "B. The theory mainly guarantees that the training loss can be driven to zero, but generalization remains an open puzzle",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c0cb91f5b92a": {
+    "zh": "C. 理論已經證明所有過參數化模型都會發生嚴重過擬合（Overfitting）",
+    "en": "C. The theory has proven that every overparameterized model overfits badly",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5be718eec7a2": {
+    "zh": "D. 最佳化理論與實務深度學習訓練完全脫節、毫無關聯",
+    "en": "D. Optimization theory is completely disconnected from, and irrelevant to, practical deep-learning training",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "be4764dedae2": {
+    "zh": "CH03 CAPSTONE MASTER MAXIM · 全章總結箴言",
+    "en": "CH03 CAPSTONE MASTER MAXIM · The chapter's closing maxim",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9befe554551c": {
+    "zh": "\n    深度學習一階最佳化不是黑魔法，而是一門建立在反向傳播矩陣運算、隨機近似取樣、逐維尺度自適應與銳度幾何正則化之上的精密科學。過參數化為我們抹平了非凸訓練的地獄險阻，但探尋泛化規律的征途，才正要從下一章全面展開！\n  ",
+    "en": "First-order optimization in deep learning is not black magic but a precise science built on backpropagation's matrix computations, stochastic approximate sampling, per-dimension scale adaptation, and geometric regularization of sharpness. Overparameterization has smoothed away the hellish obstacles of non-convex training for us, but the journey of searching for the laws of generalization is only now about to begin in earnest, from the next chapter on!",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}
