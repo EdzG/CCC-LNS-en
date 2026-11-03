@@ -133,13 +133,13 @@ def shots(chapter, browser, sections, out):
     out.mkdir(parents=True, exist_ok=True)
     for lang in ('zh', 'en'):
         with open_page(chapter, lang=lang, browser=browser, viewport=(1280, 2400)) as page:
-            page.add_style_tag(content='#guide-modal .modal{max-height:none!important}')
+            page.add_style_tag(content='#guide-modal .modal,#guide-modal .modal-box{max-height:none!important}')
             for sec in sections:
                 name = sec.replace(':', '')
                 if sec.startswith('guide:'):
                     open_guide(page, sec.split(':')[1])
                     page.wait_for_timeout(300)
-                    page.locator('#guide-modal .modal').screenshot(path=str(out / f'{name}-{lang}.png'))
+                    page.locator('#guide-modal .modal, #guide-modal .modal-box').first.screenshot(path=str(out / f'{name}-{lang}.png'))
                     close_guide(page)
                 elif is_lecture(chapter):
                     page.locator(f'section#{sec}').screenshot(path=str(out / f'{name}-{lang}.png'))
