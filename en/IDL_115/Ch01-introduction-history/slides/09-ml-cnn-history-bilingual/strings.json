@@ -14,11 +14,20 @@
       {
         "re": "^高分格 (\\d+)/9 亮起$",
         "en": "$1/9 high-score cells lit"
+      },
+      {
+        "re": "^高分格 (\\d+)/9 亮起$",
+        "en": "$1/9 high-score cells lit"
       }
     ]
   },
-  "_dynamic": [],
+  "_dynamic": [
+    "#thrResult"
+  ],
   "_images": [],
+  "_hide": [
+    ".en-sub"
+  ],
   "b8bb31e17014": {
     "zh": "<a href=\"#cover\">封面</a>",
     "en": "<a href=\"#cover\">Cover</a>",
@@ -376,12 +385,6 @@
   "8033cde110d4": {
     "zh": "閾值 <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(map ≥ thr → 1)</span>：",
     "en": "Threshold <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(map ≥ thr → 1)</span>:",
-    "kp": 5,
-    "ctx": "page"
-  },
-  "20532b4eaf17": {
-    "zh": "高分格 6/9 亮起",
-    "en": "6/9 high-score cells lit",
     "kp": 5,
     "ctx": "page"
   },
@@ -1123,8 +1126,5 @@
     "en": "ReLU gradient (stable 0/1)",
     "kp": 8,
     "ctx": "chart"
-  },
-  "_hide": [
-    ".en-sub"
-  ]
+  }
 }

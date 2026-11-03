@@ -14,11 +14,20 @@
       {
         "re": "^決策邊界 x\\* ≈ (\\S+) · Posterior at x=5: (\\S+) / (\\S+)$",
         "en": "Decision boundary x* ≈ $1 · Posterior at x=5: $2 / $3"
+      },
+      {
+        "re": "^決策邊界 x\\* ≈ (\\S+) · Posterior at x=5: (\\S+) / (\\S+)$",
+        "en": "Decision boundary x* ≈ $1 · Posterior at x=5: $2 / $3"
       }
     ]
   },
-  "_dynamic": [],
+  "_dynamic": [
+    "#boundaryLabel"
+  ],
   "_images": [],
+  "_hide": [
+    ".en-sub"
+  ],
   "b8bb31e17014": {
     "zh": "<a href=\"#cover\">封面</a>",
     "en": "<a href=\"#cover\">Cover</a>",
@@ -412,12 +421,6 @@
   "d138e6be250c": {
     "zh": "先驗 Prior $P(C_1)$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(drag to see prior power)</span>：",
     "en": "Prior $P(C_1)$ <span class=\"bilingual-en\" style=\"display:inline;font-size:16px;\">(drag to see the power of the prior)</span>:",
-    "kp": 5,
-    "ctx": "page"
-  },
-  "e52ca5a5f36e": {
-    "zh": "決策邊界 x* ≈ 5.00 · Posterior at x=5: 0.50 / 0.50",
-    "en": "Decision boundary x* ≈ 5.00 · Posterior at x=5: 0.50 / 0.50",
     "kp": 5,
     "ctx": "page"
   },
@@ -1789,8 +1792,5 @@
     "en": "Expected error",
     "kp": 9,
     "ctx": "chart"
-  },
-  "_hide": [
-    ".en-sub"
-  ]
+  }
 }
