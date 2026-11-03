@@ -1,0 +1,839 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "再想想看！": "Think again!",
+      "日本學者福島邦彥（Kunihiko Fukushima）於 1980 年提出 neocognitron，引入層級感受野；Yann LeCun 約在 1989 年改用於手寫數字辨識，並於 1998 年確立 LeNet。": "The Japanese researcher Kunihiko Fukushima proposed the neocognitron in 1980, introducing hierarchical receptive fields; Yann LeCun adapted it for handwritten digit recognition around 1989 and established LeNet in 1998.",
+      "1998 年 LeCun 等人發表 LeNet-5 論文時，同時引入了 MNIST（Modified NIST）作為標準基準資料集，包含 60,000 筆訓練影像與 10,000 筆測試影像。": "When LeCun et al. published the LeNet-5 paper in 1998, they also introduced MNIST (Modified NIST) as a standard benchmark dataset, with 60,000 training images and 10,000 test images.",
+      "經典順序：輸入後初次卷積得 $28\\times 28\\times 6$，池化砍半為 $14\\times 14$，二次卷積為 $10\\times 10\\times 16$，二次池化為 $5\\times 5$，最後展平成向量接 FC 120-84-10。": "The classic order: after the input, the first convolution gives $28\\times 28\\times 6$, pooling halves it to $14\\times 14$, the second convolution gives $10\\times 10\\times 16$, the second pooling gives $5\\times 5$, and finally it is flattened into a vector and fed to FC 120-84-10.",
+      "「先局部空間抽特徵、後全域全連線做分類」的兩段式管線，成為隨後 AlexNet、VGG 等數十年常規 CNN 的設計黃金原型。": "The two-stage pipeline of \"first extract local spatial features, then classify with global fully connected layers\" became the golden design prototype for decades of standard CNNs that followed, such as AlexNet and VGG.",
+      "輸入手寫數字灰階影像 (MNIST)。單通道，每個畫素為 0~1 的灰階值。": "The input is a grayscale handwritten-digit image (MNIST). Single channel; each pixel is a gray value from 0 to 1.",
+      "6 個 5×5 卷積核 (padding=2)，權重數：5×5×1×6 + 6(bias) = 156。捕捉水平/垂直/斜向基礎邊緣。": "6 kernels of size 5×5 (padding=2); number of weights: 5×5×1×6 + 6(bias) = 156. Captures basic horizontal/vertical/diagonal edges.",
+      "2×2 平均池化 (stride=2)。尺寸砍半，通道不變。大幅壓縮空間維度。": "2×2 average pooling (stride=2). Halves the size and keeps the channels. Greatly compresses the spatial dimensions.",
+      "16 個 5×5 卷積核 (no padding)。特徵圖縮至 10×10。組合局部邊緣成為筆畫、角點。": "16 kernels of size 5×5 (no padding). The feature maps shrink to 10×10. Combines local edges into strokes and corners.",
+      "2×2 平均池化 (stride=2)。尺寸縮至 5×5。每個特徵圖只剩 25 個單元，總共有 400 個特徵值。": "2×2 average pooling (stride=2). The size shrinks to 5×5. Each feature map has only 25 units left, 400 feature values in total.",
+      "展平 400 維向量後的全連線隱藏層。權重數：400×120 + 120 = 48,120（佔全網路大半參數！）。": "A fully connected hidden layer after flattening into a 400-dimensional vector. Number of weights: 400×120 + 120 = 48,120 (most of the whole network's parameters!).",
+      "全連線隱藏層。權重數：120×84 + 84 = 10,164。進一步壓縮語意表示。": "A fully connected hidden layer. Number of weights: 120×84 + 84 = 10,164. Further compresses the semantic representation.",
+      "10 類別輸出（數字 0 到 9）。權重數：84×10 + 10 = 850。輸出各類別預測機率。": "10-class output (digits 0 to 9). Number of weights: 84×10 + 10 = 850. Outputs the predicted probability of each class.",
+      "維度尺寸：": "Dimensions:",
+      "參數量：": "Parameters:",
+      "全網路總參數量：": "Total parameters of the whole network:",
+      "Conv+Pool 參數：": "Conv+Pool parameters:",
+      "FC 全連線層參數：": "Fully connected (FC) parameters:",
+      "目前檢視層": "Current layer"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^第 (\\d+) 階段：(.*)$",
+        "en": "Stage $1: $2"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "50cd675d2201": {
+    "zh": "KP02 · 索引",
+    "en": "KP02 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ba00949d2287": {
+    "zh": "<a href=\"#history\">起源與 MNIST · History</a>",
+    "en": "<a href=\"#history\">Origins and MNIST</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6f4c42e78fef": {
+    "zh": "<a href=\"#pipeline\">LeNet 經典流水線 · Pipeline</a>",
+    "en": "<a href=\"#pipeline\">The Classic LeNet Pipeline</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b33d151b17b2": {
+    "zh": "<a href=\"#svg-architecture\">骨架圖解 · Architecture Diagram</a>",
+    "en": "<a href=\"#svg-architecture\">The Skeleton, Illustrated</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8cb0747a6f0d": {
+    "zh": "<a href=\"#param-calculation\">維度與參數計算 · Dimensions</a>",
+    "en": "<a href=\"#param-calculation\">Dimensions and Parameter Counts</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "fbb17ec1fcdc": {
+    "zh": "<a href=\"#why-blueprint\">現代 CNN 的原型 · Why Blueprint</a>",
+    "en": "<a href=\"#why-blueprint\">The Prototype of the Modern CNN</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b0ae2881a676": {
+    "zh": "LeNet 與典型 CNN 骨架\n      <span class=\"hero-title-en\">LeNet and the Classic CNN Skeleton</span>\n    ",
+    "en": "LeNet and the Typical CNN Skeleton",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "21a1c10e2f12": {
+    "zh": "\n      從福島邦彥 1980 年 neocognitron 到 LeCun 1998 年 LeNet，奠定了現代卷積神經網路的黃金原型：「前面卷積＋池化抽局部特徵，結尾全連線做全域決策」。尺寸口訣 $28\\times 28\\times 6 \\to 14\\times 14 \\to 10\\times 10\\times 16 \\to 5\\times 5 \\to 120\\text{-}84\\text{-}10$。\n    ",
+    "en": "From Kunihiko Fukushima's 1980 neocognitron to LeCun's 1998 LeNet, the golden prototype of the modern convolutional neural network was laid down: \"convolution + pooling up front to extract local features, fully connected layers at the end for the global decision.\" The size mnemonic: $28\\times 28\\times 6 \\to 14\\times 14 \\to 10\\times 10\\times 16 \\to 5\\times 5 \\to 120\\text{-}84\\text{-}10$.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "8a6c0c2d4ec9": {
+    "zh": "\n      「LeNet 骨架：先掃空間，最後才決策？」\n      <small>在空間資訊消失之前把特徵抽好；全連線不是主角，出現得愈晚愈好！<br>\n        <span class=\"bilingual-en-inline\">Local scanning first, global classification last — the CNN blueprint born in 1998.</span>\n      </small>\n    ",
+    "en": "\"The LeNet skeleton: scan space first, decide only at the end?\"\n      <small>Extract the features well before the spatial information disappears; the fully connected layers are not the stars, and the later they show up, the better!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "44d407cbdba3": {
+    "zh": "02 / 發展脈絡 · Historical Evolution",
+    "en": "02 / Historical Development",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "503dd1cb5e44": {
+    "zh": "從 Neocognitron 到 LeNet：手寫數字的標準答案\n    <span class=\"en\">From Neocognitron to LeNet: Setting the Standard for Digit Recognition</span>\n  ",
+    "en": "From the Neocognitron to LeNet: the Standard Answer for Handwritten Digits",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b34ac32eaa8c": {
+    "zh": "深度學習不是 2012 年才突然出現的",
+    "en": "Deep learning did not suddenly appear in 2012",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "23544bcff172": {
+    "zh": "\n      早在 1980 年，日本學者<strong>福島邦彥（Kunihiko Fukushima）</strong>便提出了 <strong>neocognitron</strong>，模仿生物視覺皮層 S-cell（簡單細胞，負責抓局部方向）與 C-cell（複雜細胞，容許局部平移），具備了「分層抽取、局部感受野」的架構雛型。\n    ",
+    "en": "As early as 1980, the Japanese researcher <strong>Kunihiko Fukushima</strong> proposed the <strong>neocognitron</strong>, which mimicked the S-cells (simple cells, which pick up local orientations) and C-cells (complex cells, which tolerate local shifts) of the biological visual cortex, and already had the rudiments of an architecture with \"layered extraction and local receptive fields.\"",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7d07800d0fa8": {
+    "zh": "福島邦彥提出 Neocognitron",
+    "en": "Kunihiko Fukushima proposes the neocognitron",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "25332992e275": {
+    "zh": "引入分層過濾與局部感受野概念，為卷積與池化結構埋下理論種子。",
+    "en": "Introduces layered filtering and local receptive fields, planting the theoretical seed for convolution and pooling structures.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8403c045beac": {
+    "zh": "Yann LeCun 團隊首度將反向傳播應用於卷積網路",
+    "en": "Yann LeCun's team applies backpropagation to convolutional networks for the first time",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8cf619571aa8": {
+    "zh": "發表手寫郵遞區號辨識系統，直接以反向傳播梯度端到端訓練濾波器權重。",
+    "en": "Publishes a handwritten ZIP-code recognition system that trains the filter weights end-to-end directly with backpropagated gradients.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0c543bc0987c": {
+    "zh": "LeNet-5 發表與 MNIST 基準集問世",
+    "en": "LeNet-5 is published and the MNIST benchmark appears",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e759e88fc96e": {
+    "zh": "LeCun、Bottou、Bengio 與 Haffner 正式確立 LeNet-5 架構，同時推出著名的 <strong>MNIST（Modified NIST）</strong> 28×28 手寫數字基準集。",
+    "en": "LeCun, Bottou, Bengio and Haffner formally establish the LeNet-5 architecture and at the same time release the famous <strong>MNIST (Modified NIST)</strong> benchmark of 28×28 handwritten digits.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7c0e03be6348": {
+    "zh": "03 / 核心管線 · Classic Pipeline",
+    "en": "03 / Core Pipeline",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "be28916e5a32": {
+    "zh": "LeNet 經典流水線：五步尺寸演變口訣\n    <span class=\"en\">The LeNet Pipeline: Five-Stage Dimension Transition</span>\n  ",
+    "en": "The Classic LeNet Pipeline: a Five-Step Size Mnemonic",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3da49e1fde59": {
+    "zh": "\n    課本 <strong>Fig. 1</strong> 呈現了一條清晰的「特徵抽取 $\\to$ 分類決策」流水線。空間尺寸隨著交替的卷積與池化逐漸縮小，通道數則相應增加：\n  ",
+    "en": "The textbook's <strong>Fig. 1</strong> shows a clear \"feature extraction $\\to$ classification decision\" pipeline. The spatial size shrinks step by step through alternating convolution and pooling, while the number of channels grows correspondingly:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c410e764c71a": {
+    "zh": "1. 初次卷積 Conv",
+    "en": "1. First convolution (Conv)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4bae5592d48d": {
+    "zh": "輸入灰階影像經過 6 組 5×5 核卷積，萃取 6 種低階幾何特徵。",
+    "en": "The grayscale input image is convolved with 6 kernels of size 5×5, extracting 6 kinds of low-level geometric features.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5be562c39756": {
+    "zh": "2. 初次池化 Pool",
+    "en": "2. First pooling (Pool)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ea3ab60a3b7f": {
+    "zh": "2×2 下取樣，解析度砍半，通道數維持 6，壓縮空間冗餘。",
+    "en": "2×2 downsampling halves the resolution, keeps 6 channels, and compresses spatial redundancy.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ef5acdc2617c": {
+    "zh": "3. 二次卷積 Conv",
+    "en": "3. Second convolution (Conv)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fd76ee9426f8": {
+    "zh": "5×5 核進一步抽取組合特徵，通道數擴張至 16。",
+    "en": "5×5 kernels extract combined features further, expanding the channels to 16.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9a8b083a2055": {
+    "zh": "4. 二次池化 Pool",
+    "en": "4. Second pooling (Pool)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "50c05283fbf6": {
+    "zh": "再次下取樣，得到緊湊的 5×5×16 特徵張量。",
+    "en": "Downsampling again gives a compact 5×5×16 feature tensor.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2b243d90530c": {
+    "zh": "5. 展平與全連線 FC",
+    "en": "5. Flatten and fully connected (FC)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fa4d9d9546bf": {
+    "zh": "拉平成向量後，依序透過 120、84，最後 10 維輸出對應數字 0–9。",
+    "en": "After flattening into a vector, it passes through 120, then 84, and finally a 10-dimensional output for the digits 0–9.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2f5aaadb1246": {
+    "zh": "📢 終身不忘的尺寸口訣",
+    "en": "📢 The size mnemonic you'll never forget",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f28296c7228b": {
+    "zh": "04 / 視覺剖析 · Architecture Diagram",
+    "en": "04 / Visual Breakdown",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "628a8d4a6a54": {
+    "zh": "空間收縮與特徵抽象：視覺化管線圖\n    <span class=\"en\">Spatial Shrinkage and Semantic Abstraction</span>\n  ",
+    "en": "Spatial Shrinking and Feature Abstraction: the Pipeline, Visualized",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aee2792d6f3b": {
+    "zh": "空間特徵抽取（Conv + Pool 交錯）",
+    "en": "Spatial feature extraction (Conv + Pool alternating)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3d0fc2f5fc00": {
+    "zh": "空間結構保留 · 解析度減半、通道數倍增",
+    "en": "Spatial structure kept · resolution halves, channels multiply",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "a9eaebdd2014": {
+    "zh": "×6 通道",
+    "en": "×6 channels",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1975cd5bcc6a": {
+    "zh": "全連線分類頭（FC Layers）",
+    "en": "Fully connected classification head (FC layers)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3e37336fd42c": {
+    "zh": "空間已抽完 · 專注高階語意分類",
+    "en": "Space fully extracted · focus on high-level semantic classification",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "90f3a25a184c": {
+    "zh": "FC  120 神經元",
+    "en": "FC  120 neurons",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4d4cabfb65a7": {
+    "zh": "FC  84 神經元",
+    "en": "FC  84 neurons",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "748c0875614c": {
+    "zh": "FC 10 類別 (0–9)",
+    "en": "FC 10 classes (0–9)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "ab340e9b4b1e": {
+    "zh": "Softmax 輸出機率",
+    "en": "Softmax output probabilities",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4749d74195d5": {
+    "zh": "黃金準則：若一開始就 Flatten，後面再多層 FC 也救不回被丟棄的空間結構",
+    "en": "Golden rule: flatten at the start, and no number of FC layers afterwards can recover the discarded spatial structure",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8fae7ac6cc60": {
+    "zh": "LeNet 的結構順序就是最強先驗：先局部滑動抽取圖案，最後才做全圖決策。",
+    "en": "LeNet's layer order is its strongest prior: first slide locally to extract patterns, and only at the end make the whole-image decision.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e622ea69d82a": {
+    "zh": "圖解 LeNet-5：空間特徵抽取 $\\to$ 向量分類決策的標準二段式",
+    "en": "LeNet-5 illustrated: the standard two-part design of spatial feature extraction $\\to$ vector classification decision",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "482e0b1f2b83": {
+    "zh": "📐 結構的順序即是「先驗」",
+    "en": "📐 The order of the structure is the \"prior\"",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f1a4fb4e1ccf": {
+    "zh": "\n          這張圖揭示了 CNN 架構設計的核心哲學：\n        ",
+    "en": "This diagram reveals the core philosophy of CNN architecture design:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b75a1a6e7f39": {
+    "zh": "<strong>左側 Conv/Pool</strong>：神經元僅具備局部感受野，權重在整個平面共享，專注提取邊緣、轉角等基礎形狀。",
+    "en": "<strong>Conv/Pool on the left</strong>: neurons have only local receptive fields, their weights are shared across the whole plane, and they focus on extracting basic shapes such as edges and corners.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fe693e57032e": {
+    "zh": "<strong>右側 FC</strong>：到了最後階段，空間圖案已轉化為高度抽象的特徵組合，此時才將空間攤平，交由全連線層權衡全域性權重。",
+    "en": "<strong>FC on the right</strong>: by the last stage, the spatial patterns have been turned into highly abstract feature combinations; only then is the space flattened and handed to the fully connected layers to weigh global weights.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c30afe01caa4": {
+    "zh": "05 / 架構影響 · Universal Blueprint",
+    "en": "05 / Architectural Impact",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f3cbb49c0445": {
+    "zh": "為什麼後世二十年的 CNN 還在延續這張骨架？\n    <span class=\"en\">Why Modern CNNs Still Follow the LeNet Blueprint</span>\n  ",
+    "en": "Why Do Twenty Years of Later CNNs Still Keep This Skeleton?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "33f3bd4bddb1": {
+    "zh": "🏛️ 階層化特徵學習（Hierarchy）",
+    "en": "🏛️ Hierarchical feature learning",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "05341727b70e": {
+    "zh": "\n        淺層卷積捕捉方向、邊緣與紋理；深層卷積將小局部拼接為零件（如眼睛、輪子）；最後全連線層判斷整體物件。這符合生物視覺與自然影象的階層組合本質。\n      ",
+    "en": "Shallow convolutions capture orientations, edges and textures; deeper convolutions assemble small local pieces into parts (such as eyes or wheels); finally the fully connected layers judge the whole object. This matches the hierarchical, compositional nature of biological vision and natural images.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "da769acdb7b8": {
+    "zh": "⚡ 算力與參數量最佳分配",
+    "en": "⚡ The best allocation of compute and parameters",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2610d3c434b8": {
+    "zh": "\n        高解析度時用參數極少的卷積核運算（節省權重）；當特徵圖縮小到很低解析度時，才使用全連線層，避免了全圖全連線帶來的參數爆炸。\n      ",
+    "en": "At high resolution, use convolution kernels with very few parameters (saving weights); only when the feature map has shrunk to a very low resolution are fully connected layers used, avoiding the parameter explosion that whole-image full connectivity would bring.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4b5b1dd6d444": {
+    "zh": "🚀 AlexNet (2012) 的繼承",
+    "en": "🚀 What AlexNet (2012) inherited",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8b7a2feba39e": {
+    "zh": "\n        2012 年奪下 ImageNet 冠軍的 AlexNet，本質上就是 <strong>GPU 加速版、更深更寬的 LeNet</strong>：同樣是多層 Conv/Pool 串接，最後接 FC 4096-4096-1000。\n      ",
+    "en": "AlexNet, which won ImageNet in 2012, is essentially <strong>a GPU-accelerated, deeper and wider LeNet</strong>: the same stack of multiple Conv/Pool layers, followed at the end by FC 4096-4096-1000.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "10f4c7ead8af": {
+    "zh": "🔄 VGG (2014) 的規格化",
+    "en": "🔄 VGG (2014) standardizes it",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1fbf6d9458f8": {
+    "zh": "\n        VGG 更是將「卷積 $\\to$ 池化減半」的迴圈模組化，把骨架規格化為純粹的 3×3 核堆疊，但總體「先抽特徵、再決策」的邏輯依然源於 LeNet。\n      ",
+    "en": "VGG goes further and modularizes the \"convolution $\\to$ pooling halves the size\" loop, standardizing the skeleton into pure stacks of 3×3 kernels, but the overall logic of \"extract features first, then decide\" still comes from LeNet.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c2b6f7dcbda9": {
+    "zh": "06 / 對照總結 · Comparison Table",
+    "en": "06 / Side-by-Side Summary",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4b197d003c44": {
+    "zh": "全連線 MLP 對比 LeNet 卷積網路\n    <span class=\"en\">MLP vs LeNet: Structural Comparison</span>\n  ",
+    "en": "Fully Connected MLP vs. the LeNet Convolutional Network",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7d65b7150883": {
+    "zh": "維度 Dimension",
+    "en": "Dimension",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c622a2cc80bb": {
+    "zh": "全連線 MLP (Flatten First)",
+    "en": "Fully connected MLP (flatten first)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "91650489a9c1": {
+    "zh": "LeNet 卷積骨架 (Conv/Pool First)",
+    "en": "LeNet convolutional skeleton (Conv/Pool first)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "32b2f46327f4": {
+    "zh": "空間處理時機",
+    "en": "When space is handled",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "18864fb78d15": {
+    "zh": "第 0 步就拉平摧毀",
+    "en": "Flattened and destroyed at step 0",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "76e451f47449": {
+    "zh": "保留至最後一階段才拉平",
+    "en": "Kept until the last stage, then flattened",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2f1f4ddf3bcf": {
+    "zh": "特徵抽取機制",
+    "en": "Feature extraction mechanism",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bf3e914123c0": {
+    "zh": "每個畫素獨立全域權重",
+    "en": "Independent global weights for every pixel",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "61afc7d17df8": {
+    "zh": "5×5 局部核全圖共享掃描",
+    "en": "5×5 local kernels scanning the whole image, shared",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b36091bf1f50": {
+    "zh": "參數量規模（MNIST）",
+    "en": "Parameter scale (MNIST)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "96ef95dc3609": {
+    "zh": "~100,000+ 權重",
+    "en": "~100,000+ weights",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3fcdd6f5aa00": {
+    "zh": "~60,000 權重（含大部分在 FC）",
+    "en": "~60,000 weights (most of them in the FC layers)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "447e1e317afc": {
+    "zh": "平移適應性",
+    "en": "Adapting to translation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dcfac220ddff": {
+    "zh": "平移一個畫素視為全新樣本",
+    "en": "A one-pixel shift counts as a brand-new sample",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cf1960cebc76": {
+    "zh": "卷積層自帶平移等變性",
+    "en": "Convolutional layers have built-in translation equivariance",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b632bd14bcc4": {
+    "zh": "歸納偏置（Inductive Bias）",
+    "en": "Inductive bias",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0d12275e916e": {
+    "zh": "幾乎無（需純靠資料學習）",
+    "en": "Almost none (must learn purely from data)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "651b0cdeebb8": {
+    "zh": "強烈（局部性＋空間重複性）",
+    "en": "Strong (locality + spatial repetition)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20befc297746": {
+    "zh": "07 / 互動實驗室 · Interactive Lab",
+    "en": "07 / Interactive Lab",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e278be3e6b52": {
+    "zh": "互動實驗室：LeNet 逐層特徵尺寸與資料流模擬器\n    <span class=\"en\">Interactive Lab: LeNet Layer-by-Layer Dimension &amp; Trace Simulator</span>\n  ",
+    "en": "Interactive Lab: LeNet Layer-by-Layer Feature Size and Data-Flow Simulator",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "33bd706c8635": {
+    "zh": "▶ 動態追蹤資料流 Trace Data Flow",
+    "en": "▶ Trace the data flow",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f3d00646b1d5": {
+    "zh": "重設初始 Reset",
+    "en": "Reset",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "061547e76251": {
+    "zh": "選取層次 Layer:",
+    "en": "Select layer:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c9551dbd4327": {
+    "zh": "輸入 Input (28×28×1)",
+    "en": "Input (28×28×1)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "84905838cd1f": {
+    "zh": "卷積一 Conv1 (28×28×6)",
+    "en": "Conv1 (28×28×6)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "885203b87fdd": {
+    "zh": "池化一 Pool1 (14×14×6)",
+    "en": "Pool1 (14×14×6)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9ddf42e8fc78": {
+    "zh": "卷積二 Conv2 (10×10×16)",
+    "en": "Conv2 (10×10×16)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8e5161753d8e": {
+    "zh": "池化二 Pool2 (5×5×16)",
+    "en": "Pool2 (5×5×16)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a7ed9ba3583a": {
+    "zh": "全連線一 FC1 (120)",
+    "en": "FC1 (120)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6e7a11d0eeee": {
+    "zh": "全連線二 FC2 (84)",
+    "en": "FC2 (84)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c4a10e4215ed": {
+    "zh": "輸出層 Output (10)",
+    "en": "Output layer (10)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b621464f3fc2": {
+    "zh": "\n          👆 點選下方架構圖各層或按「動態追蹤」觀察資料流經 LeNet 的維度變化：\n        ",
+    "en": "👆 Click any layer in the architecture diagram below, or press \"Trace\", to watch how the dimensions change as the data flows through LeNet:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "75b0ef50f485": {
+    "zh": "\n        第 0 階段：Input (Input)\n      ",
+    "en": "Stage 0: Input (Input)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "23accd71c39d": {
+    "zh": "<strong>維度尺寸：</strong> <span style=\"color:#2563eb; font-weight:700;\">28×28×1</span>",
+    "en": "<strong>Dimensions:</strong> <span style=\"color:#2563eb; font-weight:700;\">28×28×1</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "120ee7fc1541": {
+    "zh": "<strong>參數量：</strong> 0 (0.0%)",
+    "en": "<strong>Parameters:</strong> 0 (0.0%)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "212098da008f": {
+    "zh": "\n        輸入手寫數字灰階影像 (MNIST)。單通道，每個畫素為 0~1 的灰階值。\n      ",
+    "en": "The input is a grayscale handwritten-digit image (MNIST). Single channel; each pixel is a gray value from 0 to 1.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c4ce6d9e66b9": {
+    "zh": "\n        全網路總參數量：<strong>61,750</strong><br>\n        Conv+Pool 參數：<strong>~2,616 (4.3%)</strong><br>\n        FC 全連線層參數：<strong>~59,134 (95.7%)</strong>\n      ",
+    "en": "Total parameters of the whole network: <strong>61,750</strong><br>\n        Conv+Pool parameters: <strong>~2,616 (4.3%)</strong><br>\n        Fully connected (FC) parameters: <strong>~59,134 (95.7%)</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "001903fb2466": {
+    "zh": "\n      🧪 <strong>實測大觀察：</strong><br>\n      1. <strong>參數量集中地</strong>：觀察 Readout 中的參數量統計——前四層 Conv/Pool 總共只有約 3,000 個參數，而後三層 FC 就佔了 57,000+ 參數（&gt;90%）！這正是為什麼現代 CNN（如 ResNet）會用 Global Average Pooling 取代肥大的全連線層。<br>\n      2. <strong>特徵圖演變</strong>：解析度從 28×28 逐步腰斬至 5×5，而語意通道數由 1 升至 16，完成特徵抽象化。\n    ",
+    "en": "🧪 <strong>The big hands-on observation:</strong><br>\n      1. <strong>Where the parameters concentrate</strong>: look at the parameter counts in the Readout: the first four Conv/Pool layers have only about 3,000 parameters in total, while the last three FC layers take up 57,000+ (&gt;90%)! This is exactly why modern CNNs (such as ResNet) replace the bloated fully connected layers with global average pooling.<br>\n      2. <strong>How the feature maps evolve</strong>: the resolution is cut down step by step from 28×28 to 5×5, while the number of semantic channels rises from 1 to 16, completing the abstraction of features.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bbc0c2e6369": {
+    "zh": "08 / 實戰檢驗 · Concept Checkpoint",
+    "en": "08 / Put It to the Test",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0587408d7df6": {
+    "zh": "題目 1 · 歷史淵源 / Historical Origin",
+    "en": "Question 1 · Historical origin",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "efe577115b7c": {
+    "zh": "CNN 最早以 neocognitron 之名提出的是誰、大約哪一年？",
+    "en": "Who first proposed the CNN under the name neocognitron, and in roughly what year?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "efc03b435b3d": {
+    "zh": "B. Kunihiko Fukushima（福島邦彥），1980",
+    "en": "B. Kunihiko Fukushima, 1980",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "19a52da787b9": {
+    "zh": "題目 2 · 基準資料集 / Benchmark Dataset",
+    "en": "Question 2 · Benchmark dataset",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "284a2c0de57b": {
+    "zh": "MNIST 資料集是在哪個脈絡被引入深度學習領域的？",
+    "en": "In what context was the MNIST dataset introduced into deep learning?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a5b0e1c2ca0d": {
+    "zh": "A. 與 LeNet 1998 論文同時作為手寫數字基準集發表",
+    "en": "A. Published as a handwritten-digit benchmark together with the 1998 LeNet paper",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "77c161eb490b": {
+    "zh": "B. 只存在於 ImageNet 競賽",
+    "en": "B. It exists only in the ImageNet competition",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c83bee11cdd0": {
+    "zh": "C. 福島 1980 年 neocognitron 附帶釋出",
+    "en": "C. It was released alongside Fukushima's 1980 neocognitron",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2a9b5c92526c": {
+    "zh": "D. 是 Chap. 22 才發明的 PyTorch 專用資料集",
+    "en": "D. It is a PyTorch-only dataset invented in Chap. 22",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fb283c9cfe40": {
+    "zh": "題目 3 · 尺寸演進 / Dimension Pipeline",
+    "en": "Question 3 · Size progression",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "67fed4519270": {
+    "zh": "LeNet 特徵圖尺寸與通道的正確變化順序是？",
+    "en": "What is the correct sequence of LeNet's feature-map sizes and channels?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d286fc80cbea": {
+    "zh": "A. $28\\times 28\\times 6 \\to$ 池化 $14\\times 14 \\to 10\\times 10\\times 16 \\to 5\\times 5 \\to$ FC 120-84-10",
+    "en": "A. $28\\times 28\\times 6 \\to$ pooling $14\\times 14 \\to 10\\times 10\\times 16 \\to 5\\times 5 \\to$ FC 120-84-10",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f50c616b1707": {
+    "zh": "B. 直接 flatten 成 784 再接 10 類",
+    "en": "B. Flatten straight to 784, then 10 classes",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c5b74b610fe2": {
+    "zh": "D. 只有一層全連線 120 神經元",
+    "en": "D. Only one fully connected layer of 120 neurons",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c9c27ea4da57": {
+    "zh": "題目 4 · 架構啟發 / Architectural Inspiration",
+    "en": "Question 4 · Architectural inspiration",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9061104798f3": {
+    "zh": "LeNet 對後世「常規 CNN」最關鍵的結構啟發是？",
+    "en": "What is LeNet's most important structural lesson for the later \"conventional CNN\"?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "323287962f90": {
+    "zh": "A. 必須只用手刻 Prewitt 核、禁止學習",
+    "en": "A. Only hand-crafted Prewitt kernels may be used; learning is forbidden",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "417b0c839d32": {
+    "zh": "B. 前面卷積／池化抽空間特徵，結尾全連線做分類決策",
+    "en": "B. Convolution/pooling up front extracts spatial features; fully connected layers at the end make the classification decision",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "64a73c73aba8": {
+    "zh": "C. 取消所有非線性啟用函式",
+    "en": "C. Remove all nonlinear activation functions",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8b4ae67ea2fe": {
+    "zh": "D. 輸入一定要先丟棄空間結構",
+    "en": "D. The input must discard its spatial structure first",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

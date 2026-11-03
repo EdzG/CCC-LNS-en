@@ -1,0 +1,806 @@
+{
+  "_runtime": {
+    "exact": {
+      "5×5 典型支路": "typical 5×5 branch",
+      "3×3 典型支路": "typical 3×3 branch",
+      "深層 5×5 支路": "deep 5×5 branch",
+      "特徵圖尺寸：": "Feature map size:",
+      "帶 1×1 瓶頸層 FLOPs：": "FLOPs with a 1×1 bottleneck layer:",
+      "FLOPs 總節省比例：": "Total FLOPs savings:",
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "1×1 可當成通道方向的線性變換；放在貴的 3×3、5×5 前與 pooling 後，是為了降維、減少冗餘。": "A 1×1 can be viewed as a linear transformation along the channel dimension; it is placed before the expensive 3×3 and 5×5 and after pooling to reduce dimensionality and redundancy.",
+      "前處理零中心、核心是堆疊 Inception、卷積（含模組內）皆 ReLU，對應原文對 Fig. 15 的描述。": "Zero-centered preprocessing, a core of stacked Inception modules, and ReLU on every convolution (including those inside the modules): this matches the original text's description of Fig. 15.",
+      "昂貴的 3×3、5×5 前先 1×1 壓通道；pooling 後也接 1×1，這是最終模組相對早期設計的關鍵改動。": "A 1×1 compresses the channels before the expensive 3×3 and 5×5, and a 1×1 also follows pooling: this is the key change of the final module compared with the early design.",
+      "深層特徵更抽象，需要較大感受野，因此 3×3、5×5 比例提高；也因此更需要 1×1 降維來控制計算量。": "Deeper features are more abstract and need larger receptive fields, so the share of 3×3 and 5×5 increases; that is also why 1×1 dimensionality reduction is needed even more to keep the computation under control."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(.+) 乘加運算量 \\(FLOPs\\) 節省對比：$",
+        "en": "Multiply-add (FLOPs) savings, $T1:"
+      },
+      {
+        "re": "^直接 (\\d)×(\\d) 卷積: (.+)$",
+        "en": "Direct $1×$2 conv: $3"
+      },
+      {
+        "re": "^1×1 瓶頸 \\+ (\\d)×(\\d): (.+)$",
+        "en": "1×1 bottleneck + $1×$2: $3"
+      },
+      {
+        "re": "^🎉 運算量節省：(\\d+)%！$",
+        "en": "🎉 Compute saved: $1%!"
+      },
+      {
+        "re": "^1×1 瓶頸先將通道從 (\\d+) 砍至 (\\d+)，使得後續 (\\d)×(\\d) 負擔大幅減輕。$",
+        "en": "The 1×1 bottleneck first cuts channels from $1 to $2, greatly easing the $3×$4."
+      },
+      {
+        "re": "^1×1 瓶頸層運算量診斷報告 \\[(.+)\\]$",
+        "en": "1×1 bottleneck layer compute diagnostic report [$T1]"
+      },
+      {
+        "re": "^(\\d+)×(\\d+)，輸入通道：(\\d+)，輸出通道：(\\d+)$",
+        "en": "$1×$2, input channels: $3, output channels: $4"
+      },
+      {
+        "re": "^直接 (\\d)×(\\d) 卷積 FLOPs：$",
+        "en": "Direct $1×$2 convolution FLOPs:"
+      },
+      {
+        "re": "^\\(1×1 降維: (.+)M \\+ (\\d)×(\\d) 卷積: (.+)M\\)$",
+        "en": "(1×1 reduction: $1M + $2×$3 convolution: $4M)"
+      },
+      {
+        "re": "^(\\d+)% 節省$",
+        "en": "$1% saved"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "387706e48042": {
+    "zh": "KP14 · 索引",
+    "en": "KP14 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "02f718d9cfc4": {
+    "zh": "<a href=\"#sec-inception-multiscale\">多尺度並聯架構 · Multi-Scale</a>",
+    "en": "<a href=\"#sec-inception-multiscale\">Multi-scale parallel architecture</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7ed412b39d86": {
+    "zh": "<a href=\"#svg-inception\">1×1 瓶頸層視覺對比 · Visual Breakdown</a>",
+    "en": "<a href=\"#svg-inception\">Visual comparison of the 1×1 bottleneck layer</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e691c07b5825": {
+    "zh": "<a href=\"#sec-googlenet-pipeline\">GoogLeNet 全網佈局 · GoogLeNet Pipeline</a>",
+    "en": "<a href=\"#sec-googlenet-pipeline\">GoogLeNet full-network layout</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a6831f9e5ea8": {
+    "zh": "Inception 與 GoogLeNet：多尺度與 1×1 降維\n      <span class=\"hero-title-en\">Inception and GoogLeNet: Multi-Scale &amp; 1×1 Dimension Reduction</span>\n    ",
+    "en": "Inception and GoogLeNet: Multi-Scale and 1×1 Dimensionality Reduction",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b2aeae9c2562": {
+    "zh": "\n      加深加寬網路容易導致參數暴增與過擬合。奪得 ILSVRC 2014 桂冠的 GoogLeNet 給出了革命性解方：在同一層中並聯 1×1、3×3、5×5 與池化多尺度分支，更首創在昂貴大核前插入 1×1 卷積作為「降維瓶頸層（Bottleneck）」。看似只看單一畫素的 1×1 卷積，實現了通道方向的線性降維，讓網路「看起來極寬、算起來極瘦」！\n    ",
+    "en": "Making a network deeper and wider easily leads to an explosion of parameters and overfitting. GoogLeNet, winner of ILSVRC 2014, offered a revolutionary solution: run 1×1, 3×3, 5×5 and pooling multi-scale branches in parallel within the same layer, and, for the first time, insert a 1×1 convolution before the expensive big kernels as a \"dimensionality-reduction bottleneck layer\". The 1×1 convolution, which seems to look at only a single pixel, performs linear dimensionality reduction along the channel direction, making the network \"look extremely wide, but compute extremely lean\"!",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "af355b292d21": {
+    "zh": "\n      「1×1 卷積視窗只有單個畫素，根本看不到任何空間形狀；<br>\n      為何它反倒成為拯救深層神經網路免於算力崩潰的降維救星？」\n      <small>1×1 不是看空間，而是跨通道線性混和與減肥！先 1×1 瘦身再做昂貴 5×5，計算量直接砍掉 70%！<br>\n        <span class=\"bilingual-en-inline\">1x1 operates across channels, not space! Compressing channels before large filters slashes FLOPs by over 70%!</span>\n      </small>\n    ",
+    "en": "“A 1×1 convolution window covers only a single pixel and cannot see any spatial shape at all;<br> so why has it become the dimensionality-reduction savior that rescues deep neural networks from a compute collapse?” <small>1×1 doesn't look at space; it linearly mixes and slims down across channels! Slim down with 1×1 first, then do the expensive 5×5, and the computation is cut by 70% outright!</small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "f3658aecc279": {
+    "zh": "02 / 多尺度並列哲學 · Multi-Scale Inception",
+    "en": "02 / The Multi-Scale Parallel Philosophy",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d11cfe1dde2e": {
+    "zh": "初版 Inception 模組：多尺度特徵並聯擷取 (Fig. 13)\n    <span class=\"en\">Naive Inception: Parallel Multi-Scale Receptive Fields (Fig. 13)</span>\n  ",
+    "en": "The naive Inception module: extracting multi-scale features in parallel (Fig. 13)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0a03aa7a59f1": {
+    "zh": "為什麼需要多尺度？",
+    "en": "Why do we need multiple scales?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "79a94371d374": {
+    "zh": "\n      在輸入影像中，不同物體或相同物體的關鍵特徵所佔據的畫素範圍截然不同。淺層網路中，微小局部的特徵團塊僅需 $1\\times 1$ 即可處理；中等尺度的紋理需要 $3\\times 3$；較廣泛的幾何結構則需要 $5\\times 5$。\n    ",
+    "en": "In an input image, the key features of different objects, or even of the same object, occupy very different pixel extents. In shallow layers, tiny local feature blobs need only $1\\times 1$; medium-scale textures need $3\\times 3$; broader geometric structures need $5\\times 5$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c6c521ba0ee2": {
+    "zh": "\n      與其糾結在「這一層該用多大的核」，Inception 選擇<strong>小孩子才做選擇，我全都要</strong>：在同一層內部同時平行執行四條支路：\n    ",
+    "en": "Instead of agonizing over \"how big a kernel should this layer use\", Inception takes the attitude <strong>\"only kids have to choose; I want them all\"</strong>: four branches run in parallel at the same time inside the same layer:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1d590c81c329": {
+    "zh": "<strong>$1\\times 1$ 卷積支路：</strong> 捕捉單畫素級跨通道特徵。",
+    "en": "<strong>$1\\times 1$ convolution branch:</strong> captures single-pixel-level cross-channel features.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8a22f8333853": {
+    "zh": "<strong>$3\\times 3$ 卷積支路：</strong> 捕捉局部鄰域紋理。",
+    "en": "<strong>$3\\times 3$ convolution branch:</strong> captures local neighborhood textures.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "bb608356293b": {
+    "zh": "<strong>$5\\times 5$ 卷積支路：</strong> 捕捉較大範圍的空間輪廓。",
+    "en": "<strong>$5\\times 5$ convolution branch:</strong> captures spatial contours over a larger range.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "aecf4a7f9e27": {
+    "zh": "<strong>$3\\times 3$ Max Pooling 支路：</strong> 保留局部最強響應。",
+    "en": "<strong>$3\\times 3$ max pooling branch:</strong> keeps the strongest local responses.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "38e6c7bacda7": {
+    "zh": "\n      四條支路輸出在通道維度進行<strong>特徵串接（Filter Concatenation）</strong>。但如果通道很厚，直接算 $5\\times 5$ 卷積將導致浮點運算量（FLOPs）徹底爆炸！\n    ",
+    "en": "The outputs of the four branches are <strong>concatenated (filter concatenation)</strong> along the channel dimension. But if the channels are thick, computing the $5\\times 5$ convolution directly makes the floating-point operation count (FLOPs) blow up completely!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "08ebc2364247": {
+    "zh": "03 / 瓶頸層降維視覺化 · Bottleneck Mechanism",
+    "en": "03 / Visualizing Bottleneck Dimensionality Reduction",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5875115cee4a": {
+    "zh": "最終版 Inception：1×1 瓶頸層的前置瘦身奇蹟 (Fig. 14)\n    <span class=\"en\">Final Inception: 1×1 Bottleneck Dimensionality Reduction (Fig. 14)</span>\n  ",
+    "en": "The final Inception: the miracle of slimming down first with a 1×1 bottleneck layer (Fig. 14)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d26f56678ea5": {
+    "zh": "Inception：多尺度仍要，但 5×5 太貴——先用 1×1 把通道減肥再做大核",
+    "en": "Inception: still multi-scale, but 5×5 is too costly—slim the channels with 1×1 before the big kernel",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "64cb7ea207b8": {
+    "zh": "BEFORE · 直接做 5×5 (算力爆炸)",
+    "en": "BEFORE · 5×5 directly (compute explosion)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "65825733555c": {
+    "zh": "輸入通道 C=256 時，大核每個位置都做極厚乘法",
+    "en": "With C=256 input channels, the big kernel does very thick multiplications at every position",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6c8f690e1795": {
+    "zh": "肥厚輸入",
+    "en": "Thick input",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ae04959450bd": {
+    "zh": "5×5 卷積",
+    "en": "5×5 conv",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "974a39c1a2be": {
+    "zh": "吃滿 256 通道",
+    "en": "Eats all 256 channels",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "020e7e829a9c": {
+    "zh": "FLOPs 巨大",
+    "en": "Huge FLOPs",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5652513bfd2b": {
+    "zh": "深層抽象特徵更需要大感受野 → 5×5 比例更高 → 計算癱瘓",
+    "en": "Deep abstract features need larger receptive fields → more 5×5 → computation grinds to a halt",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "688f4af23852": {
+    "zh": "早期模組 (Fig. 13)：1×1／3×3／5×5／pool 並列，未經瘦身",
+    "en": "Early module (Fig. 13): 1×1 / 3×3 / 5×5 / pool in parallel, no slimming",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c4c4d3116f3e": {
+    "zh": "AFTER · 1×1 瓶頸瘦身後再 5×5 (Fig. 14)",
+    "en": "AFTER · 1×1 bottleneck slimming, then 5×5 (Fig. 14)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "fa821d4a3651": {
+    "zh": "最終版 Inception：昂貴大核之前先做降維",
+    "en": "Final Inception: reduce dimensions before the expensive big kernels",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b8f7009a7bb8": {
+    "zh": "輸入",
+    "en": "Input",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7af8096d6bb3": {
+    "zh": "壓至 64",
+    "en": "Squeezed to 64",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "3765895ecba1": {
+    "zh": "只吃 64",
+    "en": "Eats only 64",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "310ecfe988f8": {
+    "zh": "輸出",
+    "en": "Output",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "712ed99cb27f": {
+    "zh": "1×1 同步接在 pooling 之後，防範通道數肆意疊加",
+    "en": "A 1×1 also follows pooling, to keep channel counts from piling up",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1ad1c65101bc": {
+    "zh": "1×1 卷積＝通道維度上的線性重組與資訊濃縮",
+    "en": "1×1 convolution = linear recombination and condensing of information along the channel dimension",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9c861b6c74c9": {
+    "zh": "四路並行：1×1 ∥ 3×3 ∥ 5×5 ∥ pool → Concat",
+    "en": "Four parallel paths: 1×1 ∥ 3×3 ∥ 5×5 ∥ pool → Concat",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "66b49e2c4a32": {
+    "zh": "GoogLeNet＝堆疊 Inception 模組（向 LeNet 致敬）· ILSVRC 2014 冠軍",
+    "en": "GoogLeNet = stacked Inception modules (a nod to LeNet) · ILSVRC 2014 winner",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1b3d6b0a0c6e": {
+    "zh": "輸入 224×224×3 先減 RGB 均值；所有卷積均接 ReLU；越深層配置越多 3×3／5×5 大感受野",
+    "en": "Input 224×224×3, RGB mean subtracted first; every conv followed by ReLU; deeper layers get more 3×3 / 5×5 large receptive fields",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a7736d073f8e": {
+    "zh": "大師洞察：加寬加深深怕過擬合與算爆——用 1×1 瓶頸讓網路「看起來極寬、算起來極瘦」！",
+    "en": "Master insight: widening and deepening risks overfitting and blowing the compute—a 1×1 bottleneck makes the network \"look extremely wide, but compute extremely lean\"!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "bf62bb59694b": {
+    "zh": "圖 14.1：Inception 模組 1×1 降維瓶頸層演進與四支路並聯對比",
+    "en": "Figure 14.1: Evolution of the Inception module's 1×1 dimensionality-reduction bottleneck layer and comparison of the four parallel branches",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5afada59e2ca": {
+    "zh": "💡 1×1 卷積的關鍵位置",
+    "en": "💡 Where the 1×1 convolutions go",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3d06418d09d3": {
+    "zh": "\n          在原書教材 <strong>Fig. 14</strong> 中，1×1 降維的位置有嚴格的幾何講究：\n        ",
+    "en": "In the textbook's <strong>Fig. 14</strong>, the placement of the 1×1 dimensionality reduction follows strict geometric logic:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "dfe31e741f2f": {
+    "zh": "在昂貴的 $3\\times 3$ 與 $5\\times 5$ <strong>之前</strong>：先將厚通道壓扁，大幅減少乘加運算。",
+    "en": "<strong>Before</strong> the expensive $3\\times 3$ and $5\\times 5$: first flatten the thick channels, greatly reducing the multiply-add operations.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3ebd23ad92fa": {
+    "zh": "在 $3\\times 3$ Max Pooling <strong>之後</strong>：池化本身不改變通道數，若直接拼接會讓輸出通道暴增，故池化後接 $1\\times 1$ 控制通道數。",
+    "en": "<strong>After</strong> the $3\\times 3$ max pooling: pooling itself does not change the number of channels, and concatenating it directly would make the output channels explode, so a $1\\times 1$ follows the pooling to control the channel count.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "74bb61d5dd22": {
+    "zh": "🔭 深層與感受野配比規律",
+    "en": "🔭 How depth and receptive field proportions scale",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "38f6f73885cf": {
+    "zh": "\n          越靠近網路輸出端，特徵越抽象，需要<strong>更大的感受野</strong>以捕捉全域語意。因此 GoogLeNet 在較深層的 Inception 模組中，主動調高了 $3\\times 3$ 與 $5\\times 5$ 的比重。\n        ",
+    "en": "The closer to the network's output, the more abstract the features, and the <strong>larger the receptive field</strong> needed to capture global semantics. So in its deeper Inception modules, GoogLeNet deliberately raises the share of $3\\times 3$ and $5\\times 5$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8d95d4b2d34a": {
+    "zh": "04 / 經典冠軍架構 · GoogLeNet Architecture",
+    "en": "04 / The Classic Champion Architecture",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a73853df96da": {
+    "zh": "GoogLeNet（Inception-v1）全網 22 層規格分解\n    <span class=\"en\">GoogLeNet Full 22-Layer Architectural Specifications &amp; Auxiliary Classifiers</span>\n  ",
+    "en": "Breakdown of the full 22-layer GoogLeNet (Inception-v1) specification",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "904145ed1320": {
+    "zh": "架構模組 Component",
+    "en": "Component",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "918979f7cef6": {
+    "zh": "具體規格與設定 Specification",
+    "en": "Specification and settings",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4a28d1bc8115": {
+    "zh": "設計動機與效能貢獻 Rationale",
+    "en": "Design rationale and performance contribution",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4cd5bcb9c26e": {
+    "zh": "<strong>前處理輸入</strong>",
+    "en": "<strong>Preprocessed input</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "773b28129583": {
+    "zh": "$224\\times 224\\times 3$ RGB，減去通道均值",
+    "en": "$224\\times 224\\times 3$ RGB, channel means subtracted",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "565600459848": {
+    "zh": "資料零中心化，確保數值傳播對稱性",
+    "en": "Zero-centered data keeps numerical propagation symmetric",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7254d24adb3b": {
+    "zh": "<strong>骨幹堆疊</strong>",
+    "en": "<strong>Backbone stack</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6453bd78c21a": {
+    "zh": "共 9 個 Inception 模組連續堆疊（全網 22 層）",
+    "en": "9 Inception modules stacked in a row (22 layers in total)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a455019b6397": {
+    "zh": "在極深架構下以稀疏並聯結構維持強大表徵容量",
+    "en": "A sparse parallel structure keeps strong representational capacity in a very deep architecture",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "24e693770181": {
+    "zh": "<strong>啟用函式</strong>",
+    "en": "<strong>Activation function</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cedc253eef6a": {
+    "zh": "全網所有卷積層一律採用 ReLU",
+    "en": "ReLU in every convolutional layer of the network",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5b696efa1c48": {
+    "zh": "防止深層網路梯度飽和",
+    "en": "Prevents gradient saturation in a deep network",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d2d34f4722bf": {
+    "zh": "<strong>輔助分類器</strong>",
+    "en": "<strong>Auxiliary classifiers</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dcf8c6740742": {
+    "zh": "在中間層引出兩組輔助 Softmax 分類器（權重 0.3）",
+    "en": "Two auxiliary softmax classifiers branch off the intermediate layers (weight 0.3)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "34681a43543f": {
+    "zh": "向淺層直接注入梯度反向傳播，遏止梯度消失",
+    "en": "Inject backpropagated gradients directly into the shallow layers, curbing vanishing gradients",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d6486b7de5a2": {
+    "zh": "<strong>全網參數量</strong>",
+    "en": "<strong>Total parameters</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7ed5810e5fc8": {
+    "zh": "僅約 <strong>500 萬（5M）</strong> 參數",
+    "en": "Only about <strong>5 million (5M)</strong> parameters",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d1579af66f86": {
+    "zh": "AlexNet 參數量（60M）的 $\\frac{1}{12}$，VGG（138M）的 $\\frac{1}{27}$！",
+    "en": "$\\frac{1}{12}$ of AlexNet's parameter count (60M), and $\\frac{1}{27}$ of VGG's (138M)!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a482f57e97e0": {
+    "zh": "05 / 互動實驗室 · Interactive Lab",
+    "en": "05 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ce5088c8ddf4": {
+    "zh": "互動實驗室：1×1 瓶頸層算力節省計算器\n    <span class=\"en\">Interactive Lab: 1×1 Bottleneck FLOPs Savings Calculator</span>\n  ",
+    "en": "Interactive lab: 1×1 bottleneck layer compute savings calculator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2724258153a2": {
+    "zh": "輸入與輸出通道配置:",
+    "en": "Input and output channel configuration:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d198b496c7ba": {
+    "zh": "典型 5×5 支路：Cin=256, Cout=128 (1x1 壓至 32)",
+    "en": "Typical 5×5 branch: Cin=256, Cout=128 (1x1 squeezes to 32)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "40aba96ab334": {
+    "zh": "典型 3×3 支路：Cin=256, Cout=128 (1x1 壓至 96)",
+    "en": "Typical 3×3 branch: Cin=256, Cout=128 (1x1 squeezes to 96)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "603af4323d93": {
+    "zh": "深層 5×5 支路：Cin=512, Cout=256 (1x1 壓至 64)",
+    "en": "Deep 5×5 branch: Cin=512, Cout=256 (1x1 squeezes to 64)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "34ad6d405161": {
+    "zh": "▶ 計算乘加運算量 Calculate FLOPs",
+    "en": "▶ Calculate multiply-add FLOPs",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c955cbe9df8d": {
+    "zh": "\n          乘加運算次數對比（無瓶頸直接卷積 vs 帶 1×1 瓶頸層）：\n        ",
+    "en": "Multiply-add operation count comparison (direct convolution without bottleneck vs with a 1×1 bottleneck layer):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4ba1c182728d": {
+    "zh": "\n        1×1 瓶頸層運算量診斷報告 [5×5 典型支路]\n      ",
+    "en": "1×1 bottleneck layer compute diagnostic report [typical 5×5 branch]",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "28a5b48e625c": {
+    "zh": "<strong>特徵圖尺寸：</strong> 28×28，輸入通道：256，輸出通道：128",
+    "en": "<strong>Feature map size:</strong> 28×28, input channels: 256, output channels: 128",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cf1866c42ae": {
+    "zh": "<strong>直接 5×5 卷積 FLOPs：</strong> <span style=\"color:#e11d48; font-weight:700;\">642.25 MFLOPs</span>",
+    "en": "<strong>Direct 5×5 convolution FLOPs:</strong> <span style=\"color:#e11d48; font-weight:700;\">642.25 MFLOPs</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "df80cc4dba55": {
+    "zh": "<strong>帶 1×1 瓶頸層 FLOPs：</strong> <span style=\"color:#0d9488; font-weight:700;\">86.70 MFLOPs</span>",
+    "en": "<strong>FLOPs with a 1×1 bottleneck layer:</strong> <span style=\"color:#0d9488; font-weight:700;\">86.70 MFLOPs</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c8de5e985a08": {
+    "zh": "(1×1 降維: 6.42M + 5×5 卷積: 80.28M)",
+    "en": "(1×1 reduction: 6.42M + 5×5 convolution: 80.28M)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "891f738d91ab": {
+    "zh": "<strong>FLOPs 總節省比例：</strong> <span style=\"font-size:18px; font-weight:700; color:#15803d;\">87% 節省</span>",
+    "en": "<strong>Total FLOPs savings:</strong> <span style=\"font-size:18px; font-weight:700; color:#15803d;\">87% saved</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cb5bafcc6d7": {
+    "zh": "06 / 實戰檢驗 · Concept Checkpoint",
+    "en": "06 / Concept Checkpoint",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e5a7326e54f7": {
+    "zh": "題目 1 · 最終 Inception 創新 / Final Inception",
+    "en": "Question 1 · The final Inception innovation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "358703e8e20a": {
+    "zh": "最終版 Inception 模組（Fig. 14）相對早期設計（Fig. 13）多了什麼？",
+    "en": "What does the final Inception module (Fig. 14) add compared with the early design (Fig. 13)?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e21928db2b0a": {
+    "zh": "A. 把所有核改成 7×7",
+    "en": "A. Changes every kernel to 7×7",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "be4c845b4990": {
+    "zh": "B. 在 3×3、5×5 之前以及 pooling 之後加入 1×1 降維",
+    "en": "B. Adds 1×1 dimensionality reduction before the 3×3 and 5×5, and after pooling",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b97cdbd10774": {
+    "zh": "C. 拿掉所有 1×1 卷積",
+    "en": "C. Removes every 1×1 convolution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f67689790465": {
+    "zh": "D. 用全連線層取代卷積",
+    "en": "D. Replaces convolutions with fully connected layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "75fdec9cdb16": {
+    "zh": "題目 2 · 1×1 卷積動機 / 1x1 Conv Motive",
+    "en": "Question 2 · Why 1×1 convolutions",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7062b1a5ae1c": {
+    "zh": "Inception 用 1×1 卷積的主要動機是？",
+    "en": "What is the main motivation for Inception's 1×1 convolutions?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d57151945994": {
+    "zh": "A. 專門做影像上色",
+    "en": "A. Specifically to colorize images",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ceb51d6c3c4e": {
+    "zh": "B. 線性變換特徵，並在大核之前／pooling 之後做降維以降低計算量",
+    "en": "B. To linearly transform features and reduce dimensions before the big kernels / after pooling, cutting computation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "06c8bc12a201": {
+    "zh": "C. 取代 softmax 分類器",
+    "en": "C. To replace the softmax classifier",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "862a764bc6ed": {
+    "zh": "D. 強制使用 LRN",
+    "en": "D. To force the use of LRN",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d4b8e2436f22": {
+    "zh": "題目 3 · GoogLeNet 全網特性 / GoogLeNet Specs",
+    "en": "Question 3 · Properties of the whole GoogLeNet",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d6d4d00e14ea": {
+    "zh": "關於 GoogLeNet（Fig. 15）下列何者正確？",
+    "en": "Which of the following about GoogLeNet (Fig. 15) is correct?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fc0b6e9bb87a": {
+    "zh": "A. 輸入 224×224×3 先減 RGB 均值；以堆疊 Inception 為骨幹；卷積用 ReLU",
+    "en": "A. The 224×224×3 input has the RGB mean subtracted first; the backbone is stacked Inception modules; convolutions use ReLU",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3a15fe60897e": {
+    "zh": "B. 輸入必須是 32×32 灰階",
+    "en": "B. The input must be 32×32 grayscale",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "851246b6f78c": {
+    "zh": "C. 全程不用 ReLU、改用 LRN",
+    "en": "C. No ReLU anywhere; LRN is used instead",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6119f41ab534": {
+    "zh": "D. 只有一層 Inception、其餘全是全連線",
+    "en": "D. Only one Inception layer; everything else is fully connected",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a90a03bf07ac": {
+    "zh": "題目 4 · 深層感受野分配 / Deep Receptive Fields",
+    "en": "Question 4 · Receptive field allocation in deep layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fa33c21edd33": {
+    "zh": "為什麼較深、靠近輸出的 Inception 層會配置較多 3×3 與 5×5？",
+    "en": "Why do the deeper Inception layers, close to the output, get more 3×3 and 5×5?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f760aeb9953d": {
+    "zh": "A. 因為那些層需要更大的感受野來處理更抽象的特徵",
+    "en": "A. Because those layers need larger receptive fields to handle more abstract features",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "540b9454ac56": {
+    "zh": "B. 因為淺層才需要大核",
+    "en": "B. Because only shallow layers need big kernels",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c375280eea5a": {
+    "zh": "C. 因為 1×1 在深層被禁止",
+    "en": "C. Because 1×1 is forbidden in deep layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "99550823076d": {
+    "zh": "D. 因為 max pooling 只能接在輸出層",
+    "en": "D. Because max pooling can only be attached to the output layer",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f9d492857e3a": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：Inception 與瓶頸降維\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#99f6e4; font-weight:normal;\">Key Takeaways: Multi-Scale Inception &amp; Bottlenecks</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: Inception and bottleneck dimensionality reduction",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9a337dca2a1e": {
+    "zh": "<strong>多尺度並聯（Fig. 13）：</strong> 1×1、3×3、5×5 與 Pooling 同時並聯，克服單一尺度感受野侷限，兼顧局部細節與全域特徵。",
+    "en": "<strong>Multi-scale parallelism (Fig. 13):</strong> 1×1, 3×3, 5×5 and pooling run in parallel at the same time, overcoming the limits of a single-scale receptive field and covering both local details and global features.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1cec6920abfc": {
+    "zh": "<strong>1×1 瓶頸層降維（Fig. 14）：</strong> 昂貴大核前先以 1×1 壓縮通道數，Pooling 後接 1×1 抑制作為，算力節省超過 70%。",
+    "en": "<strong>1×1 bottleneck dimensionality reduction (Fig. 14):</strong> a 1×1 compresses the channel count before the expensive big kernels, and a 1×1 after pooling acts as a suppressor; the compute savings exceed 70%.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "25fd8b3321be": {
+    "zh": "<strong>極致效率的 GoogLeNet：</strong> 22 層深度僅消耗約 500 萬參數（僅 AlexNet 的 $\\frac{1}{12}$），展現稀疏架構的強大威力。",
+    "en": "<strong>The ultra-efficient GoogLeNet:</strong> 22 layers deep yet using only about 5 million parameters (just $\\frac{1}{12}$ of AlexNet), showing the power of a sparse architecture.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "282ec46666db": {
+    "zh": "<strong>感受野深層遞增：</strong> 隨網路加深逐步擴大 $3\\times 3$ 與 $5\\times 5$ 的配比，完美迎合高階抽象語意表徵的宏觀需求！",
+    "en": "<strong>Receptive fields growing with depth:</strong> the share of $3\\times 3$ and $5\\times 5$ is gradually increased as the network deepens, perfectly meeting the big-picture needs of high-level abstract semantic representations!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

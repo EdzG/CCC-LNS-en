@@ -1,0 +1,866 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "再想想看！": "Think again!",
+      "每一個卷積層由卷積運算（局部加權求和）、偵測器階段（非線性啟用函式）與池化階段（局部摘要與下取樣）三部曲構成。": "Every convolutional layer is built from three stages: the convolution operation (a local weighted sum), the detector stage (a nonlinear activation function), and the pooling stage (local summary and downsampling).",
+      "Prewitt 水平核以上下差分檢測水平亮暗變化，垂直核以左右差分檢測垂直亮暗變化，為傳統邊緣檢測經典範例。": "The Prewitt horizontal kernel detects horizontal light–dark changes with top–bottom differences, and the vertical kernel detects vertical light–dark changes with left–right differences; they are the classic example of traditional edge detection.",
+      "不同視覺任務需要截然不同的幾何特徵，將核權重交由模型隨任務與資料自主學習，是深度學習取代傳統視覺的根本轉折。": "Different vision tasks need completely different geometric features; letting the model learn the kernel weights on its own from the task and the data is the fundamental turning point at which deep learning replaced traditional vision.",
+      "卷積核權重透過第三章講述的反向傳播（Backpropagation）與隨機梯度下降（SGD）進行端到端梯度更新。": "The kernel weights are updated end to end by gradients, through backpropagation and stochastic gradient descent (SGD), as covered in Chapter 3.",
+      "輸入影像 (6×6)": "Input (6×6)",
+      "卷積加權 (4×4)": "Conv (4×4)",
+      "偵測啟用 ReLU": "Detector ReLU",
+      "未啟用": "No activation",
+      "最大池化 (2×2)": "Max pool (2×2)",
+      "當前模式：": "Current pattern:",
+      "濾波器：": "Filter:",
+      "啟用函式：": "Activation function:",
+      "池化狀態：": "Pooling status:",
+      "2×2 最大池化 (Max Pooling)": "2×2 max pooling",
+      "無 (Linear)": "None (linear)",
+      "停用": "Off",
+      "觀察到 ReLU 截斷": "ReLU clipping observed",
+      "：卷積產生的負加權值已被成功整流為 0。": ": the negative weighted values produced by the convolution have been successfully rectified to 0.",
+      "💡 響應訊號均為非負值或已整流。": "💡 The response signals are all non-negative or already rectified."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "bdd969d7548e": {
+    "zh": "KP03 · 索引",
+    "en": "KP03 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ea5786bb4b61": {
+    "zh": "<a href=\"#three-stages\">卷積層三階段 · Three Stages</a>",
+    "en": "<a href=\"#three-stages\">Three Stages of a Convolutional Layer</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "585a294c4209": {
+    "zh": "<a href=\"#prewitt-kernels\">Prewitt 邊緣核 · Prewitt Kernels</a>",
+    "en": "<a href=\"#prewitt-kernels\">Prewitt Edge Kernels</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0baa7f82a30a": {
+    "zh": "<a href=\"#handcrafted-vs-learned\">手刻到學習的轉折 · Paradigm Shift</a>",
+    "en": "<a href=\"#handcrafted-vs-learned\">From Hand-Crafted to Learned</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4959efa1aee8": {
+    "zh": "<a href=\"#svg-stages\">圖解三道工序 · Visual Stages</a>",
+    "en": "<a href=\"#svg-stages\">The Three Stages in a Diagram</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "896900016efe": {
+    "zh": "<a href=\"#comparison\">手刻核 vs 學習核 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Hand-Crafted vs Learned Kernels</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "dd8d9809b5d7": {
+    "zh": "卷積層三階段與 Prewitt 核\n      <span class=\"hero-title-en\">Three Stages of a Convolutional Layer &amp; Prewitt Kernels</span>\n    ",
+    "en": "The Three Stages of a Convolutional Layer and the Prewitt Kernels",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "8944f1c252c1": {
+    "zh": "\n      一個卷積層並非單純的矩陣乘法，而是由<strong>卷積加權</strong>、<strong>偵測器啟用</strong>與<strong>池化摘要</strong>三道工序串聯而成。傳統影像處理仰賴工程師手刻 Prewitt 等邊緣濾波器；現代 CNN 的革命在於將濾波器數值轉為可學習參數，由反向傳播自動淬鍊最佳特徵。\n    ",
+    "en": "A convolutional layer is not just a matrix multiplication: it chains three stages, <strong>convolution weighting</strong>, <strong>detector activation</strong> and <strong>pooling summary</strong>. Traditional image processing relied on engineers hand-crafting edge filters such as Prewitt; the revolution of modern CNNs is turning the filter values into learnable parameters, so that backpropagation automatically distills the best features.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "0c90a61305bc": {
+    "zh": "\n      「一個卷積層，裡面做了幾件事？」\n      <small>卷積加權 $\\to$ 啟用點亮 $\\to$ 池化摘要：三道工序，缺一不可！<br>\n        <span class=\"bilingual-en-inline\">Convolution → Detector → Pooling: three stages, not one.</span>\n      </small>\n    ",
+    "en": "“How many things happen inside one convolutional layer?”\n      <small>Convolution weighting $\\to$ activation lights up $\\to$ pooling summary: three stages, and none can be left out!</small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "08b27db3ee90": {
+    "zh": "02 / 核心工序 · Three Stages",
+    "en": "02 / Core Stages",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "aad6682c834b": {
+    "zh": "一層卷積不是一次乘法：解構內部三道工序\n    <span class=\"en\">Not Just Multiplication: Deconstructing the Three Stages</span>\n  ",
+    "en": "One convolutional layer is not a single multiplication: unpacking its three internal stages",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "660ef7c18aea": {
+    "zh": "\n    課本明確指出，常規神經網路中的「一個卷積層」本質上是三階管線：\n  ",
+    "en": "The textbook states it clearly: “a convolutional layer” in a typical neural network is essentially a three-stage pipeline:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "dcea7159fb76": {
+    "zh": "第 1 階段 · 卷積運算",
+    "en": "Stage 1 · Convolution",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3b62936629af": {
+    "zh": "卷積階段 (Convolution Stage)",
+    "en": "Convolution stage",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5c133a45be00": {
+    "zh": "\n        使用濾波器（kernel / filter）在輸入特徵圖上滑動，執行<strong>局部線性加權求和</strong>（仿射變換），萃取局域空間關聯。\n      ",
+    "en": "A filter (kernel / filter) slides over the input feature map and computes a <strong>local linear weighted sum</strong> (an affine transformation), extracting local spatial correlations.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9b728fe710d4": {
+    "zh": "第 2 階段 · 偵測啟用",
+    "en": "Stage 2 · Detector activation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "acdf0794d530": {
+    "zh": "偵測器階段 (Detector Stage)",
+    "en": "Detector stage",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "38a039dd1580": {
+    "zh": "\n        透過非線性啟用函式（如 ReLU、GELU），決定該位置特徵<strong>「被點亮的程度」</strong>，賦予神經網路表達複雜非線性邊界的能力。\n      ",
+    "en": "A nonlinear activation function (such as ReLU or GELU) decides <strong>“how brightly the feature at that position lights up”</strong>, giving the neural network the ability to express complex nonlinear boundaries.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8c70dc28a7ef": {
+    "zh": "第 3 階段 · 局部池化",
+    "en": "Stage 3 · Local pooling",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a0b82d62b375": {
+    "zh": "池化階段 (Pooling Stage)",
+    "en": "Pooling stage",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4b150401da61": {
+    "zh": "\n        以統計量（如最大值 Max、平均值 Avg）進行<strong>局部空間彙整與下取樣</strong>，抑制微小位移干擾並壓縮資料維度。\n      ",
+    "en": "A summary statistic (such as the maximum, Max, or the average, Avg) performs <strong>local spatial aggregation and downsampling</strong>, suppressing interference from small shifts and compressing the data's dimensions.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a64a3ba50792": {
+    "zh": "03 / 經典濾波器 · Prewitt Filters",
+    "en": "03 / Classic Filters",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1135a5d7c927": {
+    "zh": "傳統影像處理的手刻核：Prewitt 水平與垂直邊緣偵測\n    <span class=\"en\">Hand-Crafted Filters in Classic Computer Vision: Prewitt Kernels</span>\n  ",
+    "en": "Hand-crafted kernels of traditional image processing: Prewitt horizontal and vertical edge detection",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e51978964a82": {
+    "zh": "濾波器在空間上到底做了什麼？",
+    "en": "What does a filter actually do in space?",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1c5bfeaf6b05": {
+    "zh": "\n      在深度學習流行前，計算機視覺工程師必須針對不同任務人工設計 3×3 核。經典的 <strong>Prewitt 濾波器</strong>（式 1）即是利用鄰域差分抓取影像梯度的代表：\n    ",
+    "en": "Before deep learning became popular, computer-vision engineers had to design 3×3 kernels by hand for each task. The classic <strong>Prewitt filter</strong> (Eq. 1) is the typical example of using neighborhood differences to capture image gradients:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2954c3d2fc05": {
+    "zh": "<strong>水平核（左）</strong>：上正下負（上方加權 $+1$、下方加權 $-1$）。當影像出現水平方向的亮度階躍時，輸出數值絕對值極大。",
+    "en": "<strong>Horizontal kernel (left)</strong>: positive on top, negative at the bottom (weight $+1$ on top, $-1$ at the bottom). When the image has a brightness step in the horizontal direction, the output's absolute value is very large.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "236aa5bb8e07": {
+    "zh": "<strong>垂直核（右）</strong>：左正右負（左側加權 $+1$、右側加權 $-1$）。當影像出現垂直向邊緣時，輸出顯著響應。",
+    "en": "<strong>Vertical kernel (right)</strong>: positive on the left, negative on the right (weight $+1$ on the left, $-1$ on the right). When the image has a vertical edge, the output responds strongly.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b997844e6b4a": {
+    "zh": "04 / 典範轉移 · Paradigm Shift",
+    "en": "04 / Paradigm Shift",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "6f015e876d11": {
+    "zh": "關鍵轉折：濾波器不要人工刻，交給反向傳播學！\n    <span class=\"en\">The Paradigm Shift: From Hand-Crafting to End-to-End Learning</span>\n  ",
+    "en": "The key turning point: don't hand-craft filters, let backpropagation learn them!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c712f5b48692": {
+    "zh": "🔒 手刻核的先天困境",
+    "en": "🔒 The built-in dilemma of hand-crafted kernels",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cf7cf3fd2261": {
+    "zh": "\n        真實世界的特徵遠比單純的水平/垂直邊緣複雜！有不同角度的斜線、特定頻率的紋理、乃至貓狗毛皮的複雜色塊。要求工程師手調成千上萬個核的 9 個數值既不現實，也無法跨任務遷移。\n      ",
+    "en": "Real-world features are far more complex than simple horizontal/vertical edges! There are slanted lines at different angles, textures of specific frequencies, even the complex color patches of cat and dog fur. Asking engineers to hand-tune the 9 values of thousands of kernels is unrealistic, and the kernels cannot transfer across tasks.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1e35b1a085f9": {
+    "zh": "🎯 現代 CNN 的核心突破",
+    "en": "🎯 The core breakthrough of modern CNNs",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f74b61569651": {
+    "zh": "\n        CNN 的靈魂就在於：<strong>把核內的每一個數字都設為可學習權重 $\\boldsymbol{W}$</strong>！利用第三章詳述的<strong>反向傳播演算法（Backpropagation）</strong>，藉由任務損失函式倒灌梯度：\n        $$\\boldsymbol{W}^{(t+1)} = \\boldsymbol{W}^{(t)} - \\eta \\frac{\\partial \\mathcal{L}}{\\partial \\boldsymbol{W}}$$\n        資料集本身會決定神經網路該演化出怎樣的濾波器！\n      ",
+    "en": "The soul of a CNN is this: <strong>make every number in the kernel a learnable weight $\\boldsymbol{W}$</strong>! Using the <strong>backpropagation algorithm</strong> detailed in Chapter 3, gradients flow back from the task's loss function:\n        $$\\boldsymbol{W}^{(t+1)} = \\boldsymbol{W}^{(t)} - \\eta \\frac{\\partial \\mathcal{L}}{\\partial \\boldsymbol{W}}$$\n        The dataset itself decides what filters the neural network should evolve!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bbc04ec4f804": {
+    "zh": "05 / 流程圖解 · Stage Visualization",
+    "en": "05 / Workflow Diagram",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3cc1dc5a84d4": {
+    "zh": "三階工序流程圖：從線性組合到非線性抽象\n    <span class=\"en\">Workflow: From Linear Convolution to Abstract Representation</span>\n  ",
+    "en": "Three-stage workflow diagram: from linear combination to nonlinear abstraction",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ea077c50e0b7": {
+    "zh": "1. 卷積階段 (Conv)",
+    "en": "1. Convolution stage (Conv)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "39568b30ec12": {
+    "zh": "局部加權和 · 核全圖滑動",
+    "en": "Local weighted sum · kernel slides over image",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d4c2ece1654f": {
+    "zh": "2. 偵測器階段 (Detector)",
+    "en": "2. Detector stage",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "032d7451de59": {
+    "zh": "非線性啟用 · ReLU 門檻點亮",
+    "en": "Nonlinear activation · ReLU threshold",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "dbf6684fe64a": {
+    "zh": "3. 池化階段 (Pooling)",
+    "en": "3. Pooling stage",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e48c35fbbaeb": {
+    "zh": "下取樣摘要 · 局部平移不變",
+    "en": "Downsampled summary · local shift invariance",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "0ca13d4cf1ec": {
+    "zh": "BEFORE · 人工手刻 Prewitt",
+    "en": "BEFORE · Hand-crafted Prewitt",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "906b0515a96b": {
+    "zh": "數字寫死 · 換任務即失效",
+    "en": "Hard-coded numbers · fail on a new task",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "bb425ff0d4e8": {
+    "zh": "水平邊緣核",
+    "en": "Horizontal edge kernel",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c22afdcb2b6a": {
+    "zh": "垂直邊緣核",
+    "en": "Vertical edge kernel",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "0efa8d2a968a": {
+    "zh": "❌ 鎖死無法自適應",
+    "en": "❌ Locked, cannot adapt",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "dbd5f0f9b0e6": {
+    "zh": "只能抓水平/垂直",
+    "en": "Only horizontal/vertical",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "9614d1516db8": {
+    "zh": "AFTER · 核作權重，反向傳播自動學",
+    "en": "AFTER · Kernel as weights, learned by backprop",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "b531446842af": {
+    "zh": "9 個權重 $w_{ij}$ 隨機初始化後由損失驅動更新",
+    "en": "9 weights $w_{ij}$, randomly initialized, then updated by the loss",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "87fbaf57e0e5": {
+    "zh": "可微權重張量",
+    "en": "Differentiable weight tensor",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "90564b2183f1": {
+    "zh": "前向前進",
+    "en": "Forward pass",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c1201fbf1a04": {
+    "zh": "反向倒灌 ∇w",
+    "en": "Backward flow ∇w",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c9e8efc8a808": {
+    "zh": "反向傳播最佳化",
+    "en": "Backpropagation optimization",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "1b6366320ff1": {
+    "zh": "損失函式 $\\mathcal{L}$ 自動塑造核",
+    "en": "Loss $\\mathcal{L}$ shapes the kernel automatically",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "37d2f38ac2f0": {
+    "zh": "學會任務專屬的最優濾波器",
+    "en": "Learns the optimal task-specific filter",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "494e5e580d1b": {
+    "zh": "根本洞見：CNN 沒有憑空創造神奇的濾波器，而是用反向傳播取代了工程師手調",
+    "en": "Key insight: CNNs don't conjure magical filters out of thin air; they replace engineers' hand-tuning with backpropagation",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "a001ea5dd2b1": {
+    "zh": "Prewitt 讓我們看清局部加權運算的幾何本質；而機器學習賦予了這些核無限的特徵適應能力。",
+    "en": "Prewitt shows us the geometric essence of local weighted operations; machine learning gives these kernels unlimited feature adaptability.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e53d466ab9e3": {
+    "zh": "圖解卷積層三工序與可學習權重反向傳播機制",
+    "en": "Diagram of the three stages of a convolutional layer and the backpropagation of learnable weights",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "894a373cc037": {
+    "zh": "💡 為什麼這三步缺一不可？",
+    "en": "💡 Why can none of the three steps be left out?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f2ef0a4d002e": {
+    "zh": "<strong>少了啟用</strong>：若只有卷積，多層卷積連續疊加仍然只是一層大線性運算，無法學習非線性曲線邊界。",
+    "en": "<strong>Without activation</strong>: with convolution alone, stacking many convolutional layers is still just one big linear operation and cannot learn nonlinear curved boundaries.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d7fce890d8fa": {
+    "zh": "<strong>少了池化</strong>：特徵圖維度居高不下，且物件稍微平移 1 個畫素就會導致下游特徵完全錯位。",
+    "en": "<strong>Without pooling</strong>: the feature maps stay high-dimensional, and shifting an object by just 1 pixel misaligns the downstream features completely.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a5702381580d": {
+    "zh": "<strong>少了卷積</strong>：失去了局部空間關聯與權重共享優勢，退化為一般多層感知機。",
+    "en": "<strong>Without convolution</strong>: the advantages of local spatial correlation and weight sharing are lost, and the network degenerates into an ordinary multilayer perceptron.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ca7c61d6c236": {
+    "zh": "06 / 對照總結 · Comparison",
+    "en": "06 / Comparison Summary",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8fc6afbaa25f": {
+    "zh": "傳統手刻濾波器 vs 現代卷積學習核\n    <span class=\"en\">Hand-Crafted Filters vs Learnable Convolutional Kernels</span>\n  ",
+    "en": "Traditional hand-crafted filters vs modern learned convolution kernels",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2e77bcf4e9e7": {
+    "zh": "比較向度",
+    "en": "Aspect",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9b2ebff61b59": {
+    "zh": "傳統手刻濾波器（如 Prewitt / Sobel）",
+    "en": "Traditional hand-crafted filters (e.g. Prewitt / Sobel)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4958fdf16739": {
+    "zh": "現代 CNN 可學習卷積核",
+    "en": "Modern CNN learnable kernels",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "67d977e136c7": {
+    "zh": "權重來源",
+    "en": "Source of the weights",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "19124cbc5803": {
+    "zh": "人工根據數學差分公式硬編碼",
+    "en": "Hard-coded by hand from mathematical difference formulas",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "41cadb752430": {
+    "zh": "隨機初始化，反向傳播梯度最佳化",
+    "en": "Randomly initialized, optimized by backpropagated gradients",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c252223c6339": {
+    "zh": "特徵適應性",
+    "en": "Feature adaptability",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0de848c752be": {
+    "zh": "單一固定（僅限特定方向邊緣）",
+    "en": "Single and fixed (edges in specific directions only)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b3ae8296264a": {
+    "zh": "無限彈性（能學會紋理、角點、複雜部件）",
+    "en": "Unlimited flexibility (can learn textures, corners, complex parts)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e902fcfc6c62": {
+    "zh": "多通道互動",
+    "en": "Multi-channel interaction",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f481af588a8c": {
+    "zh": "通常獨立處理每個通道",
+    "en": "Usually processes each channel independently",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "023fe4e0afb0": {
+    "zh": "跨通道線性融合（3D 卷積張量運算）",
+    "en": "Linear fusion across channels (3-D convolution tensor operation)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9751be40811d": {
+    "zh": "任務目標相關性",
+    "en": "Relevance to the task objective",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5c098c8e99e0": {
+    "zh": "與最終下游分類/分割任務脫節",
+    "en": "Disconnected from the final downstream classification/segmentation task",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "dff48a086013": {
+    "zh": "直接對端到端損失函式求導最佳化",
+    "en": "Optimized directly by differentiating the end-to-end loss function",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20befc297746": {
+    "zh": "07 / 互動實驗室 · Interactive Lab",
+    "en": "07 / Interactive Lab",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7bbfc18b7e30": {
+    "zh": "互動實驗室：Prewitt 邊緣偵測器與卷積三階段模擬\n    <span class=\"en\">Interactive Lab: Prewitt Edge Detectors &amp; Three-Stage Simulation</span>\n  ",
+    "en": "Interactive lab: Prewitt edge detectors and a simulation of the three convolution stages",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a8d6d25f86ad": {
+    "zh": "輸入圖案 Pattern:",
+    "en": "Input pattern:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ae8a34d0158f": {
+    "zh": "水平條紋 (Horizontal Edge)",
+    "en": "Horizontal stripes",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d57ff5784e4d": {
+    "zh": "垂直條紋 (Vertical Edge)",
+    "en": "Vertical stripes",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c5227c1aeb3c": {
+    "zh": "十字交叉 (Cross Pattern)",
+    "en": "Cross pattern",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b5bff9f55a3b": {
+    "zh": "均勻灰階 (Uniform)",
+    "en": "Uniform gray",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "8f657fca73fd": {
+    "zh": "濾波器核 Kernel:",
+    "en": "Filter kernel:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "26ba573c2ee9": {
+    "zh": "Prewitt 水平邊緣核",
+    "en": "Prewitt horizontal edge kernel",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c645a336ddd5": {
+    "zh": "Prewitt 垂直邊緣核",
+    "en": "Prewitt vertical edge kernel",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a6afd6afb703": {
+    "zh": "均值平滑核 (All Ones)",
+    "en": "Mean smoothing kernel (all ones)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "750fd40b687d": {
+    "zh": "中心銳化核 (Sharpen)",
+    "en": "Center sharpening kernel (sharpen)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f9cb5ff12ab8": {
+    "zh": " 啟用 ReLU 啟用",
+    "en": " Enable ReLU activation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "80598c2631f3": {
+    "zh": " 啟用 Max-Pooling",
+    "en": " Enable max pooling",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5183a7ac3d95": {
+    "zh": "▶ 執行計算 Process",
+    "en": "▶ Run computation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a4f046eb43d8": {
+    "zh": "\n          視覺化展示：輸入圖 (6×6) $\\to$ 卷積加權 (4×4) $\\to$ ReLU 啟用 $\\to$ 最大池化 (2×2)：\n        ",
+    "en": "Visualization: input (6×6) $\\to$ convolution weighting (4×4) $\\to$ ReLU activation $\\to$ max pooling (2×2):",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2ae6ecd0fcf5": {
+    "zh": "\n        運算即時診斷報告\n      ",
+    "en": "Live computation diagnostics",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2bd21f3c2cc2": {
+    "zh": "<strong>當前模式：</strong> 水平條紋 (Horizontal Edge)",
+    "en": "<strong>Current pattern:</strong> Horizontal stripes",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3833a3d80cde": {
+    "zh": "<strong>濾波器：</strong> Prewitt 水平邊緣核",
+    "en": "<strong>Filter:</strong> Prewitt horizontal edge kernel",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4d447dcf49a7": {
+    "zh": "<strong>啟用函式：</strong> ReLU [max(0, x)]",
+    "en": "<strong>Activation function:</strong> ReLU [max(0, x)]",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "438e7b8886ce": {
+    "zh": "<strong>池化狀態：</strong> 2×2 最大池化 (Max Pooling)",
+    "en": "<strong>Pooling status:</strong> 2×2 max pooling",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b9a6f65037a1": {
+    "zh": "\n        💡 響應訊號均為非負值或已整流。\n      ",
+    "en": "💡 The response signals are all non-negative or already rectified.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "67dc9a34d85a": {
+    "zh": "\n      🧪 <strong>實測大觀察：</strong><br>\n      1. <strong>Prewitt 選擇性</strong>：選取「水平條紋」輸入時，Prewitt 水平核能產出極大響應，而垂直核則幾乎無響應（輸出接近 0）；反之亦然！<br>\n      2. <strong>ReLU 的整流效應</strong>：取消勾選「啟用 ReLU 啟用」，觀察卷積後的負數是否出現；勾選後，所有負數被截斷為 0，實現神經元點亮效果。<br>\n      3. <strong>池化的尺寸壓縮</strong>：4×4 特徵圖經 2×2 最大池化後緊湊壓縮至 2×2，但保留了最強特徵訊號。\n    ",
+    "en": "🧪 <strong>Big hands-on observations:</strong><br>\n      1. <strong>Prewitt selectivity</strong>: with the “Horizontal stripes” input, the Prewitt horizontal kernel produces a very large response while the vertical kernel barely responds (output close to 0), and vice versa!<br>\n      2. <strong>ReLU's rectifying effect</strong>: uncheck “Enable ReLU activation” and see whether negative numbers appear after the convolution; check it again and every negative number is clipped to 0, the neuron “lighting up” effect.<br>\n      3. <strong>Pooling's size compression</strong>: after 2×2 max pooling, the 4×4 feature map is compactly compressed to 2×2, yet the strongest feature signals are kept.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bbc0c2e6369": {
+    "zh": "08 / 實戰檢驗 · Concept Checkpoint",
+    "en": "08 / Concept Checkpoint",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2e6dd33990aa": {
+    "zh": "題目 1 · 核心工序 / Three Stages",
+    "en": "Question 1 · Core Stages",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5d2be7f3490a": {
+    "zh": "課本所稱一個卷積層的三個主要階段，正確順序是？",
+    "en": "What is the correct order of the three main stages of a convolutional layer, as described in the textbook?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ebd54d705b77": {
+    "zh": "A. 池化 $\\to$ 全連線 $\\to$ softmax",
+    "en": "A. Pooling $\\to$ fully connected $\\to$ softmax",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a29d27bca75f": {
+    "zh": "B. 卷積 $\\to$ 偵測器（啟用） $\\to$ 池化",
+    "en": "B. Convolution $\\to$ detector (activation) $\\to$ pooling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "02dfcc1af520": {
+    "zh": "C. 初始化 $\\to$ 殘差 $\\to$ 全域性平均",
+    "en": "C. Initialization $\\to$ residual $\\to$ global average",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6868c278958d": {
+    "zh": "D. flatten $\\to$ MLP $\\to$ 池化",
+    "en": "D. flatten $\\to$ MLP $\\to$ pooling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2ce9f1a91ffe": {
+    "zh": "題目 2 · Prewitt 核 / Prewitt Filters",
+    "en": "Question 2 · Prewitt Kernels",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f87dee06e441": {
+    "zh": "式 (1) 的兩個 Prewitt 核主要在做什麼？",
+    "en": "What do the two Prewitt kernels of Eq. (1) mainly do?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "93edeb15d890": {
+    "zh": "A. 分別偵測水平與垂直邊緣",
+    "en": "A. Detect horizontal and vertical edges, respectively",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e1000b76ae64": {
+    "zh": "B. 把影像壓縮成單一純量",
+    "en": "B. Compress the image into a single scalar",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3ed8cf2acba2": {
+    "zh": "C. 取代反向傳播演算法",
+    "en": "C. Replace the backpropagation algorithm",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "75fb906bc808": {
+    "zh": "D. 專門做 ImageNet 1000 類別分類",
+    "en": "D. Specialize in ImageNet 1000-class classification",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "46d55a81c032": {
+    "zh": "題目 3 · 典範轉移 / Paradigm Shift",
+    "en": "Question 3 · Paradigm Shift",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c577bf997d59": {
+    "zh": "卷積神經網路為什麼不直接沿用手刻的 Prewitt 數值？",
+    "en": "Why don't convolutional neural networks simply reuse the hand-crafted Prewitt values?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "821e376a5a06": {
+    "zh": "A. 因為卷積運算在數學上未定義",
+    "en": "A. Because the convolution operation is mathematically undefined",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e61d57bdd6ba": {
+    "zh": "B. 手刻核一定永遠比學習核最優",
+    "en": "B. Hand-crafted kernels are always better than learned kernels",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "db197d0385f9": {
+    "zh": "C. 最佳核隨任務與資料集而變，應把核當成可學習權重由資料驅動",
+    "en": "C. The best kernel changes with the task and dataset, so the kernel should be treated as learnable weights driven by data",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "46f549906b05": {
+    "zh": "D. 啟用函式禁止搭配任何濾波器核使用",
+    "en": "D. Activation functions must never be used together with any filter kernel",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "91501f0b2552": {
+    "zh": "題目 4 · 權重最佳化演算法 / Optimization Algorithm",
+    "en": "Question 4 · Weight Optimization Algorithm",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "caed8f911b98": {
+    "zh": "學習這些濾波器權重，課本指出使用的核心演算法是？",
+    "en": "To learn these filter weights, which core algorithm does the textbook say is used?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ec8d4ec94987": {
+    "zh": "A. 純隨機搜尋演算法（不計算任何梯度）",
+    "en": "A. Pure random search (no gradients computed at all)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fc8abd001eac": {
+    "zh": "B. 反向傳播演算法（Chap. 03 Backpropagation）",
+    "en": "B. The backpropagation algorithm (Chap. 03 Backpropagation)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "343eff532e62": {
+    "zh": "C. 必須精確計算全域性 Hessian 矩陣並求逆",
+    "en": "C. The global Hessian matrix must be computed exactly and inverted",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "96c6b2c3299e": {
+    "zh": "D. K-Means 聚類演算法",
+    "en": "D. The K-means clustering algorithm",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

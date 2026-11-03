@@ -1,0 +1,841 @@
+{
+  "_runtime": {
+    "exact": {
+      "Level 1 (淺層空間邊界)": "Level 1 (shallow spatial boundaries)",
+      "Level 2 (中淺層紋理)": "Level 2 (mid-shallow textures)",
+      "Level 3 (中深層部件)": "Level 3 (mid-deep parts)",
+      "左翼編碼特徵圖": "Left encoder map",
+      "右翼解碼特徵圖": "Right decoder map",
+      "✂ 裁切中心對齊區": "✂ Center-crop region",
+      "完美對齊 Concat ➔": "Perfect fit Concat ➔",
+      "卷積模式：": "Convolution mode:",
+      "原始論文 Unpadded 卷積": "original paper, unpadded convolution",
+      "現代 Same Padding 卷積": "modern same-padding convolution",
+      "左翼編碼特徵尺寸：": "Left-wing encoder feature size:",
+      "右翼解碼特徵尺寸：": "Right-wing decoder feature size:",
+      "尺寸差異狀態：": "Size mismatch:",
+      "兩側空間解析度完全相等 (0 偏差)": "both sides have exactly equal spatial resolution (0 offset)",
+      "跳接對齊策略：": "Skip alignment strategy:",
+      "💡 原始 U-Net 由於未填充，572×572 輸入經過 4 層下取樣與上取樣後，最終輸出分割圖為 388×388。": "💡 Because the original U-Net uses no padding, a 572×572 input yields a final 388×388 segmentation map after 4 levels of downsampling and upsampling.",
+      "💡 現代改進版全程使用 Same Padding，512×512 輸入最終輸出恰為 512×512，無需邊界裁切。": "💡 The modern improved version uses same padding throughout, so a 512×512 input gives exactly a 512×512 output, with no border cropping needed.",
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "上取樣以 2×2 deconvolution（轉置卷積 / up-convolution）完成，Fig. 17 即為此運算的具體示意。": "Upsampling is done with a 2×2 deconvolution (transposed convolution / up-convolution); Fig. 17 illustrates this operation concretely.",
+      "不補邊（unpadded）的 3×3 卷積每做一次就會吃掉 2 個畫素邊界，導致左側編碼尺寸大於右側解碼尺寸，跳接前必須先進行 crop 裁切對齊；現代亦可用 padding 避免。": "Each unpadded 3×3 convolution eats a 2-pixel border, so the encoder feature maps on the left are larger than the decoder ones on the right, and they must be cropped to align before the skip connection; nowadays padding can also be used to avoid this.",
+      "原文明確指出：contracting path 捕捉 contextual information（語境），expansive path 負責 precise localization（精準定位）。": "The original text states explicitly: the contracting path captures contextual information, and the expansive path is responsible for precise localization.",
+      "針對生醫分割任務（Biomedical Segmentation）；輸出特徵圖具有與輸入相同的空間尺寸、含 c 個類別通道，接逐畫素 Softmax 與交叉熵損失。": "Aimed at biomedical segmentation; the output feature map has the same spatial size as the input, with c class channels, followed by a per-pixel softmax and cross-entropy loss."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(Level \\d \\(\\S+\\)) 跳躍連線兩側特徵圖尺寸與對齊視覺化：$",
+        "en": "$T1: skip-link map sizes & alignment:"
+      },
+      {
+        "re": "^\\(單側截去 ([\\d.]+) px\\)$",
+        "en": "($1 px cut per side)"
+      },
+      {
+        "re": "^U-Net 語境-定位重建診斷報告 \\[(Level \\d \\(\\S+\\))\\]$",
+        "en": "U-Net context–localization reconstruction diagnostic report [$T1]"
+      },
+      {
+        "re": "^(\\d+ × \\d+ × \\d+) 通道$",
+        "en": "$1 channels"
+      },
+      {
+        "re": "^左大右小 \\(邊界差 (\\d+) 畫素\\)$",
+        "en": "left larger, right smaller ($1-pixel border difference)"
+      },
+      {
+        "re": "^中心裁切 \\(Crop ([\\d.]+)px/邊\\) 後 Concat$",
+        "en": "center crop ($1 px per side), then concat"
+      },
+      {
+        "re": "^直接串接 \\(Direct Concat，通道變為 (\\d+)\\)$",
+        "en": "direct concatenation (channels become $1)"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "989092a32d0f": {
+    "zh": "KP15 · 索引",
+    "en": "KP15 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b5022f3a4d64": {
+    "zh": "<a href=\"#sec-unet-arch\">對稱 U 形架構與雙翼分工 · Architecture &amp; Roles</a>",
+    "en": "<a href=\"#sec-unet-arch\">The symmetric U shape and the roles of its two wings</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f91a5d083a6b": {
+    "zh": "<a href=\"#svg-unet\">U-Net 向量架構圖 · Visual Breakdown</a>",
+    "en": "<a href=\"#svg-unet\">U-Net vector architecture diagram</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9aa0ff2816dd": {
+    "zh": "<a href=\"#sec-deconv-skip\">轉置卷積與跳接裁切細節 · Deconvolution &amp; Skip</a>",
+    "en": "<a href=\"#sec-deconv-skip\">Transposed convolution and skip-connection cropping details</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f166b3eeebe1": {
+    "zh": "<a href=\"#summary\">單元核心總結 · Key Takeaways</a>",
+    "en": "<a href=\"#summary\">Key takeaways of this unit</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6b0b987a519c": {
+    "zh": "KP15 · CNN MILESTONES · 語境與精準定位",
+    "en": "KP15 · CNN MILESTONES · Context and Precise Localization",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "59e2c2d9ea37": {
+    "zh": "5.5 U-Net：收縮–擴張路徑與醫學分割\n      <span class=\"hero-title-en\">U-Net: Contracting-Expansive Paths &amp; Biomedical Segmentation</span>\n    ",
+    "en": "5.5 U-Net: Contracting–Expansive Paths and Medical Segmentation",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "39a9a8bc10e2": {
+    "zh": "\n      分割任務既要掌握巨觀組織<strong>語境（Context）</strong>，又要鎖定微觀邊界<strong>定位（Localization）</strong>！U-Net 創立收縮–擴張對稱雙翼，透過<strong>跳躍連線（Skip Connection）</strong>將低階空間幾何細節直傳解碼器，奠定生醫分割不可動搖的黃金典範。\n    ",
+    "en": "Segmentation must grasp the macroscopic tissue <strong>context</strong> and also pin down microscopic boundary <strong>localization</strong>! U-Net introduced the symmetric contracting–expansive pair of wings and, through <strong>skip connections</strong>, passes low-level spatial geometric detail straight to the decoder, establishing the unshakable gold standard of biomedical segmentation.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "c0f334b2fd66": {
+    "zh": "\n      既然深層特徵丟失空間邊界，如何讓分割邊界精確到單一畫素？\n      ",
+    "en": "Since deep features lose spatial boundaries, how can segmentation boundaries be accurate to a single pixel?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "38c2e9587c80": {
+    "zh": "\n      <strong>左翼收縮抓全域語境，右翼擴張逐步還原解析度！</strong><br>\n      中央橫越的<strong>跳躍連線（Skip Connection）</strong>將淺層高解析空間細節直接 Concat 接回擴張層，徹底解決下取樣造成的定位資訊流失！\n    ",
+    "en": "<strong>The left wing contracts to capture global context; the right wing expands to restore resolution step by step!</strong><br> The <strong>skip connections</strong> crossing the middle concat the shallow high-resolution spatial details directly back into the expansive layers, completely solving the loss of localization information caused by downsampling!",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "65799e91e8b6": {
+    "zh": "01 / 對稱雙翼分工 · Contracting vs Expansive",
+    "en": "01 / The Division of Labor of the Symmetric Wings",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c384e2e07a81": {
+    "zh": "U-Net 雙翼設計哲學：語境診斷與邊界重建\n    <span class=\"en\">Design Philosophy of U-Net: Context Diagnosis &amp; Boundary Reconstruction</span>\n  ",
+    "en": "U-Net's two-wing design philosophy: diagnosing context and reconstructing boundaries",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1911eea8f9fa": {
+    "zh": "\n      2015 年由 Olaf Ronneberger 等人提出的 <strong>U-Net</strong>，最初奪得 ISBI 電子顯微鏡神經結構分割挑戰賽冠軍。在<strong>語意分割（Semantic Segmentation）</strong>任務中，模型必須回答兩個互斥又相互依存的難題：\n    ",
+    "en": "<strong>U-Net</strong>, proposed by Olaf Ronneberger et al. in 2015, first won the ISBI challenge for segmenting neuronal structures in electron microscopy. In <strong>semantic segmentation</strong> tasks, a model must answer two problems that are mutually exclusive yet interdependent:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "cd2f06498dd0": {
+    "zh": "\n          📉 收縮路徑 Contracting Path（左翼 · 編碼器）\n        ",
+    "en": "📉 Contracting path (left wing · encoder)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "67fa11df098c": {
+    "zh": "<strong>核心職能：</strong> 捕捉「語境與上下文（Context）」——識別這團區域到底是什麼組織或細胞。",
+    "en": "<strong>Core role:</strong> capture the \"context\"—recognize what tissue or cell this region actually is.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "21a63705a166": {
+    "zh": "<strong>標準步階：</strong> 每次由兩次 $3\\times 3$ 卷積（均接 ReLU）組成，隨後以 stride 2 的 $2\\times 2$ max pooling 進行下取樣。",
+    "en": "<strong>Standard step:</strong> each step consists of two $3\\times 3$ convolutions (each followed by ReLU), then downsampling by $2\\times 2$ max pooling with stride 2.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c886324f07a6": {
+    "zh": "<strong>維度轉換：</strong> 空間解析度減半（$\\frac{H}{2} \\times \\frac{W}{2}$），特徵通道數<strong>翻倍</strong>（$64 \\to 128 \\to 256 \\to 512$），保障語意表達容量。",
+    "en": "<strong>Dimension change:</strong> the spatial resolution is halved ($\\frac{H}{2} \\times \\frac{W}{2}$) and the number of feature channels <strong>doubles</strong> ($64 \\to 128 \\to 256 \\to 512$), ensuring capacity for semantic representation.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "033f021ada69": {
+    "zh": "\n          📈 擴張路徑 Expansive Path（右翼 · 解碼器）\n        ",
+    "en": "📈 Expansive path (right wing · decoder)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6cf75d51c79c": {
+    "zh": "<strong>核心職能：</strong> 實現「精準定位（Precise Localization）」——把組織與背景的邊界切齊在精確的畫素座標。",
+    "en": "<strong>Core role:</strong> achieve \"precise localization\"—align the boundary between tissue and background at exact pixel coordinates.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7ce6d6f95fea": {
+    "zh": "<strong>標準步階：</strong> 不用 Pooling，改用 $2\\times 2$ <strong>轉置卷積（Transposed Conv / Deconv）</strong>上取樣，通道數<strong>減半</strong>。",
+    "en": "<strong>Standard step:</strong> no pooling; instead, upsampling with a $2\\times 2$ <strong>transposed convolution (deconvolution)</strong>, which <strong>halves</strong> the number of channels.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7d4c6414aa95": {
+    "zh": "<strong>跳躍融合：</strong> 與左翼對應層特徵圖進行<strong>通道串接（Filter Concatenation）</strong>，隨後再接兩次 $3\\times 3$ 卷積 + ReLU。",
+    "en": "<strong>Skip fusion:</strong> <strong>concatenate along the channels (filter concatenation)</strong> with the feature map of the corresponding left-wing layer, followed by two more $3\\times 3$ convolutions + ReLU.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "723ec8e5358e": {
+    "zh": "02 / 幾何骨架視覺化 · U-Net Architecture",
+    "en": "02 / Visualizing the Geometric Skeleton",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2f1b0419994a": {
+    "zh": "U-Net 經典架構剖析：跳躍連線 Concat 與尺寸映象 (Fig. 16)\n    <span class=\"en\">Classic U-Net Architecture: Skip Connection Concat &amp; Symmetric Mirroring</span>\n  ",
+    "en": "Anatomy of the classic U-Net architecture: skip-connection concat and mirrored sizes (Fig. 16)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fed9babf5c3f": {
+    "zh": "U-Net：左邊收縮抓語境，右邊擴張還原位置；跳接把細節 concat 回來",
+    "en": "U-Net: the left contracts for context, the right expands to restore position; skips concat the details back",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "36a5d17dac01": {
+    "zh": "收縮路徑 · 語境 (Context)",
+    "en": "Contracting path · Context",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d64a875e24bb": {
+    "zh": "64 通道 · 高解析空間細節",
+    "en": "64 channels · high-res spatial detail",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8aa51875aa10": {
+    "zh": "128 通道 · pool ÷2",
+    "en": "128 channels · pool ÷2",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "cbba2b8fca44": {
+    "zh": "256 通道 · pool ÷2",
+    "en": "256 channels · pool ÷2",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c2d1ac4e1e7e": {
+    "zh": "512 通道",
+    "en": "512 channels",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "91e53611b5f0": {
+    "zh": "瓶頸 Bottleneck · 1024 通道",
+    "en": "Bottleneck · 1024 channels",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a93e615077d2": {
+    "zh": "擴張路徑 · 定位 (Localization)",
+    "en": "Expansive path · Localization",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ebb9428dee3a": {
+    "zh": "64 通道 · 逐畫素輸出 (c 類)",
+    "en": "64 channels · per-pixel output (c classes)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ba9f6a45ad32": {
+    "zh": "128 通道 · 上取樣 ×2",
+    "en": "128 channels · upsample ×2",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "507bcf7e6ce3": {
+    "zh": "256 通道 · 上取樣 ×2",
+    "en": "256 channels · upsample ×2",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6ed27647a606": {
+    "zh": "concat 細節",
+    "en": "concat details",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8dc9a2d1c33a": {
+    "zh": "跳躍連線：左邊的空間幾何細節直接接到右邊",
+    "en": "Skip connection: spatial geometric detail from the left goes straight to the right",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "cfc1828d0543": {
+    "zh": "原始 unpadded 3×3 會縮邊 → 跳接前必須 crop 對齊",
+    "en": "Original unpadded 3×3 shrinks the borders → must crop to align before skipping",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "94e411736448": {
+    "zh": "放大靠 2×2 轉置卷積，不是池化",
+    "en": "Enlarging uses 2×2 transposed convolution, not pooling",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1877f3f34a75": {
+    "zh": "語意分割需要兩者：知道「大概是什麼組織」＋對齊「邊界在哪一畫素」",
+    "en": "Semantic segmentation needs both: know \"roughly what tissue\" + align \"which pixel the boundary is at\"",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "aa0fc38a7bf9": {
+    "zh": "每步：兩次 3×3+ReLU；下取樣通道翻倍、上取樣通道減半；輸出與輸入具相同空間維度、c 類 Softmax",
+    "en": "Each step: two 3×3+ReLU; channels double when downsampling, halve when upsampling; output has the input's spatial size, c-class softmax",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "290b9b6322ef": {
+    "zh": "反直覺先驗：深層網路把特徵圖縮太小會丟失邊界幾何——U 形不是美學裝飾，是把細節從左邊借回來！",
+    "en": "Counterintuitive prior: shrinking feature maps too far in deep nets loses boundary geometry—the U shape isn't decoration, it borrows details back from the left!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "2d8a3e949a59": {
+    "zh": "生醫分割出身 · 損失 Cross-Entropy · 原作 Batch Size = 1 · 帶動量 Momentum = 0.9",
+    "en": "Born in biomedical segmentation · loss: cross-entropy · original batch size = 1 · momentum = 0.9",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d3656f0bfa67": {
+    "zh": "跳躍連線的本質：空間邊界資訊傳遞",
+    "en": "The essence of skip connections: passing spatial boundary information",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "1ac9ec8abf8c": {
+    "zh": "\n        傳統全卷積網路在連續下取樣後，空間邊界資訊已經退化成粗糙的區塊。U-Net 的革命性創舉在於<strong>橫跨編碼與解碼兩端的跳躍連線（Skip Connection）</strong>：\n      ",
+    "en": "In a traditional fully convolutional network, after repeated downsampling the spatial boundary information has degraded into coarse blocks. U-Net's revolutionary move is the <strong>skip connections spanning the encoder and decoder</strong>:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "54da47601960": {
+    "zh": "<strong>特徵拼接 Concat：</strong> 不是殘差網路的相加（Add），而是將左翼的淺層特徵圖與右翼的上取樣特徵圖在<strong>通道維度（Channel Axis）</strong>並聯拼接。",
+    "en": "<strong>Feature concatenation (concat):</strong> not the addition (add) of residual networks, but concatenating the left wing's shallow feature map and the right wing's upsampled feature map side by side along the <strong>channel axis</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e101fd241aa9": {
+    "zh": "<strong>尺寸對齊與裁切（Crop）：</strong> 原論文採用<strong>無填充卷積（Unpadded Conv）</strong>，每次 $3\\times 3$ 卷積會使長寬各縮小 2 畫素。導致左側淺層空間尺寸大於右側，因此跳接時必須進行中央裁切（Crop）！",
+    "en": "<strong>Size alignment and cropping:</strong> the original paper uses <strong>unpadded convolutions</strong>, and each $3\\times 3$ convolution shrinks the height and width by 2 pixels each. As a result, the spatial size on the shallow left side is larger than on the right, so a center crop is required at the skip connection!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c772713b2d88": {
+    "zh": "<strong>現代實作演進：</strong> 現代 PyTorch 實作普遍採用 `padding=1` 的 Same Padding，直接讓長寬在卷積前後保持一致，省去了手動裁切的繁瑣。",
+    "en": "<strong>How modern implementations evolved:</strong> modern PyTorch implementations generally use same padding with `padding=1`, which keeps the height and width the same before and after each convolution and saves the hassle of manual cropping.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0062d40870fd": {
+    "zh": "03 / 運算剖析 · Deconvolution &amp; Specs",
+    "en": "03 / Computation Breakdown · Deconvolution and Specs",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c1b377593210": {
+    "zh": "轉置卷積上取樣與訓練規範\n    <span class=\"en\">Transposed Convolution Upsampling &amp; Training Protocols</span>\n  ",
+    "en": "Transposed-convolution upsampling and training specifications",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "61050031d860": {
+    "zh": "維度 / 模組",
+    "en": "Dimension / module",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ff618094488e": {
+    "zh": "規格與實作細節 (Specifications)",
+    "en": "Specifications and implementation details",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "602cafb9fd61": {
+    "zh": "工程設計目的 (Architectural Rationale)",
+    "en": "Engineering design purpose",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fdd2472596fb": {
+    "zh": "<strong>上取樣機制</strong>",
+    "en": "<strong>Upsampling mechanism</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "999acb44bf15": {
+    "zh": "$2\\times 2$ <strong>反摺積／轉置卷積（Transposed Conv）</strong>（Fig. 17）",
+    "en": "$2\\times 2$ <strong>deconvolution / transposed convolution</strong> (Fig. 17)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "02d7fefced2b": {
+    "zh": "步幅 2 的可學習擴張運算，空間解析度翻倍，通道數減半",
+    "en": "A learnable expanding operation with stride 2: spatial resolution doubles, channel count halves",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f5c2be5d0e20": {
+    "zh": "<strong>卷積模組</strong>",
+    "en": "<strong>Convolution block</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5c518d94d337": {
+    "zh": "每階段均為兩次連續 $3\\times 3$ Conv + ReLU",
+    "en": "Every stage is two consecutive $3\\times 3$ conv + ReLU",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "088849fefb78": {
+    "zh": "加深非線性表達能力，維持有效局部感受野",
+    "en": "Deepens the nonlinear expressive power while keeping an effective local receptive field",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ad7684e04935": {
+    "zh": "<strong>最後輸出層</strong>",
+    "en": "<strong>Final output layer</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f1b60bd994f1": {
+    "zh": "$1\\times 1$ 卷積將通道數對映至 $c$（類別數）",
+    "en": "A $1\\times 1$ convolution maps the channel count to $c$ (the number of classes)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8cf558ed4b27": {
+    "zh": "逐畫素輸出 $c$ 維 logits，接 Softmax 進行分類",
+    "en": "Outputs $c$-dimensional logits per pixel, followed by softmax for classification",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1a605953c411": {
+    "zh": "<strong>損失函式</strong>",
+    "en": "<strong>Loss function</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c13cb656f02b": {
+    "zh": "逐畫素<strong>交叉熵損失（Pixel-wise Cross-Entropy）</strong>",
+    "en": "Pixel-wise <strong>cross-entropy loss</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "935aa0d3189e": {
+    "zh": "評估每個畫素點被正確分類為前景組織或背景的機率",
+    "en": "Evaluates the probability that each pixel is correctly classified as foreground tissue or background",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fe2dcd91991e": {
+    "zh": "<strong>批次大小與動量</strong>",
+    "en": "<strong>Batch size and momentum</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "43ebe5b2868d": {
+    "zh": "<strong>Batch Size = 1</strong>，動量 Momentum = 0.9",
+    "en": "<strong>Batch Size = 1</strong>, momentum = 0.9",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b46488bd91f5": {
+    "zh": "醫學影像尺寸巨大消耗記憶體，單張切片高動量平滑梯度震盪",
+    "en": "Medical images are huge and consume memory; with single slices, high momentum smooths out gradient oscillation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a0f82d297bd6": {
+    "zh": "<strong>後續衍生</strong>",
+    "en": "<strong>Later derivatives</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e79a3cab8ff8": {
+    "zh": "雙路收縮的 <strong>Y-Net</strong>、加深跳接的 <strong>U-Net++</strong>",
+    "en": "<strong>Y-Net</strong> with two contracting paths, <strong>U-Net++</strong> with deepened skip connections",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c010706ba57c": {
+    "zh": "將 U 型結構推廣至多工分割與多尺度深度監督",
+    "en": "Extend the U-shaped structure to multi-task segmentation and multi-scale deep supervision",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fee6a4bd8100": {
+    "zh": "04 / 互動實驗室 · Interactive Lab",
+    "en": "04 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "501f16190e8c": {
+    "zh": "互動實驗室：U-Net 跳躍連線尺寸與裁切模擬器\n    <span class=\"en\">Interactive Lab: U-Net Skip Connection Dimensions &amp; Crop Simulator</span>\n  ",
+    "en": "Interactive lab: U-Net skip-connection size and cropping simulator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7301abb7085e": {
+    "zh": "卷積填充策略:",
+    "en": "Convolution padding strategy:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2befe8d2d658": {
+    "zh": "原始論文：Unpadded Conv (逐層吃邊，跳接需 Crop 裁切)",
+    "en": "Original paper: unpadded conv (eats the border each layer; skips need cropping)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4da33a7e9247": {
+    "zh": "現代實作：Same Padding (保持尺寸，跳接免 Crop 完美對齊)",
+    "en": "Modern implementation: same padding (size preserved; skips align perfectly without cropping)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2a0f03b05cce": {
+    "zh": "檢視跳接層級:",
+    "en": "Skip level to inspect:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5062a3f31775": {
+    "zh": "Level 1 (淺層細節：64 通道)",
+    "en": "Level 1 (shallow details: 64 channels)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "170794e12e32": {
+    "zh": "Level 2 (中淺層：128 通道)",
+    "en": "Level 2 (mid-shallow: 128 channels)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "79d5a6a47699": {
+    "zh": "Level 3 (中深層：256 通道)",
+    "en": "Level 3 (mid-deep: 256 channels)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d5892b8aa19a": {
+    "zh": "▶ 模擬跳接與重建路徑 Simulate U-Net Path",
+    "en": "▶ Simulate the skip and reconstruction path",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7f161c337e3a": {
+    "zh": "\n          跳躍連線兩端特徵圖空間尺寸對比與裁切示意：\n        ",
+    "en": "Spatial sizes of the feature maps at the two ends of the skip connection, and the cropping:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "76436f9f787f": {
+    "zh": "\n        U-Net 語境-定位重建診斷報告 [Level 1 (淺層空間邊界)]\n      ",
+    "en": "U-Net context–localization reconstruction diagnostic report [Level 1 (shallow spatial boundaries)]",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8d6d8c50c567": {
+    "zh": "<strong>卷積模式：</strong> <span style=\"color:#0f172a; font-weight:700;\">原始論文 Unpadded 卷積</span>",
+    "en": "<strong>Convolution mode:</strong> <span style=\"color:#0f172a; font-weight:700;\">original paper, unpadded convolution</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2fa7b461b667": {
+    "zh": "<strong>左翼編碼特徵尺寸：</strong> 568 × 568 × 64 通道",
+    "en": "<strong>Left-wing encoder feature size:</strong> 568 × 568 × 64 channels",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8cb37a94076e": {
+    "zh": "<strong>右翼解碼特徵尺寸：</strong> 392 × 392 × 64 通道",
+    "en": "<strong>Right-wing decoder feature size:</strong> 392 × 392 × 64 channels",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9322e721b268": {
+    "zh": "<strong>尺寸差異狀態：</strong> <span style=\"color:#ea580c; font-weight:700;\">左大右小 (邊界差 88 畫素)</span>",
+    "en": "<strong>Size mismatch:</strong> <span style=\"color:#ea580c; font-weight:700;\">left larger, right smaller (88-pixel border difference)</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "27541e9b98a8": {
+    "zh": "<strong>跳接對齊策略：</strong> <span style=\"color:#ea580c; font-weight:700;\">中心裁切 (Crop 44px/邊) 後 Concat</span>",
+    "en": "<strong>Skip alignment strategy:</strong> <span style=\"color:#ea580c; font-weight:700;\">center crop (44 px per side), then concat</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9e2512531920": {
+    "zh": "\n        💡 原始 U-Net 由於未填充，572×572 輸入經過 4 層下取樣與上取樣後，最終輸出分割圖為 388×388。\n      ",
+    "en": "💡 Because the original U-Net uses no padding, a 572×572 input yields a final 388×388 segmentation map after 4 levels of downsampling and upsampling.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b38a711b3f72": {
+    "zh": "05 / 實戰檢驗 · Concept Checkpoint",
+    "en": "05 / Concept Checkpoint",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8443ad28d579": {
+    "zh": "題目 1 · 雙翼分工 / Contracting vs Expansive",
+    "en": "Question 1 · Roles of the two wings",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "807921b91fa7": {
+    "zh": "U-Net 收縮路徑與擴張路徑的分工是？",
+    "en": "How are the roles divided between U-Net's contracting path and expansive path?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7c0d0d57d7b2": {
+    "zh": "A. 兩者都只做分類、不做定位",
+    "en": "A. Both only classify, neither localizes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "97173edc4a63": {
+    "zh": "B. 收縮路徑抓上下文，擴張路徑做精準定位",
+    "en": "B. The contracting path captures context; the expansive path does precise localization",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a8c6976a765d": {
+    "zh": "C. 收縮路徑只做全連線，擴張路徑只做 LRN",
+    "en": "C. The contracting path only does fully connected layers; the expansive path only does LRN",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6c1abe91b984": {
+    "zh": "D. 兩者功能完全相同、只是畫成 U 形好看",
+    "en": "D. Both do exactly the same thing; it is just drawn as a U because it looks nice",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7d94d57de6a6": {
+    "zh": "題目 2 · 跳接裁切動機 / Crop Mechanism in Skip",
+    "en": "Question 2 · Why crop at the skip",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "30aae7ec6f1e": {
+    "zh": "原始 U-Net 在 skip connection 時要先 crop，原因是？",
+    "en": "Why does the original U-Net have to crop first at each skip connection?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5e8df404cff7": {
+    "zh": "A. 因為用了 unpadded 卷積，特徵圖逐步縮小，兩邊尺寸對不齊",
+    "en": "A. Because it uses unpadded convolutions, the feature maps shrink step by step and the two sides' sizes don't line up",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cfa89f3796e5": {
+    "zh": "B. 因為 softmax 會改變空間大小",
+    "en": "B. Because softmax changes the spatial size",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0a1344d71e6b": {
+    "zh": "C. 因為 max pooling 的 stride 必須是 3",
+    "en": "C. Because the max pooling stride must be 3",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1e748d2ee216": {
+    "zh": "D. 因為輸出通道數必須是 1000",
+    "en": "D. Because the number of output channels must be 1000",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4b3920c266a7": {
+    "zh": "題目 3 · 擴張放大運算 / Upsampling Operation",
+    "en": "Question 3 · The upsampling operation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "aae676a150b9": {
+    "zh": "U-Net 擴張路徑用來放大特徵圖的運算是？（見 Fig. 17）",
+    "en": "What operation does U-Net's expansive path use to enlarge the feature maps? (see Fig. 17)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a5343f7cb4a0": {
+    "zh": "A. 再做一次 stride 2 的 max pooling",
+    "en": "A. Another max pooling with stride 2",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "03b9b0cafdc2": {
+    "zh": "B. 2×2 反摺積／轉置卷積（deconvolution / transpose conv）",
+    "en": "B. 2×2 deconvolution / transposed convolution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b6487777df60": {
+    "zh": "C. 把影像複製四次",
+    "en": "C. Copying the image four times",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d67236a9f319": {
+    "zh": "D. 只用 1×1 卷積升空間解析度",
+    "en": "D. Only 1×1 convolutions to raise the spatial resolution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2751e44b3b93": {
+    "zh": "題目 4 · 應用目標與輸出形式 / Target &amp; Output Specs",
+    "en": "Question 4 · Application target and output form",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c6026fcb59d2": {
+    "zh": "U-Net 最初主要應用與輸出形式是？",
+    "en": "What was U-Net's original main application, and what is its output form?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "43950f2a73c6": {
+    "zh": "A. 手寫數字 10 類分類，輸出 10 維向量",
+    "en": "A. 10-class handwritten digit classification, outputting a 10-dimensional vector",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0151435dc5c4": {
+    "zh": "B. 生醫影像分割；輸出與輸入同空間尺寸、c 個類別通道 + softmax + cross-entropy",
+    "en": "B. Biomedical image segmentation; output has the same spatial size as the input, c class channels + softmax + cross-entropy",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7f26715f55a3": {
+    "zh": "C. 機器翻譯",
+    "en": "C. Machine translation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "959142b5078a": {
+    "zh": "D. 只做超解析度、沒有類別通道",
+    "en": "D. Super-resolution only, with no class channels",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "32432e219e84": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：U-Net 對稱分割雙翼\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#bae6fd; font-weight:normal;\">Key Takeaways: Symmetrical U-Net Architecture</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: U-Net's symmetric segmentation wings",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7637e1b4d33e": {
+    "zh": "<strong>對稱雙翼各司其職：</strong> 左收縮路徑抓語境組織上下文，右擴張路徑還原高解析度空間定位。",
+    "en": "<strong>Symmetric wings, each with its own job:</strong> the left contracting path captures the tissue context; the right expansive path restores high-resolution spatial localization.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "143e663ddbde": {
+    "zh": "<strong>跳躍連線 Concat 細節：</strong> 淺層未被下取樣沖刷的高頻幾何邊緣，直接橫渡接回解碼器，解決深層定位模糊的宿命難題。",
+    "en": "<strong>Skip-connection concat details:</strong> the high-frequency geometric edges of the shallow layers, not yet washed out by downsampling, cross straight back to the decoder, solving the inevitable problem of blurry localization in deep layers.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e5493478c760": {
+    "zh": "<strong>轉置卷積上取樣（Fig. 17）：</strong> $2\\times 2$ 反摺積將空間維度翻倍、通道數減半，搭配兩次 $3\\times 3$ 卷積逐步重構目標邊界。",
+    "en": "<strong>Transposed-convolution upsampling (Fig. 17):</strong> a $2\\times 2$ deconvolution doubles the spatial dimensions and halves the channel count, and together with two $3\\times 3$ convolutions it reconstructs the target boundaries step by step.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2972f3dafcb9": {
+    "zh": "<strong>醫學影像分割的基石：</strong> 逐畫素 Softmax 分類與交叉熵損失，配合單張切片（Batch Size = 1）高動量最佳化，至今仍是生醫 AI 的不可替代標準！",
+    "en": "<strong>The cornerstone of medical image segmentation:</strong> per-pixel softmax classification and cross-entropy loss, with high-momentum optimization on single slices (Batch Size = 1), remain the irreplaceable standard of biomedical AI to this day!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

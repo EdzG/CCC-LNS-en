@@ -1,0 +1,721 @@
+{
+  "_runtime": {
+    "exact": {
+      "輸入 4×4 矩陣（不重疊視窗）": "Input 4×4 matrix (no overlap)",
+      "stride = 2，width = 2，無填充 valid；四色塊嚴格一一對映。": "stride = 2, width = 2, no padding (valid); the 4 color blocks map strictly 1:1.",
+      "左上象限 [2, 1, 2, 3]：": "Top-left quadrant [2, 1, 2, 3]:",
+      "右上象限 [7, 5, 2, 4]：": "Top-right quadrant [7, 5, 2, 4]:",
+      "左下象限 [8, -1, 7, 3]：": "Bottom-left quadrant [8, -1, 7, 3]:",
+      "右下象限 [-5, 1, 2, 6]：": "Bottom-right quadrant [-5, 1, 2, 6]:",
+      "答對了！": "Correct!",
+      "再想想看！": "Think again!",
+      "偵測器階段即套用非線性啟用函式（如 ReLU），決定特徵被點亮的程度，賦予模型非線性表達能力。": "The detector stage applies a nonlinear activation function (such as ReLU), which decides how strongly a feature lights up and gives the model nonlinear expressive power.",
+      "四個象限最大值分別為 $\\max(2,1,2,3)=3$、$\\max(7,5,2,4)=7$、$\\max(8,-1,7,3)=8$、$\\max(-5,1,2,6)=6$，故輸出為 $[[3,7],[8,6]]$。": "The maxima of the four quadrants are $\\max(2,1,2,3)=3$, $\\max(7,5,2,4)=7$, $\\max(8,-1,7,3)=8$ and $\\max(-5,1,2,6)=6$, so the output is $[[3,7],[8,6]]$.",
+      "平均池化會將視窗內所有數值加總平均，負值 -5 會抵銷正值將平均拉低至 1.0；而 Max Pooling 則完全忽略負值依然輸出 6。": "Average pooling sums all values in the window and averages them, so the negative value -5 cancels out positive values and pulls the average down to 1.0, whereas max pooling ignores negative values completely and still outputs 6.",
+      "池化層僅執行固定的數學統計摘要（Max, Avg, Median 等），不存在任何需要透過反向傳播學習的權重或偏置。": "A pooling layer only computes a fixed statistical summary (max, average, median, etc.); it has no weights or biases that need to be learned through backpropagation."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^輸出 2×2 \\[(.+)\\]$",
+        "en": "Output 2×2 [$T1]"
+      },
+      {
+        "re": "^運算即時診斷報告 \\[(.+)\\]$",
+        "en": "Live computation report [$T1]"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "832c57672bb9": {
+    "zh": "KP08 · 索引",
+    "en": "KP08 · Contents",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b60a39274ce4": {
+    "zh": "<a href=\"#detector-stage\">偵測器階段 · Detector Stage</a>",
+    "en": "<a href=\"#detector-stage\">Detector Stage</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4a2f49efd112": {
+    "zh": "<a href=\"#pooling-concept\">池化本質 · Pooling Concept</a>",
+    "en": "<a href=\"#pooling-concept\">What Pooling Is</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "6380305e773e": {
+    "zh": "<a href=\"#textbook-example\">課本 4×4 數值算例 · Textbook 4×4</a>",
+    "en": "<a href=\"#textbook-example\">Textbook 4×4 Worked Example</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c7418378cb0d": {
+    "zh": "<a href=\"#svg-pooling\">視覺化三種池化 · Visual Pooling</a>",
+    "en": "<a href=\"#svg-pooling\">Three Kinds of Pooling, Visualized</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e0fe9db25dca": {
+    "zh": "<a href=\"#hyperparameters\">池化超參數 · Hyperparameters</a>",
+    "en": "<a href=\"#hyperparameters\">Pooling Hyperparameters</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Check</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f26507ff0409": {
+    "zh": "偵測器與池化\n      <span class=\"hero-title-en\">Detector Stage &amp; Pooling Operations</span>\n    ",
+    "en": "Detector Stage and Pooling",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "2a8eb4075008": {
+    "zh": "\n      卷積管線第二站<strong>偵測器（detector）</strong>即套用非線性啟用函式（如 ReLU），點亮超過門檻的特徵訊號；第三站<strong>池化（pooling）</strong>則是無可學習權重的局部統計摘要（最大值 Max、平均值 Avg、中位數 Median、$\\ell_2$ 範數等），兼具空間下取樣與局部擾動容忍力。\n    ",
+    "en": "The second stage of the convolution pipeline, the <strong>detector stage</strong>, applies a nonlinear activation function (such as ReLU) that lights up feature signals above a threshold; the third stage, <strong>pooling</strong>, is a local statistical summary with no learnable weights (maximum, average, median, $\\ell_2$ norm, etc.), which provides both spatial downsampling and tolerance to local perturbations.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "1f54a2531d9a": {
+    "zh": "\n      「同一張 4×4，三種池化說出三個故事」\n      <small>Max 只看尖峰強者；Avg 均分各項細節；Median 鎖定中位數——池化不是卷積，沒有可學習權重！<br>\n        <span class=\"bilingual-en-inline\">Max keeps peaks; Avg averages details; Median captures center — pure statistics, no weights.</span>\n      </small>\n    ",
+    "en": "“The same 4×4, three kinds of pooling, three different stories”\n      <small>Max looks only at the strongest peak; Avg spreads every detail evenly; Median locks onto the median. Pooling is not convolution: it has no learnable weights!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "269c4852a782": {
+    "zh": "02 / 非線性啟用 · Detector Stage",
+    "en": "02 / Nonlinear Activation · Detector Stage",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "98660baf2b1c": {
+    "zh": "偵測器階段：神經元點亮的非線性門檻\n    <span class=\"en\">The Detector Stage: Applying Non-Linear Activations</span>\n  ",
+    "en": "The detector stage: the nonlinear threshold that lights up neurons",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "617c7ee4724b": {
+    "zh": "為什麼叫「偵測器（Detector）」？",
+    "en": "Why is it called a “detector”?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b264fe10fb6a": {
+    "zh": "\n      在生物視覺或訊號處理中，「偵測器」是指一個在目標特徵出現時產生強烈訊號、在雜訊環境下保持沉寂的單元。\n    ",
+    "en": "In biological vision or signal processing, a “detector” is a unit that produces a strong signal when the target feature appears and stays silent in a noisy environment.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f67272978dea": {
+    "zh": "\n      在 CNN 內部，前一站卷積僅進行局部線性加權；<strong>偵測器階段本質上就是套用非線性啟用函式 $\\sigma(\\cdot)$</strong>（最常用的是 ReLU $f(z) = \\max(0, z)$）。當卷積核與影象特徵高度吻合產生正響應時，神經元「被點亮」；若不吻合產生負值，則被徹底截斷為 0，實現邊緣與特定圖案的檢測功能。\n    ",
+    "en": "Inside a CNN, the preceding convolution stage only computes local linear weightings; <strong>the detector stage is essentially the application of a nonlinear activation function $\\sigma(\\cdot)$</strong> (most commonly ReLU $f(z) = \\max(0, z)$). When the kernel closely matches an image feature and produces a positive response, the neuron “lights up”; if it does not match and produces a negative value, the value is cut to 0 entirely. This is how edges and specific patterns are detected.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b3666a882e7b": {
+    "zh": "03 / 統計摘要 · Pooling Concept",
+    "en": "03 / Statistical Summary · Pooling Concept",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "48cfc1c798a4": {
+    "zh": "池化本質：對局部區域進行無參數統計摘要\n    <span class=\"en\">Pooling: Non-Parametric Local Statistical Summaries</span>\n  ",
+    "en": "What pooling is: a parameter-free statistical summary of a local region",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7e7a17f99c54": {
+    "zh": "📈 最大池化（Max Pooling）",
+    "en": "📈 Max pooling",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3b26d521e058": {
+    "zh": "\n        在滑動視窗內取<strong>最大值</strong>。只關心「該區域是否有特徵出現（哪怕只有一個畫素被強烈點亮）」，拋棄微弱背景與負值雜訊，對局部微小位移最具魯棒性。\n      ",
+    "en": "Takes the <strong>maximum</strong> within the sliding window. It only cares whether “a feature appears in this region (even if just one pixel is strongly lit)”, discards weak background and negative noise, and is the most robust to small local shifts.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9c93c7e1fe48": {
+    "zh": "📊 平均池化（Average Pooling）",
+    "en": "📊 Average pooling",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "60f140f12eac": {
+    "zh": "\n        在滑動視窗內取<strong>數值平均值</strong>。平滑整塊區域的所有訊號，保留背景與整體亮度資訊，但容易被局部的負值或極端值拉低整體平均。\n      ",
+    "en": "Takes the <strong>numerical average</strong> within the sliding window. It smooths all the signals over the whole region and keeps background and overall brightness information, but local negative or extreme values easily drag the overall average down.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a567a86186c3": {
+    "zh": "🎯 中位數池化（Median Pooling）",
+    "en": "🎯 Median pooling",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "778cc3c5c402": {
+    "zh": "\n        將視窗內畫素排序後取<strong>中位數</strong>。對椒鹽雜訊（Salt-and-Pepper Noise）具備極強抵禦能力，但排序運算不可微且計算成本較高。\n      ",
+    "en": "Sorts the pixels in the window and takes the <strong>median</strong>. It is extremely resistant to salt-and-pepper noise, but the sorting operation is not differentiable and is more expensive to compute.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bbdf4187101a": {
+    "zh": "📐 $\\ell_2$ 範數池化（$\\ell_2$-Norm Pooling）",
+    "en": "📐 $\\ell_2$-norm pooling",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "da43dfa168a7": {
+    "zh": "\n        計算視窗內各數值平方和的平方根 $\\sqrt{\\sum x_i^2}$，反映該局部區域的<strong>總特徵能量</strong>，兼具最大值與平均值的折衷特性。\n      ",
+    "en": "Computes the square root of the sum of squares of the values in the window, $\\sqrt{\\sum x_i^2}$, which reflects the <strong>total feature energy</strong> of the local region and is a compromise between max and average.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "257e67e3377c": {
+    "zh": "04 / 經典數值算例 · Textbook 4×4 Example",
+    "en": "04 / Classic Worked Example · Textbook 4×4 Example",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "caa642f0e649": {
+    "zh": "教科書精確 4×4 矩陣算例（stride=2, width=2）\n    <span class=\"en\">Precise Textbook 4×4 Example: Step-by-Step Numerical Verification</span>\n  ",
+    "en": "The textbook's exact 4×4 matrix example (stride=2, width=2)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "88e04d1f047a": {
+    "zh": "課本給定 4×4 輸入訊號",
+    "en": "The 4×4 input signal given in the textbook",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cf426b05b7ba": {
+    "zh": "\n      當設定 <strong>stride = 2、窗寬 width = 2</strong> 時，整張 4×4 被切為四塊<strong>完全不重疊的 2×2 象限</strong>：\n    ",
+    "en": "With <strong>stride = 2 and window width = 2</strong>, the whole 4×4 is cut into four <strong>completely non-overlapping 2×2 quadrants</strong>:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "de4c588040c6": {
+    "zh": "<strong>左上象限 $[2,1; 2,3]$</strong>：Max $= \\max(2,1,2,3) = \\mathbf{3}$；Avg $= (2+1+2+3)/4 = \\mathbf{2.0}$；Median $= \\mathbf{2.0}$",
+    "en": "<strong>Top-left quadrant $[2,1; 2,3]$</strong>: Max $= \\max(2,1,2,3) = \\mathbf{3}$; Avg $= (2+1+2+3)/4 = \\mathbf{2.0}$; Median $= \\mathbf{2.0}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f02fb7b9cda5": {
+    "zh": "<strong>右上象限 $[7,5; 2,4]$</strong>：Max $= \\max(7,5,2,4) = \\mathbf{7}$；Avg $= (7+5+2+4)/4 = \\mathbf{4.5}$；Median $= \\mathbf{5.5}$",
+    "en": "<strong>Top-right quadrant $[7,5; 2,4]$</strong>: Max $= \\max(7,5,2,4) = \\mathbf{7}$; Avg $= (7+5+2+4)/4 = \\mathbf{4.5}$; Median $= \\mathbf{5.5}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c6112e0614ff": {
+    "zh": "<strong>左下象限 $[8,-1; 7,3]$</strong>：Max $= \\max(8,-1,7,3) = \\mathbf{8}$；Avg $= (8-1+7+3)/4 = \\mathbf{4.25}$；Median $= \\mathbf{5.0}$",
+    "en": "<strong>Bottom-left quadrant $[8,-1; 7,3]$</strong>: Max $= \\max(8,-1,7,3) = \\mathbf{8}$; Avg $= (8-1+7+3)/4 = \\mathbf{4.25}$; Median $= \\mathbf{5.0}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "723013dc3411": {
+    "zh": "<strong>右下象限 $[-5,1; 2,6]$</strong>：Max $= \\max(-5,1,2,6) = \\mathbf{6}$；Avg $= (-5+1+2+6)/4 = \\mathbf{1.0}$；Median $= \\mathbf{1.5}$",
+    "en": "<strong>Bottom-right quadrant $[-5,1; 2,6]$</strong>: Max $= \\max(-5,1,2,6) = \\mathbf{6}$; Avg $= (-5+1+2+6)/4 = \\mathbf{1.0}$; Median $= \\mathbf{1.5}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8a2348c5daf5": {
+    "zh": "05 / 圖解池化 · Visualizing Pooling Results",
+    "en": "05 / Pooling Visualized",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f3a60a512e0f": {
+    "zh": "同一張 4×4，三種摘要完全不同\n    <span class=\"en\">Visual Diagram: Three Completely Distinct Outputs from the Same Input</span>\n  ",
+    "en": "The same 4×4, three completely different summaries",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8411b848759f": {
+    "zh": "\n            輸入 4×4（四色象限不重疊）\n          ",
+    "en": "Input 4×4 (four non-overlapping colored quadrants)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "48e9742d0c41": {
+    "zh": "Max Pooling · 只留最強",
+    "en": "Max Pooling · keeps the strongest",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "92fe2cb6fa1b": {
+    "zh": "Average Pooling · 區域均分",
+    "en": "Average Pooling · averages the region",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "45956c35b569": {
+    "zh": "Median Pooling · 排序中位",
+    "en": "Median Pooling · sorted median",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "9b795254279f": {
+    "zh": "核心幾何洞見",
+    "en": "Key geometric insights",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "93831db08f32": {
+    "zh": "1. 無可學習權重：",
+    "en": "1. No learnable weights:",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "a53f0d2cbf21": {
+    "zh": "池化純粹套用統計運運算元，",
+    "en": "pooling just applies a statistical operator",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d8c2581f613e": {
+    "zh": "不產生任何需要反傳學習的權重。",
+    "en": "and creates no weights to learn by backprop.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "93b2eaacf65f": {
+    "zh": "2. 雜訊耐受性差異：",
+    "en": "2. Different noise tolerance:",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "9773f5d75c51": {
+    "zh": "右下角出現極端負值 -5：",
+    "en": "Extreme negative -5 at bottom right:",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "048048cd4d1b": {
+    "zh": "Max 依然抓出最強的 6",
+    "en": "Max still picks the strongest, 6",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c0038db21798": {
+    "zh": "Avg 則被負值大幅拉低至 1.0",
+    "en": "Avg is dragged down to 1.0",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "c072100b1fe7": {
+    "zh": "3. 空間縮減口訣：",
+    "en": "3. Spatial-reduction rule of thumb:",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "43c7c03fde83": {
+    "zh": "stride = 2 讓輸出邊長折半，",
+    "en": "stride = 2 halves the output side,",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "a3635ea883e8": {
+    "zh": "特徵維度直接縮減為原本的 1/4。",
+    "en": "cutting the feature size to 1/4.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "4c466f15b81d": {
+    "zh": "沒有最優，端看下游任務需求",
+    "en": "No single best: it depends on the downstream task",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "82b6bbfb0bd1": {
+    "zh": "圖解教科書 4×4 矩陣在 Max / Avg / Median 三種池化下的精確對比",
+    "en": "Diagram: exact comparison of the textbook 4×4 matrix under max, average and median pooling",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ca5d2c301c8a": {
+    "zh": "📊 哪種池化在現代最常用？",
+    "en": "📊 Which pooling is most common today?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b65baf6bfe24": {
+    "zh": "\n          在卷積神經網路的特徵抽取骨幹中，<strong>最大池化（Max Pooling）</strong>是壓倒性的首選！因為神經網路的啟用代表著「特徵是否存在」，我們通常只在乎視窗內是否有強烈的幾何邊緣或紋理被觸發，而不在乎周圍的平庸背景。\n        ",
+    "en": "In the feature-extraction backbone of a convolutional neural network, <strong>max pooling</strong> is by far the first choice! Because a neural network's activation represents “whether a feature is present”, we usually only care whether a strong geometric edge or texture fired within the window, not about the ordinary background around it.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "58c68519f8f6": {
+    "zh": "\n          而在整個神經網路的收尾階段，<strong>全域平均池化（Global Average Pooling, GAP）</strong>則取而代之，用來將特徵圖平滑壓縮為全域類別摘要（詳見 KP-10）。\n        ",
+    "en": "At the final stage of the whole network, <strong>global average pooling (GAP)</strong> takes over, smoothly compressing the feature maps into a global class summary (see KP-10).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ed4bcee5ce94": {
+    "zh": "06 / 超參數對應 · Hyperparameters",
+    "en": "06 / Hyperparameter Mapping · Hyperparameters",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "21525c2b3f10": {
+    "zh": "池化超參數：與卷積完全相同的控制體系\n    <span class=\"en\">Pooling Hyperparameters: Identical Control Architecture to Convolution</span>\n  ",
+    "en": "Pooling hyperparameters: exactly the same control system as convolution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4f7552a6641b": {
+    "zh": "超參數 Hyperparameter",
+    "en": "Hyperparameter",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "486868017206": {
+    "zh": "在池化層的行為與影響 Behavior in Pooling",
+    "en": "Behavior and effect in a pooling layer",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bad24cc64839": {
+    "zh": "<strong>步幅（Stride）</strong>",
+    "en": "<strong>Stride</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9a5ad193f6ca": {
+    "zh": "步幅小於窗寬時視窗彼此重疊（Overlapping Pooling）；步幅等於窗寬時為經典不重疊池化。",
+    "en": "When the stride is smaller than the window width, the windows overlap (overlapping pooling); when the stride equals the window width, it is classic non-overlapping pooling.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "42afd863071c": {
+    "zh": "<strong>寬度（Width）</strong>",
+    "en": "<strong>Width</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9b9c79739bfd": {
+    "zh": "池化視窗尺寸（通常為 $2\\times 2$ 或 $3\\times 3$）。視窗愈大，下取樣程度愈粗獷。",
+    "en": "The pooling window size (usually $2\\times 2$ or $3\\times 3$). The larger the window, the coarser the downsampling.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6ba11e17a8d5": {
+    "zh": "<strong>通道數（Channels）</strong>",
+    "en": "<strong>Channels</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a818c1a49210": {
+    "zh": "池化核深度對齊輸入通道數；<strong>各通道完全獨立運算，絕不跨通道求和</strong>（通道數前後不變）。",
+    "en": "The depth of the pooling kernel matches the number of input channels; <strong>each channel is computed completely independently, never summed across channels</strong> (the number of channels is unchanged).",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e08d325d9cb1": {
+    "zh": "<strong>填充（Padding）</strong>",
+    "en": "<strong>Padding</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fc17e134fb43": {
+    "zh": "同樣可使用 Zero Padding 擴充邊界；若補一圈零，在 Max Pooling 時外圍將引入數值 0。",
+    "en": "Zero padding can likewise be used to extend the border; if one ring of zeros is added, max pooling will bring the value 0 in at the border.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20befc297746": {
+    "zh": "07 / 互動實驗室 · Interactive Lab",
+    "en": "07 / Interactive Lab",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ff59a121cfdd": {
+    "zh": "互動實驗室：教科書 4×4 矩陣多模式池化檢驗器\n    <span class=\"en\">Interactive Lab: Textbook 4×4 Matrix Multi-Mode Pooling Inspector</span>\n  ",
+    "en": "Interactive lab: multi-mode pooling inspector for the textbook 4×4 matrix",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0d23f32fd0a0": {
+    "zh": "池化模式 Mode:",
+    "en": "Pooling mode:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e8d06bb28ee8": {
+    "zh": "最大池化 Max Pooling",
+    "en": "Max pooling",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d1a426c47140": {
+    "zh": "平均池化 Average Pooling",
+    "en": "Average pooling",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1ca97733cfdf": {
+    "zh": "中位數池化 Median Pooling",
+    "en": "Median pooling",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b41d17281568": {
+    "zh": "▶ 重新計算 Re-evaluate",
+    "en": "▶ Recompute",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "39d35aac6333": {
+    "zh": "\n          畫布視覺化：左側 4×4 教科書輸入（四色代表不重疊視窗）與右側 2×2 輸出矩陣：\n        ",
+    "en": "Canvas visualization: the textbook 4×4 input on the left (four colors for the non-overlapping windows) and the 2×2 output matrix on the right:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c2aac3e721e0": {
+    "zh": "\n        運算即時診斷報告 [最大池化 Max Pooling]\n      ",
+    "en": "Live computation report [max pooling]",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2442b6f89fc9": {
+    "zh": "<strong>左上象限 [2, 1, 2, 3]：</strong> <span style=\"font-weight:700; color:#1e40af;\">3</span>",
+    "en": "<strong>Top-left quadrant [2, 1, 2, 3]:</strong> <span style=\"font-weight:700; color:#1e40af;\">3</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ae85a8c28681": {
+    "zh": "<strong>右上象限 [7, 5, 2, 4]：</strong> <span style=\"font-weight:700; color:#1e40af;\">7</span>",
+    "en": "<strong>Top-right quadrant [7, 5, 2, 4]:</strong> <span style=\"font-weight:700; color:#1e40af;\">7</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f5c73735f408": {
+    "zh": "<strong>左下象限 [8, -1, 7, 3]：</strong> <span style=\"font-weight:700; color:#1e40af;\">8</span>",
+    "en": "<strong>Bottom-left quadrant [8, -1, 7, 3]:</strong> <span style=\"font-weight:700; color:#1e40af;\">8</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "413125ba0c3e": {
+    "zh": "<strong>右下象限 [-5, 1, 2, 6]：</strong> <span style=\"font-weight:700; color:#1e40af;\">6</span>",
+    "en": "<strong>Bottom-right quadrant [-5, 1, 2, 6]:</strong> <span style=\"font-weight:700; color:#1e40af;\">6</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cb6bace4d2a3": {
+    "zh": "<strong>輸出特徵矩陣：</strong>",
+    "en": "<strong>Output feature matrix:</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "714a4797f631": {
+    "zh": "\n        💡 Max 只抓強訊號，忽略 -5 依然輸出 6。\n      ",
+    "en": "💡 Max catches only the strong signal: it ignores -5 and still outputs 6.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7832a410ba7e": {
+    "zh": "\n      🧪 <strong>實測大觀察：</strong><br>\n      1. <strong>數值驗證</strong>：切換不同模式，核對 Readout 中的四格數值是否與課本完全吻合（Max 為 $[[3,7],[8,6]]$；Avg 為 $[[2,4.5],[4.25,1]]$；Median 為 $[[2,5.5],[5,1.5]]$）。<br>\n      2. <strong>負數敏感性</strong>：觀察右下角象限在包含 $-5$ 時，Max 依然精準捕捉到強訊號 $6$，而 Avg 則被拖垮至 $1.0$。\n    ",
+    "en": "🧪 <strong>Key observations from the experiment:</strong><br>\n      1. <strong>Numerical check</strong>: switch between modes and check that the four values in the readout match the textbook exactly (Max is $[[3,7],[8,6]]$; Avg is $[[2,4.5],[4.25,1]]$; Median is $[[2,5.5],[5,1.5]]$).<br>\n      2. <strong>Sensitivity to negative values</strong>: note that when the bottom-right quadrant contains $-5$, Max still captures the strong signal $6$ exactly, while Avg is dragged down to $1.0$.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bbc0c2e6369": {
+    "zh": "08 / 實戰檢驗 · Concept Checkpoint",
+    "en": "08 / Hands-On Check",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "375846a680fa": {
+    "zh": "題目 1 · 偵測器階段角色 / Detector Stage Role",
+    "en": "Question 1 · Role of the detector stage",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1045241f80c3": {
+    "zh": "卷積層內部的「偵測器階段（Detector Stage）」其核心運算本質是？",
+    "en": "What is the core operation of the “detector stage” inside a convolutional layer?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "57e780d0c017": {
+    "zh": "A. 進行快速傅立葉變換",
+    "en": "A. Performing a fast Fourier transform",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c9bfaa369235": {
+    "zh": "B. 套用非線性啟用函式（如 ReLU）以點亮超過門檻的特徵訊號",
+    "en": "B. Applying a nonlinear activation function (such as ReLU) to light up feature signals above a threshold",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8e003761d56b": {
+    "zh": "C. 隨機丟棄 50% 神經元權重",
+    "en": "C. Randomly dropping 50% of the neuron weights",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6e927aaf7399": {
+    "zh": "D. 計算權重矩陣的奇異值分解",
+    "en": "D. Computing the singular value decomposition of the weight matrix",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8038b5368a21": {
+    "zh": "題目 2 · 教科書數值算例 / Textbook Example",
+    "en": "Question 2 · Textbook worked example",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "50885d490e4a": {
+    "zh": "課本給定 4×4 輸入訊號在 stride=2、width=2 下進行 Max Pooling，其輸出結果矩陣為？",
+    "en": "When max pooling with stride=2 and width=2 is applied to the 4×4 input signal given in the textbook, what is the output matrix?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6200673f33c3": {
+    "zh": "題目 3 · 運算機制本質 / Operation Mechanism",
+    "en": "Question 3 · How the operation works",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c89b6d6dc4a2": {
+    "zh": "池化層（Pooling Layer）與卷積層最關鍵的結構差異是？",
+    "en": "What is the most important structural difference between a pooling layer and a convolutional layer?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7248f0fa876a": {
+    "zh": "A. 池化層的步幅 stride 必須永遠固定為 1",
+    "en": "A. A pooling layer's stride must always be fixed at 1",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1d7cb0071bec": {
+    "zh": "B. 池化層會跨通道進行加權線性組合",
+    "en": "B. A pooling layer takes weighted linear combinations across channels",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2b3fbc60dc83": {
+    "zh": "C. 池化層是純粹的局部統計摘要，完全沒有任何可學習參數",
+    "en": "C. A pooling layer is a pure local statistical summary with no learnable parameters at all",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bfa9e1706a06": {
+    "zh": "D. 池化層禁止進行任何邊界填充",
+    "en": "D. A pooling layer forbids any border padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7fe164abf7e7": {
+    "zh": "題目 4 · 負值雜訊敏感度 / Noise Sensitivity",
+    "en": "Question 4 · Sensitivity to negative noise",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5b5b1b8aac6b": {
+    "zh": "在課本算例中，右下象限包含強烈負值（-5），下列哪種池化方法最容易被該負值大幅拉低輸出？",
+    "en": "In the textbook example, the bottom-right quadrant contains a strongly negative value (-5). Which pooling method has its output dragged down the most by this negative value?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3c96eadd5294": {
+    "zh": "A. 平均池化（Average Pooling）",
+    "en": "A. Average pooling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "92197fa5f31d": {
+    "zh": "B. 最大池化（Max Pooling）",
+    "en": "B. Max pooling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c8237f1c1971": {
+    "zh": "C. $\\ell_2$ 範數池化（$\\ell_2$-Norm Pooling）",
+    "en": "C. $\\ell_2$-norm pooling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "900ed8f1fed6": {
+    "zh": "D. 卷積運算",
+    "en": "D. Convolution",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

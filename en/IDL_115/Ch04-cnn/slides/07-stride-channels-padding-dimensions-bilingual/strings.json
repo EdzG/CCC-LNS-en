@@ -1,0 +1,717 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "再想想看！": "Think again!",
+      "單顆卷積核的深度必須嚴格等於輸入資料的通道數 $C_{in}$；輸出特徵圖張數是由「有幾顆獨立的卷積核」決定。": "The depth of a single kernel must exactly equal the number of channels of the input data, $C_{in}$; the number of output feature maps is determined by “how many independent kernels there are”.",
+      "式 (6) 正確公式為 $\\lfloor(d-f+2p)/s+1\\rfloor$，寬高各自依照此式進行向下取整。": "The correct formula of Equation (6) is $\\lfloor(d-f+2p)/s+1\\rfloor$; the width and the height are each rounded down by it separately.",
+      "Valid padding 代表完全不對邊界補任何值（$p=0$），卷積只在輸入影像內部有效覆蓋範圍內滑動。": "Valid padding means adding no values at all at the border ($p=0$); the convolution slides only within the region it validly covers inside the input image.",
+      "教材列出的五大填充為 zero、constant、replicate、reflect、circular，並無隨機打亂填充。": "The five padding types listed in the textbook are zero, constant, replicate, reflect and circular; there is no random-shuffle padding.",
+      "❌ 尺寸不合法（out < 1）": "❌ Invalid size (out < 1)",
+      "畫布按等比例渲染空間尺寸；最大 d=32 對應 180 畫素寬度。": "Drawn to scale: the maximum d=32 maps to a width of 180 pixels.",
+      "計算式：": "Computation:",
+      "輸出空間邊長：": "Output spatial side:",
+      "不合法 (≤0)": "Invalid (≤0)",
+      "⚠ 核尺寸大於填充後輸入，無法完成一次有效滑動！": "⚠ The kernel is larger than the padded input, so not even one valid slide is possible!",
+      "🎉 尺寸完全守恆（Same Padding 條件達成）": "🎉 Size fully preserved (same-padding condition met)",
+      "📈 空間維度擴大（Padding 較大）": "📈 Spatial size grows (large padding)",
+      "單顆卷積核的深度必須嚴格等於輸入資料的通道數": "The depth of a single kernel must exactly equal the number of channels of the input data,",
+      "；輸出特徵圖張數是由「有幾顆獨立的卷積核」決定。": "; the number of output feature maps is determined by “how many independent kernels there are”.",
+      "式 (6) 正確公式為": "The correct formula of Equation (6) is",
+      "，寬高各自依照此式進行向下取整。": "; the width and the height are each rounded down by it separately.",
+      "Valid padding 代表完全不對邊界補任何值（": "Valid padding means adding no values at all at the border (",
+      "），卷積只在輸入影像內部有效覆蓋範圍內滑動。": "); the convolution slides only within the region it validly covers inside the input image."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^輸入邊長 (\\d+)×(\\d+)$",
+        "en": "Input $1×$2"
+      },
+      {
+        "re": "^輸出特徵圖 (-?\\d+)×(-?\\d+)$",
+        "en": "Output map $1×$2"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "e690e2b6c298": {
+    "zh": "KP07 · 索引",
+    "en": "KP07 · Contents",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3b1649826152": {
+    "zh": "<a href=\"#four-knobs\">四大旋鈕 · Four Knobs</a>",
+    "en": "<a href=\"#four-knobs\">The Four Knobs</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "89cc34225105": {
+    "zh": "<a href=\"#formula-6\">尺寸公式式 (6) · Dimension Formula</a>",
+    "en": "<a href=\"#formula-6\">Size Formula, Equation (6)</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5b7f19349432": {
+    "zh": "<a href=\"#padding-types\">五種填充策略 · Padding Strategies</a>",
+    "en": "<a href=\"#padding-types\">Five Padding Strategies</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "08a0c016dba0": {
+    "zh": "<a href=\"#multichannel-concept\">多通道概念剖析 · Multichannel</a>",
+    "en": "<a href=\"#multichannel-concept\">Multichannel Concepts</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d79939919d3d": {
+    "zh": "<a href=\"#svg-dimension\">視覺化對比 · Visual Shrink vs Pad</a>",
+    "en": "<a href=\"#svg-dimension\">Visual Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Check</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b3b08e35832c": {
+    "zh": "步幅、通道、填充與輸出尺寸\n      <span class=\"hero-title-en\">Stride, Channels, Padding, and Output Dimensions</span>\n    ",
+    "en": "Stride, Channels, Padding, and Output Size",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "48548518f871": {
+    "zh": "\n      卷積運算的幾何輸出完全由四個超參數旋鈕決定：<strong>Stride（步幅）</strong>、<strong>Width（核寬）</strong>、<strong>Channels（通道深度）</strong> 與 <strong>Padding（填充邊界）</strong>。透過經典幾何公式 $\\lfloor(d-f+2p)/s+1\\rfloor$，精確預測每一層特徵圖的空間解析度，並釐清核深度與輸出特徵圖張數的本質差異。\n    ",
+    "en": "The geometric output of a convolution is fully determined by four hyperparameter knobs: <strong>stride</strong>, <strong>width (kernel width)</strong>, <strong>channels (channel depth)</strong> and <strong>padding (border padding)</strong>. With the classic geometric formula $\\lfloor(d-f+2p)/s+1\\rfloor$ you can predict exactly the spatial resolution of every layer's feature map, and clarify the essential difference between kernel depth and the number of output feature maps.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "beda3d012091": {
+    "zh": "\n      「不補邊輸出會縮一圈；padding 把那圈補回來！」\n      <small>核中心對不到最外圈畫素，valid 必然縮邊；邊界尺寸公式精確掌管空間解析度。<br>\n        <span class=\"bilingual-en-inline\">Unpadded convolution shrinks the feature map; padding restores spatial dimensions.</span>\n      </small>\n    ",
+    "en": "“Without padding the output shrinks by one ring; padding puts that ring back!”\n      <small>The kernel center cannot reach the outermost ring of pixels, so valid convolution always shrinks the border; the size formula governs the spatial resolution exactly.<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "3643b4391307": {
+    "zh": "02 / 核心超參數 · Four Knobs",
+    "en": "02 / Core Hyperparameters",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "458a63fbdba6": {
+    "zh": "四大控制旋鈕：stride、width、channels、padding\n    <span class=\"en\">The Four Primary Control Knobs of Convolution</span>\n  ",
+    "en": "The four control knobs: stride, width, channels, padding",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4b1a30bdea08": {
+    "zh": "👣 1. Stride（步幅）",
+    "en": "👣 1. Stride",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "10b77b2f965d": {
+    "zh": "\n        濾波器在空間網格上滑動時每次移動的格數。$s=1$ 為逐畫素連續平移；$s=2$ 每次跳躍 2 格，相當於在卷積階段直接進行下取樣，輸出尺寸大致折半。\n      ",
+    "en": "The number of cells the filter moves each time it slides over the spatial grid. $s=1$ shifts one pixel at a time; $s=2$ jumps 2 cells each time, which amounts to downsampling directly in the convolution stage and roughly halves the output size.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "e9641aa1d8bd": {
+    "zh": "📏 2. Width（核寬 / 空間尺寸）",
+    "en": "📏 2. Width (kernel width / spatial size)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "738fde905d21": {
+    "zh": "\n        濾波核的長寬尺寸 $f$（現代多為 $3\\times 3$ 或 $5\\times 5$）。小核專注微觀細節，大核一次涵蓋更寬廣的局部上下文。\n      ",
+    "en": "The height and width $f$ of the kernel (nowadays mostly $3\\times 3$ or $5\\times 5$). Small kernels focus on fine details; large kernels cover a wider local context at once.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d6789ed6d48c": {
+    "zh": "🥞 3. Channels（通道深度）",
+    "en": "🥞 3. Channels (channel depth)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "51e7e8b00ef0": {
+    "zh": "\n        <strong>關鍵澄清</strong>：一顆濾波核的「深度」<strong>必須嚴格對齊輸入通道數 $C_{in}$</strong>！而「輸出特徵圖張數 $C_{out}$」則是由<strong>有幾顆獨立的濾波核</strong>所決定。兩者絕對不能混淆！\n      ",
+    "en": "<strong>Key clarification</strong>: the “depth” of one kernel <strong>must match the number of input channels $C_{in}$ exactly</strong>! The “number of output feature maps $C_{out}$”, on the other hand, is determined by <strong>how many independent kernels there are</strong>. Never mix the two up!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "534885a97305": {
+    "zh": "🧱 4. Padding（邊界填充）",
+    "en": "🧱 4. Padding (border padding)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "83e069883157": {
+    "zh": "\n        在輸入影像外圍擴充邊界畫素圈數 $p$。完全不補邊稱為 <strong>valid padding</strong>（$p=0$）；維持輸入與輸出長寬相同的設定稱為 <strong>same padding</strong>。\n      ",
+    "en": "Extend the input image with $p$ rings of border pixels around it. No padding at all is called <strong>valid padding</strong> ($p=0$); the setting that keeps the output height and width equal to the input's is called <strong>same padding</strong>.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "77a59873e90d": {
+    "zh": "03 / 數學定理 · Output Dimension Formula",
+    "en": "03 / Mathematical Result · Output Size Formula",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b2c0ab4711eb": {
+    "zh": "式 (6)：輸出特徵圖空間尺寸精確定理\n    <span class=\"en\">Equation (6): Spatial Output Dimension Formulation</span>\n  ",
+    "en": "Equation (6): the exact formula for the spatial size of the output feature map",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d25e665f687b": {
+    "zh": "尺寸公式式 (6)",
+    "en": "Size formula, Equation (6)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d5c2cc854193": {
+    "zh": "\n      設輸入長寬為 $d$、卷積核寬為 $f$、單側填充為 $p$、步幅為 $s$。輸出特徵圖的空間尺寸嚴格由下式決定：\n    ",
+    "en": "Let the input height/width be $d$, the kernel width $f$, the padding on each side $p$, and the stride $s$. The spatial size of the output feature map is given exactly by:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f92dddde8e79": {
+    "zh": "\n      其中 $\\lfloor\\cdot\\rfloor$ 代表無條件向下取整（Floor 運算）。\n    ",
+    "en": "where $\\lfloor\\cdot\\rfloor$ means rounding down (the floor operation).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fcb77ba38e19": {
+    "zh": "<strong>有效覆蓋跨度</strong>：$d + 2p - f$ 為濾波核可在輸入邊界內滑動的最大淨位移。",
+    "en": "<strong>Effective coverage span</strong>: $d + 2p - f$ is the largest net displacement over which the kernel can slide within the input border.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8133be3f0b28": {
+    "zh": "<strong>段數計算</strong>：除以步幅 $s$ 後取整，再加上初始出發的第 1 格，即得輸出邊長。",
+    "en": "<strong>Counting the steps</strong>: divide by the stride $s$ and round down, then add the first starting position to get the output side length.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "22640e59de91": {
+    "zh": "\n      <strong>算例 1 (Valid)</strong>：$d=5, f=3, p=0, s=1 \\implies \\lfloor(5-3+0)/1 + 1\\rfloor = 3$（$5\\times 5 \\to 3\\times 3$，外圈被削掉一圈）。<br>\n      <strong>算例 2 (Same)</strong>：$d=5, f=3, p=1, s=1 \\implies \\lfloor(5-3+2)/1 + 1\\rfloor = 5$（$5\\times 5 \\to 5\\times 5$，尺寸完美保全）。\n    ",
+    "en": "<strong>Example 1 (Valid)</strong>: $d=5, f=3, p=0, s=1 \\implies \\lfloor(5-3+0)/1 + 1\\rfloor = 3$ ($5\\times 5 \\to 3\\times 3$, one outer ring is shaved off).<br>\n      <strong>Example 2 (Same)</strong>: $d=5, f=3, p=1, s=1 \\implies \\lfloor(5-3+2)/1 + 1\\rfloor = 5$ ($5\\times 5 \\to 5\\times 5$, the size is perfectly preserved).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "791ec3b76d7b": {
+    "zh": "04 / 填充策略 · Padding Strategies",
+    "en": "04 / Padding Strategies",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "be7d7de36e01": {
+    "zh": "課本列出的五種主要填充策略\n    <span class=\"en\">Five Principal Padding Methods Described in the Textbook</span>\n  ",
+    "en": "The five main padding strategies listed in the textbook",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b0087a3bcc5e": {
+    "zh": "填充方法 Method",
+    "en": "Padding method",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3555089b1064": {
+    "zh": "邊界數值來源 Implementation",
+    "en": "Where the border values come from",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e4ca6586aa50": {
+    "zh": "典型適用場景 Typical Usage",
+    "en": "Typical use",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "01bdf06a4b75": {
+    "zh": "在周圍均勻補上數值 0（最普遍）",
+    "en": "Pad the surroundings uniformly with the value 0 (most common)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bd2280438073": {
+    "zh": "標準深度學習架構（ResNet、VGG 等預設值）",
+    "en": "Standard deep-learning architectures (the default in ResNet, VGG, etc.)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "514bbcfe97cf": {
+    "zh": "在周圍補上使用者指定的固定常數 $c$",
+    "en": "Pad the surroundings with a user-specified fixed constant $c$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d895254e94dd": {
+    "zh": "有特定背景基準值（如平均亮度）的影像任務",
+    "en": "Image tasks with a specific background baseline value (e.g. mean brightness)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7a77d4fb935d": {
+    "zh": "直接複製並向外延伸最邊緣一排的畫素值",
+    "en": "Copy the outermost row of pixel values and extend it outward",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3779e0164a09": {
+    "zh": "邊緣紋理連續性要求高的影像修復或分割",
+    "en": "Image inpainting or segmentation that needs continuous edge texture",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "361f58c6ee79": {
+    "zh": "沿著影像邊界做映象對稱翻折複製",
+    "en": "Copy by mirror-reflecting the image across its border",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c5850c2f60ba": {
+    "zh": "風格遷移（Style Transfer）、超解析度（Super-Resolution）",
+    "en": "Style transfer, super-resolution",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9f4b648759b8": {
+    "zh": "將影像頭尾相接、左右迴圈週期性環繞",
+    "en": "Wrap the image around periodically, joining top to bottom and left to right",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9373912e1457": {
+    "zh": "全景圖（360° Panorama）、週期性晶格物理模擬",
+    "en": "Panoramas (360° panorama), simulations of periodic lattice physics",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "84f931fe0b27": {
+    "zh": "05 / 多通道張量 · Multichannel Tensors",
+    "en": "05 / Multichannel Tensors",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a6b962ed81a6": {
+    "zh": "課本 Fig. 5 與 Fig. 6：從單通道平面到三維張量\n    <span class=\"en\">From 2D Single-Channel to 3D Multichannel Tensor Convolutions</span>\n  ",
+    "en": "Textbook Fig. 5 and Fig. 6: from single-channel planes to 3D tensors",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "36b87cafe806": {
+    "zh": "立體張量卷積的正確心智模型",
+    "en": "The right mental model for convolution on 3D tensors",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2363c7df2998": {
+    "zh": "<strong>單通道卷積（Fig. 5）</strong>：$1 \\text{ 個平面輸入} \\times 1 \\text{ 個 2D 核} \\implies 1 \\text{ 張輸出特徵圖}$。",
+    "en": "<strong>Single-channel convolution (Fig. 5)</strong>: $1 \\text{ planar input} \\times 1 \\text{ 2D kernel} \\implies 1 \\text{ output feature map}$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d35fb91bba39": {
+    "zh": "<strong>多通道卷積（Fig. 6）</strong>：輸入有 3 個色彩通道（RGB）。此時<strong>每一顆濾波核本身就是一個 3D 張量（尺寸為 $f \\times f \\times 3$）</strong>！\n        它在 3 個通道上分別做 2D 乘加，並在通道維度求和，輸出<strong>依然是單張 2D 特徵圖</strong>。\n      ",
+    "en": "<strong>Multichannel convolution (Fig. 6)</strong>: the input has 3 color channels (RGB). Now <strong>each kernel is itself a 3D tensor (of size $f \\times f \\times 3$)</strong>!\n        It does a 2D multiply-add on each of the 3 channels and sums over the channel dimension, and the output is <strong>still a single 2D feature map</strong>.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "769462eda2c7": {
+    "zh": "<strong>產生多張特徵圖</strong>：如果你希望下一層擁有 16 個特徵通道，你必須準備 <strong>16 顆互不相干的 3D 濾波核</strong>！\n        總參數量即為：$f \\times f \\times C_{in} \\times C_{out}$（加上 $C_{out}$ 個偏置項）。\n      ",
+    "en": "<strong>Producing multiple feature maps</strong>: if you want the next layer to have 16 feature channels, you must prepare <strong>16 mutually independent 3D kernels</strong>!\n        The total number of parameters is then $f \\times f \\times C_{in} \\times C_{out}$ (plus $C_{out}$ biases).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "88d98c3b3118": {
+    "zh": "06 / 尺寸對比 · Visualizing Output Sizes",
+    "en": "06 / Size Comparison · Visualizing Output Sizes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4bd6e2c498f8": {
+    "zh": "不補邊（Valid）vs 補一圈（Same）視覺對照圖\n    <span class=\"en\">Visual Comparison: Valid (p=0, Shrinking) vs Same (p=1, Preserving)</span>\n  ",
+    "en": "Visual comparison: no padding (Valid) vs one ring of padding (Same)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4a7f53724e2f": {
+    "zh": "\n          輸出邊長公式：⌊(d − f + 2p) / s⌋ + 1   （正方形 H 與 W 同式）\n        ",
+    "en": "Output side formula: ⌊(d − f + 2p) / s⌋ + 1   (same formula for square H and W)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "af7f3cd9ead5": {
+    "zh": "Valid Padding (p = 0) · 空間縮減",
+    "en": "Valid Padding (p = 0) · spatial shrinking",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "92c01e98b867": {
+    "zh": "⌊(5 − 3 + 0)/1⌋ + 1 = 3  $\\implies$ 輸出 3×3",
+    "en": "⌊(5 − 3 + 0)/1⌋ + 1 = 3  $\\implies$ output 3×3",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "555b0de5299d": {
+    "zh": "5×5 輸入 (3×3核)",
+    "en": "5×5 input (3×3 kernel)",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "c7433ded6a1e": {
+    "zh": "3×3 輸出",
+    "en": "3×3 output",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "7e57e8adcfc5": {
+    "zh": "未填充導致邊界資訊遺失，深層網路會縮小至無",
+    "en": "No padding loses border info; deep nets shrink to nothing",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "5d3a1841fe3e": {
+    "zh": "Same Padding (p = 1) · 保持尺寸",
+    "en": "Same Padding (p = 1) · size preserved",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "8d62b25ce0e9": {
+    "zh": "⌊(5 − 3 + 2)/1⌋ + 1 = 5  $\\implies$ 輸出 5×5",
+    "en": "⌊(5 − 3 + 2)/1⌋ + 1 = 5  $\\implies$ output 5×5",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "6e7853e30006": {
+    "zh": "灰圈為 Padding 圈",
+    "en": "Gray ring = padding",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "3cda475c17ad": {
+    "zh": "5×5 輸出",
+    "en": "5×5 output",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "43e39ce19335": {
+    "zh": "補 1 圈讓核中心可涵蓋原圖邊界，尺寸完美守恆",
+    "en": "1 ring of padding lets the kernel center reach the border; size preserved",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "672203adfc68": {
+    "zh": "心算要訣：有效覆蓋跨度 (d − f + 2p) 代表濾波器滑動空間，除以步幅 s 即得步數！",
+    "en": "Mental-math tip: the effective span (d − f + 2p) is the filter's sliding room; divide by stride s to get the steps!",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "ac9e5f392e23": {
+    "zh": "若出現非整數，Floor 運算會截斷無法完整對齊的右側邊界；在 PyTorch 中預設即遵循向下取整機制。",
+    "en": "If it is not an integer, floor cuts off the right border that cannot fully align; PyTorch rounds down by default.",
+    "kp": 7,
+    "ctx": "svg"
+  },
+  "685c43195cca": {
+    "zh": "圖解 Valid Padding 與 Same Padding 空間尺寸演化對比",
+    "en": "Diagram: how the spatial size evolves under valid padding vs same padding",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "da2aa238d609": {
+    "zh": "💡 Valid 不是「比較正確」",
+    "en": "💡 Valid does not mean “more correct”",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "78ec45b9ebd1": {
+    "zh": "\n          英文名詞「Valid」常被誤解為「合法的／正確的」。實際上，在訊號處理歷史中，Valid 只是指「完全不擴充邊界、只在純淨原訊號內部運算」。\n        ",
+    "en": "The English word “valid” is often misread as “legal / correct”. In fact, in the history of signal processing, valid just means “do not extend the border at all; compute only inside the pure original signal”.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "40d3d6029734": {
+    "zh": "\n          在現代數十層乃至上百層的深層神經網路中，若每一層都用 Valid，特徵圖長寬會迅速縮減為 0。因此現代架構（如 ResNet）幾乎全數採用 $3\\times 3$ 搭配 $p=1$ 的 <strong>Same Padding</strong> 保持空間尺寸！\n        ",
+    "en": "In modern deep networks with dozens or even hundreds of layers, if every layer used valid padding, the feature-map height and width would quickly shrink to 0. That is why modern architectures (such as ResNet) almost all use $3\\times 3$ with $p=1$, i.e. <strong>same padding</strong>, to preserve the spatial size!",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20befc297746": {
+    "zh": "07 / 互動實驗室 · Interactive Lab",
+    "en": "07 / Interactive Lab",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ffb7cd049267": {
+    "zh": "互動實驗室：式 (6) 輸出尺寸四旋鈕即時演算器\n    <span class=\"en\">Interactive Lab: Equation (6) Four-Knob Interactive Dimension Calculator</span>\n  ",
+    "en": "Interactive lab: live four-knob output-size calculator for Equation (6)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "21d2f35f84a4": {
+    "zh": "輸入邊長 $d$:",
+    "en": "Input side $d$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3e0383ad0b59": {
+    "zh": "核寬 $f$:",
+    "en": "Kernel width $f$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1d326e4c7227": {
+    "zh": "填充 $p$:",
+    "en": "Padding $p$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6aa2ba973f93": {
+    "zh": "步幅 $s$:",
+    "en": "Stride $s$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4cc095685196": {
+    "zh": "重設預設 Reset",
+    "en": "Reset defaults",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "53dfaabcf269": {
+    "zh": "\n          視覺化畫布：依據四個旋鈕動態渲染輸入方框與輸出特徵圖幾何比例：\n        ",
+    "en": "Visualization canvas: draws the input box and the output feature map to scale according to the four knobs:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9835d011bcc4": {
+    "zh": "\n        公式推導即時診斷報告\n      ",
+    "en": "Live formula diagnosis report",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3d84c120e0df": {
+    "zh": "<strong>計算式：</strong> $\\lfloor(8 - 3 + 2\\times0) / 1\\rfloor + 1 = \\lfloor5 / 1\\rfloor + 1$",
+    "en": "<strong>Computation:</strong> $\\lfloor(8 - 3 + 2\\times0) / 1\\rfloor + 1 = \\lfloor5 / 1\\rfloor + 1$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6aab8002f10a": {
+    "zh": "<strong>輸出空間邊長：</strong> <span style=\"font-size:18px; font-weight:700; color:#1e40af;\">6 × 6</span>",
+    "en": "<strong>Output spatial side:</strong> <span style=\"font-size:18px; font-weight:700; color:#1e40af;\">6 × 6</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f20c50cfa7db": {
+    "zh": "\n        📉 空間維度縮小（下取樣或削邊）\n      ",
+    "en": "📉 Spatial size shrinks (downsampling or border trimming)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "19cfdffad24a": {
+    "zh": "\n      🧪 <strong>實測大觀察：</strong><br>\n      1. <strong>Same 條件實測</strong>：設定 $f=3, s=1$，將 $p$ 從 0 改為 1，觀察輸出特徵圖邊長是否恰好等於輸入邊長 $d$！<br>\n      2. <strong>步幅跳躍效應</strong>：將步幅 $s$ 從 1 提升為 2，觀察輸出尺寸如何劇烈折半，感受跨步卷積的強大下取樣威力。\n    ",
+    "en": "🧪 <strong>Key observations from the experiment:</strong><br>\n      1. <strong>Testing the Same condition</strong>: set $f=3, s=1$, change $p$ from 0 to 1, and check whether the output feature-map side becomes exactly equal to the input side $d$!<br>\n      2. <strong>The effect of stride jumps</strong>: raise the stride $s$ from 1 to 2 and watch the output size drop by half, to feel the strong downsampling power of strided convolution.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bbc0c2e6369": {
+    "zh": "08 / 實戰檢驗 · Concept Checkpoint",
+    "en": "08 / Hands-On Check",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "87bf63189444": {
+    "zh": "題目 1 · 核深度對齊 / Kernel Depth Alignment",
+    "en": "Question 1 · Kernel depth alignment",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dde699994f50": {
+    "zh": "卷積神經網路中，單顆卷積核的「通道數／深度（Depth）」應嚴格對齊的是？",
+    "en": "In a convolutional neural network, what must the “number of channels / depth” of a single kernel match exactly?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2c9d0a674490": {
+    "zh": "A. 輸出特徵圖的張數（$C_{out}$）",
+    "en": "A. The number of output feature maps ($C_{out}$)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4fcb278009ab": {
+    "zh": "B. 輸入資料的通道數（$C_{in}$）",
+    "en": "B. The number of channels of the input data ($C_{in}$)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8857933886ab": {
+    "zh": "C. 步幅 stride 的數值",
+    "en": "C. The value of the stride",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1a03f4ab7e2c": {
+    "zh": "D. padding 填充圈數",
+    "en": "D. The number of padding rings",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "abbf78b952c1": {
+    "zh": "題目 2 · 輸出尺寸公式 / Output Dimension Equation",
+    "en": "Question 2 · Output size equation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fb78e87df7f2": {
+    "zh": "式 (6) 中，當輸入邊長為 $d$、kernel 寬為 $f$、padding 為 $p$、stride 為 $s$ 時，輸出特徵圖的邊長為？",
+    "en": "In Equation (6), with input side $d$, kernel width $f$, padding $p$ and stride $s$, what is the side length of the output feature map?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8f416a572d75": {
+    "zh": "題目 3 · Valid Padding 定義 / Valid Padding Meaning",
+    "en": "Question 3 · Meaning of valid padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "fead2e3abb09": {
+    "zh": "在卷積神經網路術語中，所謂「Valid Padding」是指？",
+    "en": "In convolutional neural network terminology, what does “valid padding” mean?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6762c3f46872": {
+    "zh": "A. 只補零值的填充",
+    "en": "A. Padding with zeros only",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9582062f2947": {
+    "zh": "B. 完全不進行任何填充（$p = 0$）",
+    "en": "B. No padding at all ($p = 0$)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "63aa02fd6185": {
+    "zh": "C. 迴圈填充",
+    "en": "C. Circular padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bb86f6309c6b": {
+    "zh": "D. 鏡射對稱填充",
+    "en": "D. Mirror-reflection padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "aba70588bc33": {
+    "zh": "題目 4 · 填充方法辨析 / Padding Methods",
+    "en": "Question 4 · Telling padding methods apart",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2c15f91733f5": {
+    "zh": "下列哪一項<strong>不是</strong>教材中列出的常規影像填充方法？",
+    "en": "Which of the following is <strong>not</strong> one of the standard image padding methods listed in the textbook?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e741c316d730": {
+    "zh": "A. Zero padding（補零）",
+    "en": "A. Zero padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b391d8401f4f": {
+    "zh": "B. Reflect padding（鏡射）",
+    "en": "B. Reflect padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1bec9117e003": {
+    "zh": "C. Circular padding（迴圈）",
+    "en": "C. Circular padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c6fba653ac4a": {
+    "zh": "D. Random shuffle padding（隨機打亂）",
+    "en": "D. Random shuffle padding",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

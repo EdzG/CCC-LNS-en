@@ -1,0 +1,664 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "ImageNet 約 1500 萬張、約 2.2 萬類；ILSVRC 為其子集，約 120 萬張、1000 類、RGB 224×224。": "ImageNet has about 15 million images in about 22,000 classes; ILSVRC is a subset of it, with about 1.2 million images, 1000 classes, RGB 224×224.",
+      "Fig. 12：五層 conv 再接三層 FC；當時單卡約 3GB 不夠，故採雙 GPU。": "Fig. 12: five conv layers followed by three FC layers; a single GPU's roughly 3 GB was not enough at the time, so two GPUs were used.",
+      "AlexNet 在第 1、2 層 ReLU 後做 LRN，超參數為 k=2、n=5、α=10⁻⁴、β=0.75。": "AlexNet applies LRN after the ReLU of layers 1 and 2, with hyperparameters k=2, n=5, α=10⁻⁴, β=0.75.",
+      "第 1、2、5 層後 max pool（1、2 層在 LRN 之後），核寬 3、stride 2 為重疊池化；約 60M 參數；式 (8) 對 1000 類 softmax 做多項邏輯迴歸。": "Max pooling comes after layers 1, 2 and 5 (in layers 1 and 2, after the LRN), with kernel width 3 and stride 2, i.e. overlapping pooling; about 60M parameters; Eq. (8) performs multinomial logistic regression with a softmax over the 1000 classes.",
+      "AlexNet 全網參數量結構對比（總計 ~62.38M 參數）：": "AlexNet parameter breakdown (total ~62.38M parameters):",
+      "💡 洞察：全連線層吃掉 94% 參數量！這正是促成後續 GAP (KP10) 取代 FC 的直接原因。": "💡 Insight: FC layers eat 94% of params, why GAP (KP10) later replaced FC!",
+      "網路總層數：": "Total layers:",
+      "8 層 (5 Conv + 3 FC)": "8 layers (5 Conv + 3 FC)",
+      "輸入張量：": "Input tensor:",
+      "卷積層總參數：": "Total convolutional parameters:",
+      "全連線總參數：": "Total fully connected parameters:",
+      "全網總參數量：": "Total parameters of the network:",
+      "AlexNet 全網架構總成診斷報告": "AlexNet full-network architecture report",
+      "ILSVRC 2010 競賽成績：Top-1 錯誤率 37.5%，Top-5 錯誤率 17.0%。雙 GPU 分組平行訓成。": "ILSVRC 2010 results: top-1 error rate 37.5%, top-5 error rate 17.0%. Trained in parallel with the work split across two GPUs.",
+      "層級型別：": "Layer type:",
+      "卷積層 (Convolutional)": "Convolutional layer",
+      "全連線層 (Fully Connected)": "Fully connected layer",
+      "輸入尺寸：": "Input size:",
+      "卷積核／連線：": "Kernel / connections:",
+      "輸出尺寸：": "Output size:",
+      "該層可學習參數：": "Learnable parameters in this layer:",
+      "Conv1 採用 11×11 大核與 stride 4，快速將 224×224 下取樣至 55×55。": "Conv1 uses a large 11×11 kernel with stride 4, quickly downsampling 224×224 to 55×55.",
+      "FC6 為全網最大參數黑洞（9216 × 4096 = 37.7M 權重），佔全網近 60% 參數！": "FC6 is the network's biggest parameter black hole (9216 × 4096 = 37.7M weights), nearly 60% of all parameters!",
+      "採用非飽和 ReLU 啟用；前向活化值迅速向下傳遞。": "Uses the non-saturating ReLU activation; forward activations pass down quickly."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^卷積層 \\(Conv 1–5\\): 3\\.75M \\(([\\d.]+%)\\)$",
+        "en": "Conv layers 1–5: 3.75M ($1)"
+      },
+      {
+        "re": "^全連線層 \\(FC 6–8\\): 58\\.63M \\(([\\d.]+%)\\)$",
+        "en": "FC layers 6–8: 58.63M ($1)"
+      },
+      {
+        "re": "^👉 當前聚焦：(.+) \\(卷積層\\)$",
+        "en": "👉 Current focus: $1 (conv layer)"
+      },
+      {
+        "re": "^👉 當前聚焦：(.+) \\(全連線層\\)$",
+        "en": "👉 Current focus: $1 (FC layer)"
+      },
+      {
+        "re": "^該層獨立參數量：(\\S+) \\(佔全網 ([\\d.]+%)\\)$",
+        "en": "Params in this layer: $1 ($2 of total)"
+      },
+      {
+        "re": "^AlexNet \\[(.+)\\] 層級規格細部透視$",
+        "en": "AlexNet [$1] layer specification details"
+      },
+      {
+        "re": "^(.*)\\(步幅 stride: (.*)\\)$",
+        "en": "$1(stride: $2)"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "974e05762789": {
+    "zh": "KP12 · 索引",
+    "en": "KP12 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "630bee828574": {
+    "zh": "<a href=\"#sec-imagenet-arena\">ImageNet 與 ILSVRC · The Arena</a>",
+    "en": "<a href=\"#sec-imagenet-arena\">ImageNet and ILSVRC: The Arena</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "38e46044a895": {
+    "zh": "<a href=\"#svg-alexnet\">AlexNet 架構演進 · Visual Breakdown</a>",
+    "en": "<a href=\"#svg-alexnet\">The Evolution of the AlexNet Architecture</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "bca1c9c225fa": {
+    "zh": "<a href=\"#sec-alexnet-breakthroughs\">核心技術突破 · Breakthroughs</a>",
+    "en": "<a href=\"#sec-alexnet-breakthroughs\">Core Technical Breakthroughs</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2761b585faaf": {
+    "zh": "ImageNet、ILSVRC 與 AlexNet\n      <span class=\"hero-title-en\">ImageNet, ILSVRC, and AlexNet</span>\n    ",
+    "en": "ImageNet, ILSVRC, and AlexNet",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "211fed128aa3": {
+    "zh": "\n      2012 年，AlexNet 在 ImageNet 大規模視覺辨識挑戰（ILSVRC）上一舉奪冠，以巨大優勢碾壓傳統特徵工程，拉開了現代深度學習革命的序幕！AlexNet 繼承了 LeNet「先卷積池化、後全連線」的骨架，但將維度推向 224×224 RGB 與 1000 類，並藉由 ReLU 啟用、雙 GPU 分組平行、局部響應正規化（LRN）與重疊池化，向世界證明瞭深層神經網路的非凡威力。\n    ",
+    "en": "In 2012, AlexNet won the ImageNet Large Scale Visual Recognition Challenge (ILSVRC) in one stroke, crushing traditional feature engineering by a huge margin and raising the curtain on the modern deep learning revolution! AlexNet inherited LeNet's \"convolution and pooling first, fully connected after\" skeleton, but pushed the dimensions up to 224×224 RGB and 1000 classes, and with ReLU activation, two-GPU grouped parallelism, local response normalization (LRN), and overlapping pooling, it proved to the world the extraordinary power of deep neural networks.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "fcd7dbe1debe": {
+    "zh": "\n      「AlexNet 並沒有發明全新的拓撲哲學，骨架依然是 LeNet；<br>\n      為何僅僅將它加深加寬並搬上兩張 GPU，就能引爆歷史性變革？」\n      <small>突破在於「訓得動」與「塞得下」！ReLU 擊潰飽和消失，雙 GPU 突破 3GB 視訊記憶體壁壘，ImageNet 提供百萬資料燃料！<br>\n        <span class=\"bilingual-en-inline\">The breakthrough was 'trainable &amp; fittable': ReLU solved saturation while dual GPUs conquered memory limits!</span>\n      </small>\n    ",
+    "en": "\"AlexNet didn't invent a brand-new topological philosophy; its skeleton is still LeNet;<br>\n      so why did merely making it deeper and wider and moving it onto two GPUs ignite a historic revolution?\"\n      <small>The breakthrough was in \"trainable\" and \"fits in memory\"! ReLU defeated saturation and vanishing, two GPUs broke through the 3GB video-memory wall, and ImageNet supplied a million images of fuel!<br>\n        \n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "601896ed503c": {
+    "zh": "02 / 競技場與資料規格 · The Benchmark",
+    "en": "02 / The Arena and the Data Specs",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "368c755ce815": {
+    "zh": "競賽場地：ImageNet 與 ILSVRC 挑戰賽\n    <span class=\"en\">ImageNet Dataset &amp; The ILSVRC Benchmark Paradigm</span>\n  ",
+    "en": "The Arena: ImageNet and the ILSVRC Challenge",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "21e37f51bbf5": {
+    "zh": "資料驅動的新世界：百萬級高解析全綵影像",
+    "en": "A new data-driven world: millions of high-resolution full-color images",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c7551c5ed103": {
+    "zh": "\n      在 2012 年之前，電腦視覺多在 MNIST（$28\\times 28$ 灰階 10 類）等小型資料集上打轉。李飛飛團隊建構的 <strong>ImageNet</strong> 徹底改變了遊戲規則：\n    ",
+    "en": "Before 2012, computer vision mostly circled around small datasets such as MNIST ($28\\times 28$ grayscale, 10 classes). <strong>ImageNet</strong>, built by Fei-Fei Li's team, changed the rules of the game completely:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a97c50511bcc": {
+    "zh": "<strong>ImageNet 全庫：</strong> 約 <strong>1500 萬</strong> 張標註高解析影像，涵蓋約 <strong>22,000</strong> 個日常生活物體類別，以 Amazon Mechanical Turk 眾包標註。",
+    "en": "<strong>Full ImageNet:</strong> about <strong>15 million</strong> labeled high-resolution images covering about <strong>22,000</strong> categories of everyday objects, labeled by crowdsourcing on Amazon Mechanical Turk.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "4fa8265fd434": {
+    "zh": "<strong>ILSVRC 競賽子集：</strong> 每年舉辦的大規模視覺識別挑戰賽，精選約 <strong>120 萬</strong> 張訓練圖、<strong>1000 個類別</strong>（每類約 1000 張），影像規格標準化為 RGB $224\\times 224$。",
+    "en": "<strong>ILSVRC competition subset:</strong> a large-scale visual recognition challenge held every year, with a curated set of about <strong>1.2 million</strong> training images and <strong>1000 classes</strong> (about 1000 images per class), with images standardized to RGB $224\\times 224$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b73bdd29a23e": {
+    "zh": "03 / 八層巨構分解 · Architectural Blueprint",
+    "en": "03 / Breaking Down the Eight-Layer Giant",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d8d25731419b": {
+    "zh": "AlexNet 架構：五層卷積、三層全連線與雙 GPU 分組\n    <span class=\"en\">AlexNet: 8-Layer Architecture, Dual-GPU Pipeline, and Tensor Dimensions</span>\n  ",
+    "en": "The AlexNet Architecture: Five Convolutional Layers, Three Fully Connected Layers, and Two-GPU Grouping",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fe601852ef4e": {
+    "zh": "AlexNet＝把 LeNet 加寬加深，換上 ReLU，並拆到兩張 GPU 才塞進 ImageNet",
+    "en": "AlexNet = LeNet made wider and deeper, switched to ReLU, and split across two GPUs to fit ImageNet",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1bbeca4e845a": {
+    "zh": "BEFORE · LeNet 小骨架 (1998)",
+    "en": "BEFORE · LeNet's small skeleton (1998)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "25047cd4d525": {
+    "zh": "28×28 灰階 · MNIST 10 類",
+    "en": "28×28 grayscale · MNIST 10 classes",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "990d1a98984b": {
+    "zh": "tanh／sigmoid 飽和時代",
+    "en": "The era of saturating tanh / sigmoid",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d282372ee4c1": {
+    "zh": "約 6 萬參數 · 單 CPU 執行",
+    "en": "About 60K parameters · runs on one CPU",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d7f48a059cf3": {
+    "zh": "放大",
+    "en": "Scale up",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a27023685740": {
+    "zh": "AFTER · AlexNet (2012) · 8 層 (5 Conv + 3 FC)",
+    "en": "AFTER · AlexNet (2012) · 8 layers (5 Conv + 3 FC)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1aa842f742e0": {
+    "zh": "224×224×3 RGB · ILSVRC 1000 類 · 約 6000 萬參數",
+    "en": "224×224×3 RGB · ILSVRC 1000 classes · about 60M parameters",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "2fdcf0d835ed": {
+    "zh": "3×3 堆疊",
+    "en": "3×3 stacked",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5fe82bb3d796": {
+    "zh": "末層 softmax",
+    "en": "Softmax at the last layer",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "f3aeca78ba94": {
+    "zh": "單卡 3GB 不夠",
+    "en": "One 3GB card isn't enough",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5286c0df8976": {
+    "zh": "分組卷積 · 雙卡平行",
+    "en": "Grouped convolution · two cards in parallel",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c9fb98702bb3": {
+    "zh": "ReLU 換掉飽和啟用 → 收斂加速 6 倍",
+    "en": "ReLU replaces saturating activations → 6× faster convergence",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "46bdce473eaf": {
+    "zh": "第 1、2 層加 LRN；池化核 3、stride 2＝重疊池化",
+    "en": "LRN on layers 1 and 2; pooling kernel 3, stride 2 = overlapping pooling",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6584d42413e9": {
+    "zh": "ILSVRC 2012 冠軍 · Top-5 錯誤率降至 17.0%",
+    "en": "ILSVRC 2012 winner · top-5 error rate down to 17.0%",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6b44b949df76": {
+    "zh": "場地換了：ImageNet ~1500 萬圖／2.2 萬類 → ILSVRC 120 萬圖／1000 類／224×224",
+    "en": "New arena: ImageNet ~15M images / 22K classes → ILSVRC 1.2M images / 1000 classes / 224×224",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b196d5b20a63": {
+    "zh": "骨架仍是 LeNet 那條「先 conv／pool、後 FC」——只是變寬、變深、變 RGB、變 1000 類",
+    "en": "The skeleton is still LeNet's \"conv / pool first, FC after\"; just wider, deeper, RGB, and 1000 classes",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "56be9b2318de": {
+    "zh": "大師洞察：突破不只是「層比較多」，而是 ReLU 讓深網訓得動、雙 GPU 讓模型塞得下！",
+    "en": "Master's insight: the breakthrough isn't just \"more layers\"; ReLU makes deep nets trainable and two GPUs make the model fit!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "47f3c537b3e9": {
+    "zh": "Krizhevsky, Sutskever, Hinton (2012) · 約 65 萬神經元",
+    "en": "Krizhevsky, Sutskever, Hinton (2012) · about 650K neurons",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e7ef7f8c32a0": {
+    "zh": "圖 12.1：AlexNet 與 LeNet-5 骨架演進與雙 GPU 平行訓練機制對比",
+    "en": "Figure 12.1: The evolution of the skeleton from LeNet-5 to AlexNet, compared with the two-GPU parallel training scheme",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "aaaf1f2631b9": {
+    "zh": "⚡ 雙 GPU 拆分（3GB 視訊記憶體壁壘）",
+    "en": "⚡ Splitting across two GPUs (the 3GB video-memory wall)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5e9064520aa2": {
+    "zh": "\n          2012 年主流 NVIDIA GTX 580 單卡僅有 3GB 記憶體，無法容納 AlexNet 的龐大張量。作者開創性地將網路各層特徵圖對半切分至兩張 GPU，僅在特定層（Conv3 與 FC）跨卡通訊。\n        ",
+    "en": "In 2012 a mainstream NVIDIA GTX 580 card had only 3GB of memory, which couldn't hold AlexNet's huge tensors. The authors pioneered splitting the feature maps of each layer in half across two GPUs, communicating between the cards only at specific layers (Conv3 and the FC layers).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "89d746821a05": {
+    "zh": "📈 ReLU 啟用加速 6 倍",
+    "en": "📈 ReLU activation: 6× faster",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "140310015515": {
+    "zh": "\n          徹底捨棄傳統的 Sigmoid / tanh 飽和啟用函式，全面改用非飽和的 <strong>ReLU $f(x)=\\max(0,x)$</strong>。正區間導數恆為 1，徹底解決了梯度消失問題。\n        ",
+    "en": "It completely dropped the traditional saturating sigmoid / tanh activation functions and switched entirely to the non-saturating <strong>ReLU $f(x)=\\max(0,x)$</strong>. Its derivative is always 1 on the positive range, which completely solved the vanishing gradient problem.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d2368128560c": {
+    "zh": "04 / 核心創新技術 · Mathematical Innovations",
+    "en": "04 / Core Innovations · Mathematical Innovations",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ca96ccc8680a": {
+    "zh": "AlexNet 三大關鍵技術：LRN、重疊池化與損失函式\n    <span class=\"en\">Key Technical Pillars: Local Response Normalization, Overlapping Pooling, &amp; Softmax Loss</span>\n  ",
+    "en": "AlexNet's Three Key Techniques: LRN, Overlapping Pooling, and the Loss Function",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "683233f36df2": {
+    "zh": "🧬 局部響應正規化 (LRN · 式 (7))",
+    "en": "🧬 Local response normalization (LRN · Eq. (7))",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f6a4777fc795": {
+    "zh": "\n        模仿生物神經「側向抑制」機制，在相鄰通道間抑制過強響應：\n        $$b_{x,y}^{i}=\\frac{a_{x,y}^{i}}{\\bigl(k+\\alpha\\sum_{j=\\max(0,i-n/2)}^{\\min(N-1,i+n/2)}(a_{x,y}^{j})^2\\bigr)^\\beta} \\tag{7}$$\n        交叉驗證超參數：$k=2, n=5, \\alpha=10^{-4}, \\beta=0.75$。\n      ",
+    "en": "Imitating the \"lateral inhibition\" mechanism of biological neurons, it suppresses overly strong responses across neighboring channels:\n        $$b_{x,y}^{i}=\\frac{a_{x,y}^{i}}{\\bigl(k+\\alpha\\sum_{j=\\max(0,i-n/2)}^{\\min(N-1,i+n/2)}(a_{x,y}^{j})^2\\bigr)^\\beta} \\tag{7}$$\n        Hyperparameters chosen by cross-validation: $k=2, n=5, \\alpha=10^{-4}, \\beta=0.75$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "73de66389884": {
+    "zh": "📐 重疊池化 (Overlapping Pooling)",
+    "en": "📐 Overlapping pooling",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "38bf3e2f07c3": {
+    "zh": "\n        傳統池化步幅等於窗寬（如 $2\\times 2$ stride 2），無重疊。AlexNet 採用<strong>池化核尺寸 $3\\times 3$、步幅 $2$</strong>，滑窗相互覆蓋，實證能有效抑制過擬合並降低 Top-5 錯誤率 0.4%。\n      ",
+    "en": "In traditional pooling the stride equals the window width (e.g. $2\\times 2$ with stride 2), so there is no overlap. AlexNet uses <strong>a pooling kernel of size $3\\times 3$ with stride $2$</strong>, so the sliding windows overlap each other; experiments showed this effectively curbs overfitting and lowers the top-5 error rate by 0.4%.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5fb2807a0cc1": {
+    "zh": "🎯 多項邏輯迴歸損失 (Softmax · 式 (8))",
+    "en": "🎯 Multinomial logistic regression loss (softmax · Eq. (8))",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1c621d4cced5": {
+    "zh": "\n        對目標類別 $\\ell$，網路最大化第 $\\ell$ 個神經元預測機率，轉化為慣用的最小化負對數目標：\n        $$\\max_{\\theta}\\mathbb{P}(y_i=\\ell) = \\frac{e^{o_\\ell}}{\\sum_{j=1}^{1000} e^{o_j}} \\Longrightarrow \\min_{\\theta}\\Bigl(-\\frac{e^{o_\\ell}}{\\sum_{j=1}^{1000} e^{o_j}}\\Bigr) \\tag{8}$$\n      ",
+    "en": "For the target class $\\ell$, the network maximizes the predicted probability of the $\\ell$-th neuron, which is turned into the usual minimization of a negative log objective:\n        $$\\max_{\\theta}\\mathbb{P}(y_i=\\ell) = \\frac{e^{o_\\ell}}{\\sum_{j=1}^{1000} e^{o_j}} \\Longrightarrow \\min_{\\theta}\\Bigl(-\\frac{e^{o_\\ell}}{\\sum_{j=1}^{1000} e^{o_j}}\\Bigr) \\tag{8}$$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a482f57e97e0": {
+    "zh": "05 / 互動實驗室 · Interactive Lab",
+    "en": "05 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9de30db5d5aa": {
+    "zh": "互動實驗室：AlexNet 八層特徵維度與參數量透視\n    <span class=\"en\">Interactive Lab: AlexNet 8-Layer Dimension &amp; Parameter Inspector</span>\n  ",
+    "en": "Interactive Lab: AlexNet's Eight Layers, Feature Dimensions and Parameter Counts",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f787dbb43389": {
+    "zh": "選擇檢視層級 Layer:",
+    "en": "Layer to inspect:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5010e4acce46": {
+    "zh": "全網參數量分佈總覽 (Overview)",
+    "en": "Overview of the parameter distribution across the network",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e690edecdac0": {
+    "zh": "▶ 重新計算維度與參數 Calculate",
+    "en": "▶ Recalculate dimensions and parameters",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2ded9f6ec9bf": {
+    "zh": "\n          卷積層 vs 全連線層參數量比例條狀圖（全連線層佔全網 90%+ 參數）：\n        ",
+    "en": "Bar chart of the parameter share of convolutional vs. fully connected layers (the fully connected layers hold 90%+ of the network's parameters):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8d4a8dc2ab49": {
+    "zh": "\n          AlexNet 全網架構總成診斷報告\n        ",
+    "en": "Diagnostic report for the full AlexNet architecture",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "63163064e4fe": {
+    "zh": "<strong>網路總層數：</strong> 8 層 (5 Conv + 3 FC)",
+    "en": "<strong>Total number of layers:</strong> 8 layers (5 Conv + 3 FC)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f06fc5634a0a": {
+    "zh": "<strong>輸入張量：</strong> $224 \\times 224 \\times 3$ (RGB)",
+    "en": "<strong>Input tensor:</strong> $224 \\times 224 \\times 3$ (RGB)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1734be361f3d": {
+    "zh": "<strong>卷積層總參數：</strong> <span style=\"color:#2563eb; font-weight:700;\">3,747,200</span> (~3.75M)",
+    "en": "<strong>Total convolutional parameters:</strong> <span style=\"color:#2563eb; font-weight:700;\">3,747,200</span> (~3.75M)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "208aac7ec19b": {
+    "zh": "<strong>全連線總參數：</strong> <span style=\"color:#ea580c; font-weight:700;\">58,631,144</span> (~58.63M)",
+    "en": "<strong>Total fully connected parameters:</strong> <span style=\"color:#ea580c; font-weight:700;\">58,631,144</span> (~58.63M)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b18f395b6ba4": {
+    "zh": "<strong>全網總參數量：</strong> <span style=\"font-size:16px; font-weight:700; color:#0f172a;\">~62,378,344 (~62M)</span>",
+    "en": "<strong>Total parameters of the network:</strong> <span style=\"font-size:16px; font-weight:700; color:#0f172a;\">~62,378,344 (~62M)</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "334679413de4": {
+    "zh": "\n          ILSVRC 2010 競賽成績：Top-1 錯誤率 37.5%，Top-5 錯誤率 17.0%。雙 GPU 分組平行訓成。\n        ",
+    "en": "ILSVRC 2010 competition results: top-1 error rate 37.5%, top-5 error rate 17.0%. Trained with two-GPU grouped parallelism.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cb5bafcc6d7": {
+    "zh": "06 / 實戰檢驗 · Concept Checkpoint",
+    "en": "06 / Hands-On Check",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6deb5800f415": {
+    "zh": "題目 1 · 資料集規模 / Dataset Scales",
+    "en": "Question 1 · Dataset Scales",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c1fd2d782840": {
+    "zh": "ImageNet 與 ILSVRC 子集的規模，下列何者正確？",
+    "en": "Which of the following about the scale of ImageNet and the ILSVRC subset is correct?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "34f3ef9c4006": {
+    "zh": "A. ImageNet 約 1.2M 張／1000 類；ILSVRC 約 15M 張／22k 類",
+    "en": "A. ImageNet about 1.2M images / 1000 classes; ILSVRC about 15M images / 22k classes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0298c80a5872": {
+    "zh": "B. ImageNet 約 15M 張／22k 類；ILSVRC 約 1.2M 張／1000 類、影像 224×224",
+    "en": "B. ImageNet about 15M images / 22k classes; ILSVRC about 1.2M images / 1000 classes, images 224×224",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4e7d39ef2884": {
+    "zh": "C. 兩者都只有 10 類 MNIST",
+    "en": "C. Both are just 10-class MNIST",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "12776dc9579f": {
+    "zh": "D. ILSVRC 影像是灰階 28×28",
+    "en": "D. ILSVRC images are 28×28 grayscale",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fa97b7bd6848": {
+    "zh": "題目 2 · 架構組成與硬體 / Architecture &amp; Hardware",
+    "en": "Question 2 · Architecture &amp; Hardware",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ea5d65342932": {
+    "zh": "AlexNet 的層陣列成與硬體設定是？",
+    "en": "What are AlexNet's layer composition and hardware setup?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c0109888f3c8": {
+    "zh": "A. 只有 3 層全連線、單 CPU 訓練",
+    "en": "A. Only 3 fully connected layers, trained on a single CPU",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a341ee618d62": {
+    "zh": "B. 八層：5 層卷積 + 3 層全連線，因 3GB 視訊記憶體限制拆到兩張 GPU",
+    "en": "B. Eight layers: 5 convolutional + 3 fully connected, split across two GPUs because of the 3GB video-memory limit",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ae0c6deb2d51": {
+    "zh": "C. 16 層全 3×3 卷積（那是後來的 VGG）",
+    "en": "C. 16 layers of all-3×3 convolutions (that's the later VGG)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ffbfa95e09f1": {
+    "zh": "D. 不含任何全連線層、全面使用 GAP",
+    "en": "D. No fully connected layers at all; GAP throughout",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a3b2b22df2a4": {
+    "zh": "題目 3 · LRN 超參數 / LRN Hyperparameters",
+    "en": "Question 3 · LRN Hyperparameters",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6e88d4698749": {
+    "zh": "式 (7) 局部響應正規化（LRN）在 AlexNet 中的交叉驗證超參數是？",
+    "en": "What are the cross-validated hyperparameters of the local response normalization (LRN) of Eq. (7) in AlexNet?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "df9c1f4f3109": {
+    "zh": "D. LRN 完全沒有任何超參數",
+    "en": "D. LRN has no hyperparameters at all",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "28eed534d40b": {
+    "zh": "題目 4 · 池化與損失函式 / Pooling &amp; Loss",
+    "en": "Question 4 · Pooling &amp; Loss",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "eb46214922a8": {
+    "zh": "AlexNet 的池化方式、參數量規模與損失函式（式 (8)），下列何者正確？",
+    "en": "Which of the following about AlexNet's pooling method, parameter scale, and loss function (Eq. (8)) is correct?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ce2915c2c849": {
+    "zh": "A. 非重疊池化 2／2、約 60 萬參數、均方誤差損失",
+    "en": "A. Non-overlapping pooling 2/2, about 600K parameters, mean squared error loss",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "49d098714113": {
+    "zh": "B. 重疊池化核寬 3／stride 2、約 6000 萬參數、1000 類多項邏輯迴歸（softmax）",
+    "en": "B. Overlapping pooling with kernel width 3 / stride 2, about 60M parameters, 1000-class multinomial logistic regression (softmax)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "64e989bf3032": {
+    "zh": "C. 沒有池化、參數無限、Hinge loss",
+    "en": "C. No pooling, infinitely many parameters, hinge loss",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0b802b291cbf": {
+    "zh": "D. 只在最後一層池化、約 1000 個參數、二元邏輯迴歸",
+    "en": "D. Pooling only at the last layer, about 1000 parameters, binary logistic regression",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "696ead72a2f8": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：AlexNet 歷史啟示錄\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#bfdbfe; font-weight:normal;\">Key Takeaways: AlexNet &amp; The Deep Revolution</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: the historical lessons of AlexNet",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ef7d54f3c9ed": {
+    "zh": "<strong>LeNet 的全面昇級：</strong> AlexNet 驗證了卷積神經網路在百萬級全綵大圖（ImageNet 1.2M, 1000 類）上的壓倒性優勢。",
+    "en": "<strong>A full upgrade of LeNet:</strong> AlexNet demonstrated the overwhelming advantage of convolutional neural networks on millions of large full-color images (ImageNet 1.2M, 1000 classes).",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "979a4febbbae": {
+    "zh": "<strong>八層架構約 6000 萬參數：</strong> 前 5 層卷積抽特徵，後 3 層全連線（4096-4096-1000）分類，全連線層佔據了超過 90% 的龐大參數。",
+    "en": "<strong>Eight layers, about 60 million parameters:</strong> the first 5 convolutional layers extract features and the last 3 fully connected layers (4096-4096-1000) classify; the fully connected layers hold more than 90% of the huge parameter count.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bed2c4ef0932": {
+    "zh": "<strong>硬體工程破局：</strong> 單卡 3GB 視訊記憶體不足，以雙 GPU 分組卷積平行突破硬體限制，奠定了深度學習軟硬體協同進化的傳統。",
+    "en": "<strong>Breaking the hardware deadlock:</strong> a single card's 3GB of video memory wasn't enough, so two-GPU grouped convolution in parallel broke through the hardware limit, founding the tradition of hardware and software co-evolving in deep learning.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9fec0a355384": {
+    "zh": "<strong>三大關鍵催化劑：</strong> 非飽和 ReLU 啟用加速收斂 6 倍；式 (7) LRN 實現側向抑制；窗寬 3、步幅 2 重疊池化抑制過擬合，成就 2012 年視覺革命的劃時代豐碑！",
+    "en": "<strong>Three key catalysts:</strong> non-saturating ReLU activation speeds up convergence 6×; the LRN of Eq. (7) implements lateral inhibition; overlapping pooling with window width 3 and stride 2 curbs overfitting. Together they made the epoch-defining monument of the 2012 vision revolution!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

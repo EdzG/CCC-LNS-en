@@ -1,0 +1,955 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "式 (2) 中下標 $t-a$ 的「負號」正是翻轉（$-a$ 方向反轉），再加上 $t$ 做平移。若改成 $w[t+a]$ 則只是平移，不包含翻轉，那就變成互相關的一維版本了。": "In Eq. (2), the \"minus sign\" in the index $t-a$ is exactly the flip (the $-a$ direction is reversed), and adding $t$ then shifts it. If it were changed to $w[t+a]$, it would be only a shift with no flip, which becomes the one-dimensional version of cross-correlation.",
+      "式 (3) 中 $K[i-m, j-n]$ 的「$i-m$」和「$j-n$」分別在行和列兩個方向做翻轉，這是二維離散卷積的核心定義。若改成 $K[m-i, n-j]$ 則變成互相關（式 (4)）。": "In Eq. (3), the \"$i-m$\" and \"$j-n$\" in $K[i-m, j-n]$ flip along the row and column directions respectively; this is the core definition of 2D discrete convolution. If it were changed to $K[m-i, n-j]$, it would become cross-correlation (Eq. (4)).",
+      "PyTorch 的": "PyTorch's",
+      "名字叫「卷積」，但底層執行的是互相關（不翻核）。這是深度學習框架的歷史慣例，學術界已廣泛接受這個命名不一致的事實。": "is called \"convolution\", but underneath it computes cross-correlation (no kernel flip). This is a historical convention of deep learning frameworks, and academia has widely accepted this naming inconsistency.",
+      "可學習核在訓練開始時是隨機初始化的。梯度下降只關心如何讓損失函式下降，不關心慣例是卷積還是互相關。若用互相關訓練，核就自動學成「未翻版本的正確核」；若用卷積訓練，核就學成「翻轉版本的正確核」。最終效果等效。": "A learnable kernel is randomly initialized at the start of training. Gradient descent only cares about how to make the loss function decrease, not whether the convention is convolution or cross-correlation. Train with cross-correlation and the kernel automatically learns \"the correct kernel, unflipped\"; train with convolution and it learns \"the correct kernel, flipped\". The end result is equivalent.",
+      "=== 卷積 (Convolution, 翻核) ===": "=== Convolution (kernel flipped) ===",
+      "=== 互相關 (Cross-Correlation, 不翻核) ===": "=== Cross-correlation (kernel not flipped) ===",
+      "✅ 兩者輸出相同！（核是對稱的，翻轉後等於自身）": "✅ The two outputs are identical! (The kernel is symmetric: flipping it gives itself.)",
+      "⚠ 兩者輸出不同！（非對稱核，翻轉後結果有差）": "⚠ The two outputs differ! (An asymmetric kernel: flipping it changes the result.)"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      },
+      {
+        "re": "^卷積輸出矩陣：(.*)$",
+        "en": "Convolution output matrix: $1"
+      },
+      {
+        "re": "^互相關輸出矩陣：(.*)$",
+        "en": "Cross-correlation output matrix: $1"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#conv-readout"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ],
+  "1e07618c2ea3": {
+    "zh": "KP04 · 索引",
+    "en": "KP04 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3226f7d71a2b": {
+    "zh": "<a href=\"#def-1d\">一維卷積定義 · 1-D Convolution</a>",
+    "en": "<a href=\"#def-1d\">Definition of 1-D Convolution</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "825868aa7168": {
+    "zh": "<a href=\"#def-2d\">二維影像卷積 · 2-D Convolution</a>",
+    "en": "<a href=\"#def-2d\">2-D Image Convolution</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "f9c22c618644": {
+    "zh": "<a href=\"#flip-vs-nflip\">翻核 vs 不翻核 · Flip vs No-flip</a>",
+    "en": "<a href=\"#flip-vs-nflip\">Flipped vs Unflipped Kernel</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5d767fb8983f": {
+    "zh": "<a href=\"#cross-corr\">互相關定義 · Cross-Correlation</a>",
+    "en": "<a href=\"#cross-corr\">Definition of Cross-Correlation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4757bc89a77a": {
+    "zh": "<a href=\"#training-equiv\">訓練等效性 · Training Equivalence</a>",
+    "en": "<a href=\"#training-equiv\">Equivalence in Training</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "18823d2295ef": {
+    "zh": "<a href=\"#comparison\">對照表 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Comparison Table</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9c52d2305c70": {
+    "zh": "離散卷積與互相關\n      <span class=\"hero-title-en\">Discrete Convolution and Cross-Correlation</span>\n    ",
+    "en": "Discrete Convolution and Cross-Correlation",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "537be7b6057d": {
+    "zh": "\n      卷積是深度學習影像處理的核心運算。理論定義要先翻轉核再滑動相乘；實務CNN則省略翻轉，改做互相關（cross-correlation）。兩者只差一個映象翻轉，訓練時梯度下降會自動適配，讓網路學到正確的特徵方向。\n    ",
+    "en": "Convolution is the core operation of image processing in deep learning. The theoretical definition first flips the kernel and then slides and multiplies; practical CNNs skip the flip and compute cross-correlation instead. The two differ only by a mirror flip, and during training gradient descent adapts automatically, so the network learns the correct feature orientation.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "878fafed492c": {
+    "zh": "\n      「翻核再蓋印 vs 直接蓋印，結果會不同嗎？」\n      <small>理論卷積先把核沿軸翻過來、再做乘加；CNN框架通常直接蓋印（互相關）省略翻轉。<br>\n        <span class=\"bilingual-en-inline\">Convolution flips the kernel; cross-correlation doesn't — but training learns either way.</span>\n      </small>\n    ",
+    "en": "“Flip the kernel and then stamp, or stamp directly: is the result different?”\n      <small>Theoretical convolution first flips the kernel along its axes and then multiplies and adds; CNN frameworks usually stamp directly (cross-correlation) and skip the flip.</small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "dccdb9dc7df8": {
+    "zh": "02 / 定義 · 1-D Discrete Convolution",
+    "en": "02 / Definition · 1-D Discrete Convolution",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a3c5f95d2bf3": {
+    "zh": "一維離散卷積定義：式 (2)\n    <span class=\"en\">1-D Discrete Convolution: Equation (2)</span>\n  ",
+    "en": "Definition of 1-D discrete convolution: Equation (2)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ce2d9e6d38d9": {
+    "zh": "式 (2)：一維離散卷積",
+    "en": "Equation (2): 1-D discrete convolution",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "910f8beef962": {
+    "zh": "\n      對一維訊號 $x[a]$ 與核 $w$，在時刻 $t$ 的卷積輸出定義為：\n    ",
+    "en": "For a 1-D signal $x[a]$ and a kernel $w$, the convolution output at time $t$ is defined as:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "9bdf9b15c3a0": {
+    "zh": "\n      <strong>關鍵：下標 $t-a$ = 翻轉 + 平移</strong><br>\n      $w[t-a]$ 中的 $t-a$，拆開來看：\n    ",
+    "en": "<strong>Key: the index $t-a$ = flip + shift</strong><br>\n      Break down the $t-a$ in $w[t-a]$:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3bf5b670271e": {
+    "zh": "<strong>$-a$（翻轉）：</strong>把核沿時間軸鏡射，$w[a] \\to w[-a]$。",
+    "en": "<strong>$-a$ (flip):</strong> mirror the kernel along the time axis, $w[a] \\to w[-a]$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6baf055a5edf": {
+    "zh": "<strong>$+t$（平移）：</strong>再把翻過的核滑到位置 $t$，$w[-a] \\to w[t-a]$。",
+    "en": "<strong>$+t$ (shift):</strong> then slide the flipped kernel to position $t$, $w[-a] \\to w[t-a]$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "eab519a91e84": {
+    "zh": "物理直覺：核先翻轉，再像印章一樣滑過訊號",
+    "en": "Physical intuition: the kernel is flipped first, then slides over the signal like a stamp",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2627ecd36d61": {
+    "zh": "\n      想像核是一個「翻轉的模板」：先把模板對折（翻轉），再從左往右逐格蓋印（相乘累加），每個輸出格子等於「模板疊在那個位置時，各格乘積之和」。\n      <span class=\"bilingual-en\">Think of the kernel as a flipped stamp: first mirror it, then slide it across the signal. Each output is the dot product of the (flipped) kernel with the overlapping input region.</span>\n    ",
+    "en": "Think of the kernel as a “flipped template”: first fold the template over (flip it), then stamp it cell by cell from left to right (multiply and accumulate). Each output cell equals “the sum of the cell-wise products when the template is laid over that position”.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2f85b3370253": {
+    "zh": "03 / 定義 · 2-D Image Convolution",
+    "en": "03 / Definition · 2-D Image Convolution",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6be4f914d1e8": {
+    "zh": "二維影像卷積：式 (3) 與求和範圍\n    <span class=\"en\">2-D Image Convolution: Equation (3) and Summation Range</span>\n  ",
+    "en": "2-D image convolution: Equation (3) and the summation range",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "591be6322a8f": {
+    "zh": "式 (3)：二維離散卷積",
+    "en": "Equation (3): 2-D discrete convolution",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "36f64ff78163": {
+    "zh": "對影像 $I$ 與核 $K$，在位置 $(i, j)$ 的卷積輸出定義為：",
+    "en": "For an image $I$ and a kernel $K$, the convolution output at position $(i, j)$ is defined as:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f62934b99c55": {
+    "zh": "<strong>求和範圍：</strong>理論上是 $(-\\infty, +\\infty)$，實務上只加核蓋得到的那些格子（核邊長決定有效範圍）。",
+    "en": "<strong>Summation range:</strong> in theory it is $(-\\infty, +\\infty)$; in practice we only add the cells the kernel covers (the kernel's side length sets the effective range).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7eaf0c7f4c0d": {
+    "zh": "二維卷積示意：影像 I（左）與核 K（中）及輸出 s（右）",
+    "en": "2-D convolution: image I (left), kernel K (middle) and output s (right)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b68208103fd1": {
+    "zh": "影像 I (3×3)",
+    "en": "Image I (3×3)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a3906146f8c1": {
+    "zh": "核 K (2×2)（理論卷積後翻）",
+    "en": "Kernel K (2×2) (flipped in theoretical convolution)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a4bdbd9750b0": {
+    "zh": "卷積",
+    "en": "Convolution",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "16a569c11ca9": {
+    "zh": "輸出 s (2×2)",
+    "en": "Output s (2×2)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b1edc79c93a7": {
+    "zh": "\n          K[i-m, j-n] 中的減法 = 兩個維度都要翻轉！\n        ",
+    "en": "The subtraction in K[i-m, j-n] = flip in both dimensions!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7f5603cb9429": {
+    "zh": "圖 1：二維離散卷積示意（I=[[1,2,0],[1,1,2],[0,1,1]], K=[[1,0],[0,1]]，輸出 s=[[2,4],[2,2]]）",
+    "en": "Figure 1: 2-D discrete convolution (I=[[1,2,0],[1,1,2],[0,1,1]], K=[[1,0],[0,1]], output s=[[2,4],[2,2]])",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "627ed38ef9b5": {
+    "zh": "求和有效範圍",
+    "en": "Effective summation range",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a774308da954": {
+    "zh": "<strong>理論求和範圍：</strong>$m, n \\in (-\\infty, +\\infty)$，但影像邊界外的畫素視為 0（zero-padding）。",
+    "en": "<strong>Theoretical summation range:</strong> $m, n \\in (-\\infty, +\\infty)$, but pixels outside the image border are treated as 0 (zero-padding).",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0d5ebfad4ed4": {
+    "zh": "<strong>實務有效格子：</strong>只有核能完整蓋住的區域才有有效輸出。核大小 $k \\times k$，影像大小 $H \\times W$，有效輸出大小 $(H-k+1) \\times (W-k+1)$。",
+    "en": "<strong>Effective cells in practice:</strong> only regions the kernel can fully cover produce a valid output. With kernel size $k \\times k$ and image size $H \\times W$, the valid output size is $(H-k+1) \\times (W-k+1)$.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "00400f8df147": {
+    "zh": "<strong>示例：</strong>3×3 影像 + 2×2 核 → 2×2 輸出。",
+    "en": "<strong>Example:</strong> 3×3 image + 2×2 kernel → 2×2 output.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3ec42bc5aa93": {
+    "zh": "04 / 關鍵差異 · Flip vs No-flip",
+    "en": "04 / Key Difference · Flipped vs Unflipped",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a0a3402b1851": {
+    "zh": "理論要翻核；實務CNN通常不翻\n    <span class=\"en\">Theory Flips the Kernel; Practical CNNs Usually Don't</span>\n  ",
+    "en": "Theory flips the kernel; practical CNNs usually don't",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f89ad3e3c6a7": {
+    "zh": "🔄 理論離散卷積（有翻核）",
+    "en": "🔄 Theoretical discrete convolution (kernel flipped)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "507a2eee39a3": {
+    "zh": "下標 $K[i-m, j-n]$ 中的<strong>「減」</strong>代表翻轉。",
+    "en": "The <strong>“minus”</strong> in the index $K[i-m, j-n]$ stands for the flip.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5b98e0e28c50": {
+    "zh": "滿足交換律：$f * g = g * f$（訊號處理的重要性質）。",
+    "en": "Commutative: $f * g = g * f$ (an important property in signal processing).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "60976e639e3d": {
+    "zh": "理論上嚴謹，Fourier 域乘法對應真卷積。",
+    "en": "Theoretically rigorous: multiplication in the Fourier domain corresponds to true convolution.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "418fb3e4e2a1": {
+    "zh": "符號：$I * K$，使用星號 $*$。",
+    "en": "Notation: $I * K$, using the asterisk $*$.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "54f41dfc0181": {
+    "zh": "➡ 實務CNN互相關（不翻核）",
+    "en": "➡ Practical CNN cross-correlation (kernel not flipped)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ab612d34410b": {
+    "zh": "下標 $K[m-i, n-j]$ 中的<strong>「正號」</strong>代表直接蓋上去，不翻轉。",
+    "en": "The <strong>“plus sign”</strong> in the index $K[m-i, n-j]$ means the kernel is laid on directly, without flipping.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "1b18ebe4d7cd": {
+    "zh": "不滿足交換律，但效能等同（只差映象）。",
+    "en": "Not commutative, but equally effective (they differ only by a mirror image).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ae5083a1fb6e": {
+    "zh": "PyTorch <code>F.conv2d</code>、TensorFlow <code>tf.nn.conv2d</code> 實際上都做互相關。",
+    "en": "PyTorch <code>F.conv2d</code> and TensorFlow <code>tf.nn.conv2d</code> both actually compute cross-correlation.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b33f5d9cd692": {
+    "zh": "符號：$I \\star K$，使用星形符號 ⋆ (U+22C6)。",
+    "en": "Notation: $I \\star K$, using the star operator ⋆ (U+22C6).",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d943c979db3c": {
+    "zh": "⚠ 容易混淆的地方",
+    "en": "⚠ An easy point of confusion",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "94190fbfe4d9": {
+    "zh": "\n      雖然 PyTorch 的函式叫做 <code>F.conv2d</code>（卷積），但它<strong>實際執行的是互相關</strong>（cross-correlation），不翻核。這是歷史慣例造成的命名混淆。學術論文裡寫「卷積層」，程式裡幾乎都在做互相關。\n    ",
+    "en": "Although PyTorch's function is called <code>F.conv2d</code> (convolution), what it <strong>actually computes is cross-correlation</strong>, without flipping the kernel. This naming confusion comes from historical convention. Academic papers write “convolutional layer”, and almost all code computes cross-correlation.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "263f1431ab60": {
+    "zh": "05 / 定義 · Cross-Correlation",
+    "en": "05 / Definition · Cross-Correlation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "48eff2ce533a": {
+    "zh": "互相關正式定義：式 (4)\n    <span class=\"en\">Cross-Correlation: Equation (4)</span>\n  ",
+    "en": "Formal definition of cross-correlation: Equation (4)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c497bb799b3a": {
+    "zh": "式 (4)：二維互相關（k 為核邊長）",
+    "en": "Equation (4): 2-D cross-correlation (k is the kernel's side length)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fefe55f60c01": {
+    "zh": "<strong>與式 (3) 的差異：</strong>",
+    "en": "<strong>Difference from Equation (3):</strong>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e126feb4e9ad": {
+    "zh": "式 (3)（卷積）：$K[i-m, j-n]$，下標「$i-m$」，先翻轉再平移。",
+    "en": "Equation (3) (convolution): $K[i-m, j-n]$, index “$i-m$”: flip first, then shift.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "57c78c7c6e0a": {
+    "zh": "式 (4)（互相關）：$K[m-i, n-j]$，下標「$m-i$」，直接平移，無翻轉。",
+    "en": "Equation (4) (cross-correlation): $K[m-i, n-j]$, index “$m-i$”: shift directly, no flip.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7ac25ca0d043": {
+    "zh": "求和上限 $k$：代表核邊長（核大小 $k \\times k$）。",
+    "en": "Upper summation limit $k$: the kernel's side length (kernel size $k \\times k$).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fc2fa764a80f": {
+    "zh": "符號約定",
+    "en": "Notation conventions",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9ea0e2d0febb": {
+    "zh": "卷積：$I * K$（星號 *）<br>互相關：$I \\star K$（⋆，U+22C6）<br>兩者只差核的方向，不差運算的本質。",
+    "en": "Convolution: $I * K$ (asterisk *)<br>Cross-correlation: $I \\star K$ (⋆, U+22C6)<br>The two differ only in the kernel's orientation, not in the nature of the operation.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fca117794a38": {
+    "zh": "求和範圍",
+    "en": "Summation range",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e70ac924270f": {
+    "zh": "式 (4) 顯式地用核邊長 $k$ 做上限，精確限定了滑動視窗的大小，比式 (3) 的「理論無限求和」更貼近實作。",
+    "en": "Equation (4) explicitly uses the kernel's side length $k$ as the upper limit, which pins down the size of the sliding window exactly and is closer to the implementation than the “theoretical infinite sum” of Equation (3).",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "958df5f45047": {
+    "zh": "等效計算",
+    "en": "Equivalent computation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "962848122aab": {
+    "zh": "$I \\star K = I * K'$，其中 $K'$ 是把 $K$ 翻轉 180° 的版本。翻個核，兩種運算就可以互換。",
+    "en": "$I \\star K = I * K'$, where $K'$ is $K$ rotated by 180°. Flip the kernel and the two operations become interchangeable.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0a016e42f615": {
+    "zh": "實務主流",
+    "en": "Mainstream practice",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f5dc4be1cf58": {
+    "zh": "幾乎所有深度學習框架（PyTorch、TF、JAX）的卷積函式，底層都實作互相關。記憶口訣：<em>「程式不翻核」</em>。",
+    "en": "In almost every deep-learning framework (PyTorch, TF, JAX), the convolution function is implemented as cross-correlation under the hood. Mnemonic: <em>“code doesn't flip the kernel”</em>.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9c03f504ab21": {
+    "zh": "06 / 訓練等效 · Training Equivalence",
+    "en": "06 / Equivalence in Training",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "808e229eef50": {
+    "zh": "為什麼訓練時翻不翻核幾乎沒差？\n    <span class=\"en\">Why Flipping Doesn't Matter During Training</span>\n  ",
+    "en": "Why does flipping the kernel or not make almost no difference in training?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "32329c94da49": {
+    "zh": "梯度下降只在乎能不能把損失壓下去",
+    "en": "Gradient descent only cares whether it can push the loss down",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6e67b620f84e": {
+    "zh": "\n      訓練神經網路時，核的初始值是隨機的。無論你的框架做的是卷積（翻核）還是互相關（不翻核）：\n    ",
+    "en": "When training a neural network, the kernel's initial values are random. Whether your framework computes convolution (flipped kernel) or cross-correlation (unflipped kernel):",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7e0e5ec802d4": {
+    "zh": "若堅持<strong>翻核</strong>，網路就學會「翻過的那一版核」——梯度下降把核學成正確翻轉版本。",
+    "en": "If you insist on <strong>flipping the kernel</strong>, the network learns “the flipped version of the kernel”: gradient descent learns the kernel as the correct flipped version.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b33cab5caf48": {
+    "zh": "若<strong>不翻</strong>，網路就學會「沒翻的那一版核」——梯度下降把核學成正確未翻版本。",
+    "en": "If you <strong>don't flip</strong>, the network learns “the unflipped version of the kernel”: gradient descent learns the kernel as the correct unflipped version.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c9b8902b2f28": {
+    "zh": "兩者學到的核是彼此的<strong>180° 旋轉版</strong>，但對損失函式的最終效果完全相同。",
+    "en": "The two learned kernels are <strong>180° rotations</strong> of each other, but their final effect on the loss function is exactly the same.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8d5f95fd0c53": {
+    "zh": "口語復盤：三句話搞定",
+    "en": "Plain-language recap: three sentences",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c9f68e96aa59": {
+    "zh": "卷積 = <strong>翻核再滑著乘加</strong>（理論定義，訊號處理的嚴謹版）",
+    "en": "Convolution = <strong>flip the kernel, then slide, multiply and add</strong> (the theoretical definition, the rigorous signal-processing version)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e78efba5daf9": {
+    "zh": "CNN 框架多半省略翻轉、<strong>改做互相關</strong>（效能等同，命名混淆）",
+    "en": "CNN frameworks mostly skip the flip and <strong>compute cross-correlation instead</strong> (equally effective, confusingly named)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b4ddf9bca4ab": {
+    "zh": "反正 <strong>backprop 會把核學成對的方向</strong>，翻不翻核不影響最終結果",
+    "en": "Either way, <strong>backprop learns the kernel in the right orientation</strong>, so flipping or not does not affect the final result",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "be12a979c150": {
+    "zh": "類比理解",
+    "en": "An analogy",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b30ed755e259": {
+    "zh": "\n      這就像用左手還是右手寫字：習慣不同，但只要練習充分，最終都能寫出漂亮的字。梯度下降是那個「充分練習」的過程，無論慣例如何，都能找到正確的核。\n      <span class=\"bilingual-en\">It's like writing with your left or right hand — different convention, same final result given enough practice. Gradient descent is that practice: it finds the correct kernel regardless of the flip convention.</span>\n    ",
+    "en": "It's like writing with your left hand or your right hand: the habit differs, but with enough practice both end up writing beautifully. Gradient descent is that “enough practice”: whatever the convention, it finds the correct kernel.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "44b26f8bb247": {
+    "zh": "07 / 對照表 · Comparison Matrix",
+    "en": "07 / Comparison Table",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cb8a76864a39": {
+    "zh": "理論卷積 vs 實務互相關對照表\n    <span class=\"en\">Theory Convolution vs. Practical Cross-Correlation: Full Comparison</span>\n  ",
+    "en": "Comparison table: theoretical convolution vs practical cross-correlation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "829e79a09b6b": {
+    "zh": "維度 / 特徵",
+    "en": "Aspect / feature",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "929688eb80c3": {
+    "zh": "理論離散卷積 Convolution $(I * K)$",
+    "en": "Theoretical discrete convolution $(I * K)$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1f276b309d22": {
+    "zh": "互相關 Cross-Correlation $(I \\star K)$",
+    "en": "Cross-correlation $(I \\star K)$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0570f0f319d0": {
+    "zh": "<strong>核的操作</strong>",
+    "en": "<strong>Kernel operation</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "442439266daf": {
+    "zh": "先翻轉 180°（$K[i-m, j-n]$，有減法）",
+    "en": "Flip by 180° first ($K[i-m, j-n]$, with subtraction)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f4c642cd11c1": {
+    "zh": "直接蓋上去（$K[m-i, n-j]$，有加法）",
+    "en": "Laid on directly ($K[m-i, n-j]$, with addition)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "177d1c0cf701": {
+    "zh": "<strong>交換律</strong>",
+    "en": "<strong>Commutativity</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "277d3f441ac1": {
+    "zh": "✅ $I * K = K * I$（滿足）",
+    "en": "✅ $I * K = K * I$ (holds)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b2c0e3257db5": {
+    "zh": "❌ $I \\star K \\neq K \\star I$（一般不滿足）",
+    "en": "❌ $I \\star K \\neq K \\star I$ (does not hold in general)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0cae23257f23": {
+    "zh": "<strong>Fourier 域對應</strong>",
+    "en": "<strong>Fourier-domain counterpart</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "58efb8ee0298": {
+    "zh": "✅ 點乘（精確對應）",
+    "en": "✅ Pointwise product (exact correspondence)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "459b988587ff": {
+    "zh": "需額外複共軛操作",
+    "en": "Needs an extra complex-conjugate operation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dc5d8b453e83": {
+    "zh": "<strong>深度學習框架</strong>",
+    "en": "<strong>Deep-learning frameworks</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "938093af4fac": {
+    "zh": "❌ 幾乎不使用",
+    "en": "❌ Almost never used",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b9cf4329b0ba": {
+    "zh": "✅ PyTorch、TF、JAX 實際執行互相關",
+    "en": "✅ PyTorch, TF, JAX actually compute cross-correlation",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "6dc784203185": {
+    "zh": "<strong>訓練學習效果</strong>",
+    "en": "<strong>Effect on training</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "87b2ea222422": {
+    "zh": "等效（核會自動學成翻轉版）",
+    "en": "Equivalent (the kernel automatically learns the flipped version)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "614b87febad0": {
+    "zh": "等效（核會自動學成未翻版）",
+    "en": "Equivalent (the kernel automatically learns the unflipped version)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ea8484a73fda": {
+    "zh": "<strong>口語說法</strong>",
+    "en": "<strong>Everyday name</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3852e4c16d04": {
+    "zh": "「卷積」（理論嚴謹叫法）",
+    "en": "“Convolution” (the rigorous theoretical name)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4effc5cc5285": {
+    "zh": "「卷積」（口語也這麼說，實際做互相關）",
+    "en": "“Convolution” (also called that colloquially, but actually computes cross-correlation)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d0c48f78f805": {
+    "zh": "<strong>符號</strong>",
+    "en": "<strong>Symbol</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fa9ca4337fdd": {
+    "zh": "$*$（星號）",
+    "en": "$*$ (asterisk)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d201fae5d9a6": {
+    "zh": "$\\star$（星形，U+22C6）",
+    "en": "$\\star$ (star, U+22C6)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5c4dccbb9c3d": {
+    "zh": "🎯 KP04 核心要點摘要",
+    "en": "🎯 KP04 key takeaways",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "0b612a940f09": {
+    "zh": "式 (2)：一維卷積 $a[t]=\\sum x[a]\\,w[t-a]$，$t-a$ = 翻轉 + 平移。",
+    "en": "Equation (2): 1-D convolution $a[t]=\\sum x[a]\\,w[t-a]$, where $t-a$ = flip + shift.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c789db88f426": {
+    "zh": "式 (3)：二維卷積 $s[i,j]=\\sum\\sum I[m,n]\\,K[i-m,j-n]$，兩個維度都翻。",
+    "en": "Equation (3): 2-D convolution $s[i,j]=\\sum\\sum I[m,n]\\,K[i-m,j-n]$, flipped in both dimensions.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "52b274a429f1": {
+    "zh": "式 (4)：互相關 $s[i,j]=\\sum\\sum I[m,n]\\,K[m-i,n-j]$，不翻核。",
+    "en": "Equation (4): cross-correlation $s[i,j]=\\sum\\sum I[m,n]\\,K[m-i,n-j]$, no kernel flip.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "7fba50328949": {
+    "zh": "CNN 框架口語叫「卷積」，程式裡做互相關，梯度下降自動適配慣例。",
+    "en": "CNN frameworks colloquially call it “convolution” but the code computes cross-correlation, and gradient descent adapts to the convention automatically.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e5c8e6781c7e": {
+    "zh": "08 / 實戰模擬 · Interactive Lab",
+    "en": "08 / Hands-on Simulation · Interactive Lab",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "93e293749230": {
+    "zh": "互動實驗室：卷積 vs 互相關即時對比\n    <span class=\"en\">Interactive Lab: Convolution vs Cross-Correlation Real-Time Comparison</span>\n  ",
+    "en": "Interactive lab: convolution vs cross-correlation, compared in real time",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9941b1de55dc": {
+    "zh": "輸入影像 I (3×3)",
+    "en": "Input image I (3×3)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bcf3ab7267f8": {
+    "zh": "核 K (2×2)",
+    "en": "Kernel K (2×2)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8f5f2aca9b55": {
+    "zh": "重設 Reset (Textbook Default)",
+    "en": "Reset (textbook default)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4eb79361f63e": {
+    "zh": "影像 I (3×3) — 每格可調整 (-2 到 4)",
+    "en": "Image I (3×3): each cell adjustable (-2 to 4)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ba19007e33a8": {
+    "zh": "預設值：I=[[1,2,0],[1,1,2],[0,1,1]]（教材範例）",
+    "en": "Default: I=[[1,2,0],[1,1,2],[0,1,1]] (textbook example)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0d55ecec6ceb": {
+    "zh": "核 K (2×2) — 每格可調整 (-2 到 2)",
+    "en": "Kernel K (2×2): each cell adjustable (-2 to 2)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8c950bb514de": {
+    "zh": "預設值：K=[[1,0],[0,1]]（教材範例）",
+    "en": "Default: K=[[1,0],[0,1]] (textbook example)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "460ed093593e": {
+    "zh": "🔄 卷積輸出 (Convolution — 翻核)",
+    "en": "🔄 Convolution output (kernel flipped)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "684bffa10525": {
+    "zh": "➡ 互相關輸出 (Cross-Correlation — 不翻核)",
+    "en": "➡ Cross-correlation output (kernel not flipped)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6b5de991c371": {
+    "zh": "\n      🧪 <strong>實測挑戰：</strong><br>\n      1. 點選「重設 Reset」可還原教材預設值：I=[[1,2,0],[1,1,2],[0,1,1]], K=[[1,0],[0,1]]。<br>\n      2. 觀察：教材例中卷積輸出 = 互相關輸出 = [[2,4],[2,2]]，因為這個 K 是對稱核（翻轉後等於自身）。<br>\n      3. 嘗試改成非對稱核（如 K=[[1,2],[0,0]]），觀察兩種輸出的差異！\n    ",
+    "en": "🧪 <strong>Hands-on challenge:</strong><br>\n      1. Click “Reset” to restore the textbook defaults: I=[[1,2,0],[1,1,2],[0,1,1]], K=[[1,0],[0,1]].<br>\n      2. Observe: in the textbook example the convolution output = the cross-correlation output = [[2,4],[2,2]], because this K is a symmetric kernel (equal to itself after flipping).<br>\n      3. Try an asymmetric kernel instead (e.g. K=[[1,2],[0,0]]) and observe the difference between the two outputs!",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "432b2a4ecffe": {
+    "zh": "09 / 實戰檢驗 · Concept Checkpoint",
+    "en": "09 / Concept Checkpoint",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4624f7589de7": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Master-Level Assessment</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "5c493363f024": {
+    "zh": "題目 1：式 (2) 中 $w[t-a]$ 相對於把核直接寫成 $w[t+a]$，凸顯的理論步驟是？",
+    "en": "Question 1: In Equation (2), compared with writing the kernel directly as $w[t+a]$, which theoretical step does $w[t-a]$ highlight?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "d67a45bd0b65": {
+    "zh": "A. 將核沿時間軸平移到位置 $t$",
+    "en": "A. Shifting the kernel along the time axis to position $t$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "eb802fa65617": {
+    "zh": "B. 將核沿軸翻轉再平移（$-a$ 代表翻轉，$t$ 代表平移）",
+    "en": "B. Flipping the kernel along the axis and then shifting it ($-a$ stands for the flip, $t$ for the shift)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "631df6472de4": {
+    "zh": "C. 對核做正規化（normalize）使總和為 1",
+    "en": "C. Normalizing the kernel so that it sums to 1",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "51ac0f056ee7": {
+    "zh": "D. 將輸入訊號翻轉，讓核保持不動",
+    "en": "D. Flipping the input signal while the kernel stays fixed",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b87970db67f3": {
+    "zh": "題目 2：二維影像卷積式 (3) 中 $K[i-m, j-n]$ 的下標為何有減法？",
+    "en": "Question 2: Why does the index $K[i-m, j-n]$ in the 2-D image convolution of Equation (3) contain subtractions?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "1113d6aa4432": {
+    "zh": "A. 代表從右到左、從下到上地遍歷影像畫素",
+    "en": "A. It means the image pixels are traversed right to left and bottom to top",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ea6d304c0c4f": {
+    "zh": "B. 因為理論卷積要先翻核才做點積（$i-m$ 和 $j-n$ 分別在兩個維度做翻轉）",
+    "en": "B. Because theoretical convolution flips the kernel before taking the dot product ($i-m$ and $j-n$ flip the two dimensions respectively)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "78574c00653d": {
+    "zh": "C. 下標的減法只是防止陣列越界的一種技巧",
+    "en": "C. The subtraction in the index is just a trick to avoid out-of-bounds array access",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e111189626c9": {
+    "zh": "D. 是互相關的定義，不是卷積的定義",
+    "en": "D. It is the definition of cross-correlation, not of convolution",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2e2905c4d2f7": {
+    "zh": "題目 3：實務 CNN 函式庫（如 PyTorch 的 <code>F.conv2d</code>）通常執行的是？",
+    "en": "Question 3: What do practical CNN libraries (such as PyTorch's <code>F.conv2d</code>) usually compute?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "20f12cb172be": {
+    "zh": "A. 真正的離散卷積（先翻核 180° 再做點積）",
+    "en": "A. True discrete convolution (flip the kernel by 180°, then take the dot product)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "6db5f9da0c61": {
+    "zh": "B. 互相關（核不翻，直接滑動做點積）",
+    "en": "B. Cross-correlation (the kernel is not flipped; it slides directly and takes dot products)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "82984778d98c": {
+    "zh": "C. FFT 頻域卷積（每次都轉到頻域計算）",
+    "en": "C. FFT frequency-domain convolution (every computation goes through the frequency domain)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ddc1ba567710": {
+    "zh": "D. 完全自訂核方向，由使用者決定是否翻轉",
+    "en": "D. A fully custom kernel orientation, where the user decides whether to flip",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "9721f0ffa608": {
+    "zh": "題目 4：為什麼訓練時不翻核也能學到有效特徵？",
+    "en": "Question 4: Why can training learn effective features without flipping the kernel?",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "75c22c5c8891": {
+    "zh": "A. 因為核的初始值已經預先翻轉過，所以訓練後結果相同",
+    "en": "A. Because the kernel's initial values are already flipped in advance, so the result after training is the same",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "aba642ab7585": {
+    "zh": "B. 因為影像處理中的核都是對稱的，翻轉後不會改變",
+    "en": "B. Because kernels in image processing are always symmetric, so flipping changes nothing",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3f2d8fc6794d": {
+    "zh": "C. 可學習核會自動適配慣例，梯度下降不在乎有沒有翻（只在乎損失下降）",
+    "en": "C. A learnable kernel adapts to the convention automatically; gradient descent doesn't care whether it is flipped (only whether the loss goes down)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "3b5d45a5a806": {
+    "zh": "D. 因為深度學習的損失函式對核的翻轉是不敏感的",
+    "en": "D. Because the loss functions of deep learning are insensitive to flipping the kernel",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  }
+}

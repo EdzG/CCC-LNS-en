@@ -1,0 +1,753 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "3×3 核在 pad 1、stride 1 時剛好補回邊界損失，空間尺寸不變；降解析度交給 stride 2 的 max pooling。": "With pad 1 and stride 1, a 3×3 kernel exactly makes up for the border loss, so the spatial size stays the same; reducing the resolution is left to max pooling with stride 2.",
+      "前兩層各 4096，最後一層 1000 對應 ILSVRC 的 1000 類；LeNet 的 120-84-10 是另一套架構。": "The first two layers have 4096 each, and the last layer's 1000 corresponds to the 1000 ILSVRC classes; LeNet's 120-84-10 is a different architecture.",
+      "unlike AlexNet，多數 VGG 不用 LRN，因實驗發現對 ILSVRC 沒有提升。": "Unlike AlexNet, most VGG models do not use LRN, because experiments found it gave no improvement on ILSVRC.",
+      "寬度 2、stride 2 的 max pooling 使相鄰視窗不重疊，長寬各減半。": "Max pooling with width 2 and stride 2 makes adjacent windows non-overlapping, halving both the height and the width.",
+      "目標感受野尺寸：": "Target receptive field size:",
+      "單一大核方案：": "Single big kernel:",
+      "小核堆疊方案：": "Small-kernel stack:",
+      "參數量節省比例：": "Parameter savings:",
+      "非線性增益：": "Nonlinearity gain:"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      },
+      {
+        "re": "^單通道權重參數量對比 \\(感受野: (\\d+)×(\\d+)\\)：$",
+        "en": "Per-channel weight count (receptive field: $1×$2):"
+      },
+      {
+        "re": "^單核 (\\d+)×(\\d+): (\\d+) 權重 \\(1 次 ReLU\\)$",
+        "en": "Single $1×$2: $3 wts (1 ReLU)"
+      },
+      {
+        "re": "^(\\d+) 層 3×3: (\\d+) 權重 \\((\\d+) 次 ReLU\\)$",
+        "en": "$1 layers 3×3: $2 wts ($3 ReLUs)"
+      },
+      {
+        "re": "^綠框/紅框: 感受野 (\\d+)×(\\d+) 覆蓋範圍$",
+        "en": "Green/red boxes: $1×$2 receptive field coverage"
+      },
+      {
+        "re": "^感受野與參數量對比報告 \\[(\\d+)×(\\d+) 視野\\]$",
+        "en": "Receptive field and parameter count report [$1×$2 field of view]"
+      },
+      {
+        "re": "^(\\d+)×(\\d+) 畫素$",
+        "en": "$1×$2 pixels"
+      },
+      {
+        "re": "^1 層 (\\d+)×(\\d+)（(\\d+) 權重，1 次 ReLU）$",
+        "en": "1 layer of $1×$2 ($3 weights, 1 ReLU)"
+      },
+      {
+        "re": "^(\\d+) 層 3×3（$",
+        "en": "$1 layers of 3×3 ("
+      },
+      {
+        "re": "^(\\d+) 權重$",
+        "en": "$1 weights"
+      },
+      {
+        "re": "^，(\\d+) 次 ReLU）$",
+        "en": ", $1 ReLUs)"
+      },
+      {
+        "re": "^(\\d+)% 節省$",
+        "en": "$1% saved"
+      },
+      {
+        "re": "^堆疊額外獲得 (\\d+) 次非線性 ReLU，使決策邊界更具區分力。$",
+        "en": "the stack gains $1 extra nonlinear ReLUs, making the decision boundary more discriminative."
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "dae30ed158ba": {
+    "zh": "KP13 · 索引",
+    "en": "KP13 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "3270a4e59bda": {
+    "zh": "<a href=\"#sec-rf-theory\">感受野等價定理 · Receptive Field</a>",
+    "en": "<a href=\"#sec-rf-theory\">Receptive field equivalence theorem</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "c22747ac7d98": {
+    "zh": "<a href=\"#svg-vgg\">3×3 堆疊幾何視覺化 · Visual Breakdown</a>",
+    "en": "<a href=\"#svg-vgg\">Visualizing the 3×3 stack geometry</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ae918dd979ee": {
+    "zh": "<a href=\"#sec-vgg-pipeline\">VGG 幾何管線與訓練 · Pipeline &amp; Training</a>",
+    "en": "<a href=\"#sec-vgg-pipeline\">VGG geometric pipeline and training</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "521f52181b2a": {
+    "zh": "VGG：3×3 小核堆疊出深度\n      <span class=\"hero-title-en\">VGG: Stacking 3×3 Small Kernels for Depth</span>\n    ",
+    "en": "VGG: Stacking 3×3 Small Kernels into Depth",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "5b4994993c9e": {
+    "zh": "\n      牛津大學視覺幾何組（Visual Geometry Group）提出了極簡純粹的網路哲學：放棄 11×11 與 5×5 等大尺寸卷積核，清一色採用 3×3 小核深度堆疊！兩個 3×3 卷積等價 5×5 感受野，三個 3×3 卷積等價 7×7 感受野。參數量從 49 驟降至 27，同時引入三次非線性 ReLU 啟用，使特徵具備更高的辨識能力。\n    ",
+    "en": "Oxford's Visual Geometry Group proposed a minimalist, pure network philosophy: abandon large kernels such as 11×11 and 5×5 and use nothing but deeply stacked 3×3 small kernels! Two 3×3 convolutions are equivalent to a 5×5 receptive field, and three 3×3 convolutions are equivalent to a 7×7 receptive field. The parameter count plunges from 49 to 27, while three nonlinear ReLU activations are introduced, giving the features higher discriminative power.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "ca9f62782046": {
+    "zh": "\n      「明明需要看見 7×7 的廣闊視野，為何硬要用三個 3×3 取代一個大 7×7？」\n      <small>用深度換視野！參數量從 49 砍至 27（現省 45%），中間還多賺兩次 ReLU 非線性表達力！<br>\n        <span class=\"bilingual-en-inline\">Exchange depth for receptive field: parameters drop from 49 to 27 while gaining two extra non-linearities!</span>\n      </small>\n    ",
+    "en": "“If we clearly need to see a wide 7×7 field of view, why insist on replacing one big 7×7 with three 3×3s?” <small>Trade depth for field of view! The parameter count is cut from 49 to 27 (a 45% saving), and you earn two extra ReLU nonlinearities in between!</small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "bef7f008a2c2": {
+    "zh": "02 / 感受野數學等價 · Receptive Field Math",
+    "en": "02 / Receptive Field Math Equivalence",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f98a57e478a9": {
+    "zh": "感受野等價定理：小核堆疊的雙重數學紅利\n    <span class=\"en\">Mathematical Equivalence: Receptive Field Growth and Parameter Reduction</span>\n  ",
+    "en": "Receptive field equivalence theorem: the double mathematical dividend of stacking small kernels",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b3d80c054d30": {
+    "zh": "堆疊卷積的感受野增長公式",
+    "en": "Receptive field growth formula for stacked convolutions",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "63efd4603a56": {
+    "zh": "\n      當步幅 stride $=1$ 時，每堆疊一層核寬為 $k$ 的卷積，有效感受野（Effective Receptive Field）擴充套件為：\n      $$\\text{RF}_{l} = \\text{RF}_{l-1} + (k - 1)$$\n    ",
+    "en": "When the stride $=1$, each stacked convolution layer with kernel width $k$ expands the effective receptive field to: $$\\text{RF}_{l} = \\text{RF}_{l-1} + (k - 1)$$",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5fc21f23c731": {
+    "zh": "<strong>一層 $3\\times 3$：</strong> 感受野為 $3\\times 3$。",
+    "en": "<strong>One $3\\times 3$ layer:</strong> the receptive field is $3\\times 3$.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ea2fea3773db": {
+    "zh": "<strong>兩層 $3\\times 3$：</strong> 感受野擴大為 $3 + (3 - 1) = \\mathbf{5\\times 5}$。參數量為 $2 \\times 3^2 = 18 &lt; 25$（節省 28%）。",
+    "en": "<strong>Two $3\\times 3$ layers:</strong> the receptive field grows to $3 + (3 - 1) = \\mathbf{5\\times 5}$. The parameter count is $2 \\times 3^2 = 18 &lt; 25$ (a 28% saving).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "305d62e978c4": {
+    "zh": "<strong>三層 $3\\times 3$：</strong> 感受野擴大為 $5 + (3 - 1) = \\mathbf{7\\times 7}$。參數量為 $3 \\times 3^2 = \\mathbf{27} &lt; \\mathbf{49}$（節省 45%）！",
+    "en": "<strong>Three $3\\times 3$ layers:</strong> the receptive field grows to $5 + (3 - 1) = \\mathbf{7\\times 7}$. The parameter count is $3 \\times 3^2 = \\mathbf{27} &lt; \\mathbf{49}$ (a 45% saving)!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "70fc2835d19e": {
+    "zh": "\n      <strong>非線性維度倍增：</strong> 一個 $7\\times 7$ 卷積後僅有一次 ReLU；而三層 $3\\times 3$ 堆疊之間包含了<strong>三次連續的 ReLU</strong>，大幅增強了模型對高度複雜非線性特徵的分辨力。\n    ",
+    "en": "<strong>Multiplying the nonlinearity:</strong> one $7\\times 7$ convolution is followed by only a single ReLU, while a stack of three $3\\times 3$ layers contains <strong>three consecutive ReLUs</strong>, greatly strengthening the model's ability to distinguish highly complex nonlinear features.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a9a05b831f5e": {
+    "zh": "03 / 幾何網格對比 · Visual Geometric Proof",
+    "en": "03 / Geometric Grid Comparison",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e9a37284d4fe": {
+    "zh": "同一 7×7 感受野：一顆大核 vs 三層小核堆疊\n    <span class=\"en\">Single 7×7 Filter vs Three Stacked 3×3 Filters: Parameter &amp; Non-linearity Comparison</span>\n  ",
+    "en": "The same 7×7 receptive field: one big kernel vs a stack of three small-kernel layers",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3c149b3cb48e": {
+    "zh": "同一 7×7 感受野：一顆大核 49 權重；三層 3×3 只要 27，還多兩次非線性",
+    "en": "Same 7×7 receptive field: one big kernel has 49 weights; three 3×3 layers need only 27, plus two extra nonlinearities",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "fed14ee7c141": {
+    "zh": "BEFORE · 一顆 7×7 傳統大核",
+    "en": "BEFORE · One traditional big 7×7 kernel",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e43e1dabb473": {
+    "zh": "一次覆蓋 7×7 · 參數量 7×7 = 49（單通道）",
+    "en": "Covers 7×7 in one pass · params 7×7 = 49 (single channel)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "07468441a6aa": {
+    "zh": "權重 49 · 僅有 1 次非線性 ReLU",
+    "en": "49 weights · only 1 nonlinear ReLU",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "0cc08a99fdf8": {
+    "zh": "AFTER · 三層 3×3 堆疊（VGG 哲學）",
+    "en": "AFTER · Three stacked 3×3 layers (VGG philosophy)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "13a76bb2ee17": {
+    "zh": "每層 stride 1、padding 1 → 空間尺寸恆定",
+    "en": "Each layer stride 1, padding 1 → spatial size unchanged",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ce1e60fd942f": {
+    "zh": "RF 7×7 (第 3 層)",
+    "en": "RF 7×7 (layer 3)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "782db094a55b": {
+    "zh": "RF 5×5 (第 2 層)",
+    "en": "RF 5×5 (layer 2)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "710672eeb2c2": {
+    "zh": "3×3 (第 1 層)",
+    "en": "3×3 (layer 1)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9bc3288e7246": {
+    "zh": "第 1 層 3×3 → RF 3",
+    "en": "Layer 1 3×3 → RF 3",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "29c2f00c41d7": {
+    "zh": "第 2 層 3×3 → RF 5",
+    "en": "Layer 2 3×3 → RF 5",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5df9aaaf819c": {
+    "zh": "第 3 層 3×3 → RF 7",
+    "en": "Layer 3 3×3 → RF 7",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "46863376df7c": {
+    "zh": "3 × 9 = 27 權重",
+    "en": "3 × 9 = 27 weights",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "637e58b460b2": {
+    "zh": "27 權重 (省 45%) · 包含 3 次 ReLU！",
+    "en": "27 weights (45% saved) · includes 3 ReLUs!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d21bf79b1516": {
+    "zh": "VGG 配方：清一色 3×3 (stride 1, pad 1) · 降維全交給 2×2 stride 2 不重疊池化",
+    "en": "VGG recipe: all 3×3 (stride 1, pad 1) · all downsampling left to 2×2 stride-2 non-overlapping pooling",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1fd46de2d900": {
+    "zh": "末端 FC 4096-4096-1000 · 減 RGB 均值 · 實驗證明 LRN 無效故徹底移除",
+    "en": "Final FC 4096-4096-1000 · RGB mean subtracted · LRN shown useless in experiments, so removed entirely",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5b1b6cdadf1e": {
+    "zh": "反直覺：感受野不夠大時，不必上 7×7——用深度換面積，參數更省、層次更豐！",
+    "en": "Counterintuitive: when the receptive field is too small, no need for 7×7—trade depth for area: fewer params, richer hierarchy!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a8175f408379": {
+    "zh": "Simonyan & Zisserman (Oxford VGG, 2014) · ILSVRC 2014 亞軍但影響力最深遠",
+    "en": "Simonyan & Zisserman (Oxford VGG, 2014) · ILSVRC 2014 runner-up, yet the most far-reaching influence",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "4c9bbe15eede": {
+    "zh": "圖 13.1：單一大核 (7×7) 與三層小核 (3×3) 感受野等價與參數量縮減幾何對比",
+    "en": "Figure 13.1: Geometric comparison of a single big kernel (7×7) and three small-kernel layers (3×3): receptive field equivalence and parameter reduction",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5d82451767f4": {
+    "zh": "📐 空間尺寸不縮的設定",
+    "en": "📐 A setting that keeps the spatial size",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "189f2939d4a9": {
+    "zh": "\n          VGG 規定所有 $3\\times 3$ 卷積核必須搭配 <strong>stride = 1</strong> 與 <strong>padding = 1</strong>。每做一次卷積，四周補的一圈剛好補回被吃掉的邊界，因此<strong>卷積層完全不改變空間長寬解析度</strong>！\n        ",
+    "en": "VGG requires every $3\\times 3$ kernel to use <strong>stride = 1</strong> and <strong>padding = 1</strong>. With each convolution, the one-pixel ring padded around the border exactly makes up for the border that gets eaten, so <strong>the convolutional layers do not change the spatial height and width at all</strong>!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "465548dcbd49": {
+    "zh": "✂️ 乾淨俐落：徹底移除 LRN",
+    "en": "✂️ Clean and simple: removing LRN entirely",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b96438025870": {
+    "zh": "\n          AlexNet 引入的局部響應正規化（LRN），在牛津團隊的大規模實證下發現對 ILSVRC 分類毫無提升，反而增加記憶體負擔。VGG 果斷<strong>將 LRN 全數拿掉</strong>。\n        ",
+    "en": "For the local response normalization (LRN) introduced by AlexNet, the Oxford team's large-scale experiments found no improvement at all on ILSVRC classification, only extra memory cost. VGG decisively <strong>removed LRN altogether</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b7c9d633f13a": {
+    "zh": "04 / 工程管線與實戰配方 · Technical Specs",
+    "en": "04 / Engineering Pipeline and Practical Recipe",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "caf2d5022dcc": {
+    "zh": "VGG-16 標準架構與實務訓練超參數\n    <span class=\"en\">VGG-16 Architectural Layout, Channel Progression, &amp; Training Hyperparameters</span>\n  ",
+    "en": "Standard VGG-16 architecture and practical training hyperparameters",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b64467840c50": {
+    "zh": "維度類別 Category",
+    "en": "Category",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7bb1ba968d99": {
+    "zh": "VGG-16 規格設定 Specification",
+    "en": "VGG-16 specification",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fdfcf769f538": {
+    "zh": "工程設計目的 Engineering Purpose",
+    "en": "Engineering purpose",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7cd341525900": {
+    "zh": "<strong>輸入前處理</strong>",
+    "en": "<strong>Input preprocessing</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "31dc71f8afd6": {
+    "zh": "減去訓練集 RGB 通道均值（Zero-Centered）",
+    "en": "Subtract the training-set RGB channel means (zero-centered)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bf3480a73dee": {
+    "zh": "消除色彩全域性偏移，讓初始活化值零對稱分佈",
+    "en": "Removes the global color offset so the initial activations are distributed symmetrically around zero",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e84110649de4": {
+    "zh": "<strong>卷積層核寬</strong>",
+    "en": "<strong>Convolution kernel width</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2aabc09cd339": {
+    "zh": "清一色 $3\\times 3$，stride 1，padding 1",
+    "en": "All $3\\times 3$, stride 1, padding 1",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8191b370c526": {
+    "zh": "空間維度不變，專注於特徵抽取與非線性通道對映",
+    "en": "Spatial dimensions unchanged; focus on feature extraction and nonlinear channel mapping",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8a563b7d1dcd": {
+    "zh": "<strong>池化層下取樣</strong>",
+    "en": "<strong>Pooling-layer downsampling</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "aed3f09e3392": {
+    "zh": "Max Pooling 寬度 2，步幅 2（不重疊）",
+    "en": "Max pooling width 2, stride 2 (non-overlapping)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "44307ff3ab6b": {
+    "zh": "空間長寬各砍半，降解析度完全由池化層接管",
+    "en": "Height and width each halved; reducing resolution is handled entirely by the pooling layers",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "67307d89d47b": {
+    "zh": "<strong>通道數推進</strong>",
+    "en": "<strong>Channel progression</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "467c7df7e8d2": {
+    "zh": "空間維度縮小時，特徵通道翻倍補償特徵容量",
+    "en": "As the spatial dimensions shrink, the feature channels double to compensate for feature capacity",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "09eaa1e8651e": {
+    "zh": "<strong>末端全連線</strong>",
+    "en": "<strong>Final fully connected layers</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cafb5415cc40": {
+    "zh": "與 AlexNet 相同的分類器巨構，佔據全網 80%+ 參數",
+    "en": "The same giant classifier as AlexNet, holding 80%+ of the whole network's parameters",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "de35c988d9fd": {
+    "zh": "<strong>最佳化器與超參數</strong>",
+    "en": "<strong>Optimizer and hyperparameters</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ab2c3466f7a9": {
+    "zh": "Mini-batch SGD，Batch=256，Momentum=0.9，Weight Decay=$5\\times 10^{-4}$，LR=$10^{-2}$（平臺期除以 10）",
+    "en": "Mini-batch SGD, Batch=256, Momentum=0.9, Weight Decay=$5\\times 10^{-4}$, LR=$10^{-2}$ (divided by 10 at plateaus)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ab041d130acc": {
+    "zh": "經典帶動量 SGD 配方，穩健推動深層網路收斂",
+    "en": "The classic SGD-with-momentum recipe, steadily driving deep networks to converge",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a482f57e97e0": {
+    "zh": "05 / 互動實驗室 · Interactive Lab",
+    "en": "05 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b6b11112e141": {
+    "zh": "互動實驗室：感受野與參數量對比計算器\n    <span class=\"en\">Interactive Lab: Receptive Field &amp; Parameter Savings Calculator</span>\n  ",
+    "en": "Interactive lab: receptive field and parameter count comparison calculator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "86944df98d2a": {
+    "zh": "對比配置 Configuration:",
+    "en": "Configuration:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d5809f57b371": {
+    "zh": "7×7 感受野：三層 3×3 vs 單顆 7×7 (VGG 經典)",
+    "en": "7×7 receptive field: three 3×3 layers vs a single 7×7 (VGG classic)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "30b6861e89c2": {
+    "zh": "5×5 感受野：兩層 3×3 vs 單顆 5×5",
+    "en": "5×5 receptive field: two 3×3 layers vs a single 5×5",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4e62579b32d1": {
+    "zh": "11×11 感受野：五層 3×3 vs 單顆 11×11 (AlexNet 大核)",
+    "en": "11×11 receptive field: five 3×3 layers vs a single 11×11 (AlexNet big kernel)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7bb58d53046b": {
+    "zh": "▶ 計算參數量與節省比例 Calculate",
+    "en": "▶ Calculate parameter count and savings",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "57f2b24677fb": {
+    "zh": "\n          感受野與參數量對比視覺圖（綠色堆疊 vs 紅色單一大核）：\n        ",
+    "en": "Visual comparison of receptive field and parameter count (green stack vs red single big kernel):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "102e2aea6b7a": {
+    "zh": "\n        感受野與參數量對比報告 [7×7 視野]\n      ",
+    "en": "Receptive field and parameter count report [7×7 field of view]",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "815ce64db9e1": {
+    "zh": "<strong>目標感受野尺寸：</strong> 7×7 畫素",
+    "en": "<strong>Target receptive field size:</strong> 7×7 pixels",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "684034e1757a": {
+    "zh": "<strong>單一大核方案：</strong> 1 層 7×7（49 權重，1 次 ReLU）",
+    "en": "<strong>Single big kernel:</strong> 1 layer of 7×7 (49 weights, 1 ReLU)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4dc4841a4b2a": {
+    "zh": "<strong>小核堆疊方案：</strong> 3 層 3×3（<span style=\"color:#16a34a; font-weight:700;\">27 權重</span>，3 次 ReLU）",
+    "en": "<strong>Small-kernel stack:</strong> 3 layers of 3×3 (<span style=\"color:#16a34a; font-weight:700;\">27 weights</span>, 3 ReLUs)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cae84490813b": {
+    "zh": "<strong>參數量節省比例：</strong> <span style=\"font-size:18px; font-weight:700; color:#15803d;\">45% 節省</span>",
+    "en": "<strong>Parameter savings:</strong> <span style=\"font-size:18px; font-weight:700; color:#15803d;\">45% saved</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "96f0d7a1108c": {
+    "zh": "\n        💡 <strong>非線性增益：</strong> 堆疊額外獲得 2 次非線性 ReLU，使決策邊界更具區分力。\n      ",
+    "en": "💡 <strong>Nonlinearity gain:</strong> the stack gains 2 extra nonlinear ReLUs, making the decision boundary more discriminative.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cb5bafcc6d7": {
+    "zh": "06 / 實戰檢驗 · Concept Checkpoint",
+    "en": "06 / Concept Checkpoint",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e93bc9b35d65": {
+    "zh": "題目 1 · 卷積幾何設定 / Conv Setting",
+    "en": "Question 1 · Convolution geometry setting",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4f665cdf1863": {
+    "zh": "VGG 的 3×3 卷積採用 stride 1、padding 1，主要效果是？",
+    "en": "VGG's 3×3 convolutions use stride 1 and padding 1. What is the main effect?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5f1b9006205d": {
+    "zh": "A. 特徵圖長寬各減半",
+    "en": "A. The feature map's height and width are each halved",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ca2db7427166": {
+    "zh": "B. 空間尺寸維持不變",
+    "en": "B. The spatial size stays unchanged",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f33a983f1800": {
+    "zh": "C. 強制使用 LRN",
+    "en": "C. LRN must be used",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8bbb0d691bb9": {
+    "zh": "D. 把輸入變成一維向量",
+    "en": "D. The input is turned into a one-dimensional vector",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "80c05bc4da7f": {
+    "zh": "題目 2 · 全連線層規模 / FC Dimension",
+    "en": "Question 2 · Fully connected layer sizes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cc239d1106f0": {
+    "zh": "VGG 末端三層全連線的神經元數依序是？",
+    "en": "What are the neuron counts of VGG's final three fully connected layers, in order?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "84700574d675": {
+    "zh": "題目 3 · LRN 的取捨 / LRN Removal",
+    "en": "Question 3 · The LRN trade-off",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6762995048b4": {
+    "zh": "與 AlexNet 相比，多數 VGG 版本對 LRN（局部響應正規化）的態度是？",
+    "en": "Compared with AlexNet, what is the attitude of most VGG versions toward LRN (local response normalization)?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ffdead6ab39d": {
+    "zh": "A. 每一層都必用 LRN",
+    "en": "A. LRN is mandatory in every layer",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0bcf86327317": {
+    "zh": "B. 通常不使用，因實驗上在 ILSVRC 沒幫助",
+    "en": "B. Usually not used, because experiments showed it did not help on ILSVRC",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2ec62030ab28": {
+    "zh": "C. 用 LRN 取代 ReLU",
+    "en": "C. LRN replaces ReLU",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1b4148f952ed": {
+    "zh": "D. 只用在輸出 softmax 之後",
+    "en": "D. Used only after the output softmax",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e3d66790d348": {
+    "zh": "題目 4 · 池化超參數 / Pooling Hyperparameters",
+    "en": "Question 4 · Pooling hyperparameters",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "af93bfdda8fd": {
+    "zh": "VGG 的 max pooling 設定為何？",
+    "en": "What is VGG's max pooling setting?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ac6d85210483": {
+    "zh": "A. 視窗 3、stride 1，視窗重疊",
+    "en": "A. Window 3, stride 1, overlapping windows",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "968b9dd38f8b": {
+    "zh": "B. 視窗 2、stride 2，視窗不重疊",
+    "en": "B. Window 2, stride 2, non-overlapping windows",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e8ed37ba3c12": {
+    "zh": "C. 只用 global average pooling、沒有 max pool",
+    "en": "C. Only global average pooling, no max pool",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "94b437288153": {
+    "zh": "D. 視窗 5、stride 1",
+    "en": "D. Window 5, stride 1",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "32faa2143947": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：VGG 堆疊小核哲學\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#93c5fd; font-weight:normal;\">Key Takeaways: VGG &amp; Small Kernel Stacking</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: the VGG small-kernel stacking philosophy",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "33baa2518c3e": {
+    "zh": "<strong>深度取代大核（3×3 堆疊）：</strong> 三層 3×3 卷積視野等價於單一 7×7 大核，參數量從 49 銳減至 27，更帶來三次連續 ReLU 非線性轉換。",
+    "en": "<strong>Depth instead of big kernels (3×3 stacks):</strong> three 3×3 convolution layers see the same field as a single big 7×7 kernel, cut the parameter count sharply from 49 to 27, and bring three consecutive ReLU nonlinear transformations.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "db9f8907aa2b": {
+    "zh": "<strong>尺寸不變的卷積律：</strong> stride 1 搭配 pad 1，卷積層完全不縮減解析度；降取樣純粹交由 stride 2 的 2×2 Max Pooling。",
+    "en": "<strong>The size-preserving convolution rule:</strong> with stride 1 and pad 1, the convolutional layers do not reduce resolution at all; downsampling is left purely to 2×2 max pooling with stride 2.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "dca9e5f54c7c": {
+    "zh": "<strong>簡約純粹主義：</strong> 捨棄複雜且無益的 LRN 正規化，證明架構的深度與規律性遠比繁瑣技巧更能提升泛化能力。",
+    "en": "<strong>Minimalist purism:</strong> dropping the complicated and unhelpful LRN normalization showed that the depth and regularity of an architecture improve generalization far more than fiddly tricks.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "30945bd345ad": {
+    "zh": "<strong>標準訓練正規化：</strong> Mini-batch SGD 配 0.9 動量、權重衰減 $5\\times 10^{-4}$ 與學習率階梯衰減，奠定後續深網訓練的黃金標準！",
+    "en": "<strong>Standard training recipe:</strong> mini-batch SGD with 0.9 momentum, weight decay $5\\times 10^{-4}$ and a step-decayed learning rate set the gold standard for training later deep networks!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

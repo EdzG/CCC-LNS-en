@@ -60,8 +60,8 @@
      "label": "06 Pattern recognition statistical classification",
      "href": "IDL_115/Ch01-introduction-history/slides/06-pattern-recognition-statistical-classification-bilingual.html",
      "en": {
-      "units": 295,
-      "translated": 295
+      "units": 294,
+      "translated": 294
      }
     },
     {
@@ -84,8 +84,8 @@
      "label": "09 ML CNN history",
      "href": "IDL_115/Ch01-introduction-history/slides/09-ml-cnn-history-bilingual.html",
      "en": {
-      "units": 184,
-      "translated": 184
+      "units": 183,
+      "translated": 183
      }
     },
     {
@@ -425,89 +425,140 @@
    "decks": [
     {
      "href": "IDL_115/Ch03-backprop-optimization/idl115-w3-backprop-optimization.html",
-     "en": null
+     "en": {
+      "units": 271,
+      "translated": 271
+     }
     }
    ],
    "slides": [
     {
      "label": "01 Backpropagation and optimization",
      "href": "IDL_115/Ch03-backprop-optimization/slides/01-backpropagation-and-optimization-bilingual.html",
-     "en": null
+     "en": {
+      "units": 203,
+      "translated": 203
+     }
     },
     {
      "label": "02 Gradient descent learning rate",
      "href": "IDL_115/Ch03-backprop-optimization/slides/02-gradient-descent-learning-rate-bilingual.html",
-     "en": null
+     "en": {
+      "units": 145,
+      "translated": 145
+     }
     },
     {
      "label": "03 Convergence criteria",
      "href": "IDL_115/Ch03-backprop-optimization/slides/03-convergence-criteria-bilingual.html",
-     "en": null
+     "en": {
+      "units": 161,
+      "translated": 161
+     }
     },
     {
      "label": "04 Line search steepest descent",
      "href": "IDL_115/Ch03-backprop-optimization/slides/04-line-search-steepest-descent-bilingual.html",
-     "en": null
+     "en": {
+      "units": 179,
+      "translated": 179
+     }
     },
     {
      "label": "05 Momentum acceleration",
      "href": "IDL_115/Ch03-backprop-optimization/slides/05-momentum-acceleration-bilingual.html",
-     "en": null
+     "en": {
+      "units": 188,
+      "translated": 188
+     }
     },
     {
      "label": "06 Backpropagation chain rule",
      "href": "IDL_115/Ch03-backprop-optimization/slides/06-backpropagation-chain-rule-bilingual.html",
-     "en": null
+     "en": {
+      "units": 173,
+      "translated": 173
+     }
     },
     {
      "label": "07 Stochastic gradient descent",
      "href": "IDL_115/Ch03-backprop-optimization/slides/07-stochastic-gradient-descent-bilingual.html",
-     "en": null
+     "en": {
+      "units": 195,
+      "translated": 195
+     }
     },
     {
      "label": "08 Mini batch SGD epoch",
      "href": "IDL_115/Ch03-backprop-optimization/slides/08-mini-batch-sgd-epoch-bilingual.html",
-     "en": null
+     "en": {
+      "units": 208,
+      "translated": 208
+     }
     },
     {
      "label": "09 SGD convergence analysis",
      "href": "IDL_115/Ch03-backprop-optimization/slides/09-sgd-convergence-analysis-bilingual.html",
-     "en": null
+     "en": {
+      "units": 180,
+      "translated": 180
+     }
     },
     {
      "label": "10 AdaGrad adaptive learning rates",
      "href": "IDL_115/Ch03-backprop-optimization/slides/10-adagrad-adaptive-learning-rates-bilingual.html",
-     "en": null
+     "en": {
+      "units": 188,
+      "translated": 188
+     }
     },
     {
      "label": "11 RMSProp and adam",
      "href": "IDL_115/Ch03-backprop-optimization/slides/11-rmsprop-and-adam-bilingual.html",
-     "en": null
+     "en": {
+      "units": 213,
+      "translated": 213
+     }
     },
     {
      "label": "12 Flat minima and SAM motivation",
      "href": "IDL_115/Ch03-backprop-optimization/slides/12-flat-minima-and-sam-motivation-bilingual.html",
-     "en": null
+     "en": {
+      "units": 182,
+      "translated": 182
+     }
     },
     {
      "label": "13 Vanilla SAM",
      "href": "IDL_115/Ch03-backprop-optimization/slides/13-vanilla-sam-bilingual.html",
-     "en": null
+     "en": {
+      "units": 176,
+      "translated": 176
+     }
     },
     {
      "label": "14 Efficient and adaptive SAM",
      "href": "IDL_115/Ch03-backprop-optimization/slides/14-efficient-and-adaptive-sam-bilingual.html",
-     "en": null
+     "en": {
+      "units": 176,
+      "translated": 176
+     }
     },
     {
      "label": "15 Overparameterized convergence",
      "href": "IDL_115/Ch03-backprop-optimization/slides/15-overparameterized-convergence-bilingual.html",
-     "en": null
+     "en": {
+      "units": 178,
+      "translated": 178
+     }
     },
     {
      "label": "16 Chapter 3 synthesis and summary",
      "href": "IDL_115/Ch03-backprop-optimization/slides/16-chapter3-synthesis-and-summary-bilingual.html",
-     "en": null
+     "en": {
+      "units": 198,
+      "translated": 198
+     }
     }
    ],
    "sections": [
@@ -644,82 +695,130 @@
     {
      "label": "01 CNN vs. MLP",
      "href": "IDL_115/Ch04-cnn/slides/01-cnn-vs-mlp-bilingual.html",
-     "en": null
+     "en": {
+      "units": 202,
+      "translated": 202
+     }
     },
     {
      "label": "02 LeNet CNN skeleton",
      "href": "IDL_115/Ch04-cnn/slides/02-lenet-cnn-skeleton-bilingual.html",
-     "en": null
+     "en": {
+      "units": 129,
+      "translated": 129
+     }
     },
     {
      "label": "03 Conv three stages prewitt",
      "href": "IDL_115/Ch04-cnn/slides/03-conv-three-stages-prewitt-bilingual.html",
-     "en": null
+     "en": {
+      "units": 134,
+      "translated": 134
+     }
     },
     {
      "label": "04 Discrete conv cross correlation",
      "href": "IDL_115/Ch04-cnn/slides/04-discrete-conv-cross-correlation-bilingual.html",
-     "en": null
+     "en": {
+      "units": 148,
+      "translated": 148
+     }
     },
     {
      "label": "05 Sparse connectivity parameter sharing",
      "href": "IDL_115/Ch04-cnn/slides/05-sparse-connectivity-parameter-sharing-bilingual.html",
-     "en": null
+     "en": {
+      "units": 96,
+      "translated": 96
+     }
     },
     {
      "label": "06 Translation equivariance",
      "href": "IDL_115/Ch04-cnn/slides/06-translation-equivariance-bilingual.html",
-     "en": null
+     "en": {
+      "units": 116,
+      "translated": 116
+     }
     },
     {
      "label": "07 Stride channels padding dimensions",
      "href": "IDL_115/Ch04-cnn/slides/07-stride-channels-padding-dimensions-bilingual.html",
-     "en": null
+     "en": {
+      "units": 108,
+      "translated": 108
+     }
     },
     {
      "label": "08 Detector and pooling",
      "href": "IDL_115/Ch04-cnn/slides/08-detector-and-pooling-bilingual.html",
-     "en": null
+     "en": {
+      "units": 110,
+      "translated": 110
+     }
     },
     {
      "label": "09 Pooling invariance downsampling",
      "href": "IDL_115/Ch04-cnn/slides/09-pooling-invariance-downsampling-bilingual.html",
-     "en": null
+     "en": {
+      "units": 107,
+      "translated": 107
+     }
     },
     {
      "label": "10 Infinitely strong prior dynamic pooling GAP",
      "href": "IDL_115/Ch04-cnn/slides/10-infinitely-strong-prior-dynamic-pooling-gap-bilingual.html",
-     "en": null
+     "en": {
+      "units": 107,
+      "translated": 107
+     }
     },
     {
      "label": "11 Weight initialization xavier he PCA",
      "href": "IDL_115/Ch04-cnn/slides/11-weight-initialization-xavier-he-pca-bilingual.html",
-     "en": null
+     "en": {
+      "units": 103,
+      "translated": 103
+     }
     },
     {
      "label": "12 ImageNet ILSVRC AlexNet",
      "href": "IDL_115/Ch04-cnn/slides/12-imagenet-ilsvrc-alexnet-bilingual.html",
-     "en": null
+     "en": {
+      "units": 94,
+      "translated": 94
+     }
     },
     {
      "label": "13 VGG stacked small kernels",
      "href": "IDL_115/Ch04-cnn/slides/13-vgg-stacked-small-kernels-bilingual.html",
-     "en": null
+     "en": {
+      "units": 108,
+      "translated": 108
+     }
     },
     {
      "label": "14 Inception GoogLeNet dimension reduction",
      "href": "IDL_115/Ch04-cnn/slides/14-inception-googlenet-dimension-reduction-bilingual.html",
-     "en": null
+     "en": {
+      "units": 118,
+      "translated": 118
+     }
     },
     {
      "label": "15 U-Net contracting expansive segmentation",
      "href": "IDL_115/Ch04-cnn/slides/15-unet-contracting-expansive-segmentation-bilingual.html",
-     "en": null
+     "en": {
+      "units": 124,
+      "translated": 124
+     }
     },
     {
      "label": "16 ResNet DenseNet compound scaling",
      "href": "IDL_115/Ch04-cnn/slides/16-resnet-densenet-compound-scaling-bilingual.html",
-     "en": null
+     "en": {
+      "units": 115,
+      "translated": 115
+     }
     }
    ],
    "sections": [

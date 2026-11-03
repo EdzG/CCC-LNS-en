@@ -1,0 +1,765 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "原文明確指出：very deep networks（通常超過約 20 層）加深後訓練準確率先飽和再變差；理論上多層可學恆等，實務直筒卻常讓訓練誤差上升。": "The paper states explicitly: for very deep networks (usually beyond about 20 layers), going deeper makes the training accuracy saturate first and then get worse; in theory, extra layers could learn the identity, but in practice a plain network often makes the training error go up.",
+      "不直接學 H，改學殘差 F=H-x，主路與恆等捷徑相加得到 H=F+x；恆等捷徑亦大幅改善反向傳播時的梯度回傳。": "Instead of learning H directly, learn the residual F=H-x; adding the main path and the identity shortcut gives H=F+x; the identity shortcut also greatly improves how gradients flow back during backpropagation.",
+      "ResNet 採用加法 x_l = F(x_{l-1}) + x_{l-1}；DenseNet 改為對前面所有層進行 concat 串接。密集連線數為 l(l+1)/2；過渡層由 1×1 Conv + 2×2 avg pool 組成。": "ResNet uses addition, x_l = F(x_{l-1}) + x_{l-1}; DenseNet instead concatenates all previous layers. The number of dense connections is l(l+1)/2; a transition layer consists of a 1×1 Conv + 2×2 avg pool.",
+      "EfficientNet（2019）對深度、寬度、解析度做複合縮放（Compound Scaling）；ConvNeXt（2022）將 CNN 設計現代化，證明在注意力模型時代 CNN 依然具備極強競爭力。": "EfficientNet (2019) applies compound scaling to depth, width and resolution; ConvNeXt (2022) modernizes CNN design, showing that CNNs remain highly competitive in the era of attention models.",
+      "殘差加法數線與梯度流對照 (H = F + x)：": "Residual sum & gradient flow (H = F + x):",
+      "反向傳播梯度流解析：": "Backprop gradient flow analysis:",
+      "↑ 恆等捷徑提供「+1」暢通通道，即便深層 ∂F/∂x 衰減，梯度永不為 0！": "↑ Identity shortcut = clear \"+1\" path; even if ∂F/∂x decays, gradient ≠ 0!",
+      "★ 當前 F = 0：完美實現恆等對映 H(x) = x，多餘層不損害淺模型！": "★ F = 0: exact identity H(x) = x; extra layers don't hurt shallow model!",
+      "殘差塊運算與梯度流診斷報告": "Residual block computation and gradient flow report",
+      "輸入訊號 x：": "Input signal x:",
+      "主路殘差 F(x)：": "Main-path residual F(x):",
+      "模組總輸出 H(x)：": "Total block output H(x):",
+      "捷徑貢獻比例：": "Shortcut contribution share:",
+      "★ F = 0 → 達成精準恆等對映 H = x！": "★ F = 0 → exact identity mapping H = x achieved!",
+      "主路正在調整特徵殘差偏置。": "The main path is adjusting the feature residual offset."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^捷徑 x = (\\S+)$",
+        "en": "Shortcut x = $1"
+      },
+      {
+        "re": "^殘差 F = (\\S+)$",
+        "en": "Residual F = $1"
+      },
+      {
+        "re": "^★ 當前主路承擔殘差量：(\\S+)，捷徑承擔基準量：(\\S+)$",
+        "en": "★ Main path carries residual: $1, shortcut carries base: $2"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "870a1f88b4b6": {
+    "zh": "KP16 · 索引",
+    "en": "KP16 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d653d5b58b8d": {
+    "zh": "<a href=\"#sec-degradation-resnet\">退化問題與殘差學習 · Degradation &amp; ResNet</a>",
+    "en": "<a href=\"#sec-degradation-resnet\">The degradation problem and residual learning</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "8a00ebb55a28": {
+    "zh": "<a href=\"#svg-resnet\">架構三方對比圖 · Visual Breakdown</a>",
+    "en": "<a href=\"#svg-resnet\">Three-way architecture comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4b3831d22c08": {
+    "zh": "<a href=\"#sec-densenet-modern\">DenseNet 密集串接與現代演進 · DenseNet &amp; Beyond</a>",
+    "en": "<a href=\"#sec-densenet-modern\">DenseNet dense concatenation and modern developments</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2419fb4240d5": {
+    "zh": "<a href=\"#summary\">全章大一統總結 · Grand Summary</a>",
+    "en": "<a href=\"#summary\">Grand unified chapter summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a26444868931": {
+    "zh": "KP16 · CNN MILESTONES · 殘差捷徑與全章結論",
+    "en": "KP16 · CNN MILESTONES · Residual Shortcuts and the Chapter Conclusion",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "3562f46f5323": {
+    "zh": "5.6–6 ResNet、DenseNet 到結論：殘差、密集連線與複合縮放\n      <span class=\"hero-title-en\">ResNet, DenseNet to Conclusion: Residuals, Dense Connections &amp; Compound Scaling</span>\n    ",
+    "en": "5.6–6 ResNet, DenseNet, and the Conclusion: Residuals, Dense Connections and Compound Scaling",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "3a9a3fd3c713": {
+    "zh": "\n      加深網路竟然會導致訓練誤差不降反升（<strong>退化問題</strong>）！ResNet 提出 $\\mathcal{H}=\\mathcal{F}+x$ 恆等捷徑打破深度瓶頸，DenseNet 以 $\\frac{l(l+1)}{2}$ 密集串接實現極致特徵重用。從經典卷積、偵測器、池化三大積木，到現代 EfficientNet 與 ConvNeXt，CNN 始終是深度學習的宏偉地基！\n    ",
+    "en": "Making a network deeper can actually make the training error go up instead of down (the <strong>degradation problem</strong>)! ResNet proposed the $\\mathcal{H}=\\mathcal{F}+x$ identity shortcut to break the depth bottleneck, and DenseNet achieved ultimate feature reuse with $\\frac{l(l+1)}{2}$ dense concatenations. From the three classic building blocks of convolution, detector and pooling to the modern EfficientNet and ConvNeXt, the CNN has always been the grand foundation of deep learning!",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "ffcf46256b96": {
+    "zh": "\n      既然深層模型理論上能學成恆等對映，為何加深反而讓訓練誤差變差？\n      ",
+    "en": "If a deep model can in theory learn the identity mapping, why does going deeper make the training error worse?",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "cdec755650d8": {
+    "zh": "\n      <strong>直筒網路沒有參考基準點，難以透過多層非線性逼近恆等對映！</strong><br>\n      ResNet 旁路架設<strong>恆等捷徑（Shortcut $x$）</strong>，主路專心學殘差 $\\mathcal{F}=\\mathcal{H}-x$。多出的層只需學成 0，梯度直接暢通無阻流回淺層！\n    ",
+    "en": "<strong>A plain network has no reference point, so it is hard for it to approximate the identity mapping through many nonlinear layers!</strong><br> ResNet sets up an <strong>identity shortcut (shortcut $x$)</strong> as a bypass, and the main path concentrates on learning the residual $\\mathcal{F}=\\mathcal{H}-x$. The extra layers only need to learn 0, and the gradient flows straight back to the shallow layers unobstructed!",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "3e43acd24bab": {
+    "zh": "01 / 退化與殘差架構 · Degradation &amp; ResNet",
+    "en": "01 / Degradation and the Residual Architecture",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "609d1c45889b": {
+    "zh": "退化問題的本質與殘差學習數學形式\n    <span class=\"en\">The Degradation Problem &amp; The Mathematics of Residual Learning</span>\n  ",
+    "en": "The nature of the degradation problem and the mathematical form of residual learning",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "91c297461f41": {
+    "zh": "\n      2015 年何愷明等人指出：當直筒網路（Plain Network / VGG 式架構）深度<strong>超過約 20 層</strong>時，訓練準確率會先達到飽和，隨後<strong>不升反降（訓練誤差上升）</strong>。這並非過擬合（Overfitting，過擬合時訓練誤差應為零），而是<strong>退化問題（Degradation Problem）</strong>！\n    ",
+    "en": "In 2015 Kaiming He et al. pointed out that when the depth of a plain network (a VGG-style architecture) <strong>exceeds about 20 layers</strong>, the training accuracy first saturates and then <strong>drops instead of rising (the training error goes up)</strong>. This is not overfitting (when overfitting, the training error should be zero); it is the <strong>degradation problem</strong>!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1129bf8f60dd": {
+    "zh": "\n          ❌ 直筒網路的困境 Plain Network\n        ",
+    "en": "❌ The plight of the plain network",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "71fbb0849ba2": {
+    "zh": "\n          理論上，深層網路至少不該比淺層更差——只要多出來的層全部學成<strong>恆等對映（$\\mathcal{H}(x)=x$）</strong>，表現就能精確複製淺模型。但在實務上，多層疊加的非線性權重極難最佳化出恆等函式，導致深層訓練陷入停滯與梯度阻斷。\n        ",
+    "en": "In theory, a deep network should be at least no worse than a shallow one—as long as all the extra layers learn the <strong>identity mapping ($\\mathcal{H}(x)=x$)</strong>, it can exactly replicate the shallow model's performance. In practice, however, it is extremely hard to optimize stacked nonlinear weights into an identity function, so deep training stalls and the gradient gets blocked.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "eeb79242e438": {
+    "zh": "\n          ✅ ResNet 的殘差哲學 Residual Learning\n        ",
+    "en": "✅ ResNet's residual philosophy: residual learning",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b1b3c786405d": {
+    "zh": "\n          不再讓層直接學習無參考點的目標對映 $\\mathcal{H}(x)$，改讓主路學習相對於輸入的<strong>殘差函式</strong>：\n          $$\\mathcal{F}(x) := \\mathcal{H}(x) - x \\tag{9}$$\n          因此原本的目標對映被重組為：\n          $$\\mathcal{H}(x) = \\mathcal{F}(x) + x \\tag{10}$$\n        ",
+    "en": "Instead of having the layers directly learn the target mapping $\\mathcal{H}(x)$ with no reference point, the main path learns the <strong>residual function</strong> relative to the input: $$\\mathcal{F}(x) := \\mathcal{H}(x) - x \\tag{9}$$ So the original target mapping is rewritten as: $$\\mathcal{H}(x) = \\mathcal{F}(x) + x \\tag{10}$$",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "21961aa1dfb2": {
+    "zh": "\n      <strong>殘差塊（Residual Block，Fig. 18）：</strong> 主路計算 $\\mathcal{F}(x)$，旁路透過 <strong>恆等捷徑（Shortcut Connection）</strong> 將 $x$ 原樣傳遞並直接<strong>逐元素相加（Element-wise Addition）</strong>。若某層不需要學新特徵，只需把權重壓向 0（$\\mathcal{F}(x) \\to 0$），輸出立刻還原為輸入 $x$！更重要的是，反向傳播時梯度可藉由捷徑中的 $+1$ 直通淺層，徹底攻克梯度消失。\n    ",
+    "en": "<strong>Residual block (Fig. 18):</strong> the main path computes $\\mathcal{F}(x)$, and the bypass passes $x$ through unchanged via an <strong>identity shortcut connection</strong> and adds it directly by <strong>element-wise addition</strong>. If a layer does not need to learn new features, it only has to push its weights toward 0 ($\\mathcal{F}(x) \\to 0$), and the output immediately reverts to the input $x$! More importantly, during backpropagation the gradient can pass straight to the shallow layers through the $+1$ in the shortcut, decisively overcoming vanishing gradients.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6784c77377a6": {
+    "zh": "02 / 拓撲架構對比 · Structural Comparison",
+    "en": "02 / Topology Comparison",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "21d24927a5a6": {
+    "zh": "直筒退化 vs 殘差加法 vs 密集串接 (Fig. 19, 20)\n    <span class=\"en\">Plain Degradation vs Residual Addition vs Dense Concatenation</span>\n  ",
+    "en": "Plain degradation vs residual addition vs dense concatenation (Fig. 19, 20)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6d1769d51479": {
+    "zh": "直筒加深會退化；ResNet 學 F(x)+x，DenseNet 改把前面全部 concat",
+    "en": "Plain deepening degrades; ResNet learns F(x)+x, DenseNet instead concats everything before it",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a5c1c1fc6518": {
+    "zh": "PLAIN · 直筒堆疊",
+    "en": "PLAIN · Plain stack",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "4068d41ddd84": {
+    "zh": "直接學 H(x) · 無參考基準點",
+    "en": "Learns H(x) directly · no reference point",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d68c756f610c": {
+    "zh": "卷積層 1",
+    "en": "Conv layer 1",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e25b2b2ed382": {
+    "zh": "卷積層 2",
+    "en": "Conv layer 2",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1fb7a6d91e91": {
+    "zh": "卷積層 20+ (極深)",
+    "en": "Conv layer 20+ (very deep)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6aebf0386469": {
+    "zh": "訓練誤差不降反升 (≈20層起退化)",
+    "en": "Training error rises instead of falling (degrades from ≈20 layers)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6807b6d0600c": {
+    "zh": "ResNet · 殘差塊",
+    "en": "ResNet · Residual block",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "4d9345a0c7d6": {
+    "zh": "改學 F(x)=H(x)−x → H=F+x",
+    "en": "Learn F(x)=H(x)−x instead → H=F+x",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d388d9ca53ad": {
+    "zh": "主路卷積層",
+    "en": "Main-path conv layers",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ed84bcc84e32": {
+    "zh": "專注學殘差",
+    "en": "Focus on the residual",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e5c9d4e0c303": {
+    "zh": "捷徑 x",
+    "en": "Shortcut x",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ff1ff6fbc7b5": {
+    "zh": "恆等捷徑讓梯度直達淺層",
+    "en": "Identity shortcut lets gradients reach shallow layers",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "f80c60a419bb": {
+    "zh": "多出的層可直接學成 0 殘差",
+    "en": "Extra layers can simply learn a 0 residual",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6e79326d79b2": {
+    "zh": "最佳化 F 比直接最佳化 H 容易得多",
+    "en": "Optimizing F is much easier than optimizing H directly",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8a0f4fc5720b": {
+    "zh": "DenseNet · 全部串接",
+    "en": "DenseNet · Concatenate everything",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "92d2b35b3a0c": {
+    "zh": "加法改 Concat · 連線數 l(l+1)/2",
+    "en": "Concat instead of add · l(l+1)/2 connections",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "3da5417a549b": {
+    "zh": "成長率 k：每層產出 k 張特徵圖",
+    "en": "Growth rate k: each layer outputs k feature maps",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e5d42b68ff12": {
+    "zh": "第 ℓ 層接收 k0+k(ℓ−1) 張輸入",
+    "en": "Layer ℓ receives k0+k(ℓ−1) input maps",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e9874545afc7": {
+    "zh": "過渡層 Transition：1×1 + avg pool",
+    "en": "Transition layer: 1×1 + avg pool",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5fcdd4112b1c": {
+    "zh": "對照一句：ResNet 把 x 加回去；DenseNet 把歷史特徵疊成更厚的通道",
+    "en": "In one line: ResNet adds x back; DenseNet stacks past features into thicker channels",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "0d2791236246": {
+    "zh": "更深理論上可學恆等、不該更差——實務直筒卻退化；捷徑讓「多出來的層」有一條不傷害淺模型的路",
+    "en": "Deeper can in theory learn identity, so shouldn't be worse—yet plain nets degrade; shortcuts give extra layers a path that can't hurt the shallow model",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6bc1e45ff899": {
+    "zh": "之後 EfficientNet 對深／寬／解析度做複合縮放；ConvNeXt 讓 CNN 跟 Transformer 打 —— CNN 沒過氣",
+    "en": "Later, EfficientNet compound-scales depth/width/resolution; ConvNeXt pits CNNs against Transformers — CNNs aren't outdated",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e77b09244899": {
+    "zh": "反直覺：不是層數愈多愈好；沒有捷徑時，多出來的層常常學不會恆等，訓練誤差先飽和再變差。",
+    "en": "Counterintuitive: more layers isn't always better; without shortcuts, extra layers often can't learn identity, so training error saturates, then worsens.",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b6621db39cd0": {
+    "zh": "積木仍是 conv → detector → pool；架構差在怎麼接、怎麼重用特徵",
+    "en": "The blocks are still conv → detector → pool; architectures differ in how they connect and reuse features",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "db79b7654629": {
+    "zh": "加法（Addition）與串接（Concat）的本質差異",
+    "en": "The essential difference between addition and concatenation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "865b4ffc9f77": {
+    "zh": "\n        ResNet 與 DenseNet 分別代表了跳接技術的兩大極致分支：\n      ",
+    "en": "ResNet and DenseNet represent the two extreme branches of skip-connection techniques:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fa5bbfccc8cd": {
+    "zh": "<strong>ResNet 殘差加法（式 11）：</strong> $x_{\\ell} = \\mathcal{F}_{\\ell}(x_{\\ell-1}) + x_{\\ell-1}$。特徵通道數不變，維持資訊的原位更新與梯度高速公路。",
+    "en": "<strong>ResNet residual addition (Eq. 11):</strong> $x_{\\ell} = \\mathcal{F}_{\\ell}(x_{\\ell-1}) + x_{\\ell-1}$. The number of feature channels stays the same, keeping in-place updates of information and a gradient highway.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6346cf6920d9": {
+    "zh": "<strong>DenseNet 密集串接（式 12）：</strong> $x_{\\ell} = \\mathcal{F}_{\\ell}([x_0, x_1, \\dots, x_{\\ell-1}])$。將前面所有層的輸出在通道維度堆疊，連線數高達 $\\frac{l(l+1)}{2}$，實現特徵極致重用。",
+    "en": "<strong>DenseNet dense concatenation (Eq. 12):</strong> $x_{\\ell} = \\mathcal{F}_{\\ell}([x_0, x_1, \\dots, x_{\\ell-1}])$. The outputs of all preceding layers are stacked along the channel dimension, with as many as $\\frac{l(l+1)}{2}$ connections, achieving ultimate feature reuse.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7658a04e49b6": {
+    "zh": "<strong>過渡層 Transition Layer：</strong> DenseNet 透過 <strong>$1\\times 1$ Conv + $2\\times 2$ Average Pooling</strong> 在 Dense Block 之間壓縮肥厚的通道數與尺寸。",
+    "en": "<strong>Transition layer:</strong> DenseNet uses a <strong>$1\\times 1$ Conv + $2\\times 2$ Average Pooling</strong> between dense blocks to compress the bloated channel count and spatial size.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "17dacf9c662c": {
+    "zh": "03 / 現代演進與結論 · Modern Advances &amp; Recap",
+    "en": "03 / Modern Developments and Conclusion",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9431012e3273": {
+    "zh": "現代 CNN 縮放與全章大一統總結\n    <span class=\"en\">Modern CNN Scaling &amp; Grand Summary of CNN Foundations</span>\n  ",
+    "en": "Modern CNN scaling and a grand unified summary of the chapter",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b85c1204160b": {
+    "zh": "里程碑模型 / 架構",
+    "en": "Milestone model / architecture",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "531939c251c8": {
+    "zh": "核心突破機制 (Key Innovation)",
+    "en": "Key innovation",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bc4c3580c86b": {
+    "zh": "歷史深遠影響 (Legacy &amp; Status)",
+    "en": "Lasting historical impact",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "badf2100a4df": {
+    "zh": "學習殘差 $\\mathcal{F}(x)=\\mathcal{H}(x)-x$，旁路恆等捷徑加法",
+    "en": "Learn the residual $\\mathcal{F}(x)=\\mathcal{H}(x)-x$, with an identity-shortcut addition on the bypass",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "7048a608b58b": {
+    "zh": "打破深層退化天花板，152 層奪冠，現代視覺模型的通用骨幹",
+    "en": "Broke the ceiling of deep degradation, won with 152 layers; the general-purpose backbone of modern vision models",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a70b759ad0f1": {
+    "zh": "Dense Block 密集串接，連線數 $\\frac{l(l+1)}{2}$，成長率 $k$",
+    "en": "Dense concatenation in dense blocks, $\\frac{l(l+1)}{2}$ connections, growth rate $k$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "f36fd08221dc": {
+    "zh": "特徵極致重用，深淺特徵融合，參數利用率極高",
+    "en": "Ultimate feature reuse, fusion of deep and shallow features, very high parameter efficiency",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3ddb7ba007c7": {
+    "zh": "深度（Depth）、寬度（Width）、解析度（Resolution）<strong>複合縮放（Compound Scaling）</strong>",
+    "en": "<strong>Compound scaling</strong> of depth, width and resolution",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "43cc8283526c": {
+    "zh": "告別單維度盲目堆疊，以最少 FLOPs 取得當時最高準確率",
+    "en": "Ends blind stacking along a single dimension; reached the highest accuracy of its time with the fewest FLOPs",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8d0ebf8006ef": {
+    "zh": "採用 7×7 大核、倒殘差、LayerNorm 現代化純 CNN 設計",
+    "en": "A modernized pure-CNN design with 7×7 large kernels, inverted residuals and LayerNorm",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0aa0122ee560": {
+    "zh": "證明純 CNN 依然能與 Vision Transformer（ViT）正面抗衡，CNN 永不過氣",
+    "en": "Shows that pure CNNs can still go head to head with the Vision Transformer (ViT); CNNs never go out of style",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "83d2cffd6527": {
+    "zh": "<strong>全章三大基本積木</strong>",
+    "en": "<strong>The chapter's three basic building blocks</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "50b2c47f9a7b": {
+    "zh": "<strong>卷積（Conv）$\\to$ 偵測器（ReLU）$\\to$ 池化（Pooling）</strong>",
+    "en": "<strong>Convolution (Conv) $\\to$ detector (ReLU) $\\to$ pooling</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "77308234a676": {
+    "zh": "局部連線、權重共享、平移等變；為高維網格資料提供強大歸納偏置",
+    "en": "Local connectivity, weight sharing, translation equivariance; a strong inductive bias for high-dimensional grid data",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "fee6a4bd8100": {
+    "zh": "04 / 互動實驗室 · Interactive Lab",
+    "en": "04 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "be1e190537e3": {
+    "zh": "互動實驗室：殘差塊與恆等捷徑運算模擬器\n    <span class=\"en\">Interactive Lab: Residual Block &amp; Identity Shortcut Simulator</span>\n  ",
+    "en": "Interactive lab: residual block and identity shortcut simulator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a39de7dd523e": {
+    "zh": "輸入特徵 $x$:",
+    "en": "Input feature $x$:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ce9fa7c8c0d8": {
+    "zh": "主路殘差 $\\mathcal{F}$:",
+    "en": "Main-path residual $\\mathcal{F}$:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "14ded9638eb5": {
+    "zh": "F＝0（驗證恆等對映）",
+    "en": "F = 0 (verify the identity mapping)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "95d486e5045e": {
+    "zh": "重設數值",
+    "en": "Reset values",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cf4f2b91be25": {
+    "zh": "\n          向量加法數線圖示（捷徑 $x$ ＋ 殘差 $\\mathcal{F}$ ＝ 輸出 $\\mathcal{H}$）：\n        ",
+    "en": "Vector addition on a number line (shortcut $x$ + residual $\\mathcal{F}$ = output $\\mathcal{H}$):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "844ae18675b9": {
+    "zh": "\n        殘差塊運算與梯度流診斷報告\n      ",
+    "en": "Residual block computation and gradient flow diagnostic report",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "68ab787d5a25": {
+    "zh": "<strong>輸入訊號 x：</strong> <span style=\"color:#2563eb; font-weight:700;\">1.0</span>",
+    "en": "<strong>Input signal x:</strong> <span style=\"color:#2563eb; font-weight:700;\">1.0</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a9b9195e1642": {
+    "zh": "<strong>主路殘差 F(x)：</strong> <span style=\"color:#e11d48; font-weight:700;\">0.5</span>",
+    "en": "<strong>Main-path residual F(x):</strong> <span style=\"color:#e11d48; font-weight:700;\">0.5</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ef87da3dabba": {
+    "zh": "<strong>模組總輸出 H(x)：</strong> <span style=\"color:#16a34a; font-weight:700;\">1.5</span> (F + x)",
+    "en": "<strong>Total block output H(x):</strong> <span style=\"color:#16a34a; font-weight:700;\">1.5</span> (F + x)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f420bbee7e03": {
+    "zh": "<strong>捷徑貢獻比例：</strong> 66.7%",
+    "en": "<strong>Shortcut contribution:</strong> 66.7%",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "056f45e93db5": {
+    "zh": "主路正在調整特徵殘差偏置。",
+    "en": "The main path is adjusting the feature residual offset.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b38a711b3f72": {
+    "zh": "05 / 實戰檢驗 · Concept Checkpoint",
+    "en": "05 / Concept Checkpoint",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "579d95b663c2": {
+    "zh": "題目 1 · 退化問題現象 / Degradation Phenomenon",
+    "en": "Question 1 · The degradation phenomenon",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "972ac75b7fa7": {
+    "zh": "「退化問題」（degradation）指的是？",
+    "en": "What does the \"degradation problem\" refer to?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "53cb24dbbcc3": {
+    "zh": "A. 只要超過 3 層就一定無法訓練",
+    "en": "A. Any network with more than 3 layers cannot be trained",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2c40d1e8ef01": {
+    "zh": "B. 大約超過 20 層後，再加深可能使訓練準確率飽和甚至下降",
+    "en": "B. Beyond about 20 layers, going deeper may make the training accuracy saturate or even drop",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "12bf8a6b0282": {
+    "zh": "C. pooling 會讓所有梯度變為零",
+    "en": "C. Pooling makes all gradients zero",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4d5f523b674e": {
+    "zh": "D. 只有 U-Net 會發生、分類網路不會",
+    "en": "D. It only happens in U-Net, not in classification networks",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4c9722c9529f": {
+    "zh": "題目 2 · 殘差學習本質 / Residual Formulations",
+    "en": "Question 2 · The essence of residual learning",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1221c9461c08": {
+    "zh": "殘差學習式 (9)(10) 的含義是？",
+    "en": "What do the residual learning equations (9)(10) mean?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4a9a1144d489": {
+    "zh": "A. 直接規定 $\\mathcal{H}(x)=0$",
+    "en": "A. They directly set $\\mathcal{H}(x)=0$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5e00112db60d": {
+    "zh": "B. 層去學 $\\mathcal{F}(x):=\\mathcal{H}(x)-x$，因此目標對映寫成 $\\mathcal{H}(x)=\\mathcal{F}(x)+x$（shortcut 把 $x$ 加回）",
+    "en": "B. The layers learn $\\mathcal{F}(x):=\\mathcal{H}(x)-x$, so the target mapping is written as $\\mathcal{H}(x)=\\mathcal{F}(x)+x$ (the shortcut adds $x$ back)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "04fba90798c0": {
+    "zh": "C. 把卷積全部換成全連線",
+    "en": "C. Replace all convolutions with fully connected layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "08911237238e": {
+    "zh": "D. 禁止使用 ReLU",
+    "en": "D. Forbid the use of ReLU",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ad56b64e5f64": {
+    "zh": "題目 3 · DenseNet 拓撲特性 / DenseNet Topology",
+    "en": "Question 3 · DenseNet topology",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ee370f81d5b0": {
+    "zh": "DenseNet 相對 ResNet 的連線方式，下列何者正確？",
+    "en": "Which of the following about how DenseNet connects layers, compared with ResNet, is correct?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "736decce74a5": {
+    "zh": "A. DenseNet 仍用式 (11) 的加法，只是把層數加倍",
+    "en": "A. DenseNet still uses the addition of Eq. (11), just with twice as many layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "01cb41ce2672": {
+    "zh": "B. DenseNet 用式 (12) 把前面各層輸出 concat； $l$ 層約有 $l(l+1)/2$ 條連線",
+    "en": "B. DenseNet uses Eq. (12) to concat the outputs of all preceding layers; $l$ layers have about $l(l+1)/2$ connections",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2edf00f97adf": {
+    "zh": "C. DenseNet 刪除所有 skip connection",
+    "en": "C. DenseNet removes every skip connection",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a1857ae88240": {
+    "zh": "D. growth rate $k$ 必須等於 1000",
+    "en": "D. The growth rate $k$ must equal 1000",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9bae3ac40f56": {
+    "zh": "題目 4 · 現代演進認知 / EfficientNet &amp; ConvNeXt",
+    "en": "Question 4 · Understanding modern developments",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "38011702197a": {
+    "zh": "EfficientNet 的複合縮放（compound scaling）與 ConvNeXt 的訊息，正確的是？",
+    "en": "Which statement about EfficientNet's compound scaling and the message of ConvNeXt is correct?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7f03ab4eff53": {
+    "zh": "A. EfficientNet 同時縮放深度、寬度與解析度；ConvNeXt 顯示現代化 CNN 仍可與 Transformer 競爭",
+    "en": "A. EfficientNet scales depth, width and resolution together; ConvNeXt shows that modernized CNNs can still compete with Transformers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a9b6245a1f27": {
+    "zh": "B. EfficientNet 只加深、不改寬度與解析度",
+    "en": "B. EfficientNet only goes deeper, without changing width or resolution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "df7775382b28": {
+    "zh": "C. ConvNeXt 證明 CNN 已完全被淘汰",
+    "en": "C. ConvNeXt proves that CNNs are completely obsolete",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e968ae05af42": {
+    "zh": "D. 兩者都禁止使用卷積",
+    "en": "D. Both forbid the use of convolution",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "11986232fc5d": {
+    "zh": "\n      <span>🏆</span> 第四章《卷積神經網路》大一統終局總結\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#fecdd3; font-weight:normal;\">Grand Summary: Foundations &amp; Evolution of CNNs</span>\n    ",
+    "en": "<span>🏆</span> Chapter 4 \"Convolutional Neural Networks\": the grand unified final summary",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b3c743adb7cc": {
+    "zh": "<strong>核心三大基石：</strong> 卷積層三階段（卷積 $\\to$ 偵測器 $\\to$ 池化）。稀疏連線與權重共享把全連線的 $\\mathcal{O}(mn)$ 砍成 $\\mathcal{O}(kn)$，帶來平移等變性與空間先驗。",
+    "en": "<strong>The three core cornerstones:</strong> the three stages of a convolutional layer (convolution $\\to$ detector $\\to$ pooling). Sparse connectivity and weight sharing cut the fully connected $\\mathcal{O}(mn)$ down to $\\mathcal{O}(kn)$, bringing translation equivariance and a spatial prior.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f6695e15d6bd": {
+    "zh": "<strong>感受野與深度進化：</strong> 從 LeNet 的 $5\\times 5$、AlexNet 的 $11\\times 11$，到 VGG 確立「兩層 $3\\times 3$ 等效 $5\\times 5$，參數量少 28%」，小核堆疊成為現代幾何標準。",
+    "en": "<strong>The evolution of receptive fields and depth:</strong> from LeNet's $5\\times 5$ and AlexNet's $11\\times 11$ to VGG establishing that \"two $3\\times 3$ layers are equivalent to one $5\\times 5$, with 28% fewer parameters\", stacking small kernels became the modern geometric standard.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b766c4ce7a7c": {
+    "zh": "<strong>拓撲突破與捷徑革命：</strong> Inception 引入 $1\\times 1$ 瓶頸層實現多尺度；U-Net 對稱跳接解救醫學定位；ResNet 殘差加法攻克退化問題；DenseNet 密集串接重用特徵。",
+    "en": "<strong>Topological breakthroughs and the shortcut revolution:</strong> Inception introduced the $1\\times 1$ bottleneck layer to achieve multi-scale processing; U-Net's symmetric skip connections rescued medical localization; ResNet's residual addition overcame the degradation problem; DenseNet's dense concatenation reuses features.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5342720081ae": {
+    "zh": "<strong>時代地位屹立不搖：</strong> 即使在注意力模型與 Transformer 席捲的當下，EfficientNet 複合縮放與 ConvNeXt 證明 CNN 仍具非凡的高效性與邊緣落地優勢，是深度學習永遠的基石！",
+    "en": "<strong>A standing that will not be shaken:</strong> even now, as attention models and Transformers sweep the field, EfficientNet's compound scaling and ConvNeXt prove that CNNs still have remarkable efficiency and advantages for edge deployment; they are the everlasting cornerstone of deep learning!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

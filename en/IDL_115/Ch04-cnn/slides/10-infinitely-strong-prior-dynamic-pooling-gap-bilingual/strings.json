@@ -1,0 +1,723 @@
+{
+  "_runtime": {
+    "exact": {
+      "權重矩陣 8×8 [Infinitely]": "Weights 8×8 [infinite prior]",
+      "權重矩陣 8×8 [Strong]": "Weights 8×8 [strong prior]",
+      "權重矩陣 8×8 [Weak]": "Weights 8×8 [weak prior]",
+      "GAP (全域平均池化) 運算示範：": "GAP (global average pooling) demo:",
+      "⬇ GAP (全域平均)": "⬇ GAP (global avg.)",
+      "輸出特徵向量：[5.0, 4.0, 7.0, 2.0] (C=4)": "Output feature vector: [5.0, 4.0, 7.0, 2.0] (C=4)",
+      "直接淘汰數千萬 FC 權重，直連分類 Softmax！": "Drops 10M+ FC weights, straight to Softmax!",
+      "先驗矩陣診斷報告 [Infinitely]": "Prior matrix diagnostic report [infinitely strong prior]",
+      "先驗矩陣診斷報告 [Strong]": "Prior matrix diagnostic report [strong prior]",
+      "先驗矩陣診斷報告 [Weak]": "Prior matrix diagnostic report [weak prior]",
+      "權重矩陣規格：": "Weight matrix size:",
+      "8×8 (共 64 條連線)": "8×8 (64 connections in total)",
+      "硬性鎖定為 0 連線數：": "Connections hard-locked to 0:",
+      "有效可學習權重數：": "Effective learnable weights:",
+      "矩陣稀疏度 (Sparsity)：": "Matrix sparsity:",
+      "無限強先驗成立：": "Infinitely strong prior holds:",
+      "遠距連線被硬性阻斷，梯度不可穿透。模型具備強烈空間局域歸納偏置！": "long-range connections are hard-blocked and the gradient cannot get through. The model has a strong spatial-locality inductive bias!",
+      "較強先驗 (L1)：": "Strong prior (L1):",
+      "權重被向 0 懲罰，但若訊號強烈，梯度仍能喚醒連線。": "weights are penalized toward 0, but if the signal is strong, the gradient can still wake a connection up.",
+      "弱先驗 (Dense MLP)：": "Weak prior (dense MLP):",
+      "處處可學，自由度過大，極易在影像邊界產生高頻噪聲過擬合。": "everything is learnable; with too many degrees of freedom it very easily overfits high-frequency noise at the image borders.",
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "GAP 把每張特徵圖收成一個值，省掉巨大 FC，並建立特徵圖與輸出類別的直接連結。": "GAP collapses each feature map into a single value, saving the huge FC layer and creating a direct link between feature maps and output classes.",
+      "動態池化不以固定空間鄰域為限；也可用訓練學得、之後共用的固定池化結構。": "Dynamic pooling is not limited to fixed spatial neighborhoods; a fixed pooling structure learned during training and shared afterwards can also be used.",
+      "核寬可隨圖大小調整；SPP 以固定 bins 取代最後池化，讓網路接受任意尺寸。": "The kernel width can be adjusted to the image size; SPP replaces the last pooling with fixed bins, so the network accepts inputs of any size.",
+      "無限強先驗等於硬約束：不存在的連線權重就是 0，對應卷積與池化的稀疏結構。": "An infinitely strong prior is a hard constraint: the weights of connections that don't exist are simply 0, which corresponds to the sparse structure of convolution and pooling."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^(\\d+) 條$",
+        "en": "$1"
+      },
+      {
+        "re": "^(\\d+) 個$",
+        "en": "$1"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "ea59e089f1a8": {
+    "zh": "KP10 · 索引",
+    "en": "KP10 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ab5af44fd2f2": {
+    "zh": "<a href=\"#sec-prior\">無限強先驗 · Infinitely Strong Prior</a>",
+    "en": "<a href=\"#sec-prior\">Infinitely Strong Prior</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cd2d5e6049a5": {
+    "zh": "<a href=\"#svg-prior\">三級先驗矩陣視覺化 · Fig 10</a>",
+    "en": "<a href=\"#svg-prior\">Visualizing Three Levels of Prior Matrices · Fig 10</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4ee3cba236f3": {
+    "zh": "<a href=\"#sec-spp-gap\">動態池化、SPP 與 GAP · Modern Pooling</a>",
+    "en": "<a href=\"#sec-spp-gap\">Dynamic Pooling, SPP and GAP</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "385394949043": {
+    "zh": "無限強先驗、動態池化與 GAP\n      <span class=\"hero-title-en\">Infinitely Strong Prior, Dynamic Pooling, and GAP</span>\n    ",
+    "en": "Infinitely Strong Prior, Dynamic Pooling, and GAP",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b624903040bc": {
+    "zh": "\n      卷積與池化並非只是單純的特徵萃取工具，從貝氏先驗視角審視，它們是對權重施加了「無限強先驗（Infinitely Strong Prior）」——直接將絕大多數遠距連線硬性焊死為 0！伴隨著動態池化、空間金字塔池化（SPP）以及全域平均池化（GAP），現代 CNN 擺脫了固定輸入尺寸的桎梏，並徹底淘汰了末端冗餘龐大的全連線層。\n    ",
+    "en": "Convolution and pooling are not just simple feature-extraction tools. Seen from a Bayesian prior perspective, they impose an \"infinitely strong prior\" on the weights: they hard-wire the vast majority of long-range connections to 0! Together with dynamic pooling, spatial pyramid pooling (SPP), and global average pooling (GAP), modern CNNs broke free of the shackles of a fixed input size and completely eliminated the redundant, enormous fully connected layers at the end.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "f7529e56c532": {
+    "zh": "\n      「與其處處可學，為何把絕大多數連線直接釘死成 0，模型反而學得更好？」\n      <small>押注稀疏與奧卡姆剃刀：高維無約束必遭過擬合；結構硬約束才是泛化真諦！<br>\n        <span class=\"bilingual-en-inline\">Betting on sparsity &amp; Occam's razor: unconstrained models overfit; architectural hard constraints yield superior generalization!</span>\n      </small>\n    ",
+    "en": "\"Rather than making everything learnable, why does the model learn better when most connections are simply pinned to 0?\"\n      <small>Betting on sparsity and Occam's razor: an unconstrained high-dimensional model is bound to overfit; hard structural constraints are the true key to generalization!<br>\n        \n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "cea6b0136c85": {
+    "zh": "02 / 貝氏先驗視角 · Bayesian Prior Perspective",
+    "en": "02 / Bayesian Prior Perspective",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1989a252014c": {
+    "zh": "無限強先驗：直接宣告遠距連線「根本不存在」\n    <span class=\"en\">Infinitely Strong Prior: Hard-Coding Remote Connections to Zero</span>\n  ",
+    "en": "Infinitely Strong Prior: Declaring That Long-Range Connections \"Don't Exist at All\"",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f0d4eb314045": {
+    "zh": "權重約束的三種境界 (Fig. 10)",
+    "en": "Three levels of weight constraint (Fig. 10)",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "6dd5fbc5dd8d": {
+    "zh": "\n      在機器學習中，先驗（Prior）代表我們在看到訓練資料前對權重分佈的信念。原書 <strong>Fig. 10</strong> 將約束強度分為三級：\n    ",
+    "en": "In machine learning, a prior represents our belief about the distribution of the weights before we see the training data. <strong>Fig. 10</strong> of the textbook divides the strength of the constraint into three levels:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "026e05ab4226": {
+    "zh": "<strong>弱先驗（Weak Prior）：</strong> 全連線層，權重矩陣處處有值，梯度可自由調動，模型容量巨大但極易過擬合。",
+    "en": "<strong>Weak prior:</strong> a fully connected layer; the weight matrix has values everywhere and the gradient can adjust them freely. The model capacity is huge, but it overfits very easily.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "66c81fe36b47": {
+    "zh": "<strong>較強先驗（Strong Prior）：</strong> L1 正則化或權重衰減，將權重向 0 推擠，但梯度仍有能力將其拉回。",
+    "en": "<strong>Strong prior:</strong> L1 regularization or weight decay pushes the weights toward 0, but the gradient can still pull them back.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "c008ce012111": {
+    "zh": "<strong>無限強先驗（Infinitely Strong Prior）：</strong> <strong>卷積與池化的本質</strong>——非局部感受野的連線權重直接被硬性釘死為 0，梯度永遠改不到它們！",
+    "en": "<strong>Infinitely strong prior:</strong> <strong>the essence of convolution and pooling</strong>: the weights of connections outside the local receptive field are hard-pinned to 0, and the gradient can never change them!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "f9c8100d66ea": {
+    "zh": "\n      這呼應統計學<strong>「押注稀疏（Betting on Sparsity）」</strong>法則與奧卡姆剃刀：高維世界中沒有模型能處處表現完美，不如押注在空間局部相關的稀疏規律上。\n    ",
+    "en": "This echoes the statistical principle of <strong>\"betting on sparsity\"</strong> and Occam's razor: in a high-dimensional world no model can do perfectly everywhere, so we may as well bet on sparse, spatially local correlations.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1bfb1e949701": {
+    "zh": "03 / 矩陣拓撲視覺化 · Prior Matrix Topology",
+    "en": "03 / Prior Matrix Topology",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5e6cae5add52": {
+    "zh": "三級先驗矩陣與全域平均池化 (GAP) 架構\n    <span class=\"en\">Visual Comparison of Three Prior Matrices &amp; The GAP Paradigm</span>\n  ",
+    "en": "Three Levels of Prior Matrices and the Global Average Pooling (GAP) Architecture",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "da1e5fa1a71c": {
+    "zh": "無限強先驗：不是「希望權重小」，而是直接把許多權重釘成 0 (Fig. 10)",
+    "en": "Infinitely strong prior: not \"we hope the weights are small\", but many weights pinned to 0 outright (Fig. 10)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "1600dc2137ba": {
+    "zh": "弱先驗 (Weak Prior)",
+    "en": "Weak prior",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7431187a0f0b": {
+    "zh": "權重幾乎都能自由學習",
+    "en": "Almost all weights can be learned freely",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "989c28fdd410": {
+    "zh": "全連線網路：矩陣處處有值",
+    "en": "Fully connected network: values everywhere in the matrix",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "4dbb669f446b": {
+    "zh": "模型自行決定遠近連線強弱",
+    "en": "The model decides how strong near and far connections are",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "d86de835cb19": {
+    "zh": "較強先驗 (Strong Prior)",
+    "en": "Strong prior",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "f943ab6c16bf": {
+    "zh": "鼓勵稀疏，但仍可被梯度救回",
+    "en": "Encourages sparsity, but the gradient can still rescue weights",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "922517cc7363": {
+    "zh": "小",
+    "en": "small",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b9972445efda": {
+    "zh": "L1 正則／權重衰減：往 0 推",
+    "en": "L1 regularization / weight decay: push toward 0",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "26968aa3a98e": {
+    "zh": "若資料訊號夠強，仍可學回來",
+    "en": "If the data signal is strong enough, they can be learned back",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6bff9e789227": {
+    "zh": "無限強先驗 (Infinitely Strong)",
+    "en": "Infinitely strong prior",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c1769f6bbcc7": {
+    "zh": "連線根本不存在＝權重就是 0",
+    "en": "The connection doesn't exist = the weight is 0",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "3ab449105c52": {
+    "zh": "CNN／池化：遠距權重強制為 0",
+    "en": "CNN / pooling: long-range weights forced to 0",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e9e54d0edefa": {
+    "zh": "梯度絕對改不到 · 拓撲結構決定",
+    "en": "Gradient can never change them · set by the topology",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c2344a10c8a4": {
+    "zh": "同一先驗哲學的極致：GAP 取代巨型全連線層",
+    "en": "The same prior philosophy taken to the extreme: GAP replaces the giant fully connected layer",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "339b6bf10b99": {
+    "zh": "特徵圖",
+    "en": "Feature maps",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "efad07d889d4": {
+    "zh": "每張圖縮為 1 數",
+    "en": "Each map shrinks to 1 number",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c0c0876f71d0": {
+    "zh": "C 維向量",
+    "en": "C-dim vector",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9b7834daaa8d": {
+    "zh": "直達分類器",
+    "en": "Straight to the classifier",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5ed604fad220": {
+    "zh": "參數量直降 90%+",
+    "en": "Parameters drop 90%+",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "f2dab9872b7d": {
+    "zh": "SPP / 調核寬：用摘要遷就任意輸入尺寸，免裁切 (Fig. 11)",
+    "en": "SPP / adjusted kernel width: summaries adapt to any input size, no cropping (Fig. 11)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a8b7c46fbafd": {
+    "zh": "大師反直覺洞察",
+    "en": "The master's counterintuitive insight",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8150fe6564f0": {
+    "zh": "「限制不能學」有時比「都能學」更強",
+    "en": "\"Can't learn it\" is sometimes stronger than \"can learn everything\"",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "858e1f6d7130": {
+    "zh": "押注稀疏：非鄰域畫素本不應連線",
+    "en": "Betting on sparsity: non-neighboring pixels shouldn't be connected",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "cf415148e6bd": {
+    "zh": "奧卡姆剃刀：簡單模型泛化更高",
+    "en": "Occam's razor: simpler models generalize better",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "fd47d417440d": {
+    "zh": "無限強＝硬性拓撲約束，非正則懲罰",
+    "en": "Infinitely strong = hard topological constraint, not a regularization penalty",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "91191d13d96f": {
+    "zh": "圖 10.1：三級先驗矩陣與全域平均池化（GAP）架構演進對比",
+    "en": "Figure 10.1: Three levels of prior matrices compared with the evolution to the global average pooling (GAP) architecture",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3a0373fd6f37": {
+    "zh": "💡 押注稀疏 (Betting on Sparsity)",
+    "en": "💡 Betting on sparsity",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "3472b5927262": {
+    "zh": "\n          在超高維度影像下，全連線網路的自由參數過多，必然深陷維度災難。CNN 將絕大多數連線「強制設為 0」，使模型在稀疏假說下達到極高泛化水準。\n        ",
+    "en": "With ultra-high-dimensional images, a fully connected network has too many free parameters and is bound to sink into the curse of dimensionality. A CNN \"forces\" the vast majority of connections to 0, letting the model reach a very high level of generalization under the sparsity hypothesis.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "a6f471819b4f": {
+    "zh": "✂️ 奧卡姆剃刀 (Occam's Razor)",
+    "en": "✂️ Occam's razor",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fdf60562657a": {
+    "zh": "\n          若兩個模型均能解釋資料，結構更精簡者泛化能力通常更勝一籌。無限強先驗正是奧卡姆剃刀在神經網路架構中的具體化現。\n        ",
+    "en": "If two models can both explain the data, the one with the leaner structure usually generalizes better. The infinitely strong prior is a concrete embodiment of Occam's razor in neural network architecture.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fc69f888acc4": {
+    "zh": "04 / 現代池化演進 · Modern Pooling Innovations",
+    "en": "04 / Modern Pooling Innovations",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5788f8d6b5f3": {
+    "zh": "動態池化、空間金字塔 (SPP) 與全域平均池化 (GAP)\n    <span class=\"en\">Dynamic Pooling, Spatial Pyramid Pooling, and GAP</span>\n  ",
+    "en": "Dynamic Pooling, Spatial Pyramid Pooling (SPP), and Global Average Pooling (GAP)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "90b9cda69a06": {
+    "zh": "🧬 動態池化 (Dynamic Pooling)",
+    "en": "🧬 Dynamic pooling",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cc78c95db946": {
+    "zh": "\n        不侷限於相鄰格子。先對影像特徵點進行 <strong>K-means 分群</strong>，再對<strong>同一聚類群體進行池化</strong>。每個輸入樣本可擁有動態量身打造的摘要區域。\n      ",
+    "en": "Not limited to neighboring cells. First run <strong>K-means clustering</strong> on the image's feature points, then <strong>pool within each cluster</strong>. Each input sample can have its own dynamically tailored summary regions.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ca2438885253": {
+    "zh": "📐 空間金字塔池化 (SPP)",
+    "en": "📐 Spatial pyramid pooling (SPP)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d0b2c35124c4": {
+    "zh": "\n        <strong>Fig. 11</strong>：以多尺度固定數量 bins（如 $4\\times 4, 2\\times 2, 1\\times 1$）自適應劃分特徵圖。允許 CNN <strong>消化任意尺寸輸入圖片</strong>，免除粗暴裁切。\n      ",
+    "en": "<strong>Fig. 11</strong>: adaptively divides the feature map using a fixed number of bins at several scales (e.g. $4\\times 4, 2\\times 2, 1\\times 1$). This lets a CNN <strong>take input images of any size</strong>, with no crude cropping.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4afd9763df42": {
+    "zh": "🚀 全域平均池化 (GAP)",
+    "en": "🚀 Global average pooling (GAP)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2225e6d7f06f": {
+    "zh": "\n        現代深網（ResNet）在尾端將每張特徵圖直接取全域均值，壓為單一數值。<strong>徹底消滅數千萬全連線參數</strong>，直接對應輸出類別語意。\n      ",
+    "en": "Modern deep networks (ResNet) take the global mean of each feature map at the end, compressing it to a single number. This <strong>wipes out tens of millions of fully connected parameters</strong> and maps directly to the semantics of the output classes.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a482f57e97e0": {
+    "zh": "05 / 互動實驗室 · Interactive Lab",
+    "en": "05 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7823005c4060": {
+    "zh": "互動實驗室：先驗拓撲矩陣與 GAP 降維模擬器\n    <span class=\"en\">Interactive Lab: Prior Matrix Topology &amp; GAP Dimension Reducer</span>\n  ",
+    "en": "Interactive Lab: Prior Matrix Topology and GAP Dimension-Reduction Simulator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4a0aefc17f93": {
+    "zh": "先驗模式 Prior Mode:",
+    "en": "Prior mode:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "164f4df27d99": {
+    "zh": "無限強先驗 (CNN 帶狀局部稀疏)",
+    "en": "Infinitely strong prior (CNN banded local sparsity)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "553921130167": {
+    "zh": "較強先驗 (L1 軟性正則懲罰)",
+    "en": "Strong prior (L1 soft regularization penalty)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "360b9c1c10cd": {
+    "zh": "弱先驗 (全連線 密集稠密)",
+    "en": "Weak prior (fully connected, dense)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "140178ef42bc": {
+    "zh": "▶ 重新抽樣權重與計算 GAP",
+    "en": "▶ Resample weights and compute GAP",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "43ced90405de": {
+    "zh": "\n          左側 8×8 權重矩陣稀疏拓撲與右側 4 通道 GAP 均值特徵壓縮展示：\n        ",
+    "en": "Left: the sparse topology of the 8×8 weight matrix; right: the compression into 4-channel GAP mean features:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f65be0e745c7": {
+    "zh": "\n        先驗矩陣診斷報告 [無限強先驗]\n      ",
+    "en": "Prior matrix diagnostic report [infinitely strong prior]",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0c4206919754": {
+    "zh": "<strong>權重矩陣規格：</strong> 8×8 (共 64 條連線)",
+    "en": "<strong>Weight matrix size:</strong> 8×8 (64 connections in total)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e07ff68b7170": {
+    "zh": "<strong>硬性鎖定為 0 連線數：</strong> <span style=\"font-weight:700; color:#e11d48;\">42 條</span>",
+    "en": "<strong>Connections hard-locked to 0:</strong> <span style=\"font-weight:700; color:#e11d48;\">42</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "aa52ff1722e0": {
+    "zh": "<strong>有效可學習權重數：</strong> <span style=\"font-weight:700; color:#16a34a;\">22 個</span>",
+    "en": "<strong>Effective learnable weights:</strong> <span style=\"font-weight:700; color:#16a34a;\">22</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "774cca4121cc": {
+    "zh": "<strong>矩陣稀疏度 (Sparsity)：</strong> <span style=\"font-size:16px; font-weight:700; color:#7c3aed;\">66%</span>",
+    "en": "<strong>Matrix sparsity:</strong> <span style=\"font-size:16px; font-weight:700; color:#7c3aed;\">66%</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3c623a084e49": {
+    "zh": "\n        ✅ <strong>無限強先驗成立：</strong> 遠距連線被硬性阻斷，梯度不可穿透。模型具備強烈空間局域歸納偏置！\n      ",
+    "en": "✅ <strong>Infinitely strong prior holds:</strong> long-range connections are hard-blocked and the gradient cannot get through. The model has a strong spatial-locality inductive bias!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cb5bafcc6d7": {
+    "zh": "06 / 實戰檢驗 · Concept Checkpoint",
+    "en": "06 / Hands-On Check",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "be5a30c3b773": {
+    "zh": "題目 1 · 無限強先驗本質 / Infinitely Strong Prior",
+    "en": "Question 1 · The Essence of the Infinitely Strong Prior",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5306859f8873": {
+    "zh": "「無限強先驗（Fig. 10）」在卷積與池化結構中，實際執行的物理操作是什麼？",
+    "en": "In the structure of convolution and pooling, what physical operation does the \"infinitely strong prior (Fig. 10)\" actually carry out?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8ce3dc90b125": {
+    "zh": "A. 將網路中所有權重初始值統一設定為 1.0",
+    "en": "A. Set the initial value of every weight in the network to 1.0",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cac16ecc8f65": {
+    "zh": "B. 直接將非局部鄰域的權重硬性設定為 0（內建稀疏連線，梯度不可變更）",
+    "en": "B. Hard-set the weights outside the local neighborhood to 0 (built-in sparse connectivity that the gradient cannot change)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "28bb24a83a39": {
+    "zh": "C. 禁止網路使用任何 ReLU 啟用函式",
+    "en": "C. Forbid the network from using any ReLU activation function",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "493916c2e6bc": {
+    "zh": "D. 強制反向傳播的學習率必須固定為 0",
+    "en": "D. Force the learning rate of backpropagation to be fixed at 0",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "eac324e2bf80": {
+    "zh": "題目 2 · 動態池化特性 / Dynamic Pooling",
+    "en": "Question 2 · Properties of Dynamic Pooling",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "397b4245817e": {
+    "zh": "動態池化（Dynamic Pooling）與傳統固定幾何鄰域池化的核心差異是？",
+    "en": "What is the core difference between dynamic pooling and traditional pooling over fixed geometric neighborhoods?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "0b2b990dea0e": {
+    "zh": "A. 動態池化能依輸入內容或拓撲結構決定池化區域，例如對顯著特徵點執行 K-means 分群再同群池化",
+    "en": "A. Dynamic pooling can decide the pooling regions from the input content or topology, e.g. running K-means clustering on salient feature points and then pooling within each cluster",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "86ae0e8b1e6f": {
+    "zh": "B. 動態池化完全禁止特徵圖進行下取樣",
+    "en": "B. Dynamic pooling completely forbids downsampling the feature map",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5fd9c8bbadb4": {
+    "zh": "C. 動態池化只能被應用於全連線層",
+    "en": "C. Dynamic pooling can only be applied to fully connected layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "59196a273c08": {
+    "zh": "D. 二者在運算邏輯上完全相同，純粹是學術名詞稱呼不同",
+    "en": "D. The two are computationally identical; they are just different academic names",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2afa8cce8690": {
+    "zh": "題目 3 · 可變輸入尺寸解套 / Variable Dimensions",
+    "en": "Question 3 · Handling Variable Input Sizes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c3458310119f": {
+    "zh": "原書 Fig. 11 與空間金字塔池化（SPP）分別採用什麼策略來解套可變輸入尺寸？",
+    "en": "What strategies do Fig. 11 of the textbook and spatial pyramid pooling (SPP) each use to handle variable input sizes?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a469f6ba5106": {
+    "zh": "A. 二者皆只能強制透過零填充 (Zero Padding) 補齊到 224×224",
+    "en": "A. Both can only force zero padding up to 224×224",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f4f06de83c08": {
+    "zh": "B. Fig. 11 動態調整池化核寬；SPP 採用隨輸入縮放的固定數量箱子 (Bins)",
+    "en": "B. Fig. 11 dynamically adjusts the pooling kernel width; SPP uses a fixed number of bins that scale with the input",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b4c8b3fd79b6": {
+    "zh": "C. 二者皆把池化層完全拿掉，改回使用全連線層",
+    "en": "C. Both remove the pooling layer entirely and go back to fully connected layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4c45a7042c89": {
+    "zh": "D. 只能裁切影像中心，不能對池化做任何動態更動",
+    "en": "D. You can only crop the center of the image; no dynamic change to pooling is possible",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a0d56afa86d2": {
+    "zh": "題目 4 · 全域平均池化使命 / GAP Role",
+    "en": "Question 4 · The Role of GAP",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "65144cc7fb5d": {
+    "zh": "全域平均池化（GAP）置於現代 CNN 尾端，主要取代了什麼傳統元件？",
+    "en": "Placed at the end of a modern CNN, what traditional component does global average pooling (GAP) mainly replace?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9c6ebe64b116": {
+    "zh": "A. 取代了資料增強模組",
+    "en": "A. It replaces the data augmentation module",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "18a84bbd1eb4": {
+    "zh": "B. 取代了末端龐大的全連線層，大幅削減參數量並建立特徵圖與類別的直接對應",
+    "en": "B. It replaces the huge fully connected layers at the end, greatly cutting the parameter count and creating a direct correspondence between feature maps and classes",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c5261a9e0c05": {
+    "zh": "C. 取代了反向傳播演算法",
+    "en": "C. It replaces the backpropagation algorithm",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5a89fc31237e": {
+    "zh": "D. 取代了卷積核的 Xavier 初始化程式",
+    "en": "D. It replaces the Xavier initialization routine for the convolution kernels",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "628db09863a4": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：先驗約束與現代池化拓撲\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#e9d5ff; font-weight:normal;\">Key Takeaways: Strong Priors &amp; Modern Pooling Topologies</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: prior constraints and modern pooling topologies",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "72275822c46c": {
+    "zh": "<strong>無限強先驗（Fig. 10）：</strong> 卷積與池化是硬性拓撲約束，直接宣告遠距連線權重為 0，梯度改不到。限制模型自由度換來非凡的泛化表現。",
+    "en": "<strong>Infinitely strong prior (Fig. 10):</strong> convolution and pooling are hard topological constraints that declare the weights of long-range connections to be 0, out of the gradient's reach. Limiting the model's freedom buys remarkable generalization.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "66f3c13166e0": {
+    "zh": "<strong>押注稀疏與奧卡姆剃刀：</strong> 高維空間處處可學只會導致過擬合；押注在符合物理空間鄰近的稀疏連線上，是深度學習成功的數學根本。",
+    "en": "<strong>Betting on sparsity and Occam's razor:</strong> making everything learnable in a high-dimensional space only leads to overfitting; betting on sparse connections that match physical spatial proximity is the mathematical foundation of deep learning's success.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c858ffcdbc49": {
+    "zh": "<strong>擺脫固定維度桎梏（Fig. 11 &amp; SPP）：</strong> 動態調整核寬或採用 SPP 空間金字塔池化，讓卷積骨架能夠直接消化任意長寬比例的真實照片。",
+    "en": "<strong>Breaking free of fixed dimensions (Fig. 11 &amp; SPP):</strong> dynamically adjusting the kernel width, or using spatial pyramid pooling (SPP), lets a convolutional backbone take real photos of any aspect ratio directly.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c35adeaaf450": {
+    "zh": "<strong>GAP 終結巨型全連線層：</strong> 全域平均池化將空間維度均值壓縮，參數量暴減 90% 以上，為現代深網（如 ResNet）奠定精簡高效的經典正規化！",
+    "en": "<strong>GAP ends the giant fully connected layers:</strong> global average pooling averages away the spatial dimensions, slashing the parameter count by more than 90% and establishing the lean, efficient classic paradigm of modern deep networks (e.g. ResNet)!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

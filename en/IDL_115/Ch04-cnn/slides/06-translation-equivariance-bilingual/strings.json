@@ -1,0 +1,757 @@
+{
+  "_runtime": {
+    "exact": {
+      "路徑 A：先平移再卷積 f(g(x))": "Path A: shift, then conv f(g(x))",
+      "路徑 B：先卷積再平移 g(f(x))": "Path B: conv, then shift g(f(x))",
+      "當前平移偏移量 $\\Delta$:": "Current translation offset $\\Delta$:",
+      "當前平移偏移量": "Current translation offset",
+      "路徑 A 結果：": "Path A result:",
+      "路徑 B 結果：": "Path B result:",
+      "答對了！": "Correct!",
+      "再想想看！": "Think again!",
+      "卷積層是平移等價（Equivariance）而非平移不變（Invariance）：特徵圖會隨輸入同步位移，完整儲存物體的空間幾何位置。": "A convolutional layer is translation equivariant, not translation invariant: the feature map shifts along with the input, fully preserving the spatial position of the object.",
+      "常規卷積核不具備旋轉對稱性，因此對旋轉或縮放變換不具備等價性，必須依賴資料增強或專門模組補足。": "Ordinary convolution kernels have no rotational symmetry, so they are not equivariant to rotation or scaling; this has to be made up for with data augmentation or dedicated modules.",
+      "特徵圖響應跟隨物體位置位移，正是平移等價性最直觀的體現；若為不變性，特徵圖位置將完全不動。": "The feature-map response moving along with the object's position is the most intuitive manifestation of translation equivariance; with invariance, the feature map would not move at all.",
+      "等價性的形式化定義即為兩操作可交換順序：先平移再卷積 $f(g(x))$ 嚴格等於先卷積再平移 $g(f(x))$。": "The formal definition of equivariance is that the two operations commute: shifting then convolving, $f(g(x))$, is exactly equal to convolving then shifting, $g(f(x))$."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^輸入訊號峰值已右移 (-?\\d+) 格；對比兩路最終輸出陣列：$",
+        "en": "Input peak shifted right by $1 cell(s); compare both output arrays:"
+      },
+      {
+        "re": "^(-?\\d+) 畫素$",
+        "en": "$1 pixel(s)"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "91325207dc1e": {
+    "zh": "KP06 · 索引",
+    "en": "KP06 · Contents",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "28d45c370fb1": {
+    "zh": "<a href=\"#equivariance-concept\">等價 vs 不變 · Concepts</a>",
+    "en": "<a href=\"#equivariance-concept\">Equivariance vs Invariance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "7207f36d3491": {
+    "zh": "<a href=\"#commutative-formula\">交換性公式 · Equation (5)</a>",
+    "en": "<a href=\"#commutative-formula\">Commutativity Equation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a5f440b3d488": {
+    "zh": "<a href=\"#svg-paths\">雙路驗證圖解 · Visual Paths</a>",
+    "en": "<a href=\"#svg-paths\">Two-Path Verification Diagram</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ea0e315fc359": {
+    "zh": "<a href=\"#rotation-scale-failure\">旋轉與縮放不成立 · Rotation Fails</a>",
+    "en": "<a href=\"#rotation-scale-failure\">Rotation and Scaling Fail</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cc536c92278b": {
+    "zh": "<a href=\"#comparison\">等價性 vs 不變性 · Comparison</a>",
+    "en": "<a href=\"#comparison\">Equivariance vs Invariance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Check</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "5fec40312db3": {
+    "zh": "平移等價性（不是不變性）\n      <span class=\"hero-title-en\">Translation Equivariance, Not Invariance</span>\n    ",
+    "en": "Translation Equivariance (Not Invariance)",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "ed03639b22f1": {
+    "zh": "\n      卷積運算對平移具備<strong>等價性（equivariance）</strong>：輸入平移，特徵圖以完全相同的幾何關係跟隨平移，即 $f(g(x)) = g(f(x))$。先平移再卷積與先卷積再平移結果完全相同。千萬別與池化提供的「平移不變性（invariance）」混為一談，更要注意：卷積對旋轉與尺度並不具備等價性！\n    ",
+    "en": "Convolution is <strong>equivariant</strong> to translation: when the input shifts, the feature map follows the shift with exactly the same geometric relationship, i.e. $f(g(x)) = g(f(x))$. Translating and then convolving gives exactly the same result as convolving and then translating. Never confuse this with the “translation invariance” that pooling provides, and note even more carefully: convolution is not equivariant to rotation or scale!",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "9cb934f6e350": {
+    "zh": "\n      「平移等價：先平移再卷積 ＝ 先卷積再平移」\n      <small>等價是「輸出跟著輸入走」（位置還在）；不變是「輸出數值完全不動」！<br>\n        <span class=\"bilingual-en-inline\">Equivariance moves with the input; invariance stays still. Convolution guarantees the former!</span>\n      </small>\n    ",
+    "en": "“Translation equivariance: translate then convolve = convolve then translate”\n      <small>Equivariance means “the output follows the input” (the position is kept); invariance means “the output values do not move at all”!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "d5d899eb8db5": {
+    "zh": "02 / 核心區分 · Fundamental Distinction",
+    "en": "02 / Core Distinction",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0c086e4c465a": {
+    "zh": "輸入挪一下，特徵圖也跟著挪——這叫等價，不是不變\n    <span class=\"en\">When Input Moves, Features Move: That's Equivariance, Not Invariance</span>\n  ",
+    "en": "Nudge the input and the feature map moves with it: that is equivariance, not invariance",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8f88d3db7e9d": {
+    "zh": "深度學習中最常被混淆的一組術語",
+    "en": "The pair of terms most often confused in deep learning",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "03e575d96630": {
+    "zh": "\n      請務必先把這兩個詞在腦中分開：\n    ",
+    "en": "First, be sure to keep these two words separate in your head:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "7c8ae0be542d": {
+    "zh": "<strong>等價性（Equivariance）</strong>：先變換再處理 $=$ 先處理再變換。輸入變換時，輸出<strong>以同樣的方式跟隨變換</strong>。輸出跟著動，相對空間座標被完整保住！",
+    "en": "<strong>Equivariance</strong>: transform then process $=$ process then transform. When the input is transformed, the output <strong>is transformed in the same way</strong>. The output moves along, and the relative spatial coordinates are fully preserved!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2e4e0abbe147": {
+    "zh": "<strong>不變性（Invariance）</strong>：輸入無論如何變換，輸出<strong>數值幾乎完全不動</strong>。",
+    "en": "<strong>Invariance</strong>: no matter how the input is transformed, the output <strong>values stay almost completely unchanged</strong>.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "15339065fa48": {
+    "zh": "\n      卷積是<strong>等價性</strong>，絕非不變性！如果一張照片裡的貓往右移動了 2 格，卷積特徵圖上的「貓特徵啟用區域」也必定往右移動 2 格。若卷積真是「不變」，特徵圖上的訊號就會完全待在原地，網路便再也無法分辨貓到底出現在畫面的左邊還是右邊！\n    ",
+    "en": "Convolution is <strong>equivariant</strong>, definitely not invariant! If the cat in a photo moves 2 cells to the right, the “cat-feature activation region” on the convolutional feature map must also move 2 cells to the right. If convolution really were “invariant”, the signal on the feature map would stay exactly in place, and the network could no longer tell whether the cat appears on the left or the right of the image!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "50a260202847": {
+    "zh": "03 / 數學形式化 · Mathematical Formulation",
+    "en": "03 / Mathematical Formulation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4491e6e69bff": {
+    "zh": "式 (5)：卷積與平移運算元的可交換性\n    <span class=\"en\">Equation (5): Commutativity of Convolution and Translation Operators</span>\n  ",
+    "en": "Equation (5): commutativity of the convolution and translation operators",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "180daf6cd193": {
+    "zh": "形式化數學定義",
+    "en": "Formal mathematical definition",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6ff0d3eaa3b6": {
+    "zh": "\n      若函式 $f(x)$ 與變換函式 $g(x)$ 滿足下式，則稱 $f$ 對 $g$ 具備<strong>等價性</strong>：\n    ",
+    "en": "If a function $f(x)$ and a transformation $g(x)$ satisfy the following equation, $f$ is said to be <strong>equivariant</strong> to $g$:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7152d26fa9ad": {
+    "zh": "\n      將 $g$ 視為平移操作（將影像位移 $\\Delta$）、$f$ 視為卷積運算，式 (5) 表明下列兩條路徑殊途同歸：\n    ",
+    "en": "Taking $g$ as a translation (shifting the image by $\\Delta$) and $f$ as convolution, Equation (5) says that the following two paths lead to the same place:",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6ec43b69c6c9": {
+    "zh": "<strong>路徑 A（先移再卷）</strong>：$f(g(x))$ —— 先將輸入照片往右平移，再用卷積核掃描。",
+    "en": "<strong>Path A (shift, then convolve)</strong>: $f(g(x))$: first shift the input photo to the right, then scan it with the kernel.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "439bd3e49f42": {
+    "zh": "<strong>路徑 B（先卷再移）</strong>：$g(f(x))$ —— 先對原照片做卷積，再將輸出的特徵圖往右平移。",
+    "en": "<strong>Path B (convolve, then shift)</strong>: $g(f(x))$: first convolve the original photo, then shift the output feature map to the right.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e82eb4ab3ba7": {
+    "zh": "\n      <strong>為什麼兩路結果必定相同？</strong>答案正是上一節講的<strong>參數共享</strong>！同一顆核在全圖每個畫素位置都使用同一套權重，因此物體平移後，局部幾何紋理絲毫不變，濾波器在位移後的新座標自然會給出完全一模一樣的數值響應！\n    ",
+    "en": "<strong>Why must the two paths give the same result?</strong> The answer is exactly the <strong>parameter sharing</strong> from the previous section! The same kernel uses the same set of weights at every pixel position of the whole image, so after an object is translated its local geometric texture is completely unchanged, and the filter naturally gives exactly the same numerical response at the shifted new coordinates!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "9f15a2f44726": {
+    "zh": "04 / 雙路對照 · Dual Paths",
+    "en": "04 / Two Paths Side by Side",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "95e83db5829a": {
+    "zh": "平移等價雙路驗證圖解（課本 Fig. 4）\n    <span class=\"en\">Dual-Path Diagram: Verifying Equivariance Graphically</span>\n  ",
+    "en": "Diagram: two-path verification of translation equivariance (textbook Fig. 4)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dae9754a530b": {
+    "zh": "輸入影像 x",
+    "en": "Input image x",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4c4fe1b91d6f": {
+    "zh": "目標在左側",
+    "en": "Target on the left",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "5c466d559f27": {
+    "zh": "路徑 A · 先平移 g",
+    "en": "Path A · translate g first",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c50ca661ae9c": {
+    "zh": "將目標右移 2 格",
+    "en": "Shift target right 2 cells",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1bf3d43f9886": {
+    "zh": "再做卷積 f",
+    "en": "Then convolve f",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "b751d1b2cc1a": {
+    "zh": "特徵圖啟用在右",
+    "en": "Feature map active on right",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "80b10bfd2c77": {
+    "zh": "路徑 B · 先卷積 f",
+    "en": "Path B · convolve f first",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "fa61ff51e172": {
+    "zh": "原位置卷積 f(x)",
+    "en": "Convolve in place f(x)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "1e3ad135c0f3": {
+    "zh": "再做平移 g",
+    "en": "Then translate g",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "10d4994439f8": {
+    "zh": "特徵圖平移到右",
+    "en": "Feature map shifted right",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "0102e2626329": {
+    "zh": "🎉 兩路結果完全一致！",
+    "en": "🎉 Both paths give identical results!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "d889b5bc3441": {
+    "zh": "輸出特徵圖幾何完全等價",
+    "en": "Output feature maps geometrically equivalent",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3da839a0db8e": {
+    "zh": "嚴肅警示：卷積只對「平移」保證等價，對「旋轉」與「縮放」完全不成立！",
+    "en": "Serious warning: convolution guarantees equivariance only for translation, not at all for rotation or scaling!",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "3dcdd9ab0133": {
+    "zh": "先旋轉 90° $\\to$ 再做卷積",
+    "en": "Rotate 90° first $\\to$ then convolve",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "4e2246179e7b": {
+    "zh": "先做卷積 $\\to$ 再旋轉 90°",
+    "en": "Convolve first $\\to$ then rotate 90°",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "e564c842f6ab": {
+    "zh": "濾波核並非旋轉對稱！旋轉會改變局部鄰居與核權重的幾何對齊關係，導致結果不同。",
+    "en": "The kernel is not rotationally symmetric! Rotation changes how local neighbors align with the kernel weights, so the results differ.",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "7c1a81094ed7": {
+    "zh": "圖解平移等價性雙路閉環驗證與旋轉反例",
+    "en": "Diagram: closed-loop two-path verification of translation equivariance, and the rotation counterexample",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5bb3ff065ec7": {
+    "zh": "📐 為什麼旋轉和縮放不行？",
+    "en": "📐 Why don't rotation and scaling work?",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "089f43a6c8ae": {
+    "zh": "<strong>平移</strong>：只是座標原點改變，畫素網格之間的相對上下左右拓撲完全不變。",
+    "en": "<strong>Translation</strong>: only the coordinate origin changes; the relative up/down/left/right topology between pixel grid cells is completely unchanged.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "19b9f7ca63db": {
+    "zh": "<strong>旋轉</strong>：原本與「垂直邊緣核」對齊的直立線條，轉了 90° 變成水平線條，垂直核便再也偵測不到它！除非核本身是同心圓旋轉對稱的。",
+    "en": "<strong>Rotation</strong>: an upright line that was aligned with a “vertical-edge kernel” becomes a horizontal line after a 90° turn, and the vertical kernel can no longer detect it! Unless the kernel itself is rotationally symmetric, like concentric circles.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ead42887961d": {
+    "zh": "<strong>縮放</strong>：特徵尺寸改變，超越了 3×3 核的感受野視窗。",
+    "en": "<strong>Scaling</strong>: the feature size changes and exceeds the receptive-field window of the 3×3 kernel.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "723d5cc0b88b": {
+    "zh": "05 / 邊界範疇 · Limitations",
+    "en": "05 / Scope and Limits",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f1a30207ce2f": {
+    "zh": "實務工程啟示：旋轉與尺度如何獲得？\n    <span class=\"en\">Engineering Implications: Achieving Rotation and Scale Robustness</span>\n  ",
+    "en": "Practical engineering lessons: how do we get rotation and scale robustness?",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "318ce8edd505": {
+    "zh": "🔄 資料增強（Data Augmentation）",
+    "en": "🔄 Data augmentation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "de8678f5906f": {
+    "zh": "\n        在訓練時對輸入圖片施加隨機旋轉（RandomRotation）與隨機尺度縮放（RandomResizedCrop），強迫神經網路在多個特徵通道中自發學習不同方向的邊緣核。\n      ",
+    "en": "During training, apply random rotations (RandomRotation) and random rescaling (RandomResizedCrop) to the input images, forcing the network to learn, on its own, edge kernels for different orientations across multiple feature channels.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e833a2fd133d": {
+    "zh": "📐 專門架構模組（STN &amp; Multi-Scale）",
+    "en": "📐 Specialized architectural modules (STN &amp; multi-scale)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7eccf3ed223b": {
+    "zh": "\n        使用空間變換網路（Spatial Transformer Networks, STN）自動學習幾何矯正常態化，或藉由特徵金字塔網路（FPN）在不同層級萃取多尺度特徵。\n      ",
+    "en": "Use spatial transformer networks (STN) to learn geometric correction and normalization automatically, or use feature pyramid networks (FPN) to extract multi-scale features at different levels.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c2b6f7dcbda9": {
+    "zh": "06 / 對照總結 · Comparison Table",
+    "en": "06 / Comparison Table",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8ddb5f927d60": {
+    "zh": "平移等價性（Equivariance）vs 平移不變性（Invariance）\n    <span class=\"en\">Equivariance vs Invariance: Systematic Comparison</span>\n  ",
+    "en": "Translation equivariance vs translation invariance",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "550cf8aa1a93": {
+    "zh": "特性 Feature",
+    "en": "Property",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "993c22fc880c": {
+    "zh": "平移等價性（Translation Equivariance）",
+    "en": "Translation equivariance",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3eb449741647": {
+    "zh": "平移不變性（Translation Invariance）",
+    "en": "Translation invariance",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b045751c9428": {
+    "zh": "數學定義",
+    "en": "Mathematical definition",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "25980670be1f": {
+    "zh": "輸出特徵行為",
+    "en": "Behavior of the output features",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3584553890d0": {
+    "zh": "輸出特徵圖跟隨輸入<strong>同步位移</strong>",
+    "en": "The output feature map <strong>shifts in step</strong> with the input",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1b649aa92397": {
+    "zh": "輸出數值保持<strong>靜止不動</strong>",
+    "en": "The output values <strong>stay still</strong>",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ec63e732b720": {
+    "zh": "主導模組",
+    "en": "Main responsible module",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4b75a1963d15": {
+    "zh": "卷積層（Convolutional Layer）",
+    "en": "Convolutional layer",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7f5a58cd83df": {
+    "zh": "池化層（Pooling Layer, 特別是 Global Pooling）",
+    "en": "Pooling layer (especially global pooling)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9bdf4a88a3e8": {
+    "zh": "保留的資訊",
+    "en": "Information kept",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2e0707d195a9": {
+    "zh": "物體的<strong>「在哪裡」</strong>（空間位置坐標）",
+    "en": "<strong>“Where”</strong> the object is (spatial position coordinates)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1921e94bce10": {
+    "zh": "物體的<strong>「是什麼」</strong>（語意類別存在性）",
+    "en": "<strong>“What”</strong> the object is (presence of a semantic class)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "cc64f5acd649": {
+    "zh": "適用下游任務",
+    "en": "Suitable downstream tasks",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1ef7bc7adcbd": {
+    "zh": "語意分割（Segmentation）、物件偵測（Detection）",
+    "en": "Semantic segmentation, object detection",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e8c9dc6c3695": {
+    "zh": "影像全圖分類（Whole-Image Classification）",
+    "en": "Whole-image classification",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20befc297746": {
+    "zh": "07 / 互動實驗室 · Interactive Lab",
+    "en": "07 / Interactive Lab",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cb5401e90755": {
+    "zh": "互動實驗室：平移等價雙路驗證模擬器\n    <span class=\"en\">Interactive Lab: Equivariance Commutativity Dual-Path Simulator</span>\n  ",
+    "en": "Interactive lab: two-path translation-equivariance simulator",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "bb3da236b149": {
+    "zh": "平移偏移量 $\\Delta$ (畫素):",
+    "en": "Translation offset $\\Delta$ (pixels):",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "97da0fce2596": {
+    "zh": "▶ 執行雙路運算 Compare Paths",
+    "en": "▶ Run both paths",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f3d00646b1d5": {
+    "zh": "重設初始 Reset",
+    "en": "Reset to start",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f1bf52863ee7": {
+    "zh": "\n          畫布展示：路徑 A（先平移再卷積）與路徑 B（先卷積再平移）的最終輸出特徵圖：\n        ",
+    "en": "Canvas: the final output feature maps of path A (translate, then convolve) and path B (convolve, then translate):",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "83ee0545af02": {
+    "zh": "\n        雙路交換性比對報告\n      ",
+    "en": "Two-path commutativity comparison report",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "507fa2e7d39e": {
+    "zh": "<strong>當前平移偏移量 $\\Delta$:</strong> 1 畫素",
+    "en": "<strong>Current translation offset $\\Delta$:</strong> 1 pixel",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "182c290ef7ae": {
+    "zh": "<strong>路徑 A 結果：</strong> [0, 5, 20, 30, 20, 5, 0, 0]",
+    "en": "<strong>Path A result:</strong> [0, 5, 20, 30, 20, 5, 0, 0]",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ef805b1d1440": {
+    "zh": "<strong>路徑 B 結果：</strong> [0, 5, 20, 30, 20, 5, 0, 0]",
+    "en": "<strong>Path B result:</strong> [0, 5, 20, 30, 20, 5, 0, 0]",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4a2360fb54ee": {
+    "zh": "\n        🎉 檢驗透過：兩路輸出完全一致！f(g(x)) ≡ g(f(x))\n      ",
+    "en": "🎉 Check passed: the two paths give identical outputs! f(g(x)) ≡ g(f(x))",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ae25dd609fd3": {
+    "zh": "\n        在邊界有效範圍內，先移再卷與先卷再移輸出完全同構。\n      ",
+    "en": "Within the valid boundary range, shift-then-convolve and convolve-then-shift give exactly the same output.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ad0da520d328": {
+    "zh": "\n      🧪 <strong>實測大觀察：</strong><br>\n      1. <strong>畫素級數值比對</strong>：調整平移滑桿 $\\Delta$ 後，觀察左右兩張輸出特徵圖。無論 $\\Delta$ 設為 0、1、2 還是 3，兩條路徑計算出的特徵圖矩陣<strong>每一格數值都嚴格相等</strong>！<br>\n      2. <strong>交換律成立</strong>：即時證明瞭 $f(g(x)) \\equiv g(f(x))$。\n    ",
+    "en": "🧪 <strong>Key observations from the experiment:</strong><br>\n      1. <strong>Pixel-level numerical comparison</strong>: after adjusting the translation slider $\\Delta$, look at the two output feature maps on the left and right. Whether $\\Delta$ is set to 0, 1, 2 or 3, the feature-map matrices computed along the two paths are <strong>strictly equal in every cell</strong>!<br>\n      2. <strong>Commutativity holds</strong>: this demonstrates $f(g(x)) \\equiv g(f(x))$ on the spot.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bbc0c2e6369": {
+    "zh": "08 / 實戰檢驗 · Concept Checkpoint",
+    "en": "08 / Hands-On Check",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9e3bcb08d04a": {
+    "zh": "題目 1 · 平移幾何性質 / Translation Property",
+    "en": "Question 1 · Translation property",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6880cf2440e0": {
+    "zh": "卷積運算對平移變換所具備的數學性質是？",
+    "en": "What mathematical property does convolution have with respect to translation?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2103878a40d7": {
+    "zh": "A. 平移不變性（invariance）：輸入平移後輸出特徵圖數值完全不變",
+    "en": "A. Translation invariance: after the input is translated, the values of the output feature map do not change at all",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "56a630b67a05": {
+    "zh": "B. 平移等價性（equivalence）：輸入平移後輸出特徵圖以同樣方式跟隨平移",
+    "en": "B. Translation equivariance (equivalence): after the input is translated, the output feature map is translated in the same way",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "f939c455ae8f": {
+    "zh": "C. 旋轉等價性（rotation equivariance）",
+    "en": "C. Rotation equivariance",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c6db83f401bb": {
+    "zh": "D. 尺度不變性（scale invariance）",
+    "en": "D. Scale invariance",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7418ba9068d2": {
+    "zh": "題目 2 · 可交換性形式化 / Commutative Formulation",
+    "en": "Question 2 · Formalizing commutativity",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "dd74f43f657f": {
+    "zh": "式 (5) $f(g(x)) = g(f(x))$ 應用在卷積與平移運算時，其物理意涵是？",
+    "en": "When Equation (5) $f(g(x)) = g(f(x))$ is applied to convolution and translation, what does it mean physically?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "086a4ed5234e": {
+    "zh": "A. 先平移輸入再做卷積，與先做卷積再平移輸出，結果完全等價",
+    "en": "A. Translating the input and then convolving is completely equivalent to convolving and then translating the output",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "149890a128e7": {
+    "zh": "B. 卷積運算能消除輸入影像的所有平移干擾",
+    "en": "B. Convolution removes all translational disturbances from the input image",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "43f10e03d5e3": {
+    "zh": "C. 旋轉運算與卷積運算在任意濾波核下皆可自由交換順序",
+    "en": "C. Rotation and convolution can be freely swapped in order for any kernel",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "57eadb679c67": {
+    "zh": "D. 必須先進行池化下取樣才能執行平移變換",
+    "en": "D. Pooling downsampling must be done before a translation can be applied",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "48d2f213ba96": {
+    "zh": "題目 3 · 不具備之性質 / Properties Not Possessed",
+    "en": "Question 3 · Properties it lacks",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "be1b933dd3c3": {
+    "zh": "下列哪一項性質是常規二維卷積運算所<strong>不具備</strong>的？",
+    "en": "Which of the following properties does ordinary 2D convolution <strong>not</strong> have?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "d64591438f48": {
+    "zh": "A. 對平移的等價性（Translation Equivariance）",
+    "en": "A. Equivariance to translation",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "87c31ae596b8": {
+    "zh": "B. 對旋轉或縮放變換的等價性（Rotation/Scale Equivariance）",
+    "en": "B. Equivariance to rotation or scaling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e87a4a40cd7a": {
+    "zh": "C. 跨空間位置的參數共享（Parameter Sharing）",
+    "en": "C. Parameter sharing across spatial positions",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a5ceab7c98ca": {
+    "zh": "D. 局部稀疏連線特性（Sparse Connectivity）",
+    "en": "D. Local sparse connectivity",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8017c1a32161": {
+    "zh": "題目 4 · 物理直觀理解 / Intuitive Meaning",
+    "en": "Question 4 · Intuitive meaning",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "df8e26f2f07f": {
+    "zh": "「當貓在影像中向右移動時，卷積特徵圖上的貓特徵響應也向右移動」，這精確描述的是？",
+    "en": "“When a cat moves to the right in the image, the cat-feature response on the convolutional feature map also moves to the right.” What does this describe precisely?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8618ee33e68b": {
+    "zh": "A. 平移不變性：特徵圖數值分毫不動",
+    "en": "A. Translation invariance: the feature-map values do not move at all",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "2787a67e450f": {
+    "zh": "B. 平移等價性：輸出特徵跟隨輸入的幾何空間排列同步移動",
+    "en": "B. Translation equivariance: the output features move in step with the spatial arrangement of the input",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "5c58c41735d7": {
+    "zh": "C. 尺度等價性：特徵圖尺度隨輸入等比縮放",
+    "en": "C. Scale equivariance: the feature map scales in proportion to the input",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "361cf8e58d5e": {
+    "zh": "D. 全連線層的全域對應性",
+    "en": "D. The global correspondence of a fully connected layer",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

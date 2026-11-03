@@ -1,0 +1,643 @@
+{
+  "_runtime": {
+    "exact": {
+      "長條按當前較大者等比縮放；數值為精確整數。": "Bars scale to the larger value; counts are exact.",
+      "輸入 $m$:": "Input $m$:",
+      "輸出 $n$:": "Output $n$:",
+      "核寬 $k$:": "Kernel width $k$:",
+      "輸入": "Input",
+      "輸出": "Output",
+      "核寬": "Kernel width",
+      "全連線參數量：": "Fully connected parameters:",
+      "卷積層參數量：": "Convolutional layer parameters:",
+      "壓縮比 (FC / Conv)：": "Compression ratio (FC / Conv):",
+      "正常運作": "Working normally",
+      "：$k \\ll m$，稀疏性與參數共享大幅壓低參數量。": ": $k \\ll m$, sparsity and parameter sharing greatly reduce the parameter count.",
+      "，稀疏性與參數共享大幅壓低參數量。": ", sparsity and parameter sharing greatly reduce the parameter count.",
+      "警告": "Warning",
+      "：$k \\ge m$，卷積核覆蓋範圍已達全域，稀疏性歸零，退化為全連線層！": ": $k \\ge m$, the kernel now covers the whole input, sparsity drops to zero, and the layer degenerates into a fully connected layer!",
+      "，卷積核覆蓋範圍已達全域，稀疏性歸零，退化為全連線層！": ", the kernel now covers the whole input, sparsity drops to zero, and the layer degenerates into a fully connected layer!",
+      "答對了！": "Correct!",
+      "再想想看！": "Think again!",
+      "全連線層中每個權重僅連線一對特定的輸入與輸出神經元，無法跨位置復用。": "In a fully connected layer, each weight connects only one specific pair of input and output neurons and cannot be reused across positions.",
+      "全連線每個輸出連到全部輸入，權重數為 $\\mathcal{O}(m\\times n)$；卷積每個輸出僅連至大小為 $k$ 的局部，權重數為 $\\mathcal{O}(k\\times n)$。": "In a fully connected layer every output connects to all inputs, so there are $\\mathcal{O}(m\\times n)$ weights; in a convolution every output connects only to a local region of size $k$, so there are $\\mathcal{O}(k\\times n)$ weights.",
+      "卷積核尺寸一旦與輸入相同（$k=m$），輸出節點便能看見全域輸入，稀疏性消失，退化為全連線層。": "Once the kernel size equals the input size ($k=m$), each output node sees the whole input, sparsity disappears, and the layer degenerates into a fully connected layer.",
+      "參數共享意味著同一組核權重在整張影像的不同空間位置重複利用，無需為每個座標各學一套。": "Parameter sharing means the same set of kernel weights is reused at different spatial positions across the whole image, so there is no need to learn a separate set for every coordinate."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^([\\d,]+) 參數$",
+        "en": "$1 params"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "2f1188305732": {
+    "zh": "KP05 · 索引",
+    "en": "KP05 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "baa48eee8913": {
+    "zh": "<a href=\"#sparse-connectivity\">稀疏連線 · Sparse Connectivity</a>",
+    "en": "<a href=\"#sparse-connectivity\">Sparse Connectivity</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "168e98ddf2ed": {
+    "zh": "<a href=\"#parameter-sharing\">參數共享 · Parameter Sharing</a>",
+    "en": "<a href=\"#parameter-sharing\">Parameter Sharing</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2e600fbf3d11": {
+    "zh": "<a href=\"#complexity-derivation\">複雜度推導 · Complexity</a>",
+    "en": "<a href=\"#complexity-derivation\">Complexity Derivation</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "fa8cda50d549": {
+    "zh": "<a href=\"#svg-comparison\">視覺化對比 · Visual Comparison</a>",
+    "en": "<a href=\"#svg-comparison\">Visual Comparison</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "fbeeac0c7198": {
+    "zh": "<a href=\"#boundary-case\">邊界極限 · Boundary Case</a>",
+    "en": "<a href=\"#boundary-case\">The Limiting Case</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b9b14ed52b53": {
+    "zh": "稀疏連線與參數共享\n      <span class=\"hero-title-en\">Sparse Connectivity and Parameter Sharing</span>\n    ",
+    "en": "Sparse Connectivity and Parameter Sharing",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "66a506b0eaaf": {
+    "zh": "\n      全連線網路讓每一對輸入與輸出「人人握手」，參數量高達 $\\mathcal{O}(m\\times n)$。卷積神經網路藉由<strong>稀疏連線</strong>（每輸出僅看 $k$ 個鄰居）與<strong>參數共享</strong>（全圖共用同一組濾波器），將參數量陡降至 $\\mathcal{O}(k\\times n)$。這不是魔法，而是以空間局部性先驗換取的極致算力節省。\n    ",
+    "en": "A fully connected network makes every input–output pair “shake hands”, with up to $\\mathcal{O}(m\\times n)$ parameters. Convolutional neural networks use <strong>sparse connectivity</strong> (each output looks at only $k$ neighbors) and <strong>parameter sharing</strong> (the whole image shares the same set of filters) to cut the parameter count sharply to $\\mathcal{O}(k\\times n)$. This is not magic: it is an extreme saving of compute bought with a spatial-locality prior.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "cf2acfa8a9c8": {
+    "zh": "\n      「每人一條專線 vs 同一把尺量全圖」\n      <small>全連線讓每個位置獨立建立連線；卷積用一把小尺在全圖巡迴蓋印！<br>\n        <span class=\"bilingual-en-inline\">Dense wires everyone to everyone; CNN shares local rulers across space.</span>\n      </small>\n    ",
+    "en": "“A private line for everyone vs one ruler measuring the whole image”\n      <small>Full connectivity gives every position its own independent connections; convolution takes one small ruler on a stamping tour of the whole image!</small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "1112ebf46500": {
+    "zh": "02 / 結構機制 · Sparse Connectivity",
+    "en": "02 / Structural Mechanism · Sparse Connectivity",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "8ec077328faf": {
+    "zh": "稀疏連線（Sparse Connectivity）：每個單元只看鄰居\n    <span class=\"en\">Sparse Connectivity: Local Receptive Fields Instead of Global Dense Wiring</span>\n  ",
+    "en": "Sparse connectivity: each unit looks only at its neighbors",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a2c2f1135aab": {
+    "zh": "為什麼不需要「人人連線」？",
+    "en": "Why don't we need “everyone connected to everyone”?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "2f3702a788f1": {
+    "zh": "\n      在標準全連線網路中，若輸入有 $m$ 個畫素、輸出隱藏層有 $n$ 個神經元，權重矩陣包含 $m\\times n$ 個獨立數值，每個輸出神經元都與 $m$ 個輸入相連。\n    ",
+    "en": "In a standard fully connected network, if the input has $m$ pixels and the hidden output layer has $n$ neurons, the weight matrix contains $m\\times n$ independent values, and every output neuron is connected to all $m$ inputs.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "0349adde2075": {
+    "zh": "\n      然而自然影像具備強烈的<strong>局部統計相關性</strong>：左上角的一枚畫素只與其周圍相鄰畫素息息相關，而與右下角 200 畫素外的背景互不干擾。卷積層限制每個輸出單元僅連線至大小為 $k$（例如 $3\\times 3=9$）的局部感受野（receptive field），切斷所有冗餘的遠端連線。\n    ",
+    "en": "But natural images have strong <strong>local statistical correlation</strong>: a pixel in the top-left corner is closely related only to the pixels around it, and has nothing to do with the background 200 pixels away in the bottom-right corner. A convolutional layer restricts each output unit to a local receptive field of size $k$ (e.g. $3\\times 3=9$), cutting all the redundant long-range connections.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "95489a071c75": {
+    "zh": "03 / 權重復用 · Parameter Sharing",
+    "en": "03 / Weight Reuse · Parameter Sharing",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e80224a1f436": {
+    "zh": "參數共享（Parameter Sharing）：全圖同一套權重\n    <span class=\"en\">Parameter Sharing: Reusing Weights Across the Entire Spatial Grid</span>\n  ",
+    "en": "Parameter sharing: one set of weights for the whole image",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e5c5026f970c": {
+    "zh": "🚫 全連線層的權重孤立",
+    "en": "🚫 The isolated weights of a fully connected layer",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8d4a7df4adf6": {
+    "zh": "\n        全連線權重矩陣中的每一個元素 $w_{ij}$，<strong>一生只被使用一次</strong>——專門用來計算輸入第 $j$ 個節點與輸出第 $i$ 個節點的乘積。換了空間位置，就得重新學一套全新的獨立權重。\n      ",
+    "en": "Each element $w_{ij}$ of a fully connected weight matrix is <strong>used only once in its lifetime</strong>: solely to compute the product between input node $j$ and output node $i$. At a different spatial position, a whole new set of independent weights has to be learned.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "332182c2fe24": {
+    "zh": "♻️ 卷積層的極致復用",
+    "en": "♻️ The ultimate reuse of a convolutional layer",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "90bfd118c1e9": {
+    "zh": "\n        卷積核的 $k$ 個參數，在特徵圖的<strong>每一個空間位置都被重複使用</strong>！在左上角辨識水平邊緣的濾波器，滑動到右上角或中央時，仍然使用完全相同的這組權重。\n      ",
+    "en": "The $k$ parameters of a convolution kernel are <strong>reused at every spatial position</strong> of the feature map! The filter that recognizes horizontal edges in the top-left corner still uses exactly the same set of weights when it slides to the top-right corner or the center.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "6a5fc9ccd67b": {
+    "zh": "04 / 數學推導 · Complexity Analysis",
+    "en": "04 / Mathematical Derivation · Complexity Analysis",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "188840b5d761": {
+    "zh": "參數量與計算量嚴格對比：$\\mathcal{O}(mn)$ vs $\\mathcal{O}(kn)$\n    <span class=\"en\">Rigorous Parameter &amp; Runtime Comparison: O(mn) vs O(kn)</span>\n  ",
+    "en": "A rigorous comparison of parameter count and computation: $\\mathcal{O}(mn)$ vs $\\mathcal{O}(kn)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "413eb30995c4": {
+    "zh": "數學對照表",
+    "en": "Mathematical comparison",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "bc27e36cc819": {
+    "zh": "\n      設輸入空間節點數為 $m$、輸出節點數為 $n$、核尺寸為 $k$（且 $k \\ll m$）：\n    ",
+    "en": "Let the number of input spatial nodes be $m$, the number of output nodes $n$, and the kernel size $k$ (with $k \\ll m$):",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "d9854889b148": {
+    "zh": "<strong>全連線層參數量</strong>：$\\text{Params}_{\\text{FC}} = m \\times n = \\mathcal{O}(mn)$",
+    "en": "<strong>Fully connected layer parameter count</strong>: $\\text{Params}_{\\text{FC}} = m \\times n = \\mathcal{O}(mn)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a20bc6559fec": {
+    "zh": "<strong>卷積層參數量</strong>：$\\text{Params}_{\\text{Conv}} = k \\times n = \\mathcal{O}(kn)$",
+    "en": "<strong>Convolutional layer parameter count</strong>: $\\text{Params}_{\\text{Conv}} = k \\times n = \\mathcal{O}(kn)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "53b42790e0a8": {
+    "zh": "<strong>壓縮比率</strong>：$\\frac{\\text{Params}_{\\text{FC}}}{\\text{Params}_{\\text{Conv}}} = \\frac{m \\cdot n}{k \\cdot n} = \\frac{m}{k}$",
+    "en": "<strong>Compression ratio</strong>: $\\frac{\\text{Params}_{\\text{FC}}}{\\text{Params}_{\\text{Conv}}} = \\frac{m \\cdot n}{k \\cdot n} = \\frac{m}{k}$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "64d577b8cd4b": {
+    "zh": "\n      例項：以 $224\\times 224$ 彩色輸入為例，$m \\approx 50,000$。若使用 $3\\times 3$ 卷積核（$k=9$），理論壓縮比高達 $50,000 / 9 \\approx 5,555$ 倍！\n    ",
+    "en": "Example: take a $224\\times 224$ color input, so $m \\approx 50,000$. With a $3\\times 3$ convolution kernel ($k=9$), the theoretical compression ratio is as high as $50,000 / 9 \\approx 5,555$ times!",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "02e4a777a482": {
+    "zh": "05 / 視覺對比 · Visual Comparison",
+    "en": "05 / Visual Comparison",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "734a9b8166c0": {
+    "zh": "連線模式圖解：全連線義大利麵 vs 卷積局部蓋印\n    <span class=\"en\">Visualizing Dense Wiring vs Convolutional Kernel Stamping</span>\n  ",
+    "en": "Connection patterns illustrated: fully connected spaghetti vs local convolutional stamping",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7c385af8eaac": {
+    "zh": "全連線層 · 稠密連線",
+    "en": "Fully connected layer · dense connections",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "50554f467f8d": {
+    "zh": "人人握手 · 每個權重只用一次 · O(mn)",
+    "en": "Everyone shakes hands · each weight used once · O(mn)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "17cd4a5dcc4f": {
+    "zh": "參數量 = 4 × 4 = 16 權重",
+    "en": "Parameters = 4 × 4 = 16 weights",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "08da84a62194": {
+    "zh": "卷積層 · 稀疏 + 共享",
+    "en": "Convolutional layer · sparse + shared",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "039678ddd264": {
+    "zh": "局部連線 · 同一顆核覆蓋蓋印 · O(kn)",
+    "en": "Local connections · one kernel stamps everywhere · O(kn)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "be32ab37c0bd": {
+    "zh": "核 K",
+    "en": "Kernel K",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "e90d18c29165": {
+    "zh": "同 K",
+    "en": "Same K",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "442095438ad3": {
+    "zh": "參數量 = 2 權重（共用滑動）",
+    "en": "Parameters = 2 weights (shared, sliding)",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d95cf3e4c2b4": {
+    "zh": "邊界條件警告：當核大小 k 等於輸入尺寸 m 時，稀疏性完全消失！",
+    "en": "Boundary warning: when the kernel size k equals the input size m, sparsity disappears completely!",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "132744002a8e": {
+    "zh": "此時每個輸出節點再次看到所有輸入節點，卷積層在數學上完全退化回全連線層。",
+    "en": "Then every output node again sees all input nodes, and the convolutional layer mathematically degenerates back into a fully connected layer.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "d1c81e6b8c30": {
+    "zh": "只有當 k ≪ m（如 3×3 核掃描 224×224 影像）時，稀疏與共享的威力才能最大化釋放。",
+    "en": "Only when k ≪ m (e.g. a 3×3 kernel scanning a 224×224 image) can the power of sparsity and sharing be fully unleashed.",
+    "kp": 6,
+    "ctx": "svg"
+  },
+  "b33972f9579f": {
+    "zh": "圖解稀疏連線與參數共享機制對比全連線",
+    "en": "Diagram comparing sparse connectivity and parameter sharing with full connectivity",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6a4e0267b1f5": {
+    "zh": "🔑 兩大機制缺一不可",
+    "en": "🔑 Both mechanisms are indispensable",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c2bf106e8056": {
+    "zh": "<strong>只稀疏、不共享</strong>：稱為 Locally Connected Layer（局部連線層）。每個局部位置依然擁有獨立權重，參數量仍遠高於卷積。",
+    "en": "<strong>Sparse but not shared</strong>: this is called a locally connected layer. Each local position still has its own independent weights, so the parameter count is still far higher than a convolution's.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "487ff5bf5643": {
+    "zh": "<strong>只共享、不稀疏</strong>：如果核與全圖一樣大，那隻不過是拿一個巨大的全連線矩陣對全圖做一次性運算。",
+    "en": "<strong>Shared but not sparse</strong>: if the kernel is as large as the whole image, it is nothing more than applying one huge fully connected matrix to the whole image in a single operation.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ea1dc4ee4ca7": {
+    "zh": "<strong>稀疏 ＋ 共享</strong>：雙劍合璧，才成就了 CNN 的輕量與平移等變性！",
+    "en": "<strong>Sparse + shared</strong>: only the two swords combined give the CNN its light weight and translation equivariance!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "1b68390f899d": {
+    "zh": "06 / 極限思考 · Boundary Case",
+    "en": "06 / Thinking at the Limit · Boundary Case",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "5c99d4eec4bf": {
+    "zh": "極限思維：當 $k \\to m$ 時的退化\n    <span class=\"en\">Limiting Case: Degenerating to Fully Connected when k = m</span>\n  ",
+    "en": "Thinking at the limit: the degeneration as $k \\to m$",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "213d324e9d07": {
+    "zh": "💬 考題常客陷阱題",
+    "en": "💬 A favorite trick question on exams",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "017ef2c71e2f": {
+    "zh": "\n      問：卷積層在什麼情況下會實質上退化為全連線層？<br>\n      答：<strong>當卷積核尺寸 $k$ 等於輸入影像尺寸 $m$ 時</strong>。此時每個輸出單元都「看見」了全圖所有輸入，稀疏性歸零；又因為核尺寸與輸入相同，核無法在影像上滑動（只能蓋印一次），參數共享亦失去意義，數學形式與全連線矩陣完全一致。\n    ",
+    "en": "Q: Under what condition does a convolutional layer effectively degenerate into a fully connected layer?<br>\n      A: <strong>When the kernel size $k$ equals the input image size $m$</strong>. Then every output unit “sees” all the inputs of the whole image, and the sparsity drops to zero; and since the kernel is the same size as the input, it cannot slide over the image (it can only stamp once), so parameter sharing loses its meaning too, and the mathematical form is exactly that of a fully connected matrix.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "20befc297746": {
+    "zh": "07 / 互動實驗室 · Interactive Lab",
+    "en": "07 / Interactive Lab",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b0152ee4bbf3": {
+    "zh": "互動實驗室：參數量模擬器 — 全連線 $mn$ vs 卷積 $kn$\n    <span class=\"en\">Interactive Lab: Parameter Count Simulator — FC (m×n) vs Conv (k×n)</span>\n  ",
+    "en": "Interactive lab: parameter-count simulator, fully connected $mn$ vs convolution $kn$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "f80045201191": {
+    "zh": "輸入節點數 $m$:",
+    "en": "Number of input nodes $m$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "54110dbe4d1c": {
+    "zh": "輸出節點數 $n$:",
+    "en": "Number of output nodes $n$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c7dd1b7f542a": {
+    "zh": "核尺寸 $k$:",
+    "en": "Kernel size $k$:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4cc095685196": {
+    "zh": "重設預設 Reset",
+    "en": "Reset to defaults",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "cd23db171243": {
+    "zh": "\n          動態長條圖即時縮放對比全連線層與卷積層參數量：\n        ",
+    "en": "A live bar chart scales to compare the parameter counts of the fully connected and convolutional layers:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "57600961120f": {
+    "zh": "\n        參數量與壓縮比計算 Readout\n      ",
+    "en": "Parameter count and compression ratio readout",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e5d4269f2232": {
+    "zh": "<strong>輸入 $m$:</strong> 256　<strong>輸出 $n$:</strong> 64　<strong>核寬 $k$:</strong> 9",
+    "en": "<strong>Input $m$:</strong> 256　<strong>Output $n$:</strong> 64　<strong>Kernel width $k$:</strong> 9",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "c617d68eddac": {
+    "zh": "<strong>全連線參數量：</strong> 256 × 64 = <span style=\"color:#0f766e; font-weight:700;\">16,384</span>",
+    "en": "<strong>Fully connected parameters:</strong> 256 × 64 = <span style=\"color:#0f766e; font-weight:700;\">16,384</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a8a94843fcaf": {
+    "zh": "<strong>卷積層參數量：</strong> 9 × 64 = <span style=\"color:#d97706; font-weight:700;\">576</span>",
+    "en": "<strong>Convolutional layer parameters:</strong> 9 × 64 = <span style=\"color:#d97706; font-weight:700;\">576</span>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "93018c0ab2ba": {
+    "zh": "<strong>壓縮比 (FC / Conv)：</strong> <span style=\"font-size:16px; font-weight:700; color:#2563eb;\">28.44×</span> ($m/k = 256/9$)",
+    "en": "<strong>Compression ratio (FC / Conv):</strong> <span style=\"font-size:16px; font-weight:700; color:#2563eb;\">28.44×</span> ($m/k = 256/9$)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "465aa75bf6e9": {
+    "zh": "\n        ✅ <strong>正常運作</strong>：$k \\ll m$，稀疏性與參數共享大幅壓低參數量。\n      ",
+    "en": "✅ <strong>Working normally</strong>: $k \\ll m$, sparsity and parameter sharing greatly reduce the parameter count.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "15f75e274507": {
+    "zh": "\n      🧪 <strong>實測大觀察：</strong><br>\n      1. <strong>比值鎖定</strong>：觀察 Readout 中的壓縮比值 $\\text{FC} / \\text{Conv}$，它恰好嚴格等於 $m / k$，不受輸出節點數 $n$ 影響！<br>\n      2. <strong>邊界退化體驗</strong>：將核尺寸 $k$ 拉大至接近甚至等於 $m$ 時，觀察 Conv 參數量如何逼近 FC 參數量，直觀驗證「$k=m$ 時卷積等價於全連線」。\n    ",
+    "en": "🧪 <strong>Big hands-on observations:</strong><br>\n      1. <strong>A locked ratio</strong>: look at the compression ratio $\\text{FC} / \\text{Conv}$ in the readout: it is exactly $m / k$, unaffected by the number of output nodes $n$!<br>\n      2. <strong>Experiencing the degeneration</strong>: increase the kernel size $k$ until it approaches or even equals $m$, and watch the Conv parameter count approach the FC count, a direct check that “when $k=m$, convolution is equivalent to full connectivity”.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3bbc0c2e6369": {
+    "zh": "08 / 實戰檢驗 · Concept Checkpoint",
+    "en": "08 / Concept Checkpoint",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-class checkpoint: instant concept feedback",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4e07346c997b": {
+    "zh": "題目 1 · 參數量複雜度 / Parameter Complexity",
+    "en": "Question 1 · Parameter Complexity",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "bc4f65b22fc8": {
+    "zh": "輸入節點數為 $m$、輸出節點數為 $n$ 時，全連線層與卷積層（核大小 $k &lt; m$）的參數量複雜度分別是？",
+    "en": "With $m$ input nodes and $n$ output nodes, what are the parameter complexities of a fully connected layer and a convolutional layer (kernel size $k &lt; m$), respectively?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ac9a3107c0cc": {
+    "zh": "A. 兩者都是 $\\mathcal{O}(mn)$",
+    "en": "A. Both are $\\mathcal{O}(mn)$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "4b6f16bc502c": {
+    "zh": "B. 全連線 $\\mathcal{O}(m \\times n)$，卷積 $\\mathcal{O}(k \\times n)$",
+    "en": "B. Fully connected $\\mathcal{O}(m \\times n)$, convolution $\\mathcal{O}(k \\times n)$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ecac4d7fd1d6": {
+    "zh": "C. 全連線 $\\mathcal{O}(kn)$，卷積 $\\mathcal{O}(mn)$",
+    "en": "C. Fully connected $\\mathcal{O}(kn)$, convolution $\\mathcal{O}(mn)$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "22891e955595": {
+    "zh": "D. 兩者都是 $\\mathcal{O}(k)$",
+    "en": "D. Both are $\\mathcal{O}(k)$",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e92491102e01": {
+    "zh": "題目 2 · 退化邊界條件 / Degeneration Boundary",
+    "en": "Question 2 · The Degeneration Condition",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7c9aa1c56812": {
+    "zh": "在什麼情況下，卷積層會實質上退化為全連線層？",
+    "en": "Under what condition does a convolutional layer effectively degenerate into a fully connected layer?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e8e4f9a59fab": {
+    "zh": "A. stride 設為 1",
+    "en": "A. The stride is set to 1",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "0efe48dd9fa0": {
+    "zh": "B. 使用 zero padding 補零",
+    "en": "B. Zero padding is used",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "c02088ff4688": {
+    "zh": "C. kernel 尺寸等於輸入尺寸（$k = m$）",
+    "en": "C. The kernel size equals the input size ($k = m$)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "26acf6a0d34b": {
+    "zh": "D. 使用多個輸出通道",
+    "en": "D. Multiple output channels are used",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "81e645b5a0b7": {
+    "zh": "題目 3 · 參數共享定義 / Parameter Sharing Definition",
+    "en": "Question 3 · Definition of Parameter Sharing",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e0ea4fa6d5ec": {
+    "zh": "卷積神經網路中的「參數共享（Parameter Sharing）」確切是指？",
+    "en": "What exactly does “parameter sharing” mean in a convolutional neural network?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3b6df699bab1": {
+    "zh": "A. 每個空間位置獨立學習一套專屬的 kernel 權重",
+    "en": "A. Each spatial position independently learns its own set of kernel weights",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "6257b34464f4": {
+    "zh": "B. 同一顆 kernel 在輸入特徵圖的所有空間位置重複滑動套用",
+    "en": "B. The same kernel slides over and is applied at every spatial position of the input feature map",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "48e865bd1f33": {
+    "zh": "C. 輸入通道與輸出通道強制共用同一組啟用函式",
+    "en": "C. Input and output channels are forced to share the same activation function",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "7eaaafc60399": {
+    "zh": "D. 前後相鄰兩層必須具備相同的神經元參數總數",
+    "en": "D. Two adjacent layers must have the same total number of neuron parameters",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "348535c9aaac": {
+    "zh": "題目 4 · 權重使用模式 / Dense Weight Usage",
+    "en": "Question 4 · How Dense Weights Are Used",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "73ecc591e4d5": {
+    "zh": "在全連線（Fully Connected）層中，權重矩陣每個元素的使用方式是？",
+    "en": "In a fully connected layer, how is each element of the weight matrix used?",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "242ae626efe8": {
+    "zh": "A. 在每個空間位置都被重複使用多次",
+    "en": "A. It is reused many times, at every spatial position",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a66fb34b2034": {
+    "zh": "B. 只用一次，專門連線特定輸入節點與特定輸出節點",
+    "en": "B. Used only once, connecting one specific input node to one specific output node",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ebf705c7124f": {
+    "zh": "C. 數值必須等於卷積核的幾何中心權重",
+    "en": "C. Its value must equal the weight at the geometric center of the convolution kernel",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9e5af7bd8c0c": {
+    "zh": "D. 永遠固定為零以維持稀疏性",
+    "en": "D. Always fixed at zero to keep the network sparse",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

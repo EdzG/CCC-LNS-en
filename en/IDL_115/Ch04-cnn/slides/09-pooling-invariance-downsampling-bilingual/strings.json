@@ -1,0 +1,717 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "訊號右移一格後四個輸入值全變，但 max pooling 只改兩個輸出，其餘維持原值（虛線標出未變值）。": "After the signal shifts right by one cell, all four input values change, but max pooling changes only two outputs; the rest keep their original values (dashed boxes mark the unchanged values).",
+      "多數分類任務在意特徵「有沒有」，不在意它偏了幾個畫素；池化提供的局部不變性因此能大幅改善泛化性。": "Most classification tasks care whether a feature is “there or not”, not how many pixels it has shifted; the local invariance that pooling provides can therefore greatly improve generalization.",
+      "當空間位置本身就是預測答案時（如關鍵點標定），池化會模糊空間資訊，變成系統缺點而非優點。": "When the spatial position itself is the answer to predict (as in keypoint localization), pooling blurs the spatial information and becomes a weakness of the system rather than a strength.",
+      "stride > 1 會等比例縮小特徵圖尺寸；後續層格子變少、接到全連線時參數大幅縮減，有助於計算效能與預防過擬合。": "A stride > 1 shrinks the feature map size proportionally; later layers have fewer cells, and the parameters drop sharply when connecting to the fully connected layer, which helps computational efficiency and guards against overfitting.",
+      "綠色虛線框：數值與 Shift=0 基準完全相同（保持不變）。": "Green dashed boxes: same values as the Shift=0 baseline (unchanged).",
+      "基準輸出 (Shift=0)：": "Baseline output (Shift=0):",
+      "特徵保持不變數量：": "Number of features unchanged:",
+      "局部平移穩健成立：": "Local translation robustness holds:",
+      "雖然平移導致畫素改寫，池化摘要依然維持多數核心特徵！": "although the shift rewrote the pixels, the pooled summary still keeps most of the core features!",
+      "偏移過大：": "Shift too large:",
+      "平移超出感受野，特徵值產生全域改變。": "the shift exceeds the receptive field, so the feature values change globally."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      },
+      {
+        "re": "^當前輸入 4×4 \\[Shift = (-?\\d+)\\]$",
+        "en": "Input 4×4 [Shift = $1]"
+      },
+      {
+        "re": "^池化輸出 2×2 \\[(\\w+)\\]$",
+        "en": "Pooled 2×2 [$1]"
+      },
+      {
+        "re": "^當前輸出 \\(Shift=(-?\\d+)\\)：$",
+        "en": "Current output (Shift=$1):"
+      },
+      {
+        "re": "^運算即時診斷報告 \\[Shift = (-?\\d+), Mode = (\\w+)\\]$",
+        "en": "Live computation diagnostic report [Shift = $1, Mode = $2]"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "7043b03ede1d": {
+    "zh": "KP09 · 索引",
+    "en": "KP09 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "efe53d3c8a57": {
+    "zh": "<a href=\"#sec-invariance\">局部平移不變性 · Invariance</a>",
+    "en": "<a href=\"#sec-invariance\">Local Translation Invariance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "602ccdeabd20": {
+    "zh": "<a href=\"#svg-invariance\">數值位移深度剖析 · Fig 7 &amp; 8</a>",
+    "en": "<a href=\"#svg-invariance\">Numerical Shift Deep Dive · Fig 7 &amp; 8</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "01eca6439087": {
+    "zh": "<a href=\"#sec-downsampling\">下取樣與大師辨析 · Downsampling</a>",
+    "en": "<a href=\"#sec-downsampling\">Downsampling and the Master's Analysis</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1753af45aa58": {
+    "zh": "池化：局部平移不變性與下取樣\n      <span class=\"hero-title-en\">Pooling: Local Translation Invariance &amp; Downsampling</span>\n    ",
+    "en": "Pooling: Local Translation Invariance and Downsampling",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "59a46b534a50": {
+    "zh": "\n      卷積找出的特徵，究竟是在左邊還是右邊幾個畫素，多數時候沒那麼重要——「有沒有這個特徵」才重要！池化透過對局部鄰域取最大值或平均值，賦予模型對微小平移的強韌性，並經由步幅完成空間下取樣，大幅減輕後續全連線層的運算負荷與參數量。\n    ",
+    "en": "Whether a feature found by convolution sits a few pixels to the left or to the right usually doesn't matter that much: what matters is \"whether the feature is there at all\"! By taking the maximum or the average over a local neighborhood, pooling makes the model robust to small translations, and through the stride it performs spatial downsampling, greatly reducing the computational load and the number of parameters of the fully connected layers that follow.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "95d84be0ea5d": {
+    "zh": "\n      「輸入向右挪一格，四個畫素全改；為何池化特徵仍有一半穩如泰山？」\n      <small>Max Pooling 只追隨窗內最強峰值；在不在，比精確在哪裡重要得多！<br>\n        <span class=\"bilingual-en-inline\">Max pooling tracks only the peak response; presence matters far more than exact coordinates!</span>\n      </small>\n    ",
+    "en": "\"Shift the input right by one cell and all four pixels change; why does half of the pooled features stay rock-steady?\"\n      <small>Max pooling only follows the strongest peak in the window; whether it is there matters far more than exactly where it is!<br>\n        \n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "3fe92ee24e78": {
+    "zh": "02 / 局部平移不變性 · Local Translation Invariance",
+    "en": "02 / Local Translation Invariance",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "30d81b33079d": {
+    "zh": "池化為什麼不怕「稍微挪一下」？\n    <span class=\"en\">Why Pooling is Robust Against Small Spatial Perturbations</span>\n  ",
+    "en": "Why isn't pooling afraid of being \"nudged a little\"?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5283fe6e5e60": {
+    "zh": "池化的局部摘要特性",
+    "en": "Pooling as a local summary",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5c0181d06124": {
+    "zh": "\n      在原書教材 <strong>Fig. 7</strong> 中，訊號向右平移一格後，輸入矩陣的數值<strong>全部改變</strong>（例如左側補 0，原畫素全數右移）；然而在做完 $2\\times 2$ 且步幅為 2 的 Max Pooling 後，<strong>四個輸出中有兩個維持原樣（4 與 8）</strong>！\n    ",
+    "en": "In <strong>Fig. 7</strong> of the textbook, after the signal is shifted right by one cell, the values of the input matrix <strong>all change</strong> (e.g. a 0 is padded on the left and every original pixel moves right); yet after $2\\times 2$ max pooling with stride 2, <strong>two of the four outputs stay the same (4 and 8)</strong>!",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "80cc42cb98df": {
+    "zh": "\n      這展示了池化對<strong>局部平移（Local Translation）近似不變</strong>的本質：小位移雖然改寫了整個輸入矩陣的每一個格子，但只要局部窗內的最強特徵依然存在，池化後的摘要向量就絲毫不動。\n    ",
+    "en": "This shows the essence of pooling being <strong>approximately invariant to local translation</strong>: even though a small shift rewrites every single cell of the input matrix, as long as the strongest feature in the local window is still there, the pooled summary vector doesn't budge at all.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b223c959708c": {
+    "zh": "03 / 幾何視覺化 · Visual Verification",
+    "en": "03 / Visual Verification",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "e1faf3b4b2a9": {
+    "zh": "數值位移與數字「5」的存在性 (Fig. 7 &amp; 8)\n    <span class=\"en\">Numerical Shift &amp; The Digit '5' Recognition Metaphor</span>\n  ",
+    "en": "Numerical Shift and the Presence of the Digit \"5\" (Fig. 7 &amp; 8)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "554ce782c55e": {
+    "zh": "輸入右移一格：格子幾乎全改；max pooling 仍有一半摘要沒動 (Fig. 7)",
+    "en": "Input shifted right by one: almost every cell changes; half of the max-pooling summary stays put (Fig. 7)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c90c5d652cd2": {
+    "zh": "BEFORE · 原圖 (Original Input)",
+    "en": "BEFORE · Original input",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "dbea894bdc5d": {
+    "zh": "下排另兩窗：5 7／2 9 → 9 ； 0 1／4 3 → 4",
+    "en": "Other two bottom windows: 5 7 / 2 9 → 9 ; 0 1 / 4 3 → 4",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7cd2378fb166": {
+    "zh": "四個池化值：4, 8, 9, 4",
+    "en": "Four pooled values: 4, 8, 9, 4",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "147f3c648c87": {
+    "zh": "右移 1",
+    "en": "Shift right 1",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a93e215f9d15": {
+    "zh": "AFTER · 右移一格 (Shifted + Pad 0)",
+    "en": "AFTER · Shifted right by one (pad 0)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "53c0f4453b4a": {
+    "zh": "下排：0 5／0 2 → 5（改了）；7 0／9 4 → 9（改了）",
+    "en": "Bottom row: 0 5 / 0 2 → 5 (changed); 7 0 / 9 4 → 9 (changed)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "126b3073b2ee": {
+    "zh": "四個池化值：4, 8, 5, 9 · 虛線綠框＝數值完全沒變！",
+    "en": "Four pooled values: 4, 8, 5, 9 · dashed green box = value unchanged!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9a9d5f4ac98d": {
+    "zh": "沒變 4 與 8",
+    "en": "Unchanged: 4 and 8",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c4be0c8f7602": {
+    "zh": "上排窗最強特徵仍在",
+    "en": "Strongest features of the top windows still there",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c5b76a4026cb": {
+    "zh": "改變 9→5、4→9",
+    "en": "Changed: 9→5, 4→9",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c004d7c92732": {
+    "zh": "下排特徵被滑出視窗",
+    "en": "Bottom-row features slid out of the window",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "584c4d3a1885": {
+    "zh": "多數任務：「有沒有」比「在哪裡」重要 (Fig. 8)",
+    "en": "Most tasks: \"whether\" matters more than \"where\" (Fig. 8)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "7d9ee7b2d6a4": {
+    "zh": "數字 5 偏左或偏右幾個畫素，分類通常不在乎",
+    "en": "A 5 a few pixels left or right: classification usually doesn't care",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "39514ba63374": {
+    "zh": "池化把位置稍微模糊掉，反而大幅提高分類泛化穩健性",
+    "en": "Pooling blurs position slightly, which greatly improves the robustness of classification generalization",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c1673d8638d3": {
+    "zh": "位置本身是答案時有害！",
+    "en": "Harmful when the position itself is the answer!",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ea8468865948": {
+    "zh": "人臉關鍵點偵測、精確距離量測",
+    "en": "Facial keypoint detection, precise distance measurement",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "afca4a063f66": {
+    "zh": "等價是 conv (KP06)；不變是 pool (KP09)",
+    "en": "Equivariance is conv (KP06); invariance is pool (KP09)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5095be261040": {
+    "zh": "圖 9.1：池化平移穩健性示範（原圖右移一格，輸入四值全變，但池化輸出仍有半數保持原值 4 與 8）",
+    "en": "Figure 9.1: Demonstration of pooling's robustness to translation (the original is shifted right by one cell and all four input values change, yet half of the pooled outputs keep their original values 4 and 8)",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "793082011239": {
+    "zh": "🎯 「在不在」勝於「在哪裡」",
+    "en": "🎯 \"Whether it's there\" beats \"where it is\"",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "80e008e5b37a": {
+    "zh": "\n          <strong>Fig. 8</strong> 以手寫數字「5」為例：影像分類最迫切關心的是「這張圖到底有沒有 5 的曲線與橫槓」，而不是「這筆劃究竟精確落在第 14 還是第 15 個畫素」。\n        ",
+    "en": "<strong>Fig. 8</strong> uses the handwritten digit \"5\" as an example: what image classification cares about most urgently is \"does this image contain the curve and the bar of a 5 at all\", not \"does this stroke land exactly on pixel 14 or pixel 15\".",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b7def1cf80bf": {
+    "zh": "⚠️ 空間位置本身是答案時有害",
+    "en": "⚠️ Harmful when the spatial position itself is the answer",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "ca17293f319e": {
+    "zh": "\n          若任務是<strong>關鍵點偵測</strong>（例如瞳孔中心、骨架關節）或精確物件定位，池化模糊空間座標的不變性反而會洗掉核心資訊！\n        ",
+    "en": "If the task is <strong>keypoint detection</strong> (e.g. the center of the pupil, skeleton joints) or precise object localization, the invariance by which pooling blurs spatial coordinates ends up washing away the key information!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "5c4aa237b838": {
+    "zh": "04 / 大師辨析 · Downsampling &amp; Equivariance",
+    "en": "04 / The Master's Analysis · Downsampling &amp; Equivariance",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dc0aa951691b": {
+    "zh": "下取樣紅利與等價性 vs 不變性哲學對照\n    <span class=\"en\">Downsampling Payoffs &amp; The Equivariance vs Invariance Dichotomy</span>\n  ",
+    "en": "The Downsampling Payoff, and the Philosophies of Equivariance vs. Invariance Compared",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8e9c2845db51": {
+    "zh": "特性維度 Feature Dimension",
+    "en": "Property",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a1296345f04b": {
+    "zh": "卷積層（Convolution · KP06）",
+    "en": "Convolutional layer (KP06)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "c67e6774e891": {
+    "zh": "池化層（Pooling · KP09）",
+    "en": "Pooling layer (KP09)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "9671b7bb09e5": {
+    "zh": "<strong>數學對稱性</strong>",
+    "en": "<strong>Mathematical symmetry</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a972daf7187f": {
+    "zh": "<strong>平移等價性 (Translation Equivariance)</strong><br>$f(g(x)) = g(f(x))$",
+    "en": "<strong>Translation equivariance</strong><br>$f(g(x)) = g(f(x))$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3e97d22df5ce": {
+    "zh": "<strong>局部平移不變性 (Translation Invariance)</strong><br>$f(g(x)) \\approx f(x)$",
+    "en": "<strong>Local translation invariance</strong><br>$f(g(x)) \\approx f(x)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "4d3dbd90aa0e": {
+    "zh": "<strong>特徵圖行為</strong>",
+    "en": "<strong>Feature map behavior</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3dadb13db9ec": {
+    "zh": "輸入向右移 2 格，特徵圖也<strong>如影隨形向右移 2 格</strong>",
+    "en": "Shift the input right by 2 cells and the feature map <strong>follows it like a shadow, shifting right by 2 cells</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3dc77f9e8126": {
+    "zh": "輸入局部微移，池化特徵輸出<strong>幾乎完全不動</strong>",
+    "en": "Shift the input slightly within a local area and the pooled feature output <strong>barely moves at all</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b8efd1825bfc": {
+    "zh": "<strong>下取樣工程紅利</strong>",
+    "en": "<strong>Engineering payoff of downsampling</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "12509fa047ec": {
+    "zh": "stride &gt; 1 降低卷積滑動次數",
+    "en": "stride &gt; 1 reduces the number of positions the convolution slides over",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a85e68b044d7": {
+    "zh": "stride &gt; 1 空間減半，<strong>倍數削減後續 FC 層參數量</strong>",
+    "en": "stride &gt; 1 halves the spatial size, <strong>cutting the parameter count of later FC layers by a multiple</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "3dfc777c34fa": {
+    "zh": "<strong>適用任務領域</strong>",
+    "en": "<strong>Suitable tasks</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "30c95591cd62": {
+    "zh": "語意分割、畫素級標註、物件邊界定位",
+    "en": "Semantic segmentation, pixel-level labeling, object boundary localization",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5a79126077af": {
+    "zh": "全圖影像分類、場景識別、特徵存在性判斷",
+    "en": "Whole-image classification, scene recognition, judging whether a feature is present",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a482f57e97e0": {
+    "zh": "05 / 互動實驗室 · Interactive Lab",
+    "en": "05 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "958e69ea9ca8": {
+    "zh": "互動實驗室：池化平移穩健性模擬器\n    <span class=\"en\">Interactive Lab: Pooling Translation Robustness Simulator</span>\n  ",
+    "en": "Interactive Lab: Pooling Translation-Robustness Simulator",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "0d23f32fd0a0": {
+    "zh": "池化模式 Mode:",
+    "en": "Pooling mode:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8bca4238a10b": {
+    "zh": "Max Pooling (最大值)",
+    "en": "Max pooling (maximum)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "3b9b35b65b21": {
+    "zh": "Average Pooling (平均值)",
+    "en": "Average pooling (mean)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "7755fe362784": {
+    "zh": "訊號偏移量 Shift:",
+    "en": "Signal shift:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9e443906df1e": {
+    "zh": "原始輸入 (Shift = 0)",
+    "en": "Original input (Shift = 0)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d49105168161": {
+    "zh": "右移一格 (Shift = 1)",
+    "en": "Shifted right by one cell (Shift = 1)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "17725d28b84b": {
+    "zh": "右移兩格 (Shift = 2)",
+    "en": "Shifted right by two cells (Shift = 2)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "97a179f810b5": {
+    "zh": "▶ 執行運算 Run Simulation",
+    "en": "▶ Run simulation",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5db2d5a1146a": {
+    "zh": "\n          左側 4×4 輸入訊號與右側 2×2 池化摘要輸出（綠色虛線代表數值完全沒變）：\n        ",
+    "en": "Left: the 4×4 input signal; right: the 2×2 pooled summary output (green dashed lines mean the value is completely unchanged):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "63c7875f3aeb": {
+    "zh": "\n        運算即時診斷報告 [Shift = 1, Mode = MAX]\n      ",
+    "en": "Live computation diagnostic report [Shift = 1, Mode = MAX]",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "644ef0acc93e": {
+    "zh": "<strong>基準輸出 (Shift=0)：</strong> <span style=\"font-family:monospace; color:#475569;\">[[4, 8], [7, 9]]</span>",
+    "en": "<strong>Baseline output (Shift=0):</strong> <span style=\"font-family:monospace; color:#475569;\">[[4, 8], [7, 9]]</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "85c34bd7c653": {
+    "zh": "<strong>當前輸出 (Shift=1)：</strong> <span style=\"font-family:monospace; color:#0369a1; font-weight:700;\">[[4, 8], [5, 7]]</span>",
+    "en": "<strong>Current output (Shift=1):</strong> <span style=\"font-family:monospace; color:#0369a1; font-weight:700;\">[[4, 8], [5, 7]]</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6bcaec70662b": {
+    "zh": "<strong>特徵保持不變數量：</strong> <span style=\"font-size:16px; font-weight:700; color:#15803d;\">2 / 4 (50%)</span>",
+    "en": "<strong>Number of features unchanged:</strong> <span style=\"font-size:16px; font-weight:700; color:#15803d;\">2 / 4 (50%)</span>",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "a8f6c2f2e13e": {
+    "zh": "\n        ✅ <strong>局部平移穩健成立：</strong> 雖然平移導致畫素改寫，池化摘要依然維持多數核心特徵！\n      ",
+    "en": "✅ <strong>Local translation robustness holds:</strong> although the shift rewrote the pixels, the pooled summary still keeps most of the core features!",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cb5bafcc6d7": {
+    "zh": "06 / 實戰檢驗 · Concept Checkpoint",
+    "en": "06 / Hands-On Check",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3ff9f5e34e38": {
+    "zh": "題目 1 · 局部平移穩健性 / Robustness to Translation",
+    "en": "Question 1 · Robustness to Translation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b5ef494242af": {
+    "zh": "原書 Fig. 7 用什麼具體現象說明池化對局部平移較為穩健？",
+    "en": "What concrete phenomenon does Fig. 7 of the textbook use to show that pooling is fairly robust to local translation?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b17d0888f0d8": {
+    "zh": "A. 平移後四個輸入畫素全都改變，但 max pooling 後仍只有兩個特徵改變（另兩個完全不動）",
+    "en": "A. After the shift, all four input pixels change, but after max pooling only two features change (the other two don't move at all)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "850a679d52a5": {
+    "zh": "B. 平移後輸入矩陣完全不變",
+    "en": "B. After the shift, the input matrix is completely unchanged",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "b8d69b0616cc": {
+    "zh": "C. 池化會把局部平移放大成全域旋轉",
+    "en": "C. Pooling amplifies a local translation into a global rotation",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a44c07a447fe": {
+    "zh": "D. 只有平均池化具有平移不變性，max pooling 完全沒有",
+    "en": "D. Only average pooling has translation invariance; max pooling has none at all",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a7638f616364": {
+    "zh": "題目 2 · 數字 5 辨識觀點 / Digit 5 Principle",
+    "en": "Question 2 · The Digit 5 Principle",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fda53d290ec1": {
+    "zh": "原書 Fig. 8 以手寫數字「5」為例，主要想強調的電腦視覺辨識觀點是？",
+    "en": "Fig. 8 of the textbook uses the handwritten digit \"5\" as an example. What computer-vision recognition point is it mainly trying to stress?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9cd3dc654cdd": {
+    "zh": "A. 分類網路必須精確掌握數字 5 的每一個絕對畫素座標",
+    "en": "A. A classification network must know every absolute pixel coordinate of the digit 5 precisely",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "4ebe45c91434": {
+    "zh": "B. 偵測到數字 5 結構的存在性，通常比精確知道它偏左或偏右幾畫素更重要",
+    "en": "B. Detecting that the structure of a 5 is present usually matters more than knowing precisely how many pixels it sits to the left or right",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1ba907c74c45": {
+    "zh": "C. 池化操作會摧毀所有類別語意資訊",
+    "en": "C. The pooling operation destroys all class semantic information",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "662340110b0b": {
+    "zh": "D. 局部平移不變性對所有視覺任務都是有害的",
+    "en": "D. Local translation invariance is harmful for every vision task",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "24c325a7d443": {
+    "zh": "題目 3 · 不變性潛在負擔 / Invariance Tradeoff",
+    "en": "Question 3 · The Potential Cost of Invariance",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2af42d5979ce": {
+    "zh": "在什麼特定情境下，池化帶來的「局部平移不變性」反而可能對任務有害？",
+    "en": "In what specific situation can the \"local translation invariance\" that pooling brings actually be harmful to the task?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3f6e291473c5": {
+    "zh": "A. 只要網路中使用了 ReLU 啟用函式就一定有害",
+    "en": "A. It is always harmful as soon as the network uses the ReLU activation function",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "72d5d148bee7": {
+    "zh": "B. 任務本身極度依賴精確空間幾何座標（例如量測距離、關鍵點對齊、精確邊界分割）",
+    "en": "B. When the task itself depends heavily on precise spatial geometric coordinates (e.g. measuring distances, keypoint alignment, precise boundary segmentation)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ec1b99db39f1": {
+    "zh": "C. 只要卷積核的 stride 等於 1",
+    "en": "C. Whenever the stride of the convolution kernel equals 1",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "934bc06ec2fc": {
+    "zh": "D. 只有平均池化有害，Max Pooling 在任何任務上均絕對無害",
+    "en": "D. Only average pooling is harmful; max pooling is absolutely harmless for any task",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "772ea41829f5": {
+    "zh": "題目 4 · 下取樣工程效益 / Downsampling Benefits",
+    "en": "Question 4 · Engineering Benefits of Downsampling",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "36b57a8f8401": {
+    "zh": "池化層進行下取樣（如 stride = 2）帶來的最核心工程效益是？",
+    "en": "What is the most essential engineering benefit of downsampling in a pooling layer (e.g. stride = 2)?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e52a1d8e851d": {
+    "zh": "A. 使特徵圖空間尺寸膨脹、增加模型容量與參數",
+    "en": "A. It inflates the spatial size of the feature map, increasing model capacity and parameters",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "40407f5fc6e0": {
+    "zh": "B. 縮小空間尺寸，倍數降低後續層計算量，並大幅削減進入全連線層的參數量",
+    "en": "B. It shrinks the spatial size, cutting the computation of later layers by a multiple and greatly reducing the number of parameters entering the fully connected layers",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "e02ff6cea113": {
+    "zh": "C. 把所有卷積核轉換為全連線權重",
+    "en": "C. It converts all convolution kernels into fully connected weights",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "65a5614993e6": {
+    "zh": "D. 強制使模型所有權重初始化為 1",
+    "en": "D. It forces all of the model's weights to be initialized to 1",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9e3a35c0190d": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：池化雙重使命\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#93c5fd; font-weight:normal;\">Key Takeaways: Invariance and Downsampling</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: the two missions of pooling",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "39209ea9907a": {
+    "zh": "<strong>局部摘要造就平移穩健（Fig. 7）：</strong> Max Pooling 只在乎局部最強峰值。輸入即使發生單畫素位移導致畫素全改，池化摘要仍有一半以上穩如泰山。",
+    "en": "<strong>A local summary brings translation robustness (Fig. 7):</strong> max pooling only cares about the strongest local peak. Even if a one-pixel shift of the input changes every pixel, more than half of the pooled summary stays rock-steady.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "2d3c05f2b6b9": {
+    "zh": "<strong>「在不在」勝於「在哪裡」（Fig. 8）：</strong> 分類任務重在特徵存在性而非毫米級精確位置。模糊化微小位移有助於抵抗外在干擾。",
+    "en": "<strong>\"Whether it's there\" beats \"where it is\" (Fig. 8):</strong> classification tasks care about whether a feature is present, not its millimeter-exact position. Blurring small shifts helps resist external disturbances.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1aa1514599a0": {
+    "zh": "<strong>下取樣節省算力與參數（Fig. 9）：</strong> 步幅大於 1 壓縮特徵空間，為後續層減少運算量，防範全連線層參數爆炸。",
+    "en": "<strong>Downsampling saves compute and parameters (Fig. 9):</strong> a stride greater than 1 compresses the feature space, reducing the computation of later layers and preventing a parameter explosion in the fully connected layers.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "d09086092f6e": {
+    "zh": "<strong>平移等價 vs 平移不變：</strong> 卷積具備平移等價性（特徵隨物體移動）；池化具備局部平移不變性（特徵不隨小移動改變）。二者分工協同，構建現代視覺骨架！",
+    "en": "<strong>Translation equivariance vs. translation invariance:</strong> convolution has translation equivariance (features move with the object); pooling has local translation invariance (features don't change under small moves). The two divide the labor and work together to build the backbone of modern vision!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

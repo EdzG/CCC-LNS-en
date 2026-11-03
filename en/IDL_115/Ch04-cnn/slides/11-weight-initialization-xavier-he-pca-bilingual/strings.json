@@ -1,0 +1,689 @@
+{
+  "_runtime": {
+    "exact": {
+      "答對了！": "Correct!",
+      "答案不正確。": "Incorrect.",
+      "再想一下！": "Think again!",
+      "核值即權重；反向傳播從當前權重出發迭代更新，因此訓練前必須給初值。": "Kernel values are the weights; backpropagation updates iteratively starting from the current weights, so initial values must be given before training.",
+      "層權重是投影矩陣；隨機初始化對應隨機投影，JL 引理為其保距性質提供理論支援。": "A layer's weights are a projection matrix; random initialization corresponds to a random projection, and the JL lemma provides the theoretical support for its distance-preserving property.",
+      "過大爆炸、過小消失；Xavier／Glorot 平衡 tanh／sigmoid，He 平衡 ReLU 的變異數。": "Too large explodes, too small vanishes; Xavier/Glorot balances the variance for tanh/sigmoid, and He balances it for ReLU.",
+      "patch 尺寸對應步幅 s；收集原樣與平移後的 patch，PCA 的 s×s 特徵向量即該層初始核。": "The patch size corresponds to the stride s; collect the original and the shifted patches, and the s×s eigenvectors from PCA are that layer's initial kernels.",
+      "理想方差 (Var ≈ 1.0)": "Ideal variance (Var ≈ 1.0)",
+      "過大權重": "Oversized",
+      "過小權重": "Undersized",
+      "輸入層初始方差 (L0)：": "Initial input-layer variance (L0):",
+      "第 10 層輸出方差 (L10)：": "Layer 10 output variance (L10):",
+      "He 初始化完美平衡：": "He initialization, perfectly balanced:",
+      "各層方差平穩維持在健康區間，ReLU 活化訊號無阻礙穿透 10 層，梯度更新順暢！": "the variance of every layer stays steadily in a healthy range, the ReLU activation signal passes through all 10 layers unhindered, and the gradient updates run smoothly!",
+      "Xavier 經典平衡：": "Xavier, the classic balance:",
+      "tanh 啟用飽和度受控，前後向傳播方差保持對稱。": "tanh activation saturation is kept under control, and the forward and backward variances stay symmetric.",
+      "梯度爆炸警告：": "Exploding-gradient warning:",
+      "方差逐層膨脹！深層輸出極端化，反向傳播必將遭遇數值溢位 NaN！": "the variance swells layer by layer! The deep-layer outputs become extreme, and backpropagation is bound to hit numerical overflow, NaN!",
+      "梯度消失警告：": "Vanishing-gradient warning:",
+      "訊號在 3 層內即衰減至近乎為 0，深層網路徹底失去學習能力。": "the signal decays to almost 0 within 3 layers, and the deep network completely loses its ability to learn."
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^再想一下！([\\s\\S]+)$",
+        "en": "Think again! $T1"
+      },
+      {
+        "re": "^訊號變異數追蹤診斷 \\[(.*)\\]$",
+        "en": "Signal variance tracking diagnostics [$T1]"
+      }
+    ]
+  },
+  "_dynamic": [
+    "#init-ro"
+  ],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "6be9de52d2e1": {
+    "zh": "KP11 · 索引",
+    "en": "KP11 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">The Big Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "4eba163d1aee": {
+    "zh": "<a href=\"#sec-init-principles\">初始化核心原則 · Principles</a>",
+    "en": "<a href=\"#sec-init-principles\">Core Principles of Initialization</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "cf97e1e34f68": {
+    "zh": "<a href=\"#svg-init\">變異數平衡視覺化 · Variance Balance</a>",
+    "en": "<a href=\"#svg-init\">Visualizing Variance Balance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "2f67b987d84f": {
+    "zh": "<a href=\"#sec-xavier-he-pca\">Xavier、He 與 PCA · Modern Approaches</a>",
+    "en": "<a href=\"#sec-xavier-he-pca\">Xavier, He, and PCA</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e61c4b3f9990": {
+    "zh": "權重初始化：隨機、Xavier／He 與 PCA\n      <span class=\"hero-title-en\">Weight Initialization: Random, Xavier/He, and PCA</span>\n    ",
+    "en": "Weight Initialization: Random, Xavier/He, and PCA",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "3a63e0a7b7d8": {
+    "zh": "\n      CNN 的權重就是卷積核裡的實數矩陣。反向傳播是迭代最佳化演算法，若無起點便寸步難行。初值設定過大，訊號層層倍增引發「梯度爆炸（Exploding Gradient）」；初值設定過小，前向活化與反向反饋層層衰減陷入「梯度消失（Vanishing Gradient）」。Xavier（適應 tanh/sigmoid）與 He 初始化（適應 ReLU）透過精確縮放方差，守護深度神經網路的數值生命線。\n    ",
+    "en": "The weights of a CNN are exactly the real-valued matrices inside the convolution kernels. Backpropagation is an iterative optimization algorithm, and without a starting point it can't take a single step. If the initial values are too large, the signal multiplies layer after layer and causes \"exploding gradients\"; if they are too small, the forward activations and the backward feedback decay layer after layer into \"vanishing gradients\". Xavier initialization (suited to tanh/sigmoid) and He initialization (suited to ReLU) scale the variance precisely, guarding the numerical lifeline of deep neural networks.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "be0b40c17bc2": {
+    "zh": "\n      「音量旋鈕調太大瞬間爆音（NaN），調太小又完全沒聲音；<br>\n      如何讓訊號穿透十幾層深網，依然保持恰到好處的能量？」\n      <small>核就是權重；太大爆炸、太小消失！Xavier 守護 tanh，He 守護 ReLU，方差平衡才是穩定起點！<br>\n        <span class=\"bilingual-en-inline\">Kernels are weights: oversized explodes, undersized vanishes! Xavier balances tanh while He stabilizes ReLU.</span>\n      </small>\n    ",
+    "en": "\"Turn the volume knob too far and it instantly blows out (NaN); turn it too low and there is no sound at all;<br>\n      how do you get a signal through a dozen-plus layers of a deep network and still keep just the right amount of energy?\"\n      <small>Kernels are weights; too large explodes, too small vanishes! Xavier guards tanh, He guards ReLU, and a balanced variance is the stable starting point!<br>\n        \n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "9a5cbf4c288c": {
+    "zh": "02 / 數值傳遞物理學 · Signal Dynamics",
+    "en": "02 / The Physics of Signal Propagation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "1ee8993a500c": {
+    "zh": "卷積核就是權重：訓練前為何必須精確賦值？\n    <span class=\"en\">Kernels Are Weights: The Imperative of Non-Arbitrary Initialization</span>\n  ",
+    "en": "Kernels Are Weights: Why Must They Be Set Precisely Before Training?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "62d57f3b5cec": {
+    "zh": "音量旋鈕的比喻：訊號增益與方差失控",
+    "en": "The volume-knob analogy: signal gain and runaway variance",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "061b89ef890a": {
+    "zh": "\n      CNN 的卷積核本質就是待最佳化的權重矩陣。在多層神經網路的前向傳播中，每一層都對上一層的輸出進行線性變換與非線性啟用：\n    ",
+    "en": "The convolution kernels of a CNN are, at heart, weight matrices waiting to be optimized. In forward propagation through a multilayer neural network, every layer applies a linear transformation and a nonlinear activation to the output of the previous layer:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "07a7c11f3a3f": {
+    "zh": "<strong>權重過大（$|w| &gt; 1$）：</strong> 每一層都在放大訊號，經過數層級聯傳遞，前向活化值迅速衝上數萬，反向傳遞的梯度指數級膨脹，造成數值溢位而噴出 <strong>NaN</strong>（梯度爆炸）。",
+    "en": "<strong>Weights too large ($|w| &gt; 1$):</strong> every layer amplifies the signal; after cascading through a few layers, the forward activations quickly shoot up into the tens of thousands, the backpropagated gradients grow exponentially, and numerical overflow spits out <strong>NaN</strong> (exploding gradients).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "5cc7e2018311": {
+    "zh": "<strong>權重過小（$|w| \\ll 1$）：</strong> 每一層都在縮小訊號，深層網路的神經元活化值迅速萎縮趨近於 0，反向傳播的梯度徹底消散，模型完全停滯無法更新（梯度消失）。",
+    "en": "<strong>Weights too small ($|w| \\ll 1$):</strong> every layer shrinks the signal; the neuron activations in deep layers quickly wither toward 0, the backpropagated gradients dissipate completely, and the model stalls with no updates at all (vanishing gradients).",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "fbcb9def5a63": {
+    "zh": "\n      因此，初始化的終極目標是：<strong>保持每一層活化值與梯度的變異數（Variance）大致恆定</strong>，讓訊號既不放大也不衰減。\n    ",
+    "en": "So the ultimate goal of initialization is: <strong>keep the variance of each layer's activations and gradients roughly constant</strong>, so the signal is neither amplified nor attenuated.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d009d9c80b11": {
+    "zh": "03 / 幾何傳遞圖示 · Geometric Propagation",
+    "en": "03 / Geometric Propagation",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8fa7e3d62783": {
+    "zh": "變異數傳遞三部曲：爆炸、消失與 He／Xavier 平衡\n    <span class=\"en\">Signal Variance Across Layers: Explosion, Vanishing, and Equilibrium</span>\n  ",
+    "en": "Variance Propagation in Three Acts: Explosion, Vanishing, and He/Xavier Balance",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b3d404059f1d": {
+    "zh": "核就是權重：太大爆炸、太小消失，He／Xavier 守護變異數平衡",
+    "en": "Kernels are weights: too large explodes, too small vanishes; He/Xavier keep the variance balanced",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "01badf9b58e3": {
+    "zh": "太大 · 梯度爆炸",
+    "en": "Too large · exploding gradients",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "c1e5fe4019fa": {
+    "zh": "|w| 過大，每層訊號倍增",
+    "en": "|w| too large: signal multiplies every layer",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "68611a3c384f": {
+    "zh": "活化與梯度溢位失控",
+    "en": "Activations and gradients overflow out of control",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e86f1b918875": {
+    "zh": "太小 · 梯度消失",
+    "en": "Too small · vanishing gradients",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "ef6c3ca15e63": {
+    "zh": "|w| 過小，每層訊號衰減",
+    "en": "|w| too small: signal decays every layer",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "e5602653548d": {
+    "zh": "深層收不到有效梯度",
+    "en": "Deep layers get no useful gradient",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b241b694b284": {
+    "zh": "剛好 · 變異數平衡",
+    "en": "Just right · balanced variance",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "b9dee54dd848": {
+    "zh": "依扇入／扇出縮放初始 σ²",
+    "en": "Scale the initial σ² by fan-in / fan-out",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "eb515dbf21fa": {
+    "zh": "各層活化尺度恆定 · 穩健收斂",
+    "en": "Activation scale constant across layers · robust convergence",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "9b3e2deaa226": {
+    "zh": "精確配方：啟用函式決定初始化",
+    "en": "The exact recipe: the activation function decides the initialization",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a3e68456c661": {
+    "zh": "配合 tanh／sigmoid 飽和型",
+    "en": "For saturating tanh / sigmoid",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "a604d2e7df5d": {
+    "zh": "He 初始化 (Kaiming)",
+    "en": "He initialization (Kaiming)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "64bb6c52fb21": {
+    "zh": "配合 ReLU 及其變體",
+    "en": "For ReLU and its variants",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "5101e913ccbe": {
+    "zh": "理論基石：JL 引理",
+    "en": "Theoretical foundation: the JL lemma",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "6ceaeedbef11": {
+    "zh": "隨機投影 ≈ 近似保距 (JL Lemma)",
+    "en": "Random projection ≈ approximately distance-preserving (JL lemma)",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "95d3e415ca95": {
+    "zh": "隨機初值並非盲目亂猜",
+    "en": "Random initial values are not blind guessing",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "17d73b65c329": {
+    "zh": "非監督備案：微平移 patch → PCA 當核",
+    "en": "Unsupervised fallback: slightly shifted patches → PCA as kernels",
+    "kp": 4,
+    "ctx": "svg"
+  },
+  "8b68a2422bf5": {
+    "zh": "圖 11.1：神經網路活化尺度演進（爆炸 vs 消失 vs 變異數平衡）與理論對應",
+    "en": "Figure 11.1: How activation scale evolves through a neural network (explosion vs. vanishing vs. balanced variance) and the corresponding theory",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "0a5900c5e86a": {
+    "zh": "📐 Johnson–Lindenstrauss (JL) 引理",
+    "en": "📐 The Johnson–Lindenstrauss (JL) lemma",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "986015bc47f0": {
+    "zh": "\n          一層權重可視為高維向量的<strong>隨機投影（Random Projection）</strong>。JL 引理在數學上證明：隨機投影能以極高機率近似保持樣本點之間的成對歐氏距離。這解釋了為何「隨便抽一組不太大也不太小的權重」能作為堪用的初始特徵抽取器！\n        ",
+    "en": "One layer of weights can be seen as a <strong>random projection</strong> of high-dimensional vectors. The JL lemma proves mathematically that a random projection approximately preserves the pairwise Euclidean distances between sample points with very high probability. This explains why \"just drawing a set of weights that are neither too large nor too small\" works as a serviceable initial feature extractor!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "19ce3788d17f": {
+    "zh": "🔬 非監督初始化：平移 Patch 做 PCA",
+    "en": "🔬 Unsupervised initialization: PCA on shifted patches",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b1e0e6722cf3": {
+    "zh": "\n          在無標籤時，可收集影象中各區域的局部 Patch 及其微小平移副本，拉平為矩陣後執行 <strong>PCA（主成分分析）</strong>，取前 $s\\times s$ 個特徵向量作為該層卷積核，天生具備對微平移穩健的幾何基底！\n        ",
+    "en": "When there are no labels, you can collect local patches from various regions of the images along with slightly shifted copies of them, flatten them into a matrix and run <strong>PCA (principal component analysis)</strong>, then take the top $s\\times s$ eigenvectors as that layer's convolution kernels: a geometric basis that is naturally robust to small shifts!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f1c951cc23de": {
+    "zh": "04 / 經典演算法對照 · Initialization Algorithms",
+    "en": "04 / Initialization Algorithms Compared",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "42caf93b838e": {
+    "zh": "現代初始化方法：扇入扇出與數學方差推導\n    <span class=\"en\">Mathematical Formulations: Fan-In, Fan-Out, and Distribution Variance</span>\n  ",
+    "en": "Modern Initialization Methods: Fan-In, Fan-Out, and Deriving the Variance",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2e9c26cca558": {
+    "zh": "初始化方法 Initialization",
+    "en": "Initialization method",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "037c5fee9b93": {
+    "zh": "適用啟用函式 Activation",
+    "en": "Activation function",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b3083e70909f": {
+    "zh": "常態分佈方差 $\\text{Var}(W)$",
+    "en": "Variance of the normal distribution $\\text{Var}(W)$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b0269662cc01": {
+    "zh": "核心設計哲學 Design Philosophy",
+    "en": "Core design philosophy",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2e5e9ae1f94b": {
+    "zh": "$\\tanh$, Sigmoid (零對稱/飽和型)",
+    "en": "$\\tanh$, sigmoid (zero-symmetric / saturating)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0fe87315cc75": {
+    "zh": "假設線性啟用區間，維持輸入輸出方差比值為 1，防止進入飽和區",
+    "en": "Assumes the linear region of the activation, keeps the ratio of output to input variance at 1, and avoids entering the saturation region",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5d6124f65040": {
+    "zh": "$\\text{ReLU}$, Leaky ReLU (單側截斷)",
+    "en": "$\\text{ReLU}$, leaky ReLU (one-sided cutoff)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ea38e1a698e2": {
+    "zh": "考慮 ReLU 阻斷了一半的負響應（均值歸零），方差係數補償為 2 倍",
+    "en": "Accounts for ReLU blocking half of the responses, the negative ones (zeroing them out), so the variance coefficient is compensated by a factor of 2",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8d246a565459": {
+    "zh": "<strong>純隨機高斯 (Std Gaussian)</strong>",
+    "en": "<strong>Plain random Gaussian (std Gaussian)</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "ec2e7f6c75cf": {
+    "zh": "早期淺層網路（已遭現代淘汰）",
+    "en": "Early shallow networks (now obsolete)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "0e62cd725464": {
+    "zh": "$$\\sigma^2 = 0.01 \\text{ (固定值)}$$",
+    "en": "$$\\sigma^2 = 0.01 \\text{ (fixed value)}$$",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2495f1b70e41": {
+    "zh": "未考量層寬（Fan-in），在深層網路中必然引發爆炸或消失",
+    "en": "Ignores the layer width (fan-in); in deep networks it inevitably causes explosion or vanishing",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "745f683c009f": {
+    "zh": "<strong>PCA 特徵向量法</strong>",
+    "en": "<strong>PCA eigenvector method</strong>",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "24720cadb47b": {
+    "zh": "非監督資料驅動 (Data-Driven)",
+    "en": "Unsupervised, data-driven",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8fde11c913b3": {
+    "zh": "主成分特徵向量正交歸一",
+    "en": "Principal component eigenvectors, orthonormal",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "b87c2338ae27": {
+    "zh": "從局部 Patch 的自協方差矩陣提取主成分，專注於顯著邊緣與紋理",
+    "en": "Extracts principal components from the autocovariance matrix of local patches, focusing on salient edges and textures",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "a482f57e97e0": {
+    "zh": "05 / 互動實驗室 · Interactive Lab",
+    "en": "05 / Interactive Lab",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "dd41c70a15c2": {
+    "zh": "互動實驗室：10 層網路訊號傳播與變異數檢驗器\n    <span class=\"en\">Interactive Lab: 10-Layer Signal Propagation &amp; Variance Inspector</span>\n  ",
+    "en": "Interactive Lab: 10-Layer Network Signal Propagation and Variance Inspector",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "98ab8904f574": {
+    "zh": "初始化方案 Init Scheme:",
+    "en": "Initialization scheme:",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ac800e7454ac": {
+    "zh": "He 初始化 (ReLU 適配，方差穩定)",
+    "en": "He initialization (fits ReLU, stable variance)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f173892f2392": {
+    "zh": "Xavier 初始化 (tanh 適配)",
+    "en": "Xavier initialization (fits tanh)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c24bbd851bfc": {
+    "zh": "過大權重 Oversized (Std=2.0，爆炸警告)",
+    "en": "Oversized weights (Std=2.0, explosion warning)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5993d2d03af5": {
+    "zh": "過小權重 Undersized (Std=0.1，消失警告)",
+    "en": "Undersized weights (Std=0.1, vanishing warning)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d6c3386e2036": {
+    "zh": "▶ 模擬前向傳播 10 層 Run 10 Layers",
+    "en": "▶ Simulate forward propagation through 10 layers",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "f181d98ae2b0": {
+    "zh": "\n          10 層神經網路各層活化值變異數演進折線圖（綠線：理論穩定區間）：\n        ",
+    "en": "Line chart of the activation variance at each layer of a 10-layer neural network (green line: the theoretically stable range):",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "2cb5bafcc6d7": {
+    "zh": "06 / 實戰檢驗 · Concept Checkpoint",
+    "en": "06 / Hands-On Check",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fe21d074c669": {
+    "zh": "題目 1 · 賦予初值必要性 / Initialization Necessity",
+    "en": "Question 1 · Why Initialization Is Necessary",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2bd1118cfa21": {
+    "zh": "CNN 裡「必須先初始化再做反向傳播」的原因是？",
+    "en": "Why must a CNN \"initialize first, then do backpropagation\"?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a502e5de0175": {
+    "zh": "A. 卷積核不是權重，所以不能算梯度",
+    "en": "A. Convolution kernels are not weights, so gradients can't be computed for them",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a441e19decb5": {
+    "zh": "B. 權重就是核的數值，backprop 是迭代最佳化，沒有初值就沒有最佳化變數",
+    "en": "B. The weights are the kernel values, and backprop is iterative optimization; without initial values there are no optimization variables",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "fbb72e464b49": {
+    "zh": "C. 初始化可以完全取代損失函式",
+    "en": "C. Initialization can completely replace the loss function",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a5dfefb876d7": {
+    "zh": "D. He 初始化會讓網路不必訓練",
+    "en": "D. He initialization means the network doesn't need training",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "3196ed8c7aca": {
+    "zh": "題目 2 · JL 引理關聯 / Johnson-Lindenstrauss Lemma",
+    "en": "Question 2 · The Johnson–Lindenstrauss Lemma",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "479fd5320932": {
+    "zh": "隨機初始化與 Johnson–Lindenstrauss 引理的關係是？",
+    "en": "What is the relationship between random initialization and the Johnson–Lindenstrauss lemma?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9c7600e53fff": {
+    "zh": "A. JL 要求權重必須全為 0",
+    "en": "A. JL requires all weights to be 0",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6857eb4c3abb": {
+    "zh": "B. 權重可看成隨機投影，JL 說明隨機投影能以高機率近似保留成對距離",
+    "en": "B. The weights can be seen as a random projection, and JL says a random projection approximately preserves pairwise distances with high probability",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1d19974052b3": {
+    "zh": "C. JL 只適用於二階 Newton 法",
+    "en": "C. JL only applies to the second-order Newton method",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "8a7b115c4fef": {
+    "zh": "D. JL 禁止使用 ReLU 啟用函式",
+    "en": "D. JL forbids the ReLU activation function",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a3dcca88e540": {
+    "zh": "題目 3 · 啟用函式對應 / Method Pairing",
+    "en": "Question 3 · Pairing Methods with Activations",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "2170da6953a4": {
+    "zh": "關於初始值大小與現代初始化方法，下列何者正確？",
+    "en": "Which of the following about the size of initial values and modern initialization methods is correct?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c66b482fdbf7": {
+    "zh": "A. 權重愈大愈好，可避免爆炸",
+    "en": "A. The larger the weights the better; that avoids explosion",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bc4e81785dfb": {
+    "zh": "B. 太大會爆炸、太小會消失；Xavier／Glorot 適合 tanh／sigmoid，He 適合 ReLU",
+    "en": "B. Too large explodes, too small vanishes; Xavier/Glorot suits tanh/sigmoid, He suits ReLU",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "281107a5f8df": {
+    "zh": "C. Xavier 專為 ReLU 設計，He 專為 sigmoid 設計",
+    "en": "C. Xavier is designed for ReLU, He is designed for sigmoid",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1418e2da2f1c": {
+    "zh": "D. 現代網路必須用純均勻 [-100, 100] 初始化",
+    "en": "D. Modern networks must use a plain uniform [-100, 100] initialization",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f2060715666f": {
+    "zh": "題目 4 · 非監督 PCA 初始化 / Unsupervised PCA",
+    "en": "Question 4 · Unsupervised PCA Initialization",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "939c47d174a0": {
+    "zh": "非監督初始化中，PCA 產出什麼來當卷積核？",
+    "en": "In unsupervised initialization, what does PCA produce to serve as the convolution kernels?",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ed56d1cf8103": {
+    "zh": "A. 隨機高斯矩陣，與 patch 無關",
+    "en": "A. A random Gaussian matrix, unrelated to the patches",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "c4dd81904188": {
+    "zh": "B. 對原 patch 與微平移 patch 做 PCA，得到 $s\\times s$ 特徵向量矩陣當初始核",
+    "en": "B. Running PCA on the original patches and slightly shifted patches gives an $s\\times s$ eigenvector matrix used as the initial kernel",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a1c244959c27": {
+    "zh": "C. 全 1 的平均池化核",
+    "en": "C. An all-ones average pooling kernel",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6673e818656d": {
+    "zh": "D. 只有 bias、沒有核",
+    "en": "D. Only a bias, no kernel",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "ca9deb7765a9": {
+    "zh": "\n      <span>📌</span> 本單元核心總結：初始化生命線\n      <span class=\"bilingual-en-inline\" style=\"font-size:14px; color:#a7f3d0; font-weight:normal;\">Key Takeaways: Initialization Variance Balance</span>\n    ",
+    "en": "<span>📌</span> Key takeaways of this unit: the lifeline of initialization",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3dfa4f59751c": {
+    "zh": "<strong>核即權重，初值不可或缺：</strong> 反向傳播是基於現狀迭代的演算法，合理的起點是數值收斂的第一前提。",
+    "en": "<strong>Kernels are weights, so initial values are essential:</strong> backpropagation is an algorithm that iterates from the current state, and a sensible starting point is the first prerequisite for numerical convergence.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "a02448387be0": {
+    "zh": "<strong>太大爆炸、太小消失：</strong> 訊號在深網中如同級聯放大器，初值過大引發數值溢位（NaN），過小則讓深層失去反饋動能。",
+    "en": "<strong>Too large explodes, too small vanishes:</strong> in a deep network the signal behaves like a cascade of amplifiers; initial values that are too large cause numerical overflow (NaN), and values that are too small leave the deep layers without feedback momentum.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "990c659d8d56": {
+    "zh": "<strong>對症下藥的現代配方：</strong> 飽和型啟用函式（$\\tanh$, Sigmoid）採用 Xavier/Glorot；非飽和截斷啟用函式（ReLU）採用 He/Kaiming，精確平衡層間方差。",
+    "en": "<strong>A modern recipe for each case:</strong> saturating activation functions ($\\tanh$, sigmoid) use Xavier/Glorot; non-saturating, truncating activation functions (ReLU) use He/Kaiming, precisely balancing the variance between layers.",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e24906256845": {
+    "zh": "<strong>理論支撐與非監督前瞻：</strong> 隨機初始化得益於 JL 隨機投影保距定理；無標籤時亦可透過微平移 Patch 的 PCA 特徵向量建立正交穩健的初始卷積核！",
+    "en": "<strong>Theoretical support and an unsupervised outlook:</strong> random initialization benefits from the JL theorem that random projections preserve distances; when there are no labels, you can also build orthogonal, robust initial convolution kernels from the PCA eigenvectors of slightly shifted patches!",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Section table of contents",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}

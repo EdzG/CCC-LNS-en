@@ -1,0 +1,1282 @@
+{
+  "_runtime": {
+    "exact": {
+      "✅ 答對了！": "✅ Correct!",
+      "❌ 答錯了！": "❌ Incorrect!",
+      "請重新思考：": "Think again:",
+      "Flatten 將 H×W 二維影像拉平成一維向量，二維鄰居關係完全消失，網路無法區分相鄰畫素與遠處畫素，學不會局部特徵。": "Flatten turns the 2-D H×W image into a 1-D vector, so the 2-D neighbor relations disappear completely; the network cannot tell adjacent pixels from distant ones and cannot learn local features.",
+      "卷積層對全連線層施加兩項約束：① 稀疏連線——每個輸出只看 $k \\times k$ 局部鄰居；② 權重共享——所有位置使用同一組核心權重。": "A convolutional layer imposes two constraints on a fully connected layer: ① sparse connectivity: each output looks only at its $k \\times k$ local neighbors; ② weight sharing: all positions use the same set of kernel weights.",
+      "平移等變性（Equivariance）：若輸入平移 $(\\Delta x, \\Delta y)$，卷積層的輸出特徵圖也跟著平移相同量。注意這是「跟著走」，不是「看不出來」（不變性需要池化）。": "Translation equivariance: if the input is shifted by $(\\Delta x, \\Delta y)$, the output feature map of the convolutional layer shifts by the same amount. Note that this means \"moves along with it\", not \"can't tell\" (invariance needs pooling).",
+      "§3 卷積層三階段（Cross-Correlation → ReLU → MaxPooling）是本章最核心的「零件課」，深度剖析 CNN 每個基本構件的作用與數學原理。": "§3, the three stages of a convolutional layer (Cross-Correlation → ReLU → MaxPooling), is the most central \"parts lesson\" of this chapter, a deep dive into the role and the mathematics of every basic building block of a CNN.",
+      "輸入影像 (4×4)": "Input image (4×4)",
+      "核心 (3×3)": "Kernel (3×3)",
+      "特徵圖 (2×2)": "Feature map (2×2)",
+      "相同核心權重掃過全圖 → 權重共享 Weight Sharing": "Same kernel weights sweep the whole image → weight sharing",
+      "每個輸出格只看 3×3 鄰居 → 稀疏連線 Sparse Connectivity": "Each output cell sees only its 3×3 neighbors → sparse connectivity",
+      "▶ 點選「計算特徵圖」開始": "▶ Click \"Compute feature map\" to start",
+      "核心（Kernel）：": "Kernel:",
+      "核心權重（Weight Sharing — 全圖相同）：": "Kernel weights (weight sharing: the same over the whole image):",
+      "輸出特徵圖（2×2）：": "Output feature map (2×2):",
+      "💡 滑鼠懸停在輸出格上可高亮對應感受野": "💡 Hover over an output cell to highlight its receptive field"
+    },
+    "patterns": [
+      {
+        "re": "^✅ 答對了！\\s*([\\s\\S]+)$",
+        "en": "✅ Correct! $T1"
+      },
+      {
+        "re": "^❌ 答錯了！\\s*請重新思考：([\\s\\S]*)$",
+        "en": "❌ Incorrect! Think again: $T1"
+      },
+      {
+        "re": "^答對了！\\s*([\\s\\S]+)$",
+        "en": "Correct! $T1"
+      },
+      {
+        "re": "^答案不正確。\\s*再想一下！([\\s\\S]*)$",
+        "en": "Incorrect. Think again! $T1"
+      },
+      {
+        "re": "^❌ 再想想看！\\s*([\\s\\S]*)$",
+        "en": "❌ Think again! $T1"
+      },
+      {
+        "re": "^▶ 高亮輸出格 \\[(\\d+),(\\d+)\\] 的計算：$",
+        "en": "▶ Computation of the highlighted output cell [$1,$2]:"
+      },
+      {
+        "re": "^（對應輸入感受野 \\[([^\\]]+)\\]）$",
+        "en": "(corresponding input receptive field [$1])"
+      },
+      {
+        "re": "^請重新思考：([\\s\\S]+)$",
+        "en": "Think again: $T1"
+      }
+    ]
+  },
+  "_dynamic": [],
+  "_images": [],
+  "_hide": [
+    ".sub-en",
+    ".bilingual-en",
+    ".bilingual-en-inline"
+  ],
+  "06c700aa436c": {
+    "zh": "KP01 · 索引",
+    "en": "KP01 · Index",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "1f42f844e211": {
+    "zh": "<a href=\"#cover\">封面 · Cover</a>",
+    "en": "<a href=\"#cover\">Cover</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "0119276576e0": {
+    "zh": "<a href=\"#q1\">大問句 · Core Question</a>",
+    "en": "<a href=\"#q1\">Core Question</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e07010f4c9b2": {
+    "zh": "<a href=\"#image-structure\">影像結構 · Image Structure</a>",
+    "en": "<a href=\"#image-structure\">Image Structure</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "d8e894f3a68c": {
+    "zh": "<a href=\"#mlp-flatten\">MLP Flatten 的缺陷</a>",
+    "en": "<a href=\"#mlp-flatten\">The Flaw of MLP Flattening</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "435e1d7ae6d0": {
+    "zh": "<a href=\"#cnn-principle\">CNN 原理 · How CNN Works</a>",
+    "en": "<a href=\"#cnn-principle\">How CNN Works</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "b5f680bedf44": {
+    "zh": "<a href=\"#sparse-weight\">稀疏 + 共享 · Sparse + Shared</a>",
+    "en": "<a href=\"#sparse-weight\">Sparse + Shared</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "9ce2bab5dac6": {
+    "zh": "<a href=\"#three-benefits\">三大好處 · Three Benefits</a>",
+    "en": "<a href=\"#three-benefits\">Three Benefits</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "a6c65bc4ec38": {
+    "zh": "<a href=\"#translation-equiv\">平移等變性 · Translation Equivariance</a>",
+    "en": "<a href=\"#translation-equiv\">Translation Equivariance</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "271101f64924": {
+    "zh": "<a href=\"#roadmap\">本章路線圖 · Chapter Roadmap</a>",
+    "en": "<a href=\"#roadmap\">Chapter Roadmap</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ca3c1a8def8f": {
+    "zh": "<a href=\"#summary\">口語總結 · Summary</a>",
+    "en": "<a href=\"#summary\">Plain-Language Summary</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "ac95b5630a79": {
+    "zh": "<a href=\"#lab\">互動實驗室 · Interactive Lab</a>",
+    "en": "<a href=\"#lab\">Interactive Lab</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "024e02e8cf2a": {
+    "zh": "<a href=\"#quiz\">觀念測驗 · Checkpoint</a>",
+    "en": "<a href=\"#quiz\">Concept Quiz</a>",
+    "kp": 0,
+    "ctx": "page"
+  },
+  "e66cbc9f4deb": {
+    "zh": "導論：CNN 對上 flatten-MLP\n      <span class=\"hero-title-en\">Introduction: CNN vs Flatten-MLP</span>\n    ",
+    "en": "Introduction: CNN vs. Flatten-MLP",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "207d998578b8": {
+    "zh": "\n      影像是二維空間結構資料；MLP 先 flatten 把鄰居關係摧毀，CNN 則直接在原始格子上滑動小濾波器，以稀疏連線與權重共享大幅降低參數量，同時帶來平移等變性這個重要的歸納偏置。\n    ",
+    "en": "Images are data with a 2D spatial structure. An MLP first flattens them, destroying the neighbor relationships, while a CNN slides small filters directly over the original grid, sharply cutting the number of parameters through sparse connectivity and weight sharing, and gaining at the same time an important inductive bias: translation equivariance.",
+    "kp": 1,
+    "ctx": "page"
+  },
+  "b0447bcff554": {
+    "zh": "01 / 核心提問 · Core Question",
+    "en": "01 / Core Question",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "c52e81e6dcf6": {
+    "zh": "\n      「攤平一張照片，你能找到邊緣嗎？」\n      <small>攤平（flatten）破壞空間結構——CNN 用局部濾波器把結構保住！<br>\n        <span class=\"bilingual-en-inline\">Flattening destroys spatial structure — CNN preserves it with local filters.</span>\n      </small>\n    ",
+    "en": "\"Flatten a photo: can you still find the edges?\"\n      <small>Flattening destroys spatial structure; a CNN keeps that structure with local filters!<br>\n      </small>",
+    "kp": 2,
+    "ctx": "page"
+  },
+  "20d971009427": {
+    "zh": "02 / 動機背景 · Image Structure",
+    "en": "02 / Background and Motivation",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d2fe4d676394": {
+    "zh": "影像：高維 × 空間結構並存的資料\n    <span class=\"en\">Images: High-Dimensional Data with Rich Spatial Structure</span>\n  ",
+    "en": "Images: Data That Is Both High-Dimensional and Spatially Structured",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "3b34936db507": {
+    "zh": "為什麼影像與向量不同？",
+    "en": "Why are images different from vectors?",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ba6bf8c97962": {
+    "zh": "\n      一張 224×224 RGB 彩色照片展開後有 <strong>150,528 個畫素</strong>，但這些數字並非孤立的：\n    ",
+    "en": "A 224×224 RGB color photo has <strong>150,528 pixels</strong> once unrolled, but these numbers are not isolated:",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "836631d06942": {
+    "zh": "<strong>局部相關性（Local Correlation）：</strong>相鄰畫素的顏色值非常接近，呈現平滑過渡。一隻貓的眼睛、耳朵、鼻子各自佔據連續的畫素區塊。",
+    "en": "<strong>Local correlation:</strong> neighboring pixels have very similar color values and change smoothly. A cat's eyes, ears and nose each occupy a contiguous block of pixels.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "ee48b5527dff": {
+    "zh": "<strong>二維結構（2D Structure）：</strong>「上下左右」的鄰居關係具有語義意義——水平邊緣在一行，垂直邊緣在一列，45° 斜線跨越對角線畫素。",
+    "en": "<strong>2D structure:</strong> the \"up, down, left, right\" neighbor relationships carry meaning: a horizontal edge lies along a row, a vertical edge along a column, and a 45° diagonal runs across diagonal pixels.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "a1fc22251292": {
+    "zh": "<strong>局部圖案重複出現（Local Patterns Repeat）：</strong>「邊緣」、「角落」、「紋理」等低階特徵在不同位置重複出現，不會因為位置不同就改變含義。",
+    "en": "<strong>Local patterns repeat:</strong> low-level features such as \"edges,\" \"corners\" and \"textures\" appear again and again at different positions, and their meaning does not change with the position.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "194f3409281e": {
+    "zh": "影像的二維空間結構示意",
+    "en": "The 2D spatial structure of an image",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "159891ffd90d": {
+    "zh": "原始 H×W 影像",
+    "en": "Original H×W image",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "4d003dc868af": {
+    "zh": "局部感受野（3×3）",
+    "en": "Local receptive field (3×3)",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "b325ab1a88b1": {
+    "zh": "空間鄰居關係的意義",
+    "en": "What spatial neighbors mean",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "a4f60c29231a": {
+    "zh": "🔵 局部平滑性",
+    "en": "🔵 Local smoothness",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "129599fdf1f5": {
+    "zh": "相鄰畫素顏色接近",
+    "en": "Neighboring pixels have similar colors",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "340ae8266355": {
+    "zh": "🟡 結構重複性",
+    "en": "🟡 Repeated structure",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "06436e728d8b": {
+    "zh": "「邊緣」在不同位置意義相同",
+    "en": "An \"edge\" means the same anywhere",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "f10a8364991b": {
+    "zh": "🔴 二維拓撲",
+    "en": "🔴 2D topology",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "e88654919c63": {
+    "zh": "上下左右鄰居語義不對稱",
+    "en": "Up/down/left/right neighbors differ in meaning",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "a8e3941c6d13": {
+    "zh": "✅ CNN 結論",
+    "en": "✅ CNN takeaway",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "75f0ddae73c5": {
+    "zh": "用局部濾波器保留所有這些結構",
+    "en": "Local filters keep all of this structure",
+    "kp": 3,
+    "ctx": "svg"
+  },
+  "d2e7c85bf650": {
+    "zh": "影像畫素的二維空間關係：局部相關、圖案重複、二維拓撲 · 2D spatial structure of image pixels",
+    "en": "2D spatial relationships of image pixels: local correlation, repeated patterns, 2D topology",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "afd24be1ec5b": {
+    "zh": "關鍵直覺",
+    "en": "Key Intuition",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "b9366036ee63": {
+    "zh": "\n          影像的高維度與空間結構是同時存在且深度耦合的。<strong>不能把高維當作純量處理、也不能忽視空間排列。</strong>\n        ",
+    "en": "An image's high dimensionality and its spatial structure exist together and are deeply coupled. <strong>You can neither treat the high dimensionality as plain scalars nor ignore the spatial arrangement.</strong>",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "247a8c87a577": {
+    "zh": "\n          傳統機器學習處理表格資料（每列是獨立特徵），但影像畫素之間存在強烈的二維位置關係，這是影像專用架構誕生的根本動機。\n        ",
+    "en": "Traditional machine learning handles tabular data (each column an independent feature), but image pixels have strong 2D positional relationships with each other; this is the fundamental motivation for architectures designed specifically for images.",
+    "kp": 3,
+    "ctx": "page"
+  },
+  "d688cacdb35e": {
+    "zh": "03 / 缺陷分析 · MLP Flatten Problem",
+    "en": "03 / Analyzing the Flaw",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "60c4efd3af35": {
+    "zh": "MLP 先 Flatten：摧毀二維鄰居關係\n    <span class=\"en\">MLP Flatten: Destroying 2D Neighborhood Relationships</span>\n  ",
+    "en": "An MLP Flattens First: Destroying 2D Neighbor Relationships",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b8a48f2129a4": {
+    "zh": "\n    將 H×W 的影像<strong>先 flatten（攤平）成一條長向量</strong>再送入全連線 MLP，是一種看似簡單卻代價高昂的做法：二維空間結構被徹底摧毀。\n    <span class=\"bilingual-en\">Flattening an H×W image into a 1D vector before MLP processing seems straightforward but destroys all 2D spatial structure irreversibly.</span>\n  ",
+    "en": "Taking an H×W image, <strong>first flattening it into one long vector</strong>, and then feeding it to a fully connected MLP looks simple but is costly: the 2D spatial structure is completely destroyed.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "38361fd18e47": {
+    "zh": "✅ 原始二維排列",
+    "en": "✅ Original 2D arrangement",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "fd4d3ebbd86e": {
+    "zh": "畫素 (i,j) 的鄰居是 (i±1, j) 和 (i, j±1)，具有明確的<strong>空間距離與方向</strong>。",
+    "en": "The neighbors of pixel (i,j) are (i±1, j) and (i, j±1), with a clear <strong>spatial distance and direction</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7b795ebdf17d": {
+    "zh": "「左邊」的畫素在水平方向相差 1 格",
+    "en": "The pixel \"to the left\" is 1 cell away horizontally",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "f59323b27ebc": {
+    "zh": "「右下角」畫素比「左上角」遠很多",
+    "en": "The \"bottom-right\" pixel is much farther away than the \"top-left\" one",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "4ad62e7cd92b": {
+    "zh": "相鄰畫素之間存在<strong>強相關</strong>",
+    "en": "Neighboring pixels are <strong>strongly correlated</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "8b30df25dc99": {
+    "zh": "水平/垂直方向的「邊緣」具有結構意義",
+    "en": "Horizontal/vertical \"edges\" have structural meaning",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "bf77dab9a2cb": {
+    "zh": "❌ Flatten 之後",
+    "en": "❌ After flattening",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "c6c44400d43a": {
+    "zh": "所有畫素被排成一列，<strong>左上角與右下角畫素成為「同等距離、同等相關」的鄰居</strong>。",
+    "en": "All pixels are lined up in a single row, and <strong>the top-left and bottom-right pixels become neighbors that are \"equally far and equally related\"</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d78bbbf05f84": {
+    "zh": "二維鄰居關係<strong>完全消失</strong>",
+    "en": "The 2D neighbor relationships <strong>vanish entirely</strong>",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "d544076b5972": {
+    "zh": "網路無法區分「相鄰」與「遙遠」的畫素",
+    "en": "The network cannot tell \"neighboring\" pixels from \"distant\" ones",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "7f7c9f375f1f": {
+    "zh": "學習「水平邊緣」需要同時記憶整行畫素的權重組合",
+    "en": "Learning a \"horizontal edge\" requires memorizing a weight combination over an entire row of pixels",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "53cea1db279c": {
+    "zh": "同一個「邊緣特徵」在不同位置需要<strong>獨立學習</strong>",
+    "en": "The same \"edge feature\" has to be <strong>learned separately</strong> at each position",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "86990e9a8758": {
+    "zh": "⚠️ 參數爆炸問題",
+    "en": "⚠️ The parameter explosion",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "2f43716b1f78": {
+    "zh": "\n      設影像大小為 H×W = 28×28 = 784，第一層 MLP 使用 512 個隱藏單元：\n      第一層權重矩陣需要 <strong>784 × 512 = 401,408 個參數</strong>。\n      若換成 224×224 RGB 影像（150,528 維），單一層已需 <strong>~77M 參數</strong>！\n    ",
+    "en": "Let the image size be H×W = 28×28 = 784, with 512 hidden units in the MLP's first layer:\n      the first-layer weight matrix needs <strong>784 × 512 = 401,408 parameters</strong>.\n      For a 224×224 RGB image (150,528 dimensions) instead, a single layer already needs <strong>~77M parameters</strong>!",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "b50f18447cdc": {
+    "zh": "\n      CNN 用 64 個 3×3 核心處理同一層：僅需 <strong>64 × 3 × 3 × 3 = 1,728 個參數</strong>，參數量下降 <strong>4400 倍以上</strong>。\n    ",
+    "en": "A CNN handles the same layer with 64 kernels of size 3×3: it needs only <strong>64 × 3 × 3 × 3 = 1,728 parameters</strong>, a drop of <strong>more than 4400 times</strong>.",
+    "kp": 4,
+    "ctx": "page"
+  },
+  "23d396cbb16d": {
+    "zh": "04 / 核心原理 · CNN Principle",
+    "en": "04 / Core Principle",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "2e902b4bcbb4": {
+    "zh": "CNN：直接在二維格子上滑動濾波器\n    <span class=\"en\">CNN: Sliding Filters Directly on the 2D Grid</span>\n  ",
+    "en": "CNN: Sliding Filters Directly over the 2D Grid",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "8aca6b471bb9": {
+    "zh": "CNN 的核心動作：卷積（Cross-Correlation）滑動",
+    "en": "The core move of a CNN: sliding convolution (cross-correlation)",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "81fcab810258": {
+    "zh": "\n      CNN 不 flatten 影像；它直接在原始的 H×W 格子上放置一個小小的<strong>濾波器（filter / kernel）</strong>，讓這個濾波器從左到右、從上到下「滑」過整張影像。每滑到一個位置，就做一次<strong>內積運算</strong>，輸出一個數值到特徵圖（feature map）的對應位置。\n    ",
+    "en": "A CNN does not flatten the image; it places a tiny <strong>filter (kernel)</strong> directly on the original H×W grid and \"slides\" it over the whole image, left to right and top to bottom. At each position it computes an <strong>inner product</strong> and writes one number to the corresponding position of the feature map.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "295e40cd7bbb": {
+    "zh": "CNN 卷積（Cross-Correlation）滑動示意",
+    "en": "Sliding CNN convolution (cross-correlation)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "808361d944f6": {
+    "zh": "輸入影像（5×5）",
+    "en": "Input image (5×5)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "6a70f01d45f4": {
+    "zh": "核心（3×3 Kernel）",
+    "en": "Kernel (3×3)",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "c72ad5f19a3c": {
+    "zh": "特徵圖（Feature Map）",
+    "en": "Feature map",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "8f7d23de4240": {
+    "zh": "\n          用同一組權重掃描整張影像 → 權重共享（Weight Sharing）\n        ",
+    "en": "One set of weights scans the whole image → weight sharing",
+    "kp": 5,
+    "ctx": "svg"
+  },
+  "154fffdc1cfc": {
+    "zh": "CNN 卷積滑動：3×3 核心掃過 5×5 輸入，每個位置做內積，輸出 3×3 特徵圖 · Cross-correlation of 3×3 kernel on 5×5 input",
+    "en": "Sliding CNN convolution: a 3×3 kernel sweeps over a 5×5 input, takes an inner product at each position, and outputs a 3×3 feature map",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "e25174521c5e": {
+    "zh": "卷積（Cross-Correlation）計算式",
+    "en": "The convolution (cross-correlation) formula",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "5a91dc5c5399": {
+    "zh": "設輸入 $X$，核心（kernel）$W$ 大小為 $k \\times k$，輸出特徵圖 $Y$ 的第 $(i,j)$ 格：",
+    "en": "Let the input be $X$ and the kernel $W$ of size $k \\times k$; cell $(i,j)$ of the output feature map $Y$ is:",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "cbe0a2b9a76e": {
+    "zh": "每個輸出位置都用<strong>同一組</strong>權重 $W$ 計算，這就是<strong>權重共享</strong>的數學形式。",
+    "en": "Every output position is computed with <strong>the same</strong> weights $W$: this is the mathematical form of <strong>weight sharing</strong>.",
+    "kp": 5,
+    "ctx": "page"
+  },
+  "dcf34b31ed19": {
+    "zh": "05 / 結構改動 · Sparse + Shared",
+    "en": "05 / Structural Changes",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "43bf3df64b2f": {
+    "zh": "CNN = 全連線網路的特例：開啟兩個開關\n    <span class=\"en\">CNN = Constrained Fully-Connected: Two Key Switches Flipped</span>\n  ",
+    "en": "CNN = a Special Case of the Fully Connected Network: Two Switches Turned On",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d592df3d1f98": {
+    "zh": "\n    從數學角度來看，CNN 可以視為<strong>標準全連線層（Fully-Connected Layer）的一種特例</strong>——只是在權重矩陣上施加了兩項嚴格限制，使得大部分權重被強制歸零或繫結相同值。\n    <span class=\"bilingual-en\">Mathematically, CNN is a restricted fully-connected layer: most weights are forced to zero (sparse connectivity) or shared across positions (weight sharing).</span>\n  ",
+    "en": "Mathematically, a CNN can be viewed as <strong>a special case of the standard fully connected layer</strong>: it just imposes two strict constraints on the weight matrix, which force most weights to zero or tie them to the same values.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b8e010999ea6": {
+    "zh": "🔵 開關一：稀疏連線（Sparsity）",
+    "en": "🔵 Switch 1: sparse connectivity (sparsity)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "4eb9349c270a": {
+    "zh": "\n        全連線層中每個輸出單元連線<strong>所有</strong>輸入畫素；CNN 中每個輸出單元<strong>只連線</strong>一小塊（k×k）的輸入鄰居。\n      ",
+    "en": "In a fully connected layer every output unit connects to <strong>all</strong> input pixels; in a CNN each output unit <strong>connects only</strong> to a small (k×k) neighborhood of inputs.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8bbc0964eb0f": {
+    "zh": "\n        超出感受野範圍的輸入畫素，權重被<strong>強制設為 0</strong>——不連線、不影響、不學習。\n      ",
+    "en": "Input pixels outside the receptive field have their weights <strong>forced to 0</strong>: no connection, no influence, no learning.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "def7fc68c587": {
+    "zh": "🟡 開關二：權重共享（Weight Sharing）",
+    "en": "🟡 Switch 2: weight sharing",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "009dd51418f9": {
+    "zh": "\n        全連線層中不同位置的連線使用獨立權重；CNN 要求<strong>所有位置共享同一組核心權重</strong> $W$。\n      ",
+    "en": "In a fully connected layer, connections at different positions use independent weights; a CNN requires <strong>all positions to share the same kernel weights</strong> $W$.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "9a68e3054c8c": {
+    "zh": "\n        無論濾波器滑到左上角還是右下角，<strong>使用完全相同的 $W$</strong>——這就是「同一個探測器在全圖巡邏」。\n      ",
+    "en": "Whether the filter slides to the top-left or the bottom-right corner, it <strong>uses exactly the same $W$</strong>: this is \"the same detector patrolling the whole image.\"",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e7c654b28599": {
+    "zh": "📐 兩者的聯合效果",
+    "en": "📐 Their combined effect",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "77a041a53e5f": {
+    "zh": "\n        假設輸入 28×28，全連線層接 512 個神經元：<br>\n        全連線：$784 \\times 512 = \\mathbf{401,408}$ 參數<br>\n        CNN（64 個 3×3 核心）：$64 \\times 9 = \\mathbf{576}$ 參數\n      ",
+    "en": "Suppose the input is 28×28 and the fully connected layer has 512 neurons:<br>\n        Fully connected: $784 \\times 512 = \\mathbf{401,408}$ parameters<br>\n        CNN (64 kernels of 3×3): $64 \\times 9 = \\mathbf{576}$ parameters",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "fac64019681f": {
+    "zh": "🧠 歸納偏置的本質",
+    "en": "🧠 The essence of the inductive bias",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "edbdca86c5ef": {
+    "zh": "\n        稀疏 + 共享編碼了一個強烈的先驗假設：<strong>「局部圖案到處都可能出現，且意義相同」</strong>。這個先驗對自然影像高度成立，大幅減少所需的訓練樣本數。\n      ",
+    "en": "Sparse + shared encodes a strong prior assumption: <strong>\"local patterns can appear anywhere, and they mean the same thing everywhere\"</strong>. This prior holds very well for natural images and greatly reduces the number of training samples needed.",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "550cf8aa1a93": {
+    "zh": "特性 Feature",
+    "en": "Property",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "e4b7eadd15cb": {
+    "zh": "全連線 MLP (Flatten)",
+    "en": "Fully connected MLP (flatten)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "6d5b529362bb": {
+    "zh": "卷積層 CNN",
+    "en": "Convolutional layer (CNN)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8a208eafc389": {
+    "zh": "連線模式 Connectivity",
+    "en": "Connectivity",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "ce3f1e057b54": {
+    "zh": "稠密全連線 Dense",
+    "en": "Dense, fully connected",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b1e825378377": {
+    "zh": "稀疏局部 Sparse Local",
+    "en": "Sparse, local",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "92a9e1586eda": {
+    "zh": "位置間權重 Position Weights",
+    "en": "Weights across positions",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "8a966f9216e4": {
+    "zh": "每位置獨立 Independent",
+    "en": "Independent at each position",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "47b2fcdbd412": {
+    "zh": "全部共享 Shared",
+    "en": "All shared",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "c5fbbd804b91": {
+    "zh": "參數量（28×28 → 512）",
+    "en": "Parameter count (28×28 → 512)",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "d78c6f0a1488": {
+    "zh": "空間結構保留",
+    "en": "Spatial structure preserved",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "b46111808871": {
+    "zh": "❌ Flatten 摧毀",
+    "en": "❌ Destroyed by flattening",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "013f69a18114": {
+    "zh": "✅ 完整保留",
+    "en": "✅ Fully preserved",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "5cedda8a373f": {
+    "zh": "平移等變性",
+    "en": "Translation equivariance",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "219940cca553": {
+    "zh": "❌ 無",
+    "en": "❌ None",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "22a5a0098790": {
+    "zh": "✅ 內建",
+    "en": "✅ Built in",
+    "kp": 6,
+    "ctx": "page"
+  },
+  "cda6b16c8984": {
+    "zh": "06 / 三大好處 · Three Benefits",
+    "en": "06 / Three Benefits",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "bb6d622b7d30": {
+    "zh": "稀疏連線 + 權重共享帶來的三大好處\n    <span class=\"en\">Three Key Benefits of Sparse Connectivity + Weight Sharing</span>\n  ",
+    "en": "Three Benefits of Sparse Connectivity + Weight Sharing",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "6388a6d04c53": {
+    "zh": "🔢 好處一：參數量大幅下降",
+    "en": "🔢 Benefit 1: far fewer parameters",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "9479b0c64756": {
+    "zh": "\n        稀疏連線（每神經元只看 k×k 鄰居）與權重共享（全圖同一組權重）雙管齊下，使參數量從 $O(HW \\cdot d_{in} \\cdot d_{out})$ 降至 $O(k^2 \\cdot C_{in} \\cdot C_{out})$。\n      ",
+    "en": "Sparse connectivity (each neuron sees only a k×k neighborhood) and weight sharing (one set of weights for the whole image) work together to bring the parameter count down from $O(HW \\cdot d_{in} \\cdot d_{out})$ to $O(k^2 \\cdot C_{in} \\cdot C_{out})$.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "22f2c3ac2193": {
+    "zh": "\n        參數量的驟降意味著<strong>更少的 overfitting 風險、更少的記憶體消耗、更快的訓練速度</strong>。\n      ",
+    "en": "The sharp drop in parameters means <strong>less risk of overfitting, less memory use and faster training</strong>.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "d92621edf4c2": {
+    "zh": "🎯 好處二：內建先驗假設",
+    "en": "🎯 Benefit 2: a built-in prior assumption",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "590a30e80516": {
+    "zh": "\n        權重共享對應一個強烈的歸納偏置（inductive bias）：<strong>「同一個局部圖案在影像的任意位置出現時，都應被同等強度地偵測到」</strong>。\n      ",
+    "en": "Weight sharing corresponds to a strong inductive bias: <strong>\"the same local pattern should be detected with equal strength wherever it appears in the image\"</strong>.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "163a0e297d5a": {
+    "zh": "\n        這個先驗對於自然影像（貓的耳朵可以出現在任何位置）幾乎總是成立，大幅減少有效訓練所需的樣本數量。\n      ",
+    "en": "This prior almost always holds for natural images (a cat's ear can appear anywhere), and it greatly reduces the number of samples needed for effective training.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "47c72507e6f6": {
+    "zh": "↔️ 好處三：平移等變性",
+    "en": "↔️ Benefit 3: translation equivariance",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "304a0e2cac82": {
+    "zh": "\n        若輸入影像平移 $(\\Delta x, \\Delta y)$，則 CNN 輸出的特徵圖也跟著平移相同的量——這是數學上可嚴格證明的性質。\n      ",
+    "en": "If the input image is shifted by $(\\Delta x, \\Delta y)$, the feature map the CNN outputs shifts by the same amount; this is a property that can be rigorously proven mathematically.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "7015cee9508f": {
+    "zh": "\n        <strong>注意：這是「跟著走」（equivariance），不是「不變」（invariance）。</strong>平移不變性（translation invariance）要等到池化層之後才出現。\n      ",
+    "en": "<strong>Note: this is \"moving along\" (equivariance), not \"staying the same\" (invariance).</strong> Translation invariance only appears after the pooling layer.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "a47b53b859b2": {
+    "zh": "📊 三大好處彙總",
+    "en": "📊 The three benefits in summary",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "36a99ee63e63": {
+    "zh": "參數量 $\\downarrow$（從億級到千級）",
+    "en": "Parameters $\\downarrow$ (from hundreds of millions to thousands)",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "f03b5d7cbc39": {
+    "zh": "歸納偏置 = 局部特徵圖案到處都有",
+    "en": "Inductive bias = local feature patterns are everywhere",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "39483d6209c5": {
+    "zh": "平移等變性 = 特徵圖跟著輸入走",
+    "en": "Translation equivariance = the feature map follows the input",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "1f684713ee7f": {
+    "zh": "三者共同讓 CNN 成為處理影像的標準首選架構。",
+    "en": "Together, the three make the CNN the standard first-choice architecture for images.",
+    "kp": 7,
+    "ctx": "page"
+  },
+  "63aa0f0743c9": {
+    "zh": "07 / 深入理解 · Translation Equivariance",
+    "en": "07 / A Deeper Look",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "e17fe68fc8c2": {
+    "zh": "平移等變性 vs 平移不變性：兩者的精確區別\n    <span class=\"en\">Translation Equivariance vs Translation Invariance: The Precise Distinction</span>\n  ",
+    "en": "Translation Equivariance vs. Translation Invariance: the Precise Difference",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "ec1d34b34831": {
+    "zh": "精確數學定義",
+    "en": "Precise mathematical definition",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "5a9130193d6b": {
+    "zh": "\n      設 $T_{\\Delta}$ 為平移運算元（將影像平移 $\\Delta$ 的運算），$f$ 為 CNN 的卷積運算：\n    ",
+    "en": "Let $T_{\\Delta}$ be the translation operator (the operation that shifts the image by $\\Delta$), and $f$ the CNN's convolution operation:",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "47466a4e20c8": {
+    "zh": "\n      <strong>平移等變性（Equivariance）：</strong> $f(T_{\\Delta}(x)) = T_{\\Delta}(f(x))$\n    ",
+    "en": "<strong>Translation equivariance:</strong> $f(T_{\\Delta}(x)) = T_{\\Delta}(f(x))$",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "b7f8a3b2bc18": {
+    "zh": "\n      <strong>平移不變性（Invariance）：</strong> $f(T_{\\Delta}(x)) = f(x)$（加了池化之後才成立）\n    ",
+    "en": "<strong>Translation invariance:</strong> $f(T_{\\Delta}(x)) = f(x)$ (holds only once pooling is added)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "562c9ac31c5a": {
+    "zh": "↔️ 平移等變性（CNN 卷積層）",
+    "en": "↔️ Translation equivariance (CNN convolutional layer)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "779f7002cdb1": {
+    "zh": "貓的耳朵從左上移到右下 → 特徵圖中「耳朵」的響應也跟著移到右下",
+    "en": "The cat's ear moves from the top-left to the bottom-right → the \"ear\" response in the feature map also moves to the bottom-right",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "79629eef6695": {
+    "zh": "「特徵位置」在特徵圖中<strong>忠實反映</strong>輸入中物體的位置",
+    "en": "The \"feature position\" in the feature map <strong>faithfully reflects</strong> the object's position in the input",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "1f057185ffcf": {
+    "zh": "這讓深層網路能夠基於特徵位置做進一步的空間推理",
+    "en": "This lets deeper layers do further spatial reasoning based on where features are",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "67eb61453b6b": {
+    "zh": "卷積層本身<strong>保留了位置資訊</strong>",
+    "en": "The convolutional layer itself <strong>keeps the position information</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "fb8fe8a2bbe4": {
+    "zh": "🔒 平移不變性（池化層之後）",
+    "en": "🔒 Translation invariance (after the pooling layer)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "9240ea30a677": {
+    "zh": "貓的耳朵從左上移到右下 → 輸出<strong>不變</strong>",
+    "en": "The cat's ear moves from the top-left to the bottom-right → the output <strong>stays the same</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "4ce8a3aa0d19": {
+    "zh": "池化（MaxPool、AvgPool）對局部區域取聚合，<strong>丟棄精確位置</strong>",
+    "en": "Pooling (MaxPool, AvgPool) aggregates over local regions and <strong>discards the exact position</strong>",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "823599a62166": {
+    "zh": "使分類結果不受物體精確位置影響",
+    "en": "So the classification result is not affected by the object's exact position",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "734a34b4931d": {
+    "zh": "代價：<strong>位置資訊被丟失</strong>（對 Detection、Segmentation 不利）",
+    "en": "The cost: <strong>position information is lost</strong> (bad for detection and segmentation)",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "52639d49d6ea": {
+    "zh": "✅ 口訣記憶",
+    "en": "✅ A mnemonic to remember",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "180797bc6bd2": {
+    "zh": "\n      <strong>「等變 = 跟著走，不變 = 看不出來」</strong><br>\n      卷積層：貓在左，特徵在左；貓在右，特徵在右。→ 等變<br>\n      池化後：不管貓在哪裡，分類結果都一樣。→ 不變\n    ",
+    "en": "<strong>\"Equivariant = moves along; invariant = can't tell the difference\"</strong><br>\n      Convolutional layer: cat on the left, feature on the left; cat on the right, feature on the right. → equivariant<br>\n      After pooling: wherever the cat is, the classification result is the same. → invariant",
+    "kp": 8,
+    "ctx": "page"
+  },
+  "3b0ca2a36cbe": {
+    "zh": "08 / 章節路線圖 · Chapter Roadmap",
+    "en": "08 / Chapter Roadmap",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "a749954de8d4": {
+    "zh": "本章路線圖：從 LeNet 到里程碑架構\n    <span class=\"en\">Chapter Roadmap: From LeNet to Milestone Architectures</span>\n  ",
+    "en": "Chapter Roadmap: From LeNet to the Milestone Architectures",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "1e700cb82051": {
+    "zh": "§1 · KP01 本節",
+    "en": "§1 · KP01 (this section)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9dd6ae1fee49": {
+    "zh": "導論：CNN vs flatten-MLP",
+    "en": "Introduction: CNN vs. flatten-MLP",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ddcb80da7696": {
+    "zh": "建立動機：為何影像需要 CNN？稀疏連線 + 權重共享 = CNN 核心設計哲學。",
+    "en": "Building the motivation: why do images need CNNs? Sparse connectivity + weight sharing = the core design philosophy of the CNN.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "266d3052d403": {
+    "zh": "LeNet：第一個成功的 CNN 架構",
+    "en": "LeNet: the first successful CNN architecture",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "075760ffe362": {
+    "zh": "Yann LeCun 1989/1998：手寫數字辨識的里程碑，完整的 Conv→Pool→Conv→Pool→FC 流程。",
+    "en": "Yann LeCun 1989/1998: a milestone in handwritten-digit recognition, with the complete Conv→Pool→Conv→Pool→FC pipeline.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "8c493f48c5ba": {
+    "zh": "§3 · KP03（核心零件課）",
+    "en": "§3 · KP03 (the core building-blocks lesson)",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "992e2d0508d3": {
+    "zh": "卷積層三階段：卷積 → 啟用 → 池化",
+    "en": "The three stages of a convolutional layer: convolution → activation → pooling",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "e0f519a53648": {
+    "zh": "CNN 最核心的「三件套」：Cross-Correlation、ReLU 啟用、MaxPooling——逐一深度剖析。",
+    "en": "The CNN's most essential \"three-piece set\": cross-correlation, ReLU activation and max pooling, each dissected in depth.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "797017431b15": {
+    "zh": "權重初始化",
+    "en": "Weight initialization",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "b0a6c38d37b4": {
+    "zh": "Xavier、He 初始化——讓 CNN 從一開始就不會梯度消失或爆炸。",
+    "en": "Xavier and He initialization: keeping the CNN free of vanishing or exploding gradients from the very start.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "3eb3b47ae7ab": {
+    "zh": "里程碑架構：AlexNet, VGG, ResNet, EfficientNet",
+    "en": "Milestone architectures: AlexNet, VGG, ResNet, EfficientNet",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "ac7b3149c19c": {
+    "zh": "深度學習影象辨識的演化史：從 AlexNet 引爆 2012 革命到現代高效網路設計。",
+    "en": "The evolution of deep-learning image recognition: from AlexNet sparking the 2012 revolution to modern efficient network design.",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "890ffd406698": {
+    "zh": "🗺️ 整章學習路線：§3 卷積層三階段是最核心零件",
+    "en": "🗺️ Learning path for the whole chapter: the three stages of the convolutional layer in §3 are the most essential building block",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "20607c5271e5": {
+    "zh": "\n      先掌握 §1（動機與全域性觀）→ §2（第一個成功案例）→ 深入 §3（核心零件三件套）→ §4（初始化技巧）→ §5（站在巨人肩上的里程碑）。\n    ",
+    "en": "First master §1 (motivation and the big picture) → §2 (the first success story) → dig into §3 (the three core building blocks) → §4 (initialization techniques) → §5 (milestones that stand on the shoulders of giants).",
+    "kp": 9,
+    "ctx": "page"
+  },
+  "9e10c82ebe78": {
+    "zh": "09 / 口語總結 · Summary",
+    "en": "09 / Plain-Language Summary",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a686b108e983": {
+    "zh": "口語小結：CNN vs MLP Flatten 核心對比\n    <span class=\"en\">Summary: CNN vs MLP Flatten — The Core Contrast</span>\n  ",
+    "en": "Plain-Language Recap: CNN vs. MLP Flattening, the Core Contrast",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "eedea98836d5": {
+    "zh": "💬 一段話版總結",
+    "en": "💬 The one-paragraph summary",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e437740f2038": {
+    "zh": "\n      MLP 先 flatten 等於把空間關係丟掉——左上角和右下角畫素變成一樣近，網路學不會「局部」是什麼。CNN 用稀疏連線讓每個輸出只看一小塊鄰居，再加上權重共享讓同一組權重掃全圖，既省參數又自帶「局部圖案到處都有」的先驗，還順帶獲得平移等變性——輸入往哪移，特徵圖就往哪移。這一切都來自兩個開關：稀疏連線 + 權重共享。\n    ",
+    "en": "An MLP that flattens first is throwing away the spatial relationships: the top-left and bottom-right pixels become equally close, and the network can't learn what \"local\" means. A CNN uses sparse connectivity so each output only looks at a small neighborhood, and adds weight sharing so one set of weights scans the whole image; that saves parameters and builds in the prior that \"local patterns are everywhere,\" and on top of that it gets translation equivariance: wherever the input moves, the feature map moves the same way. All of this comes from two switches: sparse connectivity + weight sharing.",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "cd39086d5248": {
+    "zh": "MLP Flatten 關鍵詞",
+    "en": "MLP flattening: key terms",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "4ec65823ea44": {
+    "zh": "H×W → 一維長向量",
+    "en": "H×W → one long 1D vector",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "8c17fe1bfa56": {
+    "zh": "二維鄰居關係消失",
+    "en": "2D neighbor relationships vanish",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "11e244f9c3b1": {
+    "zh": "參數量 $O(HW \\cdot d)$",
+    "en": "Parameters $O(HW \\cdot d)$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "c73c69fa2735": {
+    "zh": "無內建空間先驗",
+    "en": "No built-in spatial prior",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "45ec0b22ea8e": {
+    "zh": "學「邊緣」需要記整行權重",
+    "en": "Learning an \"edge\" means memorizing a whole row of weights",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ded6526c181d": {
+    "zh": "CNN 關鍵詞",
+    "en": "CNN: key terms",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "2b18686254ed": {
+    "zh": "保持 H×W 二維結構",
+    "en": "Keeps the H×W 2D structure",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ed793af0c0d7": {
+    "zh": "稀疏連線（k×k 局部感受野）",
+    "en": "Sparse connectivity (k×k local receptive field)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "b903091157e5": {
+    "zh": "權重共享（同一核心全圖滑動）",
+    "en": "Weight sharing (one kernel slides over the whole image)",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "ce97fe06cf96": {
+    "zh": "參數量 $O(k^2 \\cdot C)$",
+    "en": "Parameters $O(k^2 \\cdot C)$",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "e180930807ab": {
+    "zh": "平移等變性內建",
+    "en": "Built-in translation equivariance",
+    "kp": 10,
+    "ctx": "page"
+  },
+  "a87b5e80a45a": {
+    "zh": "10 / 互動實驗室 · Interactive Lab",
+    "en": "10 / Interactive Lab",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "03981c501421": {
+    "zh": "互動實驗室：局部感受野 × 權重共享 × 特徵圖\n    <span class=\"en\">Interactive Lab: Receptive Field, Weight Sharing &amp; Feature Map Visualization</span>\n  ",
+    "en": "Interactive Lab: Local Receptive Field × Weight Sharing × Feature Map",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "fcad69dc815c": {
+    "zh": "核心預設 Kernel:",
+    "en": "Kernel preset:",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "13c23b8f4a6d": {
+    "zh": "Identity（恆等）",
+    "en": "Identity",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7408dfaf4444": {
+    "zh": "水平邊緣 Edge-H",
+    "en": "Horizontal edge",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "6df232978ffc": {
+    "zh": "垂直邊緣 Edge-V",
+    "en": "Vertical edge",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a77be2c5a75a": {
+    "zh": "模糊 Blur",
+    "en": "Blur",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "a547be4e62ab": {
+    "zh": "銳化 Sharpen",
+    "en": "Sharpen",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "db57ecfe3662": {
+    "zh": "重設影像 Reset Image",
+    "en": "Reset image",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "afe458d1e0bf": {
+    "zh": "計算特徵圖 Compute",
+    "en": "Compute feature map",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "7722d9f8f015": {
+    "zh": "全部清除 Clear",
+    "en": "Clear all",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "63166033ea8f": {
+    "zh": "\n          👆 點選格子切換畫素值（0/1）。目前為 4×4 輸入影像。\n          <span style=\"color: #64748b; font-size: 13px;\">Click cells to toggle pixel values (0/1). 4×4 input image.</span>\n        ",
+    "en": "👆 Click a cell to toggle its pixel value (0/1). The input image is currently 4×4.",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "0cc4eea222f9": {
+    "zh": "<span style=\"color:#94a3b8;\">▶ 點選「計算特徵圖」開始<br>Click \"Compute Feature Map\"</span>",
+    "en": "<span style=\"color:#94a3b8;\">▶ Click \"Compute feature map\"<br>to start</span>",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "95b237e2d2da": {
+    "zh": "\n      🧪 <strong>實測大挑戰：</strong><br>\n      1. <strong>感受野驗證</strong>：點選格子修改畫素值，觀察不同核心對同一輸入的響應差異——水平邊緣核心對水平邊界響應強烈，垂直邊緣核心對垂直邊界響應強烈。<br>\n      2. <strong>權重共享驗證</strong>：注意右側 Readout 顯示的「核心權重」在計算每個輸出格時<strong>完全相同</strong>——這就是 CNN 權重共享的直觀展示！\n    ",
+    "en": "🧪 <strong>The hands-on challenge:</strong><br>\n      1. <strong>Check the receptive field</strong>: click cells to change pixel values and watch how different kernels respond to the same input: the horizontal-edge kernel responds strongly to horizontal boundaries, the vertical-edge kernel to vertical boundaries.<br>\n      2. <strong>Check weight sharing</strong>: notice that the \"kernel weights\" shown in the Readout on the right are <strong>exactly the same</strong> when each output cell is computed: this is a direct demonstration of CNN weight sharing!",
+    "kp": 11,
+    "ctx": "page"
+  },
+  "387f167c3408": {
+    "zh": "11 / 實戰檢驗 · Concept Checkpoint",
+    "en": "11 / Put It to the Test",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "256def120735": {
+    "zh": "隨堂 Checkpoint：觀念即時反饋\n    <span class=\"en\">Concept Checkpoint: Immediate Feedback Quiz</span>\n  ",
+    "en": "In-Class Checkpoint: Instant Concept Feedback",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a5cbc50e076d": {
+    "zh": "題目 1：把影像 flatten 再送進全連線 MLP，最主要的問題是？",
+    "en": "Question 1: What is the main problem with flattening an image and then feeding it to a fully connected MLP?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b10425614012": {
+    "zh": "A. 增加了不必要的參數數量",
+    "en": "A. It adds an unnecessary number of parameters",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b71fc1a0822e": {
+    "zh": "B. 丟掉二維空間結構，難以捕捉局部特徵",
+    "en": "B. It throws away the 2D spatial structure, making local features hard to capture",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "f7b631927229": {
+    "zh": "C. 導致梯度消失（Vanishing Gradient）",
+    "en": "C. It causes vanishing gradients",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ffbc2aa14fc3": {
+    "zh": "D. 使網路無法學習非線性",
+    "en": "D. It makes the network unable to learn nonlinearity",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "b227157abbe9": {
+    "zh": "題目 2：相對於標準全連線層，卷積層的兩項結構改動是？",
+    "en": "Question 2: Compared with a standard fully connected layer, what are the two structural changes of a convolutional layer?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "1ba23f22a3c1": {
+    "zh": "A. 批次歸一化與 Dropout",
+    "en": "A. Batch normalization and dropout",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "ba92fa1de15e": {
+    "zh": "B. 稀疏連線與權重共享",
+    "en": "B. Sparse connectivity and weight sharing",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "feb0f4d2be6b": {
+    "zh": "C. 深度增加與寬度減少",
+    "en": "C. More depth and less width",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "0d2f3270d4b4": {
+    "zh": "D. Adam 最佳化器與 L2 正則化",
+    "en": "D. The Adam optimizer and L2 regularization",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "2591e3e53e83": {
+    "zh": "題目 3：平移等變性（translation equivariance）的意思是？",
+    "en": "Question 3: What does translation equivariance mean?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "47684333df3f": {
+    "zh": "A. 輸入平移時，輸出完全不變",
+    "en": "A. When the input is shifted, the output stays exactly the same",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "4cfceb564d4d": {
+    "zh": "B. 輸入平移時，輸出隨機改變",
+    "en": "B. When the input is shifted, the output changes randomly",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "a3a98e855857": {
+    "zh": "C. 輸入平移時，輸出也對應地平移",
+    "en": "C. When the input is shifted, the output shifts correspondingly",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "27181c703f69": {
+    "zh": "D. 只有經過池化層才能獲得此性質",
+    "en": "D. This property can only be obtained after a pooling layer",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "dc861429a959": {
+    "zh": "題目 4：本章核心零件課（卷積／啟用／池化）對應哪一節？",
+    "en": "Question 4: Which section is the chapter's core building-blocks lesson (convolution/activation/pooling)?",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "aad71ba319ac": {
+    "zh": "A. §1 導論",
+    "en": "A. §1 Introduction",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "8be0365aaec1": {
+    "zh": "C. §3 卷積層三階段",
+    "en": "C. §3 The three stages of a convolutional layer",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "22264ec3301b": {
+    "zh": "D. §5 里程碑架構",
+    "en": "D. §5 Milestone architectures",
+    "kp": 12,
+    "ctx": "page"
+  },
+  "86ea63040085": {
+    "zh": "章節目錄導覽",
+    "en": "Chapter table of contents navigation",
+    "kp": 0,
+    "ctx": "attr",
+    "attr": "aria-label"
+  },
+  "_zhText": [
+    ".quiz-card",
+    ".q-num",
+    ".q"
+  ]
+}
