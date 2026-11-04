@@ -957,122 +957,122 @@
      "kp": 1,
      "id": "kp1",
      "badge": "1",
-     "title": null,
+     "title": "Data splitting: training, test, and validation sets, and two kinds of cheating",
      "quizzes": 4
     },
     {
      "kp": 2,
      "id": "kp2",
      "badge": "2",
-     "title": null,
+     "title": "MSE, variance, bias: error decomposition and the dartboard picture",
      "quizzes": 4
     },
     {
      "kp": 3,
      "id": "kp3",
      "badge": "2.1",
-     "title": null,
+     "title": "Covariance and the variance of a linear combination",
      "quizzes": 4
     },
     {
      "kp": 4,
      "id": "kp4",
      "badge": "2.2",
-     "title": null,
+     "title": "True model: $y = f + \\varepsilon$ and Gaussian noise",
      "quizzes": 4
     },
     {
      "kp": 5,
      "id": "kp5",
      "badge": "3.1",
-     "title": null,
+     "title": "Case I: Empirical error and true error of a test instance",
      "quizzes": 4
     },
     {
      "kp": 6,
      "id": "kp6",
      "badge": "3.2",
-     "title": null,
+     "title": "Stein's Lemma and Stein's Unbiased Risk Estimate (SURE)",
      "quizzes": 4
     },
     {
      "kp": 7,
      "id": "kp7",
      "badge": "3.2",
-     "title": null,
+     "title": "Case II: Training-Instance Sensitivity and Model Complexity",
      "quizzes": 4
     },
     {
      "kp": 8,
      "id": "kp8",
      "badge": "4",
-     "title": null,
+     "title": "Overfitting, Underfitting, and Generalization",
      "quizzes": 4
     },
     {
      "kp": 9,
      "id": "kp9",
      "badge": "5.1",
-     "title": null,
+     "title": "Cross-validation: K-fold and LOOCV",
      "quizzes": 4
     },
     {
      "kp": 10,
      "id": "kp10",
      "badge": "5.2",
-     "title": null,
+     "title": "The theory behind cross-validation: why does Err go back up?",
      "quizzes": 4
     },
     {
      "kp": 11,
      "id": "kp11",
      "badge": "6.1",
-     "title": null,
+     "title": "Regularization: $J + \\alpha\\,\\Omega$ and sparsity",
      "quizzes": 4
     },
     {
      "kp": 12,
      "id": "kp12",
      "badge": "6.2",
-     "title": null,
+     "title": "L2 regularization: Hessian eigendecomposition and shrinkage",
      "quizzes": 4
     },
     {
      "kp": 13,
      "id": "kp13",
      "badge": "6.3",
-     "title": null,
+     "title": "L1 regularization (lasso): soft thresholding and geometric intuition",
      "quizzes": 4
     },
     {
      "kp": 14,
      "id": "kp14",
      "badge": "7 / 8.2",
-     "title": null,
+     "title": "Weight decay and input noise: two views of regularization",
      "quizzes": 4
     },
     {
      "kp": 15,
      "id": "kp15",
      "badge": "9",
-     "title": null,
+     "title": "Early Stopping: When to Stop, and Its Equivalence to Weight Decay",
      "quizzes": 4
     },
     {
      "kp": 16,
      "id": "kp16",
      "badge": "10–12",
-     "title": null,
+     "title": "Bagging, Dropout, Batch Normalization, and Chapter Summary",
      "quizzes": 4
     }
    ],
    "quizzes": 64,
    "en": {
-    "units": 0,
-    "translated": 0,
+    "units": 1063,
+    "translated": 1063,
     "review": 0,
     "stale": 0,
-    "toggle": false
+    "toggle": true
    },
    "nav": true
   },
